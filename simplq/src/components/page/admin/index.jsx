@@ -1,13 +1,14 @@
 import React from "react";
 import axios from 'axios';
 import ItemList from "./ItemList";
-
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import AddIcon from '@material-ui/icons/Add';
 import RefreshIcon from '@material-ui/icons/Refresh';
 import { IconButton } from '@material-ui/core';
+import FileCopyIcon from '@material-ui/icons/FileCopy';
 
 export default class Admin extends React.Component {
     state = {
@@ -39,9 +40,13 @@ export default class Admin extends React.Component {
     }
 
     render() {
+        var shareUrl = "http://localhost:3000/" + this.state.queueId;
         return <Card>
             <CardContent>
                 <p> Share this url with others to get started:</p>
+                <p>{shareUrl} <CopyToClipboard text={shareUrl}>
+                <IconButton><FileCopyIcon /></IconButton>
+                </CopyToClipboard> </p>
                 
                 {this.cardContent()}
             </CardContent>

@@ -53,7 +53,7 @@ function ItemList(props) {
           </Typography>
             <div className={classes.demo}>
                 <List>
-                    {props.items.map(item => <Item item={item} />)}
+                    {props.items.map(item => <Item item={item} key={item.id}/>)}
                 </List>
             </div>
         </Grid>
