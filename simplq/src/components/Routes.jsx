@@ -6,7 +6,7 @@ import {
 import CreateQueue from "./page/CreateQueue"
 import JoinQueue from "./page/JoinQueue";
 import QueueStatus from "./page/QueueStatus";
-import Admin from "./page/admin";
+import Admin from "./page/Admin";
 
 export default () => {
   return <Router>
