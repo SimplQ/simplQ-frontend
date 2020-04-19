@@ -8,22 +8,22 @@ export default class Admin extends React.Component {
     }
 
     componentDidMount() {
-        this.loadItems()
+        this.loadItems(this.props.match.params.queueId)
     }
 
-    loadItems() {
-        axios.get(`http://localhost:3000/queue`)
+    loadItems(queueId) {
+        axios.get(`http://localhost:3000/queue/` + queueId)
             .then(res => {
-                const items = res.data;
+                const items = res.data.items;
                 this.setState({ items });
             })
     }
 
     render() {
-        return <>
-        <h1>Hello, Admin {this.props.match.params.queueId}</h1>
-        <p>Users in the queue:</p>
-        <ItemList items={this.state.items}></ItemList>
-        </>;
+        if (this.state.items.length > 0) {
+            return <ItemList items={this.state.items}/>
+        } else {
+            return <p>Empty Queue</p>
+        }
     }
 }
