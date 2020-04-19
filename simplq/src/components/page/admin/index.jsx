@@ -1,5 +1,4 @@
 import React from "react";
-import axios from 'axios';
 import ItemList from "./ItemList";
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import Card from '@material-ui/core/Card';
@@ -8,7 +7,7 @@ import CardContent from '@material-ui/core/CardContent';
 import AddIcon from '@material-ui/icons/Add';
 import RefreshIcon from '@material-ui/icons/Refresh';
 import { IconButton } from '@material-ui/core';
-import FileCopyIcon from '@material-ui/icons/FileCopy';
+import {getQueuedItems} from '../../../apis'
 
 export default class Admin extends React.Component {
     state = {
@@ -21,11 +20,8 @@ export default class Admin extends React.Component {
     }
 
     loadItems(queueId) {
-        axios.get(`http://localhost:3000/queue/` + queueId)
-            .then(res => {
-                const items = res.data.items;
-                this.setState({ items });
-            })
+        const items = getQueuedItems(queueId);
+        this.setState({ items });
     }
 
     cardContent() {
@@ -47,7 +43,7 @@ export default class Admin extends React.Component {
                 <p>{shareUrl} <CopyToClipboard text={shareUrl}>
                 <IconButton><FileCopyIcon /></IconButton>
                 </CopyToClipboard> </p>
-                
+
                 {this.cardContent()}
             </CardContent>
             <CardActions>
