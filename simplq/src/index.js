@@ -1,12 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Layout from './Components/Layout';
+import Layout from './components/Layout';
 import * as serviceWorker from './serviceWorker';
+import Routes from './components/Routes';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Layout />
+    <Layout>
+      <Routes />
+      </Layout>
   </React.StrictMode>,
   document.getElementById('root')
 );
