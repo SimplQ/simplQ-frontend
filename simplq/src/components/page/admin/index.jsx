@@ -6,15 +6,17 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import AddIcon from '@material-ui/icons/Add';
+import RefreshIcon from '@material-ui/icons/Refresh';
 import { IconButton } from '@material-ui/core';
 
 export default class Admin extends React.Component {
     state = {
-        items: null
+        items: null,
+        queueId: this.props.match.params.queueId
     }
 
     componentDidMount() {
-        this.loadItems(this.props.match.params.queueId)
+        this.loadItems(this.state.queueId)
     }
 
     loadItems(queueId) {
@@ -39,11 +41,16 @@ export default class Admin extends React.Component {
     render() {
         return <Card>
             <CardContent>
+                <p> Share this url with others to get started:</p>
+                
                 {this.cardContent()}
             </CardContent>
             <CardActions>
                 <IconButton aria-label="share">
                     <AddIcon />
+                </IconButton>
+                <IconButton aria-label="share">
+                    <RefreshIcon />
                 </IconButton>
             </CardActions>
         </Card>
