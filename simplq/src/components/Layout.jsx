@@ -13,7 +13,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
-import CreateQueue from './CreateQueue'
+import Routes from './Routes'
 
 function Copyright() {
   return (
@@ -49,7 +49,7 @@ export default function Layout() {
         </Toolbar>
       </AppBar>
 
-      <CreateQueue/>
+      <Routes/>
 
       {/* Footer */}
       <footer className={classes.footer}>
