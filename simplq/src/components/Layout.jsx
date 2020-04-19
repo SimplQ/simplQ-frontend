@@ -4,7 +4,7 @@ import '../App.css';
 import {AppBar} from '@material-ui/core'
 import Button from '@material-ui/core/Button';
 
-function App() {
+function Layout() {
   return (
       <div className="App">
             <AppBar title="My App">
@@ -21,4 +21,4 @@ function App() {
   );
 }
 
-export default App;
+export default Layout;
