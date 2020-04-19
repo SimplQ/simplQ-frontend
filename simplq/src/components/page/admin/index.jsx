@@ -12,6 +12,13 @@ import TextField from '@material-ui/core/TextField';
 import FileCopyIcon from '@material-ui/icons/FileCopy';
 import InputAdornment from '@material-ui/core/InputAdornment';
 
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import AddIcon from '@material-ui/icons/Add';
+import RefreshIcon from '@material-ui/icons/Refresh';
+import { IconButton } from '@material-ui/core';
+
 export default class Admin extends React.Component {
     state = {
         items: null,
@@ -53,10 +60,10 @@ export default class Admin extends React.Component {
                 {this.cardContent()}
             </CardContent>
             <CardActions>
-                <IconButton>
+                <IconButton aria-label="share">
                     <AddIcon />
                 </IconButton>
-                <IconButton>
+                <IconButton aria-label="share">
                     <RefreshIcon />
                 </IconButton>
             </CardActions>
