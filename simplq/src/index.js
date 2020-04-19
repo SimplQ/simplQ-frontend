@@ -7,7 +7,9 @@ import Routes from './components/Routes';
 
 ReactDOM.render(
   <React.StrictMode>
+    <Layout>
       <Routes />
+      </Layout>
   </React.StrictMode>,
   document.getElementById('root')
 );
