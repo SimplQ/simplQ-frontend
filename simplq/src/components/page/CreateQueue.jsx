@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
+import {createQueue} from '../../apis'
 
 const styles = (theme) => ({
   icon: {
@@ -31,12 +32,22 @@ class CreateQueue extends React.Component {
 
   constructor(props) {
       super(props);
+      this.state = {
+          textFieldValue: '',
+      }
   }
 
-  handleClick() {
-      //axios call
-      //this.props.history.push("/queue/:queueId/admin");
+  async handleClick(name) {
+      const queueId = await createQueue(name);
+      this.props.history.push("/queue/" + queueId + "/admin");
   }
+
+  handleTextFieldChange = (e) => {
+     this.setState({
+         textFieldValue: e.target.value
+     });
+  }
+
 
   render() {
       const {classes} = this.props;
@@ -63,12 +74,16 @@ class CreateQueue extends React.Component {
                     shrink: true,
                   }}
                   variant="outlined"
+                  value={this.state.textFieldValue}
+                  onChange={this.handleTextFieldChange}
                 />
 
             <div className={classes.heroButtons}>
                   <Grid container spacing={2} justify="center">
                     <Grid item>
-                      <Button variant="contained" color="primary" onClick={this.handleClick}>
+                      <Button variant="contained" color="primary"
+                           onClick={() => this.handleClick(this.state.textFieldValue)}
+                      >
                         Create A new queue
                       </Button>
                     </Grid>
