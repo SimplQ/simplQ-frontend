@@ -69,6 +69,7 @@ class CreateQueue extends React.Component {
                   style={{ margin: 8 }}
                   placeholder="Enter a name for a new queue"
                   fullWidth
+                  required
                   margin="normal"
                   InputLabelProps={{
                     shrink: true,
