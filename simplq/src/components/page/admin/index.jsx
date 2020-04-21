@@ -7,6 +7,7 @@ import CardContent from '@material-ui/core/CardContent';
 import AddIcon from '@material-ui/icons/Add';
 import RefreshIcon from '@material-ui/icons/Refresh';
 import { IconButton } from '@material-ui/core';
+import FileCopyIcon from '@material-ui/icons/FileCopy';
 import {getQueuedItems} from '../../../apis'
 
 export default class Admin extends React.Component {

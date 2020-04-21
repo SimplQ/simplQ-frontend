@@ -38,7 +38,7 @@ class CreateQueue extends React.Component {
   }
 
   async handleClick(name) {
-      const queueId = await createQueue(name);
+      const queueId = await createQueue(name).id;
       this.props.history.push("/queue/" + queueId + "/admin");
   }
 
