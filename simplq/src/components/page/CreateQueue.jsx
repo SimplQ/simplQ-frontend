@@ -39,7 +39,7 @@ class CreateQueue extends React.Component {
 
   handleClick(name) {
       QueueService.createQueue(name).then( 
-        queueId => this.props.history.push("/queue/" + queueId + "/admin")
+        queueId => this.props.history.push("/admin/" + queueId)
       )
       
   }
