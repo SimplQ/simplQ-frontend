@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
-import {createQueue} from '../../apis'
+import QueueService from '../../services/queue';
 
 const styles = (theme) => ({
   icon: {
@@ -37,9 +37,11 @@ class CreateQueue extends React.Component {
       }
   }
 
-  async handleClick(name) {
-      const queueId = await createQueue(name).id;
-      this.props.history.push("/queue/" + queueId + "/admin");
+  handleClick(name) {
+      QueueService.createQueue(name).then( 
+        queueId => this.props.history.push("/queue/" + queueId + "/admin")
+      )
+      
   }
 
   handleTextFieldChange = (e) => {
