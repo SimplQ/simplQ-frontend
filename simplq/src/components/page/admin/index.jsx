@@ -35,7 +35,7 @@ export default class Admin extends React.Component {
     }
 
     render() {
-        var shareUrl = "http://localhost:3000/" + this.state.queueId;
+        var shareUrl = window.location.origin + "/" + this.state.queueId;
         return <CentralSection heading="Queue Dashboard">
 
             <p> Share this url with others to get started:</p>
