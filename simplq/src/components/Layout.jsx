@@ -36,7 +36,7 @@ export default function Layout() {
       <AppBar position="relative">
         <Toolbar>
           <Typography variant="h6" color="inherit" noWrap>
-            SimplQ
+            SQ
           </Typography>
         </Toolbar>
       </AppBar>
