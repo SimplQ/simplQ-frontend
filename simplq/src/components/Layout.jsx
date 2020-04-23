@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   footer: {
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(6),
-  },
+  }
 }));
 
 export default function Layout() {
@@ -43,14 +43,12 @@ export default function Layout() {
 
       <Routes/>
 
-      {/* Footer */}
       <footer className={classes.footer}>
         <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
           By FlatBoys
         </Typography>
         <Copyright />
       </footer>
-      {/* End footer */}
     </React.Fragment>
   );
 }
