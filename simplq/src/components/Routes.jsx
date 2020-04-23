@@ -13,6 +13,6 @@ export default () => {
       <Route path="/" exact component={CreateQueue} />
       <Route path="/admin/:queueId" exact component={Admin} />
       <Route path="/:queueId" exact component={JoinQueue} />
-      <Route path="/status/:tokenId" exact component={QueueStatus} />
+      <Route path="/status/:queueId/:tokenId" exact component={QueueStatus} />
   </Router>
 }
