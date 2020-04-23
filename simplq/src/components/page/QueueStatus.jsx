@@ -7,7 +7,7 @@ import CentralSection from "../CentralSection";
 function QueueStatus(props) {
   var aheadCount = 10;
 
-  return <CentralSection heading="Your Status">
+  return <CentralSection heading="Sit Tight!">
     <Typography variant="h5" align="center" color="textSecondary" component="p">
       There are {aheadCount} people ahead of you. Thanks for waiting!
     </Typography>
