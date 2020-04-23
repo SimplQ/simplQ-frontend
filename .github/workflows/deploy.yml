@@ -36,7 +36,8 @@ jobs:
       - name: Download Artifact
         uses: actions/download-artifact@master
         with:
-          name: dist
+          name: build
+          path: simplq/build
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@master
         with:
