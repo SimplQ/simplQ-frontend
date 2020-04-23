@@ -2,7 +2,14 @@ name: Build and Deploy
 on:
   release:
     types: [published, edited]
-
+  push:
+    branches:
+    - master
+      
+defaults:
+  run:
+    working-directory: simplq
+    
 jobs:
   build:
     name: Build
@@ -11,9 +18,7 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@master
       - name: Install Dependencies
-        run: |
-          cd simplq
-          npm install
+        run: npm install
       - name: Build
         run: npm run build
       - name: Archive Production Artifact
