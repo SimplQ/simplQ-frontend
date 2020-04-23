@@ -1,52 +1,39 @@
 import React from "react";
-import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import { makeStyles } from '@material-ui/core/styles';
-
-const useStyles = makeStyles((theme) => ({
-    paper: {
-      marginTop: theme.spacing(8),
-      marginBottom: theme.spacing(8),
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-    }
-}));
+import CentralSection from "../CentralSection";
 
 function JoinQueue(props) {
-    const classes = useStyles()
-
-    return <Container maxWidth="sm" component="main">
-        <div className={classes.paper}>
-            <TextField
-                style={{ margin: 8 }}
-                placeholder="Your Name"
-                fullWidth
-                required
-                margin="normal"
-                InputLabelProps={{
-                    shrink: true,
-                }}
-                variant="outlined"
-            />
-                        <TextField
-                style={{ margin: 8 }}
-                placeholder="Contact Number"
-                fullWidth
-                required
-                margin="normal"
-                InputLabelProps={{
-                    shrink: true,
-                }}
-                variant="outlined"
-            />
-            <br />
-            <Button variant="contained" color="primary" >
+    return <CentralSection heading="Join Queue">
+        <TextField
+            placeholder="Your Name"
+            fullWidth
+            required
+            margin="normal"
+            InputLabelProps={{
+                shrink: true,
+            }}
+            variant="outlined"
+        />
+        <TextField
+            placeholder="Contact Number"
+            fullWidth
+            required
+            margin="normal"
+            InputLabelProps={{
+                shrink: true,
+            }}
+            variant="outlined"
+        />
+        <div style={{ display: "flex", justifyContent: 'flex-end' }}>
+            <Button variant="contained" color="primary" style={{
+                marginTop: 30,
+                marginLeft: 10,
+            }}>
                 Join
-  </Button>
+        </Button>
         </div>
-    </Container>
+    </CentralSection>
 }
 
 export default JoinQueue
