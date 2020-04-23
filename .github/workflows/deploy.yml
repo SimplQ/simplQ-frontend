@@ -43,4 +43,5 @@ jobs:
         with:
           args: deploy --only hosting
         env:
+          PROJECT_PATH: ./simplq
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
