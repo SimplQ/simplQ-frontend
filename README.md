@@ -1,17 +1,3 @@
-# Mock Server
+## SimplQ
 
-A mock server is created using [JSON Server](https://github.com/typicode/json-server)
-
-### Installation
-
-Install JSON Server
-```
-npm install -g json-server
-```
-
-### Usage
-
-```
-cd mocks
-json-server --watch db.json --routes routes.json
-```
+![Build and Deploy](https://github.com/daltonfury42/simplQ-frontend/workflows/Build%20and%20Deploy/badge.svg)

@@ -2,9 +2,6 @@ name: Build and Deploy
 on:
   release:
     types: [published, edited]
-  push:
-    branches:
-    - master
       
 defaults:
   run:
