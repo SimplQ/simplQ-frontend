@@ -11,7 +11,7 @@ const firebaseConfig = {
     messagingSenderId: "922027257596",
     appId: "1:922027257596:web:289581e7f35476eb7e7179",
     measurementId: "G-G95KXMDJYE"
-  };
+};
 
 class QueueService {
     constructor() {
@@ -27,6 +27,15 @@ class QueueService {
         }).then(docRef => docRef.id)
             .catch(() => console.log("Error creating queue"));
     }
+
+    addtoQueue(name, contact, queueId) {
+        console.log(name, "  ", contact);
+        return this.queues.doc(queueId)
+            .collection("users").add({ name: name, contact: contact })
+            .then(docRef => docRef.id).catch(() => console.log("Error adding to queue"));
+
+    }
 }
+
 
 export default new QueueService();
