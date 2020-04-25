@@ -11,9 +11,3 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
-footer {
-  position: absolute;
-  bottom: 0;
-  height: 2.5rem;            /* Footer height */
-}

@@ -8,24 +8,14 @@ import TextField from '@material-ui/core/TextField';
 import QueueService from '../../services/queue';
 
 const styles = (theme) => ({
-  icon: {
-    marginRight: theme.spacing(2),
-  },
-  heroContent: {
+  content: {
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(8, 0, 6),
     height: "100vh"
   },
-  heroButtons: {
+  button: {
     marginTop: theme.spacing(4),
-  },
-  footer: {
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(6),
-  },
-  centerAdornment: {
-    marginLeft: "50%" // or your relevant measure
-  },
+  }
 });
 
 class CreateQueue extends React.Component {
@@ -55,7 +45,7 @@ class CreateQueue extends React.Component {
     const { classes } = this.props;
     return (
       <>
-        <div className={classes.heroContent}>
+        <div className={classes.content}>
           <Container maxWidth="sm">
             <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
               SimplQ
@@ -78,7 +68,7 @@ class CreateQueue extends React.Component {
               onChange={this.handleTextFieldChange}
             />
 
-            <div className={classes.heroButtons}>
+            <div className={classes.button}>
               <Grid container spacing={2} justify="center">
                 <Grid item>
                   <Button variant="contained" color="primary"
