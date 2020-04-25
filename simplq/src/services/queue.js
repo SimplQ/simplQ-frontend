@@ -27,8 +27,6 @@ class QueueService {
         }).then(docRef => docRef.id)
             .catch(() => console.log("Error creating queue"));
     }
-
-    addToQuue(quiID, name)
 }
 
 export default new QueueService();

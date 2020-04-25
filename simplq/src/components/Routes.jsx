@@ -11,8 +11,8 @@ import Admin from "./page/admin/index";
 export default () => {
   return <Router>
       <Route path="/" exact component={CreateQueue} />
-      <Route path="/queue/:queueId/admin" component={Admin} />
-      <Route path="/join" component={JoinQueue} />
-      <Route path="/queue-status" component={QueueStatus} />
+      <Route path="/admin/:queueId" exact component={Admin} />
+      <Route path="/:queueId" exact component={JoinQueue} />
+      <Route path="/status/:queueId/:tokenId" exact component={QueueStatus} />
   </Router>
 }
