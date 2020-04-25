@@ -20,7 +20,7 @@ function Copyright() {
 }
 
 const useStyles = makeStyles((theme) => ({
-  layout: {
+  mainLayout: {
     width: 'auto',
     marginLeft: theme.spacing(2),
     marginRight: theme.spacing(2),
@@ -52,7 +52,7 @@ export default function Layout() {
       </AppBar>
 
 
-      <main className={classes.layout}>
+      <main className={classes.mainLayout}>
         <Routes />
       </main>
       <footer className={classes.footer}>
