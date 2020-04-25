@@ -5,7 +5,7 @@ import {
 import CreateQueue from "./page/CreateQueue"
 import JoinQueue from "./page/JoinQueue";
 import QueueStatus from "./page/QueueStatus";
-import Admin from "./page/admin/index";
+import Admin from "./page/AdminQueue/index";
 
 export default () => {
   return <>
