@@ -22,9 +22,21 @@ function Copyright() {
 }
 
 const useStyles = makeStyles((theme) => ({
+  mainLayout: {
+    width: 'auto',
+    marginLeft: theme.spacing(2),
+    marginRight: theme.spacing(2),
+    [theme.breakpoints.up(600 + theme.spacing(2) * 2)]: {
+      width: 600,
+      marginLeft: 'auto',
+      marginRight: 'auto',
+    },
+    marginBottom: "auto"
+  },
   footer: {
     backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(6)
+    padding: theme.spacing(6),
+    marginTop: "auto"
   }
 }));
 
@@ -47,8 +59,10 @@ const handleClick = (props) => {
         </Toolbar>
       </AppBar>
 
-      <Routes/>
 
+      <main className={classes.mainLayout}>
+        <Routes />
+      </main>
       <footer className={classes.footer}>
         <Copyright />
       </footer>
