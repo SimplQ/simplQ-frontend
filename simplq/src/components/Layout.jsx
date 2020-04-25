@@ -8,7 +8,7 @@ import Routes from './Routes'
 
 function Copyright() {
   return (
-    <Typography variant="p" color="textSecondary" align="center">
+    <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="#">
         Flatboys
@@ -22,7 +22,6 @@ function Copyright() {
 const useStyles = makeStyles((theme) => ({
   layout: {
     width: 'auto',
-    height: '100vh',
     marginLeft: theme.spacing(2),
     marginRight: theme.spacing(2),
     [theme.breakpoints.up(600 + theme.spacing(2) * 2)]: {
@@ -30,10 +29,12 @@ const useStyles = makeStyles((theme) => ({
       marginLeft: 'auto',
       marginRight: 'auto',
     },
+    marginBottom: "auto"
   },
   footer: {
     backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(6)
+    padding: theme.spacing(6),
+    marginTop: "auto"
   }
 }));
 
