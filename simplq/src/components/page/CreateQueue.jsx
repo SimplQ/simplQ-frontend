@@ -50,6 +50,11 @@ class CreateQueue extends React.Component {
      });
   }
 
+  handleKeyPress = (event) => {
+    if(event.key === 'Enter'){
+      this.handleClick(this.state.textFieldValue);
+    }
+  }
 
   render() {
       const {classes} = this.props;
@@ -79,6 +84,7 @@ class CreateQueue extends React.Component {
                   variant="outlined"
                   value={this.state.textFieldValue}
                   onChange={this.handleTextFieldChange}
+                  onKeyPress={this.handleKeyPress}
                 />
 
             <div className={classes.heroButtons}>
@@ -92,7 +98,7 @@ class CreateQueue extends React.Component {
                     </Grid>
                   </Grid>
                 </div>
-              </Container>
+                </Container>
             </div>
           </main>
         </React.Fragment>

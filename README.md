@@ -20,6 +20,6 @@ npm install
 In the `simplq` folder, simply run:
 
 ```
-npm start
+sudo npm start ##sudo for changes to reflect instantly 
 ```
 
