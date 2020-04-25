@@ -5,6 +5,8 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Link from '@material-ui/core/Link';
 import Routes from './Routes'
+import Button from '@material-ui/core/Button';
+import { withRouter } from "react-router";
 
 function Copyright() {
   return (
@@ -26,7 +28,11 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function Layout() {
+const handleClick = (props) => {
+      props.history.push("/");
+  }
+
+ function Layout(props) {
   const classes = useStyles();
 
   return (
@@ -34,7 +40,9 @@ export default function Layout() {
       <AppBar position="relative">
         <Toolbar>
           <Typography variant="h6" color="inherit" noWrap>
-            SQ
+            <Button color="inherit" onClick={() => handleClick(props)}>
+                SQ
+            </Button>
           </Typography>
         </Toolbar>
       </AppBar>
@@ -47,3 +55,5 @@ export default function Layout() {
     </>
   );
 }
+
+export default withRouter(Layout);
