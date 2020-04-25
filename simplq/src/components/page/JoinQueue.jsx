@@ -4,10 +4,17 @@ import Button from '@material-ui/core/Button';
 import CentralSection from "../CentralSection";
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/material.css';
+import { makeStyles } from '@material-ui/core/styles';
 
+const useStyles = makeStyles((theme) => ({
+    textField: {
+      marginTop: theme.spacing(2)
+    }
+  }));
 
 function JoinQueue(props) {
     const [value, setValue] = useState();
+    const classes = useStyles();
 
     return <CentralSection heading="Join Queue">
         <TextField
@@ -22,7 +29,7 @@ function JoinQueue(props) {
             inputStyle="material"
         />
         <PhoneInput
-        style={{marginTop: '10px'}}
+            containerClass={classes.textField}
             placeholder="Contact Number"
             country={'in'}
             value={value}
