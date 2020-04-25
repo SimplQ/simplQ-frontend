@@ -13,10 +13,6 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-
-
-
-
 function JoinQueue(props) {
     const [name, setName] = useState();
     const [contact, setContact] = useState();
