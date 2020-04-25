@@ -5,10 +5,24 @@ import CentralSection from "../CentralSection";
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/material.css';
 
-function Example() {
-    const [value, setValue] = useState()
-    return (
+
+function JoinQueue(props) {
+    const [value, setValue] = useState();
+
+    return <CentralSection heading="Join Queue">
+        <TextField
+            placeholder="Your Name"
+            fullWidth
+            required
+            margin="normal"
+            InputLabelProps={{
+                shrink: true,
+            }}
+            variant="outlined"
+            inputStyle="material"
+        />
         <PhoneInput
+        style={{marginTop: '10px'}}
             placeholder="Contact Number"
             country={'in'}
             value={value}
@@ -22,24 +36,6 @@ function Example() {
                 width: '100%'
             }}
             onChange={setValue} />
-    )
-}
-
-function JoinQueue(props) {
-    return <CentralSection heading="Join Queue">
-        <TextField
-            placeholder="Your Name"
-            fullWidth
-            required
-            margin="normal"
-            InputLabelProps={{
-                shrink: true,
-            }}
-            variant="outlined"
-            inputStyle="material"
-        />
-        <br />
-        {Example()}
         <div style={{ display: "flex", justifyContent: 'flex-end' }}>
             <Button variant="contained" color="primary" style={{
                 marginTop: 30,
