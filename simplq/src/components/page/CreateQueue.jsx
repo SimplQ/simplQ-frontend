@@ -34,14 +34,21 @@ class CreateQueue extends React.Component {
       super(props);
       this.state = {
           textFieldValue: '',
+          valid:true //state variable to check if text field has valid entry
       }
   }
 
   handleClick(name) {
+    if(this.state.textFieldValue===''){
+      this.setState({
+        valid:false
+      });
+    }
+    else{
       QueueService.createQueue(name).then( 
         queueId => this.props.history.push("/admin/" + queueId)
       )
-      
+    }      
   }
 
   handleTextFieldChange = (e) => {
@@ -85,6 +92,9 @@ class CreateQueue extends React.Component {
                   value={this.state.textFieldValue}
                   onChange={this.handleTextFieldChange}
                   onKeyPress={this.handleKeyPress}
+                  error = {this.state.valid?false:true}
+                  id="standard-error" 
+                  helperText = {this.state.valid?"":"Empty Queue Name"}
                 />
 
             <div className={classes.heroButtons}>
