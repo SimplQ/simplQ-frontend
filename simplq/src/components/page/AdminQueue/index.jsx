@@ -10,6 +10,10 @@ const useStyles = makeStyles((theme) => ({
     button: {
         marginLeft: theme.spacing(1)
     },
+    buttonGroup: { 
+        display: "flex",
+        justifyContent: 'flex-end' 
+    },
     urlBox: {
         margin: theme.spacing(3)
     }
@@ -57,7 +61,7 @@ export default (props) => {
             {shareUrl}
         </Alert>
         {content(items)}
-        <div style={{ display: "flex", justifyContent: 'flex-end' }}>
+        <div className={classes.buttonGroup}>
             <Button variant="contained" color="primary" className={classes.botton}>
                 Add
             </Button>
