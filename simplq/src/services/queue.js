@@ -16,16 +16,43 @@ const firebaseConfig = {
 class QueueService {
     constructor() {
         firebase.initializeApp(firebaseConfig);
-        this.db = firebase.firestore();
-        this.queues = this.db.collection("queues");
+        this.queues = firebase.firestore().collection("navaq");
     }
+
     createQueue(name) {
         return this.queues.add({
-            name: name,
-            users: []
+            name: name
         }).then(docRef => docRef.id)
             .catch(() => console.log("Error creating queue"));
     }
+
+    async readQueue(queueId) {
+        const namePromise = this.queues.doc(queueId).get().then(doc => {
+            if (doc.exists) {
+                return doc.data().name;
+            } else {
+                throw new Error("Queue not found");
+            }
+        });
+        
+        const usersPromise = this.queues.doc(queueId).collection("users").get()
+                .then(snapshot => {
+                    const users = [];
+                    snapshot.forEach(doc => {
+                        users.push(doc.data())
+                    });
+                    return users;
+                })
+                .catch(err => {
+                    throw new Error('Error getting users from queue', err);
+                });
+
+        return {
+            name: await namePromise,
+            users: await usersPromise
+        };
+    }
+
     addtoQueue(name, contact, queueId) {
          const today = new Date();
         const date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();

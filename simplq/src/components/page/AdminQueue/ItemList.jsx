@@ -1,5 +1,4 @@
 import React from "react";
-import { makeStyles } from '@material-ui/core/styles';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -9,12 +8,6 @@ import ListItemText from '@material-ui/core/ListItemText';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { Avatar, Card } from "@material-ui/core";
-
-const useStyles = makeStyles((theme) => ({
-    root: {
-      margin: theme.spacing(3)
-    }
-}));
 
 function Item(props) {
     return <ListItem button>
@@ -36,9 +29,8 @@ function Item(props) {
 }
 
 function ItemList(props) {
-    const classes = useStyles();
     return (
-        <Card className={classes.root}>
+        <Card >
             <List>
                 {props.items.map(item => <Item item={item} key={item.id} />)}
             </List>

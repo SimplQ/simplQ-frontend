@@ -1,22 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ItemList from "./ItemList";
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { Button } from '@material-ui/core';
+import { Button, Typography } from '@material-ui/core';
 import CentralSection from "../../CentralSection";
 import Alert from '@material-ui/lab/Alert';
 import { makeStyles } from '@material-ui/core/styles';
+import JoinQueueForm from '../JoinQueue/Form';
+import QueueService from '../../../services/queue';
 
 const useStyles = makeStyles((theme) => ({
-    button: {
-        marginLeft: theme.spacing(1)
-    },
     buttonGroup: { 
         display: "flex",
-        justifyContent: 'flex-end' 
+        justifyContent: 'flex-end',
+        marginTop: theme.spacing(3),
+        marginBottom: theme.spacing(3)
     },
     urlBox: {
-        margin: theme.spacing(3)
-    }
+        marginTop: theme.spacing(3),
+        marginBottom: theme.spacing(3)
+      }
 }));
 
 function content(items) {
@@ -32,23 +34,26 @@ function content(items) {
 
 
 export default (props) => {
-    const [items, setItems] = useState([
-        {
-            "name": "Nithin Jose",
-            "contact": "9400413350",
-            "id": 1
-        },
-        {
-            "name": "Navaneeth Kishore",
-            "contact": "9446011567",
-            "id": 2
-        }
-    ]);
-
     const classes = useStyles();
-    var shareUrl = window.location.origin + "/" + props.match.params.queueId;
+    const queueId = props.match.params.queueId;
 
-    return <CentralSection heading="Shobha Supermart">
+    const [items, setItems] = useState();
+    const [name, setName] = useState();
+
+    const update = () => {
+        QueueService.readQueue(queueId).then(
+            data => {
+                setName(data.name);
+                setItems(data.users)
+            }
+        );
+    }
+
+    useEffect(update);
+
+    var shareUrl = window.location.origin + "/" + queueId;
+
+    return <CentralSection heading={name}>
         <Alert severity="info" className={classes.urlBox}
             action={
                 <CopyToClipboard text={shareUrl}>
@@ -62,13 +67,21 @@ export default (props) => {
         </Alert>
         {content(items)}
         <div className={classes.buttonGroup}>
-            <Button variant="contained" color="primary" className={classes.botton}>
-                Add
-            </Button>
-            <Button variant="contained" color="primary" className={classes.button}>
+            <Button 
+                variant="contained" 
+                color="primary" 
+                className={classes.button}
+                onClick={update}
+            >
                 Refresh
             </Button>
         </div>
+        <Typography variant="h6" align="center" gutterBottom>Add Manually</Typography>
+        <JoinQueueForm 
+            buttonName="Add" 
+            afterJoinHandler={() => props.history.push("/admin/" + queueId)}
+            queueId={queueId}
+            />
     </CentralSection>
 }
 
