@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ItemList from "./ItemList";
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { Button, Typography } from '@material-ui/core';
+import { Button, Typography, TextareaAutosize } from '@material-ui/core';
 import CentralSection from "../../CentralSection";
 import Alert from '@material-ui/lab/Alert';
 import { makeStyles } from '@material-ui/core/styles';
@@ -52,7 +52,7 @@ export default (props) => {
                 </CopyToClipboard>
             }
         >
-            {shareUrl}
+            Your queue is ready for use, share this url to begin
         </Alert>
 
         <ItemList items={items} />
