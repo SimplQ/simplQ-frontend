@@ -1,22 +1,23 @@
 import React, { useState } from 'react';
 import ItemList from "./ItemList";
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { Button } from '@material-ui/core';
+import { Button, Typography } from '@material-ui/core';
 import CentralSection from "../../CentralSection";
 import Alert from '@material-ui/lab/Alert';
 import { makeStyles } from '@material-ui/core/styles';
+import JoinQueueForm from '../JoinQueue/Form';
 
 const useStyles = makeStyles((theme) => ({
-    button: {
-        marginLeft: theme.spacing(1)
-    },
     buttonGroup: { 
         display: "flex",
-        justifyContent: 'flex-end' 
+        justifyContent: 'flex-end',
+        marginTop: theme.spacing(3),
+        marginBottom: theme.spacing(3)
     },
     urlBox: {
-        margin: theme.spacing(3)
-    }
+        marginTop: theme.spacing(3),
+        marginBottom: theme.spacing(3)
+      }
 }));
 
 function content(items) {
@@ -46,7 +47,8 @@ export default (props) => {
     ]);
 
     const classes = useStyles();
-    var shareUrl = window.location.origin + "/" + props.match.params.queueId;
+    const queueId = props.match.params.queueId;
+    var shareUrl = window.location.origin + "/" + queueId;
 
     return <CentralSection heading="Shobha Supermart">
         <Alert severity="info" className={classes.urlBox}
@@ -62,13 +64,16 @@ export default (props) => {
         </Alert>
         {content(items)}
         <div className={classes.buttonGroup}>
-            <Button variant="contained" color="primary" className={classes.botton}>
-                Add
-            </Button>
             <Button variant="contained" color="primary" className={classes.button}>
                 Refresh
             </Button>
         </div>
+        <Typography variant="h6" align="center" gutterBottom>Add Manually</Typography>
+        <JoinQueueForm 
+            buttonName="Add" 
+            afterJoinHandler={() => props.history.push("/admin/" + queueId)}
+            queueId={queueId}
+            />
     </CentralSection>
 }
 
