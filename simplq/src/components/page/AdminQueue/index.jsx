@@ -7,31 +7,20 @@ import Alert from '@material-ui/lab/Alert';
 import { makeStyles } from '@material-ui/core/styles';
 import JoinQueueForm from '../JoinQueue/Form';
 import QueueService from '../../../services/queue';
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const useStyles = makeStyles((theme) => ({
-    buttonGroup: { 
-        display: "flex",
-        justifyContent: 'flex-end',
-        marginTop: theme.spacing(3),
-        marginBottom: theme.spacing(3)
-    },
     urlBox: {
         marginTop: theme.spacing(3),
         marginBottom: theme.spacing(3)
-      }
+    },
+    addBox: {
+        marginTop: theme.spacing(3),
+        padding: theme.spacing(3)
+    }
 }));
-
-function content(items) {
-    if (items == null) {
-        return <p>Loading...</p>
-    }
-    if (items.length > 0) {
-        return <ItemList items={items} />
-    } else {
-        return <p>Empty Queue</p>
-    }
-}
-
 
 export default (props) => {
     const classes = useStyles();
@@ -65,23 +54,23 @@ export default (props) => {
         >
             {shareUrl}
         </Alert>
-        {content(items)}
-        <div className={classes.buttonGroup}>
-            <Button 
-                variant="contained" 
-                color="primary" 
-                className={classes.button}
-                onClick={update}
+
+        <ItemList items={items} />
+
+        <ExpansionPanel className={classes.addBox}>
+            <ExpansionPanelSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
             >
-                Refresh
-            </Button>
-        </div>
-        <Typography variant="h6" align="center" gutterBottom>Add Manually</Typography>
-        <JoinQueueForm 
-            buttonName="Add" 
-            afterJoinHandler={() => props.history.push("/admin/" + queueId)}
-            queueId={queueId}
+                <Typography className={classes.heading}>Add New</Typography>
+            </ExpansionPanelSummary>
+            <JoinQueueForm
+                buttonName="Add"
+                afterJoinHandler={() => props.history.push("/admin/" + queueId)}
+                queueId={queueId}
             />
+        </ExpansionPanel>
     </CentralSection>
 }
 
