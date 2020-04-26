@@ -17,22 +17,15 @@ function JoinQueue(props) {
     const [name, setName] = useState();
     const [contact, setContact] = useState();
     const classes = useStyles();
-
     function handleClick(name, contact, queueId) {
         QueueService.addtoQueue(name, contact, queueId).then(tokenId => props.history.push("/status/" + queueId + "/" + tokenId))
 
     }
-
     function handleNameChange(e) {
         setName(e.target.value)
     }
     function handleContactChange(e) {
-        try {
-            setContact(e)
-        } catch (err) {
-            console.log({ e });
-            console.log(err);
-        }
+        setContact(e)
     }
     return <CentralSection heading="Join Queue">
         <TextField

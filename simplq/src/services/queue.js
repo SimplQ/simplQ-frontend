@@ -27,7 +27,6 @@ class QueueService {
         }).then(docRef => docRef.id)
             .catch(() => console.log("Error creating queue"));
     }
-
     addtoQueue(name, contact, queueId) {
         console.log(name, "  ", contact);
         return this.queues.doc(queueId)
