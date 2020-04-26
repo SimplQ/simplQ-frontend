@@ -27,10 +27,20 @@ class QueueService {
             .catch(() => console.log("Error creating queue"));
     }
     addtoQueue(name, contact, queueId) {
+         const today = new Date();
+        const date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+        const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+        const dateTime = date+' '+time;
         return this.queues.doc(queueId)
-            .collection("users").add({ name: name, contact: contact })
+            .collection("users").add({ name: name, contact: contact, "timestamp": dateTime
+        })
             .then(docRef => docRef.id).catch(() => console.log("Error adding to queue"));
 
+    }
+    userIndexQueue(queueId, tokenId){
+        const users = this.queues.doc(queueId).collection("users");
+        const query = users.where("timestamp","<",  users.doc(tokenId).).get().collection()
+        console.log(query)
     }
 }
 
