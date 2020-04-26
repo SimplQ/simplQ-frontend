@@ -34,18 +34,18 @@ class QueueService {
                 throw new Error("Queue not found");
             }
         });
-        
+
         const usersPromise = this.queues.doc(queueId).collection("users").get()
-                .then(snapshot => {
-                    const users = [];
-                    snapshot.forEach(doc => {
-                        users.push(doc.data())
-                    });
-                    return users;
-                })
-                .catch(err => {
-                    throw new Error('Error getting users from queue', err);
+            .then(snapshot => {
+                const users = [];
+                snapshot.forEach(doc => {
+                    users.push(doc.data())
                 });
+                return users;
+            })
+            .catch(err => {
+                throw new Error('Error getting users from queue', err);
+            });
 
         return {
             name: await namePromise,
@@ -54,20 +54,17 @@ class QueueService {
     }
 
     addtoQueue(name, contact, queueId) {
-         const today = new Date();
-        const date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-        const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-        const dateTime = date+' '+time;
         return this.queues.doc(queueId)
-            .collection("users").add({ name: name, contact: contact, "timestamp": dateTime
-        })
+            .collection("users").add({
+                name: name, contact: contact, "timestamp": firebase.firestore.Timestamp.now()
+            })
             .then(docRef => docRef.id).catch(() => console.log("Error adding to queue"));
 
     }
-    userIndexQueue(queueId, tokenId){
+    async userIndexQueue(queueId, tokenId) {
         const users = this.queues.doc(queueId).collection("users");
-        const query = users.where("timestamp","<",  users.doc(tokenId)).get().collection()
-        console.log(query)
+        const timeStamp = await users.doc(tokenId).get().then(doc => doc.data().timestamp);
+        return users.where("timestamp", "<", timeStamp).get().then(snapshot => snapshot.size);
     }
 }
 
