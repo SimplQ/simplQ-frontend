@@ -39,7 +39,7 @@ class QueueService {
     }
     userIndexQueue(queueId, tokenId){
         const users = this.queues.doc(queueId).collection("users");
-        const query = users.where("timestamp","<",  users.doc(tokenId).).get().collection()
+        const query = users.where("timestamp","<",  users.doc(tokenId)).get().collection()
         console.log(query)
     }
 }
