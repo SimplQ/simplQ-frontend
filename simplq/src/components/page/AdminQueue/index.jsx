@@ -54,7 +54,7 @@ export default (props) => {
         >
             {shareUrl}
         </Alert>
-        
+
         <ItemList items={items} />
 
         <ExpansionPanel className={classes.addBox}>
