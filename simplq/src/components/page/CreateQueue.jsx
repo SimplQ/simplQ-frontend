@@ -20,17 +20,24 @@ const styles = (theme) => ({
 class CreateQueue extends React.Component {
 
   constructor(props) {
-    super(props);
-    this.state = {
-      textFieldValue: '',
-    }
+      super(props);
+      this.state = {
+          textFieldValue: '',
+          valid:true //state variable to check if text field has valid entry
+      }
   }
 
   handleClick(name) {
-    QueueService.createQueue(name).then(
-      queueId => this.props.history.push("/admin/" + queueId)
-    )
-
+    if(this.state.textFieldValue===''){
+      this.setState({
+        valid:false
+      });
+    }
+    else{
+      QueueService.createQueue(name).then( 
+        queueId => this.props.history.push("/admin/" + queueId)
+      )
+    }      
   }
 
   handleTextFieldChange = (e) => {
@@ -39,6 +46,11 @@ class CreateQueue extends React.Component {
     });
   }
 
+  handleKeyPress = (event) => {
+    if(event.key === 'Enter'){
+      this.handleClick(this.state.textFieldValue);
+    }
+  }
 
   render() {
     const { classes } = this.props;
@@ -53,19 +65,23 @@ class CreateQueue extends React.Component {
               A simple queue service for everyday use
                 </Typography>
 
-            <TextField
-              style={{ margin: 8 }}
-              placeholder="Enter a name for a new queue"
-              fullWidth
-              required
-              margin="normal"
-              InputLabelProps={{
-                shrink: true,
-              }}
-              variant="outlined"
-              value={this.state.textFieldValue}
-              onChange={this.handleTextFieldChange}
-            />
+              <TextField
+                  style={{ margin: 8 }}
+                  placeholder="Enter a name for a new queue"
+                  fullWidth
+                  required
+                  margin="normal"
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  variant="outlined"
+                  value={this.state.textFieldValue}
+                  onChange={this.handleTextFieldChange}
+                  onKeyPress={this.handleKeyPress}
+                  error = {this.state.valid?false:true}
+                  id="standard-error" 
+                  helperText = {this.state.valid?"":"Empty Queue Name"}
+                />
 
             <div className={classes.button}>
               <Grid container spacing={2} justify="center">
