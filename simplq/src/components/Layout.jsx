@@ -10,7 +10,7 @@ import { withRouter } from "react-router";
 
 function Copyright() {
   return (
-    <Typography variant="p" color="textSecondary" align="center">
+    <Typography color="textSecondary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="#">
         Flatboys
@@ -31,12 +31,13 @@ const useStyles = makeStyles((theme) => ({
       marginLeft: 'auto',
       marginRight: 'auto',
     },
-    marginBottom: "auto"
+    marginBottom: "44px", // Equal to total footer height
   },
   footer: {
     backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(6),
-    marginTop: "auto"
+    padding: "10px",
+    marginTop: "auto",
+    height: "24px"
   }
 }));
 
