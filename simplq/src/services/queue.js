@@ -21,8 +21,7 @@ class QueueService {
     }
     createQueue(name) {
         return this.queues.add({
-            name: name,
-            users: []
+            name: name
         }).then(docRef => docRef.id)
             .catch(() => console.log("Error creating queue"));
     }
