@@ -19,7 +19,6 @@ class QueueService {
         this.db = firebase.firestore();
         this.queues = this.db.collection("queues");
     }
-
     createQueue(name) {
         return this.queues.add({
             name: name,
@@ -28,7 +27,6 @@ class QueueService {
             .catch(() => console.log("Error creating queue"));
     }
     addtoQueue(name, contact, queueId) {
-        console.log(name, "  ", contact);
         return this.queues.doc(queueId)
             .collection("users").add({ name: name, contact: contact })
             .then(docRef => docRef.id).catch(() => console.log("Error adding to queue"));
