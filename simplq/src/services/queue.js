@@ -1,6 +1,7 @@
 import * as firebase from "firebase/app";
 import "firebase/analytics";
 import "firebase/firestore";
+import "firebase/auth"
 
 const firebaseConfig = {
   apiKey: "AIzaSyAv1Us5mnNHg4_JWgJxcjhvGaBIfwXqbbo",
@@ -17,6 +18,8 @@ class QueueService {
     constructor() {
         firebase.initializeApp(firebaseConfig);
         this.queues = firebase.firestore().collection("queues");
+
+        firebase.auth().signInAnonymously().catch(error => console.error(error));
     }
 
     createQueue(name) {

@@ -51,7 +51,7 @@ export default (props) => {
             Your queue is ready for use, copy and share this url to begin
         </Alert>
 
-        <ItemList items={items} queueId={queueId}/>
+        <ItemList items={items} queueId={queueId} history={props.history}/>
 
     </CentralSection>
 }
