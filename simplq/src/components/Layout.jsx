@@ -54,7 +54,7 @@ const handleClick = (props) => {
         <Toolbar>
           <Typography variant="h6" color="inherit" noWrap>
             <Button color="inherit" onClick={() => handleClick(props)}>
-                SimplQ
+                SQ
             </Button>
           </Typography>
         </Toolbar>
