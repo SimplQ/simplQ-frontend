@@ -14,6 +14,9 @@ const useStyles = makeStyles((theme) => ({
             padding: theme.spacing(3),
         },
     },
+    title: {
+        textTransform: "capitalize"
+    }
 }));
 
 export default function CentralSection(props) {
@@ -21,7 +24,7 @@ export default function CentralSection(props) {
 
     return (
             <Paper className={classes.paper} elevation={3}>
-                <Typography variant="h4" align="center" gutterBottom>{props.heading}</Typography>
+                <Typography variant="h4" align="center" gutterBottom className={classes.title}>{props.heading}</Typography>
                 {props.children}
             </Paper>
     );
