@@ -52,7 +52,7 @@ export default (props) => {
                 </CopyToClipboard>
             }
         >
-            Your queue is ready for use, share this url to begin
+            Your queue is ready for use, copy and share this url to begin
         </Alert>
 
         <ItemList items={items} />

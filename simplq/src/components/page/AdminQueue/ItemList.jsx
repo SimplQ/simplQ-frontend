@@ -36,7 +36,7 @@ function ItemList(props) {
         <Card >
             { !props.items || props.items.length === 0 ? 
                 <Typography variant="subtitle1" align="center" style={{margin: "20px 20px"}} gutterBottom>
-                    Waiting for users to jain the queue
+                    Waiting for users to join the queue
                 </Typography>
             :
                 <List>
