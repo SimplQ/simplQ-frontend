@@ -17,7 +17,9 @@ function QueueStatus(props) {
         There are {aheadCount} people ahead of you. Thanks for waiting!
       </Typography>
       :
-      <CircularProgress style={{ display: "block", margin: "0px auto" }} />
+      <Typography variant="h5" align="center" color="textSecondary" component="p">
+        You're turn is up. Thanks for waiting!
+    </Typography>
     }
     <div style={{ display: "flex", justifyContent: 'flex-end' }}>
       <Button variant="contained" color="primary" style={{
