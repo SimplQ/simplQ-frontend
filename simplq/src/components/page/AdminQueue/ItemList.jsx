@@ -42,7 +42,7 @@ function Item(props) {
 
 function ItemList(props) {
     const classes = useStyles();
-    const [open, setOpen] = React.useState(true);
+    const [open, setOpen] = React.useState(false);
 
     var listContent = null;
     if (!props.items || props.items.length === 0) {
