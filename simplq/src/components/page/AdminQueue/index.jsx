@@ -1,15 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import ItemList from "./ItemList";
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { Button, Typography } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 import CentralSection from "../../CentralSection";
 import Alert from '@material-ui/lab/Alert';
 import { makeStyles } from '@material-ui/core/styles';
-import JoinQueueForm from '../JoinQueue/Form';
 import QueueService from '../../../services/queue';
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const useStyles = makeStyles((theme) => ({
     urlBox: {
@@ -55,22 +51,8 @@ export default (props) => {
             Your queue is ready for use, copy and share this url to begin
         </Alert>
 
-        <ItemList items={items} />
+        <ItemList items={items} queueId={queueId} history={props.history}/>
 
-        <ExpansionPanel className={classes.addBox}>
-            <ExpansionPanelSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel1a-content"
-                id="panel1a-header"
-            >
-                <Typography className={classes.heading}>Add New</Typography>
-            </ExpansionPanelSummary>
-            <JoinQueueForm
-                buttonName="Add"
-                afterJoinHandler={() => props.history.push("/admin/" + queueId)}
-                queueId={queueId}
-            />
-        </ExpansionPanel>
     </CentralSection>
 }
 

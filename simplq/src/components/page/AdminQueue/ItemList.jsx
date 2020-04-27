@@ -6,8 +6,18 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
-import { Avatar, Card, Typography } from "@material-ui/core";
+import { Avatar, Card, Collapse, ListItemIcon, makeStyles } from "@material-ui/core";
 import CallIcon from '@material-ui/icons/Call';
+import AddIcon from '@material-ui/icons/Add';
+import JoinQueueForm from "../JoinQueue/Form";
+import ExpandLess from '@material-ui/icons/ExpandLess';
+import ExpandMore from '@material-ui/icons/ExpandMore';
+
+const useStyles = makeStyles((theme) => ({
+    joinQueueForm: {
+        padding: theme.spacing(3)
+    }
+}));
 
 function Item(props) {
     const contact = props.item.contact;
@@ -31,18 +41,39 @@ function Item(props) {
 }
 
 function ItemList(props) {
-     
+    const classes = useStyles();
+    const [open, setOpen] = React.useState(true);
+
+    var listContent = null;
+    if (!props.items || props.items.length === 0) {
+        listContent = <ListItem button>
+            <ListItemText primaryTypographyProps={{align: 'center'}} primary="Waiting for users to join the queue" />
+        </ListItem>
+    } else {
+        listContent = props.items.map(item => <Item item={item} key={item.id} />)
+    }
+
     return (
         <Card >
-            { !props.items || props.items.length === 0 ? 
-                <Typography variant="subtitle1" align="center" style={{margin: "20px 20px"}} gutterBottom>
-                    Waiting for users to join the queue
-                </Typography>
-            :
-                <List>
-                    {props.items.map(item => <Item item={item} key={item.id} />)}
-                </List>
-            }
+            <List>
+                {listContent}
+                <ListItem button onClick={() => setOpen(!open)}>
+                    <ListItemIcon>
+                        <AddIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Add User" />
+                    {open ? <ExpandLess /> : <ExpandMore />}
+                </ListItem>
+                <Collapse in={open} timeout="auto" unmountOnExit>
+                    <div className={classes.joinQueueForm}>
+                    <JoinQueueForm
+                        buttonName="Add"
+                        afterJoinHandler={() => props.history.push("/admin/" + props.queueId)}
+                        queueId={props.queueId}
+                    />
+                    </div>
+                </Collapse>
+            </List>
         </Card>);
 }
 
