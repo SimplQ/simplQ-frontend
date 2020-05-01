@@ -21,40 +21,46 @@ class QueueService {
         this.queues = firebase.firestore().collection("queuesFromFBFn");
 
         firebase.auth().signInAnonymously().catch(error => console.error(error));
-        this.functions = firebase.functions();
+        this.functions = firebase.app().functions('asia-northeast3 ');
     }
 
     async createQueue(name) {
         const createQueueFBFn = firebase.functions().httpsCallable('createQueue');
-        const docId = await createQueueFBFn({
+        const response = await createQueueFBFn({
             name: name,
         });
-        console.log(`Called the createQueue fn with name ${name} and docId is ${docId.data.data}`);
-        return docId.data.data;
+        console.log(`Called the createQueue fn with name ${name} and docId is ${response.data.data}`);
+        return response.data.data;
     }
 
     async readQueue(queueId) {
         const readQueueFBFn = firebase.functions().httpsCallable('readQueue');
-        const result = await readQueueFBFn({
+        const response = await readQueueFBFn({
             queueId: queueId,
         });
-        console.log(`Called the readQueue fn with queuId ${queueId}`);
-        return result.data;
+        console.log(`Called the readQueue fn with queueId ${queueId}`);
+        return response.data;
     }
 
-    addtoQueue(name, contact, queueId) {
-        return this.queues.doc(queueId)
-            .collection("users").add({
-                name: name, contact: contact, "timestamp": firebase.firestore.Timestamp.now()
-            })
-            .then(docRef => docRef.id).catch(() => console.log("Error adding to queue"));
-
+    async addtoQueue(name, contact, queueId) {
+        const addtoQueueFBFn = firebase.functions().httpsCallable('addtoQueue');
+        const response = await addtoQueueFBFn({
+            name: name,
+            contact, contact,
+            queueId: queueId,
+        });
+        console.log(`Called the addtoQueue fn with ${name}, ${contact}, ${queueId}`);
+        return response.data;
     }
+
     async userIndexQueue(queueId, tokenId) {
-        const users = this.queues.doc(queueId).collection("users");
-        const timeStamp = await users.doc(tokenId).get().then(doc => doc.data().timestamp);
-        return users.where("timestamp", "<", timeStamp).get().then(snapshot => snapshot.size);
-    }
+        const userIndexQueueFBFn = firebase.functions().httpsCallable('userIndexQueue');
+        const response = await userIndexQueueFBFn({
+            queueId: queueId,
+            tokenId: tokenId,
+        });
+        console.log(`Called the userIndexQueue fn with ${tokenId}, ${queueId}`);
+        return response.data;    }
 }
 
 
