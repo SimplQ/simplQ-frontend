@@ -34,7 +34,7 @@ export default (props) => {
         );
     }
 
-    useEffect(update);
+    useEffect(update, []);
 
     var shareUrl = window.location.origin + "/" + queueId;
 
