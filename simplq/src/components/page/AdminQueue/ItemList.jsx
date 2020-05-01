@@ -13,6 +13,7 @@ import JoinQueueForm from "../JoinQueue/Form";
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import QueueService from '../../../services/queue';
+import Notifications from '@material-ui/icons/Notifications';
 
 const useStyles = makeStyles((theme) => ({
     joinQueueForm: {
@@ -25,24 +26,32 @@ function handleDeletion(queueId, tokenId) {
     QueueService.deleteFromQueue(queueId, tokenId);
 }
 
+function handleNotification(queueId , tokenId) {
+    QueueService.notifyUser(queueId, tokenId);
+}
+
 function Item(props) {
+    const classes = useStyles();
     const contact = props.item.contact;
     const name = props.item.name;
     const tokenId = props.item.tokenId;
     const queueId = props.queueId;
-    return <ListItem button component="a" href={"tel:" + contact}>
+    return <ListItem button className= {classes.root} component="a" href={"tel:" + contact}>
         <ListItemAvatar>
             <Avatar>
-                <CallIcon />
+                <CallIcon/>
             </Avatar>
         </ListItemAvatar>
         <ListItemText
             primary={name}
             secondary={contact}
         />
-        <ListItemSecondaryAction>
-            <IconButton edge="end" aria-label="delete">
-                <DeleteIcon onClick={() => handleDeletion(queueId, tokenId)} />
+        <ListItemSecondaryAction >
+        <IconButton edge="end"  color="primary" aria-label="notify">
+            <Notifications onClick={() => handleNotification(queueId, tokenId)}/>
+            </IconButton>
+            <IconButton edge="end"  color="primary" aria-label="delete">
+               <DeleteIcon onClick={() => handleDeletion(queueId, tokenId)} />
             </IconButton>
         </ListItemSecondaryAction>
     </ListItem>

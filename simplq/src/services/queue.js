@@ -61,18 +61,30 @@ class QueueService {
     addtoQueue(name, contact, queueId) {
         return this.queues.doc(queueId)
             .collection("users").add({
-                name: name, contact: contact, "timestamp": firebase.firestore.Timestamp.now()
+                name: name, contact: contact, "timestamp": firebase.firestore.Timestamp.now(),
+                "notified" : false
             })
             .then(docRef => docRef.id).catch(() => console.log("Error adding to queue"));
 
     }
+
+    notifyUser(queueId, tokenId) {
+        this.queues.doc(queueId).collection("users").doc(tokenId).update({"notified": true});
+    }
+
     deleteFromQueue(queueId, tokenId) {
         this.queues.doc(queueId).collection("users").doc(tokenId).delete();
     }
     async userIndexQueue(queueId, tokenId) {
         const users = this.queues.doc(queueId).collection("users");
-        const timeStamp = await users.doc(tokenId).get().then(doc => doc.data().timestamp);
+        const timeStamp = await users.doc(tokenId).get()
+            .then(doc => doc.data());
         return users.where("timestamp", "<", timeStamp).get().then(snapshot => snapshot.size);
+    }
+    async userNotificationStatusQueue(queueId, tokenId) {
+        const users = this.queues.doc(queueId).collection("users");
+        const notified = await users.doc(tokenId).get().then(doc => doc.data().notified);
+        return notified;
     }
 }
 
