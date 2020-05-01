@@ -46,7 +46,7 @@ class QueueService {
         const addtoQueueFBFn = firebase.functions().httpsCallable('addtoQueue');
         const response = await addtoQueueFBFn({
             name: name,
-            contact, contact,
+            contact: contact,
             queueId: queueId,
         });
         console.log(`Called the addtoQueue fn with ${name}, ${contact}, ${queueId}`);
