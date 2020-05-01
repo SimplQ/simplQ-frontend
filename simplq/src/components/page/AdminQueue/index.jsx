@@ -48,7 +48,7 @@ export default (props) => {
                 </CopyToClipboard>
             }
         >
-            Your queue is ready for use, copy and share this url to begin
+            Your queue is ready for use. Copy and share this link to begin
         </Alert>
 
         <ItemList items={items} queueId={queueId} history={props.history}/>

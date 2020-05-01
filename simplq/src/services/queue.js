@@ -61,6 +61,18 @@ class QueueService {
         });
         console.log(`Called the userIndexQueue fn with ${tokenId}, ${queueId}`);
         return response.data;    }
+        notifyUser(queueId, tokenId) {
+            this.queues.doc(queueId).collection("users").doc(tokenId).update({"notified": true});
+        }
+    
+        deleteFromQueue(queueId, tokenId) {
+            this.queues.doc(queueId).collection("users").doc(tokenId).delete();
+        }
+        async userNotificationStatusQueue(queueId, tokenId) {
+            const users = this.queues.doc(queueId).collection("users");
+            const notified = await users.doc(tokenId).get().then(doc => doc.data().notified);
+            return notified;
+        }
 }
 
 
