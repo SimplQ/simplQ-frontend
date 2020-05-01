@@ -12,6 +12,7 @@ import AddIcon from '@material-ui/icons/Add';
 import JoinQueueForm from "../JoinQueue/Form";
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
+import QueueService from '../../../services/queue';
 
 const useStyles = makeStyles((theme) => ({
     joinQueueForm: {
@@ -19,9 +20,15 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
+function handleDeletion(queueId, tokenId) {
+    QueueService.deleteFromQueue(queueId, tokenId);
+}
+
 function Item(props) {
     const contact = props.item.contact;
     const name = props.item.name;
+    const tokenId = props.item.tokenId;
+    const queueId = props.queueId;
     return <ListItem button component="a" href={"tel:" + contact}>
         <ListItemAvatar>
             <Avatar>
@@ -34,7 +41,7 @@ function Item(props) {
         />
         <ListItemSecondaryAction>
             <IconButton edge="end" aria-label="delete">
-                <DeleteIcon />
+                <DeleteIcon onClick={() => handleDeletion(queueId, tokenId)} />
             </IconButton>
         </ListItemSecondaryAction>
     </ListItem>
@@ -43,16 +50,14 @@ function Item(props) {
 function ItemList(props) {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
-
     var listContent = null;
     if (!props.items || props.items.length === 0) {
         listContent = <ListItem button>
-            <ListItemText primaryTypographyProps={{align: 'center'}} primary="Waiting for users to join the queue" />
+            <ListItemText primaryTypographyProps={{ align: 'center' }} primary="Waiting for users to join the queue" />
         </ListItem>
     } else {
-        listContent = props.items.map(item => <Item item={item} key={item.id} />)
+        listContent = props.items.map(item => <Item item={item} queueId={props.queueId} key={item.id} />)
     }
-
     return (
         <Card >
             <List>
@@ -66,11 +71,11 @@ function ItemList(props) {
                 </ListItem>
                 <Collapse in={open} timeout="auto" unmountOnExit>
                     <div className={classes.joinQueueForm}>
-                    <JoinQueueForm
-                        buttonName="Add"
-                        afterJoinHandler={() => props.history.push("/admin/" + props.queueId)}
-                        queueId={props.queueId}
-                    />
+                        <JoinQueueForm
+                            buttonName="Add"
+                            afterJoinHandler={() => props.history.push("/admin/" + props.queueId)}
+                            queueId={props.queueId}
+                        />
                     </div>
                 </Collapse>
             </List>

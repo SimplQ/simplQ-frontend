@@ -1,7 +1,8 @@
 import * as firebase from "firebase/app";
 import "firebase/analytics";
 import "firebase/firestore";
-import "firebase/auth"
+import "firebase/auth";
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyAv1Us5mnNHg4_JWgJxcjhvGaBIfwXqbbo",
@@ -42,7 +43,9 @@ class QueueService {
             .then(snapshot => {
                 const users = [];
                 snapshot.forEach(doc => {
-                    users.push(doc.data())
+                    const user = doc.data();
+                    user.tokenId = doc.id;
+                    users.push(user)
                 });
                 return users;
             })
@@ -55,7 +58,6 @@ class QueueService {
             users: await usersPromise
         };
     }
-
     addtoQueue(name, contact, queueId) {
         return this.queues.doc(queueId)
             .collection("users").add({
@@ -63,6 +65,9 @@ class QueueService {
             })
             .then(docRef => docRef.id).catch(() => console.log("Error adding to queue"));
 
+    }
+    deleteFromQueue(queueId, tokenId) {
+        this.queues.doc(queueId).collection("users").doc(tokenId).delete();
     }
     async userIndexQueue(queueId, tokenId) {
         const users = this.queues.doc(queueId).collection("users");
