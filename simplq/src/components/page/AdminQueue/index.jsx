@@ -6,6 +6,8 @@ import CentralSection from "../../CentralSection";
 import Alert from '@material-ui/lab/Alert';
 import { makeStyles } from '@material-ui/core/styles';
 import QueueService from '../../../services/queue';
+import { useSelector, useDispatch } from 'react-redux';
+import { setQueueName } from '../../../store/appSlice';
 
 const useStyles = makeStyles((theme) => ({
     urlBox: {
@@ -23,12 +25,11 @@ export default (props) => {
     const queueId = props.match.params.queueId;
 
     const [items, setItems] = useState();
-    const [name, setName] = useState();
-
+    const dispatch = useDispatch();
     const update = () => {
         QueueService.readQueue(queueId).then(
             data => {
-                setName(data.name);
+                dispatch(setQueueName(data.name))
                 setItems(data.users)
             }
         );
@@ -37,8 +38,9 @@ export default (props) => {
     useEffect(update, []);
 
     var shareUrl = window.location.origin + "/" + queueId;
+    const queueName = useSelector((state) => state.appReducer.queueName);
 
-    return <CentralSection heading={name}>
+    return <CentralSection heading={queueName}>
         <Alert severity="info" className={classes.urlBox}
             action={
                 <CopyToClipboard text={shareUrl}>

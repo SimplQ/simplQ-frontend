@@ -6,6 +6,8 @@ import { withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
 import QueueService from '../../services/queue';
+import { setQueueName } from '../../store/appSlice';
+import { store } from '../../store'
 
 const styles = (theme) => ({
   content: {
@@ -36,7 +38,8 @@ class CreateQueue extends React.Component {
     else{
       QueueService.createQueue(name).then( 
         queueId => this.props.history.push("/admin/" + queueId)
-      )
+      );
+       store.dispatch(setQueueName(name));
     }      
   }
 
