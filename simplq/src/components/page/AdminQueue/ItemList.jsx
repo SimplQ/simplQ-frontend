@@ -16,7 +16,8 @@ import QueueService from '../../../services/queue';
 
 const useStyles = makeStyles((theme) => ({
     joinQueueForm: {
-        padding: theme.spacing(3)
+        paddingLeft: theme.spacing(2),
+        paddingRight: theme.spacing(2)
     }
 }));
 

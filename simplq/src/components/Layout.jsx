@@ -31,13 +31,9 @@ const useStyles = makeStyles((theme) => ({
       marginLeft: 'auto',
       marginRight: 'auto',
     },
-    marginBottom: "44px", // Equal to total footer height
   },
   footer: {
     backgroundColor: theme.palette.background.paper,
-    padding: "10px",
-    marginTop: "auto",
-    height: "24px"
   }
 }));
 
