@@ -1,7 +1,8 @@
 import * as firebase from "firebase/app";
 import "firebase/analytics";
 import "firebase/firestore";
-import "firebase/auth"
+import "firebase/auth";
+import "firebase/functions";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAv1Us5mnNHg4_JWgJxcjhvGaBIfwXqbbo",
@@ -17,43 +18,28 @@ const firebaseConfig = {
 class QueueService {
     constructor() {
         firebase.initializeApp(firebaseConfig);
-        this.queues = firebase.firestore().collection("queues");
+        this.queues = firebase.firestore().collection("queuesFromFBFn");
 
         firebase.auth().signInAnonymously().catch(error => console.error(error));
+        this.functions = firebase.functions();
     }
 
-    createQueue(name) {
-        return this.queues.add({
-            name: name
-        }).then(docRef => docRef.id)
-            .catch(() => console.log("Error creating queue"));
+    async createQueue(name) {
+        const createQueueFBFn = firebase.functions().httpsCallable('createQueue');
+        const docId = await createQueueFBFn({
+            name: name,
+        });
+        console.log(`Called the createQueue fn with name ${name} and docId is ${docId.data.data}`);
+        return docId.data.data;
     }
 
     async readQueue(queueId) {
-        const namePromise = this.queues.doc(queueId).get().then(doc => {
-            if (doc.exists) {
-                return doc.data().name;
-            } else {
-                throw new Error("Queue not found");
-            }
+        const readQueueFBFn = firebase.functions().httpsCallable('readQueue');
+        const result = await readQueueFBFn({
+            queueId: queueId,
         });
-
-        const usersPromise = this.queues.doc(queueId).collection("users").get()
-            .then(snapshot => {
-                const users = [];
-                snapshot.forEach(doc => {
-                    users.push(doc.data())
-                });
-                return users;
-            })
-            .catch(err => {
-                throw new Error('Error getting users from queue', err);
-            });
-
-        return {
-            name: await namePromise,
-            users: await usersPromise
-        };
+        console.log(`Called the readQueue fn with queuId ${queueId}`);
+        return result.data;
     }
 
     addtoQueue(name, contact, queueId) {
