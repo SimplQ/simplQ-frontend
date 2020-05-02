@@ -1,11 +1,3 @@
-// // Create and Deploy Your First Cloud Functions
-// // https://firebase.google.com/docs/functions/write-firebase-functions
-//
-// exports.helloWorld = functions.https.onRequest((request, response) => {
-//  response.send("Hello from Firebase!");
-// });
-
-
 const functions = require("firebase-functions");
 
 const admin = require("firebase-admin");
@@ -13,32 +5,29 @@ const admin = require("firebase-admin");
 admin.initializeApp();
 
 QUEUES_COLLECTION_NAME = "queuesFromFBFn";
+FUNCTIONS_REGION = "asia-east2";
 
-exports.createQueue = functions.https.onCall(async (data, context) => {
-    try {
-        name = data.name;
-        console.log('Starting createQueue');
-        const queue = admin.firestore().collection(QUEUES_COLLECTION_NAME);
-        const docRef = await queue.add({
-            name: name,
-        });
-        return {data:docRef.id};
-    } catch (err) {
-        console.log("CreateQueue in firebase failed: " + err);
-        return "500";
-    }
+exports.createQueue = functions.region(FUNCTIONS_REGION).https.onCall((data, context) => {
+    name = data.name;
+    console.log('Starting createQueue');
+    const queue = admin.firestore().collection(QUEUES_COLLECTION_NAME);
+    return queue.add({
+        name: name,
+    })
+        .then(docRef => { return { data: docRef.id } })
+        .catch(err => reject(new functions.https.HttpsError('unknown', err.message, err)))
 });
 
-exports.readQueue = functions.https.onCall(async (data, context) => {
+exports.readQueue = functions.region(FUNCTIONS_REGION).https.onCall(async (data, context) => {
     console.log("Starting readQueue");
     const queueId = data.queueId;
     const queue = admin.firestore().collection(QUEUES_COLLECTION_NAME);
-    
+
     const namePromise = queue.doc(queueId).get().then(doc => {
         if (doc.exists) {
             return doc.data().name;
         } else {
-            throw new Error("Queue not found");
+            throw new functions.https.HttpsError('invalid-argument', "Queue not found");
         }
     });
 
@@ -53,7 +42,7 @@ exports.readQueue = functions.https.onCall(async (data, context) => {
             return users;
         })
         .catch(err => {
-            throw new Error('Error getting users from queue', err);
+            throw new functions.https.HttpsError('unknown', err.message, err)
         });
 
     return {
@@ -62,7 +51,7 @@ exports.readQueue = functions.https.onCall(async (data, context) => {
     };
 });
 
-exports.addToQueue = functions.https.onCall(async (data, context) => {
+exports.addQueue = functions.region(FUNCTIONS_REGION).https.onCall((data, context) => {
     console.log("Starting addToQueue");
     const name = data.name, contact = data.contact, queueId = data.queueId;
     const queue = admin.firestore().collection(QUEUES_COLLECTION_NAME);
@@ -70,18 +59,20 @@ exports.addToQueue = functions.https.onCall(async (data, context) => {
         name: name,
         contact: contact,
         timestamp: admin.firestore.FieldValue.serverTimestamp(),
-      })
-      .then((docRef) => docRef.id)
-      .catch(() => console.log("Error adding to queue"));
+    })
+        .then((docRef) => docRef.id)
+        .catch((err) => {
+            throw new functions.https.HttpsError('unknown', err.message, err)
+        });
 });
 
-exports.userIndexQueue = functions.https.onCall(async (data, context) => {
+exports.userIndexQueue = functions.region(FUNCTIONS_REGION).https.onCall(async (data, context) => {
     console.log("Starting userIndexQueue");
     const queueId = data.queueId, tokenId = data.tokenId;
     const queue = admin.firestore().collection(QUEUES_COLLECTION_NAME);
     const users = queue.doc(queueId).collection("users");
     const timeStamp = await users.doc(tokenId).get()
-                        .then(doc => doc.data().timestamp);
+        .then(doc => doc.data().timestamp);
     return users.where("timestamp", "<", timeStamp).get()
         .then(snapshot => snapshot.size);
 });

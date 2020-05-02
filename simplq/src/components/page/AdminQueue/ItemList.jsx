@@ -14,6 +14,7 @@ import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import QueueService from '../../../services/queue';
 import Notifications from '@material-ui/icons/Notifications';
+import Skeleton from '@material-ui/lab/Skeleton';
 
 const useStyles = makeStyles((theme) => ({
     joinQueueForm: {
@@ -61,7 +62,10 @@ function ItemList(props) {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
     var listContent = null;
-    if (!props.items || props.items.length === 0) {
+    if (!props.items){
+        listContent = <Skeleton variant="rect" height={48} />
+    }
+    else if (props.items.length === 0) {
         listContent = <ListItem button>
             <ListItemText primaryTypographyProps={{ align: 'center' }} primary="Waiting for users to join the queue" />
         </ListItem>

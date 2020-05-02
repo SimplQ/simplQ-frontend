@@ -5,14 +5,14 @@ import "firebase/auth";
 import "firebase/functions";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAv1Us5mnNHg4_JWgJxcjhvGaBIfwXqbbo",
-  authDomain: "simplq-nithin.firebaseapp.com",
-  databaseURL: "https://simplq-nithin.firebaseio.com",
-  projectId: "simplq-nithin",
-  storageBucket: "simplq-nithin.appspot.com",
-  messagingSenderId: "199340496527",
-  appId: "1:199340496527:web:d8d149fa464366957882fa",
-  measurementId: "G-D89WHXSBVQ"
+    apiKey: "AIzaSyAljEw-qHOOCRCajBI8-RWbU8kUxzSTrm8",
+    authDomain: "simplq-dev.firebaseapp.com",
+    databaseURL: "https://simplq-dev.firebaseio.com",
+    projectId: "simplq-dev",
+    storageBucket: "simplq-dev.appspot.com",
+    messagingSenderId: "755413125414",
+    appId: "1:755413125414:web:95f28cc68af7e2604c99e7",
+    measurementId: "G-CKLP59JD7K"
 };
 
 class QueueService {
@@ -21,20 +21,18 @@ class QueueService {
         this.queues = firebase.firestore().collection("queuesFromFBFn");
 
         firebase.auth().signInAnonymously().catch(error => console.error(error));
-        this.functions = firebase.app().functions('asia-northeast3');
+        this.functions = firebase.app().functions('asia-east2');
     }
 
-    async createQueue(name) {
-        const createQueueFBFn = firebase.functions().httpsCallable('createQueue');
-        const response = await createQueueFBFn({
+    createQueue(name) {
+        const createQueueFBFn = this.functions.httpsCallable('createQueue');
+        return createQueueFBFn({
             name: name,
-        });
-        console.log(`Called the createQueue fn with name ${name} and docId is ${response.data.data}`);
-        return response.data.data;
+        }).then(response => response.data.data)
     }
 
     async readQueue(queueId) {
-        const readQueueFBFn = firebase.functions().httpsCallable('readQueue');
+        const readQueueFBFn = this.functions.httpsCallable('readQueue');
         const response = await readQueueFBFn({
             queueId: queueId,
         });
@@ -43,7 +41,7 @@ class QueueService {
     }
 
     async addtoQueue(name, contact, queueId) {
-        const addtoQueueFBFn = firebase.functions().httpsCallable('addtoQueue');
+        const addtoQueueFBFn = this.functions.httpsCallable('addQueue');
         const response = await addtoQueueFBFn({
             name: name,
             contact: contact,
@@ -54,25 +52,27 @@ class QueueService {
     }
 
     async userIndexQueue(queueId, tokenId) {
-        const userIndexQueueFBFn = firebase.functions().httpsCallable('userIndexQueue');
+        const userIndexQueueFBFn = this.functions.httpsCallable('userIndexQueue');
         const response = await userIndexQueueFBFn({
             queueId: queueId,
             tokenId: tokenId,
         });
         console.log(`Called the userIndexQueue fn with ${tokenId}, ${queueId}`);
-        return response.data;    }
-        notifyUser(queueId, tokenId) {
-            this.queues.doc(queueId).collection("users").doc(tokenId).update({"notified": true});
-        }
-    
-        deleteFromQueue(queueId, tokenId) {
-            this.queues.doc(queueId).collection("users").doc(tokenId).delete();
-        }
-        async userNotificationStatusQueue(queueId, tokenId) {
-            const users = this.queues.doc(queueId).collection("users");
-            const notified = await users.doc(tokenId).get().then(doc => doc.data().notified);
-            return notified;
-        }
+        return response.data;
+    }
+
+    notifyUser(queueId, tokenId) {
+        this.queues.doc(queueId).collection("users").doc(tokenId).update({ "notified": true });
+    }
+
+    deleteFromQueue(queueId, tokenId) {
+        this.queues.doc(queueId).collection("users").doc(tokenId).delete();
+    }
+    async userNotificationStatusQueue(queueId, tokenId) {
+        const users = this.queues.doc(queueId).collection("users");
+        const notified = await users.doc(tokenId).get().then(doc => doc.data().notified);
+        return notified;
+    }
 }
 
 
