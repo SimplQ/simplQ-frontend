@@ -21,7 +21,7 @@ class QueueService {
         this.queues = firebase.firestore().collection("queuesFromFBFn");
 
         firebase.auth().signInAnonymously().catch(error => console.error(error));
-        this.functions = firebase.app().functions('asia-northeast3 ');
+        this.functions = firebase.app().functions('asia-northeast3');
     }
 
     async createQueue(name) {
@@ -46,7 +46,7 @@ class QueueService {
         const addtoQueueFBFn = firebase.functions().httpsCallable('addtoQueue');
         const response = await addtoQueueFBFn({
             name: name,
-            contact, contact,
+            contact: contact,
             queueId: queueId,
         });
         console.log(`Called the addtoQueue fn with ${name}, ${contact}, ${queueId}`);
