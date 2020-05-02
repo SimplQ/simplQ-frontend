@@ -13,8 +13,9 @@ const admin = require("firebase-admin");
 admin.initializeApp();
 
 QUEUES_COLLECTION_NAME = "queuesFromFBFn";
+FUNCTIONS_REGION = "asia-northeast1";
 
-exports.createQueue = functions.https.onCall(async (data, context) => {
+exports.createQueue = functions.region(FUNCTIONS_REGION).https.onCall(async (data, context) => {
     try {
         name = data.name;
         console.log('Starting createQueue');
@@ -29,7 +30,7 @@ exports.createQueue = functions.https.onCall(async (data, context) => {
     }
 });
 
-exports.readQueue = functions.https.onCall(async (data, context) => {
+exports.readQueue = functions.region(FUNCTIONS_REGION).https.onCall(async (data, context) => {
     console.log("Starting readQueue");
     const queueId = data.queueId;
     const queue = admin.firestore().collection(QUEUES_COLLECTION_NAME);
@@ -62,7 +63,7 @@ exports.readQueue = functions.https.onCall(async (data, context) => {
     };
 });
 
-exports.addToQueue = functions.https.onCall(async (data, context) => {
+exports.addToQueue = functions.region(FUNCTIONS_REGION).https.onCall(async (data, context) => {
     console.log("Starting addToQueue");
     const name = data.name, contact = data.contact, queueId = data.queueId;
     const queue = admin.firestore().collection(QUEUES_COLLECTION_NAME);
@@ -75,7 +76,7 @@ exports.addToQueue = functions.https.onCall(async (data, context) => {
       .catch(() => console.log("Error adding to queue"));
 });
 
-exports.userIndexQueue = functions.https.onCall(async (data, context) => {
+exports.userIndexQueue = functions.region(FUNCTIONS_REGION).https.onCall(async (data, context) => {
     console.log("Starting userIndexQueue");
     const queueId = data.queueId, tokenId = data.tokenId;
     const queue = admin.firestore().collection(QUEUES_COLLECTION_NAME);
