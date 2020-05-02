@@ -4,6 +4,7 @@
   },
   "hosting": {
     "public": "build",
+    "site": "simplq-dev",
     "ignore": [
       "firebase.json",
       "**/.*",
