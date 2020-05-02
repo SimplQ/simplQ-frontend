@@ -1,0 +1,27 @@
+name: Build and Deploy
+on:
+  release:
+    types: [published, edited]
+  push:
+    branches: 
+      - master
+      
+defaults:
+  run:
+    working-directory: functions
+    
+jobs:
+  deploy:
+    name: Deploy
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@master
+      - name: Deploy to Firebase
+        uses: w9jds/firebase-action@master
+        with:
+          args: deploy 
+        env:
+          PROJECT_PATH: ./functions
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}

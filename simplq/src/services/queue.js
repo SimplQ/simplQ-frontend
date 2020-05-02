@@ -21,7 +21,7 @@ class QueueService {
         this.queues = firebase.firestore().collection("queuesFromFBFn");
 
         firebase.auth().signInAnonymously().catch(error => console.error(error));
-        this.functions = firebase.app().functions('asia-northeast3 ');
+        this.functions = firebase.app().functions('asia-northeast3');
     }
 
     async createQueue(name) {
