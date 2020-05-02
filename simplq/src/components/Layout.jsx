@@ -7,7 +7,7 @@ import Link from '@material-ui/core/Link';
 import Routes from './Routes'
 import Button from '@material-ui/core/Button';
 import { withRouter } from "react-router";
-import logo from "../simplQ_logo.png";
+import logo from "../simplQLogo.png";
 
 function Copyright() {
   return (
@@ -38,6 +38,10 @@ const useStyles = makeStyles((theme) => ({
   },
   footer: {
     backgroundColor: theme.palette.background.paper,
+    position: 'absolute',
+    bottom: 0,
+    width: '100%',
+    height: '2.5rem'    
   }
 }));
 
