@@ -1,4 +1,4 @@
-name: Build and Deploy
+name: Deploy Firebase Functions
 on:
   release:
     types: [published, edited]
@@ -15,7 +15,6 @@ defaults:
 jobs:
   deploy:
     name: Deploy
-    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
