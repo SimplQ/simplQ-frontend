@@ -24,13 +24,11 @@ class QueueService {
         this.functions = firebase.app().functions('asia-east2');
     }
 
-    async createQueue(name) {
+    createQueue(name) {
         const createQueueFBFn = this.functions.httpsCallable('createQueue');
-        const response = await createQueueFBFn({
+        return createQueueFBFn({
             name: name,
-        });
-        console.log(`Called the createQueue fn with name ${name} and docId is ${response.data.data}`);
-        return response.data.data;
+        }).then(response => response.data.data)
     }
 
     async readQueue(queueId) {
