@@ -13,8 +13,9 @@ exports.createQueue = functions.region(FUNCTIONS_REGION).https.onCall((data, con
     const queue = admin.firestore().collection(QUEUES_COLLECTION_NAME);
     return queue.add({
         name: name,
-    }).then(docRef => { return { data: docRef.id } }).catch(err => reject(new functions.https.HttpsError('unknown', err.message, err))
-    )
+    })
+        .then(docRef => { return { data: docRef.id } })
+        .catch(err => reject(new functions.https.HttpsError('unknown', err.message, err)))
 });
 
 exports.readQueue = functions.region(FUNCTIONS_REGION).https.onCall(async (data, context) => {
@@ -28,8 +29,6 @@ exports.readQueue = functions.region(FUNCTIONS_REGION).https.onCall(async (data,
         } else {
             throw new functions.https.HttpsError('invalid-argument', "Queue not found");
         }
-    }).catch(err => {
-        throw new functions.https.HttpsError('unknown', err.message, err)
     });
 
     const usersPromise = queue.doc(queueId).collection("users").get()
@@ -52,7 +51,7 @@ exports.readQueue = functions.region(FUNCTIONS_REGION).https.onCall(async (data,
     };
 });
 
-exports.addToQueue = functions.region(FUNCTIONS_REGION).https.onCall(async (data, context) => {
+exports.addQueue = functions.region(FUNCTIONS_REGION).https.onCall((data, context) => {
     console.log("Starting addToQueue");
     const name = data.name, contact = data.contact, queueId = data.queueId;
     const queue = admin.firestore().collection(QUEUES_COLLECTION_NAME);

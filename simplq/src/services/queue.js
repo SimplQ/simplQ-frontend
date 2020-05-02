@@ -13,7 +13,7 @@ const firebaseConfig = {
     messagingSenderId: "755413125414",
     appId: "1:755413125414:web:95f28cc68af7e2604c99e7",
     measurementId: "G-CKLP59JD7K"
-  };
+};
 
 class QueueService {
     constructor() {
@@ -43,7 +43,7 @@ class QueueService {
     }
 
     async addtoQueue(name, contact, queueId) {
-        const addtoQueueFBFn = this.functions.httpsCallable('addtoQueue');
+        const addtoQueueFBFn = this.functions.httpsCallable('addQueue');
         const response = await addtoQueueFBFn({
             name: name,
             contact: contact,
@@ -60,19 +60,21 @@ class QueueService {
             tokenId: tokenId,
         });
         console.log(`Called the userIndexQueue fn with ${tokenId}, ${queueId}`);
-        return response.data;    }
-        notifyUser(queueId, tokenId) {
-            this.queues.doc(queueId).collection("users").doc(tokenId).update({"notified": true});
-        }
-    
-        deleteFromQueue(queueId, tokenId) {
-            this.queues.doc(queueId).collection("users").doc(tokenId).delete();
-        }
-        async userNotificationStatusQueue(queueId, tokenId) {
-            const users = this.queues.doc(queueId).collection("users");
-            const notified = await users.doc(tokenId).get().then(doc => doc.data().notified);
-            return notified;
-        }
+        return response.data;
+    }
+
+    notifyUser(queueId, tokenId) {
+        this.queues.doc(queueId).collection("users").doc(tokenId).update({ "notified": true });
+    }
+
+    deleteFromQueue(queueId, tokenId) {
+        this.queues.doc(queueId).collection("users").doc(tokenId).delete();
+    }
+    async userNotificationStatusQueue(queueId, tokenId) {
+        const users = this.queues.doc(queueId).collection("users");
+        const notified = await users.doc(tokenId).get().then(doc => doc.data().notified);
+        return notified;
+    }
 }
 
 
