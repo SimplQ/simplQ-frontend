@@ -21,11 +21,11 @@ class QueueService {
         this.queues = firebase.firestore().collection("queuesFromFBFn");
 
         firebase.auth().signInAnonymously().catch(error => console.error(error));
-        this.functions = firebase.app().functions('asia-northeast3 ');
+        this.functions = firebase.app().functions('asia-northeast3');
     }
 
     async createQueue(name) {
-        const createQueueFBFn = firebase.functions().httpsCallable('createQueue');
+        const createQueueFBFn = this.functions.httpsCallable('createQueue');
         const response = await createQueueFBFn({
             name: name,
         });
@@ -34,7 +34,7 @@ class QueueService {
     }
 
     async readQueue(queueId) {
-        const readQueueFBFn = firebase.functions().httpsCallable('readQueue');
+        const readQueueFBFn = this.functions.httpsCallable('readQueue');
         const response = await readQueueFBFn({
             queueId: queueId,
         });
@@ -43,7 +43,7 @@ class QueueService {
     }
 
     async addtoQueue(name, contact, queueId) {
-        const addtoQueueFBFn = firebase.functions().httpsCallable('addtoQueue');
+        const addtoQueueFBFn = this.functions.httpsCallable('addtoQueue');
         const response = await addtoQueueFBFn({
             name: name,
             contact: contact,
@@ -54,7 +54,7 @@ class QueueService {
     }
 
     async userIndexQueue(queueId, tokenId) {
-        const userIndexQueueFBFn = firebase.functions().httpsCallable('userIndexQueue');
+        const userIndexQueueFBFn = this.functions.httpsCallable('userIndexQueue');
         const response = await userIndexQueueFBFn({
             queueId: queueId,
             tokenId: tokenId,
