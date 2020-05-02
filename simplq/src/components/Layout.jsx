@@ -37,11 +37,7 @@ const useStyles = makeStyles((theme) => ({
     width:100
   },
   footer: {
-    backgroundColor: theme.palette.background.paper,
-    position: 'absolute',
-    bottom: 0,
-    width: '100%',
-    height: '2.5rem'    
+    backgroundColor: theme.palette.background.paper,   
   }
 }));
 
@@ -69,7 +65,7 @@ const handleClick = (props) => {
         <Routes />
       </main>
       <footer className={classes.footer}>
-        <Copyright />
+        {/* <Copyright /> */}
       </footer>
     </>
   );
