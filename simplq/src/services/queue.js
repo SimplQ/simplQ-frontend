@@ -5,15 +5,15 @@ import "firebase/auth";
 import "firebase/functions";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAv1Us5mnNHg4_JWgJxcjhvGaBIfwXqbbo",
-  authDomain: "simplq-nithin.firebaseapp.com",
-  databaseURL: "https://simplq-nithin.firebaseio.com",
-  projectId: "simplq-nithin",
-  storageBucket: "simplq-nithin.appspot.com",
-  messagingSenderId: "199340496527",
-  appId: "1:199340496527:web:d8d149fa464366957882fa",
-  measurementId: "G-D89WHXSBVQ"
-};
+    apiKey: "AIzaSyAljEw-qHOOCRCajBI8-RWbU8kUxzSTrm8",
+    authDomain: "simplq-dev.firebaseapp.com",
+    databaseURL: "https://simplq-dev.firebaseio.com",
+    projectId: "simplq-dev",
+    storageBucket: "simplq-dev.appspot.com",
+    messagingSenderId: "755413125414",
+    appId: "1:755413125414:web:95f28cc68af7e2604c99e7",
+    measurementId: "G-CKLP59JD7K"
+  };
 
 class QueueService {
     constructor() {
@@ -21,7 +21,7 @@ class QueueService {
         this.queues = firebase.firestore().collection("queuesFromFBFn");
 
         firebase.auth().signInAnonymously().catch(error => console.error(error));
-        this.functions = firebase.app().functions('asia-northeast3');
+        this.functions = firebase.app().functions('asia-east2');
     }
 
     async createQueue(name) {
