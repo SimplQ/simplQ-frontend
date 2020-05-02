@@ -7,6 +7,7 @@ import Link from '@material-ui/core/Link';
 import Routes from './Routes'
 import Button from '@material-ui/core/Button';
 import { withRouter } from "react-router";
+import logo from "../simplQLogo.png";
 
 function Copyright() {
   return (
@@ -32,8 +33,11 @@ const useStyles = makeStyles((theme) => ({
       marginRight: 'auto',
     },
   },
+  logoClass: {
+    width:100
+  },
   footer: {
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: theme.palette.background.paper,   
   }
 }));
 
@@ -50,7 +54,7 @@ const handleClick = (props) => {
         <Toolbar>
           <Typography variant="h6" color="inherit" noWrap>
             <Button color="inherit" onClick={() => handleClick(props)}>
-                SQ
+                <img src={logo} className={classes.logoClass} />
             </Button>
           </Typography>
         </Toolbar>
@@ -61,7 +65,7 @@ const handleClick = (props) => {
         <Routes />
       </main>
       <footer className={classes.footer}>
-        <Copyright />
+        {/* <Copyright /> */}
       </footer>
     </>
   );
