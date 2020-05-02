@@ -69,7 +69,7 @@ exports.addToQueue = functions.https.onCall(async (data, context) => {
     return queue.doc(queueId).collection("users").add({
         name: name,
         contact: contact,
-        timestamp: firebase.firestore.Timestamp.now(),
+        timestamp: admin.firestore.FieldValue.serverTimestamp(),
       })
       .then((docRef) => docRef.id)
       .catch(() => console.log("Error adding to queue"));
