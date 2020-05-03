@@ -12,6 +12,9 @@ import AddIcon from '@material-ui/icons/Add';
 import JoinQueueForm from "../JoinQueue/Form";
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
+import QueueService from '../../../services/queue';
+import Notifications from '@material-ui/icons/Notifications';
+import Skeleton from '@material-ui/lab/Skeleton';
 
 const useStyles = makeStyles((theme) => ({
     joinQueueForm: {
@@ -20,22 +23,36 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
+function handleDeletion(queueId, tokenId) {
+    QueueService.deleteFromQueue(queueId, tokenId);
+}
+
+function handleNotification(queueId , tokenId) {
+    QueueService.notifyUser(queueId, tokenId);
+}
+
 function Item(props) {
+    const classes = useStyles();
     const contact = props.item.contact;
     const name = props.item.name;
-    return <ListItem button component="a" href={"tel:" + contact}>
+    const tokenId = props.item.tokenId;
+    const queueId = props.queueId;
+    return <ListItem button className= {classes.root} component="a" href={"tel:" + contact}>
         <ListItemAvatar>
             <Avatar>
-                <CallIcon />
+                <CallIcon/>
             </Avatar>
         </ListItemAvatar>
         <ListItemText
             primary={name}
             secondary={contact}
         />
-        <ListItemSecondaryAction>
-            <IconButton edge="end" aria-label="delete">
-                <DeleteIcon />
+        <ListItemSecondaryAction >
+        <IconButton edge="end"  color="primary" aria-label="notify">
+            <Notifications onClick={() => handleNotification(queueId, tokenId)}/>
+            </IconButton>
+            <IconButton edge="end"  color="primary" aria-label="delete">
+               <DeleteIcon onClick={() => handleDeletion(queueId, tokenId)} />
             </IconButton>
         </ListItemSecondaryAction>
     </ListItem>
@@ -44,16 +61,17 @@ function Item(props) {
 function ItemList(props) {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
-
     var listContent = null;
-    if (!props.items || props.items.length === 0) {
+    if (!props.items){
+        listContent = <Skeleton variant="rect" height={48} />
+    }
+    else if (props.items.length === 0) {
         listContent = <ListItem button>
-            <ListItemText primaryTypographyProps={{align: 'center'}} primary="Waiting for users to join the queue" />
+            <ListItemText primaryTypographyProps={{ align: 'center' }} primary="Waiting for users to join the queue" />
         </ListItem>
     } else {
-        listContent = props.items.map(item => <Item item={item} key={item.id} />)
+        listContent = props.items.map(item => <Item item={item} queueId={props.queueId} key={item.id} />)
     }
-
     return (
         <Card >
             <List>
@@ -67,11 +85,11 @@ function ItemList(props) {
                 </ListItem>
                 <Collapse in={open} timeout="auto" unmountOnExit>
                     <div className={classes.joinQueueForm}>
-                    <JoinQueueForm
-                        buttonName="Add"
-                        afterJoinHandler={() => props.history.push("/admin/" + props.queueId)}
-                        queueId={props.queueId}
-                    />
+                        <JoinQueueForm
+                            buttonName="Add"
+                            afterJoinHandler={() => props.history.push("/admin/" + props.queueId)}
+                            queueId={props.queueId}
+                        />
                     </div>
                 </Collapse>
             </List>
