@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import ItemList from "./ItemList";
-import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { Button } from '@material-ui/core';
 import CentralSection from "../../CentralSection";
-import Alert from '@material-ui/lab/Alert';
 import { makeStyles } from '@material-ui/core/styles';
 import QueueService from '../../../services/queue';
 import { useSelector, useDispatch } from 'react-redux';
 import { setQueueName } from '../../../store/appSlice';
+import ShareBar from './ShareBar';
 
 const useStyles = makeStyles((theme) => ({
     urlBox: {
@@ -42,21 +40,9 @@ export default (props) => {
 
     useEffect(update, [queueId]);
 
-    var shareUrl = window.location.origin + "/" + queueId;
-
     return <CentralSection heading={queueName}>
-        <Alert severity="info" className={classes.urlBox}
-            action={
-                <CopyToClipboard text={shareUrl}>
-                    <Button color="inherit" size="small">
-                        COPY
-                            </Button>
-                </CopyToClipboard>
-            }
-        >
-            Your queue is ready for use. Copy and share this link to begin
-        </Alert>
-
+        
+        <ShareBar queueId={queueId} className={classes.urlBox} />
         <ItemList items={items} queueId={queueId} history={props.history} />
 
     </CentralSection>

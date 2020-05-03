@@ -39,8 +39,9 @@ class CreateQueue extends React.Component {
       QueueService.createQueue(name).then( 
         queueId => store.dispatch(setQueueId(queueId))
       );
-      this.props.history.push("/admin")
+      store.dispatch(setQueueId(null))
       store.dispatch(setQueueName(name));
+      this.props.history.push("/admin")
     }      
   }
 
