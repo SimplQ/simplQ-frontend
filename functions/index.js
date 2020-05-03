@@ -69,14 +69,14 @@ exports.addQueue = functions.region(FUNCTIONS_REGION).https.onCall((data, contex
 exports.notifyUser = functions.region(FUNCTIONS_REGION).https.onCall((data, context) => {
     console.log("Starting notify User"); 
     const queueId = data.queueId, tokenId = data.tokenId;
-    queue.doc(queueId).collection("users").doc(tokenId).update({"notified" : true});
+    queue.doc(""+queueId).collection("users").doc(""+tokenId).update({"notified" : true});
 });
 
 exports.deleteFromQueue = functions.region(FUNCTIONS_REGION).https.onCall((data, context) => {
     console.log("Starting delete Queue");
     const queueId = data.queueId, tokenId = data.tokenId;
     const queue = admin.firestore().collection(QUEUES_COLLECTION_NAME);
-    queue.doc(queueId).collection("users").doc(tokenId).delete();
+    queue.doc(""+queueId).collection("users").doc(""+tokenId).delete();
 });
 
 
@@ -85,8 +85,8 @@ exports.userIndexQueue = functions.region(FUNCTIONS_REGION).https.onCall(async (
     console.log("Starting userIndexQueue");
     const queueId = data.queueId, tokenId = data.tokenId;
     const queue = admin.firestore().collection(QUEUES_COLLECTION_NAME);
-    const users = queue.doc(queueId).collection("users");
-    const timeStamp = await users.doc(tokenId).get()
+    const users = queue.doc(""+queueId).collection("users");
+    const timeStamp = await users.doc(""+tokenId).get()
         .then(doc => doc.data().timestamp);
     return users.where("timestamp", "<", timeStamp).get()
         .then(snapshot => snapshot.size);
@@ -96,7 +96,14 @@ exports.userNotificationStatusQueue = functions.region(FUNCTIONS_REGION).https.o
     console.log("Starting userIndexQueue");
     const queueId = data.queueId, tokenId = data.tokenId;
     const queue = admin.firestore().collection(QUEUES_COLLECTION_NAME);
-    const users = queue.doc(queueId).collection("users");
-    const notified = await users.doc(tokenId).get().then(doc => doc.data().notified);
-    return notified;
-}
+    const users = queue.doc(""+queueId).collection("users");
+    return await users.doc(""+tokenId).get().then(doc => 
+            {  
+                if(doc.data().exists){
+                    return doc.data().notified;
+                }
+                else {
+                    throw new functions.https.HttpsError('invalid-argument', "User not found");
+                }
+            });
+});

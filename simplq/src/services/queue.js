@@ -84,7 +84,7 @@ class QueueService {
             queueId: queueId,
             tokeinId: tokenId,
         });
-        console.log(`Called the  serNotificationStatusQueue fn with ${tokenId}, ${queueId}`);
+        console.log(`Called the  userNotificationStatusQueue fn with ${tokenId}, ${queueId}`);
         return response.data;
     }
 }
