@@ -23,8 +23,9 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-function handleDeletion(queueId, tokenId) {
-    QueueService.deleteFromQueue(queueId, tokenId);
+function handleDeletion(queueId, tokenId, removeItemHandler) {
+    QueueService.deleteFromQueue(queueId, tokenId)
+    removeItemHandler(tokenId); // TODO Should delete from list only ofter successfull deletion from db
 }
 
 function handleNotification(queueId , tokenId) {
@@ -52,7 +53,7 @@ function Item(props) {
             <Notifications onClick={() => handleNotification(queueId, tokenId)}/>
             </IconButton>
             <IconButton edge="end"  color="primary" aria-label="delete">
-               <DeleteIcon onClick={() => handleDeletion(queueId, tokenId)} />
+               <DeleteIcon onClick={() => handleDeletion(queueId, tokenId, props.removeItemHandler)} />
             </IconButton>
         </ListItemSecondaryAction>
     </ListItem>
@@ -71,8 +72,9 @@ function ItemList(props) {
             <ListItemText primaryTypographyProps={{ align: 'center' }} primary="Waiting for users to join the queue" />
         </ListItem>
     } else {
-        listContent = props.items.map(item => <Item item={item} queueId={queueId} key={item.tokenId} />)
+        listContent = props.items.map(item => <Item removeItemHandler={props.removeItemHandler} item={item} queueId={queueId} key={item.tokenId} />)
     }
+    
     return (
         <Card >
             <List>
