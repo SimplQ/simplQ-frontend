@@ -3,24 +3,10 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import Link from '@material-ui/core/Link';
 import Routes from './Routes'
 import Button from '@material-ui/core/Button';
 import { withRouter } from "react-router";
 import logo from "../simplQLogo.png";
-
-function Copyright() {
-  return (
-    <Typography color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="#">
-        Flatboys
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 const useStyles = makeStyles((theme) => ({
   mainLayout: {
@@ -54,7 +40,7 @@ const handleClick = (props) => {
         <Toolbar>
           <Typography variant="h6" color="inherit" noWrap>
             <Button color="inherit" onClick={() => handleClick(props)}>
-                <img src={logo} className={classes.logoClass} />
+                <img src={logo} className={classes.logoClass} alt="logo"/>
             </Button>
           </Typography>
         </Toolbar>
