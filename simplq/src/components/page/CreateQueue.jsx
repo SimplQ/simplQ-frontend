@@ -89,7 +89,7 @@ class CreateQueue extends React.Component {
                   <Button variant="contained" color="primary"
                     onClick={() => this.handleClick(this.state.textFieldValue)}
                   >
-                    Create A new queue
+                    Create A queue
                       </Button>
                 </Grid>
               </Grid>
