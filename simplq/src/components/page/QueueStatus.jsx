@@ -39,13 +39,13 @@ function statusDetails(aheadCount, notified) {
   }
   else if (aheadCount === 0) {
     if (notified) {
-      return <Alert severity="success" ><Typography variant="h7" align="center" color="textSecondary" component="p">
+      return <Alert severity="success" ><Typography variant="h6" align="center" color="textSecondary" component="p">
         You have been notified by the queue manager. Your wait is over.
     </Typography>
       </Alert>
     }
     else {
-      return <Alert severity="error" ><Typography variant="h7" align="center" color="textSecondary" component="p">
+      return <Alert severity="error" ><Typography variant="h6" align="center" color="textSecondary" component="p">
         There is no one ahead of you.Please wait to be notified by the queue manager.
   </Typography></Alert>
 
