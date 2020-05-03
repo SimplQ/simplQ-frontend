@@ -82,7 +82,7 @@ class QueueService {
         const userNotificationStatusQueueFBFn = this.functions.httpsCallable('userNotificationStatusQueue');
         const response= await userNotificationStatusQueueFBFn({
             queueId: queueId,
-            tokeinId: tokenId,
+            tokenId: tokenId,
         });
         console.log(`Called the  userNotificationStatusQueue fn with ${tokenId}, ${queueId}`);
         return response.data;
