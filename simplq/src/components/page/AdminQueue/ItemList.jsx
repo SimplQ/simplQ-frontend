@@ -61,6 +61,8 @@ function Item(props) {
 function ItemList(props) {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
+    const queueId = props.queueId;
+    
     var listContent = null;
     if (!props.items){
         listContent = <Skeleton variant="rect" height={48} />
@@ -70,7 +72,7 @@ function ItemList(props) {
             <ListItemText primaryTypographyProps={{ align: 'center' }} primary="Waiting for users to join the queue" />
         </ListItem>
     } else {
-        listContent = props.items.map(item => <Item item={item} queueId={props.queueId} key={item.id} />)
+        listContent = props.items.map(item => <Item item={item} queueId={queueId} key={item.id} />)
     }
     return (
         <Card >
@@ -87,8 +89,8 @@ function ItemList(props) {
                     <div className={classes.joinQueueForm}>
                         <JoinQueueForm
                             buttonName="Add"
-                            afterJoinHandler={() => props.history.push("/admin/" + props.queueId)}
-                            queueId={props.queueId}
+                            afterJoinHandler={props.afterJoinHandler}
+                            queueId={queueId}
                         />
                     </div>
                 </Collapse>
