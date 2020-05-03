@@ -62,7 +62,7 @@ class QueueService {
     }
 
     async notifyUser(queueId, tokenId) {
-        const notifyUserFBFn = this.functions.httpsCallable("notifyUserFBFn");
+        const notifyUserFBFn = this.functions.httpsCallable("notifyUser");
         await notifyUserFBFn({
             queueId: queueId,
             tokenId: tokenId,

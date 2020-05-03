@@ -41,7 +41,7 @@ function Item(props) {
     return <ListItem button className= {classes.root} component="a" href={"tel:" + contact}>
         <ListItemAvatar>
             <Avatar>
-                <CallIcon/>
+                <CallIcon style={{backgroundColor: '#2dad78'}}/>
             </Avatar>
         </ListItemAvatar>
         <ListItemText
