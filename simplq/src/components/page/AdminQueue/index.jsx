@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default (props) => {
+export default () => {
     const classes = useStyles();
 
     const queueId = useSelector((state) => state.appReducer.queueId);
@@ -38,12 +38,14 @@ export default (props) => {
         }
     }
 
+    const removeItemHandler = (tokenId) => { setItems(items.filter(item => item.tokenId !== tokenId))} 
+
     useEffect(update, [queueId]);
 
     return <CentralSection heading={queueName}>
         
         <ShareBar queueId={queueId} className={classes.urlBox} />
-        <ItemList items={items} queueId={queueId} afterJoinHandler={update} />
+        <ItemList items={items} queueId={queueId} afterJoinHandler={update} removeItemHandler={removeItemHandler}/>
 
     </CentralSection>
 }
