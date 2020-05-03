@@ -61,17 +61,31 @@ class QueueService {
         return response.data;
     }
 
-    notifyUser(queueId, tokenId) {
-        this.queues.doc(queueId).collection("users").doc(tokenId).update({ "notified": true });
+    async notifyUser(queueId, tokenId) {
+        const notifyUserFBFn = this.functions.httpsCallable("notifyUserFBFn");
+        await notifyUserFBFn({
+            queueId: queueId,
+            tokenId: tokenId,
+        });
+        console.log(`Called the notifyUser fn with ${tokenId}, ${queueId}`);
     }
 
-    deleteFromQueue(queueId, tokenId) {
-        this.queues.doc(queueId).collection("users").doc(tokenId).delete();
+    async deleteFromQueue(queueId, tokenId) {
+        const deleteFromQueueFBFn = this.functions.httpsCallable('deleteFromQueue');
+        await deleteFromQueueFBFn({
+                queueId: queueId,
+                tokenId: tokenId,
+            });
+            console.log(`Called the deleteFromQueue fn with ${tokenId}, ${queueId}`);
     }
     async userNotificationStatusQueue(queueId, tokenId) {
-        const users = this.queues.doc(queueId).collection("users");
-        const notified = await users.doc(tokenId).get().then(doc => doc.data().notified);
-        return notified;
+        const userNotificationStatusQueueFBFn = this.functions.httpsCallable('userNotificationStatusQueue');
+        const response= await userNotificationStatusQueueFBFn({
+            queueId: queueId,
+            tokeinId: tokenId,
+        });
+        console.log(`Called the  serNotificationStatusQueue fn with ${tokenId}, ${queueId}`);
+        return response.data;
     }
 }
 
