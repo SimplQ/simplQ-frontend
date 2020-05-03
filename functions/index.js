@@ -70,14 +70,15 @@ exports.addQueue = functions.region(FUNCTIONS_REGION).https.onCall((data, contex
 exports.notifyUser = functions.region(FUNCTIONS_REGION).https.onCall((data, context) => {
     console.log("Starting notify User"); 
     const queueId = data.queueId, tokenId = data.tokenId;
-    queue.doc(""+queueId).collection("users").doc(""+tokenId).update({"notified" : true});
+    const queue = admin.firestore().collection(QUEUES_COLLECTION_NAME);
+    queue.doc(`${queueId}`).collection("users").doc(""+tokenId).update({"notified" : true});
 });
 
 exports.deleteFromQueue = functions.region(FUNCTIONS_REGION).https.onCall((data, context) => {
     console.log("Starting delete Queue");
     const queueId = data.queueId, tokenId = data.tokenId;
     const queue = admin.firestore().collection(QUEUES_COLLECTION_NAME);
-    queue.doc(""+queueId).collection("users").doc(""+tokenId).delete();
+    queue.doc(`${queueId}`).collection("users").doc(""+tokenId).delete();
 });
 
 
@@ -101,7 +102,7 @@ exports.userNotificationStatusQueue = functions.region(FUNCTIONS_REGION).https.o
     return await users.doc(""+tokenId).get().then(doc => 
             {  
                 if(doc.data()){
-                    return doc.data();
+                    return doc.data().notified;
                 }
                 else {
                     throw new functions.https.HttpsError('invalid-argument', "User not found");
