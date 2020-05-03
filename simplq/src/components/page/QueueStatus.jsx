@@ -5,16 +5,18 @@ import CentralSection from "../CentralSection";
 import QueueService from '../../services/queue';
 import { CircularProgress } from "@material-ui/core";
 import Alert from '@material-ui/lab/Alert';
-
+import { useSelector } from 'react-redux';
 
 
 function QueueStatus(props) {
   const [aheadCount, setAheadCount] = useState(-1);
   const [notified, setNotified] = useState();
-  QueueService.userIndexQueue(props.match.params.queueId, props.match.params.tokenId).then(
+  const queueId = useSelector((state) => state.appReducer.queueId);
+
+  QueueService.userIndexQueue(queueId, props.match.params.tokenId).then(
     count => setAheadCount(count)
   );
-  QueueService.userNotificationStatusQueue(props.match.params.queueId, props.match.params.tokenId).then(
+  QueueService.userNotificationStatusQueue(queueId, props.match.params.tokenId).then(
     notified => setNotified(notified)
   );
   return <CentralSection heading="Thanks for waiting!">

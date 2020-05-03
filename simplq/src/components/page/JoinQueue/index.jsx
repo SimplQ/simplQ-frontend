@@ -9,7 +9,7 @@ export function JoinQueue(props) {
     return <CentralSection heading="Join Queue">
         <JoinQueueForm
             queueId={queueId}
-            afterJoinHandler={tokenId => props.history.push("/status/" + queueId + "/" + tokenId)}
+            afterJoinHandler={tokenId => props.history.push("/status/" + tokenId)}
         />
     </CentralSection>;
 }
