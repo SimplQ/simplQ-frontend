@@ -6,7 +6,7 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
-import { Avatar, Card, Collapse, ListItemIcon, makeStyles } from "@material-ui/core";
+import { Card, Collapse, ListItemIcon, makeStyles } from "@material-ui/core";
 import CallIcon from '@material-ui/icons/Call';
 import AddIcon from '@material-ui/icons/Add';
 import JoinQueueForm from "../JoinQueue/Form";
@@ -96,7 +96,7 @@ function ItemList(props) {
                     <div className={classes.joinQueueForm}>
                         <JoinQueueForm
                             buttonName="Add"
-                            afterJoinHandler={props.afterJoinHandler}
+                            onJoinClick={props.onJoinClick}
                             queueId={queueId}
                         />
                     </div>
