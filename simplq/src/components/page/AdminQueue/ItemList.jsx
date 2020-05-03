@@ -49,11 +49,11 @@ function Item(props) {
             secondary={contact}
         />
         <ListItemSecondaryAction >
-        <IconButton edge="end"  color="primary" aria-label="notify">
-            <Notifications onClick={() => handleNotification(queueId, tokenId)}/>
+        <IconButton edge="end"  color="primary" aria-label="notify" onClick={() => handleNotification(queueId, tokenId)}>
+            <Notifications/>
             </IconButton>
-            <IconButton edge="end"  color="primary" aria-label="delete">
-               <DeleteIcon onClick={() => handleDeletion(queueId, tokenId, props.removeItemHandler)} />
+            <IconButton edge="end"  color="primary" aria-label="delete" onClick={() => handleDeletion(queueId, tokenId, props.removeItemHandler)} >
+               <DeleteIcon/>
             </IconButton>
         </ListItemSecondaryAction>
     </ListItem>

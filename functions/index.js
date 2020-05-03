@@ -96,10 +96,11 @@ exports.userIndexQueue = functions.https.onCall(async (data, context) => {
 
 exports.userNotificationStatusQueue = functions.https.onCall(async (data, context) => {
     console.log("Starting userIndexQueue");
-    const queueId = data.queueId, tokenId = data.tokenId;
+    const queueId = data.queueId;
+    const tokenId = data.tokenId;
     const queue = admin.firestore().collection(QUEUES_COLLECTION_NAME);
-    const users = queue.doc(`${queueId}`).collection("users");
-    return await users.doc(""+tokenId).get().then(doc => 
+    const users = queue.doc(queueId).collection("users");
+    return await users.doc(tokenId).get().then(doc => 
             {  
                 if(doc.data()){
                     return doc.data().notified;
