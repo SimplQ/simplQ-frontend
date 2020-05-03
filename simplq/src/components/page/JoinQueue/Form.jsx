@@ -20,8 +20,8 @@ const useStyles = makeStyles((theme) => ({
 
 
 export function JoinQueueForm(props) {
-    const [name, setName] = useState();
-    const [contact, setContact] = useState();
+    const [name, setName] = useState('');
+    const [contact, setContact] = useState('');
     const classes = useStyles();
 
     function handleNameChange(e) {
@@ -37,8 +37,8 @@ export function JoinQueueForm(props) {
         if (props.afterJoinHandler) {
             tokenIdPromise.then(tokenId => props.afterJoinHandler(tokenId))
         }
-        setName(null);
-        setContact(null);
+        setName('');
+        setContact('');
     }
 
     return <>
