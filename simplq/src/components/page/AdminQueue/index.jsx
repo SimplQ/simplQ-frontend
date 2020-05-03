@@ -43,7 +43,7 @@ export default (props) => {
     return <CentralSection heading={queueName}>
         
         <ShareBar queueId={queueId} className={classes.urlBox} />
-        <ItemList items={items} queueId={queueId} history={props.history} />
+        <ItemList items={items} queueId={queueId} afterJoinHandler={update} />
 
     </CentralSection>
 }

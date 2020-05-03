@@ -11,7 +11,7 @@ const ShareBar = (props) => {
         return <Skeleton variant="rect" height={68} />
     }
 
-    var shareUrl = window.location.origin + "/" + queueId;
+    var shareUrl = window.location.origin + "/j/" + queueId;
     return (
         <Alert severity="info" className={props.className}
             action={
