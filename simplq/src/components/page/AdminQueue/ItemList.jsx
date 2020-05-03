@@ -74,6 +74,7 @@ function ItemList(props) {
     } else {
         listContent = props.items.map(item => <Item removeItemHandler={props.removeItemHandler} item={item} queueId={queueId} key={item.tokenId} />)
     }
+    
     return (
         <Card >
             <List>
