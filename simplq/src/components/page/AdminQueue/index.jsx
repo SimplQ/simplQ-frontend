@@ -45,7 +45,7 @@ export default () => {
     return <CentralSection heading={queueName}>
         
         <ShareBar queueId={queueId} className={classes.urlBox} />
-        <ItemList items={items} queueId={queueId} afterJoinHandler={update} removeItemHandler={removeItemHandler}/>
+        <ItemList items={items} queueId={queueId} onJoinClick={update} removeItemHandler={removeItemHandler}/>
 
     </CentralSection>
 }

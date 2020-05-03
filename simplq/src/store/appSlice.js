@@ -4,7 +4,8 @@ const appSlice = createSlice({
   name: 'appSlice',
   initialState: {
     queueName: window.localStorage.getItem("queueName"),
-    queueId: window.localStorage.getItem("queueId")
+    queueId: window.localStorage.getItem("queueId"),
+    tokenId: window.localStorage.getItem("tokenId")
   },
   reducers: {
     setQueueName: (state, action) => { 
@@ -16,10 +17,15 @@ const appSlice = createSlice({
       const queueId = action.payload;
       state.queueId = queueId;
       window.localStorage.setItem("queueId", queueId);
+    },
+    setTokenId: (state, action) => { 
+      const tokenId = action.payload;
+      state.tokenId = tokenId;
+      window.localStorage.setItem("tokenId", tokenId);
     }
   }
 })
 
-export const { setQueueName, setQueueId } = appSlice.actions;
+export const { setQueueName, setQueueId, setTokenId } = appSlice.actions;
 
 export default appSlice.reducer;

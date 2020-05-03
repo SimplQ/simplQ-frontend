@@ -6,7 +6,7 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
-import { Avatar, Card, Collapse, ListItemIcon, makeStyles } from "@material-ui/core";
+import { Card, Collapse, ListItemIcon, makeStyles } from "@material-ui/core";
 import CallIcon from '@material-ui/icons/Call';
 import AddIcon from '@material-ui/icons/Add';
 import JoinQueueForm from "../JoinQueue/Form";
@@ -20,6 +20,12 @@ const useStyles = makeStyles((theme) => ({
     joinQueueForm: {
         paddingLeft: theme.spacing(2),
         paddingRight: theme.spacing(2)
+    },
+    callButton: {
+        backgroundColor: '#2dad78'
+    },
+    callIcon: {
+        color: 'white'
     }
 }));
 
@@ -40,9 +46,9 @@ function Item(props) {
     const queueId = props.queueId;
     return <ListItem button className= {classes.root} component="a" href={"tel:" + contact}>
         <ListItemAvatar>
-            <Avatar>
-                <CallIcon style={{backgroundColor: '#2dad78'}}/>
-            </Avatar>
+            <IconButton className={classes.callButton}>
+                <CallIcon className={classes.callIcon}/>
+            </IconButton>
         </ListItemAvatar>
         <ListItemText
             primary={name}
@@ -64,6 +70,7 @@ function ItemList(props) {
     const [open, setOpen] = React.useState(false);
     const queueId = props.queueId;
     var listContent = null;
+    
     if (!props.items){
         listContent = <Skeleton variant="rect" height={48} />
     }
@@ -90,7 +97,7 @@ function ItemList(props) {
                     <div className={classes.joinQueueForm}>
                         <JoinQueueForm
                             buttonName="Add"
-                            afterJoinHandler={props.afterJoinHandler}
+                            onJoinClick={props.onJoinClick}
                             queueId={queueId}
                         />
                     </div>

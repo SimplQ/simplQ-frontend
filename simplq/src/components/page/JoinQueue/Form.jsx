@@ -33,9 +33,13 @@ export function JoinQueueForm(props) {
     }
 
     const handleClick = () => {
-        const tokenIdPromise = QueueService.addtoQueue(name, contact, props.queueId);
-        if (props.afterJoinHandler) {
-            tokenIdPromise.then(tokenId => props.afterJoinHandler(tokenId))
+        const addToQueuePromise = QueueService.addtoQueue(name, contact, props.queueId);
+        // TODO display message on failure
+        if (props.afterJoin) {
+            addToQueuePromise.then(tokenId => props.afterJoin(tokenId))
+        }
+        if (props.onJoinClick) {
+            props.onJoinClick()
         }
         setName('');
         setContact('');
