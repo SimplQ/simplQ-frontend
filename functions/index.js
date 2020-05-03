@@ -59,6 +59,7 @@ exports.addQueue = functions.region(FUNCTIONS_REGION).https.onCall((data, contex
         name: name,
         contact: contact,
         timestamp: admin.firestore.FieldValue.serverTimestamp(),
+        notified: false
     })
         .then((docRef) => docRef.id)
         .catch((err) => {
@@ -96,11 +97,11 @@ exports.userNotificationStatusQueue = functions.region(FUNCTIONS_REGION).https.o
     console.log("Starting userIndexQueue");
     const queueId = data.queueId, tokenId = data.tokenId;
     const queue = admin.firestore().collection(QUEUES_COLLECTION_NAME);
-    const users = queue.doc(""+queueId).collection("users");
+    const users = queue.doc(`${queueId}`).collection("users");
     return await users.doc(""+tokenId).get().then(doc => 
             {  
-                if(doc.data().exists){
-                    return doc.data().notified;
+                if(doc.data()){
+                    return doc.data();
                 }
                 else {
                     throw new functions.https.HttpsError('invalid-argument', "User not found");
