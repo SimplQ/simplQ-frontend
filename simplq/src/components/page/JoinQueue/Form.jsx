@@ -37,6 +37,8 @@ export function JoinQueueForm(props) {
         if (props.afterJoinHandler) {
             tokenIdPromise.then(tokenId => props.afterJoinHandler(tokenId))
         }
+        setName(null);
+        setContact(null);
     }
 
     return <>
@@ -49,7 +51,6 @@ export function JoinQueueForm(props) {
                 shrink: true,
             }}
             variant="outlined"
-            inputStyle="material"
             value={name}
             onChange={handleNameChange}
         />

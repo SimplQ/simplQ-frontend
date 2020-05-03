@@ -62,7 +62,6 @@ function ItemList(props) {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
     const queueId = props.queueId;
-    
     var listContent = null;
     if (!props.items){
         listContent = <Skeleton variant="rect" height={48} />
@@ -72,7 +71,7 @@ function ItemList(props) {
             <ListItemText primaryTypographyProps={{ align: 'center' }} primary="Waiting for users to join the queue" />
         </ListItem>
     } else {
-        listContent = props.items.map(item => <Item item={item} queueId={queueId} key={item.id} />)
+        listContent = props.items.map(item => <Item item={item} queueId={queueId} key={item.tokenId} />)
     }
     return (
         <Card >
