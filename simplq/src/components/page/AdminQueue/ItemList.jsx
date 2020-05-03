@@ -62,7 +62,6 @@ function ItemList(props) {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
     const queueId = props.queueId;
-
     var listContent = null;
     if (!props.items){
         listContent = <Skeleton variant="rect" height={48} />
