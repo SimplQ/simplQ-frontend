@@ -22,23 +22,27 @@ const useStyles = makeStyles((theme) => ({
 
 export default (props) => {
     const classes = useStyles();
-    const queueId = props.match.params.queueId;
+
+    const queueId = useSelector((state) => state.appReducer.queueId);
+    const queueName = useSelector((state) => state.appReducer.queueName);
 
     const [items, setItems] = useState();
     const dispatch = useDispatch();
+
     const update = () => {
-        QueueService.readQueue(queueId).then(
-            data => {
-                dispatch(setQueueName(data.name))
-                setItems(data.users)
-            }
-        );
+        if (queueId) {
+            QueueService.readQueue(queueId).then(
+                data => {
+                    dispatch(setQueueName(data.name)) // TOD: SHould we remove this?
+                    setItems(data.users)
+                }
+            );
+        }
     }
 
-    useEffect(update, []);
+    useEffect(update, [queueId]);
 
     var shareUrl = window.location.origin + "/" + queueId;
-    const queueName = useSelector((state) => state.appReducer.queueName);
 
     return <CentralSection heading={queueName}>
         <Alert severity="info" className={classes.urlBox}
@@ -53,7 +57,7 @@ export default (props) => {
             Your queue is ready for use. Copy and share this link to begin
         </Alert>
 
-        <ItemList items={items} queueId={queueId} history={props.history}/>
+        <ItemList items={items} queueId={queueId} history={props.history} />
 
     </CentralSection>
 }
