@@ -43,7 +43,6 @@ export default () => {
     const addNewItem = (tokenId, name, contact) => {
         setItems([...items, {tokenId: tokenId, name: name, contact: contact}]);
     }
-    console.log(items)
 
     const removeItemHandler = (tokenId) => { setItems(items.filter(item => item.tokenId !== tokenId))} 
 
