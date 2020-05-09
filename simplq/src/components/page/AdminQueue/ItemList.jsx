@@ -14,7 +14,8 @@ import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import QueueService from '../../../services/queue';
 import Notifications from '@material-ui/icons/Notifications';
-import Skeleton from '@material-ui/lab/Skeleton';
+import { useDispatch } from "react-redux";
+import { progressStep } from "../../../store/appSlice";
 
 const useStyles = makeStyles((theme) => ({
     joinQueueForm: {
@@ -29,21 +30,25 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-function handleDeletion(queueId, tokenId, removeItemHandler) {
-    QueueService.deleteFromQueue(queueId, tokenId)
-    removeItemHandler(tokenId); // TODO Should delete from list only ofter successfull deletion from db
-}
-
-function handleNotification(queueId , tokenId) {
-    QueueService.notifyUser(queueId, tokenId);
-}
-
 function Item(props) {
     const classes = useStyles();
     const contact = props.item.contact;
     const name = props.item.name;
     const tokenId = props.item.tokenId;
     const queueId = props.queueId;
+
+    const dispatch = useDispatch();
+
+    const onNotifyClick = () => {
+        dispatch(progressStep(3));
+        QueueService.notifyUser(queueId, tokenId);
+
+    } 
+
+    const onDeleteClick = () => {
+        QueueService.deleteFromQueue(queueId, tokenId)
+        props.removeItemHandler(tokenId); // TODO Should delete from list only ofter successfull deletion from db
+    }
     return <ListItem button className= {classes.root} component="a" href={"tel:" + contact}>
         <ListItemAvatar>
             <IconButton className={classes.callButton}>
@@ -55,10 +60,10 @@ function Item(props) {
             secondary={contact}
         />
         <ListItemSecondaryAction >
-        <IconButton edge="end"  color="primary" aria-label="notify" onClick={() => handleNotification(queueId, tokenId)}>
+        <IconButton edge="end"  color="primary" aria-label="notify" onClick={onNotifyClick}>
             <Notifications/>
             </IconButton>
-            <IconButton edge="end"  color="primary" aria-label="delete" onClick={() => handleDeletion(queueId, tokenId, props.removeItemHandler)} >
+            <IconButton edge="end"  color="primary" aria-label="delete" onClick={onDeleteClick} >
                <DeleteIcon/>
             </IconButton>
         </ListItemSecondaryAction>
@@ -81,13 +86,15 @@ function ItemList(props) {
         </ListItem>
         </>
     } else {
-        listContent = props.items.map(item => <Item removeItemHandler={props.removeItemHandler} item={item} queueId={queueId} key={item.tokenId} />)
+        listContent = <div style={{width: '100%'}}>
+            {props.items.map(item => <Item removeItemHandler={props.removeItemHandler} item={item} queueId={queueId} key={item.tokenId} />)}
+            </div>
     }
     
     return (
         <Card >
             <List>
-                <div style={{minHeight: '300px', display: 'flex'}}>
+                <div style={{minHeight: '200px', display: 'flex'}}>
                 {listContent}
                 </div>
                 <ListItem button onClick={() => setOpen(!open)}>
@@ -103,6 +110,7 @@ function ItemList(props) {
                             buttonName="Add"
                             onJoinClick={props.onJoinClick}
                             queueId={queueId}
+                            afterJoin={props.afterJoin}
                         />
                     </div>
                 </Collapse>

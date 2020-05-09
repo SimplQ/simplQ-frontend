@@ -36,7 +36,7 @@ export function JoinQueueForm(props) {
         const addToQueuePromise = QueueService.addtoQueue(name, contact, props.queueId);
         // TODO display message on failure
         if (props.afterJoin) {
-            addToQueuePromise.then(tokenId => props.afterJoin(tokenId))
+            addToQueuePromise.then(tokenId => props.afterJoin(tokenId, name, contact))
         }
         if (props.onJoinClick) {
             props.onJoinClick()

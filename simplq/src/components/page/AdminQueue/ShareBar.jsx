@@ -2,10 +2,13 @@ import React from 'react';
 import Skeleton from '@material-ui/lab/Skeleton';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import Alert from '@material-ui/lab/Alert';
-import { Button, Chip, Avatar } from '@material-ui/core';
+import { Button } from '@material-ui/core';
+import { useDispatch } from 'react-redux';
+import { progressStep } from '../../../store/appSlice';
 
 const ShareBar = (props) => {
     const queueId = props.queueId;
+    const dispatch = useDispatch();
 
     if (!queueId) {
         return <Skeleton variant="rect" height={68} />
@@ -16,13 +19,13 @@ const ShareBar = (props) => {
         <Alert severity="info" className={props.className}
             action={
                 <CopyToClipboard text={shareUrl}>
-                    <Button color="inherit" size="small">
+                    <Button color="inherit" size="small" onClick={() => dispatch(progressStep(2))}>
                         COPY
                     </Button>
                 </CopyToClipboard>
             }
         >
-            {shareUrl}
+            https://simplq.me/j/todo-ellipsis
         </Alert>
         </>
     );

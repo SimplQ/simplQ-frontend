@@ -1,19 +1,16 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
 import QueueService from '../../services/queue';
 import { setQueueName, setQueueId } from '../../store/appSlice';
 import { store } from '../../store' //TODO: Use Hooks
-import { Chip, Avatar, Stepper, Step, StepLabel } from '@material-ui/core';
 
 const styles = (theme) => ({
   content: {
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(8, 0, 6),
+    backgroundColor: theme.palette.background.paper
   },
   button: {
     marginTop: theme.spacing(4),
@@ -64,29 +61,6 @@ class CreateQueue extends React.Component {
       <>
         <div className={classes.content}>
           <Container maxWidth="sm">
-          <Typography component="h4" variant="h4" color="textPrimary" >
-                
-                </Typography>
-                <Typography component="h1" variant="h5" color="textSecondary" >
-            
-                </Typography>
-                <Typography component="h1" variant="h4" color="textPrimary">
-                
-                </Typography>
-                
-          <Stepper style={{marginTop: "20px"}} alternativeLabel>
-          <Step key={1} >
-            <StepLabel>Create your virtual queue</StepLabel>
-          </Step>          
-          <Step key={2}>
-            <StepLabel>Share the link to invite people  </StepLabel>
-          </Step>          
-          <Step key={3}>
-            <StepLabel>Click on the bell icon and notify people of their turn</StepLabel>
-          </Step>
-
-      </Stepper>
-
               <TextField
                   placeholder="Enter a name for a new queue"
                   fullWidth

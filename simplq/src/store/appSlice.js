@@ -5,7 +5,9 @@ const appSlice = createSlice({
   initialState: {
     queueName: window.localStorage.getItem("queueName"),
     queueId: window.localStorage.getItem("queueId"),
-    tokenId: window.localStorage.getItem("tokenId")
+    tokenId: window.localStorage.getItem("tokenId"),
+    activeStep: 0
+
   },
   reducers: {
     setQueueName: (state, action) => { 
@@ -22,10 +24,14 @@ const appSlice = createSlice({
       const tokenId = action.payload;
       state.tokenId = tokenId;
       window.localStorage.setItem("tokenId", tokenId);
+    },
+    progressStep: (state, action) => { 
+      if (state.activeStep < action.payload)
+        state.activeStep = action.payload;
     }
   }
 })
 
-export const { setQueueName, setQueueId, setTokenId } = appSlice.actions;
+export const { setQueueName, setQueueId, setTokenId, progressStep } = appSlice.actions;
 
 export default appSlice.reducer;
