@@ -5,7 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
 import QueueService from '../../services/queue';
-import { setQueueName, setQueueId } from '../../store/appSlice';
+import { setQueueName, setQueueId, setStep } from '../../store/appSlice';
 import { store } from '../../store' //TODO: Use Hooks
 
 const styles = (theme) => ({
@@ -23,15 +23,13 @@ class CreateQueue extends React.Component {
       super(props);
       this.state = {
           textFieldValue: '',
-          valid:true //state variable to check if text field has valid entry
+          invalid: false //state variable to check if text field has valid entry
       }
   }
 
   handleClick(name) {
     if(this.state.textFieldValue===''){
-      this.setState({
-        valid:false
-      });
+      this.setState({invalid: true});
     }
     else{
       QueueService.createQueue(name).then( 
@@ -45,7 +43,8 @@ class CreateQueue extends React.Component {
 
   handleTextFieldChange = (e) => {
     this.setState({
-      textFieldValue: e.target.value
+      textFieldValue: e.target.value,
+      invalid: false
     });
   }
 
@@ -57,6 +56,7 @@ class CreateQueue extends React.Component {
 
   render() {
     const { classes } = this.props;
+    store.dispatch(setStep(0));
     return (
       <>
         <div className={classes.content}>
@@ -73,9 +73,8 @@ class CreateQueue extends React.Component {
                   value={this.state.textFieldValue}
                   onChange={this.handleTextFieldChange}
                   onKeyPress={this.handleKeyPress}
-                  error = {this.state.valid?false:true}
-                  id="standard-error" 
-                  helperText = {this.state.valid?"":"Empty Queue Name"}
+                  error = {this.state.invalid}
+                  helperText = {this.state.invalid ? "Queue name is required" : ""}
                 />
 
             <div className={classes.button}>

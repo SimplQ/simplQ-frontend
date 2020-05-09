@@ -6,7 +6,7 @@ const appSlice = createSlice({
     queueName: window.localStorage.getItem("queueName"),
     queueId: window.localStorage.getItem("queueId"),
     tokenId: window.localStorage.getItem("tokenId"),
-    activeStep: 0
+    activeStep: window.localStorage.getItem("activeStep")
 
   },
   reducers: {
@@ -26,12 +26,20 @@ const appSlice = createSlice({
       window.localStorage.setItem("tokenId", tokenId);
     },
     progressStep: (state, action) => { 
-      if (state.activeStep < action.payload)
-        state.activeStep = action.payload;
+      const activeStep = action.payload;
+      if (state.activeStep < activeStep) {
+        state.activeStep = activeStep;
+        window.localStorage.setItem("activeStep", activeStep);
+      }
+    },
+    setStep: (state, action) => {
+      const activeStep = action.payload;
+      state.activeStep = activeStep;
+      window.localStorage.setItem("activeStep", activeStep);
     }
   }
 })
 
-export const { setQueueName, setQueueId, setTokenId, progressStep } = appSlice.actions;
+export const { setQueueName, setQueueId, setTokenId, progressStep, setStep } = appSlice.actions;
 
 export default appSlice.reducer;
