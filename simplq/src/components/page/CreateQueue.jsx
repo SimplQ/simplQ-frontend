@@ -8,7 +8,7 @@ import TextField from '@material-ui/core/TextField';
 import QueueService from '../../services/queue';
 import { setQueueName, setQueueId } from '../../store/appSlice';
 import { store } from '../../store' //TODO: Use Hooks
-import { Chip, Avatar } from '@material-ui/core';
+import { Chip, Avatar, Stepper, Step, StepLabel } from '@material-ui/core';
 
 const styles = (theme) => ({
   content: {
@@ -64,20 +64,28 @@ class CreateQueue extends React.Component {
       <>
         <div className={classes.content}>
           <Container maxWidth="sm">
-            <Typography component="h4" variant="h4" color="textPrimary" >
-              SimplQ helps
+          <Typography component="h4" variant="h4" color="textPrimary" >
+                
                 </Typography>
-                <Typography component="h1" variant="h4" color="textPrimary" >
-              manage your queue 
+                <Typography component="h1" variant="h5" color="textSecondary" >
+            
                 </Typography>
                 <Typography component="h1" variant="h4" color="textPrimary">
-                in two easy steps
+                
                 </Typography>
                 
-            <Typography variant="p" color="textSecondary" paragraph style={{margin: '3vh 0'}}>
-              Meet Mike, your new queue manager. Follow along and he will help you set up the queue.
-              </Typography>
-            <Chip variant="outlined" avatar={<Avatar src="/mike.jpg" />} label="Step 1: Start by giving your queue a name"/> 
+          <Stepper style={{marginTop: "20px"}} alternativeLabel>
+          <Step key={1} >
+            <StepLabel>Create your virtual queue</StepLabel>
+          </Step>          
+          <Step key={2}>
+            <StepLabel>Share the link to invite people  </StepLabel>
+          </Step>          
+          <Step key={3}>
+            <StepLabel>Click on the bell icon and notify people of their turn</StepLabel>
+          </Step>
+
+      </Stepper>
 
               <TextField
                   placeholder="Enter a name for a new queue"

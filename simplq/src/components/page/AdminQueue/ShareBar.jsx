@@ -13,7 +13,6 @@ const ShareBar = (props) => {
 
     var shareUrl = window.location.origin + "/j/" + queueId;
     return (<>
-    <Chip variant="outlined" avatar={<Avatar src="/mike.jpg" />} component="p" label="Mike: Your queue has been created. Copy and share the link with people"/> 
         <Alert severity="info" className={props.className}
             action={
                 <CopyToClipboard text={shareUrl}>
