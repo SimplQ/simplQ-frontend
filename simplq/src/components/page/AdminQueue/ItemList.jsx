@@ -6,7 +6,7 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
-import { Card, Collapse, ListItemIcon, makeStyles } from "@material-ui/core";
+import { Card, Collapse, ListItemIcon, makeStyles, CircularProgress } from "@material-ui/core";
 import CallIcon from '@material-ui/icons/Call';
 import AddIcon from '@material-ui/icons/Add';
 import JoinQueueForm from "../JoinQueue/Form";
@@ -72,12 +72,14 @@ function ItemList(props) {
     var listContent = null;
     
     if (!props.items){
-        listContent = <Skeleton variant="rect" height={48} />
+        listContent = <CircularProgress style={{margin: 'auto'}}/>
     }
     else if (props.items.length === 0) {
-        listContent = <ListItem button>
-            <ListItemText primaryTypographyProps={{ align: 'center' }} primary="Waiting for users to join the queue" />
+        listContent = <>
+        <ListItem button>
+            <ListItemText primaryTypographyProps={{ align: 'center'}} primary="Your queue has been created and is currenlty empty. Waiting for people to join..." />
         </ListItem>
+        </>
     } else {
         listContent = props.items.map(item => <Item removeItemHandler={props.removeItemHandler} item={item} queueId={queueId} key={item.tokenId} />)
     }
@@ -85,12 +87,14 @@ function ItemList(props) {
     return (
         <Card >
             <List>
+                <div style={{minHeight: '300px', display: 'flex'}}>
                 {listContent}
+                </div>
                 <ListItem button onClick={() => setOpen(!open)}>
                     <ListItemIcon>
                         <AddIcon />
                     </ListItemIcon>
-                    <ListItemText primary="Add User" />
+                    <ListItemText primary="Add Manually" />
                     {open ? <ExpandLess /> : <ExpandMore />}
                 </ListItem>
                 <Collapse in={open} timeout="auto" unmountOnExit>

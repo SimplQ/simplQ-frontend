@@ -8,6 +8,7 @@ import TextField from '@material-ui/core/TextField';
 import QueueService from '../../services/queue';
 import { setQueueName, setQueueId } from '../../store/appSlice';
 import { store } from '../../store' //TODO: Use Hooks
+import { Chip, Avatar } from '@material-ui/core';
 
 const styles = (theme) => ({
   content: {
@@ -63,15 +64,22 @@ class CreateQueue extends React.Component {
       <>
         <div className={classes.content}>
           <Container maxWidth="sm">
-            <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-              SimplQ
+            <Typography component="h4" variant="h4" color="textPrimary" >
+              SimplQ helps
                 </Typography>
-            <Typography variant="h5" align="center" color="textSecondary" paragraph>
-              A simple queue service for everyday use
+                <Typography component="h1" variant="h4" color="textPrimary" >
+              manage your queue 
                 </Typography>
+                <Typography component="h1" variant="h4" color="textPrimary">
+                in two easy steps
+                </Typography>
+                
+            <Typography variant="p" color="textSecondary" paragraph style={{margin: '3vh 0'}}>
+              Meet Mike, your new queue manager. Follow along and he will help you set up the queue.
+              </Typography>
+            <Chip variant="outlined" avatar={<Avatar src="/mike.jpg" />} label="Step 1: Start by giving your queue a name"/> 
 
               <TextField
-                  style={{ margin: 8 }}
                   placeholder="Enter a name for a new queue"
                   fullWidth
                   required

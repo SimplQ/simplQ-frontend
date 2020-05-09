@@ -2,7 +2,7 @@ import React from 'react';
 import Skeleton from '@material-ui/lab/Skeleton';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import Alert from '@material-ui/lab/Alert';
-import { Button } from '@material-ui/core';
+import { Button, Chip, Avatar } from '@material-ui/core';
 
 const ShareBar = (props) => {
     const queueId = props.queueId;
@@ -12,7 +12,8 @@ const ShareBar = (props) => {
     }
 
     var shareUrl = window.location.origin + "/j/" + queueId;
-    return (
+    return (<>
+    <Chip variant="outlined" avatar={<Avatar src="/mike.jpg" />} component="p" label="Mike: Your queue has been created. Copy and share the link with people"/> 
         <Alert severity="info" className={props.className}
             action={
                 <CopyToClipboard text={shareUrl}>
@@ -22,8 +23,9 @@ const ShareBar = (props) => {
                 </CopyToClipboard>
             }
         >
-            Your queue is ready for use. Copy and share this link to begin
+            {shareUrl}
         </Alert>
+        </>
     );
 }
 
