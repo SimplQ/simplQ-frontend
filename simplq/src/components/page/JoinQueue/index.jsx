@@ -12,11 +12,11 @@ export function JoinQueue(props) {
     return <CentralSection heading="Join Queue">
         <JoinQueueForm
             queueId={queueId}
-            onJoinClick={() => {
-                dispatch(setTokenId(null))
+            afterJoin={tokenId => {
+                dispatch(setTokenId(tokenId));
                 props.history.push("/status");
-            }}
-            afterJoin={tokenId => dispatch(setTokenId(tokenId))}
+            }
+            }
         />
     </CentralSection>;
 }
