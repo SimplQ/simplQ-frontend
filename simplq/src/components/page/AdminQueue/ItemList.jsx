@@ -55,7 +55,7 @@ function ItemList(props) {
                         <JoinQueueForm
                             buttonName="Add"
                             queueId={queueId}
-                            afterJoin={props.afterJoin}
+                            joinQueueHandler={props.joinQueueHandler}
                         />
                     </div>
                 </Collapse>

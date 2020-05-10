@@ -39,15 +39,18 @@ export default () => {
         if (queueId) {
             QueueService.readQueue(queueId).then(
                 data => {
-                    dispatch(setQueueName(data.name)) // TOD: SHould we remove this?
                     setItems(data.users)
                 }
             );
         }
     }
 
-    const addNewItem = (tokenId, name, contact) => {
-        setItems([...items, {tokenId: tokenId, name: name, contact: contact}]);
+    const addNewItem = (name, contact) => {
+        return QueueService.addtoQueue(name, contact, false, queueId).then((tokenId) => {
+            setItems([...items, {tokenId: tokenId, name: name, contact: contact, notifyable: false}]);
+        }).catch((err) => {
+            console.log("Add to queue failed, TODO: Inform user", err)
+        })
     }
 
     const removeItemHandler = (tokenId) => { setItems(items.filter(item => item.tokenId !== tokenId))} 
@@ -57,7 +60,7 @@ export default () => {
     return <CentralSection heading={queueName}>
         
         <ShareBar queueId={queueId} className={classes.urlBox} />
-        <ItemList items={items} queueId={queueId} afterJoin={addNewItem} removeItemHandler={removeItemHandler}/>
+        <ItemList items={items} queueId={queueId} joinQueueHandler={addNewItem} removeItemHandler={removeItemHandler}/>
 
     </CentralSection>
 }

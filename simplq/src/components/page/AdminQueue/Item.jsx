@@ -33,6 +33,7 @@ function Item(props) {
     const tokenId = props.item.tokenId;
     const queueId = props.queueId;
     const notified = props.item.notified;
+    const notifyable = props.item.notifyable;
     const [notifying, setNotifying] = useState(false);
 
     const dispatch = useDispatch();
@@ -45,15 +46,14 @@ function Item(props) {
         props.removeItemHandler(tokenId); // TODO Should delete from list only ofter successfull deletion from db
     }
 
-    console.log('WTF', notified)
     var notificationButton = null;
     if (notifying) {
         notificationButton = <IconButton edge="end" color="primary" aria-label="notify">
         <CircularProgress size={18}/>
     </IconButton>
-    } else if (notified === undefined) {
+    } else if (!notifyable) {
         notificationButton = <IconButton edge="end" color="primary" aria-label="notify">
-            <Notifications/>
+            <Notifications color="disabled"/>
         </IconButton>
     } else if (notified === true) {
         notificationButton = <IconButton edge="end" color="primary" aria-label="notified">
