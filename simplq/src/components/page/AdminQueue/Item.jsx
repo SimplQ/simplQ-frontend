@@ -35,11 +35,17 @@ function Item(props) {
     const notified = props.item.notified;
     const notifyable = props.item.notifyable;
     const [notifying, setNotifying] = useState(false);
+    const [didNotify, setDidNotify] = useState(false);
 
     const dispatch = useDispatch();
     const onNotifyClick = () => {
         dispatch(progressStep(3));
-        QueueService.notifyUser(queueId, tokenId);
+        setNotifying(true);
+        QueueService.notifyUser(queueId, tokenId).then(() => {
+            setNotifying(false);
+            setDidNotify(true);
+        });
+        // Notify user of error TODO
     } 
     const onDeleteClick = () => {
         QueueService.deleteFromQueue(queueId, tokenId)
@@ -55,7 +61,7 @@ function Item(props) {
         notificationButton = <IconButton edge="end" color="primary" aria-label="notify">
             <Notifications color="disabled"/>
         </IconButton>
-    } else if (notified === true) {
+    } else if (notified || didNotify) {
         notificationButton = <IconButton edge="end" color="primary" aria-label="notified">
             <DoneIcon style={{ color: 'green' }} />
         </IconButton>
