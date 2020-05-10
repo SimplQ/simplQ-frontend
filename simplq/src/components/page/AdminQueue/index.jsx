@@ -4,7 +4,7 @@ import CentralSection from "../../CentralSection";
 import { makeStyles } from '@material-ui/core/styles';
 import QueueService from '../../../services/queue';
 import { useSelector, useDispatch } from 'react-redux';
-import { setQueueName, progressStep } from '../../../store/appSlice';
+import { progressStep } from '../../../store/appSlice';
 import ShareBar from './ShareBar';
 import PageNotFound from '../PageNotFound';
 
