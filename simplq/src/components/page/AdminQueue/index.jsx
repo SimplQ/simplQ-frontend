@@ -25,6 +25,10 @@ export default () => {
     const queueId = useSelector((state) => state.appReducer.queueId);
     const queueName = useSelector((state) => state.appReducer.queueName);
 
+    if(!queueId) {
+        throw new Error('Queue Not Created. TODO 404')
+    }
+
     dispatch(progressStep(1))
 
     const [items, setItems] = useState();

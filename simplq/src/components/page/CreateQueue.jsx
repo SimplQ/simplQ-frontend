@@ -7,6 +7,7 @@ import TextField from '@material-ui/core/TextField';
 import QueueService from '../../services/queue';
 import { setQueueName, setQueueId, setStep } from '../../store/appSlice';
 import { store } from '../../store' //TODO: Use Hooks
+import { CircularProgress } from '@material-ui/core';
 
 const styles = (theme) => ({
   content: {
@@ -20,25 +21,32 @@ const styles = (theme) => ({
 class CreateQueue extends React.Component {
 
   constructor(props) {
-      super(props);
-      this.state = {
-          textFieldValue: '',
-          invalid: false //state variable to check if text field has valid entry
-      }
+    super(props);
+    this.state = {
+      textFieldValue: '',
+      invalid: false, //state variable to check if text field has valid entry
+      createInProgress: false
+    }
   }
 
   handleClick(name) {
-    if(this.state.textFieldValue===''){
-      this.setState({invalid: true});
+    if (this.state.textFieldValue === '') {
+      this.setState({ invalid: true });
     }
-    else{
-      QueueService.createQueue(name).then( 
-        queueId => store.dispatch(setQueueId(queueId))
-      );
-      store.dispatch(setQueueId(null))
-      store.dispatch(setQueueName(name));
-      this.props.history.push("/admin")
-    }      
+    else {
+      this.setState({ createInProgress: true });
+      QueueService.createQueue(name).then(
+        queueId => {
+          store.dispatch(setQueueId(queueId));
+          store.dispatch(setQueueName(name));
+          this.setState({ createInProgress: true });
+          this.props.history.push("/admin");
+        }
+      ).catch(err => {
+        console.error("Create Queue failed, please try again: ", err);
+        this.setState({ createInProgress: false });
+      });
+    }
   }
 
   handleTextFieldChange = (e) => {
@@ -49,7 +57,7 @@ class CreateQueue extends React.Component {
   }
 
   handleKeyPress = (event) => {
-    if(event.key === 'Enter'){
+    if (event.key === 'Enter') {
       this.handleClick(this.state.textFieldValue);
     }
   }
@@ -61,30 +69,31 @@ class CreateQueue extends React.Component {
       <>
         <div className={classes.content}>
           <Container maxWidth="sm">
-              <TextField
-                  placeholder="Enter a name for a new queue"
-                  fullWidth
-                  required
-                  margin="normal"
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-                  variant="outlined"
-                  value={this.state.textFieldValue}
-                  onChange={this.handleTextFieldChange}
-                  onKeyPress={this.handleKeyPress}
-                  error = {this.state.invalid}
-                  helperText = {this.state.invalid ? "Queue name is required" : ""}
-                />
+            <TextField
+              placeholder="Enter a name for a new queue"
+              fullWidth
+              required
+              margin="normal"
+              InputLabelProps={{
+                shrink: true,
+              }}
+              variant="outlined"
+              value={this.state.textFieldValue}
+              onChange={this.handleTextFieldChange}
+              onKeyPress={this.handleKeyPress}
+              error={this.state.invalid}
+              helperText={this.state.invalid ? "Queue name is required" : ""}
+            />
 
             <div className={classes.button}>
               <Grid container spacing={2} justify="center">
                 <Grid item>
+                  {this.state.createInProgress ? <CircularProgress size={30}/> :
                   <Button variant="contained" color="primary"
                     onClick={() => this.handleClick(this.state.textFieldValue)}
                   >
                     Create A queue
-                      </Button>
+                  </Button> }
                 </Grid>
               </Grid>
             </div>

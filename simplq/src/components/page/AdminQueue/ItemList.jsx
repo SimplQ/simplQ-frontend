@@ -108,7 +108,6 @@ function ItemList(props) {
                     <div className={classes.joinQueueForm}>
                         <JoinQueueForm
                             buttonName="Add"
-                            onJoinClick={props.onJoinClick}
                             queueId={queueId}
                             afterJoin={props.afterJoin}
                         />
