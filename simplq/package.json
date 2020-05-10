@@ -16,7 +16,6 @@
     "react-copy-to-clipboard": "^5.0.2",
     "react-dom": "^16.13.1",
     "react-phone-input-2": "^2.13.3",
-    "react-phone-number-input": "^3.0.22",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1"

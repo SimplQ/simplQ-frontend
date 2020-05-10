@@ -4,7 +4,7 @@ import CentralSection from "../../CentralSection";
 import { makeStyles } from '@material-ui/core/styles';
 import QueueService from '../../../services/queue';
 import { useSelector, useDispatch } from 'react-redux';
-import { setQueueName } from '../../../store/appSlice';
+import { setQueueName, progressStep } from '../../../store/appSlice';
 import ShareBar from './ShareBar';
 
 const useStyles = makeStyles((theme) => ({
@@ -18,14 +18,16 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default (props) => {
+export default () => {
     const classes = useStyles();
+    const dispatch = useDispatch();
 
     const queueId = useSelector((state) => state.appReducer.queueId);
     const queueName = useSelector((state) => state.appReducer.queueName);
 
+    dispatch(progressStep(1))
+
     const [items, setItems] = useState();
-    const dispatch = useDispatch();
 
     const update = () => {
         if (queueId) {
@@ -38,12 +40,18 @@ export default (props) => {
         }
     }
 
+    const addNewItem = (tokenId, name, contact) => {
+        setItems([...items, {tokenId: tokenId, name: name, contact: contact}]);
+    }
+
+    const removeItemHandler = (tokenId) => { setItems(items.filter(item => item.tokenId !== tokenId))} 
+
     useEffect(update, [queueId]);
 
     return <CentralSection heading={queueName}>
         
         <ShareBar queueId={queueId} className={classes.urlBox} />
-        <ItemList items={items} queueId={queueId} afterJoinHandler={update} />
+        <ItemList items={items} queueId={queueId} afterJoin={addNewItem} removeItemHandler={removeItemHandler}/>
 
     </CentralSection>
 }

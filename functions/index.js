@@ -7,7 +7,7 @@ admin.initializeApp();
 QUEUES_COLLECTION_NAME = "queuesFromFBFn";
 FUNCTIONS_REGION = "asia-east2";
 
-exports.createQueue = functions.region(FUNCTIONS_REGION).https.onCall((data, context) => {
+exports.createQueue = functions.https.onCall((data, context) => {
     name = data.name;
     console.log('Starting createQueue');
     const queue = admin.firestore().collection(QUEUES_COLLECTION_NAME);
@@ -18,7 +18,7 @@ exports.createQueue = functions.region(FUNCTIONS_REGION).https.onCall((data, con
         .catch(err => reject(new functions.https.HttpsError('unknown', err.message, err)))
 });
 
-exports.readQueue = functions.region(FUNCTIONS_REGION).https.onCall(async (data, context) => {
+exports.readQueue = functions.https.onCall(async (data, context) => {
     console.log("Starting readQueue");
     const queueId = data.queueId;
     const queue = admin.firestore().collection(QUEUES_COLLECTION_NAME);
@@ -51,7 +51,7 @@ exports.readQueue = functions.region(FUNCTIONS_REGION).https.onCall(async (data,
     };
 });
 
-exports.addQueue = functions.region(FUNCTIONS_REGION).https.onCall((data, context) => {
+exports.addQueue = functions.https.onCall((data, context) => {
     console.log("Starting addToQueue");
     const name = data.name, contact = data.contact, queueId = data.queueId;
     const queue = admin.firestore().collection(QUEUES_COLLECTION_NAME);
@@ -59,6 +59,7 @@ exports.addQueue = functions.region(FUNCTIONS_REGION).https.onCall((data, contex
         name: name,
         contact: contact,
         timestamp: admin.firestore.FieldValue.serverTimestamp(),
+        notified: false
     })
         .then((docRef) => docRef.id)
         .catch((err) => {
@@ -66,13 +67,48 @@ exports.addQueue = functions.region(FUNCTIONS_REGION).https.onCall((data, contex
         });
 });
 
-exports.userIndexQueue = functions.region(FUNCTIONS_REGION).https.onCall(async (data, context) => {
+exports.notifyUser = functions.https.onCall((data, context) => {
+    console.log("Starting notify User"); 
+    const queueId = data.queueId, tokenId = data.tokenId;
+    const queue = admin.firestore().collection(QUEUES_COLLECTION_NAME);
+    queue.doc(`${queueId}`).collection("users").doc(""+tokenId).update({"notified" : true});
+});
+
+exports.deleteFromQueue = functions.https.onCall((data, context) => {
+    console.log("Starting delete Queue");
+    const queueId = data.queueId, tokenId = data.tokenId;
+    const queue = admin.firestore().collection(QUEUES_COLLECTION_NAME);
+    queue.doc(`${queueId}`).collection("users").doc(""+tokenId).delete();
+});
+
+
+
+exports.userIndexQueue = functions.https.onCall(async (data, context) => {
     console.log("Starting userIndexQueue");
     const queueId = data.queueId, tokenId = data.tokenId;
     const queue = admin.firestore().collection(QUEUES_COLLECTION_NAME);
-    const users = queue.doc(queueId).collection("users");
-    const timeStamp = await users.doc(tokenId).get()
+    const users = queue.doc(""+queueId).collection("users");
+    const timeStamp = await users.doc(""+tokenId).get()
         .then(doc => doc.data().timestamp);
     return users.where("timestamp", "<", timeStamp).get()
         .then(snapshot => snapshot.size);
+});
+
+exports.userNotificationStatusQueue = functions.https.onCall(async (data, context) => {
+    console.log("Starting userIndexQueue");
+    const queueId = data.queueId;
+    const tokenId = data.tokenId;
+    const queue = admin.firestore().collection(QUEUES_COLLECTION_NAME);
+    const users = queue.doc(queueId).collection("users");
+    return await users.doc(tokenId).get().then(doc => 
+            {  
+                if(doc.data()){
+                    return doc.data().notified;
+                }
+                else {
+                    throw new functions.https.HttpsError('invalid-argument', "User not found");
+                }
+            }).catch(err => {
+                throw new functions.https.HttpsError('unknown', err.message, err)
+            });
 });
