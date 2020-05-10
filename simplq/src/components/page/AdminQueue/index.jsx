@@ -6,6 +6,7 @@ import QueueService from '../../../services/queue';
 import { useSelector, useDispatch } from 'react-redux';
 import { setQueueName, progressStep } from '../../../store/appSlice';
 import ShareBar from './ShareBar';
+import PageNotFound from '../PageNotFound';
 
 const useStyles = makeStyles((theme) => ({
     urlBox: {
@@ -26,7 +27,8 @@ export default () => {
     const queueName = useSelector((state) => state.appReducer.queueName);
 
     if(!queueId) {
-        throw new Error('Queue Not Created. TODO 404')
+        // If queue id is not here, most probably his session storage got cleared. This can be solved only with proper auth.
+        return <PageNotFound />
     }
 
     dispatch(progressStep(1))
