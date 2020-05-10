@@ -4,9 +4,7 @@ import Button from '@material-ui/core/Button';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/material.css';
 import { makeStyles } from '@material-ui/core/styles';
-import QueueService from '../../../services/queue';
 import { CircularProgress } from "@material-ui/core";
-
 
 const useStyles = makeStyles((theme) => ({
     textField: {
@@ -44,21 +42,18 @@ export function JoinQueueForm(props) {
             setInvalidName(true);
             return;
         }
-
         if (contact === '') {
             setInvalidContact(true);
             return;
         }
+
         setAddingInProgress(true);
-        const addToQueuePromise = QueueService.addtoQueue(name, contact, props.queueId);
-        // TODO display message on failure
-        if (props.afterJoin) {
-            addToQueuePromise.then(tokenId => props.afterJoin(tokenId, name, contact)).then(() => {
-                setName('');
-                setContact('');
-                setAddingInProgress(false);
-            })
-        }
+
+        props.joinQueueHandler(name, contact).then(() => {
+            setName('');
+            setContact('');
+            setAddingInProgress(false);
+        })
     }
 
     return <>
