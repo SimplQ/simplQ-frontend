@@ -40,12 +40,13 @@ class QueueService {
         return response.data;
     }
 
-    async addtoQueue(name, contact, queueId) {
+    async addtoQueue(name, contact, notifyable, queueId) {
         const addtoQueueFBFn = this.functions.httpsCallable('addQueue');
         const response = await addtoQueueFBFn({
             name: name,
             contact: contact,
             queueId: queueId,
+            notifyable: notifyable
         });
         console.log(`Called the addtoQueue fn with ${name}, ${contact}, ${queueId}`);
         return response.data;

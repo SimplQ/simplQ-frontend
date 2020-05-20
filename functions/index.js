@@ -53,13 +53,14 @@ exports.readQueue = functions.https.onCall(async (data, context) => {
 
 exports.addQueue = functions.https.onCall((data, context) => {
     console.log("Starting addToQueue");
-    const name = data.name, contact = data.contact, queueId = data.queueId;
+    const name = data.name, contact = data.contact, queueId = data.queueId, notifyable = data.notifyable;
     const queue = admin.firestore().collection(QUEUES_COLLECTION_NAME);
     return queue.doc(queueId).collection("users").add({
         name: name,
         contact: contact,
         timestamp: admin.firestore.FieldValue.serverTimestamp(),
-        notified: false
+        notified: false,
+        notifyable: notifyable
     })
         .then((docRef) => docRef.id)
         .catch((err) => {
