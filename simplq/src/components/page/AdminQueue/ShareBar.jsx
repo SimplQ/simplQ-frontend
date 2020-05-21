@@ -50,7 +50,7 @@ const ShareBar = (props) => {
                         title="Copied to clipboard"
                     >
                         <CopyToClipboard text={shareUrl}>
-                            <Button variant="outlined" 
+                            <Button 
                                 variant="outlined"
                                 color="primary"
                                 startIcon={<FileCopyIcon />}
