@@ -49,8 +49,8 @@ const ShareBar = (props) => {
                         title="Copied to clipboard"
                     >
                         <CopyToClipboard text={shareUrl}>
-                            <Button color="inherit" size="small" 
-                                style={{ 'backgroundColor': '#add8e6', 'overflow': 'auto' }}
+                            <Button variant="contained" color="primary" size="small" 
+                                style={{ 'overflow': 'auto' }}
                                 onClick={
                                     () => {
                                         dispatch(progressCreationStep(2));
