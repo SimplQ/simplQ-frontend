@@ -5,9 +5,10 @@ import { withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
 import QueueService from '../../services/queue';
-import { setQueueName, setQueueId, setStep } from '../../store/appSlice';
+import { setQueueName, setQueueId, setCreationStep } from '../../store/appSlice';
 import { store } from '../../store' //TODO: Use Hooks
 import { CircularProgress } from '@material-ui/core';
+import CreaterStepper from '../stepper/CreaterStepper';
 
 const styles = (theme) => ({
   content: {
@@ -39,7 +40,8 @@ class CreateQueue extends React.Component {
         queueId => {
           store.dispatch(setQueueId(queueId));
           store.dispatch(setQueueName(name));
-          this.setState({ createInProgress: true });
+          this.setState({ createInProgress: false });
+          store.dispatch(setCreationStep(1));
           this.props.history.push("/admin");
         }
       ).catch(err => {
@@ -64,9 +66,10 @@ class CreateQueue extends React.Component {
 
   render() {
     const { classes } = this.props;
-    store.dispatch(setStep(0));
+    store.dispatch(setCreationStep(0));
     return (
       <>
+        <CreaterStepper />
         <div className={classes.content}>
           <Container maxWidth="sm">
             <TextField
@@ -88,12 +91,12 @@ class CreateQueue extends React.Component {
             <div className={classes.button}>
               <Grid container spacing={2} justify="center">
                 <Grid item>
-                  {this.state.createInProgress ? <CircularProgress size={30}/> :
-                  <Button variant="contained" color="primary"
-                    onClick={() => this.handleClick(this.state.textFieldValue)}
-                  >
-                    Create A queue
-                  </Button> }
+                  {this.state.createInProgress ? <CircularProgress size={30} /> :
+                    <Button variant="contained" color="primary"
+                      onClick={() => this.handleClick(this.state.textFieldValue)}
+                    >
+                      Create A queue
+                  </Button>}
                 </Grid>
               </Grid>
             </div>

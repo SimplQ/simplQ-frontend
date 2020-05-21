@@ -4,7 +4,7 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import Alert from '@material-ui/lab/Alert';
 import { Button } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
-import { progressStep } from '../../../store/appSlice';
+import { progressCreationStep } from '../../../store/appSlice';
 
 const ShareBar = (props) => {
     const queueId = props.queueId;
@@ -19,7 +19,7 @@ const ShareBar = (props) => {
         <Alert severity="info" className={props.className}
             action={
                 <CopyToClipboard text={shareUrl}>
-                    <Button color="inherit" size="small" onClick={() => dispatch(progressStep(2))}>
+                    <Button color="inherit" size="small" onClick={() => dispatch(progressCreationStep(2))}>
                         COPY
                     </Button>
                 </CopyToClipboard>
