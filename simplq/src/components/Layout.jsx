@@ -7,8 +7,6 @@ import Routes from './Routes'
 import Button from '@material-ui/core/Button';
 import { withRouter } from "react-router";
 import logo from "../simplQLogo.png";
-import { Stepper, Step, StepLabel } from '@material-ui/core';
-import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   mainLayout: {
@@ -22,21 +20,19 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   logoClass: {
-    width:100
+    width: 100
   },
   footer: {
-    backgroundColor: theme.palette.background.paper,   
+    backgroundColor: theme.palette.background.paper,
   }
 }));
 
 const handleClick = (props) => {
-      props.history.push("/");
-  }
+  props.history.push("/");
+}
 
- function Layout(props) {
+function Layout(props) {
   const classes = useStyles();
-  const activeStep = useSelector((state) => state.appReducer.activeStep);
-  console.log('Active step:', activeStep)
 
   return (
     <>
@@ -44,7 +40,7 @@ const handleClick = (props) => {
         <Toolbar>
           <Typography variant="h6" color="inherit" noWrap>
             <Button color="inherit" onClick={() => handleClick(props)}>
-                <img src={logo} className={classes.logoClass} alt="logo"/>
+              <img src={logo} className={classes.logoClass} alt="logo" />
             </Button>
           </Typography>
         </Toolbar>
@@ -52,18 +48,7 @@ const handleClick = (props) => {
 
 
       <main className={classes.mainLayout}>
-      <Stepper style={{padding: "50px 5px"}} activeStep={activeStep} alternativeLabel>
-          <Step key={1} >
-            <StepLabel>Create your virtual queue</StepLabel>
-          </Step>          
-          <Step key={2}>
-            <StepLabel>Share the link to invite people  </StepLabel>
-          </Step>          
-          <Step key={3}>
-            <StepLabel>Notify people of their turn</StepLabel>
-          </Step>
-      </Stepper>
-      <Routes />
+        <Routes />
       </main>
     </>
   );
