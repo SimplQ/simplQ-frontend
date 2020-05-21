@@ -6,6 +6,7 @@ import QueueService from '../../services/queue';
 import { CircularProgress } from "@material-ui/core";
 import Alert from '@material-ui/lab/Alert';
 import { useSelector } from 'react-redux';
+import JoinerStepper from "../stepper/JoinerStepper";
 
 
 function QueueStatus() {
@@ -27,19 +28,22 @@ function QueueStatus() {
 
   useEffect(update, [tokenId]);
 
-  return <CentralSection heading="Thanks for waiting!">
-    {
-      statusDetails(aheadCount, notified)
-    }
-    <div style={{ display: "flex", justifyContent: 'flex-end' }}>
-      <Button variant="contained" color="primary" style={{
-        marginTop: 30,
-        marginLeft: 10,
-      }} onClick={update}>
-        Refresh
+  return <>
+    <JoinerStepper />
+    <CentralSection heading="Thanks for waiting!">
+      {
+        statusDetails(aheadCount, notified)
+      }
+      <div style={{ display: "flex", justifyContent: 'flex-end' }}>
+        <Button variant="contained" color="primary" style={{
+          marginTop: 30,
+          marginLeft: 10,
+        }} onClick={update}>
+          Refresh
         </Button>
-    </div>
-  </CentralSection>
+      </div>
+    </CentralSection>
+  </>
 }
 
 function statusDetails(aheadCount, notified) {

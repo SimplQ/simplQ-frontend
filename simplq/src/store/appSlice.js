@@ -6,8 +6,8 @@ const appSlice = createSlice({
     queueName: window.localStorage.getItem("queueName"),
     queueId: window.localStorage.getItem("queueId"),
     tokenId: window.localStorage.getItem("tokenId"),
-    activeStep: window.localStorage.getItem("activeStep")
-
+    currentCreationStep: window.localStorage.getItem("currentCreationStep"),
+    currentJoinerStep: window.localStorage.getItem("currentJoinerStep")
   },
   reducers: {
     setQueueName: (state, action) => { 
@@ -25,21 +25,33 @@ const appSlice = createSlice({
       state.tokenId = tokenId;
       window.localStorage.setItem("tokenId", tokenId);
     },
-    progressStep: (state, action) => { 
-      const activeStep = action.payload;
-      if (state.activeStep < activeStep) {
-        state.activeStep = activeStep;
-        window.localStorage.setItem("activeStep", activeStep);
+    progressCreationStep: (state, action) => { 
+      const newStep = action.payload;
+      if (state.currentCreationStep < newStep) {
+        state.currentCreationStep = newStep;
+        window.localStorage.setItem("currentCreationStep", newStep);
       }
     },
-    setStep: (state, action) => {
-      const activeStep = action.payload;
-      state.activeStep = activeStep;
-      window.localStorage.setItem("activeStep", activeStep);
+    setCreationStep: (state, action) => {
+      const newStep = action.payload;
+      state.currentCreationStep = newStep;
+      window.localStorage.setItem("currentCreationStep", newStep);
+    },
+    progressJoinernStep: (state, action) => { 
+      const newStep = action.payload;
+      if (state.currentJoinerStep < newStep) {
+        state.currentJoinerStep = newStep;
+        window.localStorage.setItem("currentJoinerStep", newStep);
+      }
+    },
+    setJoinerStep: (state, action) => {
+      const newStep = action.payload;
+      state.currentJoinerStep = newStep;
+      window.localStorage.setItem("currentJoinerStep", newStep);
     }
   }
 })
 
-export const { setQueueName, setQueueId, setTokenId, progressStep, setStep } = appSlice.actions;
+export const { setQueueName, setQueueId, setTokenId, progressCreationStep, setCreationStep, progressJoinernStep, setJoinerStep } = appSlice.actions;
 
 export default appSlice.reducer;

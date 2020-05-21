@@ -5,7 +5,7 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import QueueService from '../../../services/queue';
 import Notifications from '@material-ui/icons/Notifications';
 import { useDispatch } from "react-redux";
-import { progressStep } from "../../../store/appSlice";
+import { progressCreationStep } from "../../../store/appSlice";
 import DeleteIcon from '@material-ui/icons/Delete';
 import CallIcon from '@material-ui/icons/Call';
 import ListItem from '@material-ui/core/ListItem';
@@ -39,7 +39,7 @@ function Item(props) {
 
     const dispatch = useDispatch();
     const onNotifyClick = () => {
-        dispatch(progressStep(3));
+        dispatch(progressCreationStep(3));
         setNotifying(true);
         QueueService.notifyUser(queueId, tokenId).then(() => {
             setNotifying(false);
