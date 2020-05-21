@@ -3,12 +3,20 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import CentralSection from "../CentralSection";
 import QueueService from '../../services/queue';
-import { CircularProgress } from "@material-ui/core";
+import { CircularProgress, makeStyles } from "@material-ui/core";
 import Alert from '@material-ui/lab/Alert';
 import { useSelector, useDispatch } from 'react-redux';
 import JoinerStepper from "../stepper/JoinerStepper";
 import { setAheadCount } from "../../store/appSlice";
 
+const useStyles = makeStyles((theme) => ({
+  buttonGroup: {
+      display: "flex",
+      justifyContent: 'flex-end',
+      marginTop: theme.spacing(3),
+      marginBottom: theme.spacing(3)
+  }
+}));
 
 function QueueStatus() {
   const dispatch = useDispatch();
@@ -17,54 +25,49 @@ function QueueStatus() {
   const tokenId = useSelector((state) => state.appReducer.tokenId);
   const aheadCount = useSelector((state) => state.appReducer.aheadCount);
   const [updateInProgress, setUpdateInProgress] = useState(false);
+  const classes = useStyles();
 
   const update = () => {
     if (queueId && tokenId) {
       setUpdateInProgress(true);
-      QueueService.userStatus(queueId, tokenId).then( 
-        response => {dispatch(setAheadCount(response.aheadCount));
-        setNotified(response.aheadCount);
-        setUpdateInProgress(false);}
+      QueueService.userStatus(queueId, tokenId).then(
+        response => {
+          dispatch(setAheadCount(response.aheadCount));
+          setNotified(response.aheadCount);
+          setUpdateInProgress(false);
+        }
       )
     }
-  } 
+  }
 
   return <>
     <JoinerStepper />
     <CentralSection heading="Thanks for waiting!">
       {
-        statusDetails(aheadCount, notified)
+        statusDetails(aheadCount, notified, updateInProgress)
       }
-      <div style={{ display: "flex", justifyContent: 'flex-end' }}>
-      { updateInProgress ? <CircularProgress size={30} style={{padding: "6px 16px"}}/> : 
-        <Button variant="contained" color="primary" style={{
-          marginTop: 30,
-          marginLeft: 10,
-        }} onClick={update}>
-          Refresh
-      </Button> }
+      <div className={classes.buttonGroup}>
+        {updateInProgress ? <CircularProgress size={30} style={{ padding: "6px 16px" }} /> :
+          <Button variant="contained" color="primary" onClick={update}>
+            Refresh
+      </Button>}
       </div>
     </CentralSection>
   </>
 }
 
-function statusDetails(aheadCount, notified) {
-  if (aheadCount == null) {
-    return <CircularProgress style={{ display: "block", margin: "0px auto" }} />
+function statusDetails(aheadCount, notified, updateInProgress) {
+  if (notified) {
+    return <Alert severity="success" ><Typography variant="h6" align="center" color="textSecondary" component="p">
+      You have been notified by the queue manager. Your wait is over.
+    </Typography>
+    </Alert>
   }
   else if (aheadCount === 0) {
-    if (notified) {
-      return <Alert severity="success" ><Typography variant="h6" align="center" color="textSecondary" component="p">
-        You have been notified by the queue manager. Your wait is over.
-    </Typography>
-      </Alert>
-    }
-    else {
-      return <Alert severity="error" ><Typography variant="h6" align="center" color="textSecondary" component="p">
-        There is no one ahead of you.Please wait to be notified by the queue manager.
+    return <Alert severity="error" ><Typography variant="h6" align="center" color="textSecondary" component="p">
+      There is no one ahead of you. Please wait to be notified by the queue manager.
   </Typography></Alert>
 
-    }
   }
   else {
     return <Typography variant="h5" align="center" color="textSecondary" component="p">
