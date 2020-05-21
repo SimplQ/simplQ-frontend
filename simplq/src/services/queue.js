@@ -36,7 +36,7 @@ class QueueService {
         const response = await readQueueFBFn({
             queueId: queueId,
         });
-        console.log(`Called the readQueue fn with queueId ${queueId}`);
+        //console.log(`Called the readQueue fn with queueId ${queueId}`);
         return response.data;
     }
 
@@ -48,7 +48,7 @@ class QueueService {
             queueId: queueId,
             notifyable: notifyable
         });
-        console.log(`Called the addtoQueue fn with ${name}, ${contact}, ${queueId}`);
+        //console.log(`Called the addtoQueue fn with ${name}, ${contact}, ${queueId}`);
         return response.data;
     }
 
@@ -58,7 +58,7 @@ class QueueService {
             queueId: queueId,
             tokenId: tokenId,
         });
-        console.log(`Called the userIndexQueue fn with ${tokenId}, ${queueId}`);
+        //console.log(`Called the userIndexQueue fn with ${tokenId}, ${queueId}`);
         return response.data;
     }
 
@@ -68,7 +68,7 @@ class QueueService {
             queueId: queueId,
             tokenId: tokenId,
         });
-        console.log(`Called the notifyUser fn with ${tokenId}, ${queueId}`);
+        //console.log(`Called the notifyUser fn with ${tokenId}, ${queueId}`);
     }
 
     async deleteFromQueue(queueId, tokenId) {
@@ -77,7 +77,7 @@ class QueueService {
                 queueId: queueId,
                 tokenId: tokenId,
             });
-            console.log(`Called the deleteFromQueue fn with ${tokenId}, ${queueId}`);
+            //console.log(`Called the deleteFromQueue fn with ${tokenId}, ${queueId}`);
     }
     async userNotificationStatusQueue(queueId, tokenId) {
         const userNotificationStatusQueueFBFn = this.functions.httpsCallable('userNotificationStatusQueue');
@@ -85,7 +85,7 @@ class QueueService {
             queueId: queueId,
             tokenId: tokenId,
         });
-        console.log(`Called the  userNotificationStatusQueue fn with ${tokenId}, ${queueId}`);
+        //console.log(`Called the  userNotificationStatusQueue fn with ${tokenId}, ${queueId}`);
         return response.data;
     }
 }

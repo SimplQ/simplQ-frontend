@@ -59,7 +59,7 @@ function statusDetails(aheadCount, notified) {
     }
     else {
       return <Alert severity="error" ><Typography variant="h6" align="center" color="textSecondary" component="p">
-        There is no one ahead of you.Please wait to be notified by the queue manager.
+        There is no one ahead of you. Please wait to be notified by the queue manager.
   </Typography></Alert>
 
     }

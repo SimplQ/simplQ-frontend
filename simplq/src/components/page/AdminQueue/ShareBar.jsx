@@ -1,13 +1,13 @@
 import React from 'react';
 import Skeleton from '@material-ui/lab/Skeleton';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-//import Alert from '@material-ui/lab/Alert';
 import { Button } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import { progressCreationStep } from '../../../store/appSlice';
 import { Typography } from '@material-ui/core';
 import Tooltip from '@material-ui/core/Tooltip';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import FileCopyIcon from '@material-ui/icons/FileCopy';
 
 const ShareBar = (props) => {
     const queueId = props.queueId;
@@ -35,10 +35,11 @@ const ShareBar = (props) => {
             color='initial'
             display='block'
             gutterBottom={true}
+            component={'span'}
         >
 
             <ClickAwayListener onClickAway={handleTooltipClose}>
-                <div>
+                <div style={{ 'overflow': 'auto' }}>
                     <Tooltip
                         PopperProps={{disablePortal: true,}}
                         onClose={handleTooltipClose}
@@ -49,8 +50,10 @@ const ShareBar = (props) => {
                         title="Copied to clipboard"
                     >
                         <CopyToClipboard text={shareUrl}>
-                            <Button color="inherit" size="small" 
-                                style={{ 'backgroundColor': '#add8e6', 'overflow': 'auto' }}
+                            <Button 
+                                variant="outlined"
+                                color="primary"
+                                startIcon={<FileCopyIcon />}
                                 onClick={
                                     () => {
                                         dispatch(progressCreationStep(2));
@@ -58,7 +61,7 @@ const ShareBar = (props) => {
                                     }
                                 }
                             >
-                                {'Click here to copy your queue link'}
+                                {'Link'}
                             </Button>
                         </CopyToClipboard>
                     </Tooltip>
