@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import ItemList from "./ItemList";
-import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { Button } from '@material-ui/core';
 import CentralSection from "../../CentralSection";
-import Alert from '@material-ui/lab/Alert';
 import { makeStyles } from '@material-ui/core/styles';
 import QueueService from '../../../services/queue';
+import { useSelector, useDispatch } from 'react-redux';
+import { progressStep } from '../../../store/appSlice';
+import ShareBar from './ShareBar';
+import PageNotFound from '../PageNotFound';
 
 const useStyles = makeStyles((theme) => ({
     urlBox: {
@@ -18,40 +19,48 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default (props) => {
+export default () => {
     const classes = useStyles();
-    const queueId = props.match.params.queueId;
+    const dispatch = useDispatch();
 
-    const [items, setItems] = useState();
-    const [name, setName] = useState();
+    const queueId = useSelector((state) => state.appReducer.queueId);
+    const queueName = useSelector((state) => state.appReducer.queueName);
 
-    const update = () => {
-        QueueService.readQueue(queueId).then(
-            data => {
-                setName(data.name);
-                setItems(data.users)
-            }
-        );
+    if(!queueId) {
+        // If queue id is not here, most probably his session storage got cleared. This can be solved only with proper auth.
+        return <PageNotFound />
     }
 
-    useEffect(update, []);
+    dispatch(progressStep(1))
 
-    var shareUrl = window.location.origin + "/" + queueId;
+    const [items, setItems] = useState();
 
-    return <CentralSection heading={name}>
-        <Alert severity="info" className={classes.urlBox}
-            action={
-                <CopyToClipboard text={shareUrl}>
-                    <Button color="inherit" size="small">
-                        COPY
-                            </Button>
-                </CopyToClipboard>
-            }
-        >
-            Your queue is ready for use, copy and share this url to begin
-        </Alert>
+    const update = () => {
+        if (queueId) {
+            QueueService.readQueue(queueId).then(
+                data => {
+                    setItems(data.users)
+                }
+            );
+        }
+    }
 
-        <ItemList items={items} queueId={queueId} history={props.history}/>
+    const addNewItem = (name, contact) => {
+        return QueueService.addtoQueue(name, contact, false, queueId).then((tokenId) => {
+            setItems([...items, {tokenId: tokenId, name: name, contact: contact, notifyable: false}]);
+        }).catch((err) => {
+            console.log("Add to queue failed, TODO: Inform user", err)
+        })
+    }
+
+    const removeItemHandler = (tokenId) => { setItems(items.filter(item => item.tokenId !== tokenId))} 
+
+    useEffect(update, [queueId]);
+
+    return <CentralSection heading={queueName}>
+        
+        <ShareBar queueId={queueId} className={classes.urlBox} />
+        <ItemList items={items} queueId={queueId} joinQueueHandler={addNewItem} removeItemHandler={removeItemHandler}/>
 
     </CentralSection>
 }

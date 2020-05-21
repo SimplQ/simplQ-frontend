@@ -3,24 +3,12 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import Link from '@material-ui/core/Link';
 import Routes from './Routes'
 import Button from '@material-ui/core/Button';
 import { withRouter } from "react-router";
 import logo from "../simplQLogo.png";
-
-function Copyright() {
-  return (
-    <Typography color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="#">
-        Flatboys
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+import { Stepper, Step, StepLabel } from '@material-ui/core';
+import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   mainLayout: {
@@ -37,11 +25,7 @@ const useStyles = makeStyles((theme) => ({
     width:100
   },
   footer: {
-    backgroundColor: theme.palette.background.paper,
-    position: 'absolute',
-    bottom: 0,
-    width: '100%',
-    height: '2.5rem'    
+    backgroundColor: theme.palette.background.paper,   
   }
 }));
 
@@ -51,6 +35,8 @@ const handleClick = (props) => {
 
  function Layout(props) {
   const classes = useStyles();
+  const activeStep = useSelector((state) => state.appReducer.activeStep);
+  console.log('Active step:', activeStep)
 
   return (
     <>
@@ -58,7 +44,7 @@ const handleClick = (props) => {
         <Toolbar>
           <Typography variant="h6" color="inherit" noWrap>
             <Button color="inherit" onClick={() => handleClick(props)}>
-                <img src={logo} className={classes.logoClass} />
+                <img src={logo} className={classes.logoClass} alt="logo"/>
             </Button>
           </Typography>
         </Toolbar>
@@ -66,11 +52,19 @@ const handleClick = (props) => {
 
 
       <main className={classes.mainLayout}>
-        <Routes />
+      <Stepper style={{padding: "50px 5px"}} activeStep={activeStep} alternativeLabel>
+          <Step key={1} >
+            <StepLabel>Create your virtual queue</StepLabel>
+          </Step>          
+          <Step key={2}>
+            <StepLabel>Share the link to invite people  </StepLabel>
+          </Step>          
+          <Step key={3}>
+            <StepLabel>Notify people of their turn</StepLabel>
+          </Step>
+      </Stepper>
+      <Routes />
       </main>
-      <footer className={classes.footer}>
-        <Copyright />
-      </footer>
     </>
   );
 }

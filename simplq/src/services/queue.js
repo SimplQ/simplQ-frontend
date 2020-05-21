@@ -5,15 +5,15 @@ import "firebase/auth";
 import "firebase/functions";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAv1Us5mnNHg4_JWgJxcjhvGaBIfwXqbbo",
-  authDomain: "simplq-nithin.firebaseapp.com",
-  databaseURL: "https://simplq-nithin.firebaseio.com",
-  projectId: "simplq-nithin",
-  storageBucket: "simplq-nithin.appspot.com",
-  messagingSenderId: "199340496527",
-  appId: "1:199340496527:web:d8d149fa464366957882fa",
-  measurementId: "G-D89WHXSBVQ"
-};
+    apiKey: "AIzaSyB039anyCFfSBs_nbuSfTx8BSRKU5t53fw",
+    authDomain: "simplq-us.firebaseapp.com",
+    databaseURL: "https://simplq-us.firebaseio.com",
+    projectId: "simplq-us",
+    storageBucket: "simplq-us.appspot.com",
+    messagingSenderId: "80112004748",
+    appId: "1:80112004748:web:080a125573a6ceb19995a9",
+    measurementId: "G-H8WPNTDQF7"
+  };
 
 class QueueService {
     constructor() {
@@ -21,39 +21,72 @@ class QueueService {
         this.queues = firebase.firestore().collection("queuesFromFBFn");
 
         firebase.auth().signInAnonymously().catch(error => console.error(error));
-        this.functions = firebase.functions();
+        this.functions = firebase.app().functions();
     }
 
-    async createQueue(name) {
-        const createQueueFBFn = firebase.functions().httpsCallable('createQueue');
-        const docId = await createQueueFBFn({
+    createQueue(name) {
+        const createQueueFBFn = this.functions.httpsCallable('createQueue');
+        return createQueueFBFn({
             name: name,
-        });
-        console.log(`Called the createQueue fn with name ${name} and docId is ${docId.data.data}`);
-        return docId.data.data;
+        }).then(response => response.data.data)
     }
 
     async readQueue(queueId) {
-        const readQueueFBFn = firebase.functions().httpsCallable('readQueue');
-        const result = await readQueueFBFn({
+        const readQueueFBFn = this.functions.httpsCallable('readQueue');
+        const response = await readQueueFBFn({
             queueId: queueId,
         });
-        console.log(`Called the readQueue fn with queuId ${queueId}`);
-        return result.data;
+        console.log(`Called the readQueue fn with queueId ${queueId}`);
+        return response.data;
     }
 
-    addtoQueue(name, contact, queueId) {
-        return this.queues.doc(queueId)
-            .collection("users").add({
-                name: name, contact: contact, "timestamp": firebase.firestore.Timestamp.now()
-            })
-            .then(docRef => docRef.id).catch(() => console.log("Error adding to queue"));
-
+    async addtoQueue(name, contact, notifyable, queueId) {
+        const addtoQueueFBFn = this.functions.httpsCallable('addQueue');
+        const response = await addtoQueueFBFn({
+            name: name,
+            contact: contact,
+            queueId: queueId,
+            notifyable: notifyable
+        });
+        console.log(`Called the addtoQueue fn with ${name}, ${contact}, ${queueId}`);
+        return response.data;
     }
+
     async userIndexQueue(queueId, tokenId) {
-        const users = this.queues.doc(queueId).collection("users");
-        const timeStamp = await users.doc(tokenId).get().then(doc => doc.data().timestamp);
-        return users.where("timestamp", "<", timeStamp).get().then(snapshot => snapshot.size);
+        const userIndexQueueFBFn = this.functions.httpsCallable('userIndexQueue');
+        const response = await userIndexQueueFBFn({
+            queueId: queueId,
+            tokenId: tokenId,
+        });
+        console.log(`Called the userIndexQueue fn with ${tokenId}, ${queueId}`);
+        return response.data;
+    }
+
+    async notifyUser(queueId, tokenId) {
+        const notifyUserFBFn = this.functions.httpsCallable("notifyUser");
+        await notifyUserFBFn({
+            queueId: queueId,
+            tokenId: tokenId,
+        });
+        console.log(`Called the notifyUser fn with ${tokenId}, ${queueId}`);
+    }
+
+    async deleteFromQueue(queueId, tokenId) {
+        const deleteFromQueueFBFn = this.functions.httpsCallable('deleteFromQueue');
+        await deleteFromQueueFBFn({
+                queueId: queueId,
+                tokenId: tokenId,
+            });
+            console.log(`Called the deleteFromQueue fn with ${tokenId}, ${queueId}`);
+    }
+    async userNotificationStatusQueue(queueId, tokenId) {
+        const userNotificationStatusQueueFBFn = this.functions.httpsCallable('userNotificationStatusQueue');
+        const response= await userNotificationStatusQueueFBFn({
+            queueId: queueId,
+            tokenId: tokenId,
+        });
+        console.log(`Called the  userNotificationStatusQueue fn with ${tokenId}, ${queueId}`);
+        return response.data;
     }
 }
 

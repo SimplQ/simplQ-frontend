@@ -4,13 +4,13 @@ import Button from '@material-ui/core/Button';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/material.css';
 import { makeStyles } from '@material-ui/core/styles';
-import QueueService from '../../../services/queue';
+import { CircularProgress } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
     textField: {
         marginTop: theme.spacing(2)
     },
-    buttonGroup: { 
+    buttonGroup: {
         display: "flex",
         justifyContent: 'flex-end',
         marginTop: theme.spacing(3),
@@ -20,23 +20,40 @@ const useStyles = makeStyles((theme) => ({
 
 
 export function JoinQueueForm(props) {
-    const [name, setName] = useState();
-    const [contact, setContact] = useState();
+    const [name, setName] = useState('');
+    const [invalidName, setInvalidName] = useState(false);
+    const [contact, setContact] = useState('');
+    const [invalidContact, setInvalidContact] = useState(false);
+    const [addingInProgress, setAddingInProgress] = useState(false);
     const classes = useStyles();
 
     function handleNameChange(e) {
-        setName(e.target.value)
+        setName(e.target.value);
+        setInvalidName(false);
     }
 
     function handleContactChange(e) {
-        setContact(e)
+        setContact(e);
+        setInvalidContact(false);
     }
 
     const handleClick = () => {
-        const tokenIdPromise = QueueService.addtoQueue(name, contact, props.queueId);
-        if (props.afterJoinHandler) {
-            tokenIdPromise.then(tokenId => props.afterJoinHandler(tokenId))
+        if (name === '') {
+            setInvalidName(true);
+            return;
         }
+        if (contact === '') {
+            setInvalidContact(true);
+            return;
+        }
+
+        setAddingInProgress(true);
+
+        props.joinQueueHandler(name, contact).then(() => {
+            setName('');
+            setContact('');
+            setAddingInProgress(false);
+        })
     }
 
     return <>
@@ -49,9 +66,10 @@ export function JoinQueueForm(props) {
                 shrink: true,
             }}
             variant="outlined"
-            inputStyle="material"
             value={name}
             onChange={handleNameChange}
+            error={invalidName}
+            helperText={invalidName ? "Name is required" : ""}
         />
         <PhoneInput
             containerClass={classes.textField}
@@ -67,13 +85,16 @@ export function JoinQueueForm(props) {
             inputStyle={{
                 width: '100%'
             }}
+            isValid={() => invalidContact ? "Phone number is not valid" : true}
             onChange={handleContactChange} />
         <div className={classes.buttonGroup}>
+            { addingInProgress ? <CircularProgress size={30} style={{padding: "6px 16px"}}/> : 
             <Button variant="contained" color="primary" onClick={handleClick}>
                 {props.buttonName ? props.buttonName : "Join"}
             </Button>
+            }
         </div>
-        </>
+    </>
 }
 
 export default JoinQueueForm;
