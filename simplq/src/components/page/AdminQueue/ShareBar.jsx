@@ -7,6 +7,7 @@ import { progressCreationStep } from '../../../store/appSlice';
 import { Typography } from '@material-ui/core';
 import Tooltip from '@material-ui/core/Tooltip';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import FileCopyIcon from '@material-ui/icons/FileCopy';
 
 const ShareBar = (props) => {
     const queueId = props.queueId;
@@ -34,10 +35,11 @@ const ShareBar = (props) => {
             color='initial'
             display='block'
             gutterBottom={true}
+            component={'span'}
         >
 
             <ClickAwayListener onClickAway={handleTooltipClose}>
-                <div>
+                <div style={{ 'overflow': 'auto' }}>
                     <Tooltip
                         PopperProps={{disablePortal: true,}}
                         onClose={handleTooltipClose}
@@ -48,13 +50,10 @@ const ShareBar = (props) => {
                         title="Copied to clipboard"
                     >
                         <CopyToClipboard text={shareUrl}>
-<<<<<<< HEAD
-                            <Button variant="contained" color="primary" size="small" 
-                                style={{ 'overflow': 'auto' }}
-=======
-                            <Button color="inherit" size="small" 
-                                style={{ 'backgroundColor': '#add8e6', 'overflow': 'auto' }}
->>>>>>> 8d0fda2fcb72e2c5cd726edbf1dfb3fc98aeff0e
+                            <Button variant="outlined" 
+                                variant="outlined"
+                                color="primary"
+                                startIcon={<FileCopyIcon />}
                                 onClick={
                                     () => {
                                         dispatch(progressCreationStep(2));
@@ -62,7 +61,7 @@ const ShareBar = (props) => {
                                     }
                                 }
                             >
-                                {'Click here to copy your queue link'}
+                                {'Link'}
                             </Button>
                         </CopyToClipboard>
                     </Tooltip>
