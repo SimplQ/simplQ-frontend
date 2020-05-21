@@ -27,11 +27,7 @@ function QueueStatus() {
         setUpdateInProgress(false);}
       )
     }
-  }
-  console.log(aheadCount);
-  if (aheadCount == null) {
-    update()
-  }
+  } 
 
   return <>
     <JoinerStepper />
@@ -53,7 +49,7 @@ function QueueStatus() {
 }
 
 function statusDetails(aheadCount, notified) {
-  if (aheadCount === -1) {
+  if (aheadCount == null) {
     return <CircularProgress style={{ display: "block", margin: "0px auto" }} />
   }
   else if (aheadCount === 0) {

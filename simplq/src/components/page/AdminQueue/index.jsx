@@ -63,7 +63,6 @@ export default () => {
             <CreaterStepper />
             <ShareBar queueId={queueId} className={classes.urlBox} />
             <ItemList items={items} queueId={queueId} joinQueueHandler={addNewItem} removeItemHandler={removeItemHandler} />
-
         </CentralSection>
     </>
 }
