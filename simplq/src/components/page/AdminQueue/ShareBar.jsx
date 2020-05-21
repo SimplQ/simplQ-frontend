@@ -1,7 +1,6 @@
 import React from 'react';
 import Skeleton from '@material-ui/lab/Skeleton';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-//import Alert from '@material-ui/lab/Alert';
 import { Button } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import { progressCreationStep } from '../../../store/appSlice';
