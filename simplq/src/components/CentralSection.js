@@ -6,6 +6,7 @@ import Skeleton from '@material-ui/lab/Skeleton';
 
 const useStyles = makeStyles((theme) => ({
     paper: {
+        marginTop: theme.spacing(5),
         marginBottom: theme.spacing(3),
         padding: theme.spacing(2),
         [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {

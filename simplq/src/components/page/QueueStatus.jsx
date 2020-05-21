@@ -1,32 +1,37 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import CentralSection from "../CentralSection";
 import QueueService from '../../services/queue';
 import { CircularProgress } from "@material-ui/core";
 import Alert from '@material-ui/lab/Alert';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import JoinerStepper from "../stepper/JoinerStepper";
+import { setAheadCount } from "../../store/appSlice";
 
 
 function QueueStatus() {
-  const [aheadCount, setAheadCount] = useState(-1);
+  const dispatch = useDispatch();
   const [notified, setNotified] = useState();
   const queueId = useSelector((state) => state.appReducer.queueId);
   const tokenId = useSelector((state) => state.appReducer.tokenId);
+  const aheadCount = useSelector((state) => state.appReducer.aheadCount);
+  const [updateInProgress, setUpdateInProgress] = useState(false);
 
   const update = () => {
     if (queueId && tokenId) {
-      QueueService.userIndexQueue(queueId, tokenId).then(
-        count => setAheadCount(count)
-      );
-      QueueService.userNotificationStatusQueue(queueId, tokenId).then(
-        notified => setNotified(notified)
-      );
+      setUpdateInProgress(true);
+      QueueService.userStatus(queueId, tokenId).then( 
+        response => {dispatch(setAheadCount(response.aheadCount));
+        setNotified(response.aheadCount);
+        setUpdateInProgress(false);}
+      )
     }
   }
-
-  useEffect(update, [tokenId]);
+  console.log(aheadCount);
+  if (aheadCount == null) {
+    update()
+  }
 
   return <>
     <JoinerStepper />
@@ -35,12 +40,13 @@ function QueueStatus() {
         statusDetails(aheadCount, notified)
       }
       <div style={{ display: "flex", justifyContent: 'flex-end' }}>
+      { updateInProgress ? <CircularProgress size={30} style={{padding: "6px 16px"}}/> : 
         <Button variant="contained" color="primary" style={{
           marginTop: 30,
           marginLeft: 10,
         }} onClick={update}>
           Refresh
-        </Button>
+      </Button> }
       </div>
     </CentralSection>
   </>
