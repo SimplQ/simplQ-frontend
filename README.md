@@ -6,7 +6,7 @@
 
 These steps are to be followed when you are running the project for the first time.
 
-1. Install Node 12.x following instructions ![here](https://github.com/nodesource/distributions/blob/master/README.md#debinstall).
+1. Install Node 12.x following instructions [here](https://github.com/nodesource/distributions/blob/master/README.md#debinstall).
 2. Clone this project
 3. Change to `simplq` folder, install dependencies:
 
