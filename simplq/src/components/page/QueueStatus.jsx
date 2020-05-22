@@ -7,7 +7,7 @@ import { CircularProgress, makeStyles } from "@material-ui/core";
 import Alert from '@material-ui/lab/Alert';
 import { useSelector, useDispatch } from 'react-redux';
 import JoinerStepper from "../stepper/JoinerStepper";
-import { setAheadCount } from "../../store/appSlice";
+import { setAheadCount, setJoinerStep } from "../../store/appSlice";
 
 const useStyles = makeStyles((theme) => ({
   buttonGroup: {
@@ -33,19 +33,37 @@ function QueueStatus() {
       QueueService.userStatus(queueId, tokenId).then(
         response => {
           dispatch(setAheadCount(response.aheadCount));
-          setNotified(response.aheadCount);
+          setNotified(response.notified);
           setUpdateInProgress(false);
         }
       )
     }
   }
 
+  var status = null;
+  if (notified) {
+    dispatch(setJoinerStep(3))
+    status = <Alert severity="success" ><Typography variant="h6" align="center" color="textSecondary" component="p">
+      You have been notified by the queue manager. Your wait is over.
+    </Typography>
+    </Alert>
+  }
+  else if (aheadCount === 0) {
+    status = <Alert severity="error" ><Typography variant="h6" align="center" color="textSecondary" component="p">
+      There is no one ahead of you. Please wait to be notified by the queue manager.
+  </Typography></Alert>
+
+  }
+  else {
+    status = <Typography variant="h5" align="center" color="textSecondary" component="p">
+      People infront of you : {aheadCount}
+    </Typography>
+  }
+
   return <>
     <JoinerStepper />
     <CentralSection heading="Thanks for waiting!">
-      {
-        statusDetails(aheadCount, notified, updateInProgress)
-      }
+      {status}
       <div className={classes.buttonGroup}>
         {updateInProgress ? <CircularProgress size={30} style={{ padding: "6px 16px" }} /> :
           <Button variant="contained" color="primary" onClick={update}>
@@ -54,26 +72,6 @@ function QueueStatus() {
       </div>
     </CentralSection>
   </>
-}
-
-function statusDetails(aheadCount, notified, updateInProgress) {
-  if (notified) {
-    return <Alert severity="success" ><Typography variant="h6" align="center" color="textSecondary" component="p">
-      You have been notified by the queue manager. Your wait is over.
-    </Typography>
-    </Alert>
-  }
-  else if (aheadCount === 0) {
-    return <Alert severity="error" ><Typography variant="h6" align="center" color="textSecondary" component="p">
-      There is no one ahead of you. Please wait to be notified by the queue manager.
-  </Typography></Alert>
-
-  }
-  else {
-    return <Typography variant="h5" align="center" color="textSecondary" component="p">
-      People infront of you : {aheadCount}
-    </Typography>
-  }
 }
 
 export default QueueStatus
