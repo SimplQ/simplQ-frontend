@@ -38,7 +38,7 @@ function ItemList(props) {
     }
     
     return (
-        <Card >
+        
             <List>
                 <div style={{minHeight: '200px', display: 'flex'}}>
                 {listContent}
@@ -60,7 +60,7 @@ function ItemList(props) {
                     </div>
                 </Collapse>
             </List>
-        </Card>);
+        );
 }
 
 export default ItemList;
