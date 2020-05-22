@@ -72,14 +72,14 @@ function QueueStatus() {
   var status = null;
   if (updateInProgress) {
     status = <CircularProgress />;
+  } else if (userLeft) {
+    status = <Typography align="center">You have been removed from the queue</Typography>
   } else if (notified) {
     dispatch(setJoinerStep(3))
     status = <Alert severity="success" ><Typography variant="h6" align="center" color="textSecondary" component="p">
       You have been notified by the queue manager. Your wait is over.
     </Typography>
     </Alert>
-  } else if (userLeft) {
-    status = <Typography align="center">You have been removed from the queue</Typography>
   }
   else if (aheadCount === 0) {
     status = <Alert severity="error" ><Typography variant="h6" align="center" color="textSecondary" component="p">
