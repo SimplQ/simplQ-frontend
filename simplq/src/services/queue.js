@@ -22,6 +22,7 @@ class QueueService {
 
         firebase.auth().signInAnonymously().catch(error => console.error(error));
         this.functions = firebase.app().functions();
+        firebase.analytics();
     }
 
     createQueue(name) {
