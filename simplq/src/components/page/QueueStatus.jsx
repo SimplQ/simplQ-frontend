@@ -52,7 +52,7 @@ function QueueStatus() {
 
   var status = null;
   if (updateInProgress) {
-    status = <CircularProgress size={40} left={-20}/>;
+    status = <CircularProgress />;
   } else if (notified) {
     dispatch(setJoinerStep(3))
     status = <Alert severity="success" ><Typography variant="h6" align="center" color="textSecondary" component="p">
