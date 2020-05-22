@@ -30,7 +30,7 @@ exports.readQueue = functions.https.onCall(async (data, context) => {
         }
     });
 
-    const usersPromise = queue.doc(queueId).collection("users").get()
+    const usersPromise = queue.doc(queueId).collection("users").orderBy('timestamp').get()
         .then(snapshot => {
             const users = [];
             snapshot.forEach(doc => {
