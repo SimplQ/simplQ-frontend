@@ -3,7 +3,7 @@ import React from "react";
 import CentralSection from "../../CentralSection";
 import JoinQueueForm from "./Form";
 import { useDispatch } from 'react-redux';
-import { setTokenId, setJoinerStep, setAheadCount    } from '../../../store/appSlice'
+import { setTokenId, setJoinerStep, setAheadCount } from '../../../store/appSlice'
 import QueueService from '../../../services/queue';
 import JoinerStepper from "../../stepper/JoinerStepper";
 
@@ -22,15 +22,13 @@ export function JoinQueue(props) {
         }).then(() => dispatch(setJoinerStep(1)))
     }
 
-    return <>
-    <CentralSection heading="Join Queue">
-    <JoinerStepper />
+    return <CentralSection heading="Join Queue">
+        <JoinerStepper />
         <JoinQueueForm
             queueId={queueId}
             joinQueueHandler={joinQueueHandler}
         />
-    </CentralSection>
-    </>;
+    </CentralSection>;
 }
 
 export default JoinQueue;

@@ -79,7 +79,6 @@ function Item(props) {
         </ListItemAvatar>
         <ListItemText
             primary={name}
-            secondary={contact}
         />
         <ListItemSecondaryAction >
         {notificationButton}
