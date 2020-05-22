@@ -2,7 +2,7 @@ import React from "react";
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import { Card, Collapse, ListItemIcon, makeStyles, CircularProgress } from "@material-ui/core";
+import { Collapse, ListItemIcon, makeStyles, CircularProgress } from "@material-ui/core";
 import AddIcon from '@material-ui/icons/Add';
 import JoinQueueForm from "../JoinQueue/Form";
 import ExpandLess from '@material-ui/icons/ExpandLess';
@@ -38,7 +38,6 @@ function ItemList(props) {
     }
     
     return (
-        
             <List>
                 <div style={{minHeight: '200px', display: 'flex'}}>
                 {listContent}

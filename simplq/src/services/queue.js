@@ -37,7 +37,6 @@ class QueueService {
         const response = await readQueueFBFn({
             queueId: queueId,
         });
-        //console.log(`Called the readQueue fn with queueId ${queueId}`);
         return response.data;
     }
 
@@ -49,7 +48,6 @@ class QueueService {
             queueId: queueId,
             notifyable: notifyable
         });
-        //console.log(`Called the addtoQueue fn with ${name}, ${contact}, ${queueId}`);
         return response.data;
     }
 
@@ -59,7 +57,6 @@ class QueueService {
             queueId: queueId,
             tokenId: tokenId,
         });
-        //console.log(`Called the userIndexQueue fn with ${tokenId}, ${queueId}`);
         return response.data;
     }
 
@@ -69,16 +66,14 @@ class QueueService {
             queueId: queueId,
             tokenId: tokenId,
         });
-        //console.log(`Called the notifyUser fn with ${tokenId}, ${queueId}`);
     }
 
-    async deleteFromQueue(queueId, tokenId) {
+    deleteFromQueue(queueId, tokenId) {
         const deleteFromQueueFBFn = this.functions.httpsCallable('deleteFromQueue');
-        await deleteFromQueueFBFn({
+        return deleteFromQueueFBFn({
                 queueId: queueId,
                 tokenId: tokenId,
             });
-            //console.log(`Called the deleteFromQueue fn with ${tokenId}, ${queueId}`);
     }
 }
 

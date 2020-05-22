@@ -12,9 +12,12 @@ import { setAheadCount, setJoinerStep } from "../../store/appSlice";
 const useStyles = makeStyles((theme) => ({
   buttonGroup: {
       display: "flex",
-      justifyContent: 'flex-end',
+      justifyContent: "center",
       marginTop: theme.spacing(3),
       marginBottom: theme.spacing(3)
+  },
+  button: {
+    margin: theme.spacing(1)
   },
   content: {
     minHeight: theme.spacing(16),
@@ -32,6 +35,7 @@ function QueueStatus() {
   const aheadCount = useSelector((state) => state.appReducer.aheadCount);
   const [updateInProgress, setUpdateInProgress] = useState(false);
   const classes = useStyles();
+  const [userLeft, setUserLeft] = useState(false);
 
   const update = () => {
     if (queueId && tokenId) {
@@ -42,17 +46,34 @@ function QueueStatus() {
           setNotified(response.notified);
           setUpdateInProgress(false);
         }
-      )
+      ).catch(() => {
+        setUpdateInProgress(false);
+        setUserLeft(true);
+      })
     }
   }
 
-  if (aheadCount == null && !updateInProgress) {
+  const onDeleteClick = () => {
+    setUpdateInProgress(true);
+    QueueService.deleteFromQueue(queueId, tokenId).then(() => {
+      setUserLeft(true);
+      setUpdateInProgress(false);
+    }).catch(() => {
+        setUpdateInProgress(false);
+        setUserLeft(true);
+      }
+    )
+  }
+
+  if (aheadCount == null && !updateInProgress & !userLeft) {
     update()
   }
 
   var status = null;
   if (updateInProgress) {
     status = <CircularProgress />;
+  } else if (userLeft) {
+    status = <Typography align="center">You have been removed from the queue</Typography>
   } else if (notified) {
     dispatch(setJoinerStep(3))
     status = <Alert severity="success" ><Typography variant="h6" align="center" color="textSecondary" component="p">
@@ -78,11 +99,15 @@ function QueueStatus() {
       <div className={classes.content}>
         {status}
       </div>
+      { !userLeft ?
       <div className={classes.buttonGroup}>
-        <Button variant="contained" color="primary" onClick={update}>
-            Refresh
+        <Button className={classes.button} variant="outlined" color="primary" onClick={update}>
+            Check Status
         </Button>
-      </div>
+        <Button className={classes.button} variant="outlined" color="secondary" onClick={onDeleteClick}>
+            Leave Queue
+        </Button>
+</div> : <div></div> }
     </CentralSection>
   </>
 }
