@@ -16,7 +16,7 @@ export function JoinQueue(props) {
         return QueueService.addtoQueue(name, contact, true, queueId).then((response) => {
             dispatch(setTokenId(response.tokenId));
             dispatch(setAheadCount(response.aheadCount));
-            dispatch(setJoinerStep(2))
+            dispatch(setJoinerStep(1))
             props.history.push("/status");
         }).catch((err) => {
             console.log("Add to queue failed, TODO: Inform user", err)

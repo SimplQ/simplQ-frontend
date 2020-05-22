@@ -15,6 +15,12 @@ const useStyles = makeStyles((theme) => ({
       justifyContent: 'flex-end',
       marginTop: theme.spacing(3),
       marginBottom: theme.spacing(3)
+  },
+  content: {
+    minHeight: theme.spacing(16),
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 }));
 
@@ -40,8 +46,14 @@ function QueueStatus() {
     }
   }
 
+  if (aheadCount == null && !updateInProgress) {
+    update()
+  }
+
   var status = null;
-  if (notified) {
+  if (updateInProgress) {
+    status = <CircularProgress size={40} left={-20}/>;
+  } else if (notified) {
     dispatch(setJoinerStep(3))
     status = <Alert severity="success" ><Typography variant="h6" align="center" color="textSecondary" component="p">
       You have been notified by the queue manager. Your wait is over.
@@ -63,12 +75,13 @@ function QueueStatus() {
   return <>
     <JoinerStepper />
     <CentralSection heading="Thanks for waiting!">
-      {status}
+      <div className={classes.content}>
+        {status}
+      </div>
       <div className={classes.buttonGroup}>
-        {updateInProgress ? <CircularProgress size={30} style={{ padding: "6px 16px" }} /> :
-          <Button variant="contained" color="primary" onClick={update}>
+        <Button variant="contained" color="primary" onClick={update}>
             Refresh
-      </Button>}
+        </Button>
       </div>
     </CentralSection>
   </>
