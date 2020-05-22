@@ -82,7 +82,7 @@ function QueueStatus() {
     </Alert>
   }
   else if (aheadCount === 0) {
-    status = <Alert severity="error" ><Typography variant="h6" align="center" color="textSecondary" component="p">
+    status = <Alert severity="success" ><Typography variant="h6" align="center" color="textSecondary" component="p">
       There is no one ahead of you. Please wait to be notified by the queue manager.
   </Typography></Alert>
 
