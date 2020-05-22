@@ -61,7 +61,7 @@ export default () => {
     return <>
         <CentralSection heading={queueName}>
             <CreaterStepper />
-            <ShareBar queueId={queueId} className={classes.urlBox} onRefresh={update} />
+            <ShareBar queueId={queueId} className={classes.urlBox} onRefresh={() => {update(); setItems(false)}} />
             <ItemList items={items} queueId={queueId} joinQueueHandler={addNewItem} removeItemHandler={removeItemHandler} />
         </CentralSection>
     </>
