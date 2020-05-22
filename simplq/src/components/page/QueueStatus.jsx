@@ -99,7 +99,7 @@ function QueueStatus() {
       <div className={classes.content}>
         {status}
       </div>
-      { !userLeft ?
+      { !userLeft && !updateInProgress ?
       <div className={classes.buttonGroup}>
         <Button className={classes.button} variant="outlined" color="primary" onClick={update}>
             Check Status
