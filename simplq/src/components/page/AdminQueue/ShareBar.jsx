@@ -1,15 +1,27 @@
 import React from 'react';
 import Skeleton from '@material-ui/lab/Skeleton';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { Button } from '@material-ui/core';
+import { Button, makeStyles } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import { progressCreationStep } from '../../../store/appSlice';
-import { Typography } from '@material-ui/core';
 import Tooltip from '@material-ui/core/Tooltip';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import FileCopyIcon from '@material-ui/icons/FileCopy';
+import SyncIcon from '@material-ui/icons/Sync';
+
+const useStyles = makeStyles((theme) => ({
+    buttonGroup: {
+        paddingBottom: theme.spacing(3),
+        justifyContent: 'center',
+        display: 'flex'
+    },
+    button: {
+        margin: theme.spacing(1)
+    }
+}));
 
 const ShareBar = (props) => {
+    const classes = useStyles();
     const queueId = props.queueId;
     const dispatch = useDispatch();
 
@@ -29,19 +41,12 @@ const ShareBar = (props) => {
 
     var shareUrl = window.location.origin + "/j/" + queueId;
 
-    return (<>
-        <Typography 
-            align='center'
-            color='initial'
-            display='block'
-            gutterBottom={true}
-            component={'span'}
-        >
-
-            <ClickAwayListener onClickAway={handleTooltipClose}>
-                <div style={{ 'overflow': 'auto' }}>
+    return (<div className={classes.buttonGroup}>
+        <div 
+                                className={classes.button}>
+        <ClickAwayListener onClickAway={handleTooltipClose}>
                     <Tooltip
-                        PopperProps={{disablePortal: true,}}
+                        PopperProps={{ disablePortal: true, }}
                         onClose={handleTooltipClose}
                         open={open}
                         disableFocusListener
@@ -50,7 +55,7 @@ const ShareBar = (props) => {
                         title="Copied to clipboard"
                     >
                         <CopyToClipboard text={shareUrl}>
-                            <Button 
+                            <Button
                                 variant="outlined"
                                 color="primary"
                                 startIcon={<FileCopyIcon />}
@@ -65,11 +70,18 @@ const ShareBar = (props) => {
                             </Button>
                         </CopyToClipboard>
                     </Tooltip>
-                </div>
             </ClickAwayListener>
-
-        </Typography>
-        </>
+            </div>
+        <Button
+            variant="outlined"
+            color="primary"
+            startIcon={<SyncIcon />}
+            className={classes.button}
+            onClick={props.onRefresh}
+        >
+            Refresh
+        </Button>
+    </div>
     );
 }
 
