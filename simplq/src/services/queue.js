@@ -52,9 +52,9 @@ class QueueService {
         return response.data;
     }
 
-    async userIndexQueue(queueId, tokenId) {
-        const userIndexQueueFBFn = this.functions.httpsCallable('userIndexQueue');
-        const response = await userIndexQueueFBFn({
+    async userStatus(queueId, tokenId) {
+        const userStatusFBFn = this.functions.httpsCallable('userStatus');
+        const response = await userStatusFBFn({
             queueId: queueId,
             tokenId: tokenId,
         });
@@ -78,15 +78,6 @@ class QueueService {
                 tokenId: tokenId,
             });
             //console.log(`Called the deleteFromQueue fn with ${tokenId}, ${queueId}`);
-    }
-    async userNotificationStatusQueue(queueId, tokenId) {
-        const userNotificationStatusQueueFBFn = this.functions.httpsCallable('userNotificationStatusQueue');
-        const response= await userNotificationStatusQueueFBFn({
-            queueId: queueId,
-            tokenId: tokenId,
-        });
-        //console.log(`Called the  userNotificationStatusQueue fn with ${tokenId}, ${queueId}`);
-        return response.data;
     }
 }
 

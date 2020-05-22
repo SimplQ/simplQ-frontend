@@ -7,7 +7,8 @@ const appSlice = createSlice({
     queueId: window.localStorage.getItem("queueId"),
     tokenId: window.localStorage.getItem("tokenId"),
     currentCreationStep: window.localStorage.getItem("currentCreationStep"),
-    currentJoinerStep: window.localStorage.getItem("currentJoinerStep")
+    currentJoinerStep: window.localStorage.getItem("currentJoinerStep"),
+    aheadCount: null
   },
   reducers: {
     setQueueName: (state, action) => { 
@@ -48,10 +49,15 @@ const appSlice = createSlice({
       const newStep = action.payload;
       state.currentJoinerStep = newStep;
       window.localStorage.setItem("currentJoinerStep", newStep);
+    },
+    setAheadCount: (state, action) => {
+      const aheadCount = action.payload;
+      state.aheadCount = aheadCount;
+      // ahead count is not deliberately persisted to local storage, so that if it's not set, the component requests for it from the server
     }
   }
 })
 
-export const { setQueueName, setQueueId, setTokenId, progressCreationStep, setCreationStep, progressJoinernStep, setJoinerStep } = appSlice.actions;
+export const { setQueueName, setQueueId, setTokenId, progressCreationStep, setCreationStep, progressJoinernStep, setJoinerStep, setAheadCount } = appSlice.actions;
 
 export default appSlice.reducer;
