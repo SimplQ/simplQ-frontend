@@ -13,11 +13,23 @@ import CreaterStepper from '../stepper/CreaterStepper';
 const styles = (theme) => ({
   content: {
     backgroundColor: theme.palette.background.paper,
-    paddingTop: theme.spacing(8)
+    paddingTop: theme.spacing(8),
+    paddingBottom: theme.spacing(3),
   },
   button: {
+    paddingBottom: theme.spacing(3),
     marginTop: theme.spacing(4),
-  }
+  },
+  video: {
+    position: "relative",
+    paddingBottom: "56.25%" /* 16:9 */,
+    paddingTop: 25,
+    height: 0,
+  },
+  description: {
+    textAlign: "center",
+    paddingBottom: theme.spacing(3),
+  },
 });
 
 class CreateQueue extends React.Component {
@@ -70,37 +82,72 @@ class CreateQueue extends React.Component {
     store.dispatch(setCreationStep(0));
     return (
         <div className={classes.content}>
-          <CreaterStepper />
-          <Container maxWidth="sm">
-            <TextField
-              placeholder="Enter a name for a new queue"
-              fullWidth
-              required
-              margin="normal"
-              InputLabelProps={{
-                shrink: true,
-              }}
-              variant="outlined"
-              value={this.state.textFieldValue}
-              onChange={this.handleTextFieldChange}
-              onKeyPress={this.handleKeyPress}
-              error={this.state.invalid}
-              helperText={this.state.invalid ? "Queue name is required" : ""}
-            />
+            <CreaterStepper />
+            <Container maxWidth="sm">
+                <TextField
+                    placeholder="Enter a name for a new queue"
+                    fullWidth
+                    required
+                    margin="normal"
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
+                    variant="outlined"
+                    value={this.state.textFieldValue}
+                    onChange={this.handleTextFieldChange}
+                    onKeyPress={this.handleKeyPress}
+                    error={this.state.invalid}
+                    helperText={
+                        this.state.invalid ? "Queue name is required" : ""
+                    }
+                />
 
-            <div className={classes.button}>
-              <Grid container spacing={2} justify="center">
-                <Grid item>
-                  {this.state.createInProgress ? <CircularProgress size={30} /> :
-                    <Button variant="contained" color="primary"
-                      onClick={() => this.handleClick(this.state.textFieldValue)}
-                    >
-                      Create A queue
-                  </Button>}
-                </Grid>
-              </Grid>
+                <div className={classes.button}>
+                    <Grid container spacing={2} justify="center">
+                        <Grid item>
+                            {this.state.createInProgress ? (
+                                <CircularProgress size={30} />
+                            ) : (
+                                <Button
+                                    variant="contained"
+                                    color="primary"
+                                    onClick={() =>
+                                        this.handleClick(
+                                            this.state.textFieldValue
+                                        )
+                                    }
+                                >
+                                    Create A queue
+                                </Button>
+                            )}
+                        </Grid>
+                    </Grid>
+                </div>
+            </Container>
+
+        <div className={classes.description}>
+          <p>
+            SimplQ provides a means to create and manage virtual queues instantly to help you and your 
+            customers have a great business experience
+          </p>
+        </div>
+
+            <div className={classes.video}>
+                  <iframe
+                      style={{
+                          position: "absolute",
+                          top: 0,
+                          left: 0,
+                          width: "100%",
+                          height: "100%",
+                      }}
+                      title="Home page video"
+                      src={"https://www.youtube.com/embed/X15oW2FQOpQ"}
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                      allowfullscreen
+                  />
             </div>
-          </Container>
         </div>
     );
   }
