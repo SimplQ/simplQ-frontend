@@ -22,6 +22,7 @@ class QueueService {
 
         firebase.auth().signInAnonymously().catch(error => console.error(error));
         this.functions = firebase.app().functions();
+        firebase.analytics();
     }
 
     createQueue(name) {
@@ -36,7 +37,6 @@ class QueueService {
         const response = await readQueueFBFn({
             queueId: queueId,
         });
-        //console.log(`Called the readQueue fn with queueId ${queueId}`);
         return response.data;
     }
 
@@ -48,17 +48,15 @@ class QueueService {
             queueId: queueId,
             notifyable: notifyable
         });
-        //console.log(`Called the addtoQueue fn with ${name}, ${contact}, ${queueId}`);
         return response.data;
     }
 
-    async userIndexQueue(queueId, tokenId) {
-        const userIndexQueueFBFn = this.functions.httpsCallable('userIndexQueue');
-        const response = await userIndexQueueFBFn({
+    async userStatus(queueId, tokenId) {
+        const userStatusFBFn = this.functions.httpsCallable('userStatus');
+        const response = await userStatusFBFn({
             queueId: queueId,
             tokenId: tokenId,
         });
-        //console.log(`Called the userIndexQueue fn with ${tokenId}, ${queueId}`);
         return response.data;
     }
 
@@ -68,25 +66,14 @@ class QueueService {
             queueId: queueId,
             tokenId: tokenId,
         });
-        //console.log(`Called the notifyUser fn with ${tokenId}, ${queueId}`);
     }
 
-    async deleteFromQueue(queueId, tokenId) {
+    deleteFromQueue(queueId, tokenId) {
         const deleteFromQueueFBFn = this.functions.httpsCallable('deleteFromQueue');
-        await deleteFromQueueFBFn({
+        return deleteFromQueueFBFn({
                 queueId: queueId,
                 tokenId: tokenId,
             });
-            //console.log(`Called the deleteFromQueue fn with ${tokenId}, ${queueId}`);
-    }
-    async userNotificationStatusQueue(queueId, tokenId) {
-        const userNotificationStatusQueueFBFn = this.functions.httpsCallable('userNotificationStatusQueue');
-        const response= await userNotificationStatusQueueFBFn({
-            queueId: queueId,
-            tokenId: tokenId,
-        });
-        //console.log(`Called the  userNotificationStatusQueue fn with ${tokenId}, ${queueId}`);
-        return response.data;
     }
 }
 

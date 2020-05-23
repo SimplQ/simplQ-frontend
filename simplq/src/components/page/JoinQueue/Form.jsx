@@ -58,7 +58,7 @@ export function JoinQueueForm(props) {
 
     return <>
         <TextField
-            placeholder="Your Name"
+            placeholder="Name"
             fullWidth
             required
             margin="normal"
@@ -73,7 +73,7 @@ export function JoinQueueForm(props) {
         />
         <PhoneInput
             containerClass={classes.textField}
-            placeholder="Contact Number"
+            placeholder="Phone Number"
             country={'in'}
             value={contact}
             inputProps={{

@@ -6,15 +6,15 @@ export default () => {
 
     const currentJoinerStep = useSelector((state) => state.appReducer.currentJoinerStep);
 
-    return <Stepper style={{ padding: "50px 5px" }} activeStep={currentJoinerStep} alternativeLabel>
+    return <Stepper style={{ padding: "30px 5px" }} activeStep={currentJoinerStep} alternativeLabel>
         <Step key={1} >
-            <StepLabel>Join the queue</StepLabel>
+            <StepLabel>Enter your contact details and join!!</StepLabel>
         </Step>
         <Step key={2}>
-            <StepLabel>Wait for your turn</StepLabel>
+            <StepLabel>Relax and wait for your turn</StepLabel>
         </Step>
         <Step key={3}>
-            <StepLabel>Yay! your wait is over.</StepLabel>
+            <StepLabel>Your turn is up!</StepLabel>
         </Step>
     </Stepper>;
 }

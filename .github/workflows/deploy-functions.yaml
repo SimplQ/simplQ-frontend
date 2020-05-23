@@ -2,11 +2,6 @@ name: Deploy Firebase Functions
 on:
   release:
     types: [published, edited]
-  push:
-    branches: 
-      - master
-    paths:
-      - 'functions/**'
       
 defaults:
   run:

@@ -47,8 +47,8 @@ export default () => {
     }
 
     const addNewItem = (name, contact) => {
-        return QueueService.addtoQueue(name, contact, false, queueId).then((tokenId) => {
-            setItems([...items, { tokenId: tokenId, name: name, contact: contact, notifyable: false }]);
+        return QueueService.addtoQueue(name, contact, false, queueId).then((response) => {
+            setItems([...items, { tokenId: response.tokenId, name: name, contact: contact, notifyable: false }]);
         }).catch((err) => {
             console.log("Add to queue failed, TODO: Inform user", err)
         })
@@ -59,12 +59,10 @@ export default () => {
     useEffect(update, [queueId]);
 
     return <>
-        <CreaterStepper />
         <CentralSection heading={queueName}>
-
-            <ShareBar queueId={queueId} className={classes.urlBox} />
+            <CreaterStepper />
+            <ShareBar queueId={queueId} className={classes.urlBox} onRefresh={() => {update(); setItems(false)}} />
             <ItemList items={items} queueId={queueId} joinQueueHandler={addNewItem} removeItemHandler={removeItemHandler} />
-
         </CentralSection>
     </>
 }

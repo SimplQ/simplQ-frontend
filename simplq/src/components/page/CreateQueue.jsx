@@ -12,7 +12,8 @@ import CreaterStepper from '../stepper/CreaterStepper';
 
 const styles = (theme) => ({
   content: {
-    backgroundColor: theme.palette.background.paper
+    backgroundColor: theme.palette.background.paper,
+    paddingTop: theme.spacing(8)
   },
   button: {
     marginTop: theme.spacing(4),
@@ -68,9 +69,8 @@ class CreateQueue extends React.Component {
     const { classes } = this.props;
     store.dispatch(setCreationStep(0));
     return (
-      <>
-        <CreaterStepper />
         <div className={classes.content}>
+          <CreaterStepper />
           <Container maxWidth="sm">
             <TextField
               placeholder="Enter a name for a new queue"
@@ -102,7 +102,6 @@ class CreateQueue extends React.Component {
             </div>
           </Container>
         </div>
-      </>
     );
   }
 }
