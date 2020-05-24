@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import IconButton from '@material-ui/core/IconButton';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import QueueService from '../../../services/queue';
+import * as QueueService from '../../../services/queue';
 import Notifications from '@material-ui/icons/Notifications';
 import { useDispatch } from "react-redux";
 import { progressCreationStep } from "../../../store/appSlice";
