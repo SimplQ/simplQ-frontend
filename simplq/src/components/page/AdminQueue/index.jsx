@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ItemList from "./ItemList";
 import CentralSection from "../../CentralSection";
 import { makeStyles } from '@material-ui/core/styles';
-import QueueService from '../../../services/queue';
+import * as QueueService from '../../../services/queue';
 import { useSelector, useDispatch } from 'react-redux';
 import { progressCreationStep } from '../../../store/appSlice';
 import ShareBar from './ShareBar';

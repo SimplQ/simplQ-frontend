@@ -4,32 +4,32 @@ import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
-import QueueService from '../../services/queue';
+import * as QueueService from '../../services/queue';
 import { setQueueName, setQueueId, setCreationStep } from '../../store/appSlice';
 import { store } from '../../store' //TODO: Use Hooks
 import { CircularProgress } from '@material-ui/core';
 import CreaterStepper from '../stepper/CreaterStepper';
 
 const styles = (theme) => ({
-  content: {
-    backgroundColor: theme.palette.background.paper,
-    paddingTop: theme.spacing(8),
-    paddingBottom: theme.spacing(3),
-  },
-  button: {
-    paddingBottom: theme.spacing(3),
-    marginTop: theme.spacing(4),
-  },
-  video: {
-    position: "relative",
-    paddingBottom: "56.25%" /* 16:9 */,
-    paddingTop: 25,
-    height: 0,
-  },
-  description: {
-    textAlign: "center",
-    paddingBottom: theme.spacing(3),
-  },
+    content: {
+        backgroundColor: theme.palette.background.paper,
+        paddingTop: theme.spacing(8),
+        paddingBottom: theme.spacing(3),
+    },
+    button: {
+        paddingBottom: theme.spacing(3),
+        marginTop: theme.spacing(4),
+    },
+    video: {
+        position: "relative",
+        paddingBottom: "56.25%" /* 16:9 */,
+        paddingTop: 25,
+        height: 0,
+    },
+    description: {
+        textAlign: "center",
+        paddingBottom: theme.spacing(3),
+    },
 });
 
 class CreateQueue extends React.Component {

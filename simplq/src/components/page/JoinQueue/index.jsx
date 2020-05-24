@@ -4,7 +4,7 @@ import CentralSection from "../../CentralSection";
 import JoinQueueForm from "./Form";
 import { useDispatch } from 'react-redux';
 import { setTokenId, setJoinerStep, setAheadCount, setQueueId } from '../../../store/appSlice'
-import QueueService from '../../../services/queue';
+import * as QueueService from '../../../services/queue';
 import JoinerStepper from "../../stepper/JoinerStepper";
 
 export function JoinQueue(props) {

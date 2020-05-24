@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import CentralSection from "../CentralSection";
-import QueueService from '../../services/queue';
+import * as QueueService from '../../services/queue';
 import { CircularProgress, makeStyles } from "@material-ui/core";
 import Alert from '@material-ui/lab/Alert';
 import { useSelector, useDispatch } from 'react-redux';
