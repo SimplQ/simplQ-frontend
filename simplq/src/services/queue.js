@@ -6,14 +6,14 @@ export const createQueue = async (name) => {
     const response = await axios.post(`${URL}/createQueue`, {
         name: name,
     });
-    return response?.data?.data;
+    return response.data ? response.data.data : null;
 };
 
 export const readQueue = async (queueId) => {
     const response = await axios.post(`${URL}/readQueue`, {
         queueId: queueId,
     });
-    return response?.data;
+    return response.data;
 }
 
 export const addtoQueue = async (name, contact, notifyable, queueId) => {
@@ -23,7 +23,7 @@ export const addtoQueue = async (name, contact, notifyable, queueId) => {
         queueId: queueId,
         notifyable: notifyable,
     });
-    return response?.data;
+    return response.data;
 }
 
 export const userStatus = async (queueId, tokenId) => {
