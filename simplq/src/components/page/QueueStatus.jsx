@@ -76,7 +76,7 @@ function QueueStatus() {
     status = <Typography align="center">You have been removed from the queue</Typography>
   } else if (notified) {
     dispatch(setJoinerStep(3))
-    status = <img src="/tenor.gif" alt="description of gif" />
+    status = <img src="/tenor.gif" alt="Your turn is up" />
   }
   else if (aheadCount === 0) {
     status = <Alert severity="success" ><Typography variant="h6" align="center" color="textSecondary" component="p">
