@@ -39,6 +39,7 @@ export const notifyUser = async (queueId, tokenId) => {
         queueId: queueId,
         tokenId: tokenId,
     });
+    return response;
 }
 
 export const deleteFromQueue = async (queueId, tokenId) => {
@@ -46,4 +47,5 @@ export const deleteFromQueue = async (queueId, tokenId) => {
         queueId: queueId,
         tokenId: tokenId,
     });
+    return response;
 }
