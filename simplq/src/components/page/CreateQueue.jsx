@@ -43,16 +43,16 @@ class CreateQueue extends React.Component {
     }
   }
 
-  handleClick(name) {
+  handleClick(queueName) {
     if (this.state.textFieldValue === '') {
       this.setState({ invalid: true });
     }
     else {
       this.setState({ createInProgress: true });
-      QueueService.createQueue(name).then(
-        queueId => {
-          store.dispatch(setQueueId(queueId));
-          store.dispatch(setQueueName(name));
+      QueueService.createQueue(queueName).then(
+        response => {
+          store.dispatch(setQueueId(response.queueId));
+          store.dispatch(setQueueName(response.queueName));
           this.setState({ createInProgress: false });
           store.dispatch(setCreationStep(1));
           this.props.history.push("/admin");
