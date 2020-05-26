@@ -84,14 +84,13 @@ function QueueStatus() {
     </Typography>
   }
 
-  console.log("st", userStatus);
   return <>
     <JoinerStepper />
     <CentralSection heading="Thanks for waiting!">
       <div className={classes.content}>
         {status}
       </div>
-      { !userStatus === "REMOVED" && !updateInProgress ?
+      { !(userStatus === "REMOVED") && !updateInProgress ?
       <div className={classes.buttonGroup}>
         <Button className={classes.button} variant="outlined" color="primary" onClick={update}>
             Check Status
