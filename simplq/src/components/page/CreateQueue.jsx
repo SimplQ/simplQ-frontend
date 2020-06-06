@@ -142,7 +142,7 @@ class CreateQueue extends React.Component {
                           height: "100%",
                       }}
                       title="Home page video"
-                      src={"https://www.youtube.com/embed/R7TJjsVdKhI"}
+                      src={"https://www.youtube.com/embed/i9w-c3x357A"}
                       frameBorder="0"
                       allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                       allowfullscreen
