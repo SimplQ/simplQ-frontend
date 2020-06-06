@@ -1,6 +1,6 @@
 import * as axios from "axios"
 
-const URL = "https://backend.aws.simplq.me/v1";
+const URL = "https://backend.simplq.me/v1";
 
 export const createQueue = async (queueName) => {
     const response = await axios.post(`${URL}/queue/create`, {
