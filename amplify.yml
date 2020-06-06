@@ -1,0 +1,14 @@
+version: 0.1
+frontend:
+  phases:
+    build:
+      commands: 
+       - cd simplq/
+       - npm install
+       - npm run build
+  artifacts:
+    baseDirectory: simplq/build
+    files:
+      - '**/*'
+  cache:
+    paths: []
