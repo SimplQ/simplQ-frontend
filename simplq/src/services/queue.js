@@ -1,23 +1,23 @@
 import * as axios from "axios"
 
-const URL = "localhost:4000/v1";
+const URL = "https://backend.simplq.me/v1";
 
-export const createQueue = async (name) => {
-    const response = await axios.post(`${URL}/createQueue`, {
-        name: name,
+export const createQueue = async (queueName) => {
+    const response = await axios.post(`${URL}/queue/create`, {
+        queueName: queueName,
     });
-    return response.data ? response.data.data : null;
+    return response.data;
 };
 
 export const readQueue = async (queueId) => {
-    const response = await axios.post(`${URL}/readQueue`, {
+    const response = await axios.post(`${URL}/queue/info`, {
         queueId: queueId,
     });
     return response.data;
 }
 
 export const addtoQueue = async (name, contact, notifyable, queueId) => {
-    const response = await axios.post(`${URL}/addtoQueue`, {
+    const response = await axios.post(`${URL}/user/add`, {
         name: name,
         contact: contact,
         queueId: queueId,
@@ -27,7 +27,7 @@ export const addtoQueue = async (name, contact, notifyable, queueId) => {
 }
 
 export const userStatus = async (queueId, tokenId) => {
-    const response = await axios.post(`${URL}/userStatus`, {
+    const response = await axios.post(`${URL}/user/status`, {
         queueId: queueId,
         tokenId: tokenId,
     });
@@ -35,7 +35,7 @@ export const userStatus = async (queueId, tokenId) => {
 }
 
 export const notifyUser = async (queueId, tokenId) => {
-    const response = await axios.post(`${URL}/notifyUser`, {
+    const response = await axios.post(`${URL}/user/alert`, {
         queueId: queueId,
         tokenId: tokenId,
     });
@@ -43,7 +43,7 @@ export const notifyUser = async (queueId, tokenId) => {
 }
 
 export const deleteFromQueue = async (queueId, tokenId) => {
-    const response = await axios.post(`${URL}/deleteFromQueue`, {
+    const response = await axios.post(`${URL}/user/delete`, {
         queueId: queueId,
         tokenId: tokenId,
     });

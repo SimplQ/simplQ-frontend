@@ -29,13 +29,12 @@ const useStyles = makeStyles((theme) => ({
 
 function QueueStatus() {
   const dispatch = useDispatch();
-  const [notified, setNotified] = useState();
+  const [userStatus, setUserStatus] = useState();
   const queueId = useSelector((state) => state.appReducer.queueId);
   const tokenId = useSelector((state) => state.appReducer.tokenId);
   const aheadCount = useSelector((state) => state.appReducer.aheadCount);
   const [updateInProgress, setUpdateInProgress] = useState(false);
   const classes = useStyles();
-  const [userLeft, setUserLeft] = useState(false);
 
   const update = () => {
     if (queueId && tokenId) {
@@ -43,12 +42,11 @@ function QueueStatus() {
       QueueService.userStatus(queueId, tokenId).then(
         response => {
           dispatch(setAheadCount(response.aheadCount));
-          setNotified(response.notified);
+          setUserStatus(response.userStatus);
           setUpdateInProgress(false);
         }
       ).catch(() => {
         setUpdateInProgress(false);
-        setUserLeft(true);
       })
     }
   }
@@ -56,25 +54,21 @@ function QueueStatus() {
   const onDeleteClick = () => {
     setUpdateInProgress(true);
     QueueService.deleteFromQueue(queueId, tokenId).then(() => {
-      setUserLeft(true);
+      setUserStatus("REMOVED")
       setUpdateInProgress(false);
-    }).catch(() => {
-        setUpdateInProgress(false);
-        setUserLeft(true);
-      }
-    )
+    })
   }
 
-  if (aheadCount == null && !updateInProgress & !userLeft) {
+  if (aheadCount == null && !updateInProgress) {
     update()
   }
 
   var status = null;
   if (updateInProgress) {
     status = <CircularProgress />;
-  } else if (userLeft) {
+  } else if (userStatus === "REMOVED") {
     status = <Typography align="center">You have been removed from the queue</Typography>
-  } else if (notified) {
+  } else if (userStatus === "NOTIFIED") {
     dispatch(setJoinerStep(3))
     status = <img src="/tenor.gif" alt="Your turn is up" />
   }
@@ -96,7 +90,7 @@ function QueueStatus() {
       <div className={classes.content}>
         {status}
       </div>
-      { !userLeft && !updateInProgress ?
+      { !(userStatus === "REMOVED") && !updateInProgress ?
       <div className={classes.buttonGroup}>
         <Button className={classes.button} variant="outlined" color="primary" onClick={update}>
             Check Status

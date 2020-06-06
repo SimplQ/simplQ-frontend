@@ -32,7 +32,7 @@ function Item(props) {
     const name = props.item.name;
     const tokenId = props.item.tokenId;
     const queueId = props.queueId;
-    const notified = props.item.notified;
+    const userStatus = props.item.userStatus;
     const notifyable = props.item.notifyable;
     const [notifying, setNotifying] = useState(false);
     const [didNotify, setDidNotify] = useState(false);
@@ -61,15 +61,17 @@ function Item(props) {
         notificationButton = <IconButton edge="end" color="primary" aria-label="notify">
             <Notifications color="disabled"/>
         </IconButton>
-    } else if (notified || didNotify) {
+    } else if (userStatus === "NOTIFIED" || didNotify) {
         notificationButton = <IconButton edge="end" color="primary" aria-label="notified">
             <DoneIcon style={{ color: 'green' }} />
         </IconButton>
-    } else if (notified === false) {
+    } else if (userStatus === "WAITING") {
         notificationButton = <IconButton edge="end" color="primary" aria-label="notify" onClick={onNotifyClick}>
             <Notifications/>
         </IconButton>
-    } 
+    } else {
+        throw Error("invalid state");
+    }
 
     return <ListItem button className= {classes.root} component="a" href={"tel:" + contact}>
         <ListItemAvatar>
