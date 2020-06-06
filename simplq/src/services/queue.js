@@ -19,7 +19,7 @@ export const readQueue = async (queueId) => {
 export const addtoQueue = async (name, contact, notifyable, queueId) => {
     const response = await axios.post(`${URL}/user/add`, {
         name: name,
-        contact: contact,
+        contactNumber: contact,
         queueId: queueId,
         notifyable: notifyable,
     });
