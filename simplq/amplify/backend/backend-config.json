@@ -1,1 +1,9 @@
-{}
+{
+	"auth": {
+		"simplq6e0159ef": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": []
+		}
+	}
+}
