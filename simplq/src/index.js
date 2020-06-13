@@ -10,6 +10,15 @@ import {
 } from "react-router-dom";
 import { Provider } from 'react-redux'
 import { store } from './store'
+import Amplify from 'aws-amplify';
+import awsconfig from './aws-exports';
+import { loginElseCreateAnonAccount } from './services/auth';
+
+Amplify.configure(awsconfig);
+
+(async function() {
+  await loginElseCreateAnonAccount();
+})();
 
 const Content = () => (
   <GitHubForkRibbon href="//github.com/SimplQ/simplQ-frontend"

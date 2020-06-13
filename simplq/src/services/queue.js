@@ -1,23 +1,33 @@
 import * as axios from "axios"
+import { getAccessToken } from "./auth";
 
-const URL = "https://backend.simplq.me/v1";
+const BASE_URL = "https://backend.simplq.me/v1";
+
+const makePostRequest = async (endPoint, payload) => {
+    const accessToken = await getAccessToken();
+    return axios.post(BASE_URL + endPoint, payload, {
+        headers: { 
+            "Authorization": `Bearer ${accessToken}`,
+        }
+    })
+}
 
 export const createQueue = async (queueName) => {
-    const response = await axios.post(`${URL}/queue/create`, {
+    const response = await makePostRequest("/queue/create", {
         queueName: queueName,
     });
     return response.data;
 };
 
 export const readQueue = async (queueId) => {
-    const response = await axios.post(`${URL}/queue/info`, {
+    const response = await makePostRequest("/queue/info", {
         queueId: queueId,
     });
     return response.data;
 }
 
 export const addtoQueue = async (name, contact, notifyable, queueId) => {
-    const response = await axios.post(`${URL}/user/add`, {
+    const response = await makePostRequest("/user/add", {
         name: name,
         contactNumber: contact,
         queueId: queueId,
@@ -27,7 +37,7 @@ export const addtoQueue = async (name, contact, notifyable, queueId) => {
 }
 
 export const userStatus = async (queueId, tokenId) => {
-    const response = await axios.post(`${URL}/user/status`, {
+    const response = await makePostRequest("/user/status", {
         queueId: queueId,
         tokenId: tokenId,
     });
@@ -35,7 +45,7 @@ export const userStatus = async (queueId, tokenId) => {
 }
 
 export const notifyUser = async (queueId, tokenId) => {
-    const response = await axios.post(`${URL}/user/alert`, {
+    const response = await axios.post("/user/alert", {
         queueId: queueId,
         tokenId: tokenId,
     });
@@ -43,7 +53,7 @@ export const notifyUser = async (queueId, tokenId) => {
 }
 
 export const deleteFromQueue = async (queueId, tokenId) => {
-    const response = await axios.post(`${URL}/user/delete`, {
+    const response = await axios.post("/user/delete", {
         queueId: queueId,
         tokenId: tokenId,
     });
