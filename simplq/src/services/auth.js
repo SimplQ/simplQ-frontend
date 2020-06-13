@@ -3,19 +3,19 @@ import { v4 as uuidv4 } from 'uuid';
 
 async function getAccessToken() {
   const token = await Auth.currentSession();
-  console.dir(token);
-  debugger;
   return token
     .getAccessToken()
     .getJwtToken()
     .toString();
 };
 
-async function SignIn(username, password) {
-  return await Auth.signIn(username, password);
-}
-
 async function loginElseCreateAnonAccount() {
+  const currentUser = await Auth.currentUserInfo();
+  if (currentUser) {
+    // user already logged in.
+    Promise.resolve(true);
+  }
+
   var userId = localStorage.getItem('userId');
   var tempKey = localStorage.getItem('tempKey');
 
@@ -23,19 +23,19 @@ async function loginElseCreateAnonAccount() {
     userId = uuidv4();
     tempKey = uuidv4();
 
-    return await Auth.signUp({
+    await Auth.signUp({
+      username: userId,
       password: tempKey
     }).then(user => {
-      debugger;
-      localStorage.setItem('userId', 'todo'); // TODO!!
+      localStorage.setItem('userId', userId);
       localStorage.setItem('tempKey', tempKey);
       return user;
     }).catch((err) => {
       throw Error("Anon user registration failed: ", err);
     });
-  } else {
-    return await SignIn(userId, tempKey);
-  }
+  } 
+  await Auth.signIn(userId, tempKey);
+  Promise.resolve(true);
 }
 
 export { getAccessToken, loginElseCreateAnonAccount }
