@@ -9,11 +9,10 @@ frontend:
   phases:
     build:
       commands: 
-       - cd simplq/
        - npm install
        - npm run build
   artifacts:
-    baseDirectory: simplq/build
+    baseDirectory: build
     files:
       - '**/*'
   cache:
