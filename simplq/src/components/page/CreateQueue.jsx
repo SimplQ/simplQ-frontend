@@ -9,7 +9,6 @@ import { setQueueName, setQueueId, setCreationStep } from '../../store/appSlice'
 import { store } from '../../store' //TODO: Use Hooks
 import { CircularProgress } from '@material-ui/core';
 import CreaterStepper from '../stepper/CreaterStepper';
-import { handleApiErrors } from "../ErrorHandler";
 
 const styles = (theme) => ({
     content: {
@@ -58,7 +57,7 @@ class CreateQueue extends React.Component {
           this.props.history.push("/admin");
         }
       ).catch(err => {
-        handleApiErrors(err);
+        console.error("Create Queue failed, please try again: ", err);
       });
       this.setState({ createInProgress: false });
     }
