@@ -9,6 +9,7 @@ import { setQueueName, setQueueId, setCreationStep } from '../../store/appSlice'
 import { store } from '../../store' //TODO: Use Hooks
 import { CircularProgress } from '@material-ui/core';
 import CreaterStepper from '../stepper/CreaterStepper';
+import { handleApiErrors } from "../ErrorHandler";
 
 const styles = (theme) => ({
     content: {
@@ -38,14 +39,14 @@ class CreateQueue extends React.Component {
     super(props);
     this.state = {
       textFieldValue: '',
-      invalid: false, //state variable to check if text field has valid entry
+      invalidMsg: '',   //state variable to display reason for invalid queue name
       createInProgress: false
     }
   }
 
   handleClick(queueName) {
     if (this.state.textFieldValue === '') {
-      this.setState({ invalid: true });
+      this.setState({ invalidMsg: "Queue name is required" });
     }
     else {
       this.setState({ createInProgress: true });
@@ -53,22 +54,27 @@ class CreateQueue extends React.Component {
         response => {
           store.dispatch(setQueueId(response.queueId));
           store.dispatch(setQueueName(response.queueName));
-          this.setState({ createInProgress: false });
           store.dispatch(setCreationStep(1));
           this.props.history.push("/admin");
         }
       ).catch(err => {
-        console.error("Create Queue failed, please try again: ", err);
-        this.setState({ createInProgress: false });
+        handleApiErrors(err);
       });
+      this.setState({ createInProgress: false });
     }
   }
-
   handleTextFieldChange = (e) => {
-    this.setState({
-      textFieldValue: e.target.value,
-      invalid: false
-    });
+    const qname = e.target.value;
+    if (qname === "" || qname.match("^[A-Za-z0-9-]+$")) 
+      this.setState({
+        textFieldValue: qname,
+        invalidMsg: ""
+      });
+    else {
+      this.setState({
+        invalidMsg: "Only alphabets, numbers and '-' allowed"
+      });
+    }
   }
 
   handleKeyPress = (event) => {
@@ -96,9 +102,11 @@ class CreateQueue extends React.Component {
                     value={this.state.textFieldValue}
                     onChange={this.handleTextFieldChange}
                     onKeyPress={this.handleKeyPress}
-                    error={this.state.invalid}
+                    error={this.state.invalidMsg.length > 0}
                     helperText={
-                        this.state.invalid ? "Queue name is required" : ""
+                        this.state.invalidMsg.length > 0 
+                        ? this.state.invalidMsg
+                        : ""
                     }
                 />
 
@@ -126,7 +134,7 @@ class CreateQueue extends React.Component {
             </Container>
 
         <div className={classes.description}>
-          <p style={{fontFamily: "'Satisfy', cursive", fontSize: '2rem'}}>
+          <p style={{ fontFamily: "'Balsamiq Sans'", fontSize: '1.5rem'}}>
             SimplQ provides a means to create and manage virtual queues instantly to help you and your 
             customers have a great business experience
           </p>
@@ -145,7 +153,7 @@ class CreateQueue extends React.Component {
                       src={"https://www.youtube.com/embed/R7TJjsVdKhI"}
                       frameBorder="0"
                       allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                      allowfullscreen
+                      allowFullScreen
                   />
             </div>
         </div>
