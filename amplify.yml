@@ -12,7 +12,7 @@ frontend:
        - npm install
        - npm run build
   artifacts:
-    baseDirectory: build
+    baseDirectory: simplq/build
     files:
       - '**/*'
   cache:
