@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { setTokenId, setJoinerStep, setAheadCount, setQueueId } from '../../../store/appSlice'
 import * as QueueService from '../../../services/queue';
 import JoinerStepper from "../../stepper/JoinerStepper";
+import { handleApiErrors } from "../../ErrorHandler";
 
 export function JoinQueue(props) {
     const queueId = props.match.params.queueId;
@@ -19,9 +20,9 @@ export function JoinQueue(props) {
             dispatch(setAheadCount(response.aheadCount));
             dispatch(setJoinerStep(1))
             props.history.push("/status");
-        }).catch((err) => {
-            console.log("Add to queue failed, TODO: Inform user", err)
-        })
+        }).catch (err => {
+            handleApiErrors(err);
+        });
     }
 
     return <CentralSection heading="Join Queue">

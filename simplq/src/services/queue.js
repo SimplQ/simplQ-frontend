@@ -3,7 +3,7 @@ import * as axios from "axios"
 const URL = "https://backend.simplq.me/v1";
 
 export const createQueue = async (queueName) => {
-    const response = await axios.post(`${URL}/queue/create`, {
+    const response = await axios.post(`${URL}/queue/creat`, {
         queueName: queueName,
     });
     return response.data;

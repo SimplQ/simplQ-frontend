@@ -8,6 +8,7 @@ import Alert from '@material-ui/lab/Alert';
 import { useSelector, useDispatch } from 'react-redux';
 import JoinerStepper from "../stepper/JoinerStepper";
 import { setAheadCount, setJoinerStep } from "../../store/appSlice";
+import { handleApiErrors } from "../ErrorHandler";
 
 const useStyles = makeStyles((theme) => ({
   buttonGroup: {
@@ -45,8 +46,9 @@ function QueueStatus() {
           setUserStatus(response.userStatus);
           setUpdateInProgress(false);
         }
-      ).catch(() => {
+      ).catch((err) => {
         setUpdateInProgress(false);
+        handleApiErrors(err);
       })
     }
   }
@@ -56,7 +58,9 @@ function QueueStatus() {
     QueueService.deleteFromQueue(queueId, tokenId).then(() => {
       setUserStatus("REMOVED")
       setUpdateInProgress(false);
-    })
+    }).catch(err => {
+      handleApiErrors(err);
+    });
   }
 
   if (aheadCount == null && !updateInProgress) {

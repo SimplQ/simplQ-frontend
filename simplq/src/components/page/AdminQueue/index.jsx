@@ -8,6 +8,7 @@ import { progressCreationStep } from '../../../store/appSlice';
 import ShareBar from './ShareBar';
 import PageNotFound from '../PageNotFound';
 import CreaterStepper from '../../stepper/CreaterStepper';
+import { handleApiErrors } from "../../ErrorHandler";
 
 const useStyles = makeStyles((theme) => ({
     urlBox: {
@@ -42,16 +43,18 @@ export default () => {
                 data => {
                     setItems(data.users)
                 }
-            );
+            ).catch (err => {
+                handleApiErrors(err);
+            });
         }
     }
 
     const addNewItem = (name, contact) => {
         return QueueService.addtoQueue(name, contact, false, queueId).then((response) => {
             setItems([...items, { tokenId: response.tokenId, name: name, contact: contact, notifyable: false }]);
-        }).catch((err) => {
-            console.log("Add to queue failed, TODO: Inform user", err)
-        })
+        }).catch (err => {
+            handleApiErrors(err);
+        });
     }
 
     const removeItemHandler = (tokenId) => { setItems(items.filter(item => item.tokenId !== tokenId)) }

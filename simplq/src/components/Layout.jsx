@@ -7,6 +7,7 @@ import Routes from './Routes'
 import Button from '@material-ui/core/Button';
 import { withRouter } from "react-router";
 import logo from "../simplQLogo.png";
+import {ErrorBoundary} from "./ErrorHandler"
 
 const useStyles = makeStyles((theme) => ({
   mainLayout: {
@@ -35,7 +36,7 @@ function Layout(props) {
   const classes = useStyles();
 
   return (
-    <>
+    <ErrorBoundary>
       <AppBar position="relative">
         <Toolbar>
           <Typography variant="h6" color="inherit" noWrap>
@@ -50,7 +51,7 @@ function Layout(props) {
       <main className={classes.mainLayout}>
         <Routes />
       </main>
-    </>
+    </ErrorBoundary>
   );
 }
 
