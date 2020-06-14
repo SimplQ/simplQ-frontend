@@ -1,8 +1,10 @@
-## SimplQ
+# SimplQ
 
 ![Build and Deploy](https://github.com/daltonfury42/simplQ-frontend/workflows/Build%20and%20Deploy/badge.svg)
 
-### Dev Setup Instructions
+[SimplQ](https://simplq.me) is a completely web based queue management solution that anyone can use to create instant queues. 
+
+### Development Envirmonment Setup Instructions
 
 These steps are to be followed when you are running the project for the first time.
 
@@ -19,8 +21,13 @@ npm install
 
 In the `simplq` folder, simply run:
 
-
 ```
 npm start
 ```
+
+# Contributing
+
+Feel free to fork and improve, and do send a pull request. We will be delighed to work with you. 
+
+There are a ton of features being planned. So if you are considering contributing to this repository, please first discuss the change you wish to make via the issue tracker. Let's work together.
 

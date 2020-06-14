@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Item(props) {
     const classes = useStyles();
-    const contact = props.item.contact;
+    const contact = props.item.contactNo;
     const name = props.item.name;
     const tokenId = props.item.tokenId;
     const queueId = props.queueId;

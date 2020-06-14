@@ -1,19 +1,15 @@
-import React from "react";
-import Button from "@material-ui/core/Button";
-import Grid from "@material-ui/core/Grid";
-import { withStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
-import TextField from "@material-ui/core/TextField";
-import * as QueueService from "../../services/queue";
-import {
-    setQueueName,
-    setQueueId,
-    setCreationStep,
-} from "../../store/appSlice";
-import { store } from "../../store"; //TODO: Use Hooks
-import { CircularProgress } from "@material-ui/core";
-import CreaterStepper from "../stepper/CreaterStepper";
-import { handleApiErrors } from "../ErrorHandler";
+import React from 'react';
+import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
+import { withStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+import TextField from '@material-ui/core/TextField';
+import * as QueueService from '../../services/queue';
+import { setQueueName, setQueueId, setCreationStep } from '../../store/appSlice';
+import { store } from '../../store'; //TODO: Use Hooks
+import { CircularProgress } from '@material-ui/core';
+import CreaterStepper from '../stepper/CreaterStepper';
+import { handleApiErrors } from '../ErrorHandler';
 
 const styles = (theme) => ({
     content: {
@@ -26,13 +22,13 @@ const styles = (theme) => ({
         marginTop: theme.spacing(4),
     },
     video: {
-        position: "relative",
-        paddingBottom: "56.25%" /* 16:9 */,
+        position: 'relative',
+        paddingBottom: '56.25%' /* 16:9 */,
         paddingTop: 25,
         height: 0,
     },
     description: {
-        textAlign: "center",
+        textAlign: 'center',
         paddingBottom: theme.spacing(3),
     },
 });
@@ -41,15 +37,15 @@ class CreateQueue extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            textFieldValue: "",
-            invalidMsg: "", //state variable to display reason for invalid queue name
+            textFieldValue: '',
+            invalidMsg: '', //state variable to display reason for invalid queue name
             createInProgress: false,
         };
     }
 
     handleClick(queueName) {
-        if (this.state.textFieldValue === "") {
-            this.setState({ invalidMsg: "Queue name is required" });
+        if (this.state.textFieldValue === '') {
+            this.setState({ invalidMsg: 'Queue name is required' });
         } else {
             this.setState({ createInProgress: true });
             QueueService.createQueue(queueName)
@@ -57,7 +53,7 @@ class CreateQueue extends React.Component {
                     store.dispatch(setQueueId(response.queueId));
                     store.dispatch(setQueueName(response.queueName));
                     store.dispatch(setCreationStep(1));
-                    this.props.history.push("/admin");
+                    this.props.history.push('/admin');
                 })
                 .catch((err) => {
                     handleApiErrors(err);
@@ -67,10 +63,10 @@ class CreateQueue extends React.Component {
     }
     handleTextFieldChange = (e) => {
         const qname = e.target.value;
-        if (qname.match("^[A-Za-z0-9-]*$"))
+        if (qname.match('^[A-Za-z0-9-]*$'))
             this.setState({
                 textFieldValue: qname,
-                invalidMsg: "",
+                invalidMsg: '',
             });
         else {
             this.setState({
@@ -80,7 +76,7 @@ class CreateQueue extends React.Component {
     };
 
     handleKeyPress = (event) => {
-        if (event.key === "Enter") {
+        if (event.key === 'Enter') {
             this.handleClick(this.state.textFieldValue);
         }
     };
@@ -105,11 +101,7 @@ class CreateQueue extends React.Component {
                         onChange={this.handleTextFieldChange}
                         onKeyPress={this.handleKeyPress}
                         error={this.state.invalidMsg.length > 0}
-                        helperText={
-                            this.state.invalidMsg.length > 0
-                                ? this.state.invalidMsg
-                                : ""
-                        }
+                        helperText={this.state.invalidMsg.length > 0 ? this.state.invalidMsg : ''}
                     />
 
                     <div className={classes.button}>
@@ -121,11 +113,7 @@ class CreateQueue extends React.Component {
                                     <Button
                                         variant="contained"
                                         color="primary"
-                                        onClick={() =>
-                                            this.handleClick(
-                                                this.state.textFieldValue
-                                            )
-                                        }
+                                        onClick={() => this.handleClick(this.state.textFieldValue)}
                                     >
                                         Create A queue
                                     </Button>
@@ -139,26 +127,25 @@ class CreateQueue extends React.Component {
                     <p
                         style={{
                             fontFamily: "'Balsamiq Sans'",
-                            fontSize: "1.5rem",
+                            fontSize: '1.5rem',
                         }}
                     >
-                        SimplQ provides a means to create and manage virtual
-                        queues instantly to help you and your customers have a
-                        great business experience
+                        SimplQ provides a means to create and manage virtual queues instantly to
+                        help you and your customers have a great business experience
                     </p>
                 </div>
 
                 <div className={classes.video}>
                     <iframe
                         style={{
-                            position: "absolute",
+                            position: 'absolute',
                             top: 0,
                             left: 0,
-                            width: "100%",
-                            height: "100%",
+                            width: '100%',
+                            height: '100%',
                         }}
                         title="Home page video"
-                        src={"https://www.youtube.com/embed/R7TJjsVdKhI"}
+                        src={'https://www.youtube.com/embed/i9w-c3x357A'}
                         frameBorder="0"
                         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
