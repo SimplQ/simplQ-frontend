@@ -1,4 +1,5 @@
 {
+    "extends": ["airbnb", "prettier"],
     "plugins": ["prettier"],
     "env": {
         "browser": true,
@@ -6,9 +7,6 @@
     },
     "rules": {
         "prettier/prettier": ["error"],
-        "comma-dangle": ["error", "only-multiline"],
-        "no-param-reassign": ["warn"],
-        "react/jsx-indent": ["warn"]
-    },
-    "extends": ["airbnb", "prettier", "plugin:prettier/recommended"]
+        "no-param-reassign": ["warn"]
+    }
 }
