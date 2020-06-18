@@ -12,6 +12,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { makeStyles, CircularProgress } from "@material-ui/core";
 import DoneIcon from '@material-ui/icons/Done';
+import { handleApiErrors } from "../../ErrorHandler";
 
 const useStyles = makeStyles((theme) => ({
     addBox: {
@@ -44,11 +45,16 @@ function Item(props) {
         QueueService.notifyUser(queueId, tokenId).then(() => {
             setNotifying(false);
             setDidNotify(true);
+        }).catch (err => {
+            handleApiErrors(err);
         });
         // Notify user of error TODO
     } 
     const onDeleteClick = () => {
         QueueService.deleteFromQueue(queueId, tokenId)
+        .catch (err => {
+            handleApiErrors(err);
+        });
         props.removeItemHandler(tokenId); // TODO Should delete from list only ofter successfull deletion from db
     }
 
