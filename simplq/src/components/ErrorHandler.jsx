@@ -58,7 +58,7 @@ export const handleApiErrors = (err) => {
     if (err.response.status === 422) {
         store.dispatch(
             setErrorNotifOpen(
-                `There's a problem with the data you've entered ${err.response.data.reasonCode}`
+                `There's a problem with the data you've entered ${err.response.data.message}`
             )
         );
     } else {
