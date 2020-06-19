@@ -50,15 +50,16 @@ class CreateQueue extends React.Component {
             this.setState({ createInProgress: true });
             QueueService.createQueue(queueName)
                 .then((response) => {
+                    this.setState({ createInProgress: false });
                     store.dispatch(setQueueId(response.queueId));
                     store.dispatch(setQueueName(response.queueName));
                     store.dispatch(setCreationStep(1));
                     this.props.history.push('/admin');
                 })
                 .catch((err) => {
+                    this.setState({ createInProgress: false });
                     handleApiErrors(err);
                 });
-            this.setState({ createInProgress: false });
         }
     }
     handleTextFieldChange = (e) => {
@@ -110,14 +111,14 @@ class CreateQueue extends React.Component {
                                 {this.state.createInProgress ? (
                                     <CircularProgress size={30} />
                                 ) : (
-                                    <Button
-                                        variant="contained"
-                                        color="primary"
-                                        onClick={() => this.handleClick(this.state.textFieldValue)}
-                                    >
-                                        Create A queue
+                                        <Button
+                                            variant="contained"
+                                            color="primary"
+                                            onClick={() => this.handleClick(this.state.textFieldValue)}
+                                        >
+                                            Create A queue
                                     </Button>
-                                )}
+                                    )}
                             </Grid>
                         </Grid>
                     </div>
