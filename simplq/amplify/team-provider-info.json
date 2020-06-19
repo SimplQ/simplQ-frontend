@@ -10,6 +10,11 @@
             "StackName": "amplify-simplq-dev-232222",
             "StackId": "arn:aws:cloudformation:ap-southeast-1:475033807538:stack/amplify-simplq-dev-232222/a1bddb80-b255-11ea-9005-06abab1199f8",
             "AmplifyAppId": "dpmhbfuiok7f8"
+        },
+        "categories": {
+            "auth": {
+                "simplqa2e36d8da2e36d8d": {}
+            }
         }
     }
 }
