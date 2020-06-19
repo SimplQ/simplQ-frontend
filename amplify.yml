@@ -1,14 +1,9 @@
 version: 0.1
-backend:
-  phases:
-    build:
-      commands:
-        - cd simplq/
-        - amplifyPush --simple
 frontend:
   phases:
     build:
       commands: 
+       - cd simplq/
        - npm install
        - npm run build
   artifacts:
