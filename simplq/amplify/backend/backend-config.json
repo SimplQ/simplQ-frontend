@@ -6,7 +6,7 @@
             "dependsOn": [
                 {
                     "category": "auth",
-                    "resourceName": "simplqdcef3969dcef3969",
+                    "resourceName": "simplqa2e36d8da2e36d8d",
                     "attributes": [
                         "UserPoolId",
                         "AppClientIDWeb",
@@ -15,16 +15,10 @@
                 }
             ]
         },
-        "simplqdcef3969dcef3969": {
+        "simplqa2e36d8da2e36d8d": {
             "service": "Cognito",
             "providerPlugin": "awscloudformation",
             "dependsOn": []
-        }
-    },
-    "hosting": {
-        "amplifyhosting": {
-            "service": "amplifyhosting",
-            "type": "cicd"
         }
     }
 }

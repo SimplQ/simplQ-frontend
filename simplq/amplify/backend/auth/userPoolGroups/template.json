@@ -1,18 +1,18 @@
 {
     "AWSTemplateFormatVersion": "2010-09-09",
     "Parameters": {
-        "authsimplqdcef3969dcef3969UserPoolId": {
+        "authsimplqa2e36d8da2e36d8dUserPoolId": {
             "Type": "String",
-            "Default": "authsimplqdcef3969dcef3969UserPoolId"
+            "Default": "authsimplqa2e36d8da2e36d8dUserPoolId"
         },
         
-        "authsimplqdcef3969dcef3969AppClientID": {
+        "authsimplqa2e36d8da2e36d8dAppClientID": {
             "Type": "String",
-            "Default": "authsimplqdcef3969dcef3969AppClientID"
+            "Default": "authsimplqa2e36d8da2e36d8dAppClientID"
         },
-        "authsimplqdcef3969dcef3969AppClientIDWeb": {
+        "authsimplqa2e36d8da2e36d8dAppClientIDWeb": {
             "Type": "String",
-            "Default": "authsimplqdcef3969dcef3969AppClientIDWeb"
+            "Default": "authsimplqa2e36d8da2e36d8dAppClientIDWeb"
         },
         "AuthRoleArn": {
             "Type": "String"
@@ -36,14 +36,14 @@
     },
     "Resources": {
     
-        "simplqGroup": {
+        "devGroup": {
           "Type" : "AWS::Cognito::UserPoolGroup",
           "Properties" : {
-              "GroupName" : "simplq",
+              "GroupName" : "dev",
               "Precedence" : 1,
               
               "UserPoolId" : {
-                "Ref": "authsimplqdcef3969dcef3969UserPoolId"
+                "Ref": "authsimplqa2e36d8da2e36d8dUserPoolId"
               } 
             }
         },

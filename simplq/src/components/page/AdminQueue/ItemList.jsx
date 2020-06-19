@@ -28,7 +28,7 @@ function ItemList(props) {
     else if (props.items.length === 0) {
         listContent = <>
         <ListItem button>
-            <ListItemText primaryTypographyProps={{ align: 'center'}} primary="Your queue has been created and is currenlty empty. Waiting for people to join..." />
+            <ListItemText primaryTypographyProps={{ align: 'center'}} primary="Your queue has been created and is currently empty. Waiting for people to join..." />
         </ListItem>
         </>
     } else {
