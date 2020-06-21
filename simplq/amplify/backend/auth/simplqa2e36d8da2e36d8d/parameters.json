@@ -1,6 +1,6 @@
 {
-  "resourceNameTruncated": "simplqdcef3969",
-  "userPoolName": "simplqdcef3969_userpool_dcef3969",
+  "resourceNameTruncated": "simplqa2e36d8d",
+  "userPoolName": "simplqa2e36d8d_userpool_a2e36d8d",
   "autoVerifiedAttributes": ["email"],
   "mfaConfiguration": "OFF",
   "mfaTypes": ["SMS Text Message"],
@@ -16,16 +16,16 @@
   "userpoolClientRefreshTokenValidity": 30,
   "userpoolClientWriteAttributes": ["email"],
   "userpoolClientReadAttributes": ["email"],
-  "userpoolClientLambdaRole": "simplqdcef3969_userpoolclient_lambda_role",
+  "userpoolClientLambdaRole": "simplqa2e36d8d_userpoolclient_lambda_role",
   "userpoolClientSetAttributes": false,
   "useDefault": "manual",
   "authSelections": "userPoolOnly",
-  "resourceName": "simplqdcef3969dcef3969",
+  "resourceName": "simplqa2e36d8da2e36d8d",
   "userPoolGroups": true,
   "adminQueries": false,
   "triggers": "{}",
   "hostedUI": false,
-  "userPoolGroupList": ["simplq"],
+  "userPoolGroupList": ["dev"],
   "authRoleArn": {
     "Fn::GetAtt": ["AuthRole", "Arn"]
   },

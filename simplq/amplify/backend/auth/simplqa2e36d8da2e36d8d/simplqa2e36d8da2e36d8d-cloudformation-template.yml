@@ -110,33 +110,39 @@ Resources:
       RoleName:
         !If [
           ShouldNotCreateEnvResources,
-          'simplqdcef3969_sns-role',
+          "simplqa2e36d8d_sns-role",
           !Join [
-            '',
-            ['sns', 'undefined', !Select [3, !Split ['-', !Ref 'AWS::StackName']], '-', !Ref env],
+            "",
+            [
+              "sns",
+              "undefined",
+              !Select [3, !Split ["-", !Ref "AWS::StackName"]],
+              "-",
+              !Ref env,
+            ],
           ],
         ]
       AssumeRolePolicyDocument:
-        Version: '2012-10-17'
+        Version: "2012-10-17"
         Statement:
-          - Sid: ''
-            Effect: 'Allow'
+          - Sid: ""
+            Effect: "Allow"
             Principal:
-              Service: 'cognito-idp.amazonaws.com'
+              Service: "cognito-idp.amazonaws.com"
             Action:
-              - 'sts:AssumeRole'
+              - "sts:AssumeRole"
             Condition:
               StringEquals:
-                sts:ExternalId: simplqdcef3969_role_external_id
+                sts:ExternalId: simplqa2e36d8d_role_external_id
       Policies:
-        - PolicyName: simplqdcef3969-sns-policy
+        - PolicyName: simplqa2e36d8d-sns-policy
           PolicyDocument:
-            Version: '2012-10-17'
+            Version: "2012-10-17"
             Statement:
-              - Effect: 'Allow'
+              - Effect: "Allow"
                 Action:
-                  - 'sns:Publish'
-                Resource: '*'
+                  - "sns:Publish"
+                Resource: "*"
   # BEGIN USER POOL RESOURCES
   UserPool:
     # Created upon user selection
@@ -148,7 +154,7 @@ Resources:
         !If [
           ShouldNotCreateEnvResources,
           !Ref userPoolName,
-          !Join ['', [!Ref userPoolName, '-', !Ref env]],
+          !Join ["", [!Ref userPoolName, "-", !Ref env]],
         ]
 
       AutoVerifiedAttributes: !Ref autoVerifiedAttributes
@@ -168,16 +174,16 @@ Resources:
       SmsVerificationMessage: !Ref smsVerificationMessage
       SmsConfiguration:
         SnsCallerArn: !GetAtt SNSRole.Arn
-        ExternalId: simplqdcef3969_role_external_id
+        ExternalId: simplqa2e36d8d_role_external_id
 
   # Updating lambda role with permissions to Cognito
 
   UserPoolClientWeb:
     # Created provide application access to user pool
     # Depends on UserPool for ID reference
-    Type: 'AWS::Cognito::UserPoolClient'
+    Type: "AWS::Cognito::UserPoolClient"
     Properties:
-      ClientName: simplqdcef3969_app_clientWeb
+      ClientName: simplqa2e36d8d_app_clientWeb
 
       RefreshTokenValidity: !Ref userpoolClientRefreshTokenValidity
       UserPoolId: !Ref UserPool
@@ -185,9 +191,9 @@ Resources:
   UserPoolClient:
     # Created provide application access to user pool
     # Depends on UserPool for ID reference
-    Type: 'AWS::Cognito::UserPoolClient'
+    Type: "AWS::Cognito::UserPoolClient"
     Properties:
-      ClientName: simplqdcef3969_app_client
+      ClientName: simplqa2e36d8d_app_client
 
       GenerateSecret: !Ref userpoolClientGenerateSecret
       RefreshTokenValidity: !Ref userpoolClientRefreshTokenValidity
@@ -196,66 +202,66 @@ Resources:
   # BEGIN USER POOL LAMBDA RESOURCES
   UserPoolClientRole:
     # Created to execute Lambda which gets userpool app client config values
-    Type: 'AWS::IAM::Role'
+    Type: "AWS::IAM::Role"
     Properties:
       RoleName:
         !If [
           ShouldNotCreateEnvResources,
           !Ref userpoolClientLambdaRole,
           !Join [
-            '',
+            "",
             [
-              'upClientLambdaRole',
-              'undefined',
-              !Select [3, !Split ['-', !Ref 'AWS::StackName']],
-              '-',
+              "upClientLambdaRole",
+              "undefined",
+              !Select [3, !Split ["-", !Ref "AWS::StackName"]],
+              "-",
               !Ref env,
             ],
           ],
         ]
       AssumeRolePolicyDocument:
-        Version: '2012-10-17'
+        Version: "2012-10-17"
         Statement:
           - Effect: Allow
             Principal:
               Service:
                 - lambda.amazonaws.com
             Action:
-              - 'sts:AssumeRole'
+              - "sts:AssumeRole"
     DependsOn: UserPoolClient
   UserPoolClientLambda:
     # Lambda which gets userpool app client config values
     # Depends on UserPool for id
     # Depends on UserPoolClientRole for role ARN
-    Type: 'AWS::Lambda::Function'
+    Type: "AWS::Lambda::Function"
     Properties:
       Code:
         ZipFile: !Join
           - |+
           - - "const response = require('cfn-response');"
             - "const aws = require('aws-sdk');"
-            - 'const identity = new aws.CognitoIdentityServiceProvider();'
-            - 'exports.handler = (event, context, callback) => {'
+            - "const identity = new aws.CognitoIdentityServiceProvider();"
+            - "exports.handler = (event, context, callback) => {"
             - " if (event.RequestType == 'Delete') { "
-            - '   response.send(event, context, response.SUCCESS, {})'
-            - ' }'
+            - "   response.send(event, context, response.SUCCESS, {})"
+            - " }"
             - " if (event.RequestType == 'Update' || event.RequestType == 'Create') {"
-            - '   const params = {'
-            - '     ClientId: event.ResourceProperties.clientId,'
-            - '     UserPoolId: event.ResourceProperties.userpoolId'
-            - '   };'
-            - '   identity.describeUserPoolClient(params).promise()'
-            - '     .then((res) => {'
+            - "   const params = {"
+            - "     ClientId: event.ResourceProperties.clientId,"
+            - "     UserPoolId: event.ResourceProperties.userpoolId"
+            - "   };"
+            - "   identity.describeUserPoolClient(params).promise()"
+            - "     .then((res) => {"
             - "       response.send(event, context, response.SUCCESS, {'appSecret': res.UserPoolClient.ClientSecret});"
-            - '     })'
-            - '     .catch((err) => {'
-            - '       response.send(event, context, response.FAILED, {err});'
-            - '     });'
-            - ' }'
-            - '};'
+            - "     })"
+            - "     .catch((err) => {"
+            - "       response.send(event, context, response.FAILED, {err});"
+            - "     });"
+            - " }"
+            - "};"
       Handler: index.handler
       Runtime: nodejs10.x
-      Timeout: '300'
+      Timeout: "300"
       Role: !GetAtt
         - UserPoolClientRole
         - Arn
@@ -264,26 +270,26 @@ Resources:
     # Sets userpool policy for the role that executes the Userpool Client Lambda
     # Depends on UserPool for Arn
     # Marked as depending on UserPoolClientRole for easier to understand CFN sequencing
-    Type: 'AWS::IAM::Policy'
+    Type: "AWS::IAM::Policy"
     Properties:
-      PolicyName: simplqdcef3969_userpoolclient_lambda_iam_policy
+      PolicyName: simplqa2e36d8d_userpoolclient_lambda_iam_policy
       Roles:
         - !Ref UserPoolClientRole
       PolicyDocument:
-        Version: '2012-10-17'
+        Version: "2012-10-17"
         Statement:
           - Effect: Allow
             Action:
-              - 'cognito-idp:DescribeUserPoolClient'
+              - "cognito-idp:DescribeUserPoolClient"
             Resource: !GetAtt UserPool.Arn
     DependsOn: UserPoolClientLambda
   UserPoolClientLogPolicy:
     # Sets log policy for the role that executes the Userpool Client Lambda
     # Depends on UserPool for Arn
     # Marked as depending on UserPoolClientLambdaPolicy for easier to understand CFN sequencing
-    Type: 'AWS::IAM::Policy'
+    Type: "AWS::IAM::Policy"
     Properties:
-      PolicyName: simplqdcef3969_userpoolclient_lambda_log_policy
+      PolicyName: simplqa2e36d8d_userpoolclient_lambda_log_policy
       Roles:
         - !Ref UserPoolClientRole
       PolicyDocument:
@@ -291,14 +297,14 @@ Resources:
         Statement:
           - Effect: Allow
             Action:
-              - 'logs:CreateLogGroup'
-              - 'logs:CreateLogStream'
-              - 'logs:PutLogEvents'
+              - "logs:CreateLogGroup"
+              - "logs:CreateLogStream"
+              - "logs:PutLogEvents"
             Resource: !Sub
               - arn:aws:logs:${region}:${account}:log-group:/aws/lambda/${lambda}:log-stream:*
               - {
-                  region: !Ref 'AWS::Region',
-                  account: !Ref 'AWS::AccountId',
+                  region: !Ref "AWS::Region",
+                  account: !Ref "AWS::AccountId",
                   lambda: !Ref UserPoolClientLambda,
                 }
     DependsOn: UserPoolClientLambdaPolicy
@@ -307,7 +313,7 @@ Resources:
     # Depends on UserPool for Id
     # Depends on UserPoolClient for Id
     # Marked as depending on UserPoolClientLambdaPolicy for easier to understand CFN sequencing
-    Type: 'Custom::LambdaCallout'
+    Type: "Custom::LambdaCallout"
     Properties:
       ServiceToken: !GetAtt UserPoolClientLambda.Arn
       clientId: !Ref UserPoolClient
@@ -316,15 +322,15 @@ Resources:
 
 Outputs:
   UserPoolId:
-    Value: !Ref 'UserPool'
+    Value: !Ref "UserPool"
     Description: Id for the user pool
   UserPoolName:
     Value: !Ref userPoolName
   AppClientIDWeb:
-    Value: !Ref 'UserPoolClientWeb'
+    Value: !Ref "UserPoolClientWeb"
     Description: The user pool app client id for web
   AppClientID:
-    Value: !Ref 'UserPoolClient'
+    Value: !Ref "UserPoolClient"
     Description: The user pool app client id
   AppClientSecret:
     Value: !GetAtt UserPoolClientInputs.appSecret
