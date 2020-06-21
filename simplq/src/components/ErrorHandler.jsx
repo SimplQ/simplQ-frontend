@@ -55,7 +55,9 @@ export const ErrorNotification = (props) => {
 };
 
 export const handleApiErrors = (err) => {
-  if (err.response.status === 422) {
+  if (!err.response) {
+    store.dispatch(setErrorNotifOpen('You are offline. Please reconnect to the internet'));
+  } else if (err.response.status === 422) {
     store.dispatch(
       setErrorNotifOpen(
         `There's a problem with the data you've entered ${err.response.data.message}`

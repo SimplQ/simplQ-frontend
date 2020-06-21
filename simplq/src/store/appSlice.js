@@ -57,7 +57,6 @@ const appSlice = createSlice({
       // ahead count is not deliberately persisted to local storage, so that if it's not set, the component requests for it from the server
     },
     setErrorNotifOpen: (state, action) => {
-      console.log('In setErrorNotifOpen');
       state.errorText = action.payload;
     },
   },
