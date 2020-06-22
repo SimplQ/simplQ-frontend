@@ -1,10 +1,10 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import CreateQueue from './page/CreateQueue';
-import JoinQueue from './page/JoinQueue';
-import QueueStatus from './page/QueueStatus';
-import AdminQueue from './page/AdminQueue';
-import PageNotFound from './page/PageNotFound';
+import CreateQueue from './pages/CreateQueue';
+import JoinQueue from './pages/JoinQueue';
+import QueueStatus from './pages/QueueStatus';
+import AdminQueue from './pages/AdminQueue';
+import PageNotFound from './pages/PageNotFound';
 import { ErrorBoundary, ErrorNotification } from './ErrorHandler';
 
 export default () => {

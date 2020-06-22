@@ -1,5 +1,5 @@
 import React from 'react';
-import PageNotFound from './page/PageNotFound';
+import PageNotFound from './pages/PageNotFound';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import { useSelector, useDispatch } from 'react-redux';
