@@ -1,32 +1,21 @@
-import React from "react";
-
+import React from 'react';
 
 export const Banner = (props) => {
-    return (
-
-    );
-}
+  return '';
+};
 
 export const BenefitsInfo = (props) => {
-    return (
-
-    );
-}
+  return '';
+};
 
 export const HowToCreate = (props) => {
-    return (
-
-    );
-}
+  return '';
+};
 
 export const HowToJoin = (props) => {
-    return (
-
-    );
-}
+  return '';
+};
 
 export const ExtraInfo = (props) => {
-    return (
-
-    );
-}
+  return '';
+};
