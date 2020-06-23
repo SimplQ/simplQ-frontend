@@ -2,10 +2,18 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import styles from '../../styles/buttons.scss';
 
-export const StandardButton = (props) => {
+const StandardButton = (props) => {
+  console.log(styles);
+  console.log({ styles });
+  const { onClick, text } = props;
   return (
-    <Button variant="contained" onClick={props.onClick} className={styles['standard-button']}>
-      {props.text}
-    </Button>
+    <div className={styles['standard-button']}>
+      <Button variant="contained" onClick={onClick}>
+        {text}
+      </Button>
+    </div>
   );
 };
+
+export default StandardButton;
+x;
