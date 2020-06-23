@@ -9,6 +9,8 @@
     "prettier/prettier": ["error"],
     "no-param-reassign": ["warn"],
     "react/jsx-indent": ["warn"],
-    "react/prop-types": 0
+    "react/prop-types": 0,
+    "react/destructuring-assignment": 0,
+    "prefer-destructuring": 0
   }
 }
