@@ -3,11 +3,8 @@ import { v4 as uuidv4 } from 'uuid';
 
 async function getAccessToken() {
   const token = await Auth.currentSession();
-  return token
-    .getAccessToken()
-    .getJwtToken()
-    .toString();
-};
+  return token.getAccessToken().getJwtToken().toString();
+}
 
 async function loginElseCreateAnonAccount() {
   const currentUser = await Auth.currentUserInfo();
@@ -25,17 +22,19 @@ async function loginElseCreateAnonAccount() {
 
     await Auth.signUp({
       username: userId,
-      password: tempKey
-    }).then(user => {
-      localStorage.setItem('userId', userId);
-      localStorage.setItem('tempKey', tempKey);
-      return user;
-    }).catch((err) => {
-      throw Error("Anon user registration failed: ", err);
-    });
-  } 
+      password: tempKey,
+    })
+      .then((user) => {
+        localStorage.setItem('userId', userId);
+        localStorage.setItem('tempKey', tempKey);
+        return user;
+      })
+      .catch((err) => {
+        throw Error('Anon user registration failed: ', err);
+      });
+  }
   await Auth.signIn(userId, tempKey);
   Promise.resolve(true);
 }
 
-export { getAccessToken, loginElseCreateAnonAccount }
+export { getAccessToken, loginElseCreateAnonAccount };
