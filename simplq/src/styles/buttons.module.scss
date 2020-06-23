@@ -1,15 +1,13 @@
-$primary-color-dark: #3a3768;
-$primary-color-light: #6c63ff;
+@import 'constants';
 
 .standard-button {
   background-color: $primary-color-dark;
   color: #fff;
   display: inline-block;
   padding: 0.2em 0.5em 0.3em 0.5em;
-  border-radius: 8px;
   font-weight: bold;
-  font-stretch: expanded;
   border: 2px solid $primary-color-dark;
+  border-radius: 8px;
   text-align: center;
   transition: all 0.2s;
 

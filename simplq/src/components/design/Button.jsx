@@ -1,10 +1,10 @@
 import React from 'react';
-import '../../styles/buttons.scss';
+import styles from '../../styles/buttons.module.scss';
 
 const StandardButton = (props) => {
   const { onClick, text } = props;
   return (
-    <button type="button" onClick={onClick} className="standard-button">
+    <button type="submit" onClick={onClick} className={styles['standard-button']}>
       {text}
     </button>
   );
