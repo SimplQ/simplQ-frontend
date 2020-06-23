@@ -1,19 +1,17 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
-import styles from '../../styles/buttons.scss';
+import '../../styles/buttons.scss';
+import { StylesProvider } from '@material-ui/core/styles';
 
 const StandardButton = (props) => {
-  console.log(styles);
-  console.log({ styles });
   const { onClick, text } = props;
   return (
-    <div className={styles['standard-button']}>
-      <Button variant="contained" onClick={onClick}>
+    <StylesProvider injectFirst>
+      <Button onClick={onClick} className="standard-button">
         {text}
       </Button>
-    </div>
+    </StylesProvider>
   );
 };
 
 export default StandardButton;
-x;
