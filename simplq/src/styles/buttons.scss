@@ -1,28 +1,18 @@
 $primary-color-dark: #3a3768;
 $primary-color-light: #6c63ff;
 
-// .standard-button {
-//   cursor: pointer;
-//   border: 2px solid #1a202c;
-//   padding: 8px;
-//   min-width: 64px;
-//   color: $primary-color-dark;
-//   background: transparent;
-
-//   transition: all 0.1s ease-in;
-
-//   &:hover {
-//     background: #1a202c;
-//     color: #ffffff;
-//   }
-// }
-
 .standard-button {
   background-color: $primary-color-dark;
   color: #fff;
-  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-  padding: 7px 14px;
-  //border-radius: 30%;
+  display: inline-block;
+  padding: 0.2em 0.5em 0.3em 0.5em;
+  border-radius: 8px;
+  font-weight: bold;
+  font-stretch: expanded;
+  border: 2px solid $primary-color-dark;
+  text-align: center;
+  transition: all 0.2s;
+
   &:hover {
     background-color: #fff;
     color: $primary-color-dark;
