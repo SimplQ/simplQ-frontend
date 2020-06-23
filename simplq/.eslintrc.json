@@ -8,6 +8,7 @@
   "rules": {
     "prettier/prettier": ["error"],
     "no-param-reassign": ["warn"],
-    "react/jsx-indent": ["warn"]
+    "react/jsx-indent": ["warn"],
+    "react/prop-types": 0
   }
 }
