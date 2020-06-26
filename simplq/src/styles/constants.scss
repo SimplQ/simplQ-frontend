@@ -1,2 +1,11 @@
 $primary-color-dark: #3a3768;
 $primary-color-light: #6c63ff;
+$header-font: 'Pacifico', Regular;
+
+@mixin center-block {
+  margin: 0 auto;
+}
+
+@mixin center-inline {
+  text-align: center;
+}

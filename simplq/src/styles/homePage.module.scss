@@ -1,0 +1,18 @@
+@import 'constants';
+
+.main-header {
+  font-family: $header-font;
+  font-size: 65pt;
+  text-align: center;
+}
+
+.button-group button {
+  margin: auto; // centering
+  display: block; // new line
+}
+
+// .button {
+//   @extend .button-group;
+//   //width: 50%;
+//   // padding-bottom: 50px;
+// }

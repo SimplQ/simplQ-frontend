@@ -1,15 +1,18 @@
 import React from 'react';
+import { Banner, BenefitsInfo, HowToCreate, HowToJoin, ExtraInfo } from './StaticInfos';
 
-export default Home = (props) => {
+const Home = () => {
   return (
-    <ComposeInSinglePage>
+    // <ComposeInSinglePage>
+    <>
       <Banner />
-      <CreateQButton />
-      <JoinQButton />
       <BenefitsInfo />
       <HowToCreate />
       <HowToJoin />
       <ExtraInfo />
-    </ComposeInSinglePage>
+      {/* </ComposeInSinglePage> */}
+    </>
   );
 };
+
+export default Home;
