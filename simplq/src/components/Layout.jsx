@@ -3,10 +3,11 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import Routes from './Routes'
+import Routes from './Routes';
 import Button from '@material-ui/core/Button';
-import { withRouter } from "react-router";
-import logo from "../simplQLogo.png";
+import { withRouter } from 'react-router';
+import logo from '../simplQLogo.png';
+import { ErrorBoundary } from './ErrorHandler';
 
 const useStyles = makeStyles((theme) => ({
   mainLayout: {
@@ -20,22 +21,22 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   logoClass: {
-    width: 100
+    width: 100,
   },
   footer: {
     backgroundColor: theme.palette.background.paper,
-  }
+  },
 }));
 
 const handleClick = (props) => {
-  props.history.push("/");
-}
+  props.history.push('/');
+};
 
 function Layout(props) {
   const classes = useStyles();
 
   return (
-    <>
+    <ErrorBoundary>
       <AppBar position="relative">
         <Toolbar>
           <Typography variant="h6" color="inherit" noWrap>
@@ -46,11 +47,10 @@ function Layout(props) {
         </Toolbar>
       </AppBar>
 
-
       <main className={classes.mainLayout}>
         <Routes />
       </main>
-    </>
+    </ErrorBoundary>
   );
 }
 
