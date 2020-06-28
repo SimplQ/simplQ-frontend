@@ -6,13 +6,37 @@
   text-align: center;
 }
 
-.button-group button {
-  margin: auto; // centering
-  display: block; // new line
+.button-group {
+  div {
+    padding: 10px;
+  }
+  button {
+    margin: auto; // centering
+    display: block; // new line
+  }
 }
 
-// .button {
-//   @extend .button-group;
-//   //width: 50%;
-//   // padding-bottom: 50px;
-// }
+.center {
+  @include centered-flexbox-parent();
+  font-size: 18pt;
+}
+
+.benefits-info {
+  @include background-blue();
+  @include centered-flexbox-parent-vertical();
+  div {
+    margin: auto;
+  }
+}
+
+.create-queue {
+  @include centered-flexbox-parent-vertical();
+}
+
+.join-queue {
+  @include centered-flexbox-parent-vertical();
+}
+
+.extra-info {
+  @extend .benefits-info;
+}

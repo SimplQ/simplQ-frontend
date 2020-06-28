@@ -2,16 +2,16 @@ import React from 'react';
 import { CreateQButton, JoinQButton } from '../../design/Button.stories';
 import styles from '../../../styles/homePage.module.scss';
 
-export const Banner = () => {
+export const Banner = (props) => {
   return (
     <div>
       <div>
         <h1 className={styles['main-header']}>SimplQ</h1>
-        <h3>A long overdue alternative to physical Queues</h3>
+        <h3 className={styles.center}>A long overdue alternative to physical Queues</h3>
       </div>
       <div className={styles['button-group']}>
         <div>
-          <CreateQButton />
+          <CreateQButton onClick={() => props.history.push('/create')} />
         </div>
         <div>
           <JoinQButton />
@@ -23,7 +23,7 @@ export const Banner = () => {
 
 export const BenefitsInfo = () => {
   return (
-    <div>
+    <div className={styles['benefits-info']}>
       <div>
         {/* <img></img> */}
         <p>Minimize crowding by keeping your queue virtual</p>
@@ -42,7 +42,7 @@ export const BenefitsInfo = () => {
 
 export const HowToCreate = () => {
   return (
-    <div>
+    <div className={styles['create-queue']}>
       <h2>Create a queue at the click of a button</h2>
       <div>
         <h3>Create Queue</h3>
@@ -62,7 +62,7 @@ export const HowToCreate = () => {
 
 export const HowToJoin = () => {
   return (
-    <div>
+    <div className={styles['join-queue']}>
       <h2>Join a queue without being there</h2>
       <div>
         <h3>Join Queue</h3>
@@ -82,7 +82,7 @@ export const HowToJoin = () => {
 
 export const ExtraInfo = () => {
   return (
-    <div>
+    <div className={styles['extra-info']}>
       <div>
         {/* <img></img> */}
         <p>Always free</p>

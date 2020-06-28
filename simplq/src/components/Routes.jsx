@@ -6,13 +6,15 @@ import QueueStatus from './pages/QueueStatus';
 import AdminQueue from './pages/AdminQueue';
 import PageNotFound from './pages/PageNotFound';
 import { ErrorBoundary, ErrorNotification } from './ErrorHandler';
+import Home from './pages/Home/Index';
 
 export default () => {
   return (
     <>
       <ErrorBoundary>
         <Switch>
-          <Route path="/" exact component={CreateQueue} />
+          <Route path="/" exact component={Home} />
+          <Route path="/create" exact component={CreateQueue} />
           <Route path="/admin" exact component={AdminQueue} />
           <Route path="/j/:queueId" exact component={JoinQueue} />
           <Route path="/status" exact component={QueueStatus} />

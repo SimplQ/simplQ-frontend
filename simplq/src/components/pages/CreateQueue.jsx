@@ -10,6 +10,7 @@ import { store } from '../../store'; //TODO: Use Hooks
 import { CircularProgress } from '@material-ui/core';
 import CreaterStepper from '../stepper/CreaterStepper';
 import { handleApiErrors } from '../ErrorHandler';
+import { CreateQButton } from '../design/Button.stories';
 
 const styles = (theme) => ({
   content: {
@@ -61,6 +62,7 @@ class CreateQueue extends React.Component {
       this.setState({ createInProgress: false });
     }
   }
+
   handleTextFieldChange = (e) => {
     const qname = e.target.value;
     if (qname.match('^[A-Za-z0-9-]*$'))
@@ -110,47 +112,14 @@ class CreateQueue extends React.Component {
                 {this.state.createInProgress ? (
                   <CircularProgress size={30} />
                 ) : (
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={() => this.handleClick(this.state.textFieldValue)}
-                  >
+                  <CreateQButton onClick={() => this.handleClick(this.state.textFieldValue)}>
                     Create A queue
-                  </Button>
+                  </CreateQButton>
                 )}
               </Grid>
             </Grid>
           </div>
         </Container>
-
-        <div className={classes.description}>
-          <p
-            style={{
-              fontFamily: "'Balsamiq Sans'",
-              fontSize: '1.5rem',
-            }}
-          >
-            SimplQ provides a means to create and manage virtual queues instantly to help you and
-            your customers have a great business experience
-          </p>
-        </div>
-
-        <div className={classes.video}>
-          <iframe
-            style={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              width: '100%',
-              height: '100%',
-            }}
-            title="Home page video"
-            src={'https://www.youtube.com/embed/i9w-c3x357A'}
-            frameBorder="0"
-            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          />
-        </div>
       </div>
     );
   }

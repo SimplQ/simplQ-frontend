@@ -1,11 +1,11 @@
 import React from 'react';
 import { Banner, BenefitsInfo, HowToCreate, HowToJoin, ExtraInfo } from './StaticInfos';
 
-const Home = () => {
+const Home = (props) => {
   return (
     // <ComposeInSinglePage>
     <>
-      <Banner />
+      <Banner history={props.history} />
       <BenefitsInfo />
       <HowToCreate />
       <HowToJoin />

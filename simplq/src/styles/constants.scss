@@ -1,5 +1,5 @@
 $primary-color-dark: #3a3768;
-$primary-color-light: #6c63ff;
+$primary-color-light: #6560ca;
 $header-font: 'Pacifico', Regular;
 
 @mixin center-block {
@@ -8,4 +8,22 @@ $header-font: 'Pacifico', Regular;
 
 @mixin center-inline {
   text-align: center;
+}
+
+@mixin centered-flexbox-parent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  //flex-direction: row;
+  //margin: auto;
+}
+
+@mixin centered-flexbox-parent-vertical {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@mixin background-blue {
+  background-color: $primary-color-light;
 }
