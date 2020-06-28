@@ -1,15 +1,15 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
+import { StylesProvider } from '@material-ui/core/styles';
+import { CircularProgress } from '@material-ui/core';
 import * as QueueService from '../../services/queue';
 import { setQueueName, setQueueId, setCreationStep } from '../../store/appSlice';
-import { store } from '../../store'; //TODO: Use Hooks
-import { CircularProgress } from '@material-ui/core';
+import { store } from '../../store'; // TODO: Use Hooks
 import CreatorStepper from '../stepper/CreatorStepper';
 import { handleApiErrors } from '../ErrorHandler';
 import { CreateQButton } from '../design/Button.stories';
 import styles from '../../styles/createPage.module.scss';
-import { StylesProvider } from '@material-ui/core/styles';
-import { Header } from '../design/header';
+import Header from '../design/Header';
 
 class CreateQueue extends React.Component {
   constructor(props) {
