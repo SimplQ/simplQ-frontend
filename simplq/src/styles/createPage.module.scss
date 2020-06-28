@@ -1,0 +1,17 @@
+@import 'constants';
+
+div {
+  @include div-padding();
+}
+
+.create-button {
+  @include centered-flexbox-parent-horizontal();
+}
+
+.input {
+  @include centered-flexbox-parent-horizontal();
+  width: 50%;
+  fieldset {
+    border-radius: 0.5rem;
+  }
+}

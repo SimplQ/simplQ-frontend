@@ -1,0 +1,6 @@
+@import 'constants';
+
+.header {
+  @include standard-header();
+  font-size: 2.5rem;
+}

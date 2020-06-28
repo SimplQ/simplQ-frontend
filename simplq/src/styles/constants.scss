@@ -2,13 +2,8 @@ $primary-color-dark: #3a3768;
 $primary-color-light: rgba(108, 99, 255, 0.2);
 $header-font: 'Pacifico', Regular;
 
-// @mixin center-block {
-//   margin: 0 auto;
-// }
-
-// @mixin center-inline {
-//   text-align: center;
-// }
+@mixin standard-header {
+}
 
 @mixin centered-flexbox-parent-horizontal {
   display: flex;
@@ -25,7 +20,7 @@ $header-font: 'Pacifico', Regular;
   margin: auto;
 }
 
-@mixin background-blue {
+@mixin background-color {
   background-color: $primary-color-light;
 }
 
@@ -38,5 +33,8 @@ $header-font: 'Pacifico', Regular;
   color: $primary-color-dark;
 }
 
-// @mixin text-box {
-// }
+@mixin standard-header {
+  @include text-color();
+  font-family: $header-font;
+  text-align: center;
+}

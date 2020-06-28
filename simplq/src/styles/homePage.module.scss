@@ -5,10 +5,8 @@ div {
 }
 
 .main-header {
-  @include text-color();
-  font-family: $header-font;
+  @include standard-header();
   font-size: 5rem;
-  text-align: center;
 }
 
 .button-group {
@@ -25,7 +23,7 @@ div {
 }
 
 .benefits-info {
-  @include background-blue();
+  @include background-color();
   @include text-color();
   @include centered-flexbox-parent-vertical();
   div {

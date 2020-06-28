@@ -1,53 +1,29 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
-import Grid from '@material-ui/core/Grid';
-import { withStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
 import * as QueueService from '../../services/queue';
 import { setQueueName, setQueueId, setCreationStep } from '../../store/appSlice';
 import { store } from '../../store'; //TODO: Use Hooks
 import { CircularProgress } from '@material-ui/core';
-import CreaterStepper from '../stepper/CreaterStepper';
+import CreatorStepper from '../stepper/CreatorStepper';
 import { handleApiErrors } from '../ErrorHandler';
 import { CreateQButton } from '../design/Button.stories';
-
-const styles = (theme) => ({
-  content: {
-    backgroundColor: theme.palette.background.paper,
-    paddingTop: theme.spacing(8),
-    paddingBottom: theme.spacing(3),
-  },
-  button: {
-    paddingBottom: theme.spacing(3),
-    marginTop: theme.spacing(4),
-  },
-  video: {
-    position: 'relative',
-    paddingBottom: '56.25%' /* 16:9 */,
-    paddingTop: 25,
-    height: 0,
-  },
-  description: {
-    textAlign: 'center',
-    paddingBottom: theme.spacing(3),
-  },
-});
+import styles from '../../styles/createPage.module.scss';
+import { StylesProvider } from '@material-ui/core/styles';
+import { Header } from '../design/header';
 
 class CreateQueue extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       textFieldValue: '',
-      invalidMsg: '', //state variable to display reason for invalid queue name
+      invalidMsg: '', // state variable to display reason for invalid queue name
       createInProgress: false,
     };
   }
 
-  handleClick(queueName) {
-    if (this.state.textFieldValue === '') {
-      this.setState({ invalidMsg: 'Queue name is required' });
-    } else {
+  handleClick = (queueName) => {
+    if (this.state.textFieldValue === '') this.setState({ invalidMsg: 'Queue name is required' });
+    else {
       this.setState({ createInProgress: true });
       QueueService.createQueue(queueName)
         .then((response) => {
@@ -61,7 +37,7 @@ class CreateQueue extends React.Component {
         });
       this.setState({ createInProgress: false });
     }
-  }
+  };
 
   handleTextFieldChange = (e) => {
     const qname = e.target.value;
@@ -84,45 +60,37 @@ class CreateQueue extends React.Component {
   };
 
   render() {
-    const { classes } = this.props;
     store.dispatch(setCreationStep(0));
     return (
-      <div className={classes.content}>
-        <CreaterStepper />
-        <Container maxWidth="sm">
+      <div>
+        <Header text="SimplQ" />
+        <CreatorStepper />
+        <StylesProvider injectFirst>
           <TextField
-            placeholder="Enter a name for a new queue"
+            label="Enter a name for your new queue"
             fullWidth
             required
-            margin="normal"
-            InputLabelProps={{
-              shrink: true,
-            }}
             variant="outlined"
             value={this.state.textFieldValue}
             onChange={this.handleTextFieldChange}
             onKeyPress={this.handleKeyPress}
             error={this.state.invalidMsg.length > 0}
             helperText={this.state.invalidMsg.length > 0 ? this.state.invalidMsg : ''}
+            className={styles.input}
           />
-
-          <div className={classes.button}>
-            <Grid container spacing={2} justify="center">
-              <Grid item>
-                {this.state.createInProgress ? (
-                  <CircularProgress size={30} />
-                ) : (
-                  <CreateQButton onClick={() => this.handleClick(this.state.textFieldValue)}>
-                    Create A queue
-                  </CreateQButton>
-                )}
-              </Grid>
-            </Grid>
-          </div>
-        </Container>
+        </StylesProvider>
+        <div className={styles['create-button']}>
+          {this.state.createInProgress ? (
+            <CircularProgress size={30} />
+          ) : (
+            <CreateQButton onClick={() => this.handleClick(this.state.textFieldValue)}>
+              Create A queue
+            </CreateQButton>
+          )}
+        </div>
       </div>
     );
   }
 }
 
-export default withStyles(styles)(CreateQueue);
+export default CreateQueue;
