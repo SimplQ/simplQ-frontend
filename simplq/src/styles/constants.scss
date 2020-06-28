@@ -1,5 +1,5 @@
 $primary-color-dark: #3a3768;
-$primary-color-light: #6560ca;
+$primary-color-light: rgba(108, 99, 255, 0.2);
 $header-font: 'Pacifico', Regular;
 
 @mixin center-block {
@@ -10,20 +10,30 @@ $header-font: 'Pacifico', Regular;
   text-align: center;
 }
 
-@mixin centered-flexbox-parent {
+@mixin centered-flexbox-parent-horizontal {
   display: flex;
   justify-content: center;
   align-items: center;
-  //flex-direction: row;
-  //margin: auto;
+  margin: auto;
+  text-align: center;
 }
 
 @mixin centered-flexbox-parent-vertical {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin: auto;
 }
 
 @mixin background-blue {
   background-color: $primary-color-light;
+}
+
+@mixin div-padding {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+@mixin text-color {
+  color: $primary-color-dark;
 }

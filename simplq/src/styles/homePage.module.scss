@@ -1,15 +1,17 @@
 @import 'constants';
 
+div {
+  @include div-padding();
+}
+
 .main-header {
+  @include text-color();
   font-family: $header-font;
   font-size: 65pt;
   text-align: center;
 }
 
 .button-group {
-  div {
-    padding: 10px;
-  }
   button {
     margin: auto; // centering
     display: block; // new line
@@ -17,12 +19,14 @@
 }
 
 .center {
-  @include centered-flexbox-parent();
+  @include centered-flexbox-parent-horizontal();
+  @include text-color();
   font-size: 18pt;
 }
 
 .benefits-info {
   @include background-blue();
+  @include text-color();
   @include centered-flexbox-parent-vertical();
   div {
     margin: auto;
@@ -30,11 +34,15 @@
 }
 
 .create-queue {
+  @include text-color();
   @include centered-flexbox-parent-vertical();
+  @include centered-flexbox-parent-horizontal();
 }
 
 .join-queue {
+  @include text-color();
   @include centered-flexbox-parent-vertical();
+  @include centered-flexbox-parent-horizontal();
 }
 
 .extra-info {
