@@ -7,7 +7,7 @@ div {
 .main-header {
   @include text-color();
   font-family: $header-font;
-  font-size: 65pt;
+  font-size: 5rem;
   text-align: center;
 }
 
@@ -21,7 +21,7 @@ div {
 .center {
   @include centered-flexbox-parent-horizontal();
   @include text-color();
-  font-size: 18pt;
+  font-size: 1.5rem;
 }
 
 .benefits-info {

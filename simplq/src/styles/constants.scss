@@ -2,13 +2,13 @@ $primary-color-dark: #3a3768;
 $primary-color-light: rgba(108, 99, 255, 0.2);
 $header-font: 'Pacifico', Regular;
 
-@mixin center-block {
-  margin: 0 auto;
-}
+// @mixin center-block {
+//   margin: 0 auto;
+// }
 
-@mixin center-inline {
-  text-align: center;
-}
+// @mixin center-inline {
+//   text-align: center;
+// }
 
 @mixin centered-flexbox-parent-horizontal {
   display: flex;
@@ -30,10 +30,13 @@ $header-font: 'Pacifico', Regular;
 }
 
 @mixin div-padding {
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
 }
 
 @mixin text-color {
   color: $primary-color-dark;
 }
+
+// @mixin text-box {
+// }

@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { progressCreationStep } from '../../../store/appSlice';
 import ShareBar from './ShareBar';
 import PageNotFound from '../PageNotFound';
-import CreaterStepper from '../../stepper/CreaterStepper';
+import CreatorStepper from '../../stepper/CreatorStepper';
 import { handleApiErrors } from '../../ErrorHandler';
 
 const useStyles = makeStyles((theme) => ({
@@ -71,7 +71,7 @@ export default () => {
   return (
     <>
       <CentralSection heading={queueName}>
-        <CreaterStepper />
+        <CreatorStepper />
         <ShareBar
           queueId={queueId}
           className={classes.urlBox}
