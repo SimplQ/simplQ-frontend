@@ -1,14 +1,17 @@
 import React from 'react';
-import CentralSection from '../../CentralSection';
+import { useSelector, useDispatch } from 'react-redux';
 import JoinQueueForm from './Form';
-import { useDispatch } from 'react-redux';
 import { setTokenId, setJoinerStep, setAheadCount, setQueueId } from '../../../store/appSlice';
 import * as QueueService from '../../../services/queue';
-import JoinerStepper from '../../stepper/JoinerStepper';
+import JoinerStepper from '../../common/stepper/JoinerStepper';
 import { handleApiErrors } from '../../ErrorHandler';
+import { SimplQHeader } from '../../common/Header.stories';
+import Header from '../../common/Header';
+import styles from '../../../styles/joinPage.module.scss';
 
 export function JoinQueue(props) {
   const queueId = props.match.params.queueId;
+  const queueName = useSelector((state) => state.appReducer.queueName);
   const dispatch = useDispatch();
   dispatch(setJoinerStep(0));
   dispatch(setQueueId(queueId));
@@ -27,10 +30,12 @@ export function JoinQueue(props) {
   };
 
   return (
-    <CentralSection heading="Join Queue">
+    <div>
+      <SimplQHeader />
+      <Header className={styles.header} text={queueName} />
       <JoinerStepper />
       <JoinQueueForm queueId={queueId} joinQueueHandler={joinQueueHandler} />
-    </CentralSection>
+    </div>
   );
 }
 

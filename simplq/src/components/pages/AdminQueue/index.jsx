@@ -1,30 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import ItemList from './ItemList';
-import CentralSection from '../../CentralSection';
-import { makeStyles } from '@material-ui/core/styles';
-import * as QueueService from '../../../services/queue';
 import { useSelector, useDispatch } from 'react-redux';
+import ItemList from './ItemList';
+import * as QueueService from '../../../services/queue';
 import { progressCreationStep } from '../../../store/appSlice';
 import ShareBar from './ShareBar';
 import PageNotFound from '../PageNotFound';
-import CreatorStepper from '../../stepper/CreatorStepper';
+import CreatorStepper from '../../common/stepper/CreatorStepper';
 import { handleApiErrors } from '../../ErrorHandler';
-
-const useStyles = makeStyles((theme) => ({
-  urlBox: {
-    marginTop: theme.spacing(3),
-    marginBottom: theme.spacing(3),
-  },
-  addBox: {
-    marginTop: theme.spacing(3),
-    padding: theme.spacing(3),
-  },
-}));
+import { SimplQHeader } from '../../common/Header.stories';
+import Header from '../../common/Header';
+import styles from '../../../styles/adminPage.module.scss';
 
 export default () => {
-  const classes = useStyles();
   const dispatch = useDispatch();
-
   const queueId = useSelector((state) => state.appReducer.queueId);
   const queueName = useSelector((state) => state.appReducer.queueName);
 
@@ -52,10 +40,7 @@ export default () => {
   const addNewItem = (name, contact) => {
     return QueueService.addtoQueue(name, contact, false, queueId)
       .then((response) => {
-        setItems([
-          ...items,
-          { tokenId: response.tokenId, name: name, contact: contact, notifyable: false },
-        ]);
+        setItems([...items, { tokenId: response.tokenId, name, contact, notifyable: false }]);
       })
       .catch((err) => {
         handleApiErrors(err);
@@ -70,23 +55,25 @@ export default () => {
 
   return (
     <>
-      <CentralSection heading={queueName}>
-        <CreatorStepper />
-        <ShareBar
-          queueId={queueId}
-          className={classes.urlBox}
-          onRefresh={() => {
-            update();
-            setItems(false);
-          }}
-        />
+      <SimplQHeader />
+      <Header className={styles.header} text={queueName} />
+      <CreatorStepper />
+      <ShareBar
+        queueId={queueId}
+        className={styles.shareButton}
+        onRefresh={() => {
+          update();
+          setItems(false);
+        }}
+      />
+      <div className={styles.list}>
         <ItemList
           items={items}
           queueId={queueId}
           joinQueueHandler={addNewItem}
           removeItemHandler={removeItemHandler}
         />
-      </CentralSection>
+      </div>
     </>
   );
 };

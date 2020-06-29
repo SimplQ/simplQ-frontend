@@ -3,20 +3,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/material.css';
-import { makeStyles } from '@material-ui/core/styles';
 import { CircularProgress } from '@material-ui/core';
-
-const useStyles = makeStyles((theme) => ({
-  textField: {
-    marginTop: theme.spacing(2),
-  },
-  buttonGroup: {
-    display: 'flex',
-    justifyContent: 'flex-end',
-    marginTop: theme.spacing(3),
-    marginBottom: theme.spacing(3),
-  },
-}));
 
 export function JoinQueueForm(props) {
   const [name, setName] = useState('');
@@ -24,7 +11,6 @@ export function JoinQueueForm(props) {
   const [contact, setContact] = useState('');
   const [invalidContact, setInvalidContact] = useState(false);
   const [addingInProgress, setAddingInProgress] = useState(false);
-  const classes = useStyles();
 
   function handleNameChange(e) {
     setName(e.target.value);
@@ -72,9 +58,9 @@ export function JoinQueueForm(props) {
         helperText={invalidName ? 'Name is required' : ''}
       />
       <PhoneInput
-        containerClass={classes.textField}
+        // containerClass={classes.textField}
         placeholder="Phone Number"
-        country={'in'}
+        country="in"
         value={contact}
         inputProps={{
           name: 'phone',
@@ -87,7 +73,7 @@ export function JoinQueueForm(props) {
         isValid={() => (invalidContact ? 'Phone number is not valid' : true)}
         onChange={handleContactChange}
       />
-      <div className={classes.buttonGroup}>
+      <div>
         {addingInProgress ? (
           <CircularProgress size={30} style={{ padding: '6px 16px' }} />
         ) : (

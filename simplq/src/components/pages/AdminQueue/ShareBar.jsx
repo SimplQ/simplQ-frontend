@@ -3,11 +3,11 @@ import Skeleton from '@material-ui/lab/Skeleton';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { Button, makeStyles } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
-import { progressCreationStep } from '../../../store/appSlice';
 import Tooltip from '@material-ui/core/Tooltip';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import FileCopyIcon from '@material-ui/icons/FileCopy';
 import SyncIcon from '@material-ui/icons/Sync';
+import { progressCreationStep } from '../../../store/appSlice';
 
 const useStyles = makeStyles((theme) => ({
   buttonGroup: {
@@ -39,7 +39,7 @@ const ShareBar = (props) => {
     return <Skeleton variant="rect" height={68} />;
   }
 
-  var shareUrl = window.location.origin + '/j/' + queueId;
+  const shareUrl = `${window.location.origin}/j/${queueId}`;
 
   return (
     <div className={classes.buttonGroup}>
@@ -64,7 +64,7 @@ const ShareBar = (props) => {
                   handleTooltipOpen();
                 }}
               >
-                {'Link'}
+                Link
               </Button>
             </CopyToClipboard>
           </Tooltip>
