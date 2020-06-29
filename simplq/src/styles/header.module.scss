@@ -4,3 +4,8 @@
   @include standard-header();
   font-size: 2.5rem;
 }
+
+.header-with-font {
+  @extend .header;
+  font-family: $header-font;
+}

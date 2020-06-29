@@ -6,6 +6,7 @@ div {
 
 .main-header {
   @include standard-header();
+  font-family: $header-font;
   font-size: 5rem;
 }
 

@@ -1,12 +1,13 @@
 import React from 'react';
 import { CreateQButton, JoinQButton } from '../../design/Button.stories';
+import Header from '../../design/Header';
 import styles from '../../../styles/homePage.module.scss';
 
 export const Banner = (props) => {
   return (
     <div>
       <div>
-        <h1 className={styles['main-header']}>SimplQ</h1>
+        <Header className={styles['main-header']} text="SimplQ" />
         <h3 className={styles.center}>A long overdue alternative to physical Queues</h3>
       </div>
       <div className={styles['button-group']}>

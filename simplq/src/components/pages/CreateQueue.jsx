@@ -9,7 +9,7 @@ import CreatorStepper from '../stepper/CreatorStepper';
 import { handleApiErrors } from '../ErrorHandler';
 import { CreateQButton } from '../design/Button.stories';
 import styles from '../../styles/createPage.module.scss';
-import Header from '../design/Header';
+import { SimplQHeader } from '../design/Header.stories';
 
 class CreateQueue extends React.Component {
   constructor(props) {
@@ -63,11 +63,11 @@ class CreateQueue extends React.Component {
     store.dispatch(setCreationStep(0));
     return (
       <div>
-        <Header text="SimplQ" />
+        <SimplQHeader />
         <CreatorStepper />
         <StylesProvider injectFirst>
           <TextField
-            label="Enter a name for your new queue"
+            placeholder="Enter a name for your new queue"
             fullWidth
             required
             variant="outlined"
