@@ -6,7 +6,7 @@ import { Collapse, ListItemIcon, makeStyles, CircularProgress } from '@material-
 import AddIcon from '@material-ui/icons/Add';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
-import JoinQueueForm from '../JoinQueue/Form';
+import JoinQueueForm from '../Join/Form';
 import Item from './Item';
 
 const useStyles = makeStyles((theme) => ({
