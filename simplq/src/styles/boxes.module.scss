@@ -1,4 +1,4 @@
-@import 'constants';
+@import 'utils';
 
 @mixin box-border {
   border: 1px solid $primary-color-dark;

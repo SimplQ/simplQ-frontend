@@ -35,6 +35,12 @@ $header-font: 'Pacifico', Regular;
 
 @mixin standard-header {
   @include text-color();
-  font-family: $header-font;
   text-align: center;
+}
+
+@mixin queue-name-header {
+  @include standard-header();
+  @include background-color();
+  padding: 2rem;
+  font-size: 2rem;
 }

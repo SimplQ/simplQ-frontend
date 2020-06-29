@@ -1,0 +1,12 @@
+@import 'utils';
+
+.header {
+  @include queue-name-header();
+}
+
+.shareButton {
+}
+
+.list {
+  @include background-color();
+}
