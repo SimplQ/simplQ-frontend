@@ -11,10 +11,10 @@ export default () => {
         <StepLabel>Create your virtual queue</StepLabel>
       </Step>
       <Step key={2}>
-        <StepLabel>Share the link to invite people </StepLabel>
+        <StepLabel>Share link to invite people </StepLabel>
       </Step>
       <Step key={3}>
-        <StepLabel>Notify people of their turn</StepLabel>
+        <StepLabel>Notify people about their turn</StepLabel>
       </Step>
     </Stepper>
   );

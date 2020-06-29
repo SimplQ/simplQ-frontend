@@ -8,13 +8,13 @@ export default () => {
   return (
     <Stepper style={{ padding: '30px 5px' }} activeStep={currentJoinerStep} alternativeLabel>
       <Step key={1}>
-        <StepLabel>Enter your contact details and join!!</StepLabel>
+        <StepLabel>Enter details and join queue</StepLabel>
       </Step>
       <Step key={2}>
-        <StepLabel>Relax and wait for your turn</StepLabel>
+        <StepLabel>Check your queue status</StepLabel>
       </Step>
       <Step key={3}>
-        <StepLabel>Your turn is up!</StepLabel>
+        <StepLabel>Wait to get notified</StepLabel>
       </Step>
     </Stepper>
   );
