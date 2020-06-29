@@ -1,6 +1,6 @@
 import React from 'react';
-import { CreateQButton, JoinQButton } from '../../design/Button.stories';
-import Header from '../../design/Header';
+import { CreateQButton, JoinQButton } from '../../common/Button.stories';
+import Header from '../../common/Header';
 import styles from '../../../styles/homePage.module.scss';
 
 export const Banner = (props) => {
