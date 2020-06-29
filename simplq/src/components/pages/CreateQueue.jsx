@@ -5,11 +5,11 @@ import { CircularProgress } from '@material-ui/core';
 import * as QueueService from '../../services/queue';
 import { setQueueName, setQueueId, setCreationStep } from '../../store/appSlice';
 import { store } from '../../store'; // TODO: Use Hooks
-import CreatorStepper from '../stepper/CreatorStepper';
+import CreatorStepper from '../common/stepper/CreatorStepper';
 import { handleApiErrors } from '../ErrorHandler';
-import { CreateQButton } from '../design/Button.stories';
+import { CreateQButton } from '../common/Button.stories';
 import styles from '../../styles/createPage.module.scss';
-import { SimplQHeader } from '../design/Header.stories';
+import { SimplQHeader } from '../common/Header.stories';
 
 class CreateQueue extends React.Component {
   constructor(props) {
