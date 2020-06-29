@@ -1,9 +1,9 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import CreateQueue from './pages/CreateQueue';
-import JoinQueue from './pages/JoinQueue';
+import JoinQueue from './pages/Join';
 import QueueStatus from './pages/QueueStatus';
-import AdminQueue from './pages/AdminQueue';
+import AdminQueue from './pages/Admin';
 import PageNotFound from './pages/PageNotFound';
 import { ErrorBoundary, ErrorNotification } from './ErrorHandler';
 import Home from './pages/Home/Index';

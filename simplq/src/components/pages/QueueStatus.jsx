@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import CentralSection from '../CentralSection';
-import * as QueueService from '../../services/queue';
 import { CircularProgress, makeStyles } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
-import { useSelector, useDispatch } from 'react-redux';
-import JoinerStepper from '../stepper/JoinerStepper';
+import CentralSection from '../CentralSection';
+import * as QueueService from '../../services/queue';
+import JoinerStepper from '../common/stepper/JoinerStepper';
 import { setAheadCount, setJoinerStep } from '../../store/appSlice';
 import { handleApiErrors } from '../ErrorHandler';
 
@@ -69,7 +69,7 @@ function QueueStatus() {
     update();
   }
 
-  var status = null;
+  let status = null;
   if (updateInProgress) {
     status = <CircularProgress />;
   } else if (userStatus === 'REMOVED') {
@@ -88,7 +88,7 @@ function QueueStatus() {
   } else {
     status = (
       <Typography variant="h5" align="center" color="textSecondary" component="p">
-        People infront of you : {aheadCount}
+        {`People infront of you :${aheadCount}`}
       </Typography>
     );
   }
@@ -113,7 +113,7 @@ function QueueStatus() {
             </Button>
           </div>
         ) : (
-          <div></div>
+          <div />
         )}
       </CentralSection>
     </>
