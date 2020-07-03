@@ -30,20 +30,19 @@ const useStyles = makeStyles((theme) => ({
 
 function QueueStatus() {
   const dispatch = useDispatch();
-  const [userStatus, setUserStatus] = useState();
-  const queueId = useSelector((state) => state.appReducer.queueId);
+  const [tokenStatus, setTokenStatus] = useState();
   const tokenId = useSelector((state) => state.appReducer.tokenId);
   const aheadCount = useSelector((state) => state.appReducer.aheadCount);
   const [updateInProgress, setUpdateInProgress] = useState(false);
   const classes = useStyles();
 
   const update = () => {
-    if (queueId && tokenId) {
+    if (tokenId) {
       setUpdateInProgress(true);
-      TokenService.userStatus(queueId, tokenId)
+      TokenService.userStatus(tokenId)
         .then((response) => {
           dispatch(setAheadCount(response.aheadCount));
-          setUserStatus(response.userStatus);
+          setTokenStatus(response.tokenStatus);
           setUpdateInProgress(false);
         })
         .catch((err) => {
@@ -55,9 +54,9 @@ function QueueStatus() {
 
   const onDeleteClick = () => {
     setUpdateInProgress(true);
-    TokenService.deleteFromQueue(queueId, tokenId)
+    TokenService.deleteFromQueue(tokenId)
       .then(() => {
-        setUserStatus('REMOVED');
+        setTokenStatus('REMOVED');
         setUpdateInProgress(false);
       })
       .catch((err) => {
@@ -72,9 +71,9 @@ function QueueStatus() {
   var status = null;
   if (updateInProgress) {
     status = <CircularProgress />;
-  } else if (userStatus === 'REMOVED') {
+  } else if (tokenStatus === 'REMOVED') {
     status = <Typography align="center">You have been removed from the queue</Typography>;
-  } else if (userStatus === 'NOTIFIED') {
+  } else if (tokenStatus === 'NOTIFIED') {
     dispatch(setJoinerStep(3));
     status = <img src="/tenor.gif" alt="Your turn is up" />;
   } else if (aheadCount === 0) {
@@ -98,7 +97,7 @@ function QueueStatus() {
       <JoinerStepper />
       <CentralSection heading="Thanks for waiting!">
         <div className={classes.content}>{status}</div>
-        {!(userStatus === 'REMOVED') && !updateInProgress ? (
+        {!(tokenStatus === 'REMOVED') && !updateInProgress ? (
           <div className={classes.buttonGroup}>
             <Button className={classes.button} variant="outlined" color="primary" onClick={update}>
               Check Status

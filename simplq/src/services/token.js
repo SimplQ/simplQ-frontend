@@ -2,7 +2,7 @@
 import { makeRequest } from './axios'
 
 export const addtoQueue = async (name, contact, notifyable, queueId) => {
-    const response = await makeRequest('post', '/user/add', {
+    const response = await makeRequest('post', '/token', {
       name: name,
       contactNumber: contact,
       queueId: queueId,
@@ -11,24 +11,17 @@ export const addtoQueue = async (name, contact, notifyable, queueId) => {
     return response.data;
   };
   
-  export const userStatus = async (queueId, tokenId) => {
-    const response = await makeRequest('post', '/user/status', {
-      queueId: queueId,
-      tokenId: tokenId,
-    });
+  export const userStatus = async (tokenId) => {
+    const response = await makeRequest('get', '/token/' + tokenId);
     return response.data;
   };
   
   export const notifyUser = async (tokenId) => {
-    const response = await makeRequest('put', '/user/alert', {
-      tokenId: tokenId,
-    });
+    const response = await makeRequest('put', '/token/notify/' + tokenId);
     return response;
   };
   
   export const deleteFromQueue = async (tokenId) => {
-    const response = await makeRequest('post', '/user/delete', {
-      tokenId,
-    });
+    const response = await makeRequest('delete', '/token/' + tokenId);
     return response;
   };
