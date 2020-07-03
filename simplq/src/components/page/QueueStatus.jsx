@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import CentralSection from '../CentralSection';
-import * as QueueService from '../../services/queue';
+import * as TokenService from '../../services/token';
 import { CircularProgress, makeStyles } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
 import { useSelector, useDispatch } from 'react-redux';
@@ -40,7 +40,7 @@ function QueueStatus() {
   const update = () => {
     if (queueId && tokenId) {
       setUpdateInProgress(true);
-      QueueService.userStatus(queueId, tokenId)
+      TokenService.userStatus(queueId, tokenId)
         .then((response) => {
           dispatch(setAheadCount(response.aheadCount));
           setUserStatus(response.userStatus);
@@ -55,7 +55,7 @@ function QueueStatus() {
 
   const onDeleteClick = () => {
     setUpdateInProgress(true);
-    QueueService.deleteFromQueue(queueId, tokenId)
+    TokenService.deleteFromQueue(queueId, tokenId)
       .then(() => {
         setUserStatus('REMOVED');
         setUpdateInProgress(false);
