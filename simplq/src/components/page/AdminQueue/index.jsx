@@ -40,9 +40,9 @@ export default () => {
 
   const update = () => {
     if (queueId) {
-      QueueService.readQueue(queueId)
+      QueueService.get(queueId)
         .then((data) => {
-          setItems(data.users);
+          setItems(data.tokens);
         })
         .catch((err) => {
           handleApiErrors(err);
@@ -51,7 +51,7 @@ export default () => {
   };
 
   const addNewItem = (name, contact) => {
-    return TokenService.addtoQueue(name, contact, false, queueId)
+    return TokenService.create(name, contact, false, queueId)
       .then((response) => {
         setItems([
           ...items,

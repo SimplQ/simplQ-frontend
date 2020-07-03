@@ -39,7 +39,7 @@ function QueueStatus() {
   const update = () => {
     if (tokenId) {
       setUpdateInProgress(true);
-      TokenService.userStatus(tokenId)
+      TokenService.get(tokenId)
         .then((response) => {
           dispatch(setAheadCount(response.aheadCount));
           setTokenStatus(response.tokenStatus);
@@ -54,7 +54,7 @@ function QueueStatus() {
 
   const onDeleteClick = () => {
     setUpdateInProgress(true);
-    TokenService.deleteFromQueue(tokenId)
+    TokenService.remove(tokenId)
       .then(() => {
         setTokenStatus('REMOVED');
         setUpdateInProgress(false);

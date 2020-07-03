@@ -32,7 +32,7 @@ function Item(props) {
   const contact = props.item.contactNo;
   const name = props.item.name;
   const tokenId = props.item.tokenId;
-  const userStatus = props.item.tokenStatus;
+  const tokenStatus = props.item.tokenStatus;
   const notifyable = props.item.notifyable;
   const [notifying, setNotifying] = useState(false);
   const [didNotify, setDidNotify] = useState(false);
@@ -41,7 +41,7 @@ function Item(props) {
   const onNotifyClick = () => {
     dispatch(progressCreationStep(3));
     setNotifying(true);
-    TokenService.notifyUser(tokenId)
+    TokenService.notify(tokenId)
       .then(() => {
         setNotifying(false);
         setDidNotify(true);
@@ -52,7 +52,7 @@ function Item(props) {
     // Notify user of error TODO
   };
   const onDeleteClick = () => {
-    TokenService.deleteFromQueue(tokenId).catch((err) => {
+    TokenService.remove(tokenId).catch((err) => {
       handleApiErrors(err);
     });
     props.removeItemHandler(tokenId); // TODO Should delete from list only ofter successfull deletion from db
@@ -71,13 +71,13 @@ function Item(props) {
         <Notifications color="disabled" />
       </IconButton>
     );
-  } else if (userStatus === 'NOTIFIED' || didNotify) {
+  } else if (tokenStatus === 'NOTIFIED' || didNotify) {
     notificationButton = (
       <IconButton edge="end" color="primary" aria-label="notified">
         <DoneIcon style={{ color: 'green' }} />
       </IconButton>
     );
-  } else if (userStatus === 'WAITING') {
+  } else if (tokenStatus === 'WAITING') {
     notificationButton = (
       <IconButton edge="end" color="primary" aria-label="notify" onClick={onNotifyClick}>
         <Notifications />

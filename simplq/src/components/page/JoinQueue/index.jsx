@@ -14,7 +14,7 @@ export function JoinQueue(props) {
   dispatch(setQueueId(queueId));
 
   const joinQueueHandler = (name, contact) => {
-    return TokenService.addtoQueue(name, contact, true, queueId)
+    return TokenService.create(name, contact, true, queueId)
       .then((response) => {
         dispatch(setTokenId(response.tokenId));
         dispatch(setAheadCount(response.aheadCount));
