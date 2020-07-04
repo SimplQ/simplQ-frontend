@@ -46,16 +46,16 @@ export const userStatus = async (queueId, tokenId) => {
 
 export const notifyUser = async (queueId, tokenId) => {
   const response = await makePostRequest('/user/alert', {
-    queueId: queueId,
-    tokenId: tokenId
+    queueId,
+    tokenId,
   });
   return response;
 };
 
 export const deleteFromQueue = async (queueId, tokenId) => {
   const response = await makePostRequest('/user/delete', {
-    queueId: queueId,
-    tokenId: tokenId
+    queueId,
+    tokenId,
   });
   return response;
 };
