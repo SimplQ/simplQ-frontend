@@ -44,18 +44,18 @@ export const userStatus = async (queueId, tokenId) => {
   return response.data;
 };
 
-export const notifyUser = async (queueId, tokenId) => {
-  const response = await axios.post('/user/alert', {
-    queueId,
-    tokenId,
+export const notifyUser = async (queueId, tokenId) => 
+  const response = await makePostRequest('/user/alert', {
+    queueId: queueId,
+    tokenId: tokenId
   });
   return response;
 };
 
 export const deleteFromQueue = async (queueId, tokenId) => {
-  const response = await axios.post('/user/delete', {
-    queueId,
-    tokenId,
+  const response = await makePostRequest('/user/delete', {
+    queueId: queueId,
+    tokenId: tokenId
   });
   return response;
 };
