@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ItemList from './ItemList';
 import CentralSection from '../../CentralSection';
 import { makeStyles } from '@material-ui/core/styles';
+import * as TokenService from '../../../services/token';
 import * as QueueService from '../../../services/queue';
 import { useSelector, useDispatch } from 'react-redux';
 import { progressCreationStep } from '../../../store/appSlice';
@@ -39,9 +40,9 @@ export default () => {
 
   const update = () => {
     if (queueId) {
-      QueueService.readQueue(queueId)
+      QueueService.get(queueId)
         .then((data) => {
-          setItems(data.users);
+          setItems(data.tokens);
         })
         .catch((err) => {
           handleApiErrors(err);
@@ -50,7 +51,7 @@ export default () => {
   };
 
   const addNewItem = (name, contact) => {
-    return QueueService.addtoQueue(name, contact, false, queueId)
+    return TokenService.create(name, contact, false, queueId)
       .then((response) => {
         setItems([
           ...items,
