@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const handleClick = () => {
-  window.location = '/'; 
+  window.location = '/';
 };
 
 function Layout() {
