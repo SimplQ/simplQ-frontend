@@ -5,7 +5,6 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Routes from './Routes';
 import Button from '@material-ui/core/Button';
-import { withRouter } from 'react-router';
 import logo from '../simplQLogo.png';
 import { ErrorBoundary } from './ErrorHandler';
 
@@ -28,11 +27,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const handleClick = (props) => {
-  props.history.push('/');
+const handleClick = () => {
+  window.location = '/'; 
 };
 
-function Layout(props) {
+function Layout() {
   const classes = useStyles();
 
   return (
@@ -40,7 +39,7 @@ function Layout(props) {
       <AppBar position="relative">
         <Toolbar>
           <Typography variant="h6" color="inherit" noWrap>
-            <Button color="inherit" onClick={() => handleClick(props)}>
+            <Button color="inherit" onClick={() => handleClick()}>
               <img src={logo} className={classes.logoClass} alt="logo" />
             </Button>
           </Typography>
@@ -54,4 +53,4 @@ function Layout(props) {
   );
 }
 
-export default withRouter(Layout);
+export default Layout;
