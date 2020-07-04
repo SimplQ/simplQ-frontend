@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import * as QueueService from '../../../services/queue';
+import * as TokenService from '../../../services/token';
 import Notifications from '@material-ui/icons/Notifications';
 import { useDispatch } from 'react-redux';
 import { progressCreationStep } from '../../../store/appSlice';
@@ -32,8 +32,7 @@ function Item(props) {
   const contact = props.item.contactNo;
   const name = props.item.name;
   const tokenId = props.item.tokenId;
-  const queueId = props.queueId;
-  const userStatus = props.item.userStatus;
+  const tokenStatus = props.item.tokenStatus;
   const notifyable = props.item.notifyable;
   const [notifying, setNotifying] = useState(false);
   const [didNotify, setDidNotify] = useState(false);
@@ -42,7 +41,7 @@ function Item(props) {
   const onNotifyClick = () => {
     dispatch(progressCreationStep(3));
     setNotifying(true);
-    QueueService.notifyUser(queueId, tokenId)
+    TokenService.notify(tokenId)
       .then(() => {
         setNotifying(false);
         setDidNotify(true);
@@ -53,7 +52,7 @@ function Item(props) {
     // Notify user of error TODO
   };
   const onDeleteClick = () => {
-    QueueService.deleteFromQueue(queueId, tokenId).catch((err) => {
+    TokenService.remove(tokenId).catch((err) => {
       handleApiErrors(err);
     });
     props.removeItemHandler(tokenId); // TODO Should delete from list only ofter successfull deletion from db
@@ -72,13 +71,13 @@ function Item(props) {
         <Notifications color="disabled" />
       </IconButton>
     );
-  } else if (userStatus === 'NOTIFIED' || didNotify) {
+  } else if (tokenStatus === 'NOTIFIED' || didNotify) {
     notificationButton = (
       <IconButton edge="end" color="primary" aria-label="notified">
         <DoneIcon style={{ color: 'green' }} />
       </IconButton>
     );
-  } else if (userStatus === 'WAITING') {
+  } else if (tokenStatus === 'WAITING') {
     notificationButton = (
       <IconButton edge="end" color="primary" aria-label="notify" onClick={onNotifyClick}>
         <Notifications />
