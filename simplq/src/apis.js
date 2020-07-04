@@ -6,16 +6,14 @@ export const getQueuedItems = async (queueId) => {
   const res = await axios.get(BASEURL + queueId);
   if (res.data) {
     return res.data;
-  } else {
-    return [];
   }
+  return [];
 };
 
 export const createQueue = async (queueName) => {
-  const res = await axios.post(BASEURL + 'queue', { queueName: queueName });
+  const res = await axios.post(`${BASEURL}queue`, { queueName });
   if (res.data) {
     return res.data;
-  } else {
-    return '';
   }
+  return '';
 };
