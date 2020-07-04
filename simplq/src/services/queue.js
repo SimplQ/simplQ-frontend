@@ -14,48 +14,48 @@ const makePostRequest = async (endPoint, payload) => {
 
 export const createQueue = async (queueName) => {
   const response = await makePostRequest('/queue/create', {
-    queueName: queueName,
+    queueName,
   });
   return response.data;
 };
 
 export const readQueue = async (queueId) => {
   const response = await makePostRequest('/queue/info', {
-    queueId: queueId,
+    queueId,
   });
   return response.data;
 };
 
 export const addtoQueue = async (name, contact, notifyable, queueId) => {
   const response = await makePostRequest('/user/add', {
-    name: name,
+    name,
     contactNumber: contact,
-    queueId: queueId,
-    notifyable: notifyable,
+    queueId,
+    notifyable,
   });
   return response.data;
 };
 
 export const userStatus = async (queueId, tokenId) => {
   const response = await makePostRequest('/user/status', {
-    queueId: queueId,
-    tokenId: tokenId,
+    queueId,
+    tokenId,
   });
   return response.data;
 };
 
 export const notifyUser = async (queueId, tokenId) => {
   const response = await makePostRequest('/user/alert', {
-    queueId: queueId,
-    tokenId: tokenId,
+    queueId,
+    tokenId,
   });
   return response;
 };
 
 export const deleteFromQueue = async (queueId, tokenId) => {
   const response = await makePostRequest('/user/delete', {
-    queueId: queueId,
-    tokenId: tokenId,
+    queueId,
+    tokenId,
   });
   return response;
 };
