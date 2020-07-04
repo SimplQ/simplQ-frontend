@@ -13,8 +13,8 @@ async function loginElseCreateAnonAccount() {
     Promise.resolve(true);
   }
 
-  var userId = localStorage.getItem('userId');
-  var tempKey = localStorage.getItem('tempKey');
+  let userId = localStorage.getItem('userId');
+  let tempKey = localStorage.getItem('tempKey');
 
   if (!userId || !tempKey) {
     userId = uuidv4();

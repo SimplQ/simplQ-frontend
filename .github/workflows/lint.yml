@@ -3,6 +3,11 @@ name: Lint
 on: 
   pull_request:
       branches: [master]
+      
+defaults:
+  run:
+    shell: bash
+    working-directory: simplq
 
 jobs:
   run-linters:
@@ -28,4 +33,7 @@ jobs:
           github_token: ${{ secrets.github_token }}
           # Enable linters
           eslint: true
+          eslint_dir: simplq/
           prettier: true
+          prettier_dir: simplq/
+          auto_fix: true
