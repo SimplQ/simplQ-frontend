@@ -26,15 +26,15 @@ export const BenefitsInfo = () => {
   return (
     <div className={styles['benefits-info']}>
       <div>
-        {/* <img></img> */}
+        <img src="/images/minimize_crowding.svg" alt="mimimze crowding" />
         <p>Minimize crowding by keeping your queue virtual</p>
       </div>
       <div>
-        {/* <img></img> */}
+        <img src="/images/minimize_crowding.svg" alt="mimimze crowding" />
         <p>Enforce social distancing effectively</p>
       </div>
       <div>
-        {/* <img></img> */}
+        <img src="/images/minimize_crowding.svg" alt="mimimze crowding" />
         <p>Check your current status in the queue</p>
       </div>
     </div>

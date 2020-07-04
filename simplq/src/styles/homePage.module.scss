@@ -27,15 +27,21 @@ div {
   @include background-color();
   @include text-color();
   @include centered-flexbox-parent-vertical();
+  @include centered-flexbox-parent-horizontal();
   div {
+    padding: 70px;
     margin: auto;
+    font-size: 1.5rem;
+    img {
+      height: 70px;
+    }
   }
 }
 
 .create-queue {
   @include text-color();
   @include centered-flexbox-parent-vertical();
-  @include centered-flexbox-parent-horizontal();
+  ;
 }
 
 .join-queue {
