@@ -44,7 +44,7 @@ export const userStatus = async (queueId, tokenId) => {
   return response.data;
 };
 
-export const notifyUser = async (queueId, tokenId) => 
+export const notifyUser = async (queueId, tokenId) => {
   const response = await makePostRequest('/user/alert', {
     queueId: queueId,
     tokenId: tokenId
