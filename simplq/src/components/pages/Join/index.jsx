@@ -4,8 +4,8 @@ import JoinQueueForm from './Form';
 import { setTokenId, setJoinerStep, setAheadCount, setQueueId } from '../../../store/appSlice';
 import * as TokenService from '../../../services/token';
 import { handleApiErrors } from '../../ErrorHandler';
-import { SimplQHeader } from '../../common/Header';
-import Header from '../../common/Header';
+import Header, { SimplQHeader } from '../../common/Header';
+
 import styles from '../../../styles/joinPage.module.scss';
 import JoinerStepper from '../../common/stepper/JoinerStepper';
 
