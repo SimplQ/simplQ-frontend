@@ -2,12 +2,12 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import JoinQueueForm from './Form';
 import { setTokenId, setJoinerStep, setAheadCount, setQueueId } from '../../../store/appSlice';
-import JoinerStepper from '../../common/stepper/JoinerStepper';
 import * as TokenService from '../../../services/token';
 import { handleApiErrors } from '../../ErrorHandler';
 import { SimplQHeader } from '../../common/Header.stories';
 import Header from '../../common/Header';
 import styles from '../../../styles/joinPage.module.scss';
+import JoinerStepper from '../../common/stepper/JoinerStepper';
 
 export function JoinQueue(props) {
   const queueId = props.match.params.queueId;
