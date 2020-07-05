@@ -12,7 +12,6 @@ export const makeRequest = async (method, url, data) => {
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },
-    data,
+    data,   
   });
 };
- 
