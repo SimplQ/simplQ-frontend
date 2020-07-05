@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from './Header';
-import styles from '../../styles/header.module.scss';
+import styles from '../../../styles/header.module.scss';
 
 export default {
   component: Header,

@@ -6,7 +6,7 @@ import QueueStatus from './pages/QueueStatus';
 import AdminQueue from './pages/Admin';
 import PageNotFound from './pages/PageNotFound';
 import { ErrorBoundary, ErrorNotification } from './ErrorHandler';
-import Home from './pages/Home/Index';
+import Home from './pages/Home';
 
 export default () => {
   return (

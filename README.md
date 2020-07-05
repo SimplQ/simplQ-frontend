@@ -31,6 +31,6 @@ Feel free to fork and improve, and do send a pull request. We will be delighted 
 
 There are a ton of features being planned. So if you are considering contributing to this repository, please first discuss the change you wish to make via the issue tracker. Let's work together.
 
-The simplq folder has a readme file which details the structure and tools used. Please go through it first.
+The [simplq](/simplq/readme.md) folder has a readme file which details the structure and tools used. Please go through it first.
 
 The frontend is currently being heavily revamped. Check the new-frontend branch for the latest changes.

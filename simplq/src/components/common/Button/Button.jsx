@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../../styles/buttons.module.scss';
+import styles from '../../../styles/buttons.module.scss';
 
 const StandardButton = (props) => {
   const { onClick, text } = props;

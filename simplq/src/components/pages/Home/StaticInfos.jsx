@@ -1,5 +1,5 @@
 import React from 'react';
-import { CreateQButton, JoinQButton } from '../../common/Button.stories';
+import { CreateQButton, JoinQButton } from '../../common/Button';
 import Header from '../../common/Header';
 import styles from '../../../styles/homePage.module.scss';
 
