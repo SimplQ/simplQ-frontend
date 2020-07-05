@@ -31,7 +31,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint src --ext .js,.jsx,.json --fix",
+    "lint": "eslint src/ --ext .js,.jsx --fix",
     "storybook": "start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -s public"
   },
@@ -76,7 +76,7 @@
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
       "npx prettier --write",
-      "eslint --ext .js,.jsx,.json --fix"
+      "eslint --ext .js,.jsx --fix"
     ]
   }
 }

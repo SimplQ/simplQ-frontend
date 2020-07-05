@@ -1,10 +1,12 @@
+/* eslint-disable */ // todo enable it back
+
 import React from 'react';
-import PageNotFound from './pages/PageNotFound';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import { useSelector, useDispatch } from 'react-redux';
+import PageNotFound from './pages/PageNotFound';
 import { setErrorNotifOpen } from '../store/appSlice';
-import { store } from '../store'; //TODO: Use Hooks
+import { store } from '../store'; // TODO: Use Hooks
 
 export class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -17,12 +19,14 @@ export class ErrorBoundary extends React.Component {
     console.log('In getDerivedStateFromError');
     return { hasError: true };
   }
+
   componentDidCatch(error, errorInfo) {
     // You can also log the error to an error reporting service
-    //logErrorToMyService(error, errorInfo);
+    // logErrorToMyService(error, errorInfo);
     console.log('In componentDidCatch');
     useDispatch(setErrorNotifOpen(true));
   }
+
   render() {
     if (this.state.hasError) {
       // You can render any custom fallback UI

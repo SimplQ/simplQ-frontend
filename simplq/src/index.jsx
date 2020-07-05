@@ -14,7 +14,7 @@ import { loginElseCreateAnonAccount } from './services/auth';
 
 Amplify.configure(awsconfig);
 
-(async function () {
+(async function loginInit() {
   await loginElseCreateAnonAccount();
 })();
 

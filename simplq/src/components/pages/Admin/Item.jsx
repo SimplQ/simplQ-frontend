@@ -2,16 +2,16 @@ import React, { useState } from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import * as TokenService from '../../../services/token';
 import Notifications from '@material-ui/icons/Notifications';
 import { useDispatch } from 'react-redux';
-import { progressCreationStep } from '../../../store/appSlice';
 import DeleteIcon from '@material-ui/icons/Delete';
 import CallIcon from '@material-ui/icons/Call';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { makeStyles, CircularProgress } from '@material-ui/core';
 import DoneIcon from '@material-ui/icons/Done';
+import { progressCreationStep } from '../../../store/appSlice';
+import * as TokenService from '../../../services/token';
 import { handleApiErrors } from '../../ErrorHandler';
 
 const useStyles = makeStyles((theme) => ({
@@ -58,7 +58,7 @@ function Item(props) {
     props.removeItemHandler(tokenId); // TODO Should delete from list only ofter successfull deletion from db
   };
 
-  var notificationButton = null;
+  let notificationButton = null;
   if (notifying) {
     notificationButton = (
       <IconButton edge="end" color="primary" aria-label="notify">
@@ -88,7 +88,7 @@ function Item(props) {
   }
 
   return (
-    <ListItem button className={classes.root} component="a" href={'tel:' + contact}>
+    <ListItem button className={classes.root} component="a" href={`tel:${contact}`}>
       <ListItemAvatar>
         <IconButton className={classes.callButton}>
           <CallIcon className={classes.callIcon} />
