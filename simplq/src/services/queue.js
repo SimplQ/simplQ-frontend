@@ -1,4 +1,4 @@
-import { makeRequest } from './axios';
+import makeRequest from './axios';
 
 export const create = async (queueName) => {
   const response = await makeRequest('post', '/queue', {
