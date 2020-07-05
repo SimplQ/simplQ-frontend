@@ -30,11 +30,11 @@ export const BenefitsInfo = () => {
         <p>Minimize crowding by keeping your queue virtual</p>
       </div>
       <div>
-        <img src="/images/minimize_crowding.svg" alt="mimimze crowding" />
+        <img src="/images/enforce_social_dist.svg" alt="Enforce social distancing" />
         <p>Enforce social distancing effectively</p>
       </div>
       <div>
-        <img src="/images/minimize_crowding.svg" alt="mimimze crowding" />
+        <img src="/images/check_status.svg " alt="Check your current status" />
         <p>Check your current status in the queue</p>
       </div>
     </div>
@@ -44,10 +44,13 @@ export const BenefitsInfo = () => {
 export const HowToCreate = () => {
   return (
     <div className={styles['create-queue']}>
-      <h2>Create a queue at the click of a button</h2>
+      <h2>Create a Queue at the click of a button</h2>
       <div>
-        <h3>Create Queue</h3>
-        <p>Enter queue name and create a queue totally free of cost</p>
+        <img src="/images/queue_creation.svg" alt="Create Queue" />
+        <div>
+          <h3>Create Queue</h3>
+          <p>Enter queue name and create a queue totally free of cost</p>
+        </div>
       </div>
       <div>
         <h3>Share Queue</h3>

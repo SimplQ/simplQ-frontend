@@ -20,7 +20,7 @@ div {
 .center {
   @include centered-flexbox-parent-horizontal();
   @include text-color();
-  font-size: 1.5rem;
+  font-size: 26pt;
 }
 
 .benefits-info {
@@ -31,7 +31,7 @@ div {
   div {
     padding: 70px;
     margin: auto;
-    font-size: 1.5rem;
+    font-size: 23pt;
     img {
       height: 70px;
     }
@@ -41,7 +41,15 @@ div {
 .create-queue {
   @include text-color();
   @include centered-flexbox-parent-vertical();
-  ;
+  @include centered-flexbox-parent-horizontal();
+  div {
+    img {
+      height: 250px;
+    }
+    div {
+      padding: 70px;
+    }
+  }
 }
 
 .join-queue {
@@ -53,3 +61,4 @@ div {
 .extra-info {
   @extend .benefits-info;
 }
+ 
