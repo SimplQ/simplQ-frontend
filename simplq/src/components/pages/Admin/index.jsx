@@ -25,14 +25,20 @@ export default () => {
 
   const [items, setItems] = useState();
 
-  const update = () => {
+  const update = (updateClicked) => {
     if (queueId) {
       QueueService.get(queueId)
         .then((data) => {
           setItems(data.tokens);
+          if (!updateClicked) {
+            setTimeout(update, 10000);
+          }
         })
         .catch((err) => {
           handleApiErrors(err);
+          if (!updateClicked) {
+            setTimeout(update, 10000);
+          }
         });
     }
   };
@@ -62,7 +68,7 @@ export default () => {
         queueId={queueId}
         className={styles.shareButton}
         onRefresh={() => {
-          update();
+          update(true);
           setItems(false);
         }}
       />
