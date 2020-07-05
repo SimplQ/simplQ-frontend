@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import ItemList from './ItemList';
+import * as TokenService from '../../../services/token';
 import * as QueueService from '../../../services/queue';
 import { progressCreationStep } from '../../../store/appSlice';
 import ShareBar from './ShareBar';
 import PageNotFound from '../PageNotFound';
 import CreatorStepper from '../../common/stepper/CreatorStepper';
 import { handleApiErrors } from '../../ErrorHandler';
-import { SimplQHeader } from '../../common/Header.stories';
-import Header from '../../common/Header';
+import Header, { SimplQHeader } from '../../common/Header';
 import styles from '../../../styles/adminPage.module.scss';
 
 export default () => {
@@ -27,9 +27,9 @@ export default () => {
 
   const update = () => {
     if (queueId) {
-      QueueService.readQueue(queueId)
+      QueueService.get(queueId)
         .then((data) => {
-          setItems(data.users);
+          setItems(data.tokens);
         })
         .catch((err) => {
           handleApiErrors(err);
@@ -38,7 +38,7 @@ export default () => {
   };
 
   const addNewItem = (name, contact) => {
-    return QueueService.addtoQueue(name, contact, false, queueId)
+    return TokenService.create(name, contact, false, queueId)
       .then((response) => {
         setItems([...items, { tokenId: response.tokenId, name, contact, notifyable: false }]);
       })

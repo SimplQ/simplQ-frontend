@@ -7,9 +7,9 @@ import { setQueueName, setQueueId, setCreationStep } from '../../store/appSlice'
 import { store } from '../../store'; // TODO: Use Hooks
 import CreatorStepper from '../common/stepper/CreatorStepper';
 import { handleApiErrors } from '../ErrorHandler';
-import { CreateQButton } from '../common/Button.stories';
+import { CreateQButton } from '../common/Button';
 import styles from '../../styles/createPage.module.scss';
-import { SimplQHeader } from '../common/Header.stories';
+import { SimplQHeader } from '../common/Header';
 
 class CreateQueue extends React.Component {
   constructor(props) {
@@ -25,7 +25,7 @@ class CreateQueue extends React.Component {
     if (this.state.textFieldValue === '') this.setState({ invalidMsg: 'Queue name is required' });
     else {
       this.setState({ createInProgress: true });
-      QueueService.createQueue(queueName)
+      QueueService.create(queueName)
         .then((response) => {
           store.dispatch(setQueueId(response.queueId));
           store.dispatch(setQueueName(response.queueName));
