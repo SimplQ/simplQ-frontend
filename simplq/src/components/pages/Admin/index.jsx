@@ -8,8 +8,7 @@ import ShareBar from './ShareBar';
 import PageNotFound from '../PageNotFound';
 import CreatorStepper from '../../common/stepper/CreatorStepper';
 import { handleApiErrors } from '../../ErrorHandler';
-import { SimplQHeader } from '../../common/Header.stories';
-import Header from '../../common/Header';
+import Header, { SimplQHeader } from '../../common/Header';
 import styles from '../../../styles/adminPage.module.scss';
 
 export default () => {

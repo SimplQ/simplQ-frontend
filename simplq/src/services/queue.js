@@ -8,6 +8,6 @@ export const create = async (queueName) => {
 };
 
 export const get = async (queueId) => {
-  const response = await makeRequest('get', '/queue/' + queueId);
+  const response = await makeRequest('get', `/queue/${queueId}`);
   return response.data;
 };
