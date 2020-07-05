@@ -10,8 +10,8 @@ export const makeRequest = async (method, url, data) => {
     baseURL,
     url,
     headers: {
-      Authorization: `Bearer ${accessToken}`,
+      Authorization:    `Bearer ${accessToken}`,   
     },
-    data,   
+    data,
   });
 };
