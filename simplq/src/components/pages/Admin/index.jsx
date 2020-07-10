@@ -11,6 +11,18 @@ import { handleApiErrors } from '../../ErrorHandler';
 import Header, { SimplQHeader } from '../../common/Header';
 import styles from '../../../styles/adminPage.module.scss';
 
+const timeoutUtil = (() => {
+  let timeoutId;
+  return {
+    getTimeoutId: () => {
+      return timeoutId;
+    },
+    setTimeoutId: (timeout) => {
+      timeoutId = timeout;
+    },
+  };
+})();
+
 export default () => {
   const dispatch = useDispatch();
   const queueId = useSelector((state) => state.appReducer.queueId);
@@ -24,20 +36,21 @@ export default () => {
   dispatch(progressCreationStep(1));
 
   const [items, setItems] = useState();
-  const [timeoutId, setTimeoutId] = useState();
+  // const [timeoutId, setTimeoutId] = useState();
 
   const update = () => {
-    clearTimeout(timeoutId);
+    clearTimeout(timeoutUtil.getTimeoutId());
     if (queueId) {
       QueueService.get(queueId)
         .then((data) => {
           setItems(data.tokens);
-          const timeout = setTimeout(update, 10000);
-          setTimeoutId(timeout);
+          const timeoutId = setTimeout(update, 10000);
+          timeoutUtil.setTimeoutId(timeoutId);
         })
         .catch((err) => {
           handleApiErrors(err);
-          setTimeoutId(setTimeout(update, 10000));
+          const timeoutId = setTimeout(update, 10000);
+          timeoutUtil.setTimeoutId(timeoutId);
         });
     }
   };

@@ -10,6 +10,18 @@ import JoinerStepper from '../common/stepper/JoinerStepper';
 import { setAheadCount, setJoinerStep } from '../../store/appSlice';
 import { handleApiErrors } from '../ErrorHandler';
 
+const timeoutUtil = (() => {
+  let timeoutId;
+  return {
+    getTimeoutId: () => {
+      return timeoutId;
+    },
+    setTimeoutId: (timeout) => {
+      timeoutId = timeout;
+    },
+  };
+})();
+
 const useStyles = makeStyles((theme) => ({
   buttonGroup: {
     display: 'flex',
@@ -37,37 +49,24 @@ function QueueStatus() {
   const classes = useStyles();
 
   const update = () => {
-    if (tokenId) {
-      setUpdateInProgress(true);
-      TokenService.get(tokenId)
-        .then((response) => {
-          dispatch(setAheadCount(response.aheadCount));
-          setTokenStatus(response.tokenStatus);
-          setUpdateInProgress(false);
-        })
-        .catch((err) => {
-          setUpdateInProgress(false);
-          handleApiErrors(err);
-        });
-    }
-  };
-
-  const pollAndUpdate = () => {
+    clearTimeout(timeoutUtil.getTimeoutId());
     if (tokenId) {
       TokenService.get(tokenId)
         .then((response) => {
           dispatch(setAheadCount(response.aheadCount));
           setTokenStatus(response.tokenStatus);
-          setTimeout(pollAndUpdate, 10000);
+          const timeoutId = setTimeout(update, 10000);
+          timeoutUtil.setTimeoutId(timeoutId);
         })
         .catch((err) => {
           handleApiErrors(err);
-          setTimeout(pollAndUpdate, 10000);
+          const timeoutId = setTimeout(update, 10000);
+          timeoutUtil.setTimeoutId(timeoutId);
         });
     }
   };
 
-  useEffect(pollAndUpdate, [tokenId]);
+  useEffect(update, [tokenId]);
 
   const onDeleteClick = () => {
     setUpdateInProgress(true);
