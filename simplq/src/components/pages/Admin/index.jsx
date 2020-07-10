@@ -11,17 +11,7 @@ import { handleApiErrors } from '../../ErrorHandler';
 import Header, { SimplQHeader } from '../../common/Header';
 import styles from '../../../styles/adminPage.module.scss';
 
-const timeoutUtil = (() => {
-  let timeoutId;
-  return {
-    getTimeoutId: () => {
-      return timeoutId;
-    },
-    setTimeoutId: (timeout) => {
-      timeoutId = timeout;
-    },
-  };
-})();
+let timeoutId;
 
 export default () => {
   const dispatch = useDispatch();
@@ -29,31 +19,33 @@ export default () => {
   const queueName = useSelector((state) => state.appReducer.queueName);
 
   if (!queueId) {
-    // If queue id is not here, most probably his session storage got cleared. This can be solved only with proper auth.
+    // If queue id is not here, most probably his session storage got cleared. This can be solved only with er auth.
     return <PageNotFound />;
   }
 
   dispatch(progressCreationStep(1));
 
   const [items, setItems] = useState();
-  // const [timeoutId, setTimeoutId] = useState();
 
   const update = () => {
-    clearTimeout(timeoutUtil.getTimeoutId());
+    clearTimeout(timeoutId);
     if (queueId) {
       QueueService.get(queueId)
         .then((data) => {
           setItems(data.tokens);
-          const timeoutId = setTimeout(update, 10000);
-          timeoutUtil.setTimeoutId(timeoutId);
+          timeoutId = setTimeout(update, 10000);
         })
         .catch((err) => {
           handleApiErrors(err);
-          const timeoutId = setTimeout(update, 10000);
-          timeoutUtil.setTimeoutId(timeoutId);
+          timeoutId = setTimeout(update, 10000);
         });
     }
   };
+
+  useEffect(() => {
+    update();
+    return () => clearTimeout(timeoutId);
+  }, [queueId]);
 
   useEffect(update, [queueId]);
 

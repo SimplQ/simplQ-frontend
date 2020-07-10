@@ -10,17 +10,7 @@ import JoinerStepper from '../common/stepper/JoinerStepper';
 import { setAheadCount, setJoinerStep } from '../../store/appSlice';
 import { handleApiErrors } from '../ErrorHandler';
 
-const timeoutUtil = (() => {
-  let timeoutId;
-  return {
-    getTimeoutId: () => {
-      return timeoutId;
-    },
-    setTimeoutId: (timeout) => {
-      timeoutId = timeout;
-    },
-  };
-})();
+let timeoutId;
 
 const useStyles = makeStyles((theme) => ({
   buttonGroup: {
@@ -49,24 +39,25 @@ function QueueStatus() {
   const classes = useStyles();
 
   const update = () => {
-    clearTimeout(timeoutUtil.getTimeoutId());
+    clearTimeout(timeoutId);
     if (tokenId) {
       TokenService.get(tokenId)
         .then((response) => {
           dispatch(setAheadCount(response.aheadCount));
           setTokenStatus(response.tokenStatus);
-          const timeoutId = setTimeout(update, 10000);
-          timeoutUtil.setTimeoutId(timeoutId);
+          timeoutId = setTimeout(update, 10000);
         })
         .catch((err) => {
           handleApiErrors(err);
-          const timeoutId = setTimeout(update, 10000);
-          timeoutUtil.setTimeoutId(timeoutId);
+          timeoutId = setTimeout(update, 10000);
         });
     }
   };
 
-  useEffect(update, [tokenId]);
+  useEffect(() => {
+    update();
+    return () => clearTimeout(timeoutId);
+  }, [tokenId]);
 
   const onDeleteClick = () => {
     setUpdateInProgress(true);
