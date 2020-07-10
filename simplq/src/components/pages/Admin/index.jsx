@@ -25,23 +25,33 @@ export default () => {
 
   const [items, setItems] = useState();
 
-  const update = (updateClicked) => {
+  const update = () => {
     if (queueId) {
       QueueService.get(queueId)
         .then((data) => {
           setItems(data.tokens);
-          if (!updateClicked) {
-            setTimeout(update, 10000);
-          }
         })
         .catch((err) => {
           handleApiErrors(err);
-          if (!updateClicked) {
-            setTimeout(update, 10000);
-          }
         });
     }
   };
+
+  const pollAndUpdate = () => {
+    if (queueId) {
+      QueueService.get(queueId)
+        .then((data) => {
+          setItems(data.tokens);
+          setTimeout(pollAndUpdate, 10000);
+        })
+        .catch((err) => {
+          handleApiErrors(err);
+          setTimeout(pollAndUpdate, 10000);
+        });
+    }
+  };
+
+  useEffect(pollAndUpdate, [queueId]);
 
   const addNewItem = (name, contact) => {
     return TokenService.create(name, contact, false, queueId)
@@ -57,8 +67,6 @@ export default () => {
     setItems(items.filter((item) => item.tokenId !== tokenId));
   };
 
-  useEffect(update, [queueId]);
-
   return (
     <>
       <SimplQHeader />
@@ -68,8 +76,7 @@ export default () => {
         queueId={queueId}
         className={styles.shareButton}
         onRefresh={() => {
-          update(true);
-          setItems(false);
+          update();
         }}
       />
       <div className={styles.list}>

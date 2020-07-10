@@ -36,34 +36,38 @@ function QueueStatus() {
   const [updateInProgress, setUpdateInProgress] = useState(false);
   const classes = useStyles();
 
-  const update = (updateClicked) => {
+  const update = () => {
     if (tokenId) {
-      if (updateClicked) {
-        setUpdateInProgress(true);
-      }
+      setUpdateInProgress(true);
       TokenService.get(tokenId)
         .then((response) => {
           dispatch(setAheadCount(response.aheadCount));
           setTokenStatus(response.tokenStatus);
-          if (updateClicked) {
-            setUpdateInProgress(false);
-          } else {
-            setTimeout(update, 10000);
-          }
+          setUpdateInProgress(false);
         })
         .catch((err) => {
-          if (updateClicked) {
-            setUpdateInProgress(false);
-          }
+          setUpdateInProgress(false);
           handleApiErrors(err);
-          if (!updateClicked) {
-            setTimeout(update, 10000);
-          }
         });
     }
   };
 
-  useEffect(update, [tokenId]);
+  const pollAndUpdate = () => {
+    if (tokenId) {
+      TokenService.get(tokenId)
+        .then((response) => {
+          dispatch(setAheadCount(response.aheadCount));
+          setTokenStatus(response.tokenStatus);
+          setTimeout(pollAndUpdate, 10000);
+        })
+        .catch((err) => {
+          handleApiErrors(err);
+          setTimeout(pollAndUpdate, 10000);
+        });
+    }
+  };
+
+  useEffect(pollAndUpdate, [tokenId]);
 
   const onDeleteClick = () => {
     setUpdateInProgress(true);
@@ -112,7 +116,7 @@ function QueueStatus() {
               className={classes.button}
               variant="outlined"
               color="primary"
-              onClick={() => update(true)}
+              onClick={() => update()}
             >
               Check Status
             </Button>
