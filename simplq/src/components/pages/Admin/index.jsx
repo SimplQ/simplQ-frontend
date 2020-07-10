@@ -24,34 +24,25 @@ export default () => {
   dispatch(progressCreationStep(1));
 
   const [items, setItems] = useState();
+  const [timeoutId, setTimeoutId] = useState();
 
   const update = () => {
+    clearTimeout(timeoutId);
     if (queueId) {
       QueueService.get(queueId)
         .then((data) => {
           setItems(data.tokens);
+          const timeout = setTimeout(update, 10000);
+          setTimeoutId(timeout);
         })
         .catch((err) => {
           handleApiErrors(err);
+          setTimeoutId(setTimeout(update, 10000));
         });
     }
   };
 
-  const pollAndUpdate = () => {
-    if (queueId) {
-      QueueService.get(queueId)
-        .then((data) => {
-          setItems(data.tokens);
-          setTimeout(pollAndUpdate, 10000);
-        })
-        .catch((err) => {
-          handleApiErrors(err);
-          setTimeout(pollAndUpdate, 10000);
-        });
-    }
-  };
-
-  useEffect(pollAndUpdate, [queueId]);
+  useEffect(update, [queueId]);
 
   const addNewItem = (name, contact) => {
     return TokenService.create(name, contact, false, queueId)
