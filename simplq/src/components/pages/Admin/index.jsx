@@ -19,7 +19,7 @@ export default () => {
   const queueName = useSelector((state) => state.appReducer.queueName);
 
   if (!queueId) {
-    // If queue id is not here, most probably his session storage got cleared. This can be solved only with er auth.
+    // If queue id is not here, most probably his session storage got cleared. This can be solved only with proper auth.
     return <PageNotFound />;
   }
 
