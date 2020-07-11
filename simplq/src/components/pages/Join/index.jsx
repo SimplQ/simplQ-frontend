@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import TextField from '@material-ui/core/TextField';
 import JoinQueueForm from './Form';
 import { setTokenId, setJoinerStep, setAheadCount, setQueueId } from '../../../store/appSlice';
 import * as TokenService from '../../../services/token';
 import { handleApiErrors } from '../../ErrorHandler';
-import { SimplQHeader } from '../../common/Header';
-import Header from '../../common/Header';
+import Header, { SimplQHeader } from '../../common/Header';
 import styles from '../../../styles/joinPage.module.scss';
 import JoinerStepper from '../../common/stepper/JoinerStepper';
+import { Banner } from '../Home/StaticInfos';
+import { JoinQButton } from '../../common/Button';
 
-export function JoinQueue(props) {
+export function JoinQueueDetails(props) {
   const queueId = props.match.params.queueId;
   const queueName = useSelector((state) => state.appReducer.queueName);
   const dispatch = useDispatch();
@@ -39,4 +41,37 @@ export function JoinQueue(props) {
   );
 }
 
-export default JoinQueue;
+export function JoinQueueLink(props) {
+  const [queueLink, setQueueLink] = useState('');
+
+  const handleClick = (link) => {
+    const queueId = link.split('/').pop();
+    props.history.push(`/j/${queueId}`);
+  };
+
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      handleClick(queueLink);
+    }
+  };
+
+  return (
+    <>
+      <Banner />
+      <TextField
+        placeholder="Enter queue link"
+        fullWidth
+        required
+        variant="outlined"
+        onKeyPress={handleKeyPress}
+        value={queueLink}
+        onChange={(e) => setQueueLink(e.target.value)}
+        // error={invalidName}
+        // helperText={invalidName ? 'Enter a valid name' : ''}
+      />
+      <JoinQButton onClick={() => handleClick(queueLink)} />
+    </>
+  );
+}
+
+// export default JoinQueue;

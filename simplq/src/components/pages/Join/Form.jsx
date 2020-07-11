@@ -13,8 +13,12 @@ export function JoinQueueForm(props) {
   const [addingInProgress, setAddingInProgress] = useState(false);
 
   function handleNameChange(e) {
-    setName(e.target.value);
-    setInvalidName(false);
+    if (name.match('^[A-Za-z0-9 ]*$')) {
+      setName(e.target.value);
+      setInvalidName(false);
+    } else {
+      setInvalidName(true);
+    }
   }
 
   function handleContactChange(e) {
@@ -41,21 +45,36 @@ export function JoinQueueForm(props) {
     });
   };
 
+  // const renderHeaderOrInput = () => {
+  //   if (props.queueId) {
+  //     return <Header text={props.header} />;
+  //   }
+  //   return (
+  //     <TextField
+  //       placeholder="Queue Name to join"
+  //       fullWidth
+  //       required
+  //       variant="outlined"
+  //       value={name}
+  //       onChange={handleNameChange}
+  //       error={invalidName}
+  //       helperText={invalidName ? 'Enter a valid name' : ''}
+  //     />
+  //   );
+  // };
+
   return (
     <>
+      {/* {renderHeaderOrInput()} */}
       <TextField
-        placeholder="Name"
+        placeholder="Your ame"
         fullWidth
         required
-        margin="normal"
-        InputLabelProps={{
-          shrink: true,
-        }}
         variant="outlined"
         value={name}
         onChange={handleNameChange}
         error={invalidName}
-        helperText={invalidName ? 'Name is required' : ''}
+        helperText={invalidName ? 'Enter a valid name' : ''}
       />
       <PhoneInput
         // containerClass={classes.textField}
