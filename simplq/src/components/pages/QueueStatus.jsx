@@ -102,9 +102,7 @@ function QueueStatus() {
       <JoinerStepper />
       <CentralSection heading="Thanks for waiting!">
         <div className={classes.content}>{status}</div>
-        <div className={classes.buttonGroup}>
-          <NotificationButton buttonClass={classes.button} />
-        </div>
+        <NotificationButton buttonClass={classes.button} buttonGroupClass={classes.buttonGroup} />
         {!(tokenStatus === 'REMOVED') && !updateInProgress ? (
           <div className={classes.buttonGroup}>
             <Button

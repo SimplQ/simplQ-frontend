@@ -27,13 +27,6 @@ const NotificationButton = (props) => {
       }
 
       dispatch(setNotificationPermission(permission));
-
-      // set the button to shown or hidden, depending on what the user answers
-      if (Notification.permission === 'denied' || Notification.permission === 'default') {
-        console.log('Notifications disabled');
-      } else {
-        console.log('Notifications enabled');
-      }
     };
 
     // Let's check if the browser supports notifications
@@ -52,38 +45,27 @@ const NotificationButton = (props) => {
 
   if (notificationPermission === 'default') {
     return (
-      <Button
-        className={props.buttonClass}
-        variant="outlined"
-        color="primary"
-        onClick={() => askNotificationPermission()}
-      >
-        Enable Notifications
-      </Button>
+      <div className={props.buttonGroupClass}>
+        <Button
+          className={props.buttonClass}
+          variant="outlined"
+          color="primary"
+          onClick={() => askNotificationPermission()}
+        >
+          Enable Notifications
+        </Button>
+      </div>
     );
   }
   if (notificationPermission === 'denied') {
     return (
-      <Typography variant="h5" align="center" color="textSecondary" component="p">
-        Enable Notifications in Settings
-      </Typography>
+      <div className={props.buttonGroupClass}>
+        <Typography variant="h5" align="center" color="textSecondary" component="p">
+          Enable Notifications in Settings
+        </Typography>
+      </div>
     );
   }
   return null;
-
-  // return (
-  //     (notificationPermission === 'default') ? (
-  //         <Button
-  //             className={props.buttonClass}
-  //             variant="outlined"
-  //             color="primary"
-  //             onClick={() => askNotificationPermission()}
-  //         >
-  //             Enable Notifications
-  //         </Button>
-  //     ) : (
-  //             <div />
-  //         )
-  // )
 };
 export default NotificationButton;
