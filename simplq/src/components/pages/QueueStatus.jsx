@@ -73,12 +73,23 @@ function QueueStatus() {
       });
   };
 
+  const showNotification = () => {
+    const n = new Notification('My Great Song');
+    document.addEventListener('visibilitychange', function () {
+      if (document.visibilityState === 'visible') {
+        // The tab has become visible so clear the now-stale Notification.
+        n.close();
+      }
+    });
+  };
+
   let status = null;
   if (updateInProgress) {
     status = <CircularProgress />;
   } else if (tokenStatus === 'REMOVED') {
     status = <Typography align="center">You have been removed from the queue</Typography>;
   } else if (tokenStatus === 'NOTIFIED') {
+    showNotification();
     dispatch(setJoinerStep(3));
     status = <img src="/tenor.gif" alt="Your turn is up" />;
   } else if (aheadCount === 0) {
