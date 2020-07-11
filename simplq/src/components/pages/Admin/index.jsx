@@ -47,8 +47,6 @@ export default () => {
     return () => clearTimeout(timeoutId);
   }, [queueId]);
 
-  useEffect(update, [queueId]);
-
   const addNewItem = (name, contact) => {
     return TokenService.create(name, contact, false, queueId)
       .then((response) => {
