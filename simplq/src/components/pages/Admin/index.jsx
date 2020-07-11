@@ -50,7 +50,7 @@ export default () => {
   }, [queueId]);
 
   const addNewItem = (name, contact) => {
-    return TokenService.create(name, contact, false, queueId)
+    TokenService.create(name, contact, false, queueId)
       .then((response) => {
         setItems([...items, { tokenId: response.tokenId, name, contact, notifyable: false }]);
       })
@@ -83,7 +83,7 @@ export default () => {
           removeItemHandler={removeItemHandler}
         />
       </div>
-      <div>
+      <div className={styles['add-member']}>
         <AddMember queueId={queueId} joinQueueHandler={addNewItem} />
       </div>
     </>

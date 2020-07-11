@@ -46,24 +46,6 @@ export function JoinQueueForm(props) {
     });
   };
 
-  // const renderHeaderOrInput = () => {
-  //   if (props.queueId) {
-  //     return <Header text={props.header} />;
-  //   }
-  //   return (
-  //     <TextField
-  //       placeholder="Queue Name to join"
-  //       fullWidth
-  //       required
-  //       variant="outlined"
-  //       value={name}
-  //       onChange={handleNameChange}
-  //       error={invalidName}
-  //       helperText={invalidName ? 'Enter a valid name' : ''}
-  //     />
-  //   );
-  // };
-
   return (
     <>
       {/* {renderHeaderOrInput()} */}
@@ -90,6 +72,7 @@ export function JoinQueueForm(props) {
         }}
         isValid={() => (invalidContact ? 'Phone number is not valid' : true)}
         onChange={handleContactChange}
+        onKeyDown={(e) => handleEnterPress(e, handleClick)}
       />
       <div>
         {addingInProgress ? (

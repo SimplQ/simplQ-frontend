@@ -1,0 +1,13 @@
+@import 'utils';
+
+.button-group {
+  @include center-vertically();
+  div {
+    padding: 1rem;
+    margin: auto;
+  }
+}
+
+.header {
+  @include queue-name-header();
+}

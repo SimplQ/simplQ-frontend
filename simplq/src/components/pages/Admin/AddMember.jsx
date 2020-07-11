@@ -10,22 +10,20 @@ export default (props) => {
   const [open, setOpen] = React.useState(false);
   return (
     <>
-      <div>
-        <ListItem button onClick={() => setOpen(!open)}>
-          <ListItemIcon>
-            <AddIcon />
-          </ListItemIcon>
-          <ListItemText primary="Add Manually" />
-          {open ? <ExpandLess /> : <ExpandMore />}
-          <Collapse in={open} timeout="auto" unmountOnExit>
-            <JoinQueueForm
-              buttonName="Add"
-              queueId={props.queueId}
-              joinQueueHandler={props.joinQueueHandler}
-            />
-          </Collapse>
-        </ListItem>
-      </div>
+      <ListItem button onClick={() => setOpen(!open)}>
+        <ListItemIcon>
+          <AddIcon />
+        </ListItemIcon>
+        <ListItemText primary="Add Manually" />
+        {open ? <ExpandLess /> : <ExpandMore />}
+        <Collapse in={open} timeout="auto" unmountOnExit>
+          <JoinQueueForm
+            buttonName="Add"
+            queueId={props.queueId}
+            joinQueueHandler={props.joinQueueHandler}
+          />
+        </Collapse>
+      </ListItem>
     </>
   );
 };
