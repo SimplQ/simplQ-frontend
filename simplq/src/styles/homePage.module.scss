@@ -18,7 +18,7 @@ div {
 }
 
 .center {
-  @include centered-flexbox-parent-horizontal();
+  @include center-horizontally();
   @include text-color();
   font-size: 26pt;
 }
@@ -26,8 +26,8 @@ div {
 .benefits-info {
   @include background-color();
   @include text-color();
-  @include centered-flexbox-parent-vertical();
-  @include centered-flexbox-parent-horizontal();
+  @include center-vertically();
+  @include center-horizontally();
   div {
     padding: 70px;
     margin: auto;
@@ -40,8 +40,8 @@ div {
 
 .create-queue {
   @include text-color();
-  @include centered-flexbox-parent-vertical();
-  @include centered-flexbox-parent-horizontal();
+  @include center-vertically();
+  @include center-horizontally();
   div {
     img {
       height: 250px;
@@ -54,8 +54,8 @@ div {
 
 .join-queue {
   @include text-color();
-  @include centered-flexbox-parent-vertical();
-  @include centered-flexbox-parent-horizontal();
+  @include center-vertically();
+  @include center-horizontally();
 }
 
 .extra-info {

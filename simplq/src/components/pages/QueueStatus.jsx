@@ -1,56 +1,47 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import { CircularProgress, makeStyles } from '@material-ui/core';
+import { CircularProgress } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
 import * as TokenService from '../../services/token';
-import CentralSection from '../CentralSection';
 import JoinerStepper from '../common/stepper/JoinerStepper';
 import { setAheadCount, setJoinerStep } from '../../store/appSlice';
 import { handleApiErrors } from '../ErrorHandler';
+import styles from '../../styles/statusPage.module.scss';
+import Button from '../common/Button';
+import Header, { SimplQHeader } from '../common/Header';
 
-const useStyles = makeStyles((theme) => ({
-  buttonGroup: {
-    display: 'flex',
-    justifyContent: 'center',
-    marginTop: theme.spacing(3),
-    marginBottom: theme.spacing(3),
-  },
-  button: {
-    margin: theme.spacing(1),
-  },
-  content: {
-    minHeight: theme.spacing(16),
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-}));
+const TIMEOUT = 10000;
+let timeoutId;
 
 function QueueStatus() {
   const dispatch = useDispatch();
+  const queueName = useSelector((state) => state.appReducer.queueName);
   const [tokenStatus, setTokenStatus] = useState();
   const tokenId = useSelector((state) => state.appReducer.tokenId);
   const aheadCount = useSelector((state) => state.appReducer.aheadCount);
   const [updateInProgress, setUpdateInProgress] = useState(false);
-  const classes = useStyles();
 
   const update = () => {
+    clearTimeout(timeoutId);
     if (tokenId) {
-      setUpdateInProgress(true);
       TokenService.get(tokenId)
         .then((response) => {
           dispatch(setAheadCount(response.aheadCount));
           setTokenStatus(response.tokenStatus);
-          setUpdateInProgress(false);
+          timeoutId = setTimeout(update, TIMEOUT);
         })
         .catch((err) => {
-          setUpdateInProgress(false);
           handleApiErrors(err);
+          timeoutId = setTimeout(update, TIMEOUT);
         });
     }
   };
+
+  useEffect(() => {
+    update();
+    return () => clearTimeout(timeoutId);
+  }, [tokenId]);
 
   const onDeleteClick = () => {
     setUpdateInProgress(true);
@@ -63,10 +54,6 @@ function QueueStatus() {
         handleApiErrors(err);
       });
   };
-
-  if (aheadCount == null && !updateInProgress) {
-    update();
-  }
 
   let status = null;
   if (updateInProgress) {
@@ -94,27 +81,22 @@ function QueueStatus() {
 
   return (
     <>
+      <SimplQHeader />
+      <Header text={queueName} className={styles.header} />
       <JoinerStepper />
-      <CentralSection heading="Thanks for waiting!">
-        <div className={classes.content}>{status}</div>
-        {!(tokenStatus === 'REMOVED') && !updateInProgress ? (
-          <div className={classes.buttonGroup}>
-            <Button className={classes.button} variant="outlined" color="primary" onClick={update}>
-              Check Status
-            </Button>
-            <Button
-              className={classes.button}
-              variant="outlined"
-              color="secondary"
-              onClick={onDeleteClick}
-            >
-              Leave Queue
-            </Button>
+      <div>{status}</div>
+      {!(tokenStatus === 'REMOVED') && !updateInProgress ? (
+        <div className={styles['button-group']}>
+          <div>
+            <Button text="Check Status" onClick={() => update()} />
           </div>
-        ) : (
-          <div />
-        )}
-      </CentralSection>
+          <div>
+            <Button text="Leave Queue" onClick={onDeleteClick} />
+          </div>
+        </div>
+      ) : (
+        <div />
+      )}
     </>
   );
 }
