@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/material.css';
 import { CircularProgress } from '@material-ui/core';
-import { handleEnterPress } from '../../utilFns';
+import { handleEnterPress } from '../../common/utilFns';
+import { InputField } from '../../common/utils';
 
 export function JoinQueueForm(props) {
   const [name, setName] = useState('');
@@ -67,11 +67,8 @@ export function JoinQueueForm(props) {
   return (
     <>
       {/* {renderHeaderOrInput()} */}
-      <TextField
-        placeholder="Your ame"
-        fullWidth
-        required
-        variant="outlined"
+      <InputField
+        placeholder="Your Name"
         value={name}
         onKeyPress={(e) => handleEnterPress(e, handleClick)}
         onChange={handleNameChange}

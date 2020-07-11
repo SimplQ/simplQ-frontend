@@ -1,6 +1,4 @@
 import React from 'react';
-import TextField from '@material-ui/core/TextField';
-import { StylesProvider } from '@material-ui/core/styles';
 import { CircularProgress } from '@material-ui/core';
 import * as QueueService from '../../services/queue';
 import { setQueueName, setQueueId, setCreationStep } from '../../store/appSlice';
@@ -10,7 +8,8 @@ import { handleApiErrors } from '../ErrorHandler';
 import { CreateQButton } from '../common/Button';
 import styles from '../../styles/createPage.module.scss';
 import { SimplQHeader } from '../common/Header';
-import { handleEnterPress } from '../utilFns';
+import { handleEnterPress } from '../common/utilFns';
+import { InputField } from '../common/utils';
 
 class CreateQueue extends React.Component {
   constructor(props) {
@@ -60,30 +59,23 @@ class CreateQueue extends React.Component {
       <div>
         <SimplQHeader />
         <CreatorStepper />
-        <StylesProvider injectFirst>
-          <TextField
-            placeholder="Enter a name for your new queue"
-            fullWidth
-            required
-            variant="outlined"
-            value={this.state.textFieldValue}
-            onChange={this.handleTextFieldChange}
-            onKeyPress={
-              (e) => handleEnterPress(e, () => this.handleClick(this.state.textFieldValue))
-              // eslint-disable-next-line react/jsx-curly-newline
-            }
-            error={this.state.invalidMsg.length > 0}
-            helperText={this.state.invalidMsg.length > 0 ? this.state.invalidMsg : ''}
-            className={styles.input}
-          />
-        </StylesProvider>
+        <InputField
+          placeholder="Enter a name for your new queue"
+          value={this.state.textFieldValue}
+          onChange={this.handleTextFieldChange}
+          onKeyPress={
+            (e) => handleEnterPress(e, () => this.handleClick(this.state.textFieldValue))
+            // eslint-disable-next-line react/jsx-curly-newline
+          }
+          error={this.state.invalidMsg.length > 0}
+          helperText={this.state.invalidMsg.length > 0 ? this.state.invalidMsg : ''}
+          className={styles.input}
+        />
         <div className={styles['create-button']}>
           {this.state.createInProgress ? (
             <CircularProgress size={30} />
           ) : (
-            <CreateQButton onClick={() => this.handleClick(this.state.textFieldValue)}>
-              Create A queue
-            </CreateQButton>
+            <CreateQButton onClick={() => this.handleClick(this.state.textFieldValue)} />
           )}
         </div>
       </div>

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import TextField from '@material-ui/core/TextField';
 import JoinQueueForm from './Form';
 import { setTokenId, setJoinerStep, setAheadCount, setQueueId } from '../../../store/appSlice';
 import * as TokenService from '../../../services/token';
@@ -10,7 +9,8 @@ import styles from '../../../styles/joinPage.module.scss';
 import JoinerStepper from '../../common/stepper/JoinerStepper';
 import { Banner } from '../Home/StaticInfos';
 import { JoinQButton } from '../../common/Button';
-import { handleEnterPress } from '../../utilFns';
+import { handleEnterPress } from '../../common/utilFns';
+import { InputField } from '../../common/utils';
 
 export function JoinQueueDetails(props) {
   const queueId = props.match.params.queueId;
@@ -53,11 +53,8 @@ export function JoinQueueLink(props) {
   return (
     <>
       <Banner />
-      <TextField
+      <InputField
         placeholder="Enter queue link"
-        fullWidth
-        required
-        variant="outlined"
         onKeyPress={(e) => handleEnterPress(e, () => handleClick(queueLink))}
         value={queueLink}
         onChange={(e) => setQueueLink(e.target.value)}
