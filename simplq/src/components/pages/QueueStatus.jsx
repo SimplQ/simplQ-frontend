@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
@@ -9,6 +9,9 @@ import CentralSection from '../CentralSection';
 import JoinerStepper from '../common/stepper/JoinerStepper';
 import { setAheadCount, setJoinerStep } from '../../store/appSlice';
 import { handleApiErrors } from '../ErrorHandler';
+
+const TIMEOUT = 10000;
+let timeoutId;
 
 const useStyles = makeStyles((theme) => ({
   buttonGroup: {
@@ -37,20 +40,25 @@ function QueueStatus() {
   const classes = useStyles();
 
   const update = () => {
+    clearTimeout(timeoutId);
     if (tokenId) {
-      setUpdateInProgress(true);
       TokenService.get(tokenId)
         .then((response) => {
           dispatch(setAheadCount(response.aheadCount));
           setTokenStatus(response.tokenStatus);
-          setUpdateInProgress(false);
+          timeoutId = setTimeout(update, TIMEOUT);
         })
         .catch((err) => {
-          setUpdateInProgress(false);
           handleApiErrors(err);
+          timeoutId = setTimeout(update, TIMEOUT);
         });
     }
   };
+
+  useEffect(() => {
+    update();
+    return () => clearTimeout(timeoutId);
+  }, [tokenId]);
 
   const onDeleteClick = () => {
     setUpdateInProgress(true);
@@ -63,10 +71,6 @@ function QueueStatus() {
         handleApiErrors(err);
       });
   };
-
-  if (aheadCount == null && !updateInProgress) {
-    update();
-  }
 
   let status = null;
   if (updateInProgress) {
@@ -99,7 +103,12 @@ function QueueStatus() {
         <div className={classes.content}>{status}</div>
         {!(tokenStatus === 'REMOVED') && !updateInProgress ? (
           <div className={classes.buttonGroup}>
-            <Button className={classes.button} variant="outlined" color="primary" onClick={update}>
+            <Button
+              className={classes.button}
+              variant="outlined"
+              color="primary"
+              onClick={() => update()}
+            >
               Check Status
             </Button>
             <Button
