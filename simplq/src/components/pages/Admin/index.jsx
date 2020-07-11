@@ -10,6 +10,7 @@ import CreatorStepper from '../../common/stepper/CreatorStepper';
 import { handleApiErrors } from '../../ErrorHandler';
 import Header, { SimplQHeader } from '../../common/Header';
 import styles from '../../../styles/adminPage.module.scss';
+import AddMember from './AddMember';
 
 const TIMEOUT = 10000;
 let timeoutId;
@@ -49,7 +50,7 @@ export default () => {
   }, [queueId]);
 
   const addNewItem = (name, contact) => {
-    return TokenService.create(name, contact, false, queueId)
+    TokenService.create(name, contact, false, queueId)
       .then((response) => {
         setItems([...items, { tokenId: response.tokenId, name, contact, notifyable: false }]);
       })
@@ -81,6 +82,9 @@ export default () => {
           joinQueueHandler={addNewItem}
           removeItemHandler={removeItemHandler}
         />
+      </div>
+      <div className={styles['add-member']}>
+        <AddMember queueId={queueId} joinQueueHandler={addNewItem} />
       </div>
     </>
   );

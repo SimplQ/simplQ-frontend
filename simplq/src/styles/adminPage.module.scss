@@ -4,9 +4,16 @@
   @include queue-name-header();
 }
 
-.shareButton {
+.share-button {
 }
 
 .list {
   @include background-color();
+}
+
+.item-list {
+}
+
+.add-member {
+  @include box-border();
 }

@@ -1,10 +1,9 @@
 import React from 'react';
 import { Typography, Button, Grid } from '@material-ui/core';
-import CentralSection from '../CentralSection';
 
 function PageNotFound(props) {
   return (
-    <CentralSection heading="Oops!">
+    <>
       <Typography align="center" gutterBottom>
         Something went wrong. TODO: Report issue github link
       </Typography>
@@ -16,7 +15,7 @@ function PageNotFound(props) {
           </Button>
         </Grid>
       </Grid>
-    </CentralSection>
+    </>
   );
 }
 

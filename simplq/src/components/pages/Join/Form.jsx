@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/material.css';
 import { CircularProgress } from '@material-ui/core';
+import { handleEnterPress } from '../../common/utilFns';
+import { InputField } from '../../common/utils';
 
 export function JoinQueueForm(props) {
   const [name, setName] = useState('');
@@ -13,8 +14,12 @@ export function JoinQueueForm(props) {
   const [addingInProgress, setAddingInProgress] = useState(false);
 
   function handleNameChange(e) {
-    setName(e.target.value);
-    setInvalidName(false);
+    if (name.match('^[A-Za-z0-9 ]*$')) {
+      setName(e.target.value);
+      setInvalidName(false);
+    } else {
+      setInvalidName(true);
+    }
   }
 
   function handleContactChange(e) {
@@ -43,19 +48,14 @@ export function JoinQueueForm(props) {
 
   return (
     <>
-      <TextField
-        placeholder="Name"
-        fullWidth
-        required
-        margin="normal"
-        InputLabelProps={{
-          shrink: true,
-        }}
-        variant="outlined"
+      {/* {renderHeaderOrInput()} */}
+      <InputField
+        placeholder="Your Name"
         value={name}
+        onKeyPress={(e) => handleEnterPress(e, handleClick)}
         onChange={handleNameChange}
         error={invalidName}
-        helperText={invalidName ? 'Name is required' : ''}
+        helperText={invalidName ? 'Enter a valid name' : ''}
       />
       <PhoneInput
         // containerClass={classes.textField}
@@ -72,6 +72,7 @@ export function JoinQueueForm(props) {
         }}
         isValid={() => (invalidContact ? 'Phone number is not valid' : true)}
         onChange={handleContactChange}
+        onKeyDown={(e) => handleEnterPress(e, handleClick)}
       />
       <div>
         {addingInProgress ? (
