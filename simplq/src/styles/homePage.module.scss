@@ -20,7 +20,7 @@ div {
 .center {
   @include center-horizontally();
   @include text-color();
-  font-size: 26pt;
+  font-size: 1.5rem;
 }
 
 .benefits-info {
@@ -29,11 +29,11 @@ div {
   @include center-vertically();
   @include center-horizontally();
   div {
-    padding: 70px;
+    padding: 4.5rem;
     margin: auto;
-    font-size: 23pt;
+    font-size: 1.25rem;
     img {
-      height: 70px;
+      height: 4.5rem;
     }
   }
 }
@@ -44,10 +44,10 @@ div {
   @include center-horizontally();
   div {
     img {
-      height: 250px;
+      height: 15rem;
     }
     div {
-      padding: 70px;
+      padding: 4.5rem;
     }
   }
 }
