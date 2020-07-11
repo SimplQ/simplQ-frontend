@@ -4,6 +4,7 @@ import Button from '@material-ui/core/Button';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/material.css';
 import { CircularProgress } from '@material-ui/core';
+import { handleEnterPress } from '../../utilFns';
 
 export function JoinQueueForm(props) {
   const [name, setName] = useState('');
@@ -72,6 +73,7 @@ export function JoinQueueForm(props) {
         required
         variant="outlined"
         value={name}
+        onKeyPress={(e) => handleEnterPress(e, handleClick)}
         onChange={handleNameChange}
         error={invalidName}
         helperText={invalidName ? 'Enter a valid name' : ''}

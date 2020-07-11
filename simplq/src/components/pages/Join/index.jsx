@@ -10,6 +10,7 @@ import styles from '../../../styles/joinPage.module.scss';
 import JoinerStepper from '../../common/stepper/JoinerStepper';
 import { Banner } from '../Home/StaticInfos';
 import { JoinQButton } from '../../common/Button';
+import { handleEnterPress } from '../../utilFns';
 
 export function JoinQueueDetails(props) {
   const queueId = props.match.params.queueId;
@@ -49,12 +50,6 @@ export function JoinQueueLink(props) {
     props.history.push(`/j/${queueId}`);
   };
 
-  const handleKeyPress = (event) => {
-    if (event.key === 'Enter') {
-      handleClick(queueLink);
-    }
-  };
-
   return (
     <>
       <Banner />
@@ -63,7 +58,7 @@ export function JoinQueueLink(props) {
         fullWidth
         required
         variant="outlined"
-        onKeyPress={handleKeyPress}
+        onKeyPress={(e) => handleEnterPress(e, () => handleClick(queueLink))}
         value={queueLink}
         onChange={(e) => setQueueLink(e.target.value)}
         // error={invalidName}

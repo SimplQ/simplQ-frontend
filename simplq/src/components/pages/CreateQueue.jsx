@@ -10,6 +10,7 @@ import { handleApiErrors } from '../ErrorHandler';
 import { CreateQButton } from '../common/Button';
 import styles from '../../styles/createPage.module.scss';
 import { SimplQHeader } from '../common/Header';
+import { handleEnterPress } from '../utilFns';
 
 class CreateQueue extends React.Component {
   constructor(props) {
@@ -53,12 +54,6 @@ class CreateQueue extends React.Component {
     }
   };
 
-  handleKeyPress = (event) => {
-    if (event.key === 'Enter') {
-      this.handleClick(this.state.textFieldValue);
-    }
-  };
-
   render() {
     store.dispatch(setCreationStep(0));
     return (
@@ -73,7 +68,10 @@ class CreateQueue extends React.Component {
             variant="outlined"
             value={this.state.textFieldValue}
             onChange={this.handleTextFieldChange}
-            onKeyPress={this.handleKeyPress}
+            onKeyPress={
+              (e) => handleEnterPress(e, () => this.handleClick(this.state.textFieldValue))
+              // eslint-disable-next-line react/jsx-curly-newline
+            }
             error={this.state.invalidMsg.length > 0}
             helperText={this.state.invalidMsg.length > 0 ? this.state.invalidMsg : ''}
             className={styles.input}
