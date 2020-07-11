@@ -9,6 +9,7 @@ import CentralSection from '../CentralSection';
 import JoinerStepper from '../common/stepper/JoinerStepper';
 import { setAheadCount, setJoinerStep } from '../../store/appSlice';
 import { handleApiErrors } from '../ErrorHandler';
+import NotificationButton from '../common/NotificationButton';
 
 const TIMEOUT = 10000;
 let timeoutId;
@@ -101,6 +102,9 @@ function QueueStatus() {
       <JoinerStepper />
       <CentralSection heading="Thanks for waiting!">
         <div className={classes.content}>{status}</div>
+        <div className={classes.buttonGroup}>
+          <NotificationButton buttonClass={classes.button} />
+        </div>
         {!(tokenStatus === 'REMOVED') && !updateInProgress ? (
           <div className={classes.buttonGroup}>
             <Button

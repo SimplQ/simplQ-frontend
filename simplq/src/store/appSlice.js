@@ -10,6 +10,7 @@ const appSlice = createSlice({
     currentJoinerStep: window.localStorage.getItem('currentJoinerStep'),
     aheadCount: null,
     errorText: '',
+    notificationPermission: Notification.permission,
   },
   reducers: {
     setQueueName: (state, action) => {
@@ -68,6 +69,10 @@ const appSlice = createSlice({
       // eslint-disable-next-line no-param-reassign
       state.errorText = action.payload;
     },
+    setNotificationPermission: (state, action) => {
+      // eslint-disable-next-line no-param-reassign
+      state.notificationPermission = action.payload;
+    },
   },
 });
 
@@ -81,6 +86,7 @@ export const {
   setJoinerStep,
   setAheadCount,
   setErrorNotifOpen,
+  setNotificationPermission,
 } = appSlice.actions;
 
 export default appSlice.reducer;
