@@ -2,36 +2,35 @@ import React from 'react';
 import { useEffect } from 'react';
 
 function withTimeout(WrappedComponent) {
-    let timeoutId;
+  let timeoutId;
 
-    return () => {
+  return () => {
+    const initializeTimeout = () => {
+      timeoutId = null;
+    };
 
-        const initializeTimeout = () => {
-            timeoutId = null;
-        }
+    const setTimeout = () => {
+      this.timeoutId = setTimeout.apply(null, arguments);
+    };
 
-        const setTimeout = () => {
-            this.timeoutId = (setTimeout.apply(null, arguments));
-        }
+    const clearTimeout = () => {
+      clearTimeout(timeoutId);
+    };
 
-        const clearTimeout = () => {
-            clearTimeout(timeoutId)
-        }
+    useEffect(() => {
+      initializeTimeout();
+      return () => clearTimeout();
+    });
 
-        useEffect(() => {
-            initializeTimeout();
-            return () => clearTimeout()
-        })
-
-        return (
-            <WrappedComponent 
-              timeout={timeoutId} 
-              setTimeout={setTimeout} 
-              clearTimeout={clearTimeout} 
-              { ...this.props } />
-        )
-
-    }
+    return (
+      <WrappedComponent
+        timeout={timeoutId}
+        setTimeout={setTimeout}
+        clearTimeout={clearTimeout}
+        {...this.props}
+      />
+    );
+  };
 }
 
 // const Timeout = Composition => class _Timeout extends Component {
@@ -58,10 +57,10 @@ function withTimeout(WrappedComponent) {
 //     render () {
 //       const { timeouts, setTimeout, clearTimeouts } = this;
 
-//       return <Composition 
-//         timeouts={timeouts} 
-//         setTimeout={setTimeout} 
-//         clearTimeouts={clearTimeouts} 
+//       return <Composition
+//         timeouts={timeouts}
+//         setTimeout={setTimeout}
+//         clearTimeouts={clearTimeouts}
 //         { ...this.props } />
 //     }
 // }
