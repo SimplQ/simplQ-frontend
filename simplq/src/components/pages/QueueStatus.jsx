@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
@@ -9,7 +9,6 @@ import CentralSection from '../CentralSection';
 import JoinerStepper from '../common/stepper/JoinerStepper';
 import { setAheadCount, setJoinerStep } from '../../store/appSlice';
 import { handleApiErrors } from '../ErrorHandler';
-import askNotificationPermission from '../../services/notifications';
 
 const TIMEOUT = 10000;
 let timeoutId;
@@ -40,7 +39,7 @@ function QueueStatus() {
   const [updateInProgress, setUpdateInProgress] = useState(false);
   const classes = useStyles();
 
-  const update = () => {
+  const update = useCallback(() => {
     clearTimeout(timeoutId);
     if (tokenId) {
       TokenService.get(tokenId)
@@ -54,12 +53,12 @@ function QueueStatus() {
           timeoutId = setTimeout(update, TIMEOUT);
         });
     }
-  };
+  }, [tokenId, dispatch]);
 
   useEffect(() => {
     update();
     return () => clearTimeout(timeoutId);
-  }, [tokenId]);
+  }, [update]);
 
   const onDeleteClick = () => {
     setUpdateInProgress(true);
@@ -102,16 +101,6 @@ function QueueStatus() {
       <JoinerStepper />
       <CentralSection heading="Thanks for waiting!">
         <div className={classes.content}>{status}</div>
-        <div className={classes.buttonGroup}>
-          <Button
-            className={classes.button}
-            variant="outlined"
-            color="primary"
-            onClick={() => askNotificationPermission()}
-          >
-            Enable Notifications
-          </Button>
-        </div>
         {!(tokenStatus === 'REMOVED') && !updateInProgress ? (
           <div className={classes.buttonGroup}>
             <Button
