@@ -7,9 +7,9 @@ export default {
 };
 
 export const CreateQButton = (props) => {
-  return <StandardButton onClick={props.onClick} text="Create a Queue" />;
+  return <StandardButton onClick={props.onClick} text="Create Queue" />;
 };
 
 export const JoinQButton = (props) => {
-  return <StandardButton onClick={props.onClick} text="Join a Queue" />;
+  return <StandardButton onClick={props.onClick} text="Join Queue" />;
 };

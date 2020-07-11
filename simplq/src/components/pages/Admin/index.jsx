@@ -10,6 +10,7 @@ import CreatorStepper from '../../common/stepper/CreatorStepper';
 import { handleApiErrors } from '../../ErrorHandler';
 import Header, { SimplQHeader } from '../../common/Header';
 import styles from '../../../styles/adminPage.module.scss';
+import AddMember from './AddMember';
 
 const TIMEOUT = 10000;
 let timeoutId;
@@ -81,6 +82,9 @@ export default () => {
           joinQueueHandler={addNewItem}
           removeItemHandler={removeItemHandler}
         />
+      </div>
+      <div>
+        <AddMember queueId={queueId} joinQueueHandler={addNewItem} />
       </div>
     </>
   );

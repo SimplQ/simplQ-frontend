@@ -3,3 +3,19 @@
 .header {
   @include queue-name-header();
 }
+
+div {
+  @include div-padding();
+}
+
+.join-button {
+  @include center-horizontally();
+}
+
+.input {
+  @include center-horizontally();
+  width: 50%;
+  fieldset {
+    border-radius: 0.5rem;
+  }
+}

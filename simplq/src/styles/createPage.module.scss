@@ -8,6 +8,7 @@ div {
   @include center-horizontally();
 }
 
+// styling specific to materialUI TextFiled component
 .input {
   @include center-horizontally();
   width: 50%;

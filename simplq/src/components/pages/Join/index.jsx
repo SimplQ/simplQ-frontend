@@ -12,7 +12,7 @@ import { JoinQButton } from '../../common/Button';
 import { handleEnterPress } from '../../common/utilFns';
 import { InputField } from '../../common/utils';
 
-export function JoinQueueDetails(props) {
+export function JoinQueueWithDetails(props) {
   const queueId = props.match.params.queueId;
   const queueName = useSelector((state) => state.appReducer.queueName);
   const dispatch = useDispatch();
@@ -42,7 +42,7 @@ export function JoinQueueDetails(props) {
   );
 }
 
-export function JoinQueueLink(props) {
+export function JoinQueueWithLink(props) {
   const [queueLink, setQueueLink] = useState('');
 
   const handleClick = (link) => {
@@ -58,10 +58,13 @@ export function JoinQueueLink(props) {
         onKeyPress={(e) => handleEnterPress(e, () => handleClick(queueLink))}
         value={queueLink}
         onChange={(e) => setQueueLink(e.target.value)}
+        className={styles.input}
         // error={invalidName}
         // helperText={invalidName ? 'Enter a valid name' : ''}
       />
-      <JoinQButton onClick={() => handleClick(queueLink)} />
+      <div className={styles['join-button']}>
+        <JoinQButton onClick={() => handleClick(queueLink)} />
+      </div>
     </>
   );
 }
