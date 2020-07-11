@@ -10,6 +10,7 @@ import JoinerStepper from '../common/stepper/JoinerStepper';
 import { setAheadCount, setJoinerStep } from '../../store/appSlice';
 import { handleApiErrors } from '../ErrorHandler';
 
+const TIMEOUT = 10000;
 let timeoutId;
 
 const useStyles = makeStyles((theme) => ({
@@ -45,11 +46,11 @@ function QueueStatus() {
         .then((response) => {
           dispatch(setAheadCount(response.aheadCount));
           setTokenStatus(response.tokenStatus);
-          timeoutId = setTimeout(update, 10000);
+          timeoutId = setTimeout(update, TIMEOUT);
         })
         .catch((err) => {
           handleApiErrors(err);
-          timeoutId = setTimeout(update, 10000);
+          timeoutId = setTimeout(update, TIMEOUT);
         });
     }
   };

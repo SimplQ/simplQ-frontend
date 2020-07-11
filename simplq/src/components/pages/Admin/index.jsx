@@ -11,6 +11,7 @@ import { handleApiErrors } from '../../ErrorHandler';
 import Header, { SimplQHeader } from '../../common/Header';
 import styles from '../../../styles/adminPage.module.scss';
 
+const TIMEOUT = 10000;
 let timeoutId;
 
 export default () => {
@@ -33,11 +34,11 @@ export default () => {
       QueueService.get(queueId)
         .then((data) => {
           setItems(data.tokens);
-          timeoutId = setTimeout(update, 10000);
+          timeoutId = setTimeout(update, TIMEOUT);
         })
         .catch((err) => {
           handleApiErrors(err);
-          timeoutId = setTimeout(update, 10000);
+          timeoutId = setTimeout(update, TIMEOUT);
         });
     }
   };
