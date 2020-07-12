@@ -10,7 +10,7 @@ import JoinerStepper from '../../common/stepper/JoinerStepper';
 import { Banner } from '../Home/StaticInfos';
 import { JoinQButton } from '../../common/Button';
 import { handleEnterPress } from '../../common/utilFns';
-import { InputField } from '../../common/utils';
+import InputField from '../../common/InputField';
 
 export function JoinQueueWithDetails(props) {
   const queueId = props.match.params.queueId;

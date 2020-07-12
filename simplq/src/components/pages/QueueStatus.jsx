@@ -84,7 +84,7 @@ function QueueStatus() {
       <SimplQHeader />
       <Header text={queueName} className={styles.header} />
       <JoinerStepper />
-      <div>{status}</div>
+      <div className={styles['status-box']}>{status}</div>
       {!(tokenStatus === 'REMOVED') && !updateInProgress ? (
         <div className={styles['button-group']}>
           <div>

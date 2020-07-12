@@ -4,7 +4,7 @@ import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/material.css';
 import { CircularProgress } from '@material-ui/core';
 import { handleEnterPress } from '../../common/utilFns';
-import { InputField } from '../../common/utils';
+import InputField from '../../common/InputField';
 
 export function JoinQueueForm(props) {
   const [name, setName] = useState('');

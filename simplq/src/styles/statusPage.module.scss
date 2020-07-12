@@ -11,3 +11,8 @@
 .header {
   @include queue-name-header();
 }
+
+.status-box {
+  @include border-box();
+  @include center-horizontally();
+}
