@@ -30,7 +30,7 @@ function QueueStatus() {
       body: notificationText,
       icon: notificationImage,
     });
-    document.addEventListener('visibilitychange', function () {
+    document.addEventListener('visibilitychange', () => {
       if (document.visibilityState === 'visible') {
         // The tab has become visible so clear the now-stale Notification.
         notification.close();

@@ -36,7 +36,7 @@ const NotificationButton = () => {
         handlePermission(permission);
       });
     } else {
-      Notification.requestPermission(function (permission) {
+      Notification.requestPermission((permission) => {
         handlePermission(permission);
       });
     }
