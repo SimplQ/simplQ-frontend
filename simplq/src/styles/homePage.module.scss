@@ -27,8 +27,14 @@ div {
   @include background-color();
   @include text-color();
   @include center-vertically();
+  @include center-horizontally();
   div {
+    padding: 4.5rem;
     margin: auto;
+    font-size: 1.25rem;
+    img {
+      height: 4.5rem;
+    }
   }
 }
 
@@ -36,6 +42,14 @@ div {
   @include text-color();
   @include center-vertically();
   @include center-horizontally();
+  div {
+    img {
+      height: 15rem;
+    }
+    div {
+      padding: 4.5rem;
+    }
+  }
 }
 
 .join-queue {
