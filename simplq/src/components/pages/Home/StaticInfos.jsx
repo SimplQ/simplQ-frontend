@@ -40,7 +40,7 @@ export const BenefitsInfo = () => (
 
 export const HowToCreate = () => (
   <div className={styles['create-queue']}>
-    <h2>Create a Queue at the click of a button</h2>
+    <h2>Create a queue at the click of a button</h2>
     <div>
       <img src="/images/queue_creation.svg" alt="Create Queue" />
       <div>
