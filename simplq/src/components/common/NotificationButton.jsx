@@ -7,7 +7,7 @@ const NotificationButton = () => {
   const dispatch = useDispatch();
   const notificationPermission = useSelector((state) => state.appReducer.notificationPermission);
 
-  const checkNotificationPromise = () => {
+  const hasPromiseBasedNotificationSupport = () => {
     try {
       Notification.requestPermission().then();
     } catch (e) {
@@ -20,7 +20,7 @@ const NotificationButton = () => {
   const askNotificationPermission = () => {
     // function to actually ask the permissions
     const handlePermission = (permission) => {
-      // Whatever the user answers, we make sure Chrome stores the information
+      // Some older versions of chrome doesn't store the permission in the Notification object. In that case we store it manually.
       if (!('permission' in Notification)) {
         Notification.permission = permission;
       }
@@ -31,7 +31,7 @@ const NotificationButton = () => {
     // Let's check if the browser supports notifications
     if (!('Notification' in window)) {
       console.log('This browser does not support notifications.');
-    } else if (checkNotificationPromise()) {
+    } else if (hasPromiseBasedNotificationSupport()) {
       Notification.requestPermission().then((permission) => {
         handlePermission(permission);
       });
