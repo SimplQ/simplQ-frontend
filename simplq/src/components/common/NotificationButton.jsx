@@ -1,10 +1,9 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
 import { useSelector, useDispatch } from 'react-redux';
+import Button from './Button';
 import { setNotificationPermission } from '../../store/appSlice';
 
-const NotificationButton = (props) => {
+const NotificationButton = () => {
   const dispatch = useDispatch();
   const notificationPermission = useSelector((state) => state.appReducer.notificationPermission);
 
@@ -45,26 +44,13 @@ const NotificationButton = (props) => {
 
   if (notificationPermission === 'default') {
     return (
-      <div className={props.buttonGroupClass}>
-        <Button
-          className={props.buttonClass}
-          variant="outlined"
-          color="primary"
-          onClick={() => askNotificationPermission()}
-        >
-          Enable Notifications
-        </Button>
-      </div>
+      <Button text="Enable Notifications" onClick={() => askNotificationPermission()}>
+        Enable Notifications
+      </Button>
     );
   }
   if (notificationPermission === 'denied') {
-    return (
-      <div className={props.buttonGroupClass}>
-        <Typography variant="h5" align="center" color="textSecondary" component="p">
-          Enable Notifications in Settings
-        </Typography>
-      </div>
-    );
+    return <>Enable Notifications in Settings</>;
   }
   return null;
 };

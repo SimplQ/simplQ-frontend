@@ -1,15 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import JoinQueueForm from './Form';
 import { setTokenId, setJoinerStep, setAheadCount, setQueueId } from '../../../store/appSlice';
 import * as TokenService from '../../../services/token';
 import { handleApiErrors } from '../../ErrorHandler';
 import Header, { SimplQHeader } from '../../common/Header';
-
 import styles from '../../../styles/joinPage.module.scss';
 import JoinerStepper from '../../common/stepper/JoinerStepper';
+import { Banner } from '../Home/StaticInfos';
+import { JoinQButton } from '../../common/Button';
+import { handleEnterPress } from '../../common/utilFns';
+import { InputField } from '../../common/utils';
 
-export function JoinQueue(props) {
+export function JoinQueueWithDetails(props) {
   const queueId = props.match.params.queueId;
   const queueName = useSelector((state) => state.appReducer.queueName);
   const dispatch = useDispatch();
@@ -39,4 +42,31 @@ export function JoinQueue(props) {
   );
 }
 
-export default JoinQueue;
+export function JoinQueueWithLink(props) {
+  const [queueLink, setQueueLink] = useState('');
+
+  const handleClick = (link) => {
+    const queueId = link.split('/').pop();
+    props.history.push(`/j/${queueId}`);
+  };
+
+  return (
+    <>
+      <Banner />
+      <InputField
+        placeholder="Enter queue link"
+        onKeyPress={(e) => handleEnterPress(e, () => handleClick(queueLink))}
+        value={queueLink}
+        onChange={(e) => setQueueLink(e.target.value)}
+        className={styles.input}
+        // error={invalidName}
+        // helperText={invalidName ? 'Enter a valid name' : ''}
+      />
+      <div className={styles['join-button']}>
+        <JoinQButton onClick={() => handleClick(queueLink)} />
+      </div>
+    </>
+  );
+}
+
+// export default JoinQueue;

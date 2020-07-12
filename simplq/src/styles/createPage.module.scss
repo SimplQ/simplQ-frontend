@@ -5,11 +5,12 @@ div {
 }
 
 .create-button {
-  @include centered-flexbox-parent-horizontal();
+  @include center-horizontally();
 }
 
+// styling specific to materialUI TextFiled component
 .input {
-  @include centered-flexbox-parent-horizontal();
+  @include center-horizontally();
   width: 50%;
   fieldset {
     border-radius: 0.5rem;
