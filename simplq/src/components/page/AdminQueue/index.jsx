@@ -54,7 +54,7 @@ export default () => {
       .then((response) => {
         setItems([
           ...items,
-          { tokenId: response.tokenId, name: name, contact: contact, notifyable: false },
+          { tokenId: response.tokenId, name: name, contactNo: contact, notifyable: false },
         ]);
       })
       .catch((err) => {
