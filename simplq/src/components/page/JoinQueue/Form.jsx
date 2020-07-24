@@ -73,6 +73,7 @@ export function JoinQueueForm(props) {
         error={invalidName}
         helperText={invalidName ? 'Name is required' : ''}
       />
+      
       <TextField
         placeholder="Phone Number"
         value={contact}
