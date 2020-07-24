@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const handleClick = (props) => {
-  props.history.push('/');
+  window.location = '/';
 };
 
 function Layout(props) {
@@ -54,4 +54,4 @@ function Layout(props) {
   );
 }
 
-export default withRouter(Layout);
+export default Layout;
