@@ -1,6 +1,5 @@
 import React from 'react';
 import AwesomeSlider from 'react-awesome-slider';
-// import AwesomeSliderStyles from 'react-awesome-slider/src/styles';
 import '../../../styles/slider.module.scss';
 
 const slider = () => (
@@ -11,6 +10,8 @@ const slider = () => (
         src="http://localhost:3000/images/queue_creation.svg"
         alt="create"
       />
+      <h4>Expreimetal title belo</h4>
+      <p>Expreimetal text below</p>
     </div>
     <div>
       <img
