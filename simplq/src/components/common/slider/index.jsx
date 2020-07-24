@@ -1,33 +1,19 @@
 import React from 'react';
 import AwesomeSlider from 'react-awesome-slider';
-import '../../../styles/slider.module.scss';
+import 'react-awesome-slider/dist/styles.css';
+import styles from '../../../styles/slider.module.scss';
 
-const slider = () => (
-  <AwesomeSlider>
-    <div>
-      <img
-        style={{ height: '15rem' }}
-        src="http://localhost:3000/images/queue_creation.svg"
-        alt="create"
-      />
-      <h4>Expreimetal title belo</h4>
-      <p>Expreimetal text below</p>
-    </div>
-    <div>
-      <img
-        style={{ height: '15rem' }}
-        src="http://localhost:3000/images/check_status.svg"
-        alt="check status"
-      />
-    </div>
-    <div>
-      <img
-        style={{ height: '15rem' }}
-        src="http://localhost:3000/images/queue_creation.svg"
-        alt="queue creation"
-      />
-    </div>
-  </AwesomeSlider>
+const Slide = (props) => (
+  <div>
+    <img src={props.slide.imgSrc} alt={props.slide.imgAlt} />
+    <h4>{props.slide.title}</h4>
+    <p>{props.slide.subtitle}</p>
+  </div>
 );
 
-export default slider;
+const Slider = (props) => {
+  const slides = props.slides.map((slide) => <Slide key={slide.imgSrc} slide={slide} />);
+  return <AwesomeSlider className={styles['aws-btn']}>{slides}</AwesomeSlider>;
+};
+
+export default Slider;

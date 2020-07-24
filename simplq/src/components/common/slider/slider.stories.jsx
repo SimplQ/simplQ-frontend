@@ -6,6 +6,33 @@ export default {
   title: 'Slider',
 };
 
-export const SimplQSlider = () => {
-  return <Slider />;
+const joinerSlides = [
+  {
+    imgSrc: 'http://localhost:3000/images/queue_creation.svg',
+    imgAlt: 'create',
+    title: 'Create Queue',
+    subtitle: 'Enter queue name and create a queue totally free of cost',
+  },
+  {
+    imgSrc: 'http://localhost:3000/images/queue_creation.svg',
+    imgAlt: 'create',
+    title: 'Create Queue',
+    subtitle: 'Enter queue name and create a queue totally free of cost',
+  },
+  {
+    imgSrc: 'http://localhost:3000/images/queue_creation.svg',
+    imgAlt: 'create',
+    title: 'Create Queue',
+    subtitle: 'Enter queue name and create a queue totally free of cost',
+  },
+  {
+    imgSrc: 'http://localhost:3000/images/queue_creation.svg',
+    imgAlt: 'create',
+    title: 'Create Queue',
+    subtitle: 'Enter queue name and create a queue totally free of cost',
+  },
+];
+
+export const JoinerSlider = () => {
+  return <Slider slides={joinerSlides} />;
 };
