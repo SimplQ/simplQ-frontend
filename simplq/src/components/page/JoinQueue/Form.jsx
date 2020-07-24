@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/material.css';
 import { makeStyles } from '@material-ui/core/styles';
 import { CircularProgress } from '@material-ui/core';
@@ -73,7 +72,7 @@ export function JoinQueueForm(props) {
         error={invalidName}
         helperText={invalidName ? 'Name is required' : ''}
       />
-      
+
       <TextField
         placeholder="Phone Number"
         value={contact}
