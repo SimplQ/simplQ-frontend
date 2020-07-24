@@ -72,6 +72,7 @@ export function JoinQueueForm(props) {
         helperText={invalidName ? 'Name is required' : ''}
       />
       <PhoneInput
+        disableCountryCode
         containerClass={classes.textField}
         placeholder="Phone Number"
         country={'in'}
