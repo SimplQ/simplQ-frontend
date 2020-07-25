@@ -42,9 +42,8 @@ div {
   @include text-color();
   @include center-vertically();
   @include center-horizontally();
-  div {
+  & >   div {
     max-width: 40rem;
-    height: min-content;
   }
 }
 

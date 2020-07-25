@@ -2,13 +2,20 @@
 
 .aws-btn {
     --content-background-color: transparent;
-
     @include center-horizontally();
     @include text-color();
+}
+
+.slider-content {
+    height: 50vh;
+    margin: 2.5rem;
     img {       
-        max-width: 15rem;
+        height: 60%;
     }
     h4 {
         font-weight: 500;
+    }
+    p {
+        
     }
 }
