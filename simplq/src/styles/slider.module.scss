@@ -1,21 +1,20 @@
 @import 'utils';
 
 .aws-btn {
-    --content-background-color: transparent;
-    @include center-horizontally();
-    @include text-color();
+  --content-background-color: transparent;
+  @include center-horizontally();
+  @include text-color();
 }
 
 .slider-content {
-    height: 50vh;
-    margin: 2.5rem;
-    img {       
-        height: 60%;
-    }
-    h4 {
-        font-weight: 500;
-    }
-    p {
-        
-    }
+  height: 50vh;
+  margin: 2.5rem;
+  img {
+    height: 60%;
+  }
+  h4 {
+    font-weight: 500;
+  }
+  p {
+  }
 }
