@@ -1,14 +1,14 @@
 @import 'utils';
 
 .aws-btn {
-    --content-background-color: transparent;
+  --content-background-color: transparent;
 
-    @include center-horizontally();
-    @include text-color();
-    img {       
-        max-width: 15rem;
-    }
-    h4 {
-        font-weight: 500;
-    }
+  @include center-horizontally();
+  @include text-color();
+  img {
+    max-width: 15rem;
+  }
+  h4 {
+    font-weight: 500;
+  }
 }
