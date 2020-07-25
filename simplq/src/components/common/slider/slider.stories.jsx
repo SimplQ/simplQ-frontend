@@ -8,19 +8,19 @@ export default {
 
 const creatorSlides = [
   {
-    imgSrc: 'http://localhost:3000/images/queue_creation.svg',
+    imgSrc: '/images/queue_creation.svg',
     imgAlt: 'create',
     title: 'Create Queue',
     subtitle: 'Enter queue name and create a queue totally free of cost',
   },
   {
-    imgSrc: 'http://localhost:3000/images/share.svg',
+    imgSrc: '/images/share.svg',
     imgAlt: 'share',
     title: 'Share Queue',
     subtitle: 'Share the queue to your users for them to join',
   },
   {
-    imgSrc: 'http://localhost:3000/images/manage.svg',
+    imgSrc: '/images/manage.svg',
     imgAlt: 'manage',
     title: 'Manage Queue',
     subtitle: 'Manage your queue seamlessly and efficiently',
@@ -33,13 +33,13 @@ export const CreatorSlider = () => {
 
 const joinerSlides = [
   {
-    imgSrc: 'http://localhost:3000/images/join.svg',
+    imgSrc: '/images/join.svg',
     imgAlt: 'join',
     title: 'Join Queue',
     subtitle: 'Get the queue link and join from anywhere',
   },
   {
-    imgSrc: 'http://localhost:3000/images/finish.svg',
+    imgSrc: '/images/finish.svg',
     imgAlt: 'wait',
     title: 'Wait for your turn',
     subtitle: 'Get notified when your turn is up without physically being there',
