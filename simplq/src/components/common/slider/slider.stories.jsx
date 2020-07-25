@@ -6,6 +6,31 @@ export default {
   title: 'Slider',
 };
 
+const creatorSlides = [
+  {
+    imgSrc: 'http://localhost:3000/images/queue_creation.svg',
+    imgAlt: 'create',
+    title: 'Create Queue',
+    subtitle: 'Enter queue name and create a queue totally free of cost',
+  },
+  {
+    imgSrc: 'http://localhost:3000/images/check_status.svg',
+    imgAlt: 'create',
+    title: 'Should Fill',
+    subtitle: 'Fill the description',
+  },
+  {
+    imgSrc: 'http://localhost:3000/images/minimize_crowding.svg',
+    imgAlt: 'create',
+    title: 'Should Fill',
+    subtitle: 'Fill the description',
+  },
+];
+
+export const CreatorSlider = () => {
+  return <Slider slides={creatorSlides} />;
+};
+
 const joinerSlides = [
   {
     imgSrc: 'http://localhost:3000/images/queue_creation.svg',
@@ -14,22 +39,16 @@ const joinerSlides = [
     subtitle: 'Enter queue name and create a queue totally free of cost',
   },
   {
-    imgSrc: 'http://localhost:3000/images/queue_creation.svg',
+    imgSrc: 'http://localhost:3000/images/check_status.svg',
     imgAlt: 'create',
-    title: 'Create Queue',
-    subtitle: 'Enter queue name and create a queue totally free of cost',
+    title: 'Should Fill',
+    subtitle: 'Fill the description',
   },
   {
-    imgSrc: 'http://localhost:3000/images/queue_creation.svg',
+    imgSrc: 'http://localhost:3000/images/minimize_crowding.svg',
     imgAlt: 'create',
-    title: 'Create Queue',
-    subtitle: 'Enter queue name and create a queue totally free of cost',
-  },
-  {
-    imgSrc: 'http://localhost:3000/images/queue_creation.svg',
-    imgAlt: 'create',
-    title: 'Create Queue',
-    subtitle: 'Enter queue name and create a queue totally free of cost',
+    title: 'Should Fill',
+    subtitle: 'Fill the description',
   },
 ];
 
