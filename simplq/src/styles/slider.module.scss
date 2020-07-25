@@ -2,6 +2,7 @@
 
 .aws-btn {
   --content-background-color: transparent;
+  height: 50vh;
   @include center-horizontally();
   @include text-color();
 }
