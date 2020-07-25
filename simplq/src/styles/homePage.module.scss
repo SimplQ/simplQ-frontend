@@ -38,18 +38,19 @@ div {
   }
 }
 
-.create-queue {
+.slider {
   @include text-color();
   @include center-vertically();
   @include center-horizontally();
-}
-
-.join-queue {
-  @include text-color();
-  @include center-vertically();
-  @include center-horizontally();
+  div {
+    max-width: 40rem;
+    height: min-content;
+  }
 }
 
 .extra-info {
-  @extend .benefits-info;
+  @include background-color();
+  @include text-color();
+  @include center-vertically();
+  @include center-horizontally();
 }

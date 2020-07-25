@@ -40,14 +40,14 @@ export const BenefitsInfo = () => (
 );
 
 export const HowToCreate = () => (
-  <div className={styles['create-queue']}>
+  <div className={styles.slider}>
     <h2>Create a Queue at the click of a button</h2>
     <CreatorSlider />
   </div>
 );
 
 export const HowToJoin = () => (
-  <div className={styles['join-queue']}>
+  <div className={styles.slider}>
     <h2>Join a queue without being there</h2>
     <JoinerSlider />
   </div>

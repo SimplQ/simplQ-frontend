@@ -2,10 +2,11 @@
 
 .aws-btn {
     --content-background-color: transparent;
+
     @include center-horizontally();
     @include text-color();
-    img {
-        height: 15rem;
+    img {       
+        max-width: 15rem;
     }
     h4 {
         font-weight: 500;
