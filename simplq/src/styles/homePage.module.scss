@@ -27,23 +27,27 @@ div {
   @include background-color();
   @include text-color();
   @include center-vertically();
+  @include center-horizontally();
   div {
+    padding: 4.5rem;
     margin: auto;
+    font-size: 1.25rem;
+    img {
+      height: 4.5rem;
+    }
   }
 }
 
-.create-queue {
+.slider {
   @include text-color();
   @include center-vertically();
   @include center-horizontally();
-}
-
-.join-queue {
-  @include text-color();
-  @include center-vertically();
-  @include center-horizontally();
+  margin: 2.5rem;
 }
 
 .extra-info {
-  @extend .benefits-info;
+  @include background-color();
+  @include text-color();
+  @include center-vertically();
+  @include center-horizontally();
 }

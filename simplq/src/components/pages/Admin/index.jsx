@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import ItemList from './ItemList';
 import * as TokenService from '../../../services/token';
@@ -29,7 +29,7 @@ export default () => {
 
   const [items, setItems] = useState();
 
-  const update = () => {
+  const update = useCallback(() => {
     clearTimeout(timeoutId);
     if (queueId) {
       QueueService.get(queueId)
@@ -42,12 +42,12 @@ export default () => {
           timeoutId = setTimeout(update, TIMEOUT);
         });
     }
-  };
+  }, [queueId]);
 
   useEffect(() => {
     update();
     return () => clearTimeout(timeoutId);
-  }, [queueId]);
+  }, [update]);
 
   const addNewItem = (name, contact) => {
     TokenService.create(name, contact, false, queueId)
