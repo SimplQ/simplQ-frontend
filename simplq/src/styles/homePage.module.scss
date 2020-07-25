@@ -42,14 +42,6 @@ div {
   @include text-color();
   @include center-vertically();
   @include center-horizontally();
-  div {
-    img {
-      height: 15rem;
-    }
-    div {
-      padding: 4.5rem;
-    }
-  }
 }
 
 .join-queue {
