@@ -1,9 +1,9 @@
 @import 'utils';
 
 .aws-btn {
-    --content-background-color: transparent;
-    @include center-horizontally();
-    @include text-color();
+  --content-background-color: transparent;
+  @include center-horizontally();
+  @include text-color();
 }
 
 .slider-content {
