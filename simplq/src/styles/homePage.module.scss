@@ -50,4 +50,10 @@ div {
   @include text-color();
   @include center-vertically();
   @include center-horizontally();
+  div {
+    display: inline-flex;
+    img {
+      margin: 1rem;
+    }
+  }
 }
