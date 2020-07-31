@@ -52,7 +52,7 @@ div {
   @include center-horizontally();
   div {
     display: flex;
-    align-items:center;
+    align-items: center;
     p {
       min-width: 10rem; // So that the text alings along a vertical line, as the entre component in vertically centered
     }
