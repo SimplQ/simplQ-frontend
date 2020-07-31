@@ -2,14 +2,14 @@ import React from 'react';
 import styles from '../../../styles/buttons.module.scss';
 
 const StandardButton = (props) => {
-  const { onClick, text } = props;
+  const { onClick } = props;
   return (
     <button
       type="submit"
       onClick={onClick}
-      className={props.className ? props.className : styles['standard-button']}
+      className={props.dark ? styles['standard-button-dark'] : styles['standard-button']}
     >
-      {text}
+      {props.children}
     </button>
   );
 };
