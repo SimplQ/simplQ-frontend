@@ -38,26 +38,16 @@ div {
   }
 }
 
-.create-queue {
+.slider {
   @include text-color();
   @include center-vertically();
   @include center-horizontally();
-  div {
-    img {
-      height: 15rem;
-    }
-    div {
-      padding: 4.5rem;
-    }
-  }
-}
-
-.join-queue {
-  @include text-color();
-  @include center-vertically();
-  @include center-horizontally();
+  margin: 2.5rem;
 }
 
 .extra-info {
-  @extend .benefits-info;
+  @include background-color();
+  @include text-color();
+  @include center-vertically();
+  @include center-horizontally();
 }
