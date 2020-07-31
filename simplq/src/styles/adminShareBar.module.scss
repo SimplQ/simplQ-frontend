@@ -1,8 +1,8 @@
 @import 'utils';
 
 .main-button-content {
-    @include center-horizontally();
-    & > div {
-        margin: 1rem;
-    }
+  @include center-horizontally();
+  & > div {
+    margin: 1rem;
+  }
 }
