@@ -30,7 +30,7 @@ export const ShareButton = (props) => {
     <StandardButton onClick={props.onClick}>
       <div className={styles['main-button-content']}>
         <ShareIcon fontSize="large" />
-        <p>Share queue to invite people</p>
+        <p>Share queue</p>
       </div>
     </StandardButton>
   );
