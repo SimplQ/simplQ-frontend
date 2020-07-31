@@ -1,5 +1,8 @@
 import React from 'react';
+import ShareIcon from '@material-ui/icons/Share';
+import RefreshIcon from '@material-ui/icons/Refresh';
 import StandardButton from './Button';
+import styles from '../../../styles/adminButtons.module.scss';
 
 export default {
   component: StandardButton,
@@ -22,6 +25,24 @@ export const JoinQButton = (props) => {
   );
 };
 
+export const ShareButton = (props) => {
+  return (
+    <StandardButton onClick={props.onClick}>
+      <div className={styles['main-button-content']}>
+        <ShareIcon fontSize="large" />
+        <p>Share queue to invite people</p>
+      </div>
+    </StandardButton>
+  );
+};
+
 export const RefreshButton = (props) => {
-  return <StandardButton onClick={props.onClick}>Join Queue</StandardButton>;
+  return (
+    <StandardButton onClick={props.onClick}>
+      <div className={styles['main-button-content']}>
+        <RefreshIcon fontSize="large" />
+        <p>Refresh</p>
+      </div>
+    </StandardButton>
+  );
 };
