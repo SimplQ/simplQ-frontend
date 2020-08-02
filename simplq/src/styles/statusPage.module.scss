@@ -12,6 +12,14 @@
   @include queue-name-header();
 }
 
+.details-header {
+  @include queue-name-header();
+  @include box-border();
+  font-weight: lighter;
+  font-size: 1.7rem;
+  margin: 0;
+}
+
 .count {
   font-size: 2rem;
 }
@@ -23,4 +31,20 @@
   width: 70%;
   padding: 10%;
   box-sizing: border-box;
+}
+
+.details {
+  // Initially hidden
+  display: none;
+}
+
+input[type='checkbox']:checked ~ .details {
+  display: inherit;
+  @include background-color();
+  padding-left: 3rem;
+}
+
+.visually-hidden {
+  position: absolute;
+  left: -100vw;
 }
