@@ -1,11 +1,11 @@
 import makeRequest from './axios';
 
-export const create = async (name, contact, notifyable, queueId) => {
+export const create = async (name, contact, notifiable, queueId) => {
   const response = await makeRequest('post', '/token', {
     name,
     contactNumber: contact,
     queueId,
-    notifyable,
+    notifiable,
   });
   return response.data;
 };
