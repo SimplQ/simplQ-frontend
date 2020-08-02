@@ -8,8 +8,8 @@ import { handleApiErrors } from '../ErrorHandler';
 import { CreateQButton } from '../common/Button';
 import styles from '../../styles/createPage.module.scss';
 import { SimplQHeader } from '../common/Header';
-import { handleEnterPress } from '../common/utilFns';
-import { InputField } from '../common/utils';
+import { handleEnterPress, isQueueNameValid } from '../common/utilFns';
+import InputField from '../common/InputField';
 
 class CreateQueue extends React.Component {
   constructor(props) {
@@ -41,7 +41,7 @@ class CreateQueue extends React.Component {
 
   handleTextFieldChange = (e) => {
     const qname = e.target.value;
-    if (qname.match('^[A-Za-z0-9-]*$'))
+    if (isQueueNameValid(qname))
       this.setState({
         textFieldValue: qname,
         invalidMsg: '',

@@ -1,16 +1,14 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import Typography from '@material-ui/core/Typography';
-import { CircularProgress } from '@material-ui/core';
-import Alert from '@material-ui/lab/Alert';
-import * as TokenService from '../../services/token';
-import JoinerStepper from '../common/stepper/JoinerStepper';
-import { setAheadCount, setJoinerStep } from '../../store/appSlice';
-import { handleApiErrors } from '../ErrorHandler';
-import styles from '../../styles/statusPage.module.scss';
-import Button from '../common/Button';
-import Header, { SimplQHeader } from '../common/Header';
-import NotificationButton from '../common/NotificationButton';
+import * as TokenService from '../../../services/token';
+import JoinerStepper from '../../common/stepper/JoinerStepper';
+import { setAheadCount, setJoinerStep } from '../../../store/appSlice';
+import { handleApiErrors } from '../../ErrorHandler';
+import styles from '../../../styles/statusPage.module.scss';
+import Button from '../../common/Button';
+import Header, { SimplQHeader } from '../../common/Header';
+import StatusContainer from './StatusContainer';
+import QueueDetails from './QueueDetails';
 
 const TIMEOUT = 10000;
 let timeoutId;
@@ -75,49 +73,36 @@ function QueueStatus() {
       });
   };
 
-  let status = null;
-  if (updateInProgress) {
-    status = <CircularProgress />;
-  } else if (tokenStatus === 'REMOVED') {
-    status = <Typography align="center">You have been removed from the queue</Typography>;
-  } else if (tokenStatus === 'NOTIFIED') {
-    dispatch(setJoinerStep(3));
-    status = <img src="/tenor.gif" alt="Your turn is up" />;
-  } else if (aheadCount === 0) {
-    status = (
-      <Alert severity="success">
-        <Typography variant="h6" align="center" color="textSecondary" component="p">
-          There is no one ahead of you. Please wait to be notified by the queue manager.
-        </Typography>
-      </Alert>
-    );
-  } else {
-    status = (
-      <Typography variant="h5" align="center" color="textSecondary" component="p">
-        {`People infront of you :${aheadCount}`}
-      </Typography>
-    );
-  }
+  const renderButtons = () => {
+    if (tokenStatus !== 'REMOVED' && !updateInProgress) {
+      return (
+        <div className={styles['button-group']}>
+          <div>
+            <Button text="Check Status" onClick={update} />
+          </div>
+          <div>
+            <Button text="Leave Queue" onClick={onDeleteClick} />
+          </div>
+        </div>
+      );
+    }
+    return <div />;
+  };
+
+  dispatch(setJoinerStep(2));
 
   return (
     <>
       <SimplQHeader />
       <Header text={queueName} className={styles.header} />
       <JoinerStepper />
-      <div>{status}</div>
-      <NotificationButton />
-      {!(tokenStatus === 'REMOVED') && !updateInProgress ? (
-        <div className={styles['button-group']}>
-          <div>
-            <Button text="Check Status" onClick={() => update()} />
-          </div>
-          <div>
-            <Button text="Leave Queue" onClick={onDeleteClick} />
-          </div>
-        </div>
-      ) : (
-        <div />
-      )}
+      <StatusContainer
+        updateInProgress={updateInProgress}
+        tokenStatus={tokenStatus}
+        aheadCount={aheadCount}
+      />
+      {renderButtons()}
+      <QueueDetails />
     </>
   );
 }
