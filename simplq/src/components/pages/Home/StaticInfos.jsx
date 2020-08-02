@@ -56,15 +56,15 @@ export const HowToJoin = () => (
 export const ExtraInfo = () => (
   <div className={styles['extra-info']}>
     <div>
-      {/* <img></img> */}
+      <img src="/images/free.svg" alt="free" />
       <p>Always free</p>
     </div>
     <div>
-      {/* <img></img> */}
+      <img src="/images/secure.svg" alt="secure" />
       <p>Data security</p>
     </div>
     <div>
-      {/* <img></img> */}
+      <img src="/images/easy.svg" alt="easy to use" />
       <p>Easy to use</p>
     </div>
   </div>
