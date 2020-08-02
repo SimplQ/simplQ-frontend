@@ -4,4 +4,4 @@ export const handleEnterPress = (event, keyPresshandler) => {
   }
 };
 
-export const isQNameValid = (qname) => qname.match('^[A-Za-z0-9-]*$'); // Only letters, numbers and - allowed
+export const isQueueNameValid = (qname) => qname.match('^[A-Za-z0-9-]*$'); // Only letters, numbers and - allowed

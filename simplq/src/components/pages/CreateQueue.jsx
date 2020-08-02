@@ -8,7 +8,7 @@ import { handleApiErrors } from '../ErrorHandler';
 import { CreateQButton } from '../common/Button';
 import styles from '../../styles/createPage.module.scss';
 import { SimplQHeader } from '../common/Header';
-import { handleEnterPress, isQNameValid } from '../common/utilFns';
+import { handleEnterPress, isQueueNameValid } from '../common/utilFns';
 import InputField from '../common/InputField';
 
 class CreateQueue extends React.Component {
@@ -41,7 +41,7 @@ class CreateQueue extends React.Component {
 
   handleTextFieldChange = (e) => {
     const qname = e.target.value;
-    if (isQNameValid(qname))
+    if (isQueueNameValid(qname))
       this.setState({
         textFieldValue: qname,
         invalidMsg: '',
