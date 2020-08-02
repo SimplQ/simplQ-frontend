@@ -12,7 +12,15 @@
   @include queue-name-header();
 }
 
+.count {
+  font-size: 2rem;
+}
+
 .status-box {
-  @include border-box();
   @include center-horizontally();
+  border: 1.5px solid $primary-color-dark;
+  border-radius: 1rem;
+  width: 70%;
+  padding: 10%;
+  box-sizing: border-box;
 }

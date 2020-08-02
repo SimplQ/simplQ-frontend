@@ -30,6 +30,7 @@ const NotificationButton = () => {
 
     // Let's check if the browser supports notifications
     if (!('Notification' in window)) {
+      // eslint-disable-next-line no-console
       console.log('This browser does not support notifications.');
     } else if (hasPromiseBasedNotificationSupport()) {
       Notification.requestPermission().then((permission) => {
