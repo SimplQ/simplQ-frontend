@@ -1,5 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+// fix for Notification object not supported on iOS safari
+const getNotificationStatus = () => {
+  try {
+    return Notification.permission;
+  } catch (error) {
+    return 'denied';
+  }
+};
+
 const appSlice = createSlice({
   name: 'appSlice',
   initialState: {
@@ -10,7 +19,7 @@ const appSlice = createSlice({
     currentJoinerStep: window.localStorage.getItem('currentJoinerStep'),
     aheadCount: null,
     errorText: '',
-    notificationPermission: Notification.permission,
+    notificationPermission: getNotificationStatus(),
   },
   reducers: {
     setQueueName: (state, action) => {
