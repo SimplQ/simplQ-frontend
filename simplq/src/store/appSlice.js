@@ -5,7 +5,6 @@ const getNotificationStatus = () => {
   try {
     return Notification.permission;
   } catch (error) {
-    console.log(error);
     return 'denied';
   }
 };
