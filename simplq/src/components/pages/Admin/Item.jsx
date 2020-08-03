@@ -33,7 +33,7 @@ function Item(props) {
   const name = props.item.name;
   const tokenId = props.item.tokenId;
   const tokenStatus = props.item.tokenStatus;
-  const notifyable = props.item.notifyable;
+  const notifiable = props.item.notifiable;
   const [notifying, setNotifying] = useState(false);
   const [didNotify, setDidNotify] = useState(false);
 
@@ -65,7 +65,7 @@ function Item(props) {
         <CircularProgress size={18} />
       </IconButton>
     );
-  } else if (!notifyable) {
+  } else if (!notifiable) {
     notificationButton = (
       <IconButton edge="end" color="primary" aria-label="notify">
         <Notifications color="disabled" />

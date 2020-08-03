@@ -10,7 +10,7 @@ const appSlice = createSlice({
     currentJoinerStep: window.localStorage.getItem('currentJoinerStep'),
     aheadCount: null,
     errorText: '',
-    notificationPermission: Notification.permission,
+    notificationPermission: Notification ? Notification.permission : 'denied',
   },
   reducers: {
     setQueueName: (state, action) => {

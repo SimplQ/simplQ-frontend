@@ -52,7 +52,7 @@ export default () => {
   const addNewItem = (name, contact) => {
     TokenService.create(name, contact, false, queueId)
       .then((response) => {
-        setItems([...items, { tokenId: response.tokenId, name, contact, notifyable: false }]);
+        setItems([...items, { tokenId: response.tokenId, name, contact, notifiable: false }]);
       })
       .catch((err) => {
         handleApiErrors(err);
