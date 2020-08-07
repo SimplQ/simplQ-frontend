@@ -25,7 +25,7 @@ In the `simplq` folder, simply run:
 npm start
 ```
 
-We use [Storybook.js](https://storybook.js.org/) for prototyping our components, and to start storybook, run:
+We use [Storybook.js](https://storybook.js.org/) for prototyping components, to start, run:
 
 ```
 npm run storybook
