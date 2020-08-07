@@ -14,3 +14,10 @@
 .add-member {
   @include box-border();
 }
+
+.main-button-content {
+  @include center-horizontally();
+  & > div {
+    margin: .5rem;
+  }
+}

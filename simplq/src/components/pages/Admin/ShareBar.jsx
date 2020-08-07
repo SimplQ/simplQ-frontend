@@ -6,7 +6,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import { progressCreationStep } from '../../../store/appSlice';
 import { RefreshButton, ShareButton } from '../../common/Button/Button.stories';
-import styles from '../../../styles/adminShareBar.module.scss';
+import styles from '../../../styles/adminPage.module.scss';
 
 const ShareBar = (props) => {
   const queueId = props.queueId;
