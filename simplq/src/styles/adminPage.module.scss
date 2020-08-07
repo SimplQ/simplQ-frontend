@@ -18,6 +18,6 @@
 .main-button-content {
   @include center-horizontally();
   & > div {
-    margin: .5rem;
+    margin: 0.5rem;
   }
 }
