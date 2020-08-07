@@ -11,7 +11,7 @@ export default {
 
 export const CreateQButton = (props) => {
   return (
-    <StandardButton onClick={props.onClick} dark>
+    <StandardButton onClick={props.onClick} outlined>
       Create Queue
     </StandardButton>
   );
@@ -19,7 +19,7 @@ export const CreateQButton = (props) => {
 
 export const JoinQButton = (props) => {
   return (
-    <StandardButton onClick={props.onClick} dark>
+    <StandardButton onClick={props.onClick} outlined>
       Join Queue
     </StandardButton>
   );

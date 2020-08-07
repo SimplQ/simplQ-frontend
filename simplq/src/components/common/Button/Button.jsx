@@ -7,7 +7,7 @@ const StandardButton = (props) => {
     <button
       type="submit"
       onClick={onClick}
-      className={props.dark ? styles['standard-button-dark'] : styles['standard-button']}
+      className={props.outlined ? styles['standard-button-outlined'] : styles['standard-button']}
     >
       {props.children}
     </button>
