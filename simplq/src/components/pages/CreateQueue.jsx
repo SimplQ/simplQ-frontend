@@ -59,7 +59,7 @@ const CreateQueue = ({ history }) => {
           // eslint-disable-next-line react/jsx-curly-newline
         }
         error={invalidMsg.length > 0}
-        helperText={invalidMsg.length > 0 ? invalidMsg : ''}
+        helperText={invalidMsg}
         className={styles.input}
       />
       <div className={styles['create-button']}>
