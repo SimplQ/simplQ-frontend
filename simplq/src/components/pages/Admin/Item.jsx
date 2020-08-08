@@ -32,10 +32,9 @@ function Item(props) {
   const contact = props.item.contactNo;
   const name = props.item.name;
   const tokenId = props.item.tokenId;
-  const tokenStatus = props.item.tokenStatus;
   const notifiable = props.item.notifiable;
   const [notifying, setNotifying] = useState(false);
-  const [didNotify, setDidNotify] = useState(false);
+  const [didNotify, setDidNotify] = useState(props.item.tokenStatus === 'NOTIFIED'); //  notified or not shpuld comee from db
 
   const dispatch = useDispatch();
   const onNotifyClick = () => {
@@ -47,44 +46,44 @@ function Item(props) {
         setDidNotify(true);
       })
       .catch((err) => {
+        setNotifying(false);
         handleApiErrors(err);
       });
     // Notify user of error TODO
   };
   const onDeleteClick = () => {
-    TokenService.remove(tokenId).catch((err) => {
-      handleApiErrors(err);
-    });
-    props.removeItemHandler(tokenId); // TODO Should delete from list only ofter successfull deletion from db
+    props.removeItemHandler(tokenId);
   };
 
   let notificationButton = null;
   if (notifying) {
+    // Notifying in progress
     notificationButton = (
       <IconButton edge="end" color="primary" aria-label="notify">
         <CircularProgress size={18} />
       </IconButton>
     );
   } else if (!notifiable) {
+    // Not notifiable
     notificationButton = (
       <IconButton edge="end" color="primary" aria-label="notify">
         <Notifications color="disabled" />
       </IconButton>
     );
-  } else if (tokenStatus === 'NOTIFIED' || didNotify) {
+  } else if (didNotify) {
+    // Notified
     notificationButton = (
       <IconButton edge="end" color="primary" aria-label="notified">
         <DoneIcon style={{ color: 'green' }} />
       </IconButton>
     );
-  } else if (tokenStatus === 'WAITING') {
+  } else {
+    // Yet to notify
     notificationButton = (
       <IconButton edge="end" color="primary" aria-label="notify" onClick={onNotifyClick}>
         <Notifications />
       </IconButton>
     );
-  } else {
-    throw Error('invalid state');
   }
 
   return (

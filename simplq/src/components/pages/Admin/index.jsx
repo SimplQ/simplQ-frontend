@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import ItemList from './ItemList';
 import * as TokenService from '../../../services/token';
 import * as QueueService from '../../../services/queue';
 import { progressCreationStep } from '../../../store/appSlice';
 import ShareBar from './ShareBar';
-import PageNotFound from '../PageNotFound';
 import CreatorStepper from '../../common/stepper/CreatorStepper';
 import { handleApiErrors } from '../../ErrorHandler';
 import Header, { SimplQHeader } from '../../common/Header';
@@ -15,33 +14,26 @@ import AddMember from './AddMember';
 const TIMEOUT = 10000;
 let timeoutId;
 
-export default () => {
+export default (props) => {
   const dispatch = useDispatch();
-  const queueId = useSelector((state) => state.appReducer.queueId);
-  const queueName = useSelector((state) => state.appReducer.queueName);
-
-  if (!queueId) {
-    // If queue id is not here, most probably his session storage got cleared. This can be solved only with proper auth.
-    return <PageNotFound />;
-  }
+  const queueId = props.match.params.queueId;
 
   dispatch(progressCreationStep(1));
 
   const [items, setItems] = useState();
-
+  const [queueName, setQueueName] = useState();
   const update = useCallback(() => {
     clearTimeout(timeoutId);
-    if (queueId) {
-      QueueService.get(queueId)
-        .then((data) => {
-          setItems(data.tokens);
-          timeoutId = setTimeout(update, TIMEOUT);
-        })
-        .catch((err) => {
-          handleApiErrors(err);
-          timeoutId = setTimeout(update, TIMEOUT);
-        });
-    }
+    QueueService.get(queueId)
+      .then((data) => {
+        setItems(data.tokens);
+        setQueueName(data.queueName);
+        timeoutId = setTimeout(update, TIMEOUT);
+      })
+      .catch((err) => {
+        handleApiErrors(err);
+        timeoutId = setTimeout(update, TIMEOUT);
+      });
   }, [queueId]);
 
   useEffect(() => {
@@ -49,18 +41,29 @@ export default () => {
     return () => clearTimeout(timeoutId);
   }, [update]);
 
-  const addNewItem = (name, contact) => {
-    TokenService.create(name, contact, false, queueId)
+  const addNewItem = (name, contactNumber) => {
+    TokenService.create(name, contactNumber, false, queueId)
       .then((response) => {
-        setItems([...items, { tokenId: response.tokenId, name, contact, notifiable: false }]);
+        setItems([
+          ...items,
+          {
+            tokenId: response.tokenId,
+            name,
+            contactNumber,
+            notifiable: false,
+            tokenStatus: response.tokenStatus,
+          },
+        ]);
       })
       .catch((err) => {
         handleApiErrors(err);
       });
   };
 
-  const removeItemHandler = (tokenId) => {
-    setItems(items.filter((item) => item.tokenId !== tokenId));
+  const removeItem = (tokenId) => {
+    TokenService.remove(tokenId)
+      .then(() => setItems(items.filter((item) => item.tokenId !== tokenId)))
+      .catch((err) => handleApiErrors(err));
   };
 
   return (
@@ -80,7 +83,7 @@ export default () => {
           items={items}
           queueId={queueId}
           joinQueueHandler={addNewItem}
-          removeItemHandler={removeItemHandler}
+          removeItemHandler={removeItem}
         />
       </div>
       <div className={styles['add-member']}>
