@@ -15,7 +15,7 @@ export default () => {
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/create" exact component={CreateQueue} />
-          <Route path="/admin" exact component={AdminQueue} />
+          <Route path="/queue/:queueId" exact component={AdminQueue} />
           <Route path="/j/:queueId" exact component={JoinQueueWithDetails} />
           <Route path="/join" exact component={JoinQueueWithLink} />
           <Route path="/status" exact component={QueueStatus} />

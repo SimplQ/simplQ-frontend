@@ -30,7 +30,7 @@ class CreateQueue extends React.Component {
           store.dispatch(setQueueId(response.queueId));
           store.dispatch(setQueueName(response.queueName));
           store.dispatch(setCreationStep(1));
-          this.props.history.push('/admin');
+          this.props.history.push(`/queue/${response.queueId}`);
         })
         .catch((err) => {
           handleApiErrors(err);
