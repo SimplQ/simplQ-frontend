@@ -34,7 +34,7 @@ function Item(props) {
   const tokenId = props.item.tokenId;
   const notifiable = props.item.notifiable;
   const [notifying, setNotifying] = useState(false);
-  const [didNotify, setDidNotify] = useState(props.item.tokenStatus === 'NOTIFIED'); //  notified or not shpuld comee from db
+  const [didNotify, setDidNotify] = useState(props.item.tokenStatus === 'NOTIFIED');
 
   const dispatch = useDispatch();
   const onNotifyClick = () => {
