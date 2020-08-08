@@ -17,10 +17,7 @@ export function JoinQueueWithDetails(props) {
   const queueId = props.match.params.queueId;
   const [queueStatusResponse, setQueueStatusResponse] = useState();
   useEffect(
-    () =>
-      QueueService.getStatus(queueId)
-        .then(setQueueStatusResponse)
-        .catch((err) => handleApiErrors(err)),
+    () => QueueService.getStatus(queueId).then(setQueueStatusResponse).catch(handleApiErrors),
     [queueId]
   );
   const dispatch = useDispatch();
@@ -38,7 +35,7 @@ export function JoinQueueWithDetails(props) {
   };
 
   if (!queueStatusResponse) {
-    return <div>Loading...</div>; // Todo
+    return <div>Loading...</div>; // Todo(https://github.com/SimplQ/simplQ-frontend/issues/162)
   }
 
   return (
