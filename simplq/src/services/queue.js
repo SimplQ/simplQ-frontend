@@ -11,3 +11,8 @@ export const get = async (queueId) => {
   const response = await makeRequest('get', `/queue/${queueId}`);
   return response.data;
 };
+
+export const getStatus = async (queueId) => {
+  const response = await makeRequest('get', `/queue/status?queueId=${queueId}`);
+  return response.data;
+};
