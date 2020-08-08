@@ -18,7 +18,7 @@ export default () => {
           <Route path="/queue/:queueId" exact component={AdminQueue} />
           <Route path="/j/:queueId" exact component={JoinQueueWithDetails} />
           <Route path="/join" exact component={JoinQueueWithLink} />
-          <Route path="/status" exact component={QueueStatus} />
+          <Route path="/token/:tokenId" exact component={QueueStatus} />
           <Route component={PageNotFound} />
         </Switch>
         <ErrorNotification />
