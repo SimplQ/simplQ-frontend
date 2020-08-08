@@ -43,3 +43,14 @@
     border-radius: 0.6rem;
   }
 }
+
+.admin-main-button {
+  display: flex;
+  align-items: center;
+  max-width: 8rem;
+  min-height: 4rem;
+  padding: 0;
+  & > * {
+    margin: 0.4rem;
+  }
+}
