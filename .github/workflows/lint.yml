@@ -1,8 +1,6 @@
 name: Lint
 
-on: 
-  pull_request:
-      branches: [master, new-frontend, prod]
+on: [push,pull_request]
       
 defaults:
   run:

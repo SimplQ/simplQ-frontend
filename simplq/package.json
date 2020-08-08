@@ -57,7 +57,7 @@
     "@storybook/addons": "^5.3.19",
     "@storybook/preset-create-react-app": "^3.1.2",
     "@storybook/react": "^5.3.19",
-    "eslint-config-airbnb": "^18.1.0",
+    "eslint-config-airbnb": "^18.2.0",
     "eslint-config-airbnb-base": "^14.1.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-import": "^2.21.2",

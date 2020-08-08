@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { CircularProgress } from '@material-ui/core';
 import * as QueueService from '../../services/queue';
 import { setQueueName, setQueueId, setCreationStep } from '../../store/appSlice';
@@ -11,76 +11,66 @@ import { SimplQHeader } from '../common/Header';
 import { handleEnterPress, isQueueNameValid } from '../common/utilFns';
 import InputField from '../common/InputField';
 
-class CreateQueue extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      textFieldValue: '',
-      invalidMsg: '', // state variable to display reason for invalid queue name
-      createInProgress: false,
-    };
-  }
+const CreateQueue = ({ history }) => {
+  const [textFieldValue, setTextFieldValue] = useState('');
+  const [invalidMsg, setInvalidMsg] = useState('');
+  const [createInProgress, setCreateInProgress] = useState(false);
 
-  handleClick = (queueName) => {
-    if (this.state.textFieldValue === '') this.setState({ invalidMsg: 'Queue name is required' });
+  const handleClick = (queueName) => {
+    if (textFieldValue === '') setInvalidMsg('Queue name is required');
     else {
-      this.setState({ createInProgress: true });
+      setCreateInProgress(true);
       QueueService.create(queueName)
         .then((response) => {
           store.dispatch(setQueueId(response.queueId));
           store.dispatch(setQueueName(response.queueName));
           store.dispatch(setCreationStep(1));
-          this.props.history.push(`/queue/${response.queueId}`);
+          history.push(`/queue/${response.queueId}`);
         })
         .catch((err) => {
           handleApiErrors(err);
         });
-      this.setState({ createInProgress: false });
+      setCreateInProgress(false);
     }
   };
 
-  handleTextFieldChange = (e) => {
-    const qname = e.target.value;
-    if (isQueueNameValid(qname))
-      this.setState({
-        textFieldValue: qname,
-        invalidMsg: '',
-      });
-    else {
-      this.setState({
-        invalidMsg: "Only alphabets, numbers and '-' allowed",
-      });
+  const handleTextFieldChange = (e) => {
+    const queueName = e.target.value;
+    if (isQueueNameValid(queueName)) {
+      setTextFieldValue(queueName);
+      setInvalidMsg('');
+    } else {
+      setInvalidMsg("Only alphabets, numbers and '-' allowed");
     }
   };
 
-  render() {
-    store.dispatch(setCreationStep(0));
-    return (
-      <div>
-        <SimplQHeader />
-        <CreatorStepper />
-        <InputField
-          placeholder="Enter a name for your new queue"
-          value={this.state.textFieldValue}
-          onChange={this.handleTextFieldChange}
-          onKeyPress={
-            (e) => handleEnterPress(e, () => this.handleClick(this.state.textFieldValue))
-            // eslint-disable-next-line react/jsx-curly-newline
-          }
-          error={this.state.invalidMsg.length > 0}
-          helperText={this.state.invalidMsg.length > 0 ? this.state.invalidMsg : ''}
-          className={styles.input}
-        />
-        <div className={styles['create-button']}>
-          {this.state.createInProgress ? (
-            <CircularProgress size={30} />
-          ) : (
-            <CreateQButton onClick={() => this.handleClick(this.state.textFieldValue)} />
-          )}
-        </div>
+  store.dispatch(setCreationStep(0)); // was inside render earlier
+
+  return (
+    <div>
+      <SimplQHeader />
+      <CreatorStepper />
+      <InputField
+        placeholder="Enter a name for your new queue"
+        value={textFieldValue}
+        onChange={handleTextFieldChange}
+        onKeyPress={
+          (e) => handleEnterPress(e, () => handleClick(textFieldValue))
+          // eslint-disable-next-line react/jsx-curly-newline
+        }
+        error={invalidMsg.length > 0}
+        helperText={invalidMsg}
+        className={styles.input}
+      />
+      <div className={styles['create-button']}>
+        {createInProgress ? (
+          <CircularProgress size={30} />
+        ) : (
+          <CreateQButton onClick={() => handleClick(textFieldValue)} />
+        )}
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default CreateQueue;
