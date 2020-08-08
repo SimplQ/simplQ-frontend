@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Item(props) {
   const classes = useStyles();
-  const contact = props.item.contactNo;
+  const contactNumber = props.item.contactNumber;
   const name = props.item.name;
   const tokenId = props.item.tokenId;
   const notifiable = props.item.notifiable;
@@ -87,7 +87,7 @@ function Item(props) {
   }
 
   return (
-    <ListItem button className={classes.root} component="a" href={`tel:${contact}`}>
+    <ListItem button className={classes.root} component="a" href={`tel:${contactNumber}`}>
       <ListItemAvatar>
         <IconButton className={classes.callButton}>
           <CallIcon className={classes.callIcon} />
