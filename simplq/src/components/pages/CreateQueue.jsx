@@ -17,7 +17,7 @@ const CreateQueue = ({ history }) => {
   const [createInProgress, setCreateInProgress] = useState(false);
 
   const handleClick = (queueName) => {
-    if (textFieldValue === '') setTextFieldValue('Queue name is required');
+    if (textFieldValue === '') setInvalidMsg('Queue name is required');
     else {
       setCreateInProgress(true);
       QueueService.create(queueName)
@@ -35,9 +35,9 @@ const CreateQueue = ({ history }) => {
   };
 
   const handleTextFieldChange = (e) => {
-    const qname = e.target.value;
-    if (isQueueNameValid(qname)) {
-      setTextFieldValue(qname);
+    const queueName = e.target.value;
+    if (isQueueNameValid(queueName)) {
+      setTextFieldValue(queueName);
       setInvalidMsg('');
     } else {
       setInvalidMsg("Only alphabets, numbers and '-' allowed");
