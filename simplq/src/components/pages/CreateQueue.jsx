@@ -25,7 +25,7 @@ const CreateQueue = ({ history }) => {
           store.dispatch(setQueueId(response.queueId));
           store.dispatch(setQueueName(response.queueName));
           store.dispatch(setCreationStep(1));
-          history.push('/admin');
+          history.push(`/queue/${response.queueId}`);
         })
         .catch((err) => {
           handleApiErrors(err);

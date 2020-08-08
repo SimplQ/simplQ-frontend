@@ -1,6 +1,6 @@
 @import 'utils';
 
-.standard-button {
+.standard-button-outlined {
   background-color: $primary-color-dark;
   color: #fff;
   display: inline-block;
@@ -15,5 +15,42 @@
   &:hover {
     background-color: #fff;
     color: $primary-color-dark;
+  }
+
+  &:focus {
+    border-radius: 0.6rem;
+  }
+}
+
+.standard-button {
+  background-color: #fff;
+  color: $primary-color-dark;
+  display: inline-block;
+  padding: 0.2em 0.5em 0.3em 0.5em;
+  font-weight: bold;
+  font-size: large;
+  border: 1px solid $primary-color-dark;
+  border-radius: 0.6rem;
+  text-align: center;
+  transition: all 0.2s;
+
+  &:hover {
+    background-color: #f8f8f8;
+    cursor: pointer;
+  }
+
+  &:focus {
+    border-radius: 0.6rem;
+  }
+}
+
+.admin-main-button {
+  display: flex;
+  align-items: center;
+  max-width: 8rem;
+  min-height: 4rem;
+  padding: 0;
+  & > * {
+    margin: 0.4rem;
   }
 }
