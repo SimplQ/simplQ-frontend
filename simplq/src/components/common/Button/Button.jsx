@@ -2,14 +2,14 @@ import React from 'react';
 import styles from '../../../styles/buttons.module.scss';
 
 const StandardButton = (props) => {
-  const { onClick, text } = props;
+  const { onClick } = props;
   return (
     <button
       type="submit"
       onClick={onClick}
-      className={props.className ? props.className : styles['standard-button']}
+      className={props.outlined ? styles['standard-button-outlined'] : styles['standard-button']}
     >
-      {text}
+      {props.children}
     </button>
   );
 };
