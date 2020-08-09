@@ -35,9 +35,9 @@ function QueueStatus(props) {
     });
   }, [tokenStatusResponse]);
 
+  const oldTokenStatus = tokenStatusResponse ? tokenStatusResponse.tokenStatus : undefined;
   const update = useCallback(() => {
     clearTimeout(timeoutId);
-    const oldTokenStatus = tokenStatusResponse ? tokenStatusResponse.tokenStatus : undefined;
     TokenService.get(tokenId)
       .then((response) => {
         setTokenStatusResponse(response);
@@ -50,7 +50,7 @@ function QueueStatus(props) {
         handleApiErrors(err);
         timeoutId = setTimeout(update, TIMEOUT);
       });
-  }, [tokenId]);
+  }, [tokenId, oldTokenStatus]);
 
   useEffect(() => {
     update();
