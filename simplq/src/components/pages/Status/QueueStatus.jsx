@@ -50,7 +50,7 @@ function QueueStatus(props) {
         handleApiErrors(err);
         timeoutId = setTimeout(update, TIMEOUT);
       });
-  }, [tokenId, oldTokenStatus, showNotification]);
+  }, [tokenId, oldTokenStatus]); // don't add showNotification, will result in infinite loop
 
   useEffect(() => {
     update();
