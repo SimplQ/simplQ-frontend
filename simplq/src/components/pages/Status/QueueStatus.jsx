@@ -72,10 +72,10 @@ function QueueStatus(props) {
       return (
         <div className={styles['button-group']}>
           <div>
-            <Button text="Check Status" onClick={update} />
+            <Button onClick={update}>Check Status</Button>
           </div>
           <div>
-            <Button text="Leave Queue" onClick={onDeleteClick} />
+            <Button onClick={onDeleteClick}>Leave Queue</Button>
           </div>
         </div>
       );

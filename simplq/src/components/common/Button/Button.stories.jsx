@@ -10,24 +10,16 @@ export default {
 };
 
 export const CreateQButton = (props) => {
-  return (
-    <StandardButton onClick={props.onClick} outlined>
-      Create Queue
-    </StandardButton>
-  );
+  return <StandardButton onClick={props.onClick}>Create Queue</StandardButton>;
 };
 
 export const JoinQButton = (props) => {
-  return (
-    <StandardButton onClick={props.onClick} outlined>
-      Join Queue
-    </StandardButton>
-  );
+  return <StandardButton onClick={props.onClick}>Join Queue</StandardButton>;
 };
 
 export const ShareButton = (props) => {
   return (
-    <StandardButton onClick={props.onClick}>
+    <StandardButton onClick={props.onClick} outlined>
       <div className={styles['admin-main-button']}>
         <ShareIcon fontSize="large" />
         <p>Share queue</p>
@@ -38,7 +30,7 @@ export const ShareButton = (props) => {
 
 export const RefreshButton = (props) => {
   return (
-    <StandardButton onClick={props.onClick}>
+    <StandardButton onClick={props.onClick} outlined>
       <div className={styles['admin-main-button']}>
         <RefreshIcon fontSize="large" />
         <p>Refresh</p>
