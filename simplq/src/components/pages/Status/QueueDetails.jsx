@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import moment from 'moment';
+import { CircularProgress } from '@material-ui/core';
 import Header from '../../common/Header';
 import styles from '../../../styles/statusPage.module.scss';
 import * as QueueService from '../../../services/queue';
@@ -10,7 +11,7 @@ export default (props) => {
   const [details, setDetails] = useState();
   QueueService.getStatus(props.queueId).then(setDetails).catch(handleApiErrors);
   if (!details) {
-    return <div>Loading</div>;
+    return <CircularProgress />;
   }
   const timeStamp = moment(details.queueCreationTimestamp);
   const creationTime = `${timeStamp.format('LT')} ${timeStamp.format('ll')}`;
