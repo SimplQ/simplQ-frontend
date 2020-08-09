@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import * as TokenService from '../../../services/token';
 import JoinerStepper from '../../common/stepper/JoinerStepper';
-import { setAheadCount, setJoinerStep } from '../../../store/appSlice';
+import { setJoinerStep } from '../../../store/appSlice';
 import { handleApiErrors } from '../../ErrorHandler';
 import styles from '../../../styles/statusPage.module.scss';
 import Button from '../../common/Button';
@@ -13,17 +13,16 @@ import QueueDetails from './QueueDetails';
 const TIMEOUT = 10000;
 let timeoutId;
 
-function QueueStatus() {
+function QueueStatus(props) {
+  const tokenId = props.match.params.tokenId;
+  const [tokenStatusResponse, setTokenStatusResponse] = useState();
   const dispatch = useDispatch();
-  const queueName = useSelector((state) => state.appReducer.queueName);
-  const [tokenStatus, setTokenStatus] = useState();
-  const tokenId = useSelector((state) => state.appReducer.tokenId);
-  const aheadCount = useSelector((state) => state.appReducer.aheadCount);
+  dispatch(setJoinerStep(2));
   const [updateInProgress, setUpdateInProgress] = useState(false);
 
   const showNotification = useCallback(() => {
     const notificationImage = '/LogoLight.png';
-    const notificationText = `${queueName}: You've been notified by the queue manager.`;
+    const notificationText = `${tokenStatusResponse.queueName}: You've been notified by the queue manager.`;
     const notification = new Notification('SimplQ', {
       body: notificationText,
       icon: notificationImage,
@@ -34,27 +33,24 @@ function QueueStatus() {
         notification.close();
       }
     });
-  }, [queueName]);
+  }, [tokenStatusResponse]);
 
+  const oldTokenStatus = tokenStatusResponse ? tokenStatusResponse.tokenStatus : undefined;
   const update = useCallback(() => {
     clearTimeout(timeoutId);
-    if (tokenId) {
-      const oldTokenStatus = tokenStatus;
-      TokenService.get(tokenId)
-        .then((response) => {
-          dispatch(setAheadCount(response.aheadCount));
-          setTokenStatus(response.tokenStatus);
-          if (response.tokenStatus === 'NOTIFIED' && oldTokenStatus === 'WAITING') {
-            showNotification();
-          }
-          timeoutId = setTimeout(update, TIMEOUT);
-        })
-        .catch((err) => {
-          handleApiErrors(err);
-          timeoutId = setTimeout(update, TIMEOUT);
-        });
-    }
-  }, [tokenId, tokenStatus, dispatch, showNotification]);
+    TokenService.get(tokenId)
+      .then((response) => {
+        setTokenStatusResponse(response);
+        if (response.tokenStatus === 'NOTIFIED' && oldTokenStatus === 'WAITING') {
+          showNotification();
+        }
+        timeoutId = setTimeout(update, TIMEOUT);
+      })
+      .catch((err) => {
+        handleApiErrors(err);
+        timeoutId = setTimeout(update, TIMEOUT);
+      });
+  }, [tokenId, oldTokenStatus]);
 
   useEffect(() => {
     update();
@@ -64,17 +60,15 @@ function QueueStatus() {
   const onDeleteClick = () => {
     setUpdateInProgress(true);
     TokenService.remove(tokenId)
-      .then(() => {
-        setTokenStatus('REMOVED');
+      .then((response) => {
+        setTokenStatusResponse({ ...tokenStatusResponse, tokenStatus: response.tokenStatus });
         setUpdateInProgress(false);
       })
-      .catch((err) => {
-        handleApiErrors(err);
-      });
+      .catch(handleApiErrors);
   };
 
   const renderButtons = () => {
-    if (tokenStatus !== 'REMOVED' && !updateInProgress) {
+    if (tokenStatusResponse.tokenStatus !== 'REMOVED' && !updateInProgress) {
       return (
         <div className={styles['button-group']}>
           <div>
@@ -89,17 +83,19 @@ function QueueStatus() {
     return <div />;
   };
 
-  dispatch(setJoinerStep(2));
+  if (!tokenStatusResponse) {
+    return <div>Loading...</div>; // Todo(https://github.com/SimplQ/simplQ-frontend/issues/162)
+  }
 
   return (
     <>
       <SimplQHeader />
-      <Header text={queueName} className={styles.header} />
+      <Header text={tokenStatusResponse.queueName} className={styles.header} />
       <JoinerStepper />
       <StatusContainer
         updateInProgress={updateInProgress}
-        tokenStatus={tokenStatus}
-        aheadCount={aheadCount}
+        tokenStatus={tokenStatusResponse.tokenStatus}
+        aheadCount={tokenStatusResponse.aheadCount}
       />
       {renderButtons()}
       <QueueDetails />

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { CircularProgress } from '@material-ui/core';
 import * as QueueService from '../../services/queue';
-import { setQueueName, setQueueId, setCreationStep } from '../../store/appSlice';
+import { setCreationStep } from '../../store/appSlice';
 import { store } from '../../store'; // TODO: Use Hooks
 import CreatorStepper from '../common/stepper/CreatorStepper';
 import { handleApiErrors } from '../ErrorHandler';
@@ -22,8 +22,6 @@ const CreateQueue = ({ history }) => {
       setCreateInProgress(true);
       QueueService.create(queueName)
         .then((response) => {
-          store.dispatch(setQueueId(response.queueId));
-          store.dispatch(setQueueName(response.queueName));
           store.dispatch(setCreationStep(1));
           history.push(`/queue/${response.queueId}`);
         })

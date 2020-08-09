@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import JoinQueueForm from './Form';
-import { setTokenId, setJoinerStep, setAheadCount, setQueueId } from '../../../store/appSlice';
+import { setJoinerStep } from '../../../store/appSlice';
 import * as TokenService from '../../../services/token';
+import * as QueueService from '../../../services/queue';
 import { handleApiErrors } from '../../ErrorHandler';
 import Header, { SimplQHeader } from '../../common/Header';
 import styles from '../../../styles/joinPage.module.scss';
@@ -14,28 +15,36 @@ import InputField from '../../common/InputField';
 
 export function JoinQueueWithDetails(props) {
   const queueId = props.match.params.queueId;
-  const queueName = useSelector((state) => state.appReducer.queueName);
+  const [queueStatusResponse, setQueueStatusResponse] = useState();
+  useEffect(() => {
+    async function fetchData() {
+      const response = await QueueService.getStatus(queueId).catch(handleApiErrors);
+      setQueueStatusResponse(response);
+    }
+    fetchData();
+  }, [queueId]);
   const dispatch = useDispatch();
   dispatch(setJoinerStep(0));
-  dispatch(setQueueId(queueId));
 
-  const joinQueueHandler = (name, contact) => {
-    return TokenService.create(name, contact, true, queueId)
+  const joinQueueHandler = (name, contactNumber) => {
+    return TokenService.create(name, contactNumber, true, queueId)
       .then((response) => {
-        dispatch(setTokenId(response.tokenId));
-        dispatch(setAheadCount(response.aheadCount));
         dispatch(setJoinerStep(1));
-        props.history.push('/status');
+        props.history.push(`/token/${response.tokenId}`);
       })
       .catch((err) => {
         handleApiErrors(err);
       });
   };
 
+  if (!queueStatusResponse) {
+    return <div>Loading...</div>; // Todo(https://github.com/SimplQ/simplQ-frontend/issues/162)
+  }
+
   return (
     <div>
       <SimplQHeader />
-      <Header className={styles.header} text={queueName} />
+      <Header className={styles.header} text={queueStatusResponse.queueName} />
       <JoinerStepper />
       <JoinQueueForm queueId={queueId} joinQueueHandler={joinQueueHandler} />
     </div>
@@ -68,5 +77,3 @@ export function JoinQueueWithLink(props) {
     </>
   );
 }
-
-// export default JoinQueue;
