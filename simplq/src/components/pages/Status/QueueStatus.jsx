@@ -50,7 +50,7 @@ function QueueStatus(props) {
         handleApiErrors(err);
         timeoutId = setTimeout(update, TIMEOUT);
       });
-  }, [tokenId, tokenStatusResponse]);
+  }, [tokenId]);
 
   useEffect(() => {
     update();
