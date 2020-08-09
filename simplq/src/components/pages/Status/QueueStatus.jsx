@@ -50,7 +50,7 @@ function QueueStatus(props) {
         handleApiErrors(err);
         timeoutId = setTimeout(update, TIMEOUT);
       });
-  }, [tokenId, oldTokenStatus]);
+  }, [tokenId, oldTokenStatus, showNotification]);
 
   useEffect(() => {
     update();
@@ -98,7 +98,7 @@ function QueueStatus(props) {
         aheadCount={tokenStatusResponse.aheadCount}
       />
       {renderButtons()}
-      <QueueDetails />
+      <QueueDetails queueName={tokenStatusResponse.queueName} />
     </>
   );
 }
