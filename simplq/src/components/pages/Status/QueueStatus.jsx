@@ -98,7 +98,7 @@ function QueueStatus(props) {
         aheadCount={tokenStatusResponse.aheadCount}
       />
       {renderButtons()}
-      <QueueDetails queueName={tokenStatusResponse.queueName} />
+      <QueueDetails queueId={tokenStatusResponse.queueId} />
     </>
   );
 }

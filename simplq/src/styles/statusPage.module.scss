@@ -38,6 +38,11 @@
   display: none;
 }
 
+.info-string {
+  font-size: larger;
+  padding-left: 1rem;
+}
+
 input[type='checkbox']:checked ~ .details {
   display: inherit;
   @include background-color();
