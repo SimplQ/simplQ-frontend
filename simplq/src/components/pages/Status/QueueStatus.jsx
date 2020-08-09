@@ -37,22 +37,20 @@ function QueueStatus(props) {
 
   const update = useCallback(() => {
     clearTimeout(timeoutId);
-    if (tokenId) {
-      const oldTokenStatus = tokenStatusResponse ? tokenStatusResponse.tokenStatus : undefined;
-      TokenService.get(tokenId)
-        .then((response) => {
-          setTokenStatusResponse(response);
-          if (response.tokenStatus === 'NOTIFIED' && oldTokenStatus === 'WAITING') {
-            showNotification();
-          }
-          timeoutId = setTimeout(update, TIMEOUT);
-        })
-        .catch((err) => {
-          handleApiErrors(err);
-          timeoutId = setTimeout(update, TIMEOUT);
-        });
-    }
-  }, [tokenId, tokenStatusResponse, showNotification]); // will this loop
+    const oldTokenStatus = tokenStatusResponse ? tokenStatusResponse.tokenStatus : undefined;
+    TokenService.get(tokenId)
+      .then((response) => {
+        setTokenStatusResponse(response);
+        if (response.tokenStatus === 'NOTIFIED' && oldTokenStatus === 'WAITING') {
+          showNotification();
+        }
+        timeoutId = setTimeout(update, TIMEOUT);
+      })
+      .catch((err) => {
+        handleApiErrors(err);
+        timeoutId = setTimeout(update, TIMEOUT);
+      });
+  }, [tokenId]);
 
   useEffect(() => {
     update();

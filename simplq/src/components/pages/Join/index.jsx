@@ -16,10 +16,13 @@ import InputField from '../../common/InputField';
 export function JoinQueueWithDetails(props) {
   const queueId = props.match.params.queueId;
   const [queueStatusResponse, setQueueStatusResponse] = useState();
-  useEffect(
-    () => QueueService.getStatus(queueId).then(setQueueStatusResponse).catch(handleApiErrors),
-    [queueId]
-  );
+  useEffect(() => {
+    async function fetchData() {
+      const response = await QueueService.getStatus(queueId).catch(handleApiErrors);
+      setQueueStatusResponse(response);
+    }
+    fetchData();
+  }, [queueId]);
   const dispatch = useDispatch();
   dispatch(setJoinerStep(0));
 
