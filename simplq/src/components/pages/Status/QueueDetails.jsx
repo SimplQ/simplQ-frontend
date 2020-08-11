@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import moment from 'moment';
 import { CircularProgress } from '@material-ui/core';
 import Header from '../../common/Header';
@@ -8,13 +8,24 @@ import { handleApiErrors } from '../../ErrorHandler';
 
 export default (props) => {
   // https://dabblet.com/gist/1506530 --> checkbox hack
-  const [details, setDetails] = useState();
-  QueueService.getStatus(props.queueId).then(setDetails).catch(handleApiErrors);
-  if (!details) {
+  const [queueStatusResponse, setQueueStatusResponse] = useState();
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await QueueService.getStatus(props.queueId).catch(handleApiErrors);
+      setQueueStatusResponse(response);
+    }
+    fetchData();
+  }, [props.queueId]);
+
+  if (!queueStatusResponse) {
     return <CircularProgress />;
   }
-  const timeStamp = moment(details.queueCreationTimestamp);
-  const creationTime = `${timeStamp.format('LT')} ${timeStamp.format('ll')}`;
+
+  // const tzOffset = new Date().getTimezoneOffset();
+  const localTimeStamp = moment(queueStatusResponse.queueCreationTimestamp); // TODO: Make sure the local time is always displayed
+  const creationTime = `${localTimeStamp.format('LT')} ${localTimeStamp.format('ll')}`;
+
   return (
     /* eslint-disable jsx-a11y/label-has-associated-control */
     <div>
@@ -23,32 +34,40 @@ export default (props) => {
       </label>
       <input type="checkbox" id="toggle" className={styles['visually-hidden']} />
       <div className={styles.details}>
-        <table>
-          <tr>
-            <p>
-              Queue Name:
-              <span className={styles['info-string']}>{details.queueName}</span>
-            </p>
-          </tr>
-          <tr>
-            <p>
-              People currently in queue:
-              <span className={styles['info-string']}>{details.numberOfActiveTokens}</span>
-            </p>
-          </tr>
-          <tr>
-            <p>
-              Creation time:
-              <span className={styles['info-string']}>{creationTime}</span>
-            </p>
-          </tr>
-          <tr>
-            <p>
-              Total number of people joined so far in queue:
-              <span className={styles['info-string']}>{details.totalNumberOfTokens}</span>
-            </p>
-          </tr>
-        </table>
+        <div className={styles.centerDetails}>
+          <table>
+            <tbody>
+              <tr>
+                <td>
+                  Queue Name:
+                  <span className={styles['info-string']}>{queueStatusResponse.queueName}</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  People currently in queue:
+                  <span className={styles['info-string']}>
+                    {queueStatusResponse.numberOfActiveTokens}
+                  </span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Creation time:
+                  <span className={styles['info-string']}>{creationTime}</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Total number of people joined so far in queue:
+                  <span className={styles['info-string']}>
+                    {queueStatusResponse.totalNumberOfTokens}
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

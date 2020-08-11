@@ -51,6 +51,7 @@ function QueueStatus(props) {
         handleApiErrors(err);
         timeoutId = setTimeout(update, TIMEOUT);
       });
+    // eslint-disable-next-line
   }, [tokenId, oldTokenStatus]); // don't add showNotification, will result in infinite loop
 
   useEffect(() => {
