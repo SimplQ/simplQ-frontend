@@ -34,40 +34,38 @@ export default (props) => {
       </label>
       <input type="checkbox" id="toggle" className={styles['visually-hidden']} />
       <div className={styles.details}>
-        <div className={styles.centerDetails}>
-          <table>
-            <tbody>
-              <tr>
-                <td>
-                  Queue Name:
-                  <span className={styles['info-string']}>{queueStatusResponse.queueName}</span>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  People currently in queue:
-                  <span className={styles['info-string']}>
-                    {queueStatusResponse.numberOfActiveTokens}
-                  </span>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Creation time:
-                  <span className={styles['info-string']}>{creationTime}</span>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Total number of people joined so far in queue:
-                  <span className={styles['info-string']}>
-                    {queueStatusResponse.totalNumberOfTokens}
-                  </span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <table className={styles['center-table']}>
+          <tbody>
+            <tr>
+              <td>
+                Queue Name:
+                <span className={styles['detail-value']}>{queueStatusResponse.queueName}</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                People currently in queue:
+                <span className={styles['detail-value']}>
+                  {queueStatusResponse.numberOfActiveTokens}
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Creation time:
+                <span className={styles['detail-value']}>{creationTime}</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Total number of people joined so far in queue:
+                <span className={styles['detail-value']}>
+                  {queueStatusResponse.totalNumberOfTokens}
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   );

@@ -38,12 +38,15 @@
   display: none;
 }
 
-.centerDetails {
+.center-table {
   @include center-horizontally();
   text-align: left;
+  td {
+    padding: 0.7rem;
+  }
 }
 
-.info-string {
+.detail-value {
   font-size: larger;
   padding-left: 1rem;
 }
@@ -51,9 +54,6 @@
 input[type='checkbox']:checked ~ .details {
   @include background-color();
   display: inherit;
-  td {
-    padding: 0.7rem;
-  }
 }
 
 .visually-hidden {
