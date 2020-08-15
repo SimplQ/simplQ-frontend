@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
+import { CircularProgress } from '@material-ui/core';
 import * as TokenService from '../../../services/token';
 import JoinerStepper from '../../common/stepper/JoinerStepper';
 import { setJoinerStep } from '../../../store/appSlice';
@@ -50,7 +51,8 @@ function QueueStatus(props) {
         handleApiErrors(err);
         timeoutId = setTimeout(update, TIMEOUT);
       });
-  }, [tokenId, oldTokenStatus]);
+    // eslint-disable-next-line
+  }, [tokenId, oldTokenStatus]); // don't add showNotification, will result in infinite loop
 
   useEffect(() => {
     update();
@@ -72,10 +74,10 @@ function QueueStatus(props) {
       return (
         <div className={styles['button-group']}>
           <div>
-            <Button text="Check Status" onClick={update} />
+            <Button onClick={update}>Check Status</Button>
           </div>
           <div>
-            <Button text="Leave Queue" onClick={onDeleteClick} />
+            <Button onClick={onDeleteClick}>Leave Queue</Button>
           </div>
         </div>
       );
@@ -83,8 +85,15 @@ function QueueStatus(props) {
     return <div />;
   };
 
+  const renderDetails = () => {
+    if (tokenStatusResponse.tokenStatus !== 'REMOVED') {
+      return <QueueDetails queueId={tokenStatusResponse.queueId} />;
+    }
+    return <div />;
+  };
+
   if (!tokenStatusResponse) {
-    return <div>Loading...</div>; // Todo(https://github.com/SimplQ/simplQ-frontend/issues/162)
+    return <CircularProgress />; // Todo(https://github.com/SimplQ/simplQ-frontend/issues/162)
   }
 
   return (
@@ -98,9 +107,8 @@ function QueueStatus(props) {
         aheadCount={tokenStatusResponse.aheadCount}
       />
       {renderButtons()}
-      <QueueDetails />
+      {renderDetails()}
     </>
   );
 }
-
 export default QueueStatus;

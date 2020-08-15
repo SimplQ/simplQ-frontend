@@ -38,10 +38,22 @@
   display: none;
 }
 
+.center-table {
+  @include center-horizontally();
+  text-align: left;
+  td {
+    padding: 0.7rem;
+  }
+}
+
+.detail-value {
+  font-size: larger;
+  padding-left: 1rem;
+}
+
 input[type='checkbox']:checked ~ .details {
-  display: inherit;
   @include background-color();
-  padding-left: 3rem;
+  display: inherit;
 }
 
 .visually-hidden {
