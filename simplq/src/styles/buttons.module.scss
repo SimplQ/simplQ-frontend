@@ -10,16 +10,17 @@
   border: 2px solid $primary-color-dark;
   border-radius: 0.6rem;
   text-align: center;
-  transition: all 0.2s;
+  transition: background 0.8s;
+  background-position: center;
 
   &:hover {
-    background-color: #fff;
-    color: $primary-color-dark;
-    cursor: pointer;
+    background: #776fff radial-gradient(circle, transparent 1%, #776fff 1%) center/15000%;
   }
 
-  &:focus {
-    border-radius: 0.6rem;
+  &:active {
+    background-color: #9e99fc;
+    background-size: 100%;
+    transition: background 0s;
   }
 }
 
