@@ -22,7 +22,6 @@ export default (props) => {
     return <CircularProgress />;
   }
 
-  // const tzOffset = new Date().getTimezoneOffset();
   const localTimeStamp = moment(queueStatusResponse.queueCreationTimestamp); // TODO: Make sure the local time is always displayed
   const creationTime = `${localTimeStamp.format('LT')} ${localTimeStamp.format('ll')}`;
 
