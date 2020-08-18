@@ -14,7 +14,7 @@
   background-position: center;
 
   &:hover {
-    background: #776fff radial-gradient(circle, transparent 1%, #776fff 1%) center/15000%;
+    background: #4e4c66 radial-gradient(circle, transparent 1%, #4e4c66 1%) center/15000%;
   }
 
   &:active {
@@ -31,7 +31,13 @@
   border: 1px solid $primary-color-dark;
 
   &:hover {
-    background-color: #f8f8f8;
+    background: #f8f8f8 radial-gradient(circle, transparent 1%, #f8f8f8 1%) center/15000%;
+  }
+
+  &:active {
+    background-color: #9e99fc;
+    background-size: 100%;
+    transition: background 0s;
   }
 }
 
