@@ -16,14 +16,14 @@ export default (props) => {
         </ListItemIcon>
         <ListItemText primary="Add Manually" />
         {open ? <ExpandLess /> : <ExpandMore />}
-        <Collapse in={open} timeout="auto" unmountOnExit>
-          <JoinQueueForm
-            buttonName="Add"
-            queueId={props.queueId}
-            joinQueueHandler={props.joinQueueHandler}
-          />
-        </Collapse>
       </ListItem>
+      <Collapse in={open} timeout="auto" unmountOnExit>
+        <JoinQueueForm
+          buttonName="Add"
+          queueId={props.queueId}
+          joinQueueHandler={props.joinQueueHandler}
+        />
+      </Collapse>
     </>
   );
 };
