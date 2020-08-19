@@ -51,7 +51,7 @@ const NotificationButton = () => {
     );
   }
   if (notificationPermission === 'denied') {
-    return <>Enable Notifications in Settings</>;
+    return <>*If required, please enable notifications in the page settings</>;
   }
   return null;
 };
