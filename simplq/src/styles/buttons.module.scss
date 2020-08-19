@@ -13,6 +13,10 @@
   transition: background 0.8s;
   background-position: center;
 
+  &:focus {
+    outline: none;
+  }
+
   &:hover {
     background: #4e4c66 radial-gradient(circle, transparent 1%, #4e4c66 1%) center/15000%;
   }
