@@ -94,7 +94,7 @@ function Item(props) {
         {name}
       </div>
       <div>
-        <IconButton>
+        <IconButton color="primary">
           <CheckIcon fontSize="large" onClick={onDeleteClick} />
         </IconButton>
       </div>
