@@ -90,8 +90,11 @@ function Item(props) {
   return (
     <div className={styles.item}>
       <div>
-        {notificationButton}
-        {name}
+        <div>{notificationButton}</div>
+        <div>
+          <p>{name}</p>
+          <p>{name}</p>
+        </div>
       </div>
       <div>
         <IconButton color="primary">
@@ -100,23 +103,6 @@ function Item(props) {
       </div>
     </div>
   );
-
-  // return (
-  //   <ListItem button className={classes.root} component="a" href={`tel:${contactNumber}`}>
-  //     <ListItemAvatar>
-  //       <IconButton className={classes.callButton}>
-  //         <CallIcon className={classes.callIcon} />
-  //       </IconButton>
-  //     </ListItemAvatar>
-  //     <ListItemText primary={name} />
-  //     <ListItemSecondaryAction>
-  //       {notificationButton}
-  //       <IconButton edge="end" color="primary" aria-label="delete" onClick={onDeleteClick}>
-  //         <DeleteIcon />
-  //       </IconButton>
-  //     </ListItemSecondaryAction>
-  //   </ListItem>
-  // );
 }
 
 export default Item;
