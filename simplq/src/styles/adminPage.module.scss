@@ -21,8 +21,8 @@
 
 .item-list {
   @include center-horizontally();
-  max-width: 450px; 
-  padding: 2rem; 
+  max-width: 450px;
+  padding: 2rem;
   margin: auto;
   display: flex;
   flex-direction: column;
@@ -31,7 +31,7 @@
 .item {
   @include center-horizontally();
   background-color: white;
-  margin: .5rem auto;
+  margin: 0.5rem auto;
   border: 2px solid $primary-color-dark;
   border-radius: 0.6rem;
   display: flex;
@@ -43,26 +43,26 @@
     align-items: center;
     flex-direction: row;
     padding: 0;
-  div {
-    padding: 0;
-  }
-  button {
-    margin: 0 1rem;
-  }
-  .person-name {
-  @include text-color();
-  font-weight: bold;
-  margin-bottom: 0px;
-  text-transform: capitalize;
-  }
-  .token-number {
-    margin-top: 0;
-    font-size: .75rem;
-    text-align: left;
-    .token-number-value {
+    div {
+      padding: 0;
+    }
+    button {
+      margin: 0 1rem;
+    }
+    .person-name {
       @include text-color();
       font-weight: bold;
+      margin-bottom: 0px;
+      text-transform: capitalize;
     }
-  }
+    .token-number {
+      margin-top: 0;
+      font-size: 0.75rem;
+      text-align: left;
+      .token-number-value {
+        @include text-color();
+        font-weight: bold;
+      }
+    }
   }
 }
