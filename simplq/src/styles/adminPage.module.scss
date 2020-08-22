@@ -31,12 +31,13 @@
 .item {
   @include center-horizontally();
   background-color: white;
-  margin: 1rem auto;
+  margin: .5rem auto;
   border: 2px solid $primary-color-dark;
   border-radius: 0.6rem;
   display: flex;
   justify-content: space-between;
   width: 100%;
+  padding: 0;
   & > div {
     display: flex;
     align-items: center;
