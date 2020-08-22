@@ -12,8 +12,6 @@ import { handleApiErrors } from '../../ErrorHandler';
 import styles from '../../../styles/adminPage.module.scss';
 
 function Item(props) {
-  // const classes = useStyles();
-  // const contactNumber = props.item.contactNumber;
   const name = props.item.name;
   const tokenId = props.item.tokenId;
   const tokenNumber = props.item.tokenNumber;
@@ -39,7 +37,6 @@ function Item(props) {
         setNotifying(false);
         handleApiErrors(err);
       });
-    // Notify user of error TODO
   };
 
   const onDeleteClick = () => {
