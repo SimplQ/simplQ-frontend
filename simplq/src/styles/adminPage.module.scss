@@ -8,9 +8,6 @@
   @include background-color();
 }
 
-.item-list {
-}
-
 .add-member {
   @include box-border();
 }
@@ -19,5 +16,53 @@
   @include center-horizontally();
   & > div {
     margin: 0.5rem;
+  }
+}
+
+.item-list {
+  @include center-horizontally();
+  max-width: 30rem;
+  padding: 2rem;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.item {
+  @include center-horizontally();
+  background-color: white;
+  margin: 0.5rem auto;
+  border: 0.1rem solid $primary-color-dark;
+  border-radius: 0.6rem;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0;
+  & > div {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    padding: 0;
+    div {
+      padding: 0;
+    }
+    button {
+      margin: 0 1rem;
+    }
+    .person-name {
+      @include text-color();
+      font-weight: bold;
+      margin-bottom: 0;
+      text-transform: capitalize;
+    }
+    .token-number {
+      margin-top: 0;
+      font-size: 0.75rem;
+      text-align: left;
+      .token-number-value {
+        @include text-color();
+        font-weight: bold;
+      }
+    }
   }
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import GitHubForkRibbon from 'react-github-fork-ribbon';
-
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import Amplify from 'aws-amplify';
@@ -18,20 +18,26 @@ Amplify.configure(awsconfig);
   await loginElseCreateAnonAccount();
 })();
 
-const Content = () => (
-  <GitHubForkRibbon href="//github.com/SimplQ/simplQ-frontend" target="_blank" position="right">
-    Fork me on GitHub
-  </GitHubForkRibbon>
-);
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#3A3768',
+    },
+  },
+});
 
 ReactDOM.render(
   <>
-    <Router>
-      <Provider store={store}>
-        <Layout />
-      </Provider>
-    </Router>
-    <Content />
+    <ThemeProvider theme={theme}>
+      <Router>
+        <Provider store={store}>
+          <Layout />
+        </Provider>
+      </Router>
+      <GitHubForkRibbon href="//github.com/SimplQ/simplQ-frontend" target="_blank" position="right">
+        Fork me on GitHub
+      </GitHubForkRibbon>
+    </ThemeProvider>
   </>,
   document.getElementById('root')
 );
