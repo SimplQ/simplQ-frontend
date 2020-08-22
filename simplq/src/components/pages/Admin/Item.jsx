@@ -35,9 +35,9 @@ function Item(props) {
     // Notify user of error TODO
   };
 
-  // const onDeleteClick = () => {
-  //   props.removeItemHandler(tokenId);
-  // };
+  const onDeleteClick = () => {
+    props.removeItemHandler(tokenId);
+  };
 
   let notificationButton = null;
   if (notifying) {
@@ -51,21 +51,21 @@ function Item(props) {
     // Not notifiable
     notificationButton = (
       <IconButton edge="end" color="primary" aria-label="notify">
-        <Notifications color="disabled" />
+        <Notifications fontSize="large" color="disabled" />
       </IconButton>
     );
   } else if (didNotify) {
     // Notified
     notificationButton = (
       <IconButton edge="end" color="primary" aria-label="notified">
-        <NotificationsActiveIcon style={{ color: 'green' }} />
+        <NotificationsActiveIcon fontSize="large" style={{ color: 'green' }} />
       </IconButton>
     );
   } else {
     // Yet to notify
     notificationButton = (
       <IconButton edge="end" color="primary" aria-label="notify" onClick={onNotifyClick}>
-        <Notifications />
+        <Notifications fontSize="large" />
       </IconButton>
     );
   }
@@ -73,12 +73,13 @@ function Item(props) {
   return (
     <div className={styles.item}>
       <div>
+        {' '}
         {notificationButton}
         {name}
       </div>
       <div>
         <IconButton>
-          <CheckIcon />
+          <CheckIcon fontSize="large" onClick={onDeleteClick} />
         </IconButton>
       </div>
     </div>
