@@ -42,5 +42,19 @@
   button {
     margin: 0 1rem;
   }
+  .personName {
+  @include text-color();
+  font-weight: bold;
+  margin-bottom: 0px;
+  }
+  .tokenNumber {
+    margin-top: 0;
+    font-size: .75rem;
+    text-align: left;
+    .tokenNumberValue {
+      @include text-color();
+      font-weight: bold;
+    }
+  }
   }
 }

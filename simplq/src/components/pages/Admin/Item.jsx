@@ -16,6 +16,7 @@ function Item(props) {
   // const contactNumber = props.item.contactNumber;
   const name = props.item.name;
   const tokenId = props.item.tokenId;
+  const tokenNumber = props.item.tokenNumber;
   const notifiable = props.item.notifiable;
   const [notifying, setNotifying] = useState(false);
   const [isNotifyHovering, setIsNotifyHovering] = useState(false);
@@ -92,8 +93,11 @@ function Item(props) {
       <div>
         <div>{notificationButton}</div>
         <div>
-          <p>{name}</p>
-          <p>{name}</p>
+          <p className={styles.personName}>{name}</p>
+          <p className={styles.tokenNumber}>
+            Token No:
+            <span className={styles.tokenNumberValue}>{tokenNumber}</span>
+          </p>
         </div>
       </div>
       <div>
