@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { CircularProgress } from '@material-ui/core';
 import CheckIcon from '@material-ui/icons/Check';
 import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive';
+import NotificationsOffIcon from '@material-ui/icons/NotificationsOffSharp';
 import { progressCreationStep } from '../../../store/appSlice';
 import * as TokenService from '../../../services/token';
 import { handleApiErrors } from '../../ErrorHandler';
@@ -56,7 +57,7 @@ function Item(props) {
     // Not notifiable
     notificationButton = (
       <IconButton edge="end" color="primary" aria-label="notify">
-        <Notifications fontSize="large" color="disabled" />
+        <NotificationsOffIcon fontSize="large" color="disabled" />
       </IconButton>
     );
   } else if (didNotify) {
