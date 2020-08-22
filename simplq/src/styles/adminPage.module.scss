@@ -21,3 +21,20 @@
     margin: 0.5rem;
   }
 }
+
+.item {
+  @include center-horizontally();
+  background-color: white;
+  max-width: 450px;
+  margin: 30px auto;
+  border: 1px solid $primary-color-dark;
+  border-radius: 0.6rem;
+  display: flex;
+  justify-content: space-between;
+  & > div {
+    padding: 0;
+  }
+  button {
+    margin: 0 .25rem;
+  }
+}

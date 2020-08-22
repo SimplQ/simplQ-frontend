@@ -24,7 +24,7 @@ function ItemList(props) {
     );
   } else {
     listContent = (
-      <div style={{ width: '100%' }}>
+      <div style={{ width: '100%', padding: '2rem' }}>
         {props.items.map((item) => (
           <Item
             removeItemHandler={props.removeItemHandler}
