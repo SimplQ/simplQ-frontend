@@ -93,10 +93,10 @@ function Item(props) {
       <div>
         <div>{notificationButton}</div>
         <div>
-          <p className={styles.personName}>{name}</p>
-          <p className={styles.tokenNumber}>
+          <p className={styles['person-name']}>{name}</p>
+          <p className={styles['token-number']}>
             Token No:
-            <span className={styles.tokenNumberValue}>{tokenNumber}</span>
+            <span className={styles['token-number-value']}>{tokenNumber}</span>
           </p>
         </div>
       </div>
