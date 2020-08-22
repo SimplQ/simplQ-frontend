@@ -21,7 +21,7 @@
 
 .item-list {
   @include center-horizontally();
-  max-width: 450px;
+  max-width: 30rem;
   padding: 2rem;
   margin: auto;
   display: flex;
@@ -32,7 +32,7 @@
   @include center-horizontally();
   background-color: white;
   margin: 0.5rem auto;
-  border: 2px solid $primary-color-dark;
+  border: .1rem solid $primary-color-dark;
   border-radius: 0.6rem;
   display: flex;
   justify-content: space-between;
@@ -52,7 +52,7 @@
     .person-name {
       @include text-color();
       font-weight: bold;
-      margin-bottom: 0px;
+      margin-bottom: 0;
       text-transform: capitalize;
     }
     .token-number {
