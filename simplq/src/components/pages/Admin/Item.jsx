@@ -17,7 +17,12 @@ function Item(props) {
   const tokenId = props.item.tokenId;
   const notifiable = props.item.notifiable;
   const [notifying, setNotifying] = useState(false);
+  const [isNotifyHovering, setIsNotifyHovering] = useState(false);
   const [didNotify, setDidNotify] = useState(props.item.tokenStatus === 'NOTIFIED');
+
+  const handleMouseHover = () => {
+    setIsNotifyHovering(!isNotifyHovering);
+  };
 
   const dispatch = useDispatch();
   const onNotifyClick = () => {
@@ -64,8 +69,19 @@ function Item(props) {
   } else {
     // Yet to notify
     notificationButton = (
-      <IconButton edge="end" color="primary" aria-label="notify" onClick={onNotifyClick}>
-        <Notifications fontSize="large" />
+      <IconButton
+        edge="end"
+        color="primary"
+        aria-label="notify"
+        onClick={onNotifyClick}
+        onMouseEnter={handleMouseHover}
+        onMouseLeave={handleMouseHover}
+      >
+        {isNotifyHovering ? (
+          <NotificationsActiveIcon fontSize="large" />
+        ) : (
+          <Notifications fontSize="large" />
+        )}
       </IconButton>
     );
   }
@@ -73,7 +89,6 @@ function Item(props) {
   return (
     <div className={styles.item}>
       <div>
-        {' '}
         {notificationButton}
         {name}
       </div>
