@@ -24,12 +24,14 @@
   max-width: 450px; 
   padding: 2rem; 
   margin: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .item {
   @include center-horizontally();
   background-color: white;
-  margin: 30px auto;
+  margin: 1rem auto;
   border: 2px solid $primary-color-dark;
   border-radius: 0.6rem;
   display: flex;
@@ -50,6 +52,7 @@
   @include text-color();
   font-weight: bold;
   margin-bottom: 0px;
+  text-transform: capitalize;
   }
   .token-number {
     margin-top: 0;
