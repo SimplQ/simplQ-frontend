@@ -22,7 +22,7 @@ export const ShareButton = (props) => {
     <StandardButton onClick={props.onClick} outlined>
       <div className={styles['admin-main-button']}>
         <ShareIcon fontSize="large" />
-        <p>Share queue</p>
+        <p>Share queue to invite people</p>
       </div>
     </StandardButton>
   );
@@ -33,7 +33,6 @@ export const RefreshButton = (props) => {
     <StandardButton onClick={props.onClick} outlined>
       <div className={styles['admin-main-button']}>
         <RefreshIcon fontSize="large" />
-        <p>Refresh</p>
       </div>
     </StandardButton>
   );
