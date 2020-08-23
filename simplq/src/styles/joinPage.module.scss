@@ -19,3 +19,13 @@ div {
     border-radius: 0.5rem;
   }
 }
+
+.form {
+  @include center-horizontally();
+  table {
+    width: 50%;
+  }
+  td {
+    padding-bottom: 2rem;
+  }
+}
