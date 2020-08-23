@@ -1,40 +1,28 @@
 import React, { useState } from 'react';
 import IconButton from '@material-ui/core/IconButton';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import Notifications from '@material-ui/icons/Notifications';
 import { useDispatch } from 'react-redux';
-import DeleteIcon from '@material-ui/icons/Delete';
-import CallIcon from '@material-ui/icons/Call';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import { makeStyles, CircularProgress } from '@material-ui/core';
-import DoneIcon from '@material-ui/icons/Done';
+import { CircularProgress } from '@material-ui/core';
+import CheckIcon from '@material-ui/icons/Check';
+import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive';
+import NotificationsOffIcon from '@material-ui/icons/NotificationsOffSharp';
 import { progressCreationStep } from '../../../store/appSlice';
 import * as TokenService from '../../../services/token';
 import { handleApiErrors } from '../../ErrorHandler';
-
-const useStyles = makeStyles((theme) => ({
-  addBox: {
-    marginTop: theme.spacing(3),
-    padding: theme.spacing(3),
-  },
-  callButton: {
-    backgroundColor: '#2dad78',
-  },
-  callIcon: {
-    color: 'white',
-  },
-}));
+import styles from '../../../styles/adminPage.module.scss';
 
 function Item(props) {
-  const classes = useStyles();
-  const contactNumber = props.item.contactNumber;
   const name = props.item.name;
   const tokenId = props.item.tokenId;
+  const tokenNumber = props.item.tokenNumber;
   const notifiable = props.item.notifiable;
   const [notifying, setNotifying] = useState(false);
+  const [isNotifyHovering, setIsNotifyHovering] = useState(false);
   const [didNotify, setDidNotify] = useState(props.item.tokenStatus === 'NOTIFIED');
+
+  const handleMouseHover = () => {
+    setIsNotifyHovering(!isNotifyHovering);
+  };
 
   const dispatch = useDispatch();
   const onNotifyClick = () => {
@@ -49,8 +37,8 @@ function Item(props) {
         setNotifying(false);
         handleApiErrors(err);
       });
-    // Notify user of error TODO
   };
+
   const onDeleteClick = () => {
     props.removeItemHandler(tokenId);
   };
@@ -67,40 +55,54 @@ function Item(props) {
     // Not notifiable
     notificationButton = (
       <IconButton edge="end" color="primary" aria-label="notify">
-        <Notifications color="disabled" />
+        <NotificationsOffIcon fontSize="large" color="disabled" />
       </IconButton>
     );
   } else if (didNotify) {
     // Notified
     notificationButton = (
       <IconButton edge="end" color="primary" aria-label="notified">
-        <DoneIcon style={{ color: 'green' }} />
+        <NotificationsActiveIcon fontSize="large" style={{ color: 'green' }} />
       </IconButton>
     );
   } else {
     // Yet to notify
     notificationButton = (
-      <IconButton edge="end" color="primary" aria-label="notify" onClick={onNotifyClick}>
-        <Notifications />
+      <IconButton
+        edge="end"
+        color="primary"
+        aria-label="notify"
+        onClick={onNotifyClick}
+        onMouseEnter={handleMouseHover}
+        onMouseLeave={handleMouseHover}
+      >
+        {isNotifyHovering ? (
+          <NotificationsActiveIcon fontSize="large" />
+        ) : (
+          <Notifications fontSize="large" />
+        )}
       </IconButton>
     );
   }
 
   return (
-    <ListItem button className={classes.root} component="a" href={`tel:${contactNumber}`}>
-      <ListItemAvatar>
-        <IconButton className={classes.callButton}>
-          <CallIcon className={classes.callIcon} />
+    <div className={styles.item}>
+      <div>
+        <div>{notificationButton}</div>
+        <div>
+          <p className={styles['person-name']}>{name}</p>
+          <p className={styles['token-number']}>
+            Token No:
+            <span className={styles['token-number-value']}>{tokenNumber}</span>
+          </p>
+        </div>
+      </div>
+      <div>
+        <IconButton color="primary">
+          <CheckIcon fontSize="large" onClick={onDeleteClick} />
         </IconButton>
-      </ListItemAvatar>
-      <ListItemText primary={name} />
-      <ListItemSecondaryAction>
-        {notificationButton}
-        <IconButton edge="end" color="primary" aria-label="delete" onClick={onDeleteClick}>
-          <DeleteIcon />
-        </IconButton>
-      </ListItemSecondaryAction>
-    </ListItem>
+      </div>
+    </div>
   );
 }
 
