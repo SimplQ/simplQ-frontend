@@ -43,7 +43,7 @@ export function JoinQueueWithDetails(props) {
   };
 
   if (error) {
-    return <PageNotFound />;
+    return <PageNotFound history={props.history} />;
   }
 
   if (!queueStatusResponse) {
