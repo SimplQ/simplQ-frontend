@@ -1,0 +1,8 @@
+@import 'utils';
+
+.main {
+  @include center-horizontally();
+  @include center-vertically();
+  @include text-color();
+  font-size: x-large;
+}

@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import Button from '@material-ui/core/Button';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/material.css';
 import { CircularProgress } from '@material-ui/core';
 import { handleEnterPress } from '../../common/utilFns';
 import InputField from '../../common/InputField';
+import styles from '../../../styles/joinPage.module.scss';
+import { JoinQButton } from '../../common/Button';
 
 export function JoinQueueForm(props) {
   const [name, setName] = useState('');
@@ -47,43 +48,51 @@ export function JoinQueueForm(props) {
   };
 
   return (
-    <>
-      {/* {renderHeaderOrInput()} */}
-      <InputField
-        placeholder="Your Name"
-        value={name}
-        onKeyPress={(e) => handleEnterPress(e, handleClick)}
-        onChange={handleNameChange}
-        error={invalidName}
-        helperText={invalidName ? 'Enter a valid name' : ''}
-      />
-      <PhoneInput
-        // containerClass={classes.textField}
-        placeholder="Phone Number"
-        country="in"
-        value={contact}
-        inputProps={{
-          name: 'phone',
-          required: true,
-          autoFocus: true,
-        }}
-        inputStyle={{
-          width: '100%',
-        }}
-        isValid={() => (invalidContact ? 'Phone number is not valid' : true)}
-        onChange={handleContactChange}
-        onKeyDown={(e) => handleEnterPress(e, handleClick)}
-      />
-      <div>
-        {addingInProgress ? (
-          <CircularProgress size={30} style={{ padding: '6px 16px' }} />
-        ) : (
-          <Button variant="contained" color="primary" onClick={handleClick}>
-            {props.buttonName ? props.buttonName : 'Join'}
-          </Button>
-        )}
-      </div>
-    </>
+    <div className={styles.form}>
+      <table>
+        <tr>
+          <td>
+            <InputField
+              placeholder="Your Name"
+              value={name}
+              onKeyPress={(e) => handleEnterPress(e, handleClick)}
+              onChange={handleNameChange}
+              error={invalidName}
+              helperText={invalidName ? 'Enter a valid name' : ''}
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <PhoneInput
+              placeholder="Phone Number"
+              country="in"
+              value={contact}
+              inputProps={{
+                name: 'phone',
+                required: true,
+                autoFocus: true,
+              }}
+              inputStyle={{
+                width: '100%',
+              }}
+              isValid={() => (invalidContact ? 'Phone number is not valid' : true)}
+              onChange={handleContactChange}
+              onKeyDown={(e) => handleEnterPress(e, handleClick)}
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            {addingInProgress ? (
+              <CircularProgress size={30} style={{ padding: '6px 16px' }} />
+            ) : (
+              <JoinQButton onClick={handleClick} />
+            )}
+          </td>
+        </tr>
+      </table>
+    </div>
   );
 }
 

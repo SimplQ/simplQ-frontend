@@ -12,13 +12,18 @@ import { Banner } from '../Home/StaticInfos';
 import { JoinQButton } from '../../common/Button';
 import { handleEnterPress } from '../../common/utilFns';
 import InputField from '../../common/InputField';
+import PageNotFound from '../PageNotFound';
 
 export function JoinQueueWithDetails(props) {
   const queueId = props.match.params.queueId;
   const [queueStatusResponse, setQueueStatusResponse] = useState();
+  const [error, setError] = useState(false);
   useEffect(() => {
     async function fetchData() {
-      const response = await QueueService.getStatus(queueId).catch(handleApiErrors);
+      const response = await QueueService.getStatus(queueId).catch((e) => {
+        handleApiErrors(e);
+        setError(true);
+      });
       setQueueStatusResponse(response);
     }
     fetchData();
@@ -37,8 +42,12 @@ export function JoinQueueWithDetails(props) {
       });
   };
 
+  if (error) {
+    return <PageNotFound history={props.history} />;
+  }
+
   if (!queueStatusResponse) {
-    return <div>Loading...</div>; // Todo(https://github.com/SimplQ/simplQ-frontend/issues/162)
+    return <div>Loading...</div>;
   }
 
   return (
