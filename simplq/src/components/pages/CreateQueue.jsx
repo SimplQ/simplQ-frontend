@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { CircularProgress } from '@material-ui/core';
 import * as QueueService from '../../services/queue';
 import { setCreationStep } from '../../store/appSlice';
@@ -15,6 +15,10 @@ const CreateQueue = ({ history }) => {
   const [textFieldValue, setTextFieldValue] = useState('');
   const [invalidMsg, setInvalidMsg] = useState('');
   const [createInProgress, setCreateInProgress] = useState(false);
+
+  useEffect(() => {
+    store.dispatch(setCreationStep(0));
+  }, []);
 
   const handleClick = (queueName) => {
     if (textFieldValue === '') setInvalidMsg('Queue name is required');
@@ -41,8 +45,6 @@ const CreateQueue = ({ history }) => {
       setInvalidMsg("Only alphabets, numbers and '-' allowed");
     }
   };
-
-  store.dispatch(setCreationStep(0)); // was inside render earlier
 
   return (
     <div>
