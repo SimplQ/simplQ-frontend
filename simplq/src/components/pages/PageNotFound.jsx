@@ -6,7 +6,20 @@ function PageNotFound(props) {
   return (
     <div className={styles.main}>
       <h1>404: Page not found</h1>
-      <Button onClick={() => props.history.push('/')}>Go home</Button>
+      <div>
+        <div>
+          <Button onClick={() => props.history.push('/')}>Go home</Button>
+        </div>
+        <div>
+          <a
+            href="https://github.com/SimplQ/simplQ-frontend/issues/new"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Button>Report a bug</Button>
+          </a>
+        </div>
+      </div>
     </div>
   );
 }

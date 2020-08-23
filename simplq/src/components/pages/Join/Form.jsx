@@ -5,7 +5,7 @@ import { CircularProgress } from '@material-ui/core';
 import { handleEnterPress } from '../../common/utilFns';
 import InputField from '../../common/InputField';
 import styles from '../../../styles/joinPage.module.scss';
-import Button from '../../common/Button';
+import { JoinQButton } from '../../common/Button';
 
 export function JoinQueueForm(props) {
   const [name, setName] = useState('');
@@ -87,7 +87,7 @@ export function JoinQueueForm(props) {
             {addingInProgress ? (
               <CircularProgress size={30} style={{ padding: '6px 16px' }} />
             ) : (
-              <Button onClick={handleClick}>Join Queue</Button>
+              <JoinQButton onClick={handleClick} />
             )}
           </td>
         </tr>
