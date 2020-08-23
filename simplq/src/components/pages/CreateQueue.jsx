@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { CircularProgress } from '@material-ui/core';
 import * as QueueService from '../../services/queue';
 import { setCreationStep } from '../../store/appSlice';
-import { store } from '../../store'; // TODO: Use Hooks
 import CreatorStepper from '../common/stepper/CreatorStepper';
 import { handleApiErrors } from '../ErrorHandler';
 import { CreateQButton } from '../common/Button';
@@ -15,18 +15,17 @@ const CreateQueue = ({ history }) => {
   const [textFieldValue, setTextFieldValue] = useState('');
   const [invalidMsg, setInvalidMsg] = useState('');
   const [createInProgress, setCreateInProgress] = useState(false);
-
+  const dispatch = useDispatch();
   useEffect(() => {
-    store.dispatch(setCreationStep(0));
-  }, []);
-
+    dispatch(setCreationStep(0));
+  }, [dispatch]);
   const handleClick = (queueName) => {
     if (textFieldValue === '') setInvalidMsg('Queue name is required');
     else {
       setCreateInProgress(true);
       QueueService.create(queueName)
         .then((response) => {
-          store.dispatch(setCreationStep(1));
+          dispatch(setCreationStep(1));
           history.push(`/queue/${response.queueId}`);
         })
         .catch((err) => {
