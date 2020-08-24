@@ -8,6 +8,7 @@ import PageNotFound from './pages/PageNotFound';
 import { setErrorNotifOpen } from '../store/appSlice';
 import { store } from '../store'; // TODO: Use Hooks
 
+// ToDo: make functional
 export class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
@@ -38,11 +39,12 @@ export class ErrorBoundary extends React.Component {
 
 export const ErrorNotification = (props) => {
   const errorText = useSelector((state) => state.appReducer.errorText);
+  const dispatch = useDispatch();
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
       return;
     }
-    store.dispatch(setErrorNotifOpen(false));
+    dispatch(setErrorNotifOpen(false));
   };
 
   const Alert = (props) => {
