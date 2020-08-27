@@ -46,7 +46,7 @@ const CreateQueue = ({ history }) => {
   };
 
   return (
-    <div>
+    <div className={styles.main}>
       <SimplQHeader />
       <CreatorStepper />
       <InputField
