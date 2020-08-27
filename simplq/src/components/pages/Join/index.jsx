@@ -69,7 +69,7 @@ export function JoinQueueWithLink(props) {
   };
 
   return (
-    <>
+    <div className={styles.main}>
       <Banner />
       <InputField
         placeholder="Enter queue link"
@@ -83,6 +83,6 @@ export function JoinQueueWithLink(props) {
       <div className={styles['join-button']}>
         <JoinQButton onClick={() => handleClick(queueLink)} />
       </div>
-    </>
+    </div>
   );
 }

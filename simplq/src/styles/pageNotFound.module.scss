@@ -5,4 +5,5 @@
   @include center-vertically();
   @include text-color();
   font-size: x-large;
+  min-height: 100vh;
 }

@@ -64,3 +64,6 @@ node_modules/
 # dotenv environment variables file
 .env
 node_modules/
+
+# For Jetbrains-Webstorm files
+.idea
