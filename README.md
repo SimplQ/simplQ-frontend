@@ -1,6 +1,8 @@
 # SimplQ
 
 ![Build and Deploy](https://github.com/daltonfury42/simplQ-frontend/workflows/Build%20and%20Deploy/badge.svg)
+![Build and Deploy](https://img.shields.io/github/issues/SimplQ/simplQ-frontend)
+![Build and Deploy](https://img.shields.io/github/license/SimplQ/simplQ-frontend)
 
 [SimplQ](https://simplq.me) is a completely web based queue management solution that anyone can use to create instant virtual queues.
 
