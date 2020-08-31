@@ -42,7 +42,7 @@ export default (props) => {
   }, [update]);
 
   const addNewItem = (name, contactNumber) => {
-    TokenService.create(name, contactNumber, false, queueId)
+    return TokenService.create(name, contactNumber, false, queueId)
       .then((response) => {
         setItems([
           ...items,
@@ -79,12 +79,7 @@ export default (props) => {
         }}
       />
       <div className={styles.list}>
-        <ItemList
-          items={items}
-          queueId={queueId}
-          joinQueueHandler={addNewItem}
-          removeItemHandler={removeItem}
-        />
+        <ItemList items={items} queueId={queueId} removeItemHandler={removeItem} />
       </div>
       <div className={styles['add-member']}>
         <AddMember queueId={queueId} joinQueueHandler={addNewItem} />

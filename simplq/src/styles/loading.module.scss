@@ -1,0 +1,6 @@
+@import 'utils';
+
+.main {
+  @include center-horizontally();
+  @include center-vertically();
+}
