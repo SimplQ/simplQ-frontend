@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { CircularProgress } from '@material-ui/core';
 import * as QueueService from '../../services/queue';
 import { setCreationStep } from '../../store/appSlice';
 import CreatorStepper from '../common/stepper/CreatorStepper';
@@ -10,6 +9,7 @@ import styles from '../../styles/createPage.module.scss';
 import { SimplQHeader } from '../common/Header';
 import { handleEnterPress, isQueueNameValid } from '../common/utilFns';
 import InputField from '../common/InputField';
+import LoadingIndicator from '../common/LoadingIndicator';
 
 const CreateQueue = ({ history }) => {
   const [textFieldValue, setTextFieldValue] = useState('');
@@ -63,7 +63,7 @@ const CreateQueue = ({ history }) => {
       />
       <div className={styles['create-button']}>
         {createInProgress ? (
-          <CircularProgress size={30} />
+          <LoadingIndicator />
         ) : (
           <CreateQButton onClick={() => handleClick(textFieldValue)} />
         )}

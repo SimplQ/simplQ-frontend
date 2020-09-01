@@ -1,11 +1,11 @@
 import React from 'react';
-import HashLoader from 'react-spinners/HashLoader';
+import PropagateLoader from 'react-spinners/PropagateLoader';
 import styles from '../../styles/loading.module.scss';
 
 export default () => {
   return (
     <div className={styles.main}>
-      <HashLoader />
+      <PropagateLoader color="#3a3768" />
     </div>
   );
 };

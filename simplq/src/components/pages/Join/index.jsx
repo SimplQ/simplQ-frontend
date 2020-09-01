@@ -13,6 +13,7 @@ import { JoinQButton } from '../../common/Button';
 import { handleEnterPress } from '../../common/utilFns';
 import InputField from '../../common/InputField';
 import PageNotFound from '../PageNotFound';
+import LoadingIndicator from '../../common/LoadingIndicator';
 
 export function JoinQueueWithDetails(props) {
   const queueId = props.match.params.queueId;
@@ -47,7 +48,7 @@ export function JoinQueueWithDetails(props) {
   }
 
   if (!queueStatusResponse) {
-    return <div>Loading...</div>;
+    return <LoadingIndicator />;
   }
 
   return (
