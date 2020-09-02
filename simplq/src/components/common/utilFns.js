@@ -1,6 +1,6 @@
-export const handleEnterPress = (event, keyPresshandler) => {
+export const handleEnterPress = (event, keyPressHandler) => {
   if (event.key === 'Enter') {
-    keyPresshandler();
+    keyPressHandler();
   }
 };
 

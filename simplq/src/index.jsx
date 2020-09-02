@@ -11,6 +11,7 @@ import * as serviceWorker from './serviceWorker';
 import Layout from './components/Layout';
 import awsconfig from './aws-exports';
 import { loginElseCreateAnonAccount } from './services/auth';
+import Sidebar from './components/common/sidebar/sidebar';
 
 Amplify.configure(awsconfig);
 
@@ -29,6 +30,7 @@ const theme = createMuiTheme({
 ReactDOM.render(
   <>
     <ThemeProvider theme={theme}>
+      <Sidebar />
       <Router>
         <Provider store={store}>
           <Layout />
