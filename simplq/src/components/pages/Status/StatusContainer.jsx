@@ -1,8 +1,8 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { CircularProgress } from '@material-ui/core';
 import { setJoinerStep } from '../../../store/appSlice';
 import styles from '../../../styles/statusPage.module.scss';
+import LoadingIndicator from '../../common/LoadingIndicator';
 
 export default (props) => {
   const dispatch = useDispatch();
@@ -26,7 +26,7 @@ export default (props) => {
     );
   }
 
-  if (!status) return <CircularProgress />;
+  if (!status) return <LoadingIndicator />;
 
   return <div className={styles['status-box']}>{status}</div>;
 };

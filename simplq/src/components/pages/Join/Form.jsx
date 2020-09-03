@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/material.css';
-import { CircularProgress } from '@material-ui/core';
 import { handleEnterPress } from '../../common/utilFns';
 import InputField from '../../common/InputField';
 import styles from '../../../styles/joinPage.module.scss';
 import { JoinQButton } from '../../common/Button';
+import LoadingIndicator from '../../common/LoadingIndicator';
 
 export function JoinQueueForm(props) {
   const [name, setName] = useState('');
@@ -83,13 +83,7 @@ export function JoinQueueForm(props) {
           </td>
         </tr>
         <tr>
-          <td>
-            {addingInProgress ? (
-              <CircularProgress size={30} style={{ padding: '6px 16px' }} />
-            ) : (
-              <JoinQButton onClick={handleClick} />
-            )}
-          </td>
+          <td>{addingInProgress ? <LoadingIndicator /> : <JoinQButton onClick={handleClick} />}</td>
         </tr>
       </table>
     </div>
