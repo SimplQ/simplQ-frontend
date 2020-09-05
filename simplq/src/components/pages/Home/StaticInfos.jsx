@@ -29,22 +29,20 @@ export const Landing = (props) => (
 );
 
 export const BenefitsInfo = () => (
-  <>
-    <div className={styles['benefits-info']}>
-      <div>
-        <img src="/images/minimize_crowding.svg" alt="mimimze crowding" />
-        <p>Minimize crowding by keeping your queue virtual</p>
-      </div>
-      <div>
-        <img src="/images/enforce_social_dist.svg" alt="Enforce social distancing" />
-        <p>Enforce social distancing effectively</p>
-      </div>
-      <div>
-        <img src="/images/check_status.svg " alt="Check your current status" />
-        <p>Check your current status in the queue</p>
-      </div>
+  <div className={styles['benefits-info']}>
+    <div>
+      <img src="/images/minimize_crowding.svg" alt="mimimze crowding" />
+      <p>Minimize crowding by keeping your queue virtual</p>
     </div>
-  </>
+    <div>
+      <img src="/images/enforce_social_dist.svg" alt="Enforce social distancing" />
+      <p>Enforce social distancing effectively</p>
+    </div>
+    <div>
+      <img src="/images/check_status.svg " alt="Check your current status" />
+      <p>Check your current status in the queue</p>
+    </div>
+  </div>
 );
 
 export const HowToCreate = () => (
