@@ -6,12 +6,6 @@ div {
 
 .landing-page {
   height: 100vh;
-  svg {
-    bottom: 0;
-    position: absolute;
-    display: flex;
-  }
-}
 
 .main-header {
   @include standard-header();
@@ -23,6 +17,12 @@ div {
   button {
     margin: auto; // centering
     display: block; // new line
+  }
+}
+  svg {
+    bottom: 0;
+    position: absolute;
+    display: flex;
   }
 }
 
