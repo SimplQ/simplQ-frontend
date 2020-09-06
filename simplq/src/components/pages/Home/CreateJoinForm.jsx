@@ -43,7 +43,7 @@ const CreateJoinForm = ({ history }) => {
         value={textFieldValue}
         onChange={handleTextFieldChange}
         onKeyPress={
-          (e) => handleEnterPress(e, () => handleClick(textFieldValue))
+          (e) => handleEnterPress(e, () => handleClick())
           // eslint-disable-next-line react/jsx-curly-newline
         }
         error={invalidMsg.length > 0}
@@ -55,7 +55,7 @@ const CreateJoinForm = ({ history }) => {
           {createInProgress ? (
             <LoadingIndicator />
           ) : (
-            <CreateQButton onClick={() => handleClick(textFieldValue)} />
+            <CreateQButton onClick={() => handleClick()} />
           )}
         </div>
         <div>
