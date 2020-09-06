@@ -1,8 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useDispatch } from 'react-redux';
 import * as TokenService from '../../../services/token';
-import JoinerStepper from '../../common/stepper/JoinerStepper';
-import { setJoinerStep } from '../../../store/appSlice';
 import { handleApiErrors } from '../../ErrorHandler';
 import styles from '../../../styles/statusPage.module.scss';
 import Button from '../../common/Button';
@@ -18,8 +15,6 @@ let timeoutId;
 function QueueStatus(props) {
   const tokenId = props.match.params.tokenId;
   const [tokenStatusResponse, setTokenStatusResponse] = useState();
-  const dispatch = useDispatch();
-  dispatch(setJoinerStep(2));
   const [updateInProgress, setUpdateInProgress] = useState(false);
 
   const showNotification = useCallback(() => {
@@ -104,7 +99,6 @@ function QueueStatus(props) {
     <>
       <SimplQHeader />
       <Header text={tokenStatusResponse.queueName} className={styles.header} />
-      <JoinerStepper />
       <StatusContainer
         updateInProgress={updateInProgress}
         tokenStatus={tokenStatusResponse.tokenStatus}
