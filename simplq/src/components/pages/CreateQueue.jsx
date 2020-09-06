@@ -1,8 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useState } from 'react';
 import * as QueueService from '../../services/queue';
-import { setCreationStep } from '../../store/appSlice';
-import CreatorStepper from '../common/stepper/CreatorStepper';
 import { handleApiErrors } from '../ErrorHandler';
 import { CreateQButton } from '../common/Button';
 import styles from '../../styles/createPage.module.scss';
@@ -15,17 +12,12 @@ const CreateQueue = ({ history }) => {
   const [textFieldValue, setTextFieldValue] = useState('');
   const [invalidMsg, setInvalidMsg] = useState('');
   const [createInProgress, setCreateInProgress] = useState(false);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(setCreationStep(0));
-  }, [dispatch]);
   const handleClick = (queueName) => {
     if (textFieldValue === '') setInvalidMsg('Queue name is required');
     else {
       setCreateInProgress(true);
       QueueService.create(queueName)
         .then((response) => {
-          dispatch(setCreationStep(1));
           history.push(`/queue/${response.queueId}`);
         })
         .catch((err) => {
@@ -48,7 +40,6 @@ const CreateQueue = ({ history }) => {
   return (
     <div className={styles.main}>
       <SimplQHeader />
-      <CreatorStepper />
       <InputField
         placeholder="Enter a name for your new queue"
         value={textFieldValue}
