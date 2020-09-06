@@ -11,7 +11,9 @@ const CreateJoinForm = ({ history }) => {
   const [textFieldValue, setTextFieldValue] = useState('');
   const [invalidMsg, setInvalidMsg] = useState('');
   const [createInProgress, setCreateInProgress] = useState(false);
-  const handleClick = () => {
+  const [joinInProgress, setJoinInProgress] = useState(false);
+
+  const handleCreateClick = () => {
     if (textFieldValue === '') setInvalidMsg('Queue name is required');
     else {
       setCreateInProgress(true);
@@ -23,6 +25,21 @@ const CreateJoinForm = ({ history }) => {
           handleApiErrors(err);
         });
       setCreateInProgress(false);
+    }
+  };
+
+  const handleJoinClick = () => {
+    if (textFieldValue === '') setInvalidMsg('Queue name is required');
+    else {
+      setJoinInProgress(true);
+      QueueService.getStatusByName(textFieldValue)
+        .then((response) => {
+          history.push(`/j/${response.queueId}`);
+        })
+        .catch((err) => {
+          handleApiErrors(err);
+        });
+      setJoinInProgress(false);
     }
   };
 
@@ -43,7 +60,7 @@ const CreateJoinForm = ({ history }) => {
         value={textFieldValue}
         onChange={handleTextFieldChange}
         onKeyPress={
-          (e) => handleEnterPress(e, () => handleClick())
+          (e) => handleEnterPress(e, handleCreateClick)
           // eslint-disable-next-line react/jsx-curly-newline
         }
         error={invalidMsg.length > 0}
@@ -52,15 +69,10 @@ const CreateJoinForm = ({ history }) => {
       />
       <div className={styles['button-group']}>
         <div>
-          {createInProgress ? (
-            <LoadingIndicator />
-          ) : (
-            <CreateQButton onClick={() => handleClick()} />
-          )}
+          {createInProgress ? <LoadingIndicator /> : <CreateQButton onClick={handleCreateClick} />}
         </div>
         <div>
-          <JoinQButton onClick={() => history.push('/join/')} />
-          {/* FIXME */}
+          {joinInProgress ? <LoadingIndicator /> : <JoinQButton onClick={handleJoinClick} />}
         </div>
       </div>
     </div>
