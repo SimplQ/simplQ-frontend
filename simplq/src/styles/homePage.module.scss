@@ -13,12 +13,18 @@ div {
     font-size: 5rem;
   }
 
-  .button-group {
-    button {
-      margin: auto; // centering
-      display: block; // new line
+  .create-join-form {
+    margin: auto; // centering
+    max-width: 35rem;
+    .button-group {
+      @include center-horizontally();
+      button {
+        margin: 2rem;
+        min-width: 10rem;
+      }
     }
   }
+
   svg {
     bottom: 0;
     position: absolute;
