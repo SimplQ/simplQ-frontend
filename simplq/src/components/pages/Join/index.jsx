@@ -5,13 +5,10 @@ import * as QueueService from '../../../services/queue';
 import { handleApiErrors } from '../../ErrorHandler';
 import Header, { SimplQHeader } from '../../common/Header';
 import styles from '../../../styles/joinPage.module.scss';
-import { JoinQButton } from '../../common/Button';
-import { handleEnterPress } from '../../common/utilFns';
-import InputField from '../../common/InputField';
 import PageNotFound from '../PageNotFound';
 import LoadingIndicator from '../../common/LoadingIndicator';
 
-export function JoinQueueWithDetails(props) {
+export default function JoinQueueWithDetails(props) {
   const queueId = props.match.params.queueId;
   const [queueStatusResponse, setQueueStatusResponse] = useState();
   const [error, setError] = useState(false);
@@ -49,32 +46,6 @@ export function JoinQueueWithDetails(props) {
       <SimplQHeader />
       <Header className={styles.header} text={queueStatusResponse.queueName} />
       <JoinQueueForm queueId={queueId} joinQueueHandler={joinQueueHandler} />
-    </div>
-  );
-}
-
-export function JoinQueueWithLink(props) {
-  const [queueLink, setQueueLink] = useState('');
-
-  const handleClick = (link) => {
-    const queueId = link.split('/').pop();
-    props.history.push(`/j/${queueId}`);
-  };
-
-  return (
-    <div className={styles.main}>
-      <InputField
-        placeholder="Enter queue link"
-        onKeyPress={(e) => handleEnterPress(e, () => handleClick(queueLink))}
-        value={queueLink}
-        onChange={(e) => setQueueLink(e.target.value)}
-        className={styles.input}
-        // error={invalidName}
-        // helperText={invalidName ? 'Enter a valid name' : ''}
-      />
-      <div className={styles['join-button']}>
-        <JoinQButton onClick={() => handleClick(queueLink)} />
-      </div>
     </div>
   );
 }

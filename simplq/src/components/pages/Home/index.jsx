@@ -1,10 +1,11 @@
 import React from 'react';
-import { Landing, BenefitsInfo, HowToCreate, HowToJoin, ExtraInfo } from './StaticInfos';
+import { BenefitsInfo, HowToCreate, HowToJoin, ExtraInfo } from './StaticInfos';
+import LandingPage from './LandingPage';
 
 const Home = (props) => {
   return (
     <>
-      <Landing history={props.history} />
+      <LandingPage history={props.history} />
       <BenefitsInfo />
       <HowToCreate />
       <HowToJoin />
