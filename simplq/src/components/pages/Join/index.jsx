@@ -8,7 +8,6 @@ import { handleApiErrors } from '../../ErrorHandler';
 import Header, { SimplQHeader } from '../../common/Header';
 import styles from '../../../styles/joinPage.module.scss';
 import JoinerStepper from '../../common/stepper/JoinerStepper';
-import { Banner } from '../Home/StaticInfos';
 import { JoinQButton } from '../../common/Button';
 import { handleEnterPress } from '../../common/utilFns';
 import InputField from '../../common/InputField';
@@ -71,7 +70,6 @@ export function JoinQueueWithLink(props) {
 
   return (
     <div className={styles.main}>
-      <Banner />
       <InputField
         placeholder="Enter queue link"
         onKeyPress={(e) => handleEnterPress(e, () => handleClick(queueLink))}
