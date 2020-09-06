@@ -1,7 +1,7 @@
 import React from 'react';
-import { CircularProgress } from '@material-ui/core';
 import Item from './Item';
 import styles from '../../../styles/adminPage.module.scss';
+import LoadingIndicator from '../../common/LoadingIndicator';
 
 function ItemList(props) {
   const queueId = props.queueId;
@@ -10,7 +10,7 @@ function ItemList(props) {
   if (!props.items) {
     listContent = (
       <div className={styles['item-list']}>
-        <CircularProgress />
+        <LoadingIndicator />
       </div>
     );
   } else if (props.items.length === 0) {

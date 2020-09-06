@@ -4,16 +4,25 @@ div {
   @include div-padding();
 }
 
-.main-header {
-  @include standard-header();
-  font-family: $header-font;
-  font-size: 5rem;
-}
+.landing-page {
+  height: 100vh;
 
-.button-group {
-  button {
-    margin: auto; // centering
-    display: block; // new line
+  .main-header {
+    @include standard-header();
+    font-family: $header-font;
+    font-size: 5rem;
+  }
+
+  .button-group {
+    button {
+      margin: auto; // centering
+      display: block; // new line
+    }
+  }
+  svg {
+    bottom: 0;
+    position: absolute;
+    display: flex;
   }
 }
 

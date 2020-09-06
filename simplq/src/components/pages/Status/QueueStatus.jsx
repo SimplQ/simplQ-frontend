@@ -1,9 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useDispatch } from 'react-redux';
-import { CircularProgress } from '@material-ui/core';
 import * as TokenService from '../../../services/token';
-import JoinerStepper from '../../common/stepper/JoinerStepper';
-import { setJoinerStep } from '../../../store/appSlice';
 import { handleApiErrors } from '../../ErrorHandler';
 import styles from '../../../styles/statusPage.module.scss';
 import Button from '../../common/Button';
@@ -11,6 +7,7 @@ import Header, { SimplQHeader } from '../../common/Header';
 import StatusContainer from './StatusContainer';
 import QueueDetails from './QueueDetails';
 import NotificationButton from '../../common/NotificationButton';
+import LoadingIndicator from '../../common/LoadingIndicator';
 
 const TIMEOUT = 10000;
 let timeoutId;
@@ -18,8 +15,6 @@ let timeoutId;
 function QueueStatus(props) {
   const tokenId = props.match.params.tokenId;
   const [tokenStatusResponse, setTokenStatusResponse] = useState();
-  const dispatch = useDispatch();
-  dispatch(setJoinerStep(2));
   const [updateInProgress, setUpdateInProgress] = useState(false);
 
   const showNotification = useCallback(() => {
@@ -97,14 +92,13 @@ function QueueStatus(props) {
   };
 
   if (!tokenStatusResponse) {
-    return <CircularProgress />; // Todo(https://github.com/SimplQ/simplQ-frontend/issues/162)
+    return <LoadingIndicator />; // Todo(https://github.com/SimplQ/simplQ-frontend/issues/162)
   }
 
   return (
     <>
       <SimplQHeader />
       <Header text={tokenStatusResponse.queueName} className={styles.header} />
-      <JoinerStepper />
       <StatusContainer
         updateInProgress={updateInProgress}
         tokenStatus={tokenStatusResponse.tokenStatus}

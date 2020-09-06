@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import moment from 'moment';
-import { CircularProgress } from '@material-ui/core';
 import Header from '../../common/Header';
 import styles from '../../../styles/statusPage.module.scss';
 import * as QueueService from '../../../services/queue';
 import { handleApiErrors } from '../../ErrorHandler';
+import LoadingIndicator from '../../common/LoadingIndicator';
 
 export default (props) => {
   // https://dabblet.com/gist/1506530 --> checkbox hack
@@ -19,7 +19,7 @@ export default (props) => {
   }, [props.queueId]);
 
   if (!queueStatusResponse) {
-    return <CircularProgress />;
+    return <LoadingIndicator />;
   }
 
   const localTimeStamp = moment(queueStatusResponse.queueCreationTimestamp); // TODO: Make sure the local time is always displayed

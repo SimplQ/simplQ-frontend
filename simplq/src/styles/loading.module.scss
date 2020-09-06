@@ -1,0 +1,7 @@
+@import 'utils';
+
+.main {
+  @include center-vertically();
+  @include center-horizontally();
+  min-height: 100vh;
+}

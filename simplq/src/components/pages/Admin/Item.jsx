@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import Notifications from '@material-ui/icons/Notifications';
-import { useDispatch } from 'react-redux';
-import { CircularProgress } from '@material-ui/core';
 import CheckIcon from '@material-ui/icons/Check';
 import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive';
 import NotificationsOffIcon from '@material-ui/icons/NotificationsOffSharp';
-import { progressCreationStep } from '../../../store/appSlice';
 import * as TokenService from '../../../services/token';
 import { handleApiErrors } from '../../ErrorHandler';
 import styles from '../../../styles/adminPage.module.scss';
+import LoadingIndicator from '../../common/LoadingIndicator';
 
 function Item(props) {
   const name = props.item.name;
@@ -24,9 +22,7 @@ function Item(props) {
     setIsNotifyHovering(!isNotifyHovering);
   };
 
-  const dispatch = useDispatch();
   const onNotifyClick = () => {
-    dispatch(progressCreationStep(3));
     setNotifying(true);
     TokenService.notify(tokenId)
       .then(() => {
@@ -48,7 +44,7 @@ function Item(props) {
     // Notifying in progress
     notificationButton = (
       <IconButton edge="end" color="primary" aria-label="notify">
-        <CircularProgress size={18} />
+        <LoadingIndicator />
       </IconButton>
     );
   } else if (!notifiable) {
