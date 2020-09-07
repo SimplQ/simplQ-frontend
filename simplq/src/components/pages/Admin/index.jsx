@@ -1,11 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useDispatch } from 'react-redux';
 import ItemList from './ItemList';
 import * as TokenService from '../../../services/token';
 import * as QueueService from '../../../services/queue';
-import { progressCreationStep } from '../../../store/appSlice';
 import ShareBar from './ShareBar';
-import CreatorStepper from '../../common/stepper/CreatorStepper';
 import { handleApiErrors } from '../../ErrorHandler';
 import Header, { SimplQHeader } from '../../common/Header';
 import styles from '../../../styles/adminPage.module.scss';
@@ -15,10 +12,7 @@ const TIMEOUT = 10000;
 let timeoutId;
 
 export default (props) => {
-  const dispatch = useDispatch();
   const queueId = props.match.params.queueId;
-
-  dispatch(progressCreationStep(1));
 
   const [items, setItems] = useState();
   const [queueName, setQueueName] = useState();
@@ -70,7 +64,6 @@ export default (props) => {
     <>
       <SimplQHeader />
       <Header className={styles.header} text={queueName} />
-      <CreatorStepper />
       <ShareBar
         queueId={queueId}
         className={styles.shareButton}

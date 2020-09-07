@@ -1,26 +1,6 @@
 import React from 'react';
-import { CreateQButton, JoinQButton } from '../../common/Button';
-import Header from '../../common/Header';
 import styles from '../../../styles/homePage.module.scss';
 import { CreatorSlider, JoinerSlider } from '../../common/slider';
-
-export const Banner = () => (
-  <div>
-    <Header className={styles['main-header']} text="SimplQ" />
-    <h3 className={styles.center}>A long overdue alternative to physical Queues</h3>
-  </div>
-);
-
-export const ButtonGroup = (props) => (
-  <div className={styles['button-group']}>
-    <div>
-      <CreateQButton onClick={() => props.history.push('/create')} />
-    </div>
-    <div>
-      <JoinQButton onClick={() => props.history.push('/join/')} />
-    </div>
-  </div>
-);
 
 export const BenefitsInfo = () => (
   <div className={styles['benefits-info']}>
