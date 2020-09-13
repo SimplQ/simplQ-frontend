@@ -37,3 +37,7 @@ export const RefreshButton = (props) => {
     </StandardButton>
   );
 };
+
+export const ForkOnGithubButton = () => {
+  return <StandardButton>Fork on Github</StandardButton>;
+};

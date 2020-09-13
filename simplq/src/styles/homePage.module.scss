@@ -69,7 +69,143 @@ div {
     display: flex;
     align-items: center;
     p {
-      min-width: 10rem; // So that the text alings along a vertical line, as the entre component in vertically centered
+      min-width: 10rem; // So that the text aligns along a vertical line, as the entre component in vertically centered
     }
   }
+}
+
+.footer {
+  @include background-color();
+  @include text-color();
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+.main-card-container {
+  padding: 0;
+  margin: 0;
+  width: 60%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card {
+  flex: 1;
+  margin: 10px;
+  padding: 5px;
+  min-height: 30vh;
+  min-width: 200px;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-header {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  min-height: 45%;
+  flex: 1;
+}
+
+.card-body {
+  flex: 2;
+  min-height: 55%;
+  padding: 0;
+  margin: 0;
+}
+
+.new-logo-image {
+  max-width: 110px;
+  max-height: 125px;
+  display: flex;
+  justify-content: center;
+}
+
+.logo_header_container {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  flex: 1;
+  flex-wrap: wrap;
+  font-family: $header-font;
+}
+
+.logo_header_container h1 {
+  margin: 0;
+  padding: 0;
+}
+
+.card-body span {
+  font-family: $header-font;
+}
+
+.simpleQ_image_container {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+.center-item {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.center-item h1 {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.open-source-content-container {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: large;
+}
+
+.list-container {
+  margin: 0;
+  padding: 0;
+}
+
+.list-container ul {
+  margin: 0;
+  padding: 0 0 0 10px;
+  list-style-type: none;
+}
+
+.list-container ul li {
+  font-size: 1.3rem;
+  color: #3A3768;
+}
+
+.list-container ul li a {
+  text-decoration: none;
+  color: #3A3768;
+}
+
+.description-content-container {
+  padding: 0;
+  height: 100%;
+  margin: 0;
+}
+
+.description-content {
+  font-size: larger;
 }
