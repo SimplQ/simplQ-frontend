@@ -36,7 +36,8 @@
     "eject": "react-scripts eject",
     "lint": "eslint src/ --ext .js,.jsx --fix",
     "storybook": "start-storybook -p 9009 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "postbuild": "react-snap"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -70,7 +71,8 @@
     "file-loader": "^6.0.0",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.11",
-    "prettier": "^2.0.5"
+    "prettier": "^2.0.5",
+    "react-snap": "^1.23.0"
   },
   "husky": {
     "hooks": {
