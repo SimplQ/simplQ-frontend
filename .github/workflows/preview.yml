@@ -1,0 +1,29 @@
+name: 'Amplify PR Preview'
+on:
+  pull_request:
+    types: [opened, reopened]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+
+    - name: set branchname env
+      id: setenvname
+      run: |
+        # use GITHUB_HEAD_REF that is set to PR source branch
+        echo "##[set-output name=setbranchname;]$(echo ${GITHUB_HEAD_REF})"
+
+    - name: deploy PR preview
+      uses: daltonfury42/amplify-preview-actions@master
+      with:
+        branch_name: ${{ steps.setenvname.outputs.setbranchname }}
+        amplify_command: deploy
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        AmplifyAppId: ${{ secrets.AmplifyAppId }}
+        BackendEnvARN: ${{ secrets.BackendEnvARN }}
+        AWS_REGION: 'ap-southeast-1'
