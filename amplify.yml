@@ -1,6 +1,10 @@
 version: 0.1
 frontend:
   phases:
+    preBuild:
+      commands:
+        - '# This installs Chrome on any RHEL/CentOS/Amazon Linux variant.'
+        - curl https://intoli.com/install-google-chrome.sh | bash
     build:
       commands: 
        - cd simplq/
