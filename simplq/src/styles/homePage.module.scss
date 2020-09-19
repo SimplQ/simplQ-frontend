@@ -11,6 +11,19 @@
     font-family: $header-font;
     font-size: 5rem;
   }
+  .subtitle {
+    @include center-horizontally();
+    @include text-color();
+    font-weight: 800;
+    margin: 1rem;
+    font-size: x-large;
+  }
+  .description {
+    @include center-horizontally();
+    @include text-color();
+    margin-bottom: 4rem;
+    font-size: larger;
+  }
   .create-join-form {
     margin: auto; // centering
     max-width: 35rem;
@@ -28,26 +41,10 @@
       min-height: 5rem;
     }
   }
-
   svg {
     z-index: 2;
     margin: 0 -1rem;
   }
-}
-
-.subtitle {
-  @include center-horizontally();
-  @include text-color();
-  font-weight: 800;
-  margin: 1rem;
-  font-size: x-large;
-}
-
-.description {
-  @include center-horizontally();
-  @include text-color();
-  margin-bottom: 4rem;
-  font-size: larger;
 }
 
 .benefits-info {
@@ -55,12 +52,31 @@
   @include text-color();
   @include center-vertically();
   @include center-horizontally();
-  div {
-    padding: 4.5rem;
-    margin: auto;
-    font-size: 1.25rem;
-    img {
-      height: 4.5rem;
+  padding-bottom: 5rem;
+  h2 {
+    @include standard-header();
+    font-family: $header-font;
+    font-size: 2rem;
+  }
+  .benefits-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    .benefit {
+      background-color: #6C63FF29;
+      border: .15rem solid #70707073;
+      border-radius: .5rem;
+      height: 16rem;
+      width: 16rem;
+      padding: 2rem;
+      margin: 2rem;
+      img {
+        height: 8rem;
+        width: 10rem;
+      }
+      p {
+        font-weight: 600;
+      }
     }
   }
 }
