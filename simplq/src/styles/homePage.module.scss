@@ -4,6 +4,8 @@
   min-height: 100vh;
   padding-top: 5vh; // Extra padding as placeholder for navbar
   margin: 0 1rem;
+  display: flex;
+  flex-direction: column;
   .main-header {
     @include standard-header();
     font-family: $header-font;
@@ -29,10 +31,6 @@
   }
 
   svg {
-    width: 100%;
-    bottom: 0;
-    position: absolute;
-    display: flex;
     z-index: 2;
     margin: 0 -1rem;
   }
