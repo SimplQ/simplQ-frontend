@@ -11,10 +11,25 @@
     font-family: $header-font;
     font-size: 5rem;
   }
+  .subtitle {
+    @include center-horizontally();
+    @include text-color();
+    font-weight: 800;
+    margin: 1rem;
+    font-size: x-large;
+  }
+  .description {
+    @include center-horizontally();
+    @include text-color();
+    margin-bottom: 4rem;
+    font-size: larger;
+  }
   .create-join-form {
     margin: auto; // centering
     max-width: 35rem;
     position: relative;
+    // z-index set greater than that of svg below,
+    // otherwise button becomes unclicable on wider screens
     z-index: 3;
     .button-group {
       @include center-horizontally();
@@ -28,26 +43,12 @@
       min-height: 5rem;
     }
   }
-
   svg {
+    // z-index set to lover value than upper create-join-form
     z-index: 2;
+    // global margin of 1 rem set. Setting negative margin to fill till the edge
     margin: 0 -1rem;
   }
-}
-
-.subtitle {
-  @include center-horizontally();
-  @include text-color();
-  font-weight: 800;
-  margin: 1rem;
-  font-size: x-large;
-}
-
-.description {
-  @include center-horizontally();
-  @include text-color();
-  margin-bottom: 4rem;
-  font-size: larger;
 }
 
 .benefits-info {
@@ -55,13 +56,51 @@
   @include text-color();
   @include center-vertically();
   @include center-horizontally();
-  div {
-    padding: 4.5rem;
-    margin: auto;
-    font-size: 1.25rem;
-    img {
-      height: 4.5rem;
+  padding-bottom: 5rem;
+  h2 {
+    @include standard-header();
+    font-family: $header-font;
+    font-size: 2rem;
+  }
+  .benefits-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    .benefit {
+      background-color: #6c63ff29;
+      border: 0.15rem solid #70707073;
+      border-radius: 0.5rem;
+      height: 16rem;
+      width: 16rem;
+      padding: 2rem;
+      margin: 2rem;
+      img {
+        height: 8rem;
+        width: 10rem;
+      }
+      p {
+        font-weight: 600;
+      }
     }
+  }
+  // Position needs to be set for parent so that corona particles can be
+  // positioned absolute to this div
+  position: relative;
+  .corona-1 {
+    height: 7rem;
+    position: absolute;
+    top: 0rem;
+    right: 15vw;
+  }
+  .corona-2 {
+    height: 3rem;
+    position: absolute;
+    left: 6rem;
+  }
+  .corona-3 {
+    height: 2rem;
+    position: absolute;
+    bottom: 2rem;
   }
 }
 
