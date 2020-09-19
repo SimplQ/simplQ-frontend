@@ -1,11 +1,8 @@
 @import 'utils';
 
-div {
-  @include div-padding();
-}
-
 .landing-page {
   height: 100vh;
+  padding-top: 5vh; // Extra padding as placeholder for navbar
 
   .main-header {
     @include standard-header();
@@ -20,10 +17,14 @@ div {
     z-index: 3;
     .button-group {
       @include center-horizontally();
+      flex-wrap: wrap;
       button {
-        margin: 2rem;
+        margin: 0.5rem 2rem;
         min-width: 10rem;
       }
+    }
+    .input-box {
+      min-height: 5rem;
     }
   }
 
@@ -35,10 +36,19 @@ div {
   }
 }
 
-.center {
+.subtitle {
   @include center-horizontally();
   @include text-color();
-  font-size: 1.5rem;
+  font-weight: 800;
+  margin: 1rem;
+  font-size: x-large;
+}
+
+.description {
+  @include center-horizontally();
+  @include text-color();
+  margin-bottom: 4rem;
+  font-size: larger;
 }
 
 .benefits-info {

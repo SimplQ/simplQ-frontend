@@ -8,7 +8,11 @@ export default (props) => {
     <div className={styles['landing-page']}>
       <div>
         <Header className={styles['main-header']} text="SimplQ" />
-        <h3 className={styles.center}>A long overdue alternative to physical Queues</h3>
+        <p className={styles.subtitle}>A long overdue alternative to physical queues</p>
+        <p className={styles.description}>
+          Create and manage queues with our free, online queue management solution for easy and
+          instant crowd control
+        </p>
       </div>
       <CreateJoinForm history={props.history} />
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
