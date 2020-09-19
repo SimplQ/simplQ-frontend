@@ -16,6 +16,8 @@ div {
   .create-join-form {
     margin: auto; // centering
     max-width: 35rem;
+    position: relative;
+    z-index: 3;
     .button-group {
       @include center-horizontally();
       button {
@@ -29,6 +31,7 @@ div {
     bottom: 0;
     position: absolute;
     display: flex;
+    z-index: 2;
   }
 }
 
