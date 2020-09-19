@@ -4,17 +4,23 @@ import { CreatorSlider, JoinerSlider } from '../../common/slider';
 
 export const BenefitsInfo = () => (
   <div className={styles['benefits-info']}>
-    <div>
-      <img src="/images/minimize_crowding.svg" alt="mimimze crowding" />
-      <p>Minimize crowding by keeping your queue virtual</p>
-    </div>
-    <div>
-      <img src="/images/enforce_social_dist.svg" alt="Enforce social distancing" />
-      <p>Enforce social distancing effectively</p>
-    </div>
-    <div>
-      <img src="/images/check_status.svg " alt="Check your current status" />
-      <p>Check your current status in the queue</p>
+    <img src="/images/corona.png" alt="background-illustration" className={styles['corona-1']} />
+    <img src="/images/corona.png" alt="background-illustration" className={styles['corona-2']} />
+    <img src="/images/corona.png" alt="background-illustration" className={styles['corona-3']} />
+    <h2>Why SimplQ ?</h2>
+    <div className={styles['benefits-container']}>
+      <div className={styles.benefit}>
+        <img src="/images/minimize_crowding.svg" alt="mimimze crowding" />
+        <p>Minimize crowding by using digital queue</p>
+      </div>
+      <div className={styles.benefit}>
+        <img src="/images/enforce_social_dist.svg" alt="Enforce social distancing" />
+        <p>Enforce social distancing effectively</p>
+      </div>
+      <div className={styles.benefit}>
+        <img src="/images/check_status.svg " alt="Check your current status" />
+        <p>Check your current status in the queue</p>
+      </div>
     </div>
   </div>
 );
