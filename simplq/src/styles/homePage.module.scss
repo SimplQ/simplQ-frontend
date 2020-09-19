@@ -67,9 +67,9 @@
     flex-wrap: wrap;
     justify-content: center;
     .benefit {
-      background-color: #6C63FF29;
-      border: .15rem solid #70707073;
-      border-radius: .5rem;
+      background-color: #6c63ff29;
+      border: 0.15rem solid #70707073;
+      border-radius: 0.5rem;
       height: 16rem;
       width: 16rem;
       padding: 2rem;
@@ -83,7 +83,7 @@
       }
     }
   }
-  // Position needs to be set for parent so that corona particles can be 
+  // Position needs to be set for parent so that corona particles can be
   // positioned absolute to this div
   position: relative;
   .corona-1 {
