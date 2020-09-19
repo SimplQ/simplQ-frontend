@@ -4,6 +4,9 @@ import { CreatorSlider, JoinerSlider } from '../../common/slider';
 
 export const BenefitsInfo = () => (
   <div className={styles['benefits-info']}>
+    <img src="/images/corona.png" alt="background-illustration" className={styles['corona-1']} />
+    <img src="/images/corona.png" alt="background-illustration" className={styles['corona-2']} />
+    <img src="/images/corona.png" alt="background-illustration" className={styles['corona-3']} />
     <h2>Why SimplQ ?</h2>
     <div className={styles['benefits-container']}>
       <div className={styles.benefit}>

@@ -28,6 +28,8 @@
     margin: auto; // centering
     max-width: 35rem;
     position: relative;
+    // z-index set greater than that of svg below,
+    // otherwise button becomes unclicable on wider screens
     z-index: 3;
     .button-group {
       @include center-horizontally();
@@ -42,7 +44,9 @@
     }
   }
   svg {
+    // z-index set to lover value than upper .create-join-form
     z-index: 2;
+    // global margin of 1 rem set. Setting negative margin to fill till the edge
     margin: 0 -1rem;
   }
 }
@@ -78,6 +82,25 @@
         font-weight: 600;
       }
     }
+  }
+  // Position needs to be set for parent so that corona particles can be 
+  // positioned absolute to this div
+  position: relative;
+  .corona-1 {
+    height: 7rem;
+    position: absolute;
+    top: 0rem;
+    right: 15vw;
+  }
+  .corona-2 {
+    height: 3rem;
+    position: absolute;
+    left: 6rem;
+  }
+  .corona-3 {
+    height: 2rem;
+    position: absolute;
+    bottom: 2rem;
   }
 }
 
