@@ -2,13 +2,12 @@
 
 .landing-page {
   height: 100vh;
-  padding-top: 15vh; // Extra padding as placeholder for navbar
+  padding-top: 5vh; // Extra padding as placeholder for navbar
 
   .main-header {
     @include standard-header();
     font-family: $header-font;
     font-size: 5rem;
-    // margin-top: 15vh;
   }
 
   .create-join-form {
@@ -18,8 +17,9 @@
     z-index: 3;
     .button-group {
       @include center-horizontally();
+      flex-wrap: wrap;
       button {
-        margin: 2rem;
+        margin: .5rem 2rem;
         min-width: 10rem;
       }
     }
