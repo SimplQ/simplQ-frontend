@@ -9,10 +9,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: 'Open Sans', sans-serif;
-}
-
 #root {
   background-color: white;
   padding: 0;
