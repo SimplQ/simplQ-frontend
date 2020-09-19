@@ -10,8 +10,8 @@ export default (props) => {
         <Header className={styles['main-header']} text="SimplQ" />
         <p className={styles.subtitle}>A long overdue alternative to physical queues</p>
         <p className={styles.description}>
-          Create and manage queues in instantly, free online queue management solution for easy
-          crowd control
+          Create and manage queues with our free, online queue management solution for easy and
+          instant crowd control
         </p>
       </div>
       <CreateJoinForm history={props.history} />
