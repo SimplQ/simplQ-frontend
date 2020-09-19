@@ -1,0 +1,28 @@
+name: 'Amplify PR Closed'
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+
+    - name: set branchname env
+      id: setenvname
+      run: |
+        # use GITHUB_HEAD_REF that is set to PR source branch
+        echo "##[set-output name=setbranchname;]$(echo ${GITHUB_HEAD_REF})"
+    - name: cleanup PR preview branch
+      uses: daltonfury42/amplify-preview-actions@master
+      with:
+        branch_name: ${{ steps.setenvname.outputs.setbranchname }}
+        amplify_command: delete
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AmplifyAppId: ${{ secrets.AmplifyAppId }}
+        BackendEnvARN: ${{ secrets.BackendEnvARN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        AWS_REGION: 'ap-southeast-1'

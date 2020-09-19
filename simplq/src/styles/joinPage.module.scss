@@ -4,10 +4,6 @@
   @include queue-name-header();
 }
 
-div {
-  @include div-padding();
-}
-
 .join-button {
   @include center-horizontally();
 }
