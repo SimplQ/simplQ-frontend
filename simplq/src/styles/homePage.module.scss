@@ -113,23 +113,29 @@
 
 .extra-info {
   background-color: $primary-color-dark;
-  padding: 2rem;
-  table {
-    width: 70%;
-    table-layout: fixed;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-    border-spacing: 1rem;
+  padding: 3rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+  align-items: flex-start;
+
+  .card {
+    padding: 0.5rem;
+    max-height: 16rem;
+    max-width: 16rem;
   }
+
   img {
-    max-width: 50%;
-    max-height: 50%;
+    width: 20%;
+    height: 20%;
   }
-  .img-descriptions {
+
+  .brief-description {
     font-weight: bold;
     color: white;
   }
+
   .detailed-descriptions {
     color: white;
     vertical-align: top;

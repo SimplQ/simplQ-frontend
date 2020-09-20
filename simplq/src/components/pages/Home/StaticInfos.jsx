@@ -39,64 +39,62 @@ export const HowToJoin = () => (
   </div>
 );
 
+// export const ExtraInfo = () => (
+//   <div className={styles['extra-info']}>
+//     <table>
+//       <tr>
+//         <td>
+//           <img src="/images/free.svg" alt="free" />
+//         </td>
+//         <td>
+//           <img src="/images/secure.svg" alt="secure" />
+//         </td>
+//         <td>
+//           <img src="/images/easy.svg" alt="easy to use" />
+//         </td>
+//       </tr>
+//       <tr className={styles['img-descriptions']}>
+//         <td>Always free</td>
+//         <td>Data security</td>
+//         <td>Easy to use</td>
+//       </tr>
+//       <tr className={styles['detailed-descriptions']}>
+//         <td>
+//           We are a team of enthusiastic developers who want to give back to society and do not
+//           prioritize monetary gains
+//         </td>
+//         <td>Security is paramount and we take data security seriously</td>
+//         <td>
+//           We provide an easy queue management system thereby allowing you to focus on better things
+//         </td>
+//       </tr>
+//     </table>
+//   </div>
+// );
+
 export const ExtraInfo = () => (
   <div className={styles['extra-info']}>
-    <table>
-      <tr>
-        <td>
-          <img src="/images/free.svg" alt="free" />
-        </td>
-        <td>
-          <img src="/images/secure.svg" alt="secure" />
-        </td>
-        <td>
-          <img src="/images/easy.svg" alt="easy to use" />
-        </td>
-      </tr>
-      <tr className={styles['img-descriptions']}>
-        <td>Always free</td>
-        <td>Data security</td>
-        <td>Easy to use</td>
-      </tr>
-      <tr className={styles['detailed-descriptions']}>
-        <td>
-          We are a team of enthusiastic developers who want to give back to society and do not
-          prioritize monetary gains
-        </td>
-        <td>Security is paramount and we take data security seriously</td>
-        <td>
-          We provide an easy queue management system thereby allowing you to focus on better things
-        </td>
-      </tr>
-    </table>
+    <div className={styles.card}>
+      <img src="/images/free.svg" alt="free" />
+      <p className={styles['brief-description']}>Always free</p>
+      <p className={styles['detailed-descriptions']}>
+        We are a team of enthusiastic developers who want to give back to society and do not
+        prioritize monetary gains
+      </p>
+    </div>
+    <div className={styles.card}>
+      <img src="/images/secure.svg" alt="secure" />
+      <p className={styles['brief-description']}>Data security</p>
+      <p className={styles['detailed-descriptions']}>
+        Security is paramount and we take data security seriously
+      </p>
+    </div>
+    <div className={styles.card}>
+      <img src="/images/easy.svg" alt="easy to use" />
+      <p className={styles['brief-description']}>Easy to use</p>
+      <p className={styles['detailed-descriptions']}>
+        We provide an easy queue management system thereby allowing you to focus on better things
+      </p>
+    </div>
   </div>
 );
-
-// export const ExtraInfo = () => (
-//   <table className={styles['extra-info']}>
-//     <div className={styles['card']}>
-//       <tr>
-//         <img src="/images/free.svg" alt="free" />
-//       </tr>
-//       <p className={styles['img-description']}>Always free</p>
-//       <p className={styles['extra-description']}>
-//         We are a team of enthusiastic developers who want to give back to society and do not
-//         prioritize monetary gains
-//       </p>
-//     </div>
-//     <div className={styles['card']}>
-//       <img src="/images/secure.svg" alt="secure" />
-//       <p className={styles['description']}>Data security</p>
-//       <p className={styles['extra-description']}>
-//         Security is paramount and we take data security seriously
-//       </p>
-//     </div>
-//     <div className={styles['card']}>
-//       <img src="/images/easy.svg" alt="easy to use" />
-//       <p className={styles['description']}>Easy to use</p>
-//       <p className={styles['extra-description']}>
-//         We provide an easy queue management system thereby allowing you to focus on better things
-//       </p>
-//     </div>
-//   </table>
-// );
