@@ -60,7 +60,7 @@ export const ExtraInfo = () => (
       <img src="/images/easy.svg" alt="easy to use" />
       <p className={styles['brief-description']}>Easy to use</p>
       <p className={styles['detailed-description']}>
-        We provide free queue management system thereby allowing you to focus on better things
+        We provide free queue management thereby allowing you to focus on better things
       </p>
     </div>
   </div>
