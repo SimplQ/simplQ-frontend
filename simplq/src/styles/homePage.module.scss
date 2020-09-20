@@ -90,13 +90,13 @@ div {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  gap: 5%;
 }
 
 .card {
   flex: 1;
   margin: 10px;
   padding: 5px;
-  min-height: 30vh;
   min-width: 200px;
   max-width: 300px;
   display: flex;
@@ -116,6 +116,8 @@ div {
   min-height: 55%;
   padding: 0;
   margin: 0;
+  display: flex;
+  align-items: flex-end;
 }
 
 .new-logo-image {
@@ -153,22 +155,6 @@ div {
   padding: 0;
 }
 
-.center-item {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.center-item h1 {
-  padding: 0;
-  margin: 0;
-  width: 100%;
-  text-align: center;
-}
-
 .open-source-content-container {
   padding: 0;
   margin: 0;
@@ -186,7 +172,7 @@ div {
 
 .list-container ul {
   margin: 0;
-  padding: 0 0 0 10px;
+  padding: 0;
   list-style-type: none;
 }
 
@@ -204,6 +190,8 @@ div {
   padding: 0;
   height: 100%;
   margin: 0;
+  display: flex;
+  align-items: flex-end;
 }
 
 .description-content {

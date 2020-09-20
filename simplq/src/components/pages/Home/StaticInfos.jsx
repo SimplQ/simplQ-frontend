@@ -79,7 +79,7 @@ export const Footer = () => (
 
       <div className={styles.card}>
         <div className={styles['card-header']}>
-          <div className={styles['center-item']}>
+          <div>
             <h1>Open source</h1>
           </div>
         </div>
@@ -89,7 +89,7 @@ export const Footer = () => (
               <b>
                 <span>SimplQ </span>
                 is open source. Be part of the
-                <span> SimpleQ </span>
+                <span> SimplQ </span>
                 community.
               </b>
             </p>
@@ -100,7 +100,7 @@ export const Footer = () => (
 
       <div className={styles.card}>
         <div className={styles['card-header']}>
-          <div className={styles['center-item']}>
+          <div>
             <h1>Keep in touch</h1>
           </div>
         </div>
