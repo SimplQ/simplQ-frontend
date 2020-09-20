@@ -112,15 +112,27 @@
 }
 
 .extra-info {
-  @include background-color();
-  @include text-color();
-  @include center-vertically();
-  @include center-horizontally();
-  div {
-    display: flex;
-    align-items: center;
-    p {
-      min-width: 10rem; // So that the text alings along a vertical line, as the entre component in vertically centered
-    }
+  background-color: $primary-color-dark;
+  padding: 2rem;
+  table {
+    width: 70%;
+    table-layout: fixed;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    border-spacing: 1rem;
+  }
+  img {
+    max-width: 50%;
+    max-height: 50%;
+  }
+  .img-descriptions {
+    font-weight: bold;
+    color: white;
+  }
+  .detailed-descriptions {
+    color: white;
+    vertical-align: top;
+    font-size: small;
   }
 }
