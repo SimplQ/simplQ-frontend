@@ -39,39 +39,6 @@ export const HowToJoin = () => (
   </div>
 );
 
-// export const ExtraInfo = () => (
-//   <div className={styles['extra-info']}>
-//     <table>
-//       <tr>
-//         <td>
-//           <img src="/images/free.svg" alt="free" />
-//         </td>
-//         <td>
-//           <img src="/images/secure.svg" alt="secure" />
-//         </td>
-//         <td>
-//           <img src="/images/easy.svg" alt="easy to use" />
-//         </td>
-//       </tr>
-//       <tr className={styles['img-descriptions']}>
-//         <td>Always free</td>
-//         <td>Data security</td>
-//         <td>Easy to use</td>
-//       </tr>
-//       <tr className={styles['detailed-descriptions']}>
-//         <td>
-//           We are a team of enthusiastic developers who want to give back to society and do not
-//           prioritize monetary gains
-//         </td>
-//         <td>Security is paramount and we take data security seriously</td>
-//         <td>
-//           We provide an easy queue management system thereby allowing you to focus on better things
-//         </td>
-//       </tr>
-//     </table>
-//   </div>
-// );
-
 export const ExtraInfo = () => (
   <div className={styles['extra-info']}>
     <div className={styles.card}>
