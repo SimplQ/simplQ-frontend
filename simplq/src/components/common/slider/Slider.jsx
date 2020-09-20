@@ -1,7 +1,10 @@
 import React from 'react';
 import AwesomeSlider from 'react-awesome-slider';
+import withAutoplay from 'react-awesome-slider/dist/autoplay';
 import 'react-awesome-slider/dist/styles.css';
 import styles from '../../../styles/slider.module.scss';
+
+const AutoplaySlider = withAutoplay(AwesomeSlider);
 
 const Slide = (props) => {
   return (
@@ -20,9 +23,15 @@ const StandardSlider = (props) => {
     </div>
   ));
   return (
-    <AwesomeSlider bullets={false} className={styles['aws-btn']}>
+    <AutoplaySlider
+      play
+      cancelOnInteraction // should stop playing on user interaction
+      interval={6000}
+      bullets={false}
+      className={styles['aws-btn']}
+    >
       {slides}
-    </AwesomeSlider>
+    </AutoplaySlider>
   );
 };
 
