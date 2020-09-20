@@ -19,7 +19,11 @@ const StandardSlider = (props) => {
       <Slide key={slide.imgSrc} slide={slide} />
     </div>
   ));
-  return <AwesomeSlider className={styles['aws-btn']}>{slides}</AwesomeSlider>;
+  return (
+    <AwesomeSlider bullets={false} className={styles['aws-btn']}>
+      {slides}
+    </AwesomeSlider>
+  );
 };
 
 export default StandardSlider;
