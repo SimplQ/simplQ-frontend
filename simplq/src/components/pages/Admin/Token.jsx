@@ -9,14 +9,14 @@ import { handleApiErrors } from '../../ErrorHandler';
 import styles from '../../../styles/adminPage.module.scss';
 import LoadingIndicator from '../../common/LoadingIndicator';
 
-function Item(props) {
-  const name = props.item.name;
-  const tokenId = props.item.tokenId;
-  const tokenNumber = props.item.tokenNumber;
-  const notifiable = props.item.notifiable;
+function Token(props) {
+  const name = props.token.name;
+  const tokenId = props.token.tokenId;
+  const tokenNumber = props.token.tokenNumber;
+  const notifiable = props.token.notifiable;
   const [notifying, setNotifying] = useState(false);
   const [isNotifyHovering, setIsNotifyHovering] = useState(false);
-  const [didNotify, setDidNotify] = useState(props.item.tokenStatus === 'NOTIFIED');
+  const [didNotify, setDidNotify] = useState(props.token.tokenStatus === 'NOTIFIED');
 
   const handleMouseHover = () => {
     setIsNotifyHovering(!isNotifyHovering);
@@ -36,7 +36,7 @@ function Item(props) {
   };
 
   const onDeleteClick = () => {
-    props.removeItemHandler(tokenId);
+    props.removeTokenHandler(tokenId);
   };
 
   let notificationButton = null;
@@ -82,7 +82,7 @@ function Item(props) {
   }
 
   return (
-    <div className={styles.item}>
+    <div className={styles.token}>
       <div>
         <div>{notificationButton}</div>
         <div>
@@ -102,4 +102,4 @@ function Item(props) {
   );
 }
 
-export default Item;
+export default Token;

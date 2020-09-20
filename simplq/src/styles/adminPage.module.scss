@@ -19,7 +19,7 @@
   }
 }
 
-.item-list {
+.token-list {
   @include center-horizontally();
   max-width: 30rem;
   padding: 2rem;
@@ -28,7 +28,7 @@
   flex-direction: column;
 }
 
-.item {
+.token {
   @include center-horizontally();
   background-color: white;
   margin: 0.5rem auto;
