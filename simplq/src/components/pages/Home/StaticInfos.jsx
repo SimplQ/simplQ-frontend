@@ -11,7 +11,7 @@ export const BenefitsInfo = () => (
     <div className={styles['benefits-container']}>
       <div className={styles.benefit}>
         <img src="/images/minimize_crowding.svg" alt="mimimze crowding" />
-        <p>Minimize crowding by using digital queue</p>
+        <p>Minimize crowds using a digital queue</p>
       </div>
       <div className={styles.benefit}>
         <img src="/images/enforce_social_dist.svg" alt="Enforce social distancing" />
