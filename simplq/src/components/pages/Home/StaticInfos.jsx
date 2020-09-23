@@ -11,7 +11,7 @@ export const BenefitsInfo = () => (
     <div className={styles['benefits-container']}>
       <div className={styles.benefit}>
         <img src="/images/minimize_crowding.svg" alt="mimimze crowding" />
-        <p>Minimize crowds using a digital queue</p>
+        <p>No more waiting in long lines</p>
       </div>
       <div className={styles.benefit}>
         <img src="/images/enforce_social_dist.svg" alt="Enforce social distancing" />
@@ -60,7 +60,7 @@ export const ExtraInfo = () => (
       <img src="/images/easy.svg" alt="easy to use" />
       <p className={styles['brief-description']}>Easy to use</p>
       <p className={styles['detailed-description']}>
-        We provide an easy queue management system thereby allowing you to focus on better things
+        We provide free queue management thereby allowing you to focus on better things
       </p>
     </div>
   </div>
