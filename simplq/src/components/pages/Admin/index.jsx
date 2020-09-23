@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import ItemList from './ItemList';
+import TokenList from './TokenList';
 import * as TokenService from '../../../services/token';
 import * as QueueService from '../../../services/queue';
 import ShareBar from './ShareBar';
@@ -14,13 +14,13 @@ let timeoutId;
 export default (props) => {
   const queueId = props.match.params.queueId;
 
-  const [items, setItems] = useState();
+  const [tokens, setTokens] = useState();
   const [queueName, setQueueName] = useState();
   const update = useCallback(() => {
     clearTimeout(timeoutId);
     QueueService.get(queueId)
       .then((data) => {
-        setItems(data.tokens);
+        setTokens(data.tokens);
         setQueueName(data.queueName);
         timeoutId = setTimeout(update, TIMEOUT);
       })
@@ -35,11 +35,11 @@ export default (props) => {
     return () => clearTimeout(timeoutId);
   }, [update]);
 
-  const addNewItem = (name, contactNumber) => {
+  const addNewToken = (name, contactNumber) => {
     return TokenService.create(name, contactNumber, false, queueId)
       .then((response) => {
-        setItems([
-          ...items,
+        setTokens([
+          ...tokens,
           {
             tokenId: response.tokenId,
             name,
@@ -54,9 +54,9 @@ export default (props) => {
       });
   };
 
-  const removeItem = (tokenId) => {
+  const removeToken = (tokenId) => {
     TokenService.remove(tokenId)
-      .then(() => setItems(items.filter((item) => item.tokenId !== tokenId)))
+      .then(() => setTokens(tokens.filter((token) => token.tokenId !== tokenId)))
       .catch((err) => handleApiErrors(err));
   };
 
@@ -72,10 +72,10 @@ export default (props) => {
         }}
       />
       <div className={styles.list}>
-        <ItemList items={items} queueId={queueId} removeItemHandler={removeItem} />
+        <TokenList tokens={tokens} queueId={queueId} removeTokenHandler={removeToken} />
       </div>
       <div className={styles['add-member']}>
-        <AddMember queueId={queueId} joinQueueHandler={addNewItem} />
+        <AddMember queueId={queueId} joinQueueHandler={addNewToken} />
       </div>
     </>
   );
