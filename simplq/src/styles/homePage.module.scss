@@ -238,11 +238,9 @@
     z-index: 5;
     justify-content: space-between;
     position: fixed;
-    img{
-      margin: .5rem;
-    }
     & > img {
       height: 3rem;
       width: 3rem;
+      margin: .5rem;
    }
   }
