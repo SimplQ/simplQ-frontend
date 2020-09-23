@@ -150,7 +150,7 @@
   position: fixed;
   top: .2rem;
   right: 1rem;
-  z-index: 20;
+  z-index: 5;
   display: none;
   @media (max-width: 768px) {
     display: flex;
@@ -201,9 +201,8 @@
     position: fixed;
     top: 1.2rem;
     li {
-      &:nth-child(1){
-        padding: 0px 4rem;
-      }
+      color: #fff;
+      padding: 0 2rem;
     }
     a{
       text-decoration: none;
@@ -226,9 +225,6 @@
       width: 25rem;
       padding-top: 3.5rem;
       transition: transform 0.3s ease-in-out;
-      li {
-        color: #fff;
-      }
   }
 }
 
@@ -239,11 +235,11 @@
     background-color: #fff;
     border-bottom: .2rem solid #f1f1f1;
     padding: 0 2rem;
+    z-index: 5;
     justify-content: space-between;
     position: fixed;
     img{
-      margin-top: .5rem;
-      margin-left: .5rem;
+      margin: .5rem;
     }
     & > img {
       height: 3rem;
