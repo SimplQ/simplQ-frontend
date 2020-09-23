@@ -7,7 +7,7 @@ const Burger = () => {
 
     return (
         <>
-            <div className={styles['Burger-style']} open={open} onClick={() => setOpen(!open)}>
+            <div className={styles['burger']} open={open} onClick={() => setOpen(!open)}>
                 <div />
                 <div />
                 <div />

@@ -4,8 +4,8 @@ import Burger from './Burger';
 
 const Navbar = () => {
     return (
-        <nav className={styles['Navbar-style']}>
-            <img src="LogoLight.png" className="logo" height="50" width="50" />
+        <nav className={styles['navbar']}>
+            <img src="LogoLight.png" />
 
             <Burger />
         </nav>
