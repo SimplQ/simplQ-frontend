@@ -14,8 +14,6 @@ const CreateJoinForm = ({ history }) => {
   const [joinInProgress, setJoinInProgress] = useState(false);
 
   const handleCreateClick = () => {
-    // eslint-disable-next-line no-console
-    console.log(undefined.i);
     if (textFieldValue === '') setInvalidMsg('Queue name is required');
     else {
       setCreateInProgress(true);
