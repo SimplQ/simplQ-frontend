@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from '../../../../styles/homePage.module.scss';
 
-
 const RightNav = ({ open }) => {
   return (
     <ul className={styles['menu-list']} open={open} >
