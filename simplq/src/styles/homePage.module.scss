@@ -148,7 +148,7 @@
   width: 2rem;
   height: 2rem;
   position: fixed;
-  top: .2rem;
+  top: .5rem;
   right: 1rem;
   z-index: 5;
   display: none;
@@ -160,7 +160,12 @@
   div {
     width: 2rem;
     height: 0.25rem;
-    background-color: #fff;
+    $type: open;
+    @if $type == open {
+      background-color: #fff;
+    } @else{
+      background-color: #3a3768;
+    }
     border-radius: .5rem;
     transform-origin: 1px;
     transition: all 0.3s linear;
@@ -177,8 +182,10 @@
       $type: open;
       @if $type == open {
         transform: translateX(100%);
+        opacity: 0;
       } @else{
           transform: translateX(0);
+          opacity: 1;
       }
     }
     &:nth-child(3) {
@@ -211,7 +218,7 @@
     }
     @media (max-width: 768px) {
       flex-flow: column nowrap;
-      background-color: #0D2538;
+      background-color: #3a3768;
       position: fixed;
       top: 0;
       $type: open;
@@ -235,7 +242,7 @@
     background-color: #fff;
     border-bottom: .2rem solid #f1f1f1;
     padding: 0 2rem;
-    z-index: 5;
+    z-index: 99;
     justify-content: space-between;
     position: fixed;
     & > img {
