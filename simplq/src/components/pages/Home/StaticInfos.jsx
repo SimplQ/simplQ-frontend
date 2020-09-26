@@ -95,7 +95,7 @@ export const Footer = () => (
 
       <div className={styles['card']}>
         <div className={styles['card-header']}>
-          <div>
+          <div className={styles['center-horizontally']}>
             <h1>Open source</h1>
           </div>
         </div>
@@ -116,7 +116,7 @@ export const Footer = () => (
 
       <div className={styles['card']}>
         <div className={styles['card-header']}>
-          <div>
+          <div className={styles['center-horizontally']}>
             <h1>Keep in touch</h1>
           </div>
         </div>
