@@ -220,11 +220,9 @@
     background-color: #3a3768;
     position: fixed;
     top: 0;
-    $type: open;
-    @if $type == open {
+    transform: translateX(100%);
+    &[open] {
       transform: translateX(0);
-    } @else {
-      transform: translateX(100%);
     }
     right: 0;
     height: 100vh;
