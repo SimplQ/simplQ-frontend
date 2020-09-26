@@ -11,7 +11,7 @@ export const BenefitsInfo = () => (
     <div className={styles['benefits-container']}>
       <div className={styles.benefit}>
         <img src="/images/minimize_crowding.svg" alt="mimimze crowding" />
-        <p>Minimize crowds using a digital queue</p>
+        <p>No more waiting in long lines</p>
       </div>
       <div className={styles.benefit}>
         <img src="/images/enforce_social_dist.svg" alt="Enforce social distancing" />
@@ -41,34 +41,28 @@ export const HowToJoin = () => (
 
 export const ExtraInfo = () => (
   <div className={styles['extra-info']}>
-    <table>
-      <tr>
-        <td>
-          <img src="/images/free.svg" alt="free" />
-        </td>
-        <td>
-          <img src="/images/secure.svg" alt="secure" />
-        </td>
-        <td>
-          <img src="/images/easy.svg" alt="easy to use" />
-        </td>
-      </tr>
-      <tr className={styles['img-descriptions']}>
-        <td>Always free</td>
-        <td>Data security</td>
-        <td>Easy to use</td>
-      </tr>
-      <tr className={styles['detailed-descriptions']}>
-        <td>
-          We are a team of enthusiastic developers who want to give back to society and do not
-          prioritize monetary gains
-        </td>
-        <td>Security is paramount and we take data security seriously</td>
-        <td>
-          We provide an easy queue management system thereby allowing you to focus on better things
-        </td>
-      </tr>
-    </table>
+    <div className={styles['card']}>
+      <img src="/images/free.svg" alt="free" />
+      <p className={styles['brief-description']}>Always free</p>
+      <p className={styles['detailed-description']}>
+        We are a team of enthusiastic developers who want to give back to society and do not
+        prioritize monetary gains
+      </p>
+    </div>
+    <div className={styles['card']}>
+      <img src="/images/secure.svg" alt="secure" />
+      <p className={styles['brief-description']}>Data security</p>
+      <p className={styles['detailed-description']}>
+        Security is paramount and we take data security seriously
+      </p>
+    </div>
+    <div className={styles['card']}>
+      <img src="/images/easy.svg" alt="easy to use" />
+      <p className={styles['brief-description']}>Easy to use</p>
+      <p className={styles['detailed-description']}>
+        We provide free queue management thereby allowing you to focus on better things
+      </p>
+    </div>
   </div>
 );
 
