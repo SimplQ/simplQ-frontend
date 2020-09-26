@@ -21,11 +21,6 @@ $header-font: 'Pacifico', Regular;
   background-color: $primary-color-light;
 }
 
-@mixin div-padding {
-  padding-top: 1.25rem;
-  padding-bottom: 1.25rem;
-}
-
 @mixin text-color {
   color: $primary-color-dark;
 }

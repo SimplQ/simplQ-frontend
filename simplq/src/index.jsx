@@ -6,11 +6,19 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import Amplify from 'aws-amplify';
+import * as Sentry from '@sentry/react';
+import { Integrations } from '@sentry/tracing';
 import { store } from './store';
 import * as serviceWorker from './serviceWorker';
 import Layout from './components/Layout';
 import awsconfig from './aws-exports';
 import { loginElseCreateAnonAccount } from './services/auth';
+
+Sentry.init({
+  dsn: 'https://b95e1a087d284ecca9a50909d2a792e8@o444913.ingest.sentry.io/5420492',
+  integrations: [new Integrations.BrowserTracing()],
+  tracesSampleRate: 1.0,
+});
 
 Amplify.configure(awsconfig);
 

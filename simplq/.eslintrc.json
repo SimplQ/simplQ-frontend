@@ -11,6 +11,7 @@
     "react/prop-types": 0,
     "react/destructuring-assignment": 0,
     "prefer-destructuring": 0,
-    "import/no-named-as-default": 0
+    "import/no-named-as-default": 0,
+    "dot-notation": 0
   }
 }
