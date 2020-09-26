@@ -52,18 +52,18 @@ export const ExtraInfo = () => (
 );
 
 export const Footer = () => (
-  <div className={styles.footer}>
+  <div className={styles['footer']}>
     <div className={styles['main-card-container']}>
-      <div className={styles.card}>
+      <div className={styles['card']}>
         <div className={styles['card-header']}>
-          <div className={styles.simpleQ_image_container}>
+          <div className={styles['simpleQ-image-container']}>
             <img
               src="/images/new_logo.svg"
               className={styles['new-logo-image']}
               alt="simplQ new logo"
             />
           </div>
-          <div className={styles.logo_header_container}>
+          <div className={styles['logo-header-container']}>
             <h1>SimplQ</h1>
           </div>
         </div>
@@ -77,7 +77,7 @@ export const Footer = () => (
         </div>
       </div>
 
-      <div className={styles.card}>
+      <div className={styles['card']}>
         <div className={styles['card-header']}>
           <div>
             <h1>Open source</h1>
@@ -98,7 +98,7 @@ export const Footer = () => (
         </div>
       </div>
 
-      <div className={styles.card}>
+      <div className={styles['card']}>
         <div className={styles['card-header']}>
           <div>
             <h1>Keep in touch</h1>
