@@ -1,5 +1,5 @@
 import React from 'react';
-import { BenefitsInfo, HowToCreate, HowToJoin, ExtraInfo } from './StaticInfos';
+import { BenefitsInfo, HowToCreate, HowToJoin, ExtraInfo, Footer } from './StaticInfos';
 import LandingPage from './LandingPage';
 import Navbar from './Nav/Navbar';
 
@@ -12,6 +12,7 @@ const Home = (props) => {
       <HowToCreate />
       <HowToJoin />
       <ExtraInfo />
+      <Footer />
     </>
   );
 };

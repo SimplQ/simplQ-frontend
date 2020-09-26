@@ -38,3 +38,16 @@ export const RefreshButton = (props) => {
     </StandardButton>
   );
 };
+
+export const ForkOnGithubButton = () => {
+  return (
+    <StandardButton>
+      <a
+        className={styles['fork-on-github-button']}
+        href="https://github.com/SimplQ/simplQ-frontend"
+      >
+        Fork on Github
+      </a>
+    </StandardButton>
+  );
+};
