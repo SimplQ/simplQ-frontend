@@ -61,20 +61,34 @@ export default (props) => {
       .catch((err) => handleApiErrors(err));
   };
 
-  return (
-    <>
-      <div>{/* Navbar */}</div>
-      <div className={styles['header-bar']}>
-        <Header className={styles['header']} text={queueName} />
-        <div className={styles['main-button-group']}>
-          <div className={styles['admin-button']}>
-            <RefreshButton onClick={update} />
-          </div>
-          <div className={styles['admin-button']}>
-            <ShareQueue queueId={queueId} className={styles.shareButton} />
-          </div>
+  const HeaderSection = () => (
+    <div className={styles['header-bar']}>
+      <Header className={styles['header']} text={queueName} />
+      <div className={styles['main-button-group']}>
+        <div className={styles['admin-button']}>
+          <RefreshButton onClick={update} />
+        </div>
+        <div className={styles['admin-button']}>
+          <ShareQueue queueId={queueId} className={styles.shareButton} />
         </div>
       </div>
+    </div>
+  );
+
+  const Navbar = () => (
+    <div>
+      <nav className={styles['navbar']}>
+        <img src="public/LogoLight.png" alt="Home" />
+        {/* <p className={styles['simplq']}>SimplQ</p>
+        <p className={styles['sign-in']}>Sign In / Sign Up</p> */}
+      </nav>
+    </div>
+  );
+
+  return (
+    <>
+      {Navbar()}
+      {HeaderSection()}
       <div className={styles['list']}>
         <TokenList tokens={tokens} queueId={queueId} removeTokenHandler={removeToken} />
       </div>
