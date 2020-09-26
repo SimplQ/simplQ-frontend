@@ -3,7 +3,7 @@ import styles from '../../../../styles/homePage.module.scss';
 import RightNav from './RightNav';
 
 const Burger = () => {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
 
   return (
     <>
