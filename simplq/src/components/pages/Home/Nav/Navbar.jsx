@@ -5,7 +5,7 @@ import Burger from './Burger';
 const Navbar = () => {
   return (
     <nav className={styles['navbar']}>
-      <img src="LogoLight.png" />
+      <img src="LogoLight.png" alt="Home" />
 
       <Burger />
     </nav>
