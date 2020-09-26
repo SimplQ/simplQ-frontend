@@ -221,7 +221,7 @@
     position: fixed;
     top: 0;
     transform: translateX(100%);
-    &[open='true'] {
+    &[open] {
       transform: translateX(0);
     }
     right: 0;
