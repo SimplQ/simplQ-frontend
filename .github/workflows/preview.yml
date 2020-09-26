@@ -1,7 +1,5 @@
 name: 'Amplify PR Preview'
-on:
-  pull_request:
-    types: [opened, reopened]
+on: pull_request
 
 jobs:
   deploy:
