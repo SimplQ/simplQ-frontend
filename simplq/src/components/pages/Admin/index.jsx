@@ -2,9 +2,10 @@ import React, { useState, useEffect, useCallback } from 'react';
 import TokenList from './TokenList';
 import * as TokenService from '../../../services/token';
 import * as QueueService from '../../../services/queue';
-import ShareBar from './ShareBar';
+import ShareQueue from './ShareQueue';
 import { handleApiErrors } from '../../ErrorHandler';
-import Header, { SimplQHeader } from '../../common/Header';
+import { RefreshButton } from '../../common/Button/Button.stories';
+import Header from '../../common/Header';
 import styles from '../../../styles/adminPage.module.scss';
 import AddMember from './AddMember';
 
@@ -62,18 +63,22 @@ export default (props) => {
 
   return (
     <>
-      <SimplQHeader />
-      <Header className={styles.header} text={queueName} />
-      <ShareBar
-        queueId={queueId}
-        className={styles.shareButton}
-        onRefresh={() => {
-          update();
-        }}
-      />
-      <div className={styles.list}>
+      <div>{/* Navbar */}</div>
+      <div className={styles['header-bar']}>
+        <Header className={styles['header']} text={queueName} />
+        <div className={styles['main-button-group']}>
+          <div className={styles['admin-button']}>
+            <RefreshButton onClick={update} />
+          </div>
+          <div className={styles['admin-button']}>
+            <ShareQueue queueId={queueId} className={styles.shareButton} />
+          </div>
+        </div>
+      </div>
+      <div className={styles['list']}>
         <TokenList tokens={tokens} queueId={queueId} removeTokenHandler={removeToken} />
       </div>
+      {/* sidebar */}
       <div className={styles['add-member']}>
         <AddMember queueId={queueId} joinQueueHandler={addNewToken} />
       </div>

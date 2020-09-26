@@ -1,22 +1,7 @@
 @import 'utils';
 
-.header {
-  @include queue-name-header();
-}
-
-.list {
-  @include background-color();
-}
-
 .add-member {
   @include box-border();
-}
-
-.main-button-content {
-  @include center-horizontally();
-  & > div {
-    margin: 0.5rem;
-  }
 }
 
 .token-list {
@@ -67,6 +52,32 @@
         @include text-color();
         font-weight: bold;
       }
+    }
+  }
+}
+
+.header-bar {
+  @include background-color();
+  padding: 3rem;
+  display: flex;
+  flex-wrap: wrap;
+
+  .header {
+    @include standard-header();
+    font-size: 2.7rem;
+  }
+
+  .admin-button {
+    padding: 0 0.1rem;
+  }
+
+  .main-button-group {
+    @include center-horizontally();
+    padding-right: 3rem;
+    padding-top: 2rem;
+    margin-right: 0;
+    & > div {
+      margin: 0.5rem;
     }
   }
 }

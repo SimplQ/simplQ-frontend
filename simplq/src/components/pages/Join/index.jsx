@@ -45,6 +45,7 @@ export default function JoinQueueWithDetails(props) {
     <div>
       <SimplQHeader />
       <Header className={styles.header} text={queueStatusResponse.queueName} />
+      <p className={styles['message']}>Please enter your contact details to join this queue</p>
       <JoinQueueForm queueId={queueId} joinQueueHandler={joinQueueHandler} />
     </div>
   );
