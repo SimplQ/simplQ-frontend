@@ -55,18 +55,19 @@ const CreateJoinForm = ({ history }) => {
 
   return (
     <div className={styles['create-join-form']}>
-      <InputField
-        placeholder="Enter a name for your new queue"
-        value={textFieldValue}
-        onChange={handleTextFieldChange}
-        onKeyPress={
-          (e) => handleEnterPress(e, handleCreateClick)
-          // eslint-disable-next-line react/jsx-curly-newline
-        }
-        error={invalidMsg.length > 0}
-        helperText={invalidMsg}
-        className={styles.input}
-      />
+      <div className={styles['input-box']}>
+        <InputField
+          placeholder="Enter a name for your new queue"
+          value={textFieldValue}
+          onChange={handleTextFieldChange}
+          onKeyPress={
+            (e) => handleEnterPress(e, handleCreateClick)
+            // eslint-disable-next-line react/jsx-curly-newline
+          }
+          error={invalidMsg.length > 0}
+          helperText={invalidMsg}
+        />
+      </div>
       <div className={styles['button-group']}>
         <div>
           {createInProgress ? <LoadingIndicator /> : <CreateQButton onClick={handleCreateClick} />}
