@@ -67,9 +67,6 @@
     flex-wrap: wrap;
     justify-content: center;
     .benefit {
-      background-color: #6c63ff29;
-      border: 0.15rem solid #70707073;
-      border-radius: 0.5rem;
       height: 16rem;
       width: 16rem;
       padding: 2rem;
@@ -220,11 +217,9 @@
     background-color: #3a3768;
     position: fixed;
     top: 0;
-    $type: open;
-    @if $type == open {
+    transform: translateX(100%);
+    &[open] {
       transform: translateX(0);
-    } @else {
-      transform: translateX(100%);
     }
     right: 0;
     height: 100vh;
