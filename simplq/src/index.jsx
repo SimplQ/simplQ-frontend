@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import GitHubForkRibbon from 'react-github-fork-ribbon';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
@@ -42,9 +41,6 @@ ReactDOM.render(
           <Layout />
         </Provider>
       </Router>
-      <GitHubForkRibbon href="//github.com/SimplQ/simplQ-frontend" target="_blank" position="right">
-        Fork me on GitHub
-      </GitHubForkRibbon>
     </ThemeProvider>
   </>,
   document.getElementById('root')
