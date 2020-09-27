@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styles from '../../../../styles/homePage.module.scss';
 import RightNav from './RightNav';
+import LeftNav from './LeftNav';
 
 const Burger = () => {
     const [open, setOpen] = useState(false)
@@ -13,6 +14,7 @@ const Burger = () => {
                 <div />
             </div>
             <RightNav open={open} />
+            <LeftNav open={open} />
         </>
     )
 }
