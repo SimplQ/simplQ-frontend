@@ -37,7 +37,7 @@ ReactDOM.render(
   <>
     <ThemeProvider theme={theme}>
       <Router>
-        <Provider   store={store}>
+        <Provider store={store}>
           <Layout />
         </Provider>
       </Router>
