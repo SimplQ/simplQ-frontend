@@ -29,3 +29,8 @@
 .main {
   min-height: 100vh;
 }
+
+.message {
+  @include center-horizontally();
+  padding: 2rem;
+}
