@@ -1,29 +1,19 @@
 import React from 'react';
-import { Collapse, ListItemIcon } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
-import { ExpandLess, ExpandMore } from '@material-ui/icons';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import JoinQueueForm from '../Join/Form';
+// import JoinQueueForm from '../Join/Form';
+import styles from '../../../styles/adminPage.module.scss';
 
-export default (props) => {
-  const [open, setOpen] = React.useState(false);
+export default () => {
+  // const [open, setOpen] = React.useState(false);
   return (
     <>
-      <ListItem button onClick={() => setOpen(!open)}>
-        <ListItemIcon>
-          <AddIcon />
-        </ListItemIcon>
-        <ListItemText primary="Add Manually" />
-        {open ? <ExpandLess /> : <ExpandMore />}
-        <Collapse in={open} timeout="auto" unmountOnExit>
-          <JoinQueueForm
-            buttonName="Add"
-            queueId={props.queueId}
-            joinQueueHandler={props.joinQueueHandler}
-          />
-        </Collapse>
-      </ListItem>
+      <div className={styles['admin-action']}>
+        <AddIcon fontSize="large" />
+        <div>
+          <h2>Add Member Manually</h2>
+          <p>Add a person to this queue manually</p>
+        </div>
+      </div>
     </>
   );
 };
