@@ -3,7 +3,6 @@ import HistoryIcon from '@material-ui/icons/History';
 import styles from '../../../styles/adminPage.module.scss';
 
 export default () => {
-  //   const [open, setOpen] = React.useState(false);
   return (
     <>
       <div className={styles['admin-action']}>

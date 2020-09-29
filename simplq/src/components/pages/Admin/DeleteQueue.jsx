@@ -3,7 +3,6 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import styles from '../../../styles/adminPage.module.scss';
 
 export default () => {
-  //   const [open, setOpen] = React.useState(false);
   return (
     <>
       <div className={styles['admin-action']}>

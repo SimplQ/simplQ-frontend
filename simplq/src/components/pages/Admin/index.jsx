@@ -7,10 +7,7 @@ import { handleApiErrors } from '../../ErrorHandler';
 import { RefreshButton } from '../../common/Button/Button.stories';
 import Header from '../../common/Header';
 import styles from '../../../styles/adminPage.module.scss';
-import AddMember from './AddMember';
-import PauseQueue from './PauseQueue';
-import DeleteQueue from './DeleteQueue';
-import QueueHistory from './QueueHistory';
+import Sidebar from './Sidebar';
 
 const TIMEOUT = 10000;
 let timeoutId;
@@ -77,15 +74,7 @@ export default (props) => {
     </div>
   );
 
-  const Navbar = () => (
-    <div>
-      <nav className={styles['navbar']}>
-        {/* <img src="public/LogoLight.png" alt="Home" /> */}
-        {/* <p className={styles['simplq']}>SimplQ</p>
-        <p className={styles['sign-in']}>Sign In / Sign Up</p> */}
-      </nav>
-    </div>
-  );
+  const Navbar = () => <div />;
 
   return (
     <>
@@ -95,20 +84,7 @@ export default (props) => {
         <div className={styles['token-list']}>
           <TokenList tokens={tokens} queueId={queueId} removeTokenHandler={removeToken} />
         </div>
-        <div className={styles['sidebar']}>
-          <div className={styles['card']}>
-            <AddMember queueId={queueId} joinQueueHandler={addNewToken} />
-          </div>
-          <div className={styles['card']}>
-            <PauseQueue />
-          </div>
-          <div className={styles['card']}>
-            <DeleteQueue />
-          </div>
-          <div className={styles['card']}>
-            <QueueHistory />
-          </div>
-        </div>
+        <Sidebar queueId={queueId} joinQueueHandler={addNewToken} />
       </div>
     </>
   );
