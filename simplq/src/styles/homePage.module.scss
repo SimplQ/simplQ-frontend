@@ -141,11 +141,11 @@
   }
 }
 
-.burger{
+.burger {
   width: 2rem;
   height: 2rem;
   position: fixed;
-  top: .5rem;
+  top: 0.5rem;
   right: 1rem;
   z-index: 5;
   display: none;
@@ -154,100 +154,100 @@
     justify-content: space-around;
     flex-flow: column nowrap;
   }
- div {
+  div {
     width: 2rem;
     height: 0.25rem;
     background-color: #3a3768;
-    &[open]{
+    &[open] {
       background-color: #fff;
     }
-    border-radius: .5rem;
+    border-radius: 0.5rem;
     transform-origin: 1px;
     transition: all 0.3s linear;
-  
+
     &:nth-child(1) {
       transform: rotate(0);
-      &[open]{
+      &[open] {
         transform: rotate(45deg);
       }
     }
     &:nth-child(2) {
       transform: translateX(0);
       opacity: 1;
-      &[open]{
+      &[open] {
         transform: translateX(100%);
         opacity: 0;
       }
     }
     &:nth-child(3) {
       transform: rotate(0);
-      &[open]{
+      &[open] {
         transform: rotate(-45deg);
       }
     }
   }
 }
 
-  .left-nav{
-    list-style: none;
-    display: flex;
-    flex-flow: row nowrap;
-    margin: 0;
-    position: fixed;
-    top: 1.2rem;
-    li {
-      padding: 0 1.5rem; 
-    }
-    li:last-child{
-      @media (min-width: 787px){
+.left-nav {
+  list-style: none;
+  display: flex;
+  flex-flow: row nowrap;
+  margin: 0;
+  position: fixed;
+  top: 1.2rem;
+  li {
+    padding: 0 1.5rem;
+  }
+  li:last-child {
+    @media (min-width: 787px) {
       position: fixed;
       top: 1.2rem;
       right: 6rem;
-      }
-    } 
-    a{
-      text-decoration: none;
-      color: grey;
-      cursor: auto;
     }
-    @media (max-width: 768px) {
-      flex-flow: column nowrap;
-      background-color: #3a3768;
-      position: fixed;
-      top: 0;
-      right: 0;
-      height: 100vh;
-      width: 25rem;
-      padding-top: 3.5rem;
-      transition: transform 0.3s ease-in-out;
-      li{
-        padding: 1.5rem 0;
-      }
-      a{
-        color: #fff;
-      }
-      transform: translateX(100%);
-      &[open]{
-        transform: translateX(0);
-      }
+  }
+  a {
+    text-decoration: none;
+    color: grey;
+    cursor: auto;
+  }
+  @media (max-width: 768px) {
+    flex-flow: column nowrap;
+    background-color: #3a3768;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 25rem;
+    padding-top: 3.5rem;
+    transition: transform 0.3s ease-in-out;
+    li {
+      padding: 1.5rem 0;
+    }
+    a {
+      color: #fff;
+    }
+    transform: translateX(100%);
+    &[open] {
+      transform: translateX(0);
+    }
   }
 }
 
-.navbar{
-    width: 100%;
-    height: 4rem;
-    background-color: #fff;
-    border-bottom: .2rem solid #f1f1f1;
-    padding: 0 2rem;
-    z-index: 99;
-    justify-content: space-between;
-    position: fixed;
-    & > img {
-      height: 3rem;
-      width: 3rem;
-      margin: .5rem;
-   }
+.navbar {
+  width: 100%;
+  height: 4rem;
+  background-color: #fff;
+  border-bottom: 0.2rem solid #f1f1f1;
+  padding: 0 2rem;
+  z-index: 99;
+  justify-content: space-between;
+  position: fixed;
+  & > img {
+    height: 3rem;
+    width: 3rem;
+    margin: 0.5rem;
   }
+}
 
 .footer {
   @include background-color();

@@ -3,12 +3,12 @@ import styles from '../../../../styles/homePage.module.scss';
 import Burger from './Burger';
 
 const Navbar = () => {
-    return (
-        <nav className={styles['navbar']}>
-            <img src="LogoLight.png" />
-            <Burger />
-        </nav>
-    )
-}
+  return (
+    <nav className={styles['navbar']}>
+      <img src="LogoLight.png" />
+      <Burger />
+    </nav>
+  );
+};
 
-export default Navbar
+export default Navbar;
