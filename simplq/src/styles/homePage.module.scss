@@ -154,7 +154,7 @@
     justify-content: space-around;
     flex-flow: column nowrap;
   }
-  div {
+ div {
     width: 2rem;
     height: 0.25rem;
     background-color: #3a3768;
@@ -188,7 +188,7 @@
   }
 }
 
-  .left-nav, .right-nav{
+  .left-nav{
     list-style: none;
     display: flex;
     flex-flow: row nowrap;
@@ -196,9 +196,15 @@
     position: fixed;
     top: 1.2rem;
     li {
-      color: #fff;
-      padding: 0 1.5rem;
+      padding: 0 1.5rem; 
     }
+    li:last-child{
+      @media (min-width: 787px){
+      position: fixed;
+      top: 1.2rem;
+      right: 6rem;
+      }
+    } 
     a{
       text-decoration: none;
       color: grey;
@@ -209,25 +215,23 @@
       background-color: #3a3768;
       position: fixed;
       top: 0;
-      transform: translateX(100%);
-      &[open]{
-        transform: translateX(0);
-      }
       right: 0;
       height: 100vh;
       width: 25rem;
       padding-top: 3.5rem;
       transition: transform 0.3s ease-in-out;
+      li{
+        padding: 1.5rem 0;
+      }
+      a{
+        color: #fff;
+      }
+      transform: translateX(100%);
+      &[open]{
+        transform: translateX(0);
+      }
   }
 }
-  .right-nav{
-    @media (min-width: 787px){
-      position: fixed;
-      top: 1.2rem;
-      right: 6rem;
-    }
-  }
-
 
 .navbar{
     width: 100%;

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import styles from '../../../../styles/homePage.module.scss';
-import RightNav from './RightNav';
 import LeftNav from './LeftNav';
 
 const Burger = () => {
@@ -13,7 +12,6 @@ const Burger = () => {
                 <div />
                 <div />
             </div>
-            <RightNav open={open} />
             <LeftNav open={open} />
         </>
     )

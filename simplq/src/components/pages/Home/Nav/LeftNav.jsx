@@ -8,6 +8,7 @@ const LeftNav = ({ open }) => {
       <li><a>How it works</a></li>
       <li><a>My Queues</a></li>
       <li><a>Contact Us</a></li>
+      <li><a>Sign In/Sign Up</a></li>
     </ul>
   )
 }
