@@ -8,9 +8,9 @@ const Burger = () => {
   return (
     <>
       <div className={styles['burger']} open={open} onClick={() => setOpen(!open)}>
-        <div />
-        <div />
-        <div />
+        <div open={open} onClick={() => setOpen(!open)} />
+        <div open={open} onClick={() => setOpen(!open)} />
+        <div open={open} onClick={() => setOpen(!open)} />
       </div>
       <LeftNav open={open} />
     </>
