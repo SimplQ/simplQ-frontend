@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { useState, useEffect, useCallback } from 'react';
 import TokenList from './TokenList';
 import * as TokenService from '../../../services/token';
@@ -74,7 +76,14 @@ export default (props) => {
     </div>
   );
 
-  const Navbar = () => <div />;
+  const Navbar = () => (
+    <div>
+      <nav className={styles['navbar']}>
+        <img src="/LogoLight.png" alt="Home" onClick={() => props.history.push('/')} />
+        <p onClick={() => props.history.push('/')}>SimplQ</p>
+      </nav>
+    </div>
+  );
 
   return (
     <>
