@@ -1,5 +1,6 @@
 import React from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import FileCopyIcon from '@material-ui/icons/FileCopy';
 import { ShareButton } from '../../common/Button/Button.stories';
 
 const CopyQueue = (props) => {
@@ -14,7 +15,17 @@ const CopyQueue = (props) => {
   return (
     <CopyToClipboard text={shareUrl}>
       <ShareButton onClick={handleShareButtonClick} outlined={!clicked}>
-        {clicked ? 'Copied to clipboard' : 'Copy Queue Link'}
+        {clicked ? (
+          <>
+            <img src="./verified-24px.svg" alt="copied" />
+            <p>Copied to clipboard</p>
+          </>
+        ) : (
+          <>
+            <FileCopyIcon />
+            <p>Copy to clipboard</p>
+          </>
+        )}
       </ShareButton>
     </CopyToClipboard>
   );
