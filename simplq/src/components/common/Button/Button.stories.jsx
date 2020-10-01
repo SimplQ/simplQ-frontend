@@ -1,5 +1,5 @@
 import React from 'react';
-import ShareIcon from '@material-ui/icons/Share';
+import FileCopyIcon from '@material-ui/icons/FileCopy';
 import RefreshIcon from '@material-ui/icons/Refresh';
 import StandardButton from './Button';
 import styles from '../../../styles/buttons.module.scss';
@@ -19,10 +19,10 @@ export const JoinQButton = (props) => {
 
 export const ShareButton = (props) => {
   return (
-    <StandardButton onClick={props.onClick} outlined>
+    <StandardButton onClick={props.onClick} outlined={props.outlined}>
       <div className={styles['admin-main-button']}>
-        <ShareIcon fontSize="large" />
-        <p>Share queue to invite people</p>
+        <FileCopyIcon />
+        <p>{props.children}</p>
       </div>
     </StandardButton>
   );
@@ -32,8 +32,22 @@ export const RefreshButton = (props) => {
   return (
     <StandardButton onClick={props.onClick} outlined>
       <div className={styles['admin-main-button']}>
-        <RefreshIcon fontSize="large" />
+        <RefreshIcon />
+        <p>Refresh status</p>
       </div>
+    </StandardButton>
+  );
+};
+
+export const ForkOnGithubButton = () => {
+  return (
+    <StandardButton>
+      <a
+        className={styles['fork-on-github-button']}
+        href="https://github.com/SimplQ/simplQ-frontend"
+      >
+        Fork on Github
+      </a>
     </StandardButton>
   );
 };

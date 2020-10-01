@@ -1,12 +1,15 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { useState, useEffect, useCallback } from 'react';
 import TokenList from './TokenList';
 import * as TokenService from '../../../services/token';
 import * as QueueService from '../../../services/queue';
-import ShareBar from './ShareBar';
+import ShareQueue from './ShareQueue';
 import { handleApiErrors } from '../../ErrorHandler';
-import Header, { SimplQHeader } from '../../common/Header';
+import { RefreshButton } from '../../common/Button/Button.stories';
+import Header from '../../common/Header';
 import styles from '../../../styles/adminPage.module.scss';
-import AddMember from './AddMember';
+import Sidebar from './Sidebar';
 
 const TIMEOUT = 10000;
 let timeoutId;
@@ -35,23 +38,22 @@ export default (props) => {
     return () => clearTimeout(timeoutId);
   }, [update]);
 
-  const addNewToken = (name, contactNumber) => {
-    return TokenService.create(name, contactNumber, false, queueId)
-      .then((response) => {
-        setTokens([
-          ...tokens,
-          {
-            tokenId: response.tokenId,
-            name,
-            contactNumber,
-            notifiable: false,
-            tokenStatus: response.tokenStatus,
-          },
-        ]);
-      })
-      .catch((err) => {
-        handleApiErrors(err);
-      });
+  const addNewToken = async (name, contactNumber) => {
+    try {
+      const response = await TokenService.create(name, contactNumber, false, queueId);
+      setTokens([
+        ...tokens,
+        {
+          tokenId: response.tokenId,
+          name,
+          contactNumber,
+          notifiable: false,
+          tokenStatus: response.tokenStatus,
+        },
+      ]);
+    } catch (err) {
+      handleApiErrors(err);
+    }
   };
 
   const removeToken = (tokenId) => {
@@ -60,22 +62,38 @@ export default (props) => {
       .catch((err) => handleApiErrors(err));
   };
 
+  const HeaderSection = () => (
+    <div className={styles['header-bar']}>
+      <Header className={styles['header']} text={queueName} />
+      <div className={styles['main-button-group']}>
+        <div className={styles['admin-button']}>
+          <RefreshButton onClick={update} />
+        </div>
+        <div className={styles['admin-button']}>
+          <ShareQueue queueId={queueId} className={styles.shareButton} />
+        </div>
+      </div>
+    </div>
+  );
+
+  const Navbar = () => (
+    <div>
+      <nav className={styles['navbar']}>
+        <img src="/LogoLight.png" alt="Home" onClick={() => props.history.push('/')} />
+        <p onClick={() => props.history.push('/')}>SimplQ</p>
+      </nav>
+    </div>
+  );
+
   return (
     <>
-      <SimplQHeader />
-      <Header className={styles.header} text={queueName} />
-      <ShareBar
-        queueId={queueId}
-        className={styles.shareButton}
-        onRefresh={() => {
-          update();
-        }}
-      />
-      <div className={styles.list}>
-        <TokenList tokens={tokens} queueId={queueId} removeTokenHandler={removeToken} />
-      </div>
-      <div className={styles['add-member']}>
-        <AddMember queueId={queueId} joinQueueHandler={addNewToken} />
+      {Navbar()}
+      {HeaderSection()}
+      <div className={styles['main-body']}>
+        <div className={styles['token-list']}>
+          <TokenList tokens={tokens} queueId={queueId} removeTokenHandler={removeToken} />
+        </div>
+        <Sidebar queueId={queueId} joinQueueHandler={addNewToken} />
       </div>
     </>
   );

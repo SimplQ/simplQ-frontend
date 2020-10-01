@@ -1,15 +1,15 @@
 import React from 'react';
-import AddIcon from '@material-ui/icons/Add';
+import PauseIcon from '@material-ui/icons/Pause';
 import styles from '../../../styles/adminPage.module.scss';
 
 export default () => {
   return (
     <>
       <div className={styles['admin-action']}>
-        <AddIcon fontSize="large" />
+        <PauseIcon fontSize="large" />
         <div>
-          <h2>Add Member Manually</h2>
-          <p>Add a person to this queue manually</p>
+          <h2>Pause Queue</h2>
+          <p>Temporarily stop people from joining</p>
         </div>
       </div>
     </>
