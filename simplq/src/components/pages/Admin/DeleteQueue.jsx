@@ -1,15 +1,15 @@
 import React from 'react';
-import AddIcon from '@material-ui/icons/Add';
+import DeleteIcon from '@material-ui/icons/Delete';
 import styles from '../../../styles/adminPage.module.scss';
 
 export default () => {
   return (
     <>
       <div className={styles['admin-action']}>
-        <AddIcon fontSize="large" />
+        <DeleteIcon fontSize="large" />
         <div>
-          <h2>Add Member Manually</h2>
-          <p>Add a person to this queue manually</p>
+          <h2>Delete Queue</h2>
+          <p>Permanently delete queue</p>
         </div>
       </div>
     </>
