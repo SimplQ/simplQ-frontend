@@ -15,7 +15,7 @@ const CopyQueue = (props) => {
   const CopyToClipboardButton = () =>
     clicked ? (
       <>
-        <img src="./verified-24px.svg" alt="copied" />
+        <img src="/images/verified-24px.svg" alt="copied" />
         <p>Copied to clipboard</p>
       </>
     ) : (
