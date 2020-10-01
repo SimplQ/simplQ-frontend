@@ -6,7 +6,6 @@ const Navbar = () => {
   return (
     <nav className={styles['navbar']}>
       <img src="LogoLight.png" alt="Home" />
-
       <Burger />
     </nav>
   );

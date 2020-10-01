@@ -157,46 +157,38 @@
   div {
     width: 2rem;
     height: 0.25rem;
-    $type: open;
-    @if $type == open {
+    background-color: #3a3768;
+    &[open] {
       background-color: #fff;
-    } @else {
-      background-color: #3a3768;
     }
     border-radius: 0.5rem;
     transform-origin: 1px;
     transition: all 0.3s linear;
 
     &:nth-child(1) {
-      $type: open;
-      @if $type == open {
+      transform: rotate(0);
+      &[open] {
         transform: rotate(45deg);
-      } @else {
-        transform: rotate(0);
       }
     }
     &:nth-child(2) {
-      $type: open;
-      @if $type == open {
+      transform: translateX(0);
+      opacity: 1;
+      &[open] {
         transform: translateX(100%);
         opacity: 0;
-      } @else {
-        transform: translateX(0);
-        opacity: 1;
       }
     }
     &:nth-child(3) {
-      $type: open;
-      @if $type == open {
+      transform: rotate(0);
+      &[open] {
         transform: rotate(-45deg);
-      } @else {
-        transform: rotate(0);
       }
     }
   }
 }
 
-.menu-list {
+.left-nav {
   list-style: none;
   display: flex;
   flex-flow: row nowrap;
@@ -204,8 +196,14 @@
   position: fixed;
   top: 1.2rem;
   li {
-    color: #fff;
-    padding: 0 2rem;
+    padding: 0 1.5rem;
+  }
+  li:last-child {
+    @media (min-width: 787px) {
+      position: fixed;
+      top: 1.2rem;
+      right: 6rem;
+    }
   }
   a {
     text-decoration: none;
@@ -217,15 +215,21 @@
     background-color: #3a3768;
     position: fixed;
     top: 0;
+    right: 0;
+    height: 100vh;
+    width: 15rem;
+    padding-top: 3.5rem;
+    transition: transform 0.3s ease-in-out;
+    li {
+      padding: 1.5rem 0;
+    }
+    a {
+      color: #fff;
+    }
     transform: translateX(100%);
     &[open] {
       transform: translateX(0);
     }
-    right: 0;
-    height: 100vh;
-    width: 25rem;
-    padding-top: 3.5rem;
-    transition: transform 0.3s ease-in-out;
   }
 }
 
