@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { useState, useEffect, useCallback } from 'react';
 import TokenList from './TokenList';
 import * as TokenService from '../../../services/token';
@@ -7,7 +9,7 @@ import { handleApiErrors } from '../../ErrorHandler';
 import { RefreshButton } from '../../common/Button/Button.stories';
 import Header from '../../common/Header';
 import styles from '../../../styles/adminPage.module.scss';
-import AddMember from './AddMember';
+import Sidebar from './Sidebar';
 
 const TIMEOUT = 10000;
 let timeoutId;
@@ -36,23 +38,22 @@ export default (props) => {
     return () => clearTimeout(timeoutId);
   }, [update]);
 
-  const addNewToken = (name, contactNumber) => {
-    return TokenService.create(name, contactNumber, false, queueId)
-      .then((response) => {
-        setTokens([
-          ...tokens,
-          {
-            tokenId: response.tokenId,
-            name,
-            contactNumber,
-            notifiable: false,
-            tokenStatus: response.tokenStatus,
-          },
-        ]);
-      })
-      .catch((err) => {
-        handleApiErrors(err);
-      });
+  const addNewToken = async (name, contactNumber) => {
+    try {
+      const response = await TokenService.create(name, contactNumber, false, queueId);
+      setTokens([
+        ...tokens,
+        {
+          tokenId: response.tokenId,
+          name,
+          contactNumber,
+          notifiable: false,
+          tokenStatus: response.tokenStatus,
+        },
+      ]);
+    } catch (err) {
+      handleApiErrors(err);
+    }
   };
 
   const removeToken = (tokenId) => {
@@ -78,9 +79,8 @@ export default (props) => {
   const Navbar = () => (
     <div>
       <nav className={styles['navbar']}>
-        <img src="public/LogoLight.png" alt="Home" />
-        {/* <p className={styles['simplq']}>SimplQ</p>
-        <p className={styles['sign-in']}>Sign In / Sign Up</p> */}
+        <img src="/LogoLight.png" alt="Home" onClick={() => props.history.push('/')} />
+        <p onClick={() => props.history.push('/')}>SimplQ</p>
       </nav>
     </div>
   );
@@ -89,12 +89,11 @@ export default (props) => {
     <>
       {Navbar()}
       {HeaderSection()}
-      <div className={styles['list']}>
-        <TokenList tokens={tokens} queueId={queueId} removeTokenHandler={removeToken} />
-      </div>
-      {/* sidebar */}
-      <div className={styles['add-member']}>
-        <AddMember queueId={queueId} joinQueueHandler={addNewToken} />
+      <div className={styles['main-body']}>
+        <div className={styles['token-list']}>
+          <TokenList tokens={tokens} queueId={queueId} removeTokenHandler={removeToken} />
+        </div>
+        <Sidebar queueId={queueId} joinQueueHandler={addNewToken} />
       </div>
     </>
   );
