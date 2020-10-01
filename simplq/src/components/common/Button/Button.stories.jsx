@@ -1,5 +1,4 @@
 import React from 'react';
-import FileCopyIcon from '@material-ui/icons/FileCopy';
 import RefreshIcon from '@material-ui/icons/Refresh';
 import StandardButton from './Button';
 import styles from '../../../styles/buttons.module.scss';
@@ -20,10 +19,7 @@ export const JoinQButton = (props) => {
 export const ShareButton = (props) => {
   return (
     <StandardButton onClick={props.onClick} outlined={props.outlined}>
-      <div className={styles['admin-main-button']}>
-        <FileCopyIcon />
-        <p>{props.children}</p>
-      </div>
+      <div className={styles['admin-main-button']}>{props.children}</div>
     </StandardButton>
   );
 };
