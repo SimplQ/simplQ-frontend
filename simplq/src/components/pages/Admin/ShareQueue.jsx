@@ -12,20 +12,23 @@ const CopyQueue = (props) => {
     setTimeout(() => setClicked(false), 5000); // changes back to old text and color after 5 seconds
   };
 
+  const CopyToClipboardButton = () =>
+    clicked ? (
+      <>
+        <img src="./verified-24px.svg" alt="copied" />
+        <p>Copied to clipboard</p>
+      </>
+    ) : (
+      <>
+        <FileCopyIcon />
+        <p>Copy to clipboard</p>
+      </>
+    );
+
   return (
     <CopyToClipboard text={shareUrl}>
       <ShareButton onClick={handleShareButtonClick} outlined={!clicked}>
-        {clicked ? (
-          <>
-            <img src="./verified-24px.svg" alt="copied" />
-            <p>Copied to clipboard</p>
-          </>
-        ) : (
-          <>
-            <FileCopyIcon />
-            <p>Copy to clipboard</p>
-          </>
-        )}
+        <CopyToClipboardButton />
       </ShareButton>
     </CopyToClipboard>
   );
