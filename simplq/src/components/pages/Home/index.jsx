@@ -1,5 +1,5 @@
 import React from 'react';
-import { BenefitsInfo, HowToCreate, HowToJoin, ExtraInfo} from './StaticInfos';
+import { BenefitsInfo, HowToCreate, HowToJoin, ExtraInfo } from './StaticInfos';
 import LandingPage from './LandingPage';
 import Navbar from './Nav/Navbar';
 

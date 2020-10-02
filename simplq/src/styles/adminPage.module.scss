@@ -1,10 +1,5 @@
 @import 'utils';
 
-.sidebar {
-  padding-top: 1.5rem;
-  padding-right: 6rem;
-}
-
 .admin-action {
   font-size: 0.8rem;
   display: flex;
@@ -20,12 +15,6 @@
   p {
     margin-top: 0;
   }
-}
-
-.card {
-  padding: 0.5rem 1rem;
-  padding-right: 4rem;
-  border-bottom: 1px solid $primary-color-dark;
 }
 
 .token-list {

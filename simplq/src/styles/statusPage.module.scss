@@ -1,5 +1,11 @@
 @import 'utils';
 
+.main-body {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
 .button-group {
   @include center-vertically();
   div {
@@ -10,6 +16,7 @@
 
 .header {
   @include queue-name-header();
+  margin-top: 0;
 }
 
 .details-header {
@@ -25,10 +32,9 @@
 }
 
 .status-box {
-  @include center-horizontally();
   border: 1.5px solid $primary-color-dark;
   border-radius: 1rem;
-  width: 70%;
+  width: 40%;
   padding: 10%;
   box-sizing: border-box;
 }
@@ -59,4 +65,21 @@ input[type='checkbox']:checked ~ .details {
 .visually-hidden {
   position: absolute;
   left: -100vw;
+}
+
+.user-action {
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  min-width: 15rem;
+
+  & > * {
+    margin: 0.2rem;
+  }
+  h2 {
+    margin-bottom: 0.2rem;
+  }
+  p {
+    margin-top: 0;
+  }
 }
