@@ -9,7 +9,7 @@ import { handleApiErrors } from '../../ErrorHandler';
 import { RefreshButton } from '../../common/Button/Button.stories';
 import Header from '../../common/Header';
 import styles from '../../../styles/adminPage.module.scss';
-import Sidebar from './Sidebar';
+import SidePanel from './AdminSidePanel';
 
 const TIMEOUT = 10000;
 let timeoutId;
@@ -87,13 +87,13 @@ export default (props) => {
 
   return (
     <>
-      {Navbar()}
-      {HeaderSection()}
+      <Navbar />
+      <HeaderSection />
       <div className={styles['main-body']}>
         <div className={styles['token-list']}>
           <TokenList tokens={tokens} queueId={queueId} removeTokenHandler={removeToken} />
         </div>
-        <Sidebar queueId={queueId} joinQueueHandler={addNewToken} />
+        <SidePanel queueId={queueId} joinQueueHandler={addNewToken} />
       </div>
     </>
   );
