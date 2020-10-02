@@ -6,7 +6,6 @@ import Button from '../../common/Button';
 import Header, { SimplQHeader } from '../../common/Header';
 import StatusContainer from './StatusContainer';
 import QueueDetails from './QueueDetails';
-import NotificationButton from '../../common/NotificationButton';
 import LoadingIndicator from '../../common/LoadingIndicator';
 
 const TIMEOUT = 10000;
@@ -74,9 +73,6 @@ function QueueStatus(props) {
           </div>
           <div>
             <Button onClick={onDeleteClick}>Leave Queue</Button>
-          </div>
-          <div>
-            <NotificationButton />
           </div>
         </div>
       );
