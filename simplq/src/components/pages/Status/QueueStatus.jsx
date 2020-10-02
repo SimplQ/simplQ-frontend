@@ -3,7 +3,7 @@ import * as TokenService from '../../../services/token';
 import { handleApiErrors } from '../../ErrorHandler';
 import styles from '../../../styles/statusPage.module.scss';
 import Button from '../../common/Button';
-import Header, { SimplQHeader } from '../../common/Header';
+import Header from '../../common/Header';
 import StatusContainer from './StatusContainer';
 import QueueDetails from './QueueDetails';
 import NotificationButton from '../../common/NotificationButton';
@@ -92,13 +92,12 @@ function QueueStatus(props) {
   };
 
   if (!tokenStatusResponse) {
-    return <LoadingIndicator />; // Todo(https://github.com/SimplQ/simplQ-frontend/issues/162)
+    return <LoadingIndicator />;
   }
 
   return (
     <>
-      <SimplQHeader />
-      <Header text={tokenStatusResponse.queueName} className={styles.header} />
+      <Header className={styles.header}>{tokenStatusResponse.queueName}</Header>
       <StatusContainer
         updateInProgress={updateInProgress}
         tokenStatus={tokenStatusResponse.tokenStatus}

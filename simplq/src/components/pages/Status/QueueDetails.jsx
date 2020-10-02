@@ -29,7 +29,7 @@ export default (props) => {
     /* eslint-disable jsx-a11y/label-has-associated-control */
     <div>
       <label htmlFor="toggle">
-        <Header text="Queue Details" className={styles['details-header']} />
+        <Header className={styles['details-header']}>Queue Details</Header>
       </label>
       <input type="checkbox" id="toggle" className={styles['visually-hidden']} />
       <div className={styles.details}>

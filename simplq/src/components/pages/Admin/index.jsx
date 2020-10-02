@@ -64,7 +64,7 @@ export default (props) => {
 
   const HeaderSection = () => (
     <div className={styles['header-bar']}>
-      <Header className={styles['header']} text={queueName} />
+      <Header className={styles['header']}>{queueName}</Header>
       <div className={styles['main-button-group']}>
         <div className={styles['admin-button']}>
           <RefreshButton onClick={update} />
