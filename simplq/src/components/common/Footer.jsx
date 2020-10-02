@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './../../styles/homePage.module.scss';
+import styles from './../../styles/footer.module.scss';
 import { ForkOnGithubButton } from './Button/Button.stories';
 
 
