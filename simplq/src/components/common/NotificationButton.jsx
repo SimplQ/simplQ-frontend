@@ -1,6 +1,5 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import Button from './Button';
 import { setNotificationPermission } from '../../store/appSlice';
 
 const NotificationButton = () => {
@@ -45,9 +44,23 @@ const NotificationButton = () => {
 
   if (notificationPermission === 'default') {
     return (
-      <Button text="Enable Notifications" onClick={() => askNotificationPermission()}>
-        Enable Notifications
-      </Button>
+      <span
+        role="button"
+        tabIndex={0}
+        onClick={() => askNotificationPermission()}
+        onKeyDown={() => askNotificationPermission()}
+        style={{
+          cursor: 'pointer',
+          margin: '20px',
+          padding: '15px',
+          borderRadius: '25px',
+          backgroundColor: 'rebeccapurple',
+        }}
+      >
+        <span role="img" aria-labelledby="Bell">
+          🔔
+        </span>
+      </span>
     );
   }
   if (notificationPermission === 'denied') {
