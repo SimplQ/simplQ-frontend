@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from '../../../styles/statusPage.module.scss';
 import LoadingIndicator from '../../common/LoadingIndicator';
+import NotificationButton from '../../common/NotificationButton';
 
 export default (props) => {
   let status = null;
@@ -23,5 +24,10 @@ export default (props) => {
 
   if (!status) return <LoadingIndicator />;
 
-  return <div className={styles['status-box']}>{status}</div>;
+  return (
+    <div className={styles['status-box']}>
+      {status}
+      <NotificationButton />
+    </div>
+  );
 };
