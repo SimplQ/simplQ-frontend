@@ -1,6 +1,6 @@
 import React from 'react';
 import Routes from './Routes';
-import { Footer } from './common/Footer'
+import Footer from './common/Footer';
 
 function Layout() {
   return (

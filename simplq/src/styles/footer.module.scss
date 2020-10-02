@@ -1,123 +1,122 @@
 @import 'utils';
 
 .footer {
-    @include background-color();
-    @include text-color();
-    display: flex;
-    justify-content: center;
+  @include background-color();
+  @include text-color();
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding-top: 70px;
+  padding-bottom: 70px;
+
+  & > .main-card-container {
+    padding: 0;
     margin: 0;
-    padding-top: 70px;
-    padding-bottom: 70px;
-  
-    & > .main-card-container {
-      padding: 0;
-      margin: 0;
-      width: 90%;
-      height: 100%;
+    width: 90%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5%;
+
+    & > .card {
+      flex: 1;
+      margin: 0.625rem;
+      padding: 0.3rem;
+      min-width: 200px;
+      max-width: 300px;
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 5%;
-  
-      & > .card {
-        flex: 1;
-        margin: 0.625rem;
-        padding: 0.3rem;
-        min-width: 200px;
-        max-width: 300px;
+      flex-direction: column;
+
+      & > .card-header {
+        padding: 0;
+        margin: 0;
         display: flex;
-        flex-direction: column;
-  
-        & > .card-header {
-          padding: 0;
-          margin: 0;
-          display: flex;
-          min-height: 45%;
+        min-height: 45%;
+        flex: 1;
+
+        & > .simpleQ-image-container {
           flex: 1;
-  
-          & > .simpleQ-image-container {
-            flex: 1;
-            width: 100%;
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          margin: 0;
+          padding: 0;
+
+          & > .new-logo-image {
+            max-width: 110px;
+            max-height: 125px;
             display: flex;
             justify-content: center;
-            margin: 0;
-            padding: 0;
-  
-            & > .new-logo-image {
-              max-width: 110px;
-              max-height: 125px;
-              display: flex;
-              justify-content: center;
-            }
-          }
-  
-          & > .logo-header-container {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            align-items: center;
-            flex: 1;
-            flex-wrap: wrap;
-            font-family: $header-font;
-  
-            & > h1 {
-              margin: 0;
-              padding: 0;
-            }
           }
         }
-  
-        & > .card-body {
-          flex: 2;
-          min-height: 55%;
+
+        & > .logo-header-container {
+          margin: 0;
           padding: 0;
+          display: flex;
+          align-items: center;
+          flex: 1;
+          flex-wrap: wrap;
+          font-family: $header-font;
+
+          & > h1 {
+            margin: 0;
+            padding: 0;
+          }
+        }
+      }
+
+      & > .card-body {
+        flex: 2;
+        min-height: 55%;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        align-items: flex-end;
+
+        & > .description-content-container {
+          padding: 0;
+          height: 100%;
           margin: 0;
           display: flex;
           align-items: flex-end;
-  
-          & > .description-content-container {
-            padding: 0;
-            height: 100%;
-            margin: 0;
-            display: flex;
-            align-items: flex-end;
-  
-            & > .description-content {
-              font-size: larger;
-            }
+
+          & > .description-content {
+            font-size: larger;
           }
-  
-          & > span {
-            font-family: $header-font;
-          }
-  
-          & > .open-source-content-container {
-            padding: 0;
-            margin: 0;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            font-size: large;
-          }
-  
-          & > .list-container {
+        }
+
+        & > span {
+          font-family: $header-font;
+        }
+
+        & > .open-source-content-container {
+          padding: 0;
+          margin: 0;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          font-size: large;
+        }
+
+        & > .list-container {
+          margin: 0;
+          padding: 0;
+
+          & > ul {
             margin: 0;
             padding: 0;
-  
-            & > ul {
-              margin: 0;
-              padding: 0;
-              list-style-type: none;
-  
-              & > li {
-                font-size: 1.3rem;
+            list-style-type: none;
+
+            & > li {
+              font-size: 1.3rem;
+              color: #3a3768;
+
+              & > a {
+                text-decoration: none;
                 color: #3a3768;
-  
-                & > a {
-                  text-decoration: none;
-                  color: #3a3768;
-                }
               }
             }
           }
@@ -125,4 +124,4 @@
       }
     }
   }
-  
+}
