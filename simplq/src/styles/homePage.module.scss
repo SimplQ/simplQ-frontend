@@ -233,6 +233,21 @@
   }
 }
 
+.left-nav-overlay {
+  display: none;
+  @media (max-width: 768px) {
+    &[open] {
+      display: block;
+      height: 100vh;
+      width: 100vw;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background: rgba(0, 0, 0, 0.5);
+    }
+  }
+}
+
 .navbar {
   width: 100%;
   height: 4rem;
