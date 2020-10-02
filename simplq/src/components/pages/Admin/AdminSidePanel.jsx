@@ -7,11 +7,9 @@ import QueueHistory from './QueueHistory';
 
 export default (props) => (
   <SidePanel>
-    <>
-      <AddMember queueId={props.queueId} joinQueueHandler={props.joinQueueHandler} />
-      <PauseQueue />
-      <DeleteQueue />
-      <QueueHistory />
-    </>
+    <AddMember queueId={props.queueId} joinQueueHandler={props.joinQueueHandler} />
+    <PauseQueue />
+    <DeleteQueue />
+    <QueueHistory />
   </SidePanel>
 );
