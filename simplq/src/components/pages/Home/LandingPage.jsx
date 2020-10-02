@@ -7,7 +7,7 @@ export default (props) => {
   return (
     <div className={styles['landing-page']}>
       <div>
-        <Header className={styles['main-header']} text="SimplQ" />
+        <Header className={styles['main-header']}>SimplQ</Header>
         <p className={styles.subtitle}>A long overdue alternative to physical queues</p>
         <p className={styles.description}>
           Create and manage queues with our free online queue management solution for easy and
