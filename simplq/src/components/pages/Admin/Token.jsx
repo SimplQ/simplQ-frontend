@@ -98,7 +98,7 @@ function Token(props) {
           <p>{name}</p>
         </div>
         <div className={styles['token-operations']}>
-          <div className={styles['token-call-notification']}>
+          <div>
             <IconButton>
               <CallIcon className={styles['token-icon']} fontSize="large" />
             </IconButton>
