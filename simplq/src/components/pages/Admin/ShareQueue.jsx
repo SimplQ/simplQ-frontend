@@ -3,9 +3,9 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import FileCopyIcon from '@material-ui/icons/FileCopy';
 import { ShareButton } from '../../common/Button/Button.stories';
 
-const CopyQueue = (props) => {
+const ShareQueue = (props) => {
   const [clicked, setClicked] = React.useState(false);
-  const shareUrl = `${window.location.origin}/j/${props.queueId}`;
+  const shareUrl = `${window.location.origin}/j/${props.queueName}`;
 
   const handleShareButtonClick = () => {
     setClicked(true);
@@ -34,4 +34,4 @@ const CopyQueue = (props) => {
   );
 };
 
-export default CopyQueue;
+export default ShareQueue;
