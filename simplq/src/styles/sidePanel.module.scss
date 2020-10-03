@@ -1,10 +1,12 @@
 @import 'utils';
 
 .side-panel {
-  padding-top: 1.5rem;
-  padding-right: 6rem;
+  box-sizing: border-box;
+  padding: 0 6rem 39px 0;
+  display: flex;
+  flex-flow: column;
 
-  > div {
+  li {
     padding: 0.5rem 1rem;
     border-bottom: 1px solid $primary-color-dark;
   }
