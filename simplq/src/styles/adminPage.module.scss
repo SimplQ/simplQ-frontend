@@ -19,50 +19,105 @@
 
 .token-list {
   @include center-horizontally();
-  max-width: 30rem;
+  max-width: 40rem;
+  padding: 2rem;
   margin: auto;
   display: flex;
   flex-direction: column;
 }
 
 .token {
-  @include center-horizontally();
-  background-color: white;
-  margin: 0.5rem auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
   border: 0.1rem solid $primary-color-dark;
   border-radius: 0.6rem;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2),
     0 1px 5px 0 rgba(0, 0, 0, 0.12);
-  justify-content: space-between;
+
   width: 100%;
+  height: max-content;
+
+  margin: 0;
   padding: 0;
-  &:hover {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  }
-  & > div {
+
+  .token-number {
     display: flex;
     align-items: center;
-    flex-direction: row;
-    padding: 0;
-    div {
-      padding: 0;
-    }
-    button {
-      margin: 0 1rem;
-    }
-    .person-name {
-      @include text-color();
+    justify-content: center;
+    border-radius: 0.4rem;
+    min-width: 4rem;
+    max-width: max-content;
+    height: 4rem;
+    background: $primary-color-dark;
+    margin: 0;
+
+    & > p {
+      margin: 0;
+      padding: 1rem;
       font-weight: bold;
-      margin-bottom: 0;
-      text-transform: capitalize;
+      font-size: 2rem;
+      color: #fafafa;
     }
-    .token-number {
-      margin-top: 0;
-      font-size: 0.75rem;
+  }
+
+  .token-details {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100%;
+
+    margin: 0 0 0 1rem;
+
+    .token-name-time {
       text-align: left;
-      .token-number-value {
-        @include text-color();
-        font-weight: bold;
+      & > p {
+        margin: 0;
+
+        &:first-child {
+          font-size: 0.75rem;
+        }
+        &:last-child {
+          color: $primary-color-dark;
+          font-weight: bold;
+        }
+      }
+    }
+
+    .token-operations {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      .token-icon {
+        color: $primary-color-dark;
+      }
+
+      .token-remove {
+        position: relative;
+        background-color: lightcoral;
+        margin: 0;
+        padding: 0;
+        height: 3rem;
+        width: 4rem;
+        transform: rotate(-90deg);
+        border-radius: 0 0 0.5rem 0.5rem;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        right: -0.5rem;
+
+        & > p {
+          text-transform: uppercase;
+          text-align: center;
+          font-size: 0.75rem;
+          font-weight: bold;
+          color: $primary-color-dark;
+        }
       }
     }
   }

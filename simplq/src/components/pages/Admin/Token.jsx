@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import Notifications from '@material-ui/icons/Notifications';
-import CheckIcon from '@material-ui/icons/Check';
 import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive';
 import NotificationsOffIcon from '@material-ui/icons/NotificationsOffSharp';
 import * as TokenService from '../../../services/token';
 import { handleApiErrors } from '../../ErrorHandler';
 import styles from '../../../styles/adminPage.module.scss';
 import LoadingIndicator from '../../common/LoadingIndicator';
+import CallIcon from '@material-ui/icons/Call';
 
 function Token(props) {
   const name = props.token.name;
@@ -51,7 +51,7 @@ function Token(props) {
     // Not notifiable
     notificationButton = (
       <IconButton edge="end" color="primary" aria-label="notify">
-        <NotificationsOffIcon fontSize="large" color="disabled" />
+        <NotificationsOffIcon fontSize="large" className={styles['token-icon']} />
       </IconButton>
     );
   } else if (didNotify) {
@@ -65,40 +65,49 @@ function Token(props) {
     // Yet to notify
     notificationButton = (
       <IconButton
-        edge="end"
         color="primary"
+        edge="end"
         aria-label="notify"
         onClick={onNotifyClick}
         onMouseEnter={handleMouseHover}
         onMouseLeave={handleMouseHover}
       >
         {isNotifyHovering ? (
-          <NotificationsActiveIcon fontSize="large" />
+          <NotificationsActiveIcon fontSize="large" className={styles['token-icon']} />
         ) : (
-          <Notifications fontSize="large" />
+          <Notifications fontSize="large" className={styles['token-icon']} />
         )}
       </IconButton>
     );
   }
 
+  const RemoveButton = () => (
+    <div onClick={onDeleteClick} className={styles['token-remove']} aria-label="remove">
+      <p>remove</p>
+    </div>
+  );
+
   return (
-    <div className={styles.token}>
-      <div>
-        <div>{notificationButton}</div>
-        <div>
-          <p className={styles['person-name']}>{name}</p>
-          <p className={styles['token-number']}>
-            Token No:
-            <span className={styles['token-number-value']}>{tokenNumber}</span>
-          </p>
+    <section className={styles.token}>
+      <div className={styles['token-number']}>
+        <p>{tokenNumber < 99 ? `00${tokenNumber}` : tokenNumber}</p>
+      </div>
+      <div className={styles['token-details']}>
+        <div className={styles['token-name-time']}>
+          <p>Join time 11:02 pm</p>
+          <p>{name}</p>
+        </div>
+        <div className={styles['token-operations']}>
+          <div>
+            <IconButton>
+              <CallIcon className={styles['token-icon']} fontSize="large" />
+            </IconButton>
+            {notificationButton}
+          </div>
+          <RemoveButton />
         </div>
       </div>
-      <div>
-        <IconButton color="primary">
-          <CheckIcon fontSize="large" onClick={onDeleteClick} />
-        </IconButton>
-      </div>
-    </div>
+    </section>
   );
 }
 
