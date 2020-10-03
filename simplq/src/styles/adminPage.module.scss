@@ -4,17 +4,33 @@
   font-size: 0.8rem;
   display: flex;
   align-items: center;
+  padding: 0;
   min-width: 15rem;
+  color: $primary-color-dark;
 
   & > * {
     margin: 0.2rem;
   }
-  h2 {
-    margin-bottom: 0.2rem;
+
+  div {
+    p {
+      margin-top: 0;
+      color: $primary-color-dark;
+    }
   }
-  p {
-    margin-top: 0;
+
+  .expand-icon {
+    margin-left: 2rem;
+    cursor: pointer;
   }
+}
+.admin-join-queue-form {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  width: 100%;
+  height: max-content;
 }
 
 .token-list {
@@ -41,11 +57,6 @@
   margin: 1rem;
   padding: 0;
 
-  -webkit-transition: all 0.5s ease-in-out;
-  -moz-transition: all 0.5s ease-in-out;
-  -ms-transition: all 0.5s ease-in-out;
-  -o-transition: all 0.5s ease-in-out;
-
   &:hover {
     -webkit-box-shadow: 0 3px 18px -6px black;
     -moz-box-shadow: 0 3px 18px -6px black;
@@ -61,6 +72,7 @@
     max-width: max-content;
     height: 4rem;
     background: $primary-color-dark;
+
     margin-left: -0.1rem;
 
     & > p {
@@ -118,6 +130,7 @@
         width: 4rem;
         transform: rotate(-90deg);
         border-radius: 0 0 0.5rem 0.5rem;
+
         border: 0.1rem solid $primary-color-dark;
         display: flex;
         align-items: center;

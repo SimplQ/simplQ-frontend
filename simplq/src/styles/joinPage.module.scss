@@ -1,36 +1,15 @@
 @import 'utils';
 
-.header {
-  @include queue-name-header();
-}
-
-.join-button {
-  @include center-horizontally();
-}
-
-.input {
-  @include center-horizontally();
-  width: 50%;
-  fieldset {
-    border-radius: 0.5rem;
-  }
-}
-
 .form {
-  @include center-horizontally();
-  table {
-    width: 50%;
-  }
-  td {
-    padding-bottom: 2rem;
-  }
-}
-
-.main {
-  min-height: 100vh;
-}
-
-.message {
-  @include center-horizontally();
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 35rem;
+  margin: auto;
   padding: 2rem;
+
+  & > div {
+    margin: 1rem;
+  }
 }
