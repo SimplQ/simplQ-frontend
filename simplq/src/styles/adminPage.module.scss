@@ -31,16 +31,26 @@
   flex-direction: row;
   align-items: center;
 
-  border: 0.1rem solid $primary-color-dark;
   border-radius: 0.6rem;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2),
     0 1px 5px 0 rgba(0, 0, 0, 0.12);
 
   width: 100%;
-  height: max-content;
+  height: 4rem;
 
-  margin: 0;
+  margin: 1rem;
   padding: 0;
+
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+
+  &:hover {
+    -webkit-box-shadow: 0 3px 18px -6px black;
+    -moz-box-shadow: 0 3px 18px -6px black;
+    box-shadow: 0 3px 18px -6px black;
+  }
 
   .token-number {
     display: flex;
@@ -51,7 +61,7 @@
     max-width: max-content;
     height: 4rem;
     background: $primary-color-dark;
-    margin: 0;
+    margin-left: -0.1rem;
 
     & > p {
       margin: 0;
@@ -92,8 +102,11 @@
       flex-direction: row;
       align-items: center;
 
-      .token-icon {
-        color: $primary-color-dark;
+      .token-icon-set {
+        display: flex;
+        .token-icon {
+          color: $primary-color-dark;
+        }
       }
 
       .token-remove {
@@ -105,7 +118,7 @@
         width: 4rem;
         transform: rotate(-90deg);
         border-radius: 0 0 0.5rem 0.5rem;
-
+        border: 0.1rem solid $primary-color-dark;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -154,6 +167,8 @@
 .main-body {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 3rem;
 }
 
 .navbar {
