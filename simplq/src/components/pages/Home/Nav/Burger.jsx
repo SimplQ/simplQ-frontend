@@ -7,6 +7,7 @@ const Burger = () => {
 
   return (
     <>
+      <div className={styles['left-nav-overlay']} open={open} onClick={() => setOpen(!open)} />
       <div className={styles['burger']} open={open} onClick={() => setOpen(!open)}>
         <div open={open} onClick={() => setOpen(!open)} />
         <div open={open} onClick={() => setOpen(!open)} />

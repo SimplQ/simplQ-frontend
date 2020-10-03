@@ -1,15 +1,15 @@
 import React from 'react';
-import AddIcon from '@material-ui/icons/Add';
+import HistoryIcon from '@material-ui/icons/History';
 import styles from '../../../styles/adminPage.module.scss';
 
 export default () => {
   return (
     <>
       <div className={styles['admin-action']}>
-        <AddIcon fontSize="large" />
+        <HistoryIcon fontSize="large" />
         <div>
-          <h2>Add Member Manually</h2>
-          <p>Add a person to this queue manually</p>
+          <h2>Queue History</h2>
+          <p>History of events in the queue</p>
         </div>
       </div>
     </>
