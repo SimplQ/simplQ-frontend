@@ -3,11 +3,6 @@ import AddIcon from '@material-ui/icons/Add';
 import styles from '../../../styles/adminPage.module.scss';
 import JoinQueueForm from '../Join/Form';
 
-const stylesExpand = {
-  height: 'max-content',
-  width: '100%',
-};
-
 export default (props) => {
   return (
     <>
@@ -22,7 +17,7 @@ export default (props) => {
         </div>
       </div>
 
-      <div style={stylesExpand}>
+      <div className={styles['admin-join-queue-form']}>
         <JoinQueueForm
           buttonName="Add"
           queueId={props.queueId}

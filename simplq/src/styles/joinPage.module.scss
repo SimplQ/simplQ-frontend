@@ -1,36 +1,47 @@
-@import 'utils';
+// @import 'utils';
 
-.header {
-  @include queue-name-header();
-}
+// .header {
+//   @include queue-name-header();
+// }
 
-.join-button {
-  @include center-horizontally();
-}
+// .join-button {
+//   @include center-horizontally();
+// }
 
-.input {
-  @include center-horizontally();
-  width: 50%;
-  fieldset {
-    border-radius: 0.5rem;
-  }
-}
+// .input {
+//   @include center-horizontally();
+//   width: 50%;
+//   fieldset {
+//     border-radius: 0.5rem;
+//   }
+// }
+
+// .form {
+//   @include center-horizontally();
+//   table {
+//     width: 50%;
+//   }
+//   td {
+//     padding-bottom: 2rem;
+//   }
+// }
+
+// .main {
+//   min-height: 100vh;
+// }
+
+// .message {
+//   @include center-horizontally();
+//   padding: 2rem;
+// }
 
 .form {
-  @include center-horizontally();
-  table {
-    width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  & > div {
+    margin: 1rem;
   }
-  td {
-    padding-bottom: 2rem;
-  }
-}
-
-.main {
-  min-height: 100vh;
-}
-
-.message {
-  @include center-horizontally();
-  padding: 2rem;
 }

@@ -16,6 +16,15 @@
     margin-top: 0;
   }
 }
+.admin-join-queue-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 1rem 0 !important;
+  width: 100%;
+  height: max-content;
+}
 
 .token-list {
   @include center-horizontally();
