@@ -101,11 +101,65 @@
   }
 }
 
-.slider {
-  @include text-color();
+
+.queue-info {
   @include center-vertically();
   @include center-horizontally();
-  margin: 2.5rem;
+  h2 {
+    @include standard-header();
+    font-family: $header-font;
+    font-size: 2rem;
+    margin: 1rem;
+  }
+  .queue-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    padding: 0;
+    .queue {
+      flex: 0 1 400px;
+      text-align: left;
+      margin: 2rem;
+      .list-info {
+        width: 100%;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        justify-content: center;
+        img{
+          float: left;
+          position: relative;
+          bottom: -5px;
+          width: 1em;
+          height: 1em;
+          margin-right: 10px;
+        }
+        h3 {
+          color: #3A3768;
+          margin: 0;
+          padding: 0;
+        }
+        p {
+          font: normal normal normal Arial;
+          margin: 1rem;
+          text-align: left;
+          color: #3A3768;
+          padding-left: 10px;
+        }
+      }
+      img {
+        justify-content: center;
+        max-width: 100%;
+        height: auto;
+      }
+    }
+  }
+}
+
+.join-info {
+  @include background-color;
+  @extend .queue-info;
 }
 
 .extra-info {
