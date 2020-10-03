@@ -3,11 +3,11 @@ import IconButton from '@material-ui/core/IconButton';
 import Notifications from '@material-ui/icons/Notifications';
 import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive';
 import NotificationsOffIcon from '@material-ui/icons/NotificationsOffSharp';
+import CallIcon from '@material-ui/icons/Call';
 import * as TokenService from '../../../services/token';
 import { handleApiErrors } from '../../ErrorHandler';
 import styles from '../../../styles/adminPage.module.scss';
 import LoadingIndicator from '../../common/LoadingIndicator';
-import CallIcon from '@material-ui/icons/Call';
 
 function Token(props) {
   const name = props.token.name;
@@ -82,7 +82,14 @@ function Token(props) {
   }
 
   const RemoveButton = () => (
-    <div onClick={onDeleteClick} className={styles['token-remove']} aria-label="remove">
+    <div
+      role="button"
+      onClick={onDeleteClick}
+      tabIndex={-1}
+      onKeyDown={onDeleteClick}
+      className={styles['token-remove']}
+      aria-label="remove"
+    >
       <p>remove</p>
     </div>
   );
@@ -98,7 +105,7 @@ function Token(props) {
           <p>{name}</p>
         </div>
         <div className={styles['token-operations']}>
-          <div>
+          <div className={styles['token-icon-set']}>
             <IconButton>
               <CallIcon className={styles['token-icon']} fontSize="large" />
             </IconButton>
