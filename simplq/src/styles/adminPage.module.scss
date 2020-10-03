@@ -41,6 +41,17 @@
   margin: 1rem;
   padding: 0;
 
+  -webkit-transition: all 0.50s ease-in-out;
+  -moz-transition: all 0.50s ease-in-out;
+  -ms-transition: all 0.50s ease-in-out;
+  -o-transition: all 0.50s ease-in-out;
+
+  &:hover {
+    -webkit-box-shadow: 0 3px 18px -6px black;
+    -moz-box-shadow: 0 3px 18px -6px black;
+    box-shadow: 0 3px 18px -6px black;
+  }
+
   .token-number {
     display: flex;
     align-items: center;
