@@ -194,7 +194,8 @@
   flex-flow: row nowrap;
   margin: 0;
   position: fixed;
-  top: 1.2rem;
+  top: 1.4rem;
+  left: 8rem;
   li {
     padding: 0 1.5rem;
   }
@@ -253,14 +254,20 @@
   height: 4rem;
   background-color: #fff;
   border-bottom: 0.2rem solid #f1f1f1;
-  padding: 0 2rem;
+  padding: 0 3rem;
   z-index: 99;
-  justify-content: space-between;
   position: fixed;
+  display: flex;
+  flex-wrap: wrap;
+  p {
+    font-family: 'Pacifico', Regular;
+    cursor: pointer;
+  }
   & > img {
     height: 3rem;
     width: 3rem;
     margin: 0.5rem;
+    cursor: pointer;
   }
 }
 
