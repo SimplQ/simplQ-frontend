@@ -41,10 +41,10 @@
   margin: 1rem;
   padding: 0;
 
-  -webkit-transition: all 0.50s ease-in-out;
-  -moz-transition: all 0.50s ease-in-out;
-  -ms-transition: all 0.50s ease-in-out;
-  -o-transition: all 0.50s ease-in-out;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
 
   &:hover {
     -webkit-box-shadow: 0 3px 18px -6px black;
@@ -61,7 +61,7 @@
     max-width: max-content;
     height: 4rem;
     background: $primary-color-dark;
-    margin-left: -.1rem;
+    margin-left: -0.1rem;
 
     & > p {
       margin: 0;
