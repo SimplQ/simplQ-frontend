@@ -70,7 +70,7 @@ export default (props) => {
           <RefreshButton onClick={update} />
         </div>
         <div className={styles['admin-button']}>
-          <ShareQueue queueId={queueId} className={styles.shareButton} />
+          <ShareQueue queueName={queueName} className={styles.shareButton} />
         </div>
       </div>
     </div>
