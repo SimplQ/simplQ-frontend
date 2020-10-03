@@ -32,7 +32,7 @@ export default (props) => {
       <div className={styles['admin-action']}>
         <AddIcon fontSize="large" />
         <div>
-          <h2>Add Member Manually</h2>
+          <h2>Add Member</h2>
           <p>Add a person to this queue manually</p>
         </div>
         <ExpandButton />
