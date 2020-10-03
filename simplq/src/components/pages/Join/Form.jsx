@@ -12,6 +12,7 @@ export function JoinQueueForm(props) {
   const [invalidName, setInvalidName] = useState(false);
   const [contact, setContact] = useState('');
   const [invalidContact, setInvalidContact] = useState(false);
+  const [invalidContactLength, setInvalidContactLength] = useState(false);
   const [addingInProgress, setAddingInProgress] = useState(false);
 
   function handleNameChange(e) {
@@ -31,6 +32,10 @@ export function JoinQueueForm(props) {
   const handleClick = () => {
     if (name === '') {
       setInvalidName(true);
+      return;
+    }
+    if (invalidContactLength) {
+      setInvalidContact(true);
       return;
     }
     if (contact === '') {
@@ -77,7 +82,17 @@ export function JoinQueueForm(props) {
                 inputStyle={{
                   width: '100%',
                 }}
-                isValid={() => (invalidContact ? 'Phone number is not valid' : true)}
+                isValid={(inputNumber, country) => {
+                  var arr=[];
+                  arr = inputNumber.split(country.dialCode);
+                  if(arr[1].length!=10){
+                    setInvalidContactLength(true)
+                  }
+                  else{
+                    setInvalidContactLength(false)
+                  }
+                  return invalidContact ? ('Phone number is not valid'): (true)
+                }}
                 onChange={handleContactChange}
                 onKeyDown={(e) => handleEnterPress(e, handleClick)}
               />
