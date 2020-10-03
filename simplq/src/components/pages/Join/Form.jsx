@@ -53,7 +53,7 @@ export function JoinQueueForm(props) {
   return (
     <div className={styles.form}>
       <InputField
-        placeholder="Your Name"
+        placeholder="Name"
         value={name}
         onKeyPress={(e) => handleEnterPress(e, handleClick)}
         onChange={handleNameChange}

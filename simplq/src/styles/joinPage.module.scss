@@ -5,7 +5,10 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  margin: 0;
+  max-width: 56vh;
+  margin: auto;
+  padding: 2rem;
+
   & > div {
     margin: 1rem;
   }
