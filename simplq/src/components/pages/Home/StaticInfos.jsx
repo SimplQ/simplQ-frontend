@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from '../../../styles/homePage.module.scss';
-import { CreatorSlider, JoinerSlider } from '../../common/slider';
 
 export const BenefitsInfo = () => (
   <div className={styles['benefits-info']}>
@@ -26,16 +25,64 @@ export const BenefitsInfo = () => (
 );
 
 export const HowToCreate = () => (
-  <div className={styles.slider}>
+  <div className={styles['queue-info']}>
     <h2>Create a Queue at the click of a button</h2>
-    <CreatorSlider />
+    <div className={styles['queue-container']}>
+      <div className={styles.queue}>
+        <img src="/images/queue_creation.svg" alt="Queue creation" />
+      </div>
+      <div className={styles.queue}>
+        <ul className={styles['list-info']}>
+          <img src="/images/wand.svg" alt="Wand" />
+          <li>
+            <h3>Create Queue</h3>
+            <p>Enter queue name of your choice and create a brand new queue totally free of cost</p>
+          </li>
+          <img src="/images/share-24px.svg" alt="Share" />
+          <li>
+            <h3>Share queue</h3>
+            <p>Click the share button and send the queue link to your users for them to join</p>
+          </li>
+          <img src="/images/people-24px.svg" alt="People" />
+          <li>
+            <h3>Manage queue</h3>
+            <p>Manage your queues seamlessly and efficiently to provide a better user experience</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 50">
+      <path
+        fill="#6C63FF29"
+        fillOpacity="1"
+        d="M0,32L120,26.7C240,21,480,11,720,10.7C960,11,1200,21,1320,26.7L1440,32L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"
+      />
+    </svg>
   </div>
 );
 
 export const HowToJoin = () => (
-  <div className={styles.slider}>
+  <div className={styles['join-info']}>
     <h2>Join a queue without being there</h2>
-    <JoinerSlider />
+    <div className={styles['queue-container']}>
+      <div className={styles['queue']}>
+        <ul className={styles['list-info']}>
+          <img src="/images/mobile_friendly-24px.svg" alt="Mobile friendly" />
+          <li>
+            <h3>Join queue</h3>
+            <p>Get queue link or enter queue name to join queue from anywhere</p>
+          </li>
+          <img src="/images/alarm-24px.svg" alt="Alarm" />
+          <li>
+            <h3>Wait for your turn</h3>
+            <p>Check you status in queue. Get notified when your turn is up</p>
+          </li>
+        </ul>
+      </div>
+      <div className={styles['queue']}>
+        <img src="/images/join.svg" alt="Join" />
+      </div>
+    </div>
   </div>
 );
 
