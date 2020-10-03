@@ -4,24 +4,31 @@
   font-size: 0.8rem;
   display: flex;
   align-items: center;
+  padding: 0;
   min-width: 15rem;
+  color: $primary-color-dark;
 
   & > * {
     margin: 0.2rem;
   }
-  h2 {
-    margin-bottom: 0.2rem;
+
+  div {
+    p {
+      margin-top: 0;
+      color: $primary-color-dark;
+    }
   }
-  p {
-    margin-top: 0;
+
+  .expand-icon {
+    margin-left: 2rem;
+    cursor: pointer;
   }
 }
 .admin-join-queue-form {
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   margin: 0;
-  padding: 1rem 0 !important;
   width: 100%;
   height: max-content;
 }
@@ -48,7 +55,7 @@
   width: 100%;
   height: max-content;
 
-  margin: 0;
+  margin: 0 0 1rem 0;
   padding: 0;
 
   .token-number {
