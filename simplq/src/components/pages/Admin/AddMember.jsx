@@ -1,14 +1,14 @@
 import React from 'react';
 import AddIcon from '@material-ui/icons/Add';
 import styles from '../../../styles/adminPage.module.scss';
+import JoinQueueForm from '../Join/Form';
 
 const stylesExpand = {
-  height: '10vh',
-  width: '10vw',
-  background: '#f00',
+  height: 'max-content',
+  width: '100%',
 };
 
-export default () => {
+export default (props) => {
   return (
     <>
       <div className={styles['admin-action']}>
@@ -22,7 +22,13 @@ export default () => {
         </div>
       </div>
 
-      <div style={stylesExpand} />
+      <div style={stylesExpand}>
+        <JoinQueueForm
+          buttonName="Add"
+          queueId={props.queueId}
+          joinQueueHandler={props.joinQueueHandler}
+        />
+      </div>
     </>
   );
 };
