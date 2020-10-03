@@ -11,7 +11,6 @@ const CreateJoinForm = ({ history }) => {
   const [textFieldValue, setTextFieldValue] = useState('');
   const [invalidMsg, setInvalidMsg] = useState('');
   const [createInProgress, setCreateInProgress] = useState(false);
-  const [joinInProgress, setJoinInProgress] = useState(false);
 
   const handleCreateClick = () => {
     if (textFieldValue === '') setInvalidMsg('Queue name is required');
@@ -31,15 +30,7 @@ const CreateJoinForm = ({ history }) => {
   const handleJoinClick = () => {
     if (textFieldValue === '') setInvalidMsg('Queue name is required');
     else {
-      setJoinInProgress(true);
-      QueueService.getStatusByName(textFieldValue)
-        .then((response) => {
-          history.push(`/j/${response.queueId}`);
-        })
-        .catch((err) => {
-          handleApiErrors(err);
-        });
-      setJoinInProgress(false);
+      history.push(`/j/${textFieldValue}`);
     }
   };
 
@@ -73,7 +64,7 @@ const CreateJoinForm = ({ history }) => {
           {createInProgress ? <LoadingIndicator /> : <CreateQButton onClick={handleCreateClick} />}
         </div>
         <div>
-          {joinInProgress ? <LoadingIndicator /> : <JoinQButton onClick={handleJoinClick} />}
+          <JoinQButton onClick={handleJoinClick} />
         </div>
       </div>
     </div>
