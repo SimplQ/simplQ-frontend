@@ -22,12 +22,16 @@ export default (props) => {
 
   const [tokens, setTokens] = useState();
   const [queueName, setQueueName] = useState();
+  const [description, setDescription] = useState('');
+
   const update = useCallback(() => {
     clearTimeout(timeoutId);
     QueueService.get(queueId)
       .then((data) => {
         setTokens(data.tokens);
         setQueueName(data.queueName);
+        // TODO: setDescription as soon as the backend returns it
+        setDescription('A nice dummy description');
         timeoutId = setTimeout(update, TIMEOUT);
       })
       .catch((err) => {
@@ -69,9 +73,9 @@ export default (props) => {
   const HeaderSection = () => (
     <div className={styles['header-bar']}>
       <div className={styles['header-title']}>
-        <Header className={styles['header']}>Rooftop Cafê Queue</Header>
+        <Header className={styles['header']}>{queueName}</Header>
         <div className={styles['sub-header']}>
-          <h2>{queueName}</h2>
+          <h2>{description}</h2>
           <IconButton size="small">
             <EditIcon />
           </IconButton>
