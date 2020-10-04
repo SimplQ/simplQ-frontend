@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import moment from 'moment';
+import InfoIcon from '@material-ui/icons/Info';
 import styles from '../../../styles/statusPage.module.scss';
 import * as QueueService from '../../../services/queue';
 import { handleApiErrors } from '../../ErrorHandler';
@@ -70,14 +71,12 @@ export default (props) => {
   //   );
   // };
   return (
-    <>
-      <div className={styles['user-action']}>
-        {/* icon */}
-        <div>
-          <h2>Queue Details</h2>
-          <p>Other information about the queue</p>
-        </div>
+    <button type="button" className={styles['user-action']}>
+      <InfoIcon />
+      <div>
+        <h2>Queue Details</h2>
+        <p>Other information about the queue</p>
       </div>
-    </>
+    </button>
   );
 };
