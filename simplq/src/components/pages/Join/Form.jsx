@@ -4,7 +4,7 @@ import 'react-phone-input-2/lib/material.css';
 import { handleEnterPress } from '../../common/utilFns';
 import InputField from '../../common/InputField';
 import styles from '../../../styles/joinPage.module.scss';
-import { JoinQButton } from '../../common/Button';
+import { JoinMemberQButton } from '../../common/Button';
 import LoadingIndicator from '../../common/LoadingIndicator';
 
 export function JoinQueueForm(props) {
@@ -48,7 +48,9 @@ export function JoinQueueForm(props) {
   };
 
   const JoinButton = () => (
-    <div>{addingInProgress ? <LoadingIndicator /> : <JoinQButton onClick={handleClick} />}</div>
+    <div>
+      {addingInProgress ? <LoadingIndicator /> : <JoinMemberQButton onClick={handleClick} />}
+    </div>
   );
   return (
     <div className={styles.form}>

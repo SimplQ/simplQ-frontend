@@ -1,5 +1,5 @@
 import StandardButton from './Button';
-import { CreateQButton, JoinQButton } from './Button.stories';
+import { CreateQButton, JoinQButton, JoinMemberQButton } from './Button.stories';
 
-export { CreateQButton, JoinQButton };
+export { CreateQButton, JoinQButton, JoinMemberQButton };
 export default StandardButton;
