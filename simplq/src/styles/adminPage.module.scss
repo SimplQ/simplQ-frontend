@@ -1,17 +1,21 @@
 @import 'utils';
 
 .admin-action {
+  @include naked-button();
   font-size: 0.8rem;
   display: flex;
   align-items: center;
   min-width: 15rem;
+  text-align: left;
 
   & > * {
     margin: 0.2rem;
   }
+
   h2 {
     margin-bottom: 0.2rem;
   }
+
   p {
     margin-top: 0;
   }

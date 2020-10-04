@@ -68,24 +68,12 @@ input[type='checkbox']:checked ~ .details {
 }
 
 .user-action {
+  @include naked-button();
   font-size: 0.8rem;
   display: flex;
   align-items: center;
   min-width: 15rem;
   font-family: Myanmar Text;
-  font-weight: 400;
-  background: none;
-  border: 0;
-  color: inherit;
-  font: inherit;
-  outline: inherit;
-  padding: 0;
-  cursor: pointer;
-  transition: background 300ms ease-in-out;
-
-  &:hover {
-    background: #f8f9fa;
-  }
 
   & > * {
     margin: 0.2rem;

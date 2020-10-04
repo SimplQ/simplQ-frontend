@@ -5,13 +5,13 @@ import styles from '../../../styles/adminPage.module.scss';
 export default () => {
   return (
     <>
-      <div className={styles['admin-action']}>
+      <button type="button" className={styles['admin-action']}>
         <AddIcon fontSize="large" />
         <div>
           <h2>Add Member Manually</h2>
           <p>Add a person to this queue manually</p>
         </div>
-      </div>
+      </button>
     </>
   );
 };
