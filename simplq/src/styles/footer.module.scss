@@ -8,11 +8,11 @@
   margin: 0;
   padding-top: 70px;
   padding-bottom: 70px;
+  font-size: small;
 
   & > .main-card-container {
     padding: 0;
     margin: 0;
-    width: 90%;
     height: 100%;
     display: flex;
     flex-wrap: wrap;
@@ -34,20 +34,23 @@
         display: flex;
         min-height: 45%;
         flex: 1;
+        font-size: smaller;
 
         & > .simpleQ-image-container {
           flex: 1;
           width: 100%;
+          max-width: 6rem;
           display: flex;
           justify-content: center;
           margin: 0;
           padding: 0;
 
           & > .new-logo-image {
-            max-width: 110px;
-            max-height: 125px;
+            max-width: 4rem;
+            max-height: 4rem;
             display: flex;
             justify-content: center;
+            margin: 0;
           }
         }
 
@@ -81,10 +84,6 @@
           margin: 0;
           display: flex;
           align-items: flex-end;
-
-          & > .description-content {
-            font-size: larger;
-          }
         }
 
         & > span {
@@ -98,7 +97,6 @@
           display: flex;
           flex-direction: column;
           justify-content: space-between;
-          font-size: large;
         }
 
         & > .list-container {
@@ -111,7 +109,6 @@
             list-style-type: none;
 
             & > li {
-              font-size: 1.3rem;
               color: #3a3768;
 
               & > a {

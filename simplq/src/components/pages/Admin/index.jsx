@@ -10,6 +10,7 @@ import { RefreshButton } from '../../common/Button/Button.stories';
 import Header from '../../common/Header';
 import styles from '../../../styles/adminPage.module.scss';
 import SidePanel from './AdminSidePanel';
+import Logo from '../../common/ClickableLogo';
 
 const TIMEOUT = 10000;
 let timeoutId;
@@ -49,6 +50,7 @@ export default (props) => {
           contactNumber,
           notifiable: false,
           tokenStatus: response.tokenStatus,
+          tokenNumber: response.tokenNumber,
         },
       ]);
     } catch (err) {
@@ -70,7 +72,7 @@ export default (props) => {
           <RefreshButton onClick={update} />
         </div>
         <div className={styles['admin-button']}>
-          <ShareQueue queueId={queueId} className={styles.shareButton} />
+          <ShareQueue queueName={queueName} className={styles.shareButton} />
         </div>
       </div>
     </div>
@@ -79,8 +81,7 @@ export default (props) => {
   const Navbar = () => (
     <div>
       <nav className={styles['navbar']}>
-        <img src="/LogoLight.png" alt="Home" onClick={() => props.history.push('/')} />
-        <p onClick={() => props.history.push('/')}>SimplQ</p>
+        <Logo history={props.history} />
       </nav>
     </div>
   );
@@ -90,7 +91,9 @@ export default (props) => {
       <Navbar />
       <HeaderSection />
       <div className={styles['main-body']}>
-        <div className={styles['token-list']}>
+        <div
+          className={tokens?.length > 0 ? styles['token-list-with-content'] : styles['token-list']}
+        >
           <TokenList tokens={tokens} queueId={queueId} removeTokenHandler={removeToken} />
         </div>
         <SidePanel queueId={queueId} joinQueueHandler={addNewToken} />

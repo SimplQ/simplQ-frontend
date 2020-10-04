@@ -1,12 +1,12 @@
 import React from 'react';
 import styles from '../../../../styles/homePage.module.scss';
 import Burger from './Burger';
+import Logo from '../../../common/ClickableLogo';
 
 const Navbar = () => {
   return (
     <nav className={styles['navbar']}>
-      <img src="LogoLight.png" alt="Home" />
-      <p>SimplQ</p>
+      <Logo />
       <Burger />
     </nav>
   );

@@ -6,4 +6,10 @@
   @include text-color();
   font-size: x-large;
   min-height: 100vh;
+  div {
+    padding: 1rem;
+  }
+  Button {
+    cursor: pointer;
+  }
 }
