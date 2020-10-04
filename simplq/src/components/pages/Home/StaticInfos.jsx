@@ -25,7 +25,7 @@ export const BenefitsInfo = () => (
 );
 
 export const HowToCreate = () => (
-  <div className={styles['queue-info']}>
+  <div id="target_how_it_works" className={styles['queue-info']}>
     <h2>Create a Queue at the click of a button</h2>
     <div className={styles['queue-container']}>
       <div className={styles.queue}>

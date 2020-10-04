@@ -5,13 +5,13 @@ import styles from '../../../styles/adminPage.module.scss';
 export default () => {
   return (
     <>
-      <div className={styles['admin-action']}>
+      <button type="button" className={styles['admin-action']}>
         <HistoryIcon fontSize="large" />
         <div>
           <h2>Queue History</h2>
           <p>History of events in the queue</p>
         </div>
-      </div>
+      </button>
     </>
   );
 };

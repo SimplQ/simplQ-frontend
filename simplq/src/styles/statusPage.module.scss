@@ -68,18 +68,58 @@ input[type='checkbox']:checked ~ .details {
 }
 
 .user-action {
+  @include naked-button();
   font-size: 0.8rem;
   display: flex;
   align-items: center;
   min-width: 15rem;
+  font-family: Myanmar Text;
 
   & > * {
     margin: 0.2rem;
+
+    &:first-child {
+      width: 45px;
+      height: 45px;
+      margin-right: 25px;
+      color: #3a3768;
+      font-size: 55px;
+    }
   }
+
+  & > div {
+    text-align: left;
+  }
+
   h2 {
+    font-weight: 400;
     margin-bottom: 0.2rem;
   }
+
   p {
     margin-top: 0;
+  }
+}
+
+.notification-container {
+  margin-top: 295px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  .info-icon {
+    font-family: Arial;
+    font-weight: 700;
+    color: #3a3768;
+  }
+
+  span {
+    padding-right: 8px;
+  }
+
+  .switch-thumb {
+    width: 12;
+    height: 12;
+    box-shadow: 'none';
   }
 }
