@@ -55,7 +55,7 @@ function QueueStatus(props) {
   }, [update]);
 
   const onDeleteClick = async () => {
-    await setUpdateInProgress(true);
+    setUpdateInProgress(true);
     await TokenService.remove(tokenId)
       .then((response) => {
         setTokenStatusResponse({ ...tokenStatusResponse, tokenStatus: response.tokenStatus });
