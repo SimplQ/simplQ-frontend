@@ -6,8 +6,7 @@ import styles from '../../../styles/statusPage.module.scss';
 export default (props) => {
   const history = useHistory();
   function handleClick() {
-    props.leaveQueueHandler();
-    history.push(`/`);
+    props.leaveQueueHandler().then(() => history.push(`/`));
   }
 
   return (
