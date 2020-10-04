@@ -23,6 +23,10 @@
     margin-left: 2rem;
     cursor: pointer;
   }
+
+  .expand-icon-opened {
+    transform: rotate(180deg);
+  }
 }
 .admin-join-queue-form {
   justify-content: center;
