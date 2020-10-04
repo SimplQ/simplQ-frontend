@@ -29,6 +29,10 @@
   }
 }
 
+.standard-button img {
+  height: 24px;
+}
+
 .standard-button-outlined {
   @extend .standard-button;
   background-color: #fff;
@@ -50,7 +54,7 @@
   display: flex;
   align-items: center;
   max-width: 14rem;
-  max-height: 1.1rem;
+  min-height: 1rem;
   & > * {
     margin: 0.2rem;
   }
