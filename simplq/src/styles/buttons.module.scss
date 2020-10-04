@@ -59,6 +59,13 @@
 .fork-on-github-button {
   text-decoration: none;
   color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: smaller;
-  padding: 1rem 1rem;
+  padding: 1rem;
+
+  span {
+    margin-right: 0.5rem;
+  }
 }
