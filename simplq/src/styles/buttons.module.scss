@@ -58,4 +58,11 @@
 .fork-on-github-button {
   text-decoration: none;
   color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  span {
+    margin-right: 0.5rem;
+  }
 }
