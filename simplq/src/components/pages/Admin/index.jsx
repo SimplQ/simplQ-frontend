@@ -49,6 +49,7 @@ export default (props) => {
           contactNumber,
           notifiable: false,
           tokenStatus: response.tokenStatus,
+          tokenNumber: response.tokenNumber,
         },
       ]);
     } catch (err) {
