@@ -1,7 +1,5 @@
 import React from 'react';
 import Routes from './Routes';
-<<<<<<< HEAD
-=======
 import Button from '@material-ui/core/Button';
 import logo from '../simplQLogo.png';
 import { ErrorBoundary } from './ErrorHandler';
@@ -31,15 +29,9 @@ const handleClick = () => {
 
 function Layout() {
   const classes = useStyles();
->>>>>>> upstream/master
 
 function Layout() {
   return (
-<<<<<<< HEAD
-    <>
-      <Routes />
-    </>
-=======
     <ErrorBoundary>
       <AppBar position="relative">
         <Toolbar>
@@ -55,7 +47,6 @@ function Layout() {
         <Routes />
       </main>
     </ErrorBoundary>
->>>>>>> upstream/master
   );
 }
 
