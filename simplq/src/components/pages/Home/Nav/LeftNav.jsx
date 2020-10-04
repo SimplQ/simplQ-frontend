@@ -18,14 +18,14 @@ function smoothScrollTo(targetElement) {
   });
 }
 function scrollToHowItWorks() {
-  // get the target div using className
-  const element = document.getElementsByClassName('homePage_queue-info__3LUlX')[0];
+  // get the target div by ID
+  const element = document.getElementById('target_how_it_works');
   smoothScrollTo(element);
 }
 
 function scrollToContactUs() {
-  // get the target div using className
-  const element = document.getElementsByClassName('footer_footer__f-BKh')[0];
+  // get the target div by ID
+  const element = document.getElementById('target_contact_us');
   smoothScrollTo(element);
 }
 
