@@ -47,49 +47,36 @@ export function JoinQueueForm(props) {
     });
   };
 
+  const JoinButton = () => (
+    <div>{addingInProgress ? <LoadingIndicator /> : <JoinQButton onClick={handleClick} />}</div>
+  );
   return (
     <div className={styles.form}>
-      <table>
-        <tbody>
-          <tr>
-            <td>
-              <InputField
-                placeholder="Your Name"
-                value={name}
-                onKeyPress={(e) => handleEnterPress(e, handleClick)}
-                onChange={handleNameChange}
-                error={invalidName}
-                helperText={invalidName ? 'Enter a valid name' : ''}
-              />
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <PhoneInput
-                placeholder="Phone Number"
-                country="in"
-                value={contact}
-                inputProps={{
-                  name: 'phone',
-                  required: true,
-                  autoFocus: true,
-                }}
-                inputStyle={{
-                  width: '100%',
-                }}
-                isValid={() => (invalidContact ? 'Phone number is not valid' : true)}
-                onChange={handleContactChange}
-                onKeyDown={(e) => handleEnterPress(e, handleClick)}
-              />
-            </td>
-          </tr>
-          <tr>
-            <td>
-              {addingInProgress ? <LoadingIndicator /> : <JoinQButton onClick={handleClick} />}
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <InputField
+        placeholder="Name"
+        value={name}
+        onKeyPress={(e) => handleEnterPress(e, handleClick)}
+        onChange={handleNameChange}
+        error={invalidName}
+        helperText={invalidName ? 'Enter a valid name' : ''}
+      />
+      <PhoneInput
+        placeholder="Phone Number"
+        country="in"
+        value={contact}
+        inputProps={{
+          name: 'phone',
+          required: true,
+          autoFocus: true,
+        }}
+        inputStyle={{
+          width: '100%',
+        }}
+        isValid={() => (invalidContact ? 'Phone number is not valid' : true)}
+        onChange={handleContactChange}
+        onKeyDown={(e) => handleEnterPress(e, handleClick)}
+      />
+      <JoinButton />
     </div>
   );
 }
