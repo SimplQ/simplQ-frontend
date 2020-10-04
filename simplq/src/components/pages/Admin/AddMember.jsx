@@ -27,22 +27,27 @@ export default (props) => {
   return (
     <>
       <button type="button" className={styles['admin-action']}>
-        <AddIcon fontSize="large" />
-        <div>
-          <h2>Add Member</h2>
-          <p>Add a person to this queue manually</p>
-        </div>
-        <ExpandButton isOpen={open} />
-
-        <Collapse timeout="auto" in={open}>
-          <div className={styles['admin-join-queue-form']}>
-            <JoinQueueForm
-              buttonName="Add"
-              queueId={props.queueId}
-              joinQueueHandler={props.joinQueueHandler}
-            />
+        <div className={styles['collapsable']}>
+          <div className={styles['collapsable-header']}>
+            <AddIcon fontSize="large" />
+            <div>
+              <h2>Add Member</h2>
+              <p>Add a person to this queue manually</p>
+            </div>
+            <ExpandButton isOpen={open} />
           </div>
-        </Collapse>
+          <div className={styles['collapsable-content']}>
+            <Collapse timeout="auto" in={open}>
+              <div className={styles['admin-join-queue-form']}>
+                <JoinQueueForm
+                  buttonName="Add"
+                  queueId={props.queueId}
+                  joinQueueHandler={props.joinQueueHandler}
+                />
+              </div>
+            </Collapse>
+          </div>
+        </div>
       </button>
     </>
   );
