@@ -41,3 +41,19 @@ $header-font: 'Pacifico', Regular;
   border: 1px solid $primary-color-dark;
   border-radius: 0.5rem;
 }
+
+@mixin naked-button {
+  font-weight: 400;
+  background: none;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  outline: inherit;
+  padding: 0;
+  cursor: pointer;
+  transition: background 300ms ease-in-out;
+
+  &:hover {
+    background: #f8f9fa;
+  }
+}

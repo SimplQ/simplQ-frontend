@@ -26,24 +26,24 @@ export default (props) => {
 
   return (
     <>
-      <div className={styles['admin-action']}>
+      <button type="button" className={styles['admin-action']}>
         <AddIcon fontSize="large" />
         <div>
           <h2>Add Member</h2>
           <p>Add a person to this queue manually</p>
         </div>
         <ExpandButton isOpen={open} />
-      </div>
 
-      <Collapse timeout="auto" in={open}>
-        <div className={styles['admin-join-queue-form']}>
-          <JoinQueueForm
-            buttonName="Add"
-            queueId={props.queueId}
-            joinQueueHandler={props.joinQueueHandler}
-          />
-        </div>
-      </Collapse>
+        <Collapse timeout="auto" in={open}>
+          <div className={styles['admin-join-queue-form']}>
+            <JoinQueueForm
+              buttonName="Add"
+              queueId={props.queueId}
+              joinQueueHandler={props.joinQueueHandler}
+            />
+          </div>
+        </Collapse>
+      </button>
     </>
   );
 };

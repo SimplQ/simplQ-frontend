@@ -3,11 +3,13 @@ import SidePanel from '../../common/SidePanel';
 import LeaveQueue from './LeaveQueue';
 import ContactAdmin from './ContactAdmin';
 import QueueDetails from './QueueDetails';
+import NotificationContainer from './NotificationContainer';
 
 export default (props) => (
   <SidePanel>
-    <LeaveQueue />
+    <LeaveQueue leaveQueueHandler={props.leaveQueueHandler} />
     <ContactAdmin />
     <QueueDetails queueId={props.queueId} />
+    <NotificationContainer />
   </SidePanel>
 );
