@@ -315,22 +315,6 @@
   position: fixed;
   display: flex;
   flex-wrap: wrap;
-
-  .logo {
-    display: flex;
-    cursor: pointer;
-
-    p {
-      font-family: 'Pacifico', Regular;
-      color: $primary-color-dark;
-      cursor: pointer;
-    }
-    & > img {
-      height: 3rem;
-      width: 3rem;
-      margin: 0.5rem;
-    }
-  }
 }
 
 .center-horizontally {

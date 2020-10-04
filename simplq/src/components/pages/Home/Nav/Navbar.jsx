@@ -1,13 +1,7 @@
 import React from 'react';
 import styles from '../../../../styles/homePage.module.scss';
 import Burger from './Burger';
-
-const Logo = () => (
-  <div className={styles['logo']}>
-    <img src="LogoLight.png" alt="Home" />
-    <p>SimplQ</p>
-  </div>
-);
+import Logo from '../../../common/ClickableLogo';
 
 const Navbar = () => {
   return (

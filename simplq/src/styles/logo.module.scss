@@ -1,0 +1,17 @@
+@import 'utils.scss';
+
+.logo {
+  display: flex;
+  cursor: pointer;
+
+  p {
+    font-family: $header-font;
+    color: $primary-color-dark;
+    cursor: pointer;
+  }
+  & > img {
+    height: 3rem;
+    width: 3rem;
+    margin: 0.5rem;
+  }
+}
