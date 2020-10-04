@@ -10,11 +10,6 @@ const scrollToHowItWorks = () => {
   smoothScrollTo(element);
 };
 
-const scrollToContactUs = () => {
-  const element = document.getElementById('target_contact_us');
-  smoothScrollTo(element);
-};
-
 const LeftNav = ({ open }) => {
   return (
     <ul className={styles['left-nav']} open={open}>
@@ -27,7 +22,12 @@ const LeftNav = ({ open }) => {
         <a>My Queues</a>
       </li>
       <li>
-        <a tabIndex={-1} role="link" onKeyDown={scrollToContactUs} onClick={scrollToContactUs}>
+        <a
+          tabIndex={-1}
+          role="link"
+          target="_blank"
+          href="https://iimb.qualtrics.com/jfe/form/SV_aY8FY91ztRX9NvD"
+        >
           Contact Us
         </a>
       </li>
