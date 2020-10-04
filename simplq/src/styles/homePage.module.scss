@@ -273,6 +273,8 @@
     width: 15rem;
     padding-top: 3.5rem;
     transition: transform 0.3s ease-in-out;
+    left: auto;
+    opacity: 0;
     li {
       padding: 1.5rem 0;
     }
@@ -281,6 +283,7 @@
     }
     transform: translateX(100%);
     &[open] {
+      opacity: 1;
       transform: translateX(0);
     }
   }
