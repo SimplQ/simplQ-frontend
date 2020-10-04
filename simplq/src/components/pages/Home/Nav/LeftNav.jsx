@@ -1,5 +1,4 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 
 import React from 'react';
 import styles from '../../../../styles/homePage.module.scss';
@@ -34,7 +33,7 @@ const LeftNav = ({ open }) => {
   return (
     <ul className={styles['left-nav']} open={open}>
       <li>
-        <a onKeyDown={scrollToHowItWorks} onClick={scrollToHowItWorks}>
+        <a tabIndex={0} role="link" onKeyDown={scrollToHowItWorks} onClick={scrollToHowItWorks}>
           How it works
         </a>
       </li>
@@ -42,7 +41,7 @@ const LeftNav = ({ open }) => {
         <a>My Queues</a>
       </li>
       <li>
-        <a onKeyDown={scrollToContactUs} onClick={scrollToContactUs}>
+        <a tabIndex={-1} role="link" onKeyDown={scrollToContactUs} onClick={scrollToContactUs}>
           Contact Us
         </a>
       </li>
