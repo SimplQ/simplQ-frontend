@@ -10,11 +10,6 @@ const scrollToHowItWorks = () => {
   smoothScrollTo(element);
 };
 
-const scrollToContactUs = () => {
-  const element = document.getElementById('target_contact_us');
-  smoothScrollTo(element);
-};
-
 const LeftNav = ({ open }) => {
   return (
     <ul className={styles['left-nav']} open={open}>
