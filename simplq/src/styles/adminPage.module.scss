@@ -21,6 +21,13 @@
     }
   }
 
+  .collapsable {
+    display: flex;
+    flex-direction: column;
+    .collapsable-header {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
   .expand-icon {
     margin-left: 2rem;
     cursor: pointer;
@@ -28,6 +35,12 @@
 
   .expand-icon-opened {
     transform: rotate(180deg);
+  }
+
+    }
+    .collapsable-content {
+
+    }
   }
 }
 .admin-join-queue-form {
