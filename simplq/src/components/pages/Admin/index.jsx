@@ -1,6 +1,8 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { useState, useEffect, useCallback } from 'react';
+import IconButton from '@material-ui/core/IconButton';
+import EditIcon from '@material-ui/icons/Edit';
 import TokenList from './TokenList';
 import * as TokenService from '../../../services/token';
 import * as QueueService from '../../../services/queue';
@@ -20,12 +22,16 @@ export default (props) => {
 
   const [tokens, setTokens] = useState();
   const [queueName, setQueueName] = useState();
+  const [description, setDescription] = useState('');
+
   const update = useCallback(() => {
     clearTimeout(timeoutId);
     QueueService.get(queueId)
       .then((data) => {
         setTokens(data.tokens);
         setQueueName(data.queueName);
+        // TODO: setDescription as soon as the backend returns it
+        setDescription('A nice dummy description');
         timeoutId = setTimeout(update, TIMEOUT);
       })
       .catch((err) => {
@@ -66,7 +72,15 @@ export default (props) => {
 
   const HeaderSection = () => (
     <div className={styles['header-bar']}>
-      <Header className={styles['header']}>{queueName}</Header>
+      <div className={styles['header-title']}>
+        <Header className={styles['header']}>{queueName}</Header>
+        <div className={styles['sub-header']}>
+          <h2>{description}</h2>
+          <IconButton size="small">
+            <EditIcon />
+          </IconButton>
+        </div>
+      </div>
       <div className={styles['main-button-group']}>
         <div className={styles['admin-button']}>
           <RefreshButton onClick={update} />
