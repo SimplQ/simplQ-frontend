@@ -201,6 +201,7 @@
   right: 1rem;
   z-index: 5;
   display: none;
+  cursor: pointer;
   @media (max-width: 768px) {
     display: flex;
     justify-content: space-around;
@@ -314,15 +315,21 @@
   position: fixed;
   display: flex;
   flex-wrap: wrap;
-  p {
-    font-family: 'Pacifico', Regular;
+
+  .logo {
+    display: flex;
     cursor: pointer;
-  }
-  & > img {
-    height: 3rem;
-    width: 3rem;
-    margin: 0.5rem;
-    cursor: pointer;
+
+    p {
+      font-family: 'Pacifico', Regular;
+      color: $primary-color-dark;
+      cursor: pointer;
+    }
+    & > img {
+      height: 3rem;
+      width: 3rem;
+      margin: 0.5rem;
+    }
   }
 }
 

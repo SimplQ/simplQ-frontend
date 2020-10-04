@@ -20,7 +20,7 @@ export default () => (
         </div>
         <div className={styles['card-body']}>
           <div className={styles['description-content-container']}>
-            <b className={styles['description-content']}>
+            <b>
               SimplQ is a completely web based queue management solution that anyone can use to
               create instant virtual queues.
             </b>
