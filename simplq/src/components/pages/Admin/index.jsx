@@ -49,6 +49,7 @@ export default (props) => {
           contactNumber,
           notifiable: false,
           tokenStatus: response.tokenStatus,
+          tokenNumber: response.tokenNumber,
         },
       ]);
     } catch (err) {
@@ -70,7 +71,7 @@ export default (props) => {
           <RefreshButton onClick={update} />
         </div>
         <div className={styles['admin-button']}>
-          <ShareQueue queueId={queueId} className={styles.shareButton} />
+          <ShareQueue queueName={queueName} className={styles.shareButton} />
         </div>
       </div>
     </div>
@@ -90,7 +91,9 @@ export default (props) => {
       <Navbar />
       <HeaderSection />
       <div className={styles['main-body']}>
-        <div className={styles['token-list']}>
+        <div
+          className={tokens?.length > 0 ? styles['token-list-with-content'] : styles['token-list']}
+        >
           <TokenList tokens={tokens} queueId={queueId} removeTokenHandler={removeToken} />
         </div>
         <SidePanel queueId={queueId} joinQueueHandler={addNewToken} />

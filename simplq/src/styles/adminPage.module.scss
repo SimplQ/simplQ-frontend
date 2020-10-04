@@ -42,6 +42,15 @@
   flex-direction: column;
 }
 
+.token-list-with-content {
+  @include center-horizontally();
+  max-width: 40rem;
+  padding: 2rem;
+  margin: 0 auto auto auto;
+  display: flex;
+  flex-direction: column;
+}
+
 .token {
   display: flex;
   flex-direction: row;

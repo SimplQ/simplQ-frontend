@@ -101,7 +101,6 @@
   }
 }
 
-
 .queue-info {
   @include center-vertically();
   @include center-horizontally();
@@ -127,7 +126,7 @@
         margin: 0;
         padding: 0;
         justify-content: center;
-        img{
+        img {
           float: left;
           position: relative;
           bottom: -0.3rem;
@@ -136,14 +135,14 @@
           margin-right: 0.6rem;
         }
         h3 {
-          color: #3A3768;
+          color: #3a3768;
           margin: 0;
           padding: 0;
         }
         p {
           margin: 1rem;
           text-align: left;
-          color: #3A3768;
+          color: #3a3768;
           padding-left: 0.6rem;
         }
       }
@@ -274,6 +273,8 @@
     width: 15rem;
     padding-top: 3.5rem;
     transition: transform 0.3s ease-in-out;
+    left: auto;
+    opacity: 0;
     li {
       padding: 1.5rem 0;
     }
@@ -282,6 +283,7 @@
     }
     transform: translateX(100%);
     &[open] {
+      opacity: 1;
       transform: translateX(0);
     }
   }
