@@ -92,9 +92,7 @@ export default (props) => {
       <HeaderSection />
       <div className={styles['main-body']}>
         <div
-          className={tokens?.length > 0
-            ? styles['token-list-with-content']
-            : styles['token-list']}
+          className={tokens?.length > 0 ? styles['token-list-with-content'] : styles['token-list']}
         >
           <TokenList tokens={tokens} queueId={queueId} removeTokenHandler={removeToken} />
         </div>
