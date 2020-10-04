@@ -4,7 +4,7 @@
   background-color: $primary-color-dark;
   color: #fff;
   display: inline-block;
-  padding: 0.2em 0.5em 0.3em 0.5em;
+  padding: 0.2em 0.5em 0.3em 0.2em;
   font-weight: bold;
   font-size: large;
   border: 2px solid $primary-color-dark;
@@ -50,11 +50,14 @@
   display: flex;
   align-items: center;
   max-width: 14rem;
-  min-height: 1rem;
+  max-height: 1.1rem;
   & > * {
     margin: 0.2rem;
   }
 }
+
+
+
 
 .fork-on-github-button {
   text-decoration: none;
