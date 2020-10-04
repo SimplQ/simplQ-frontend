@@ -23,9 +23,12 @@
     margin-left: 2rem;
     cursor: pointer;
   }
+
+  .expand-icon-opened {
+    transform: rotate(180deg);
+  }
 }
 .admin-join-queue-form {
-  display: none;
   justify-content: center;
   align-items: center;
   margin: 0;
