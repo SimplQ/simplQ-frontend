@@ -1,11 +1,21 @@
+<<<<<<< HEAD
 import makeRequest from './axios';
 
 export const create = async (name, contact, notifiable, queueId) => {
+=======
+import { makeRequest } from './axios';
+
+export const create = async (name, contact, notifyable, queueId) => {
+>>>>>>> upstream/master
   const response = await makeRequest('post', '/token', {
     name,
     contactNumber: contact,
     queueId,
+<<<<<<< HEAD
     notifiable,
+=======
+    notifyable,
+>>>>>>> upstream/master
   });
   return response.data;
 };

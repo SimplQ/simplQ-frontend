@@ -42,6 +42,12 @@ This [readme](/simplq/readme.md) file details the file structure and tools used.
 
 Implementation Roadmap: https://github.com/SimplQ/simplQ-frontend/issues/207
 
+<<<<<<< HEAD
 # Hall of Frame
 
 [![](https://sourcerer.io/fame/daltonfury42/SimplQ/simplQ-frontend/images/0)](https://sourcerer.io/fame/daltonfury42/SimplQ/simplQ-frontend/links/0)[![](https://sourcerer.io/fame/daltonfury42/SimplQ/simplQ-frontend/images/1)](https://sourcerer.io/fame/daltonfury42/SimplQ/simplQ-frontend/links/1)[![](https://sourcerer.io/fame/daltonfury42/SimplQ/simplQ-frontend/images/2)](https://sourcerer.io/fame/daltonfury42/SimplQ/simplQ-frontend/links/2)[![](https://sourcerer.io/fame/daltonfury42/SimplQ/simplQ-frontend/images/3)](https://sourcerer.io/fame/daltonfury42/SimplQ/simplQ-frontend/links/3)[![](https://sourcerer.io/fame/daltonfury42/SimplQ/simplQ-frontend/images/4)](https://sourcerer.io/fame/daltonfury42/SimplQ/simplQ-frontend/links/4)[![](https://sourcerer.io/fame/daltonfury42/SimplQ/simplQ-frontend/images/5)](https://sourcerer.io/fame/daltonfury42/SimplQ/simplQ-frontend/links/5)[![](https://sourcerer.io/fame/daltonfury42/SimplQ/simplQ-frontend/images/6)](https://sourcerer.io/fame/daltonfury42/SimplQ/simplQ-frontend/links/6)[![](https://sourcerer.io/fame/daltonfury42/SimplQ/simplQ-frontend/images/7)](https://sourcerer.io/fame/daltonfury42/SimplQ/simplQ-frontend/links/7)
+=======
+There are a ton of features being planned. So if you are considering contributing to this repository, please first discuss the change you wish to make via the [issue tracker](https://github.com/SimplQ/simplQ-frontend/issues). You could start off with something small and if you need help, we could mentor you as well. Let's work together.
+
+**NOTE: The frontend is being revamped heavily right now**. To view the progress, please check the [new-frontend](https://github.com/SimplQ/simplQ-frontend/tree/new-frontend) branch. We are following this [approach](https://github.com/SimplQ/simplQ-frontend/blob/new-frontend/simplq/readme.md) and implementing this new [design](https://xd.adobe.com/view/8d227f50-0d35-4319-63ad-ff4bad308415-fb13/). You can see the changes live [here](https://new.simplq.me/).
+>>>>>>> upstream/master

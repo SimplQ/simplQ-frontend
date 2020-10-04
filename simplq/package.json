@@ -36,9 +36,13 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+<<<<<<< HEAD
     "lint": "eslint src/ --ext .js,.jsx --fix",
     "storybook": "start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -s public"
+=======
+    "lint": "eslint src/*.js --fix"
+>>>>>>> upstream/master
   },
   "eslintConfig": {
     "extends": "react-app"
