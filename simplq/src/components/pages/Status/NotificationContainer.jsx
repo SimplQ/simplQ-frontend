@@ -45,22 +45,16 @@ export default () => {
     }
   };
 
-  if (notificationPermission === 'default') {
-    return (
-      <div className={styles['notification-container']}>
-        <Switch
-          classes={{ thumb: 'switch-thumb' }}
-          onChange={askNotificationPermission}
-          size="small"
-        />
-        <span>Enable notification</span>
-        <InfoOutlinedIcon classes={{ root: 'info-icon' }} />
-      </div>
-    );
-  }
-
-  if (notificationPermission === 'denied') {
-    return <>*If required, please enable notifications in the page settings</>;
-  }
-  return null;
+  return (
+    <div className={styles['notification-container']}>
+      <Switch
+        checked={notificationPermission === 'granted'}
+        classes={{ thumb: 'switch-thumb' }}
+        onChange={askNotificationPermission}
+        size="small"
+      />
+      <span>Enable notification</span>
+      <InfoOutlinedIcon classes={{ root: 'info-icon' }} />
+    </div>
+  );
 };

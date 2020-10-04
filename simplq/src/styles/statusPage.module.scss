@@ -74,6 +74,18 @@ input[type='checkbox']:checked ~ .details {
   min-width: 15rem;
   font-family: Myanmar Text;
   font-weight: 400;
+  background: none;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  outline: inherit;
+  padding: 0;
+  cursor: pointer;
+  transition: background 300ms ease-in-out;
+
+  &:hover {
+    background: #f8f9fa;
+  }
 
   & > * {
     margin: 0.2rem;
@@ -85,6 +97,10 @@ input[type='checkbox']:checked ~ .details {
       color: #3a3768;
       font-size: 55px;
     }
+  }
+
+  & > div {
+    text-align: left;
   }
 
   h2 {

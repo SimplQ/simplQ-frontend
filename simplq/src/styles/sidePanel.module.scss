@@ -2,11 +2,11 @@
 
 .side-panel {
   box-sizing: border-box;
-  padding: 0 6rem 39px 0;
+  padding: 0 6rem 2.45rem 0;
   display: flex;
   flex-flow: column;
 
-  li {
+  > button {
     padding: 0.5rem 1rem;
     border-bottom: 1px solid $primary-color-dark;
   }

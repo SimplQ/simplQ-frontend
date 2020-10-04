@@ -3,6 +3,6 @@ import styles from '../../styles/sidePanel.module.scss';
 
 export default (props) => (
   <>
-    <ul className={styles['side-panel']}>{props.children}</ul>
+    <div className={styles['side-panel']}>{props.children}</div>
   </>
 );
