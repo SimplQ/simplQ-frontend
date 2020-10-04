@@ -37,7 +37,8 @@
   @include center-horizontally();
   max-width: 40rem;
   padding: 2rem;
-  margin: auto;
+  margin: 0 auto;
+  justify-content: initial;
   display: flex;
   flex-direction: column;
 }
