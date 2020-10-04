@@ -163,6 +163,19 @@
   }
 }
 
+.header-title {
+  padding-left: 2rem;
+
+  .sub-header {
+    display: flex;
+    font-family: Pacifico;
+    font-size: 0.8rem;
+    font-weight: 300;
+    color: #3a3768;
+    align-items: center;
+  }
+}
+
 .header-bar {
   @include background-color();
   padding: 1.5rem;
@@ -173,7 +186,7 @@
   .header {
     @include standard-header();
     font-size: 2.7rem;
-    padding-left: 2rem;
+    margin-bottom: 0;
   }
 
   .admin-button {
@@ -212,14 +225,38 @@
   position: fixed;
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
+
   & > img {
     height: 3rem;
     width: 3rem;
     margin: 0.5rem;
     cursor: pointer;
   }
+
   p {
     font-family: $header-font;
     cursor: pointer;
+  }
+
+  & > div {
+    flex-grow: 1;
+    text-align: right;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .header-bar {
+    flex-flow: column nowrap;
+    align-items: center;
+
+    .header-title {
+      padding-left: 0;
+    }
+
+    .main-button-group {
+      margin: 0;
+      padding-right: 0;
+    }
   }
 }
