@@ -15,7 +15,7 @@ const Slide = (props) => {
 
 const StandardSlider = (props) => {
   const slides = props.slides.map((slide) => (
-    <div>
+    <div key={slide.title}>
       <Slide key={slide.imgSrc} slide={slide} />
     </div>
   ));
