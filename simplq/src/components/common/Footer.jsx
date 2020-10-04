@@ -3,7 +3,7 @@ import styles from '../../styles/footer.module.scss';
 import { ForkOnGithubButton } from './Button/Button.stories';
 
 export default () => (
-  <div className={styles['footer']}>
+  <div id="target_contact_us" className={styles['footer']}>
     <div className={styles['main-card-container']}>
       <div className={styles['card']}>
         <div className={styles['card-header']}>
