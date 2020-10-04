@@ -1,0 +1,11 @@
+@import 'utils';
+
+.side-panel {
+  padding-top: 1.5rem;
+  padding-right: 6rem;
+
+  > div {
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid $primary-color-dark;
+  }
+}

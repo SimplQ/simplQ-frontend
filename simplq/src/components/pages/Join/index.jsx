@@ -9,19 +9,29 @@ import PageNotFound from '../PageNotFound';
 import LoadingIndicator from '../../common/LoadingIndicator';
 
 export default function JoinQueueWithDetails(props) {
-  const queueId = props.match.params.queueId;
+  const queueName = props.match.params.queueName;
   const [queueStatusResponse, setQueueStatusResponse] = useState();
   const [error, setError] = useState(false);
   useEffect(() => {
     async function fetchData() {
-      const response = await QueueService.getStatus(queueId).catch((e) => {
+      const response = await QueueService.getStatusByName(queueName).catch((e) => {
         handleApiErrors(e);
         setError(true);
       });
       setQueueStatusResponse(response);
     }
     fetchData();
-  }, [queueId]);
+  }, [queueName]);
+
+  if (error) {
+    return <PageNotFound history={props.history} />;
+  }
+
+  if (!queueStatusResponse) {
+    return <LoadingIndicator />;
+  }
+
+  const queueId = queueStatusResponse.queueId;
 
   const joinQueueHandler = (name, contactNumber) => {
     return TokenService.create(name, contactNumber, true, queueId)
@@ -33,18 +43,10 @@ export default function JoinQueueWithDetails(props) {
       });
   };
 
-  if (error) {
-    return <PageNotFound history={props.history} />;
-  }
-
-  if (!queueStatusResponse) {
-    return <LoadingIndicator />;
-  }
-
   return (
     <div>
       <SimplQHeader />
-      <Header className={styles.header} text={queueStatusResponse.queueName} />
+      <Header className={styles.header}>{queueStatusResponse.queueName}</Header>
       <p className={styles['message']}>Please enter your contact details to join this queue</p>
       <JoinQueueForm queueId={queueId} joinQueueHandler={joinQueueHandler} />
     </div>

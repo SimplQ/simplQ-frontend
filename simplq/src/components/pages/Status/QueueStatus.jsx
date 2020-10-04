@@ -2,12 +2,11 @@ import React, { useState, useEffect, useCallback } from 'react';
 import * as TokenService from '../../../services/token';
 import { handleApiErrors } from '../../ErrorHandler';
 import styles from '../../../styles/statusPage.module.scss';
-import Button from '../../common/Button';
-import Header, { SimplQHeader } from '../../common/Header';
+import Header from '../../common/Header';
 import StatusContainer from './StatusContainer';
-import QueueDetails from './QueueDetails';
-import NotificationButton from '../../common/NotificationButton';
 import LoadingIndicator from '../../common/LoadingIndicator';
+import StatusSidePanel from './StatusSidePanel';
+import TokenNumber from './TokenNumber';
 
 const TIMEOUT = 10000;
 let timeoutId;
@@ -65,47 +64,22 @@ function QueueStatus(props) {
       .catch(handleApiErrors);
   };
 
-  const renderButtons = () => {
-    if (tokenStatusResponse.tokenStatus !== 'REMOVED' && !updateInProgress) {
-      return (
-        <div className={styles['button-group']}>
-          <div>
-            <Button onClick={update}>Check Status</Button>
-          </div>
-          <div>
-            <Button onClick={onDeleteClick}>Leave Queue</Button>
-          </div>
-          <div>
-            <NotificationButton />
-          </div>
-        </div>
-      );
-    }
-    return <div />;
-  };
-
-  const renderDetails = () => {
-    if (tokenStatusResponse.tokenStatus !== 'REMOVED') {
-      return <QueueDetails queueId={tokenStatusResponse.queueId} />;
-    }
-    return <div />;
-  };
-
   if (!tokenStatusResponse) {
-    return <LoadingIndicator />; // Todo(https://github.com/SimplQ/simplQ-frontend/issues/162)
+    return <LoadingIndicator />;
   }
 
   return (
     <>
-      <SimplQHeader />
-      <Header text={tokenStatusResponse.queueName} className={styles.header} />
-      <StatusContainer
-        updateInProgress={updateInProgress}
-        tokenStatus={tokenStatusResponse.tokenStatus}
-        aheadCount={tokenStatusResponse.aheadCount}
-      />
-      {renderButtons()}
-      {renderDetails()}
+      <Header className={styles['header']}>{tokenStatusResponse.queueName}</Header>
+      <div className={styles['main-body']}>
+        <TokenNumber />
+        <StatusContainer
+          updateInProgress={updateInProgress}
+          tokenStatus={tokenStatusResponse.tokenStatus}
+          aheadCount={tokenStatusResponse.aheadCount}
+        />
+        <StatusSidePanel leaveQueueHandler={onDeleteClick} queueId={tokenStatusResponse.queueId} />
+      </div>
     </>
   );
 }

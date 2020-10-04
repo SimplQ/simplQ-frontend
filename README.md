@@ -38,7 +38,7 @@ Feel free to fork and improve, and do send a pull request. Look for issues label
 
 There are a ton of features being planned. So if you are considering contributing to this repository, please first discuss the change you wish to make via the issue tracker.
 
-This [readme](/simplq/readme.md) file details the file structure and tools used. Please go through it first. The frontend is being revamped heavily right now and the changes are being tested in this branch. We are following this [approach](https://github.com/SimplQ/simplQ-frontend/blob/new-frontend/simplq/readme.md) and implementing this new [design](https://xd.adobe.com/view/ad1db074-03bf-45b1-537b-98d9d524ec82-db2c/grid) and here, the assets (icons, images) we're using are available for download. You can see the WIP new frontend live [here](https://new.simplq.me/).
+This [readme](/simplq/readme.md) file details the file structure and tools used. Please go through it first. The frontend is being revamped heavily right now and the changes are being tested in this branch. We are following this [approach](https://github.com/SimplQ/simplQ-frontend/blob/new-frontend/simplq/readme.md) and implementing this new [design](https://xd.adobe.com/view/ad1db074-03bf-45b1-537b-98d9d524ec82-db2c/grid) and here, the assets (icons, images) we're using are available for download. You can see the frontend live [here](https://simplq.me/).
 
 Implementation Roadmap: https://github.com/SimplQ/simplQ-frontend/issues/207
 
