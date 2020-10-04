@@ -59,6 +59,11 @@ export default () => (
           <div className={styles['list-container']}>
             <ul>
               <li>
+                <a target="_blank" href="https://iimb.qualtrics.com/jfe/form/SV_aY8FY91ztRX9NvD">
+                  Contact Us
+                </a>
+              </li>
+              <li>
                 <a href="https://github.com/SimplQ/simplQ-frontend">Github</a>
               </li>
               <li>
