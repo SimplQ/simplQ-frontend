@@ -22,12 +22,7 @@ const LeftNav = ({ open }) => {
         <a>My Queues</a>
       </li>
       <li>
-        <a
-          tabIndex={-1}
-          role="link"
-          target="_blank"
-          href="https://iimb.qualtrics.com/jfe/form/SV_aY8FY91ztRX9NvD"
-        >
+        <a tabIndex={-1} href="https://iimb.qualtrics.com/jfe/form/SV_aY8FY91ztRX9NvD">
           Contact Us
         </a>
       </li>
