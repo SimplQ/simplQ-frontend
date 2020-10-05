@@ -1,5 +1,9 @@
 @import 'utils';
 
+
+.message{
+ text-align: center;
+}
 .form {
   display: flex;
   flex-direction: column;
@@ -11,5 +15,104 @@
 
   & > div {
     margin: 1rem;
+  }
+}
+.header-title {
+  margin: auto;
+  .sub-header {
+    display: flex;
+    font-family: Pacifico;
+    font-size: 0.8rem;
+    font-weight: 300;
+    color: #3a3768;
+    align-items: center;
+  }
+}
+
+.header-bar {
+  @include background-color();
+  padding: 0.5rem;
+  // padding-top: 4rem;
+  
+  display: flex;
+  flex-wrap: wrap;
+  .simpleq-logo{
+    margin-top: 35px;
+  }
+  .header {
+    @include standard-header();
+    font-size: 2.7rem;
+    margin-bottom: 0;
+  }
+
+  .admin-button {
+    padding: 0 0.1rem;
+  }
+
+  .main-button-group {
+    @include center-horizontally();
+    padding-right: 3rem;
+    padding-top: 1.5rem;
+    margin-right: 0;
+    & > div {
+      margin: 0.5rem;
+    }
+    @media screen and (max-width: 400px) {
+      padding-right: 0;
+      flex-direction: column;
+    }
+  }
+}
+
+.main-body {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+
+.navbar {
+  width: 100%;
+  height: 4rem;
+  background-color: #fff;
+  border-bottom: 0.2rem solid #f1f1f1;
+  padding: 0 3rem;
+  z-index: 99;
+  position: fixed;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+
+  & > img {
+    height: 3rem;
+    width: 3rem;
+    margin: 0.5rem;
+    cursor: pointer;
+  }
+
+  p {
+    font-family: $header-font;
+    cursor: pointer;
+  }
+
+  & > div {
+    flex-grow: 1;
+    text-align: right;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .header-bar {
+    flex-flow: column nowrap;
+    align-items: center;
+
+    .header-title {
+      padding-left: 0;
+    }
+
+    .main-button-group {
+      margin: 0;
+      padding-right: 0;
+    }
   }
 }

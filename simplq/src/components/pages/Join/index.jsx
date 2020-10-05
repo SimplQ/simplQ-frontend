@@ -3,10 +3,11 @@ import JoinQueueForm from './Form';
 import * as TokenService from '../../../services/token';
 import * as QueueService from '../../../services/queue';
 import { handleApiErrors } from '../../ErrorHandler';
-import Header, { SimplQHeader } from '../../common/Header';
+import Header from '../../common/Header';
 import styles from '../../../styles/joinPage.module.scss';
 import PageNotFound from '../PageNotFound';
 import LoadingIndicator from '../../common/LoadingIndicator';
+import Logo from '../../common/ClickableLogo';
 
 export default function JoinQueueWithDetails(props) {
   const queueName = props.match.params.queueName;
@@ -45,8 +46,17 @@ export default function JoinQueueWithDetails(props) {
 
   return (
     <div>
-      <SimplQHeader />
-      <Header className={styles.header}>{queueStatusResponse.queueName}</Header>
+      <div className={styles['header-bar']}>
+        <div className={styles['simpleq-logo']}>
+          <Logo history={props.history} />
+        </div>
+        <div className={styles['header-title']}>
+          <Header className={styles['header']}>{queueStatusResponse.queueName}</Header>
+          <div className={styles['sub-header']}>
+            <h2>a short description</h2>
+          </div>
+        </div>
+      </div>
       <p className={styles['message']}>Please enter your contact details to join this queue</p>
       <JoinQueueForm queueId={queueId} joinQueueHandler={joinQueueHandler} />
     </div>
