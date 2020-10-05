@@ -1,4 +1,5 @@
 import React from 'react';
+import GitHubIcon from '@material-ui/icons/GitHub';
 import RefreshIcon from '@material-ui/icons/Refresh';
 import StandardButton from './Button';
 import styles from '../../../styles/buttons.module.scss';
@@ -42,7 +43,8 @@ export const ForkOnGithubButton = () => {
         className={styles['fork-on-github-button']}
         href="https://github.com/SimplQ/simplQ-frontend"
       >
-        Fork on Github
+        <span>Contribute on Github</span>
+        <GitHubIcon />
       </a>
     </StandardButton>
   );

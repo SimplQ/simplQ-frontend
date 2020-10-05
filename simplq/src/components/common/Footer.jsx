@@ -3,7 +3,7 @@ import styles from '../../styles/footer.module.scss';
 import { ForkOnGithubButton } from './Button/Button.stories';
 
 export default () => (
-  <div className={styles['footer']}>
+  <div id="target_contact_us" className={styles['footer']}>
     <div className={styles['main-card-container']}>
       <div className={styles['card']}>
         <div className={styles['card-header']}>
@@ -20,7 +20,7 @@ export default () => (
         </div>
         <div className={styles['card-body']}>
           <div className={styles['description-content-container']}>
-            <b className={styles['description-content']}>
+            <b>
               SimplQ is a completely web based queue management solution that anyone can use to
               create instant virtual queues.
             </b>
@@ -58,6 +58,9 @@ export default () => (
         <div className={styles['card-body']}>
           <div className={styles['list-container']}>
             <ul>
+              <li>
+                <a href="https://iimb.qualtrics.com/jfe/form/SV_aY8FY91ztRX9NvD">Contact Us</a>
+              </li>
               <li>
                 <a href="https://github.com/SimplQ/simplQ-frontend">Github</a>
               </li>

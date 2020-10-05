@@ -201,6 +201,7 @@
   right: 1rem;
   z-index: 5;
   display: none;
+  cursor: pointer;
   @media (max-width: 768px) {
     display: flex;
     justify-content: space-around;
@@ -261,7 +262,7 @@
   a {
     text-decoration: none;
     color: grey;
-    cursor: auto;
+    cursor: pointer;
   }
   @media (max-width: 768px) {
     flex-flow: column nowrap;
@@ -273,6 +274,8 @@
     width: 15rem;
     padding-top: 3.5rem;
     transition: transform 0.3s ease-in-out;
+    left: auto;
+    opacity: 0;
     li {
       padding: 1.5rem 0;
     }
@@ -281,6 +284,7 @@
     }
     transform: translateX(100%);
     &[open] {
+      opacity: 1;
       transform: translateX(0);
     }
   }
@@ -311,16 +315,6 @@
   position: fixed;
   display: flex;
   flex-wrap: wrap;
-  p {
-    font-family: 'Pacifico', Regular;
-    cursor: pointer;
-  }
-  & > img {
-    height: 3rem;
-    width: 3rem;
-    margin: 0.5rem;
-    cursor: pointer;
-  }
 }
 
 .center-horizontally {
