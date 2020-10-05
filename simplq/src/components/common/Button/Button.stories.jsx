@@ -30,7 +30,7 @@ export const RefreshButton = (props) => {
     <StandardButton onClick={props.onClick} outlined>
       <div className={styles['admin-main-button']}>
         <RefreshIcon />
-        <p>Refresh status</p>
+        <p>Refresh queue</p>
       </div>
     </StandardButton>
   );
