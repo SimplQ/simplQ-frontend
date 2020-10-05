@@ -8,6 +8,7 @@
   padding: 0;
   min-width: 15rem;
   text-align: left;
+  cursor: pointer;
   color: $primary-color-dark;
 
   & > * {
@@ -16,8 +17,11 @@
 
   div {
     p {
-      margin-top: 0;
+      margin: 0 0 0.8rem 0.5rem;
       color: $primary-color-dark;
+    }
+    h2 {
+      margin: 1rem 0 0 0.5rem;
     }
   }
 
@@ -29,8 +33,9 @@
       flex-direction: row;
       align-items: center;
       .expand-icon {
-        margin-left: 2rem;
+        margin-left: 7rem;
         cursor: pointer;
+        align-items: right;
       }
 
       .expand-icon-opened {
@@ -189,8 +194,7 @@
 
 .header-bar {
   @include background-color();
-  padding: 1.5rem;
-  padding-top: 4rem;
+  padding: 3rem 10rem 0rem 10rem;
   display: flex;
   flex-wrap: wrap;
 
@@ -198,6 +202,7 @@
     @include standard-header();
     font-size: 2.7rem;
     margin-bottom: 0;
+    text-align: left !important;
   }
 
   .admin-button {
@@ -223,7 +228,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin-bottom: 3rem;
+  margin: 3rem 10rem 3rem 10rem;
 }
 
 .navbar {
@@ -231,7 +236,7 @@
   height: 4rem;
   background-color: #fff;
   border-bottom: 0.2rem solid #f1f1f1;
-  padding: 0 3rem;
+  padding: 0 11rem;
   z-index: 99;
   position: fixed;
   display: flex;

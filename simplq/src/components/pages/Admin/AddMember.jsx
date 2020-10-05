@@ -17,8 +17,6 @@ export default (props) => {
       className={
         isOpen ? `${styles['expand-icon']} ${styles['expand-icon-opened']}` : styles['expand-icon']
       }
-      onClick={handleOnClick}
-      onKeyDown={handleOnClick}
     >
       <img src="/images/expand_more.svg" alt="expand" />
     </div>
@@ -27,12 +25,12 @@ export default (props) => {
   return (
     <>
       <button type="button" className={styles['admin-action']}>
-        <div className={styles['collapsable']}>
+        <div onClick={handleOnClick} onKeyDown={handleOnClick} className={styles['collapsable']}>
           <div className={styles['collapsable-header']}>
             <AddIcon fontSize="large" />
-            <div>
-              <h2>Add Member</h2>
-              <p>Add a person to this queue manually</p>
+            <div className={styles['admin-action-text']}>
+              <h2>Add User Manually</h2>
+              <p>Add person to queue manually</p>
             </div>
             <ExpandButton isOpen={open} />
           </div>
