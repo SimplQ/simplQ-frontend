@@ -1,46 +1,5 @@
 @import 'utils';
 
-.admin-action {
-  @include naked-button();
-  font-size: 0.8rem;
-  display: flex;
-  align-items: center;
-  padding: 0;
-  min-width: 15rem;
-  text-align: left;
-  color: $primary-color-dark;
-
-  & > * {
-    margin: 0.2rem;
-  }
-
-  div {
-    p {
-      margin-top: 0;
-      color: $primary-color-dark;
-    }
-  }
-
-  .collapsable {
-    display: flex;
-    flex-direction: column;
-    .collapsable-header {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      .expand-icon {
-        margin-left: 2rem;
-        cursor: pointer;
-      }
-
-      .expand-icon-opened {
-        transform: rotate(180deg);
-      }
-    }
-    .collapsable-content {
-    }
-  }
-}
 .admin-join-queue-form {
   justify-content: center;
   align-items: center;
