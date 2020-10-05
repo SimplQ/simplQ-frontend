@@ -34,8 +34,6 @@ export function JoinQueueForm(props) {
 
       try {
         const isValidNumber = phoneUtil.isValidNumberForRegion(phoneUtil.parse(phoneNr, country.countryCode), country.countryCode);
-        if (isValidNumber) {
-        }
         setInvalidContact(!isValidNumber);
       } catch (error) {
         setInvalidContact(true);
