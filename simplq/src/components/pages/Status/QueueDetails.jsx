@@ -1,14 +1,21 @@
-/* eslint-disable no-unused-vars */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import moment from 'moment';
 import InfoIcon from '@material-ui/icons/Info';
 import styles from '../../../styles/statusPage.module.scss';
 import * as QueueService from '../../../services/queue';
 import { handleApiErrors } from '../../ErrorHandler';
-import LoadingIndicator from '../../common/LoadingIndicator';
+import SidePanelButton from '../../common/SidePanelButton';
+
+const DetailRow = ({ title, value, large }) => (
+  <div className={styles['detail-row']}>
+    <span className={styles['detail-name']}>{title}</span>
+    <span className={`${styles['detail-value']} ${large ? styles['large-value'] : ''}`}>
+      {value}
+    </span>
+  </div>
+);
 
 export default (props) => {
-  // https://dabblet.com/gist/1506530 --> checkbox hack
   const [queueStatusResponse, setQueueStatusResponse] = useState();
 
   useEffect(() => {
@@ -19,64 +26,33 @@ export default (props) => {
     fetchData();
   }, [props.queueId]);
 
-  if (!queueStatusResponse) {
-    return <LoadingIndicator />;
-  }
+  const creationTime = useMemo(() => {
+    if (!queueStatusResponse) return '';
 
-  const localTimeStamp = moment(queueStatusResponse.queueCreationTimestamp); // TODO: Make sure the local time is always displayed
-  const creationTime = `${localTimeStamp.format('LT')} ${localTimeStamp.format('ll')}`;
+    const localTimeStamp = moment(queueStatusResponse.queueCreationTimestamp); // TODO: Make sure the local time is always displayed
+    return `${localTimeStamp.format('LT')} ${localTimeStamp.format('ll')}`;
+  }, [queueStatusResponse]);
 
-  //   return (
-  //     /* eslint-disable jsx-a11y/label-has-associated-control */
-  //     <div>
-  //       <label htmlFor="toggle">
-  //         <Header className={styles['details-header']}>Queue Details</Header>
-  //       </label>
-  //       <input type="checkbox" id="toggle" className={styles['visually-hidden']} />
-  //       <div className={styles.details}>
-  //         <table className={styles['center-table']}>
-  //           <tbody>
-  //             <tr>
-  //               <td>
-  //                 Queue Name:
-  //                 <span className={styles['detail-value']}>{queueStatusResponse.queueName}</span>
-  //               </td>
-  //             </tr>
-  //             <tr>
-  //               <td>
-  //                 People currently in queue:
-  //                 <span className={styles['detail-value']}>
-  //                   {queueStatusResponse.numberOfActiveTokens}
-  //                 </span>
-  //               </td>
-  //             </tr>
-  //             <tr>
-  //               <td>
-  //                 Creation time:
-  //                 <span className={styles['detail-value']}>{creationTime}</span>
-  //               </td>
-  //             </tr>
-  //             <tr>
-  //               <td>
-  //                 Total number of people joined so far in queue:
-  //                 <span className={styles['detail-value']}>
-  //                   {queueStatusResponse.totalNumberOfTokens}
-  //                 </span>
-  //               </td>
-  //             </tr>
-  //           </tbody>
-  //         </table>
-  //       </div>
-  //     </div>
-  //   );
-  // };
   return (
-    <button type="button" className={styles['user-action']}>
-      <InfoIcon />
-      <div>
-        <h2>Queue Details</h2>
-        <p>Other information about the queue</p>
+    <SidePanelButton
+      Icon={InfoIcon}
+      title="Queue Details"
+      description="Other information about the queue"
+      expandable
+      loading={!queueStatusResponse}
+    >
+      <div className={styles['detail']}>
+        <DetailRow
+          title="People currently in queue:"
+          value={queueStatusResponse?.numberOfActiveTokens}
+          large
+        />
+        <DetailRow title="Queue creation time:" value={creationTime} />
+        <DetailRow
+          title="Total number of people joined in queue:"
+          value={queueStatusResponse?.totalNumberOfTokens}
+        />
       </div>
-    </button>
+    </SidePanelButton>
   );
 };
