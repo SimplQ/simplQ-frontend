@@ -6,6 +6,7 @@ import InputField from '../../common/InputField';
 import styles from '../../../styles/joinPage.module.scss';
 import { JoinQButton } from '../../common/Button';
 import LoadingIndicator from '../../common/LoadingIndicator';
+import { PhoneNumberUtil } from 'google-libphonenumber';
 
 export function JoinQueueForm(props) {
   const [name, setName] = useState('');
@@ -23,9 +24,23 @@ export function JoinQueueForm(props) {
     }
   }
 
-  function handleContactChange(e) {
-    setContact(e);
-    setInvalidContact(false);
+  function handleContactChange(value, country) {
+    setContact(value);
+    const phoneUtil =  PhoneNumberUtil.getInstance();
+
+    if (country != null) {
+      // to make sure that the number is parsed as an international number, prepend +. 
+      const phoneNr = '+' + value;
+
+      try {
+        const isValidNumber = phoneUtil.isValidNumberForRegion(phoneUtil.parse(phoneNr, country.countryCode), country.countryCode);
+        setInvalidContact(!isValidNumber);
+      } catch (error) {
+        setInvalidContact(true);
+      }
+    } else {
+      setInvalidContact(true);
+    }  
   }
 
   const handleClick = () => {
@@ -35,6 +50,8 @@ export function JoinQueueForm(props) {
     }
     if (contact === '') {
       setInvalidContact(true);
+      return;
+    } else if (invalidContact) {
       return;
     }
 

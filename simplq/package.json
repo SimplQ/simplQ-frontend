@@ -15,6 +15,7 @@
     "aws-amplify": "^3.0.17",
     "axios": "^0.19.2",
     "components": "^0.1.0",
+    "google-libphonenumber": "^3.2.13",
     "material-ui-icons": "^1.0.0-beta.36",
     "moment": "^2.27.0",
     "node-sass": "^4.14.1",
