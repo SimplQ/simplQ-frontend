@@ -26,21 +26,24 @@ export function JoinQueueForm(props) {
 
   function handleContactChange(value, country) {
     setContact(value);
-    const phoneUtil =  PhoneNumberUtil.getInstance();
+    const phoneUtil = PhoneNumberUtil.getInstance();
 
     if (country != null) {
-      // to make sure that the number is parsed as an international number, prepend +. 
+      // to make sure that the number is parsed as an international number, prepend +.
       const phoneNr = '+' + value;
 
       try {
-        const isValidNumber = phoneUtil.isValidNumberForRegion(phoneUtil.parse(phoneNr, country.countryCode), country.countryCode);
+        const isValidNumber = phoneUtil.isValidNumberForRegion(
+          phoneUtil.parse(phoneNr, country.countryCode),
+          country.countryCode
+        );
         setInvalidContact(!isValidNumber);
       } catch (error) {
         setInvalidContact(true);
       }
     } else {
       setInvalidContact(true);
-    }  
+    }
   }
 
   const handleClick = () => {
