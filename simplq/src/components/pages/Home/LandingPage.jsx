@@ -5,7 +5,7 @@ import CreateJoinForm from './CreateJoinForm';
 
 export default (props) => {
   return (
-    <div className={styles['landing-page']}>
+    <div id="target_top" className={styles['landing-page']}>
       <div>
         <Header className={styles['main-header']}>SimplQ</Header>
         <p className={styles.subtitle}>A long overdue alternative to physical queues</p>

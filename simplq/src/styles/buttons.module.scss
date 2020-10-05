@@ -4,7 +4,7 @@
   background-color: $primary-color-dark;
   color: #fff;
   display: inline-block;
-  padding: 0.2em 0.5em 0.3em 0.5em;
+  padding: 0.2em 0.5em 0.3em 0.2em;
   font-weight: bold;
   font-size: large;
   border: 2px solid $primary-color-dark;
@@ -26,6 +26,10 @@
     background-size: 100%;
     transition: background 0s;
   }
+}
+
+.standard-button img {
+  height: 1.5rem;
 }
 
 .standard-button-outlined {

@@ -2,32 +2,13 @@
 
 import React from 'react';
 import styles from '../../../../styles/homePage.module.scss';
+import { smoothScrollTo } from '../../../common/utilFns';
 
-function smoothScrollTo(targetElement) {
-  // offset to avoid the sticky header on top to block the "Create a Queue at the click of a button" text
-  const offset = 45;
-  // setting the exact position on the document to scroll to
-  const bodyRect = document.body.getBoundingClientRect().top;
-  const elementRect = targetElement.getBoundingClientRect().top;
-  const elementPosition = elementRect - bodyRect;
-  const offsetPosition = elementPosition - offset;
-  // scroll to the exact position
-  window.scrollTo({
-    top: offsetPosition,
-    behavior: 'smooth',
-  });
-}
-function scrollToHowItWorks() {
+const scrollToHowItWorks = () => {
   // get the target div by ID
   const element = document.getElementById('target_how_it_works');
   smoothScrollTo(element);
-}
-
-function scrollToContactUs() {
-  // get the target div by ID
-  const element = document.getElementById('target_contact_us');
-  smoothScrollTo(element);
-}
+};
 
 const LeftNav = ({ open }) => {
   return (
@@ -41,7 +22,7 @@ const LeftNav = ({ open }) => {
         <a>My Queues</a>
       </li>
       <li>
-        <a tabIndex={-1} role="link" onKeyDown={scrollToContactUs} onClick={scrollToContactUs}>
+        <a tabIndex={-1} href="https://iimb.qualtrics.com/jfe/form/SV_aY8FY91ztRX9NvD">
           Contact Us
         </a>
       </li>
