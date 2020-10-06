@@ -1,6 +1,6 @@
 ---
 name: Enhancement Request
-about: Suggest an idea for this project
+about: Suggest an improvement for this project
 title: ''
 labels: ''
 assignees: ''
