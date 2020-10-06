@@ -206,6 +206,7 @@
     display: flex;
     justify-content: space-around;
     flex-flow: column nowrap;
+    z-index: 12;
   }
   div {
     width: 2rem;
@@ -276,6 +277,7 @@
     transition: transform 0.3s ease-in-out;
     left: auto;
     opacity: 0;
+    z-index: 11;
     li {
       padding: 1.5rem 0;
     }
@@ -301,6 +303,7 @@
       top: 0;
       left: 0;
       background: rgba(0, 0, 0, 0.5);
+      z-index: 10;
     }
   }
 }
