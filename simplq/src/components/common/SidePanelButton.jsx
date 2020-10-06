@@ -32,7 +32,7 @@ const SidePanelButton = ({
   onClick,
   children,
 }) => {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const toggleOpen = () => setOpen(!open);
 
   return (
