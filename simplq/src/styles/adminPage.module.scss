@@ -37,6 +37,11 @@
         cursor: pointer;
         align-items: right;
       }
+      @media screen and (max-width: 400px) {
+        .expand-icon {
+          margin-left: 1rem !important;
+        }
+      }
 
       .expand-icon-opened {
         transform: rotate(180deg);
@@ -228,7 +233,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin: 3rem 10rem 3rem 10rem;
+  margin: 3rem 10rem;
 }
 
 .navbar {
@@ -265,7 +270,6 @@
   .header-bar {
     flex-flow: column nowrap;
     align-items: center;
-
     .header-title {
       padding-left: 0;
     }
@@ -273,6 +277,18 @@
     .main-button-group {
       margin: 0;
       padding-right: 0;
+    }
+  }
+  .main-body {
+    margin: 1rem 2rem;
+  }
+  .admin-action {
+    .collapsable {
+      .collapsable-header {
+        .expand-icon {
+          margin-left: 4rem;
+        }
+      }
     }
   }
 }
