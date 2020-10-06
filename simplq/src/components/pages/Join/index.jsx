@@ -47,8 +47,8 @@ export default function JoinQueueWithDetails(props) {
   return (
     <div>
       <div className={styles['header-bar']}>
-        <div className={styles['simpleq-logo']}>
-          <Logo history={props.history} />
+        <div className={styles['simplq-logo']}>
+          <Logo history={props.history} type="Dark" />
         </div>
         <div className={styles['header-title']}>
           <Header className={styles['header']}>{queueStatusResponse.queueName}</Header>

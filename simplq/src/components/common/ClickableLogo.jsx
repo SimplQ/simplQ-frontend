@@ -10,10 +10,20 @@ export default (props) => {
   } else if (props.onClick) {
     onClick = props.onClick;
   }
-  return (
-    <div className={styles['logo']} onClick={onClick}>
-      <img src="/LogoLight.png" alt="Home" />
-      <p>SimplQ</p>
-    </div>
-  );
+  if (props.type === 'Light') {
+    return (
+      <div className={styles['logo']} onClick={onClick}>
+        <img src="/LogoLight.png" alt="Home" />
+        <p>SimplQ</p>
+      </div>
+    );
+  }
+  if (props.type === 'Dark') {
+    return (
+      <div className={styles['logo']} onClick={onClick}>
+        <img src="/Simple-Q.png" alt="Home" />
+        <p>SimplQ</p>
+      </div>
+    );
+  }
 };
