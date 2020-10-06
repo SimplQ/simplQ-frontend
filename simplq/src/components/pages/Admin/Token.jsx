@@ -39,6 +39,10 @@ function Token(props) {
     props.removeTokenHandler(tokenId);
   };
 
+  const onCallClick = () => {
+    window.open(`tel:+${tokenNumber}`, '_self');
+  };
+
   let notificationButton = null;
   if (notifying) {
     // Notifying in progress
@@ -106,7 +110,7 @@ function Token(props) {
         </div>
         <div className={styles['token-operations']}>
           <div className={styles['token-icon-set']}>
-            <IconButton>
+            <IconButton onClick={onCallClick}>
               <CallIcon className={styles['token-icon']} fontSize="large" />
             </IconButton>
             {notificationButton}
