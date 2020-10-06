@@ -7,9 +7,7 @@
     "node": true
   },
   "rules": {
-    "prettier/prettier": ["error", {
-     "endOfLine":"auto"
-   }],
+    "prettier/prettier": ["error"],
     "react/prop-types": 0,
     "react/destructuring-assignment": 0,
     "prefer-destructuring": 0,
