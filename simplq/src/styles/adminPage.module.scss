@@ -247,7 +247,9 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-
+  @media screen and (max-width: 400px) {
+    padding: 0 8.3rem;
+  }
   & > img {
     height: 3rem;
     width: 3rem;
@@ -277,10 +279,21 @@
     .main-button-group {
       margin: 0;
       padding-right: 0;
+      display: flex;
+      flex-direction: row;
+    }
+  }
+
+  .header-title {
+    .sub-header {
+      min-width: 150%;
     }
   }
   .main-body {
     margin: 1rem 2rem;
+  }
+  .navbar {
+    padding: 0 8.3rem;
   }
   .admin-action {
     .collapsable {

@@ -9,6 +9,11 @@
   padding-top: 70px;
   padding-bottom: 70px;
   font-size: small;
+  @media screen and (max-width: 400px) {
+    .footer {
+      padding: 0;
+    }
+  }
 
   & > .main-card-container {
     padding: 0;
@@ -118,6 +123,17 @@
             }
           }
         }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .footer {
+    padding: 0;
+    & > .main-card-container {
+      & > .card {
+        margin: 0.2rem;
       }
     }
   }
