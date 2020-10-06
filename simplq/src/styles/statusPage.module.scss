@@ -39,67 +39,29 @@
   box-sizing: border-box;
 }
 
-.details {
-  // Initially hidden
-  display: none;
-}
+.detail {
+  padding: 0.5rem 2rem;
 
-.center-table {
-  @include center-horizontally();
-  text-align: left;
-  td {
-    padding: 0.7rem;
-  }
-}
+  .detail-row {
+    display: flex;
+    align-items: center;
+    height: 24px;
 
-.detail-value {
-  font-size: larger;
-  padding-left: 1rem;
-}
-
-input[type='checkbox']:checked ~ .details {
-  @include background-color();
-  display: inherit;
-}
-
-.visually-hidden {
-  position: absolute;
-  left: -100vw;
-}
-
-.user-action {
-  @include naked-button();
-  font-size: 0.8rem;
-  display: flex;
-  align-items: center;
-  min-width: 15rem;
-  font-family: Myanmar Text;
-
-  & > * {
-    margin: 0.2rem;
-
-    &:first-child {
-      width: 45px;
-      height: 45px;
-      margin-right: 25px;
-      color: #3a3768;
-      font-size: 55px;
+    
+    .detail-value {
+      font-size: larger;
+      padding-left: 1rem;
+    }
+  
+    .large-value {
+      font-size: 1.25rem;
+      font-weight: 600;
     }
   }
-
-  & > div {
-    text-align: left;
-  }
-
-  h2 {
-    font-weight: 400;
-    margin-bottom: 0.2rem;
-  }
-
-  p {
-    margin-top: 0;
-  }
 }
+
+
+
 
 .notification-container {
   margin-top: 295px;
