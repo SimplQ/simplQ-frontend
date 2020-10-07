@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React from 'react';
 import styles from '../../styles/logo.module.scss';
 
@@ -10,20 +8,11 @@ export default (props) => {
   } else if (props.onClick) {
     onClick = props.onClick;
   }
-  if (props.type === 'Light') {
-    return (
-      <div className={styles['logo']} onClick={onClick}>
-        <img src="/LogoLight.png" alt="Home" />
-        <p>SimplQ</p>
-      </div>
-    );
-  }
-  if (props.type === 'Dark') {
-    return (
-      <div className={styles['logo']} onClick={onClick}>
-        <img src="/Simple-Q.png" alt="Home" />
-        <p>SimplQ</p>
-      </div>
-    );
-  }
+  return (
+    <div className={styles['logo']} onClick={onClick}>
+      {props.type === 'light' && <img src="/LogoLight.png" alt="Home" />}
+      {props.type === 'Dark' &&  <img src="/Simple-Q.png" alt="Home" />}
+      <p>SimplQ</p>
+    </div>
+  );
 };
