@@ -12,7 +12,7 @@ const Navbar = () => {
 
   return (
     <nav className={styles['navbar']}>
-      <Logo onClick={scrollToTop} />
+      <Logo onClick={scrollToTop} type="light" />
       <Burger />
     </nav>
   );

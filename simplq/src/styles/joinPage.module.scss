@@ -1,15 +1,70 @@
 @import 'utils';
-
+ .message {
+	text-align: center;
+}
 .form {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 35rem;
-  margin: auto;
-  padding: 2rem;
-
-  & > div {
-    margin: 1rem;
-  }
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	max-width: 35rem;
+	margin: auto;
+	padding: 2rem;
+	&>div {
+		margin: 1rem;
+	}
+}
+.header-bar {
+	@include background-color();
+	min-height: 8.5rem;
+	padding: 0.5rem 0 0 4.5rem;
+	display: flex;
+	flex-wrap: wrap;
+	.simplq-logo {
+		padding-top: 1.1rem;
+		z-index: 3;
+	}
+	.queue {
+		margin: auto;
+		position: absolute;
+		top: 1rem;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		text-align: center;
+		align-items: center;
+		.header-title {
+			align-items: center;
+		}
+		.sub-header {
+			margin-top: -1rem;
+			font-family: Pacifico;
+			font-size: 0.8rem;
+			font-weight: 300;
+			color: #3a3768;
+			align-items: center;
+		}
+	}
+	.header {
+		@include standard-header();
+		font-size: 2.7rem;
+		margin: 0;
+		margin-bottom: 0;
+	}
+}
+@media screen and (max-width: 600px) {
+	.header-bar {
+		flex-flow: column nowrap;
+		align-items: center;
+		min-height: 12.5rem;
+		.simplq-logo {
+			align-items: center;
+			padding-bottom: 2.5rem;
+			position: absolute;
+			left: 35%;
+		}
+		.queue {
+			padding-top: 4.5rem;
+		}
+	}
 }
