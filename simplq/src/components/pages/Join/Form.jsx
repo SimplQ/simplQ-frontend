@@ -71,6 +71,7 @@ export function JoinQueueForm(props) {
   const JoinButton = () => (
     <div>{addingInProgress ? <LoadingIndicator /> : <JoinQButton onClick={handleClick} />}</div>
   );
+
   return (
     <div className={styles.form}>
       <InputField
