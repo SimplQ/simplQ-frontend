@@ -10,6 +10,8 @@
   max-width: 35rem;
   margin: auto;
   padding: 2rem;
+  position: relative;
+  z-index: 10;
   & > div {
     margin: 1rem;
   }
@@ -26,6 +28,7 @@
   }
   .queue {
     margin: auto;
+    position: absolute;
     top: 1rem;
     bottom: 0;
     left: 0;
