@@ -10,7 +10,7 @@ export const BenefitsInfo = () => (
     <div className={styles['benefits-container']}>
       <div className={styles.benefit}>
         <img src="/images/minimize_crowding.svg" alt="mimimze crowding" />
-        <p>No more waiting physically in long lines</p>
+        <p>No more waiting in long lines</p>
       </div>
       <div className={styles.benefit}>
         <img src="/images/enforce_social_dist.svg" alt="Enforce social distancing" />
@@ -35,19 +35,19 @@ export const HowToCreate = () => (
         <ul className={styles['list-info']}>
           <img src="/images/wand.svg" alt="Wand" />
           <li>
-            <h3>Creating a Queue</h3>
+            <h3>Create a Queue</h3>
             <p>Enter a queue name and click on the create queue button to generate a new queue</p>
           </li>
           <img src="/images/share-24px.svg" alt="Share" />
           <li>
-            <h3>Sharing a queue link</h3>
+            <h3>Share a queue link</h3>
             <p>
               Click on the copy to clipboard button and share the queue link with your users to join
             </p>
           </li>
           <img src="/images/people-24px.svg" alt="People" />
           <li>
-            <h3>Managing your queue</h3>
+            <h3>Manage your queue</h3>
             <p>
               Manage your queues seamlessly and notify users from the dashboard when their turn is
               up
@@ -68,13 +68,13 @@ export const HowToCreate = () => (
 
 export const HowToJoin = () => (
   <div className={styles['join-info']}>
-    <h2>How do users join a queue?</h2>
+    <h2>How do people join a queue?</h2>
     <div className={styles['queue-container']}>
       <div className={styles['queue']}>
         <ul className={styles['list-info']}>
           <img src="/images/mobile_friendly-24px.svg" alt="Mobile friendly" />
           <li>
-            <h3>Joining a queue</h3>
+            <h3>Join a queue</h3>
             <p>Get the shared queue link and enter your details to join a queue</p>
           </li>
           <img src="/images/alarm-24px.svg" alt="Alarm" />
@@ -112,8 +112,7 @@ export const ExtraInfo = () => (
       <img src="/images/easy.svg" alt="easy to use" />
       <p className={styles['brief-description']}>Easy to use</p>
       <p className={styles['detailed-description']}>
-        We provide free queue management service and help you focus on important aspects of your
-        activity
+        We provide free queue management thereby allowing you to focus on other things
       </p>
     </div>
   </div>
