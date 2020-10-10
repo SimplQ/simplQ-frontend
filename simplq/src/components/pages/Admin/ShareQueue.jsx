@@ -12,7 +12,6 @@ const ShareQueue = (props) => {
     if (!clicked) {
       return () => {};
     }
-
     // changes back to old text and color after 5 seconds
     const timerId = setTimeout(() => setClicked(false), 5000);
     return () => clearTimeout(timerId);
