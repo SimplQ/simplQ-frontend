@@ -26,7 +26,7 @@ export const BenefitsInfo = () => (
 
 export const HowToCreate = () => (
   <div id="target_how_it_works" className={styles['queue-info']}>
-    <h2>Create a Queue at the click of a button</h2>
+    <h2>How does SimplQ work?</h2>
     <div className={styles['queue-container']}>
       <div className={styles.queue}>
         <img src="/images/queue_creation.svg" alt="Queue creation" />
@@ -35,18 +35,18 @@ export const HowToCreate = () => (
         <ul className={styles['list-info']}>
           <img src="/images/wand.svg" alt="Wand" />
           <li>
-            <h3>Create Queue</h3>
-            <p>Enter queue name of your choice and create a brand new queue totally free of cost</p>
+            <h3>Create a Queue</h3>
+            <p>Enter a queue name of your choice and click on create queue</p>
           </li>
           <img src="/images/share-24px.svg" alt="Share" />
           <li>
-            <h3>Share queue</h3>
-            <p>Click the share button and send the queue link to your users for them to join</p>
+            <h3>Share queue link</h3>
+            <p>Click on the copy to clipboard button and share the queue link with your users</p>
           </li>
           <img src="/images/people-24px.svg" alt="People" />
           <li>
-            <h3>Manage queue</h3>
-            <p>Manage your queues seamlessly and efficiently to provide a better user experience</p>
+            <h3>Manage users</h3>
+            <p>Manage your queue and notify people when their turn is up</p>
           </li>
         </ul>
       </div>
@@ -63,19 +63,19 @@ export const HowToCreate = () => (
 
 export const HowToJoin = () => (
   <div className={styles['join-info']}>
-    <h2>Join a queue without being there</h2>
+    <h2>How to join a queue?</h2>
     <div className={styles['queue-container']}>
       <div className={styles['queue']}>
         <ul className={styles['list-info']}>
           <img src="/images/mobile_friendly-24px.svg" alt="Mobile friendly" />
           <li>
             <h3>Join queue</h3>
-            <p>Get queue link or enter queue name to join queue from anywhere</p>
+            <p>Use the shared link to join any queue </p>
           </li>
           <img src="/images/alarm-24px.svg" alt="Alarm" />
           <li>
             <h3>Wait for your turn</h3>
-            <p>Check you status in queue. Get notified when your turn is up</p>
+            <p>Check your token status in the queue and get notified when your turn is up</p>
           </li>
         </ul>
       </div>
