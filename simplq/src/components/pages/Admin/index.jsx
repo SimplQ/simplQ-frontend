@@ -1,12 +1,18 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { useState, useEffect, useCallback } from 'react';
-import ItemList from './ItemList';
+import IconButton from '@material-ui/core/IconButton';
+import EditIcon from '@material-ui/icons/Edit';
+import TokenList from './TokenList';
 import * as TokenService from '../../../services/token';
 import * as QueueService from '../../../services/queue';
-import ShareBar from './ShareBar';
+import ShareQueue from './ShareQueue';
 import { handleApiErrors } from '../../ErrorHandler';
-import Header, { SimplQHeader } from '../../common/Header';
+import { RefreshButton } from '../../common/Button/Button.stories';
+import Header from '../../common/Header';
 import styles from '../../../styles/adminPage.module.scss';
-import AddMember from './AddMember';
+import SidePanel from './AdminSidePanel';
+import Logo from '../../common/ClickableLogo';
 
 const TIMEOUT = 10000;
 let timeoutId;
@@ -14,14 +20,18 @@ let timeoutId;
 export default (props) => {
   const queueId = props.match.params.queueId;
 
-  const [items, setItems] = useState();
+  const [tokens, setTokens] = useState();
   const [queueName, setQueueName] = useState();
+  const [description, setDescription] = useState('');
+
   const update = useCallback(() => {
     clearTimeout(timeoutId);
     QueueService.get(queueId)
       .then((data) => {
-        setItems(data.tokens);
+        setTokens(data.tokens);
         setQueueName(data.queueName);
+        // TODO: setDescription as soon as the backend returns it
+        setDescription('A nice dummy description');
         timeoutId = setTimeout(update, TIMEOUT);
       })
       .catch((err) => {
@@ -35,47 +45,72 @@ export default (props) => {
     return () => clearTimeout(timeoutId);
   }, [update]);
 
-  const addNewItem = (name, contactNumber) => {
-    return TokenService.create(name, contactNumber, false, queueId)
-      .then((response) => {
-        setItems([
-          ...items,
-          {
-            tokenId: response.tokenId,
-            name,
-            contactNumber,
-            notifiable: false,
-            tokenStatus: response.tokenStatus,
-          },
-        ]);
-      })
-      .catch((err) => {
-        handleApiErrors(err);
-      });
+  const addNewToken = async (name, contactNumber) => {
+    try {
+      const response = await TokenService.create(name, contactNumber, false, queueId);
+      setTokens([
+        ...tokens,
+        {
+          tokenId: response.tokenId,
+          name,
+          contactNumber,
+          notifiable: false,
+          tokenStatus: response.tokenStatus,
+          tokenNumber: response.tokenNumber,
+        },
+      ]);
+    } catch (err) {
+      handleApiErrors(err);
+    }
   };
 
-  const removeItem = (tokenId) => {
+  const removeToken = (tokenId) => {
     TokenService.remove(tokenId)
-      .then(() => setItems(items.filter((item) => item.tokenId !== tokenId)))
+      .then(() => setTokens(tokens.filter((token) => token.tokenId !== tokenId)))
       .catch((err) => handleApiErrors(err));
   };
 
+  const HeaderSection = () => (
+    <div className={styles['header-bar']}>
+      <div className={styles['header-title']}>
+        <Header className={styles['header']}>{queueName}</Header>
+        <div className={styles['sub-header']}>
+          <h2>{description}</h2>
+          <IconButton size="small">
+            <EditIcon />
+          </IconButton>
+        </div>
+      </div>
+      <div className={styles['main-button-group']}>
+        <div className={styles['admin-button']}>
+          <RefreshButton onClick={update} />
+        </div>
+        <div className={styles['admin-button']}>
+          <ShareQueue queueName={queueName} className={styles.shareButton} />
+        </div>
+      </div>
+    </div>
+  );
+
+  const Navbar = () => (
+    <div>
+      <nav className={styles['navbar']}>
+        <Logo history={props.history} type="light" />
+      </nav>
+    </div>
+  );
+
   return (
     <>
-      <SimplQHeader />
-      <Header className={styles.header} text={queueName} />
-      <ShareBar
-        queueId={queueId}
-        className={styles.shareButton}
-        onRefresh={() => {
-          update();
-        }}
-      />
-      <div className={styles.list}>
-        <ItemList items={items} queueId={queueId} removeItemHandler={removeItem} />
-      </div>
-      <div className={styles['add-member']}>
-        <AddMember queueId={queueId} joinQueueHandler={addNewItem} />
+      <Navbar />
+      <HeaderSection />
+      <div className={styles['main-body']}>
+        <div
+          className={tokens?.length > 0 ? styles['token-list-with-content'] : styles['token-list']}
+        >
+          <TokenList tokens={tokens} queueId={queueId} removeTokenHandler={removeToken} />
+        </div>
+        <SidePanel queueId={queueId} joinQueueHandler={addNewToken} />
       </div>
     </>
   );

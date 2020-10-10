@@ -4,7 +4,7 @@
   background-color: $primary-color-dark;
   color: #fff;
   display: inline-block;
-  padding: 0.2em 0.5em 0.3em 0.5em;
+  padding: 0.2em 0.5em 0.3em 0.2em;
   font-weight: bold;
   font-size: large;
   border: 2px solid $primary-color-dark;
@@ -28,6 +28,10 @@
   }
 }
 
+.standard-button img {
+  height: 1.5rem;
+}
+
 .standard-button-outlined {
   @extend .standard-button;
   background-color: #fff;
@@ -49,9 +53,22 @@
   display: flex;
   align-items: center;
   max-width: 14rem;
-  min-height: 4rem;
-  padding: 0;
+  min-height: 1rem;
   & > * {
-    margin: 0.4rem;
+    margin: 0.2rem;
+  }
+}
+
+.fork-on-github-button {
+  text-decoration: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: smaller;
+  padding: 1rem;
+
+  span {
+    margin-right: 0.5rem;
   }
 }

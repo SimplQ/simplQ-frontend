@@ -1,5 +1,11 @@
 @import 'utils';
 
+.main-body {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
 .button-group {
   @include center-vertically();
   div {
@@ -10,6 +16,7 @@
 
 .header {
   @include queue-name-header();
+  margin-top: 0;
 }
 
 .details-header {
@@ -25,38 +32,56 @@
 }
 
 .status-box {
-  @include center-horizontally();
   border: 1.5px solid $primary-color-dark;
   border-radius: 1rem;
-  width: 70%;
+  width: 40%;
   padding: 10%;
   box-sizing: border-box;
 }
 
-.details {
-  // Initially hidden
-  display: none;
-}
+.detail {
+  padding: 0.5rem 2rem;
 
-.center-table {
-  @include center-horizontally();
-  text-align: left;
-  td {
-    padding: 0.7rem;
+  .detail-row {
+    display: flex;
+    align-items: center;
+    height: 24px;
+
+    
+    .detail-value {
+      font-size: larger;
+      padding-left: 1rem;
+    }
+  
+    .large-value {
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
   }
 }
 
-.detail-value {
-  font-size: larger;
-  padding-left: 1rem;
-}
 
-input[type='checkbox']:checked ~ .details {
-  @include background-color();
-  display: inherit;
-}
 
-.visually-hidden {
-  position: absolute;
-  left: -100vw;
+
+.notification-container {
+  margin-top: 295px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  .info-icon {
+    font-family: Arial;
+    font-weight: 700;
+    color: #3a3768;
+  }
+
+  span {
+    padding-right: 8px;
+  }
+
+  .switch-thumb {
+    width: 12;
+    height: 12;
+    box-shadow: 'none';
+  }
 }

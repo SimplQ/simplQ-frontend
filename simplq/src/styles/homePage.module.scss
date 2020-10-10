@@ -67,9 +67,6 @@
     flex-wrap: wrap;
     justify-content: center;
     .benefit {
-      background-color: #6c63ff29;
-      border: 0.15rem solid #70707073;
-      border-radius: 0.5rem;
       height: 16rem;
       width: 16rem;
       padding: 2rem;
@@ -104,23 +101,222 @@
   }
 }
 
-.slider {
-  @include text-color();
+.queue-info {
   @include center-vertically();
   @include center-horizontally();
-  margin: 2.5rem;
+  h2 {
+    @include standard-header();
+    font-family: $header-font;
+    font-size: 2rem;
+    margin: 1rem;
+  }
+  .queue-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    padding: 0;
+    .queue {
+      flex: 0 1 25rem;
+      text-align: left;
+      margin: 2rem;
+      .list-info {
+        width: 100%;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        justify-content: center;
+        img {
+          float: left;
+          position: relative;
+          bottom: -0.3rem;
+          width: 1rem;
+          height: 1rem;
+          margin-right: 0.6rem;
+        }
+        h3 {
+          color: #3a3768;
+          margin: 0;
+          padding: 0;
+        }
+        p {
+          margin: 1rem;
+          text-align: left;
+          color: #3a3768;
+          padding-left: 0.6rem;
+        }
+      }
+      img {
+        justify-content: center;
+        max-width: 100%;
+        height: auto;
+      }
+    }
+  }
+}
+
+.join-info {
+  @include background-color;
+  @extend .queue-info;
 }
 
 .extra-info {
-  @include background-color();
-  @include text-color();
-  @include center-vertically();
-  @include center-horizontally();
-  div {
+  background-color: $primary-color-dark;
+  padding: 3rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+  align-items: flex-start;
+
+  .card {
+    padding: 0.5rem;
+    max-height: 16rem;
+    max-width: 16rem;
+  }
+
+  img {
+    width: 20%;
+    height: 20%;
+  }
+
+  .brief-description {
+    font-weight: bold;
+    color: white;
+    text-transform: capitalize;
+  }
+
+  .detailed-description {
+    color: white;
+    vertical-align: top;
+    font-size: small;
+  }
+}
+
+.burger {
+  width: 2rem;
+  height: 2rem;
+  position: fixed;
+  top: 0.5rem;
+  right: 1rem;
+  z-index: 5;
+  display: none;
+  cursor: pointer;
+  @media (max-width: 768px) {
     display: flex;
-    align-items: center;
-    p {
-      min-width: 10rem; // So that the text alings along a vertical line, as the entre component in vertically centered
+    justify-content: space-around;
+    flex-flow: column nowrap;
+  }
+  div {
+    width: 2rem;
+    height: 0.25rem;
+    background-color: #3a3768;
+    &[open] {
+      background-color: #fff;
+    }
+    border-radius: 0.5rem;
+    transform-origin: 1px;
+    transition: all 0.3s linear;
+
+    &:nth-child(1) {
+      transform: rotate(0);
+      &[open] {
+        transform: rotate(45deg);
+      }
+    }
+    &:nth-child(2) {
+      transform: translateX(0);
+      opacity: 1;
+      &[open] {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+    }
+    &:nth-child(3) {
+      transform: rotate(0);
+      &[open] {
+        transform: rotate(-45deg);
+      }
     }
   }
+}
+
+.left-nav {
+  list-style: none;
+  display: flex;
+  flex-flow: row nowrap;
+  margin: 0;
+  position: fixed;
+  top: 1.4rem;
+  li {
+    padding: 0 1.5rem;
+  }
+  li:last-child {
+    @media (min-width: 787px) {
+      position: fixed;
+      top: 1.2rem;
+      right: 6rem;
+    }
+  }
+  a {
+    text-decoration: none;
+    color: grey;
+    cursor: pointer;
+  }
+  @media (max-width: 768px) {
+    flex-flow: column nowrap;
+    background-color: #3a3768;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 15rem;
+    padding-top: 3.5rem;
+    transition: transform 0.3s ease-in-out;
+    left: auto;
+    opacity: 0;
+    li {
+      padding: 1.5rem 0;
+    }
+    a {
+      color: #fff;
+    }
+    transform: translateX(100%);
+    &[open] {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+}
+
+.left-nav-overlay {
+  display: none;
+  @media (max-width: 768px) {
+    &[open] {
+      display: block;
+      height: 100vh;
+      width: 100vw;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background: rgba(0, 0, 0, 0.5);
+    }
+  }
+}
+
+.navbar {
+  width: 100%;
+  height: 4rem;
+  background-color: #fff;
+  border-bottom: 0.2rem solid #f1f1f1;
+  padding: 0 3rem;
+  z-index: 99;
+  position: fixed;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.center-horizontally {
+  display: flex;
+  align-items: center;
 }

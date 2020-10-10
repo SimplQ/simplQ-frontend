@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/material.css';
+import { PhoneNumberUtil } from 'google-libphonenumber';
 import { handleEnterPress } from '../../common/utilFns';
 import InputField from '../../common/InputField';
 import styles from '../../../styles/joinPage.module.scss';
@@ -23,9 +24,26 @@ export function JoinQueueForm(props) {
     }
   }
 
-  function handleContactChange(e) {
-    setContact(e);
-    setInvalidContact(false);
+  function handleContactChange(value, country) {
+    setContact(value);
+    const phoneUtil = PhoneNumberUtil.getInstance();
+
+    if (country != null) {
+      // to make sure that the number is parsed as an international number, prepend +.
+      const phoneNr = `+${value}`;
+
+      try {
+        const isValidNumber = phoneUtil.isValidNumberForRegion(
+          phoneUtil.parse(phoneNr, country.countryCode),
+          country.countryCode
+        );
+        setInvalidContact(!isValidNumber);
+      } catch (error) {
+        setInvalidContact(true);
+      }
+    } else {
+      setInvalidContact(true);
+    }
   }
 
   const handleClick = () => {
@@ -35,6 +53,9 @@ export function JoinQueueForm(props) {
     }
     if (contact === '') {
       setInvalidContact(true);
+      return;
+    }
+    if (invalidContact) {
       return;
     }
 
@@ -47,45 +68,36 @@ export function JoinQueueForm(props) {
     });
   };
 
+  const JoinButton = () => (
+    <div>{addingInProgress ? <LoadingIndicator /> : <JoinQButton onClick={handleClick} />}</div>
+  );
   return (
     <div className={styles.form}>
-      <table>
-        <tr>
-          <td>
-            <InputField
-              placeholder="Your Name"
-              value={name}
-              onKeyPress={(e) => handleEnterPress(e, handleClick)}
-              onChange={handleNameChange}
-              error={invalidName}
-              helperText={invalidName ? 'Enter a valid name' : ''}
-            />
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <PhoneInput
-              placeholder="Phone Number"
-              country="in"
-              value={contact}
-              inputProps={{
-                name: 'phone',
-                required: true,
-                autoFocus: true,
-              }}
-              inputStyle={{
-                width: '100%',
-              }}
-              isValid={() => (invalidContact ? 'Phone number is not valid' : true)}
-              onChange={handleContactChange}
-              onKeyDown={(e) => handleEnterPress(e, handleClick)}
-            />
-          </td>
-        </tr>
-        <tr>
-          <td>{addingInProgress ? <LoadingIndicator /> : <JoinQButton onClick={handleClick} />}</td>
-        </tr>
-      </table>
+      <InputField
+        placeholder="Name"
+        value={name}
+        onKeyPress={(e) => handleEnterPress(e, handleClick)}
+        onChange={handleNameChange}
+        error={invalidName}
+        helperText={invalidName ? 'Enter a valid name' : ''}
+      />
+      <PhoneInput
+        placeholder="Phone Number"
+        country="in"
+        value={contact}
+        inputProps={{
+          name: 'phone',
+          required: true,
+          autoFocus: true,
+        }}
+        inputStyle={{
+          width: '100%',
+        }}
+        isValid={() => (invalidContact ? 'Phone number is not valid' : true)}
+        onChange={handleContactChange}
+        onKeyDown={(e) => handleEnterPress(e, handleClick)}
+      />
+      <JoinButton />
     </div>
   );
 }

@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import Notifications from '@material-ui/icons/Notifications';
-import CheckIcon from '@material-ui/icons/Check';
 import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive';
 import NotificationsOffIcon from '@material-ui/icons/NotificationsOffSharp';
+import CallIcon from '@material-ui/icons/Call';
 import * as TokenService from '../../../services/token';
 import { handleApiErrors } from '../../ErrorHandler';
 import styles from '../../../styles/adminPage.module.scss';
 import LoadingIndicator from '../../common/LoadingIndicator';
 
-function Item(props) {
-  const name = props.item.name;
-  const tokenId = props.item.tokenId;
-  const tokenNumber = props.item.tokenNumber;
-  const notifiable = props.item.notifiable;
+function Token(props) {
+  const name = props.token.name;
+  const tokenId = props.token.tokenId;
+  const tokenNumber = props.token.tokenNumber;
+  const notifiable = props.token.notifiable;
   const [notifying, setNotifying] = useState(false);
   const [isNotifyHovering, setIsNotifyHovering] = useState(false);
-  const [didNotify, setDidNotify] = useState(props.item.tokenStatus === 'NOTIFIED');
+  const [didNotify, setDidNotify] = useState(props.token.tokenStatus === 'NOTIFIED');
 
   const handleMouseHover = () => {
     setIsNotifyHovering(!isNotifyHovering);
@@ -36,7 +36,11 @@ function Item(props) {
   };
 
   const onDeleteClick = () => {
-    props.removeItemHandler(tokenId);
+    props.removeTokenHandler(tokenId);
+  };
+
+  const onCallClick = () => {
+    window.open(`tel:+${tokenNumber}`, '_self');
   };
 
   let notificationButton = null;
@@ -51,7 +55,7 @@ function Item(props) {
     // Not notifiable
     notificationButton = (
       <IconButton edge="end" color="primary" aria-label="notify">
-        <NotificationsOffIcon fontSize="large" color="disabled" />
+        <NotificationsOffIcon fontSize="large" className={styles['token-icon']} />
       </IconButton>
     );
   } else if (didNotify) {
@@ -65,41 +69,57 @@ function Item(props) {
     // Yet to notify
     notificationButton = (
       <IconButton
-        edge="end"
         color="primary"
+        edge="end"
         aria-label="notify"
         onClick={onNotifyClick}
         onMouseEnter={handleMouseHover}
         onMouseLeave={handleMouseHover}
       >
         {isNotifyHovering ? (
-          <NotificationsActiveIcon fontSize="large" />
+          <NotificationsActiveIcon fontSize="large" className={styles['token-icon']} />
         ) : (
-          <Notifications fontSize="large" />
+          <Notifications fontSize="large" className={styles['token-icon']} />
         )}
       </IconButton>
     );
   }
 
+  const RemoveButton = () => (
+    <div
+      role="button"
+      onClick={onDeleteClick}
+      tabIndex={-1}
+      onKeyDown={onDeleteClick}
+      className={styles['token-remove']}
+      aria-label="remove"
+    >
+      <p>remove</p>
+    </div>
+  );
+
   return (
-    <div className={styles.item}>
-      <div>
-        <div>{notificationButton}</div>
-        <div>
-          <p className={styles['person-name']}>{name}</p>
-          <p className={styles['token-number']}>
-            Token No:
-            <span className={styles['token-number-value']}>{tokenNumber}</span>
-          </p>
+    <section className={styles.token}>
+      <div className={styles['token-number']}>
+        <p>{tokenNumber < 99 ? `00${tokenNumber}` : tokenNumber}</p>
+      </div>
+      <div className={styles['token-details']}>
+        <div className={styles['token-name-time']}>
+          <p>Join time 11:02 pm</p>
+          <p>{name}</p>
+        </div>
+        <div className={styles['token-operations']}>
+          <div className={styles['token-icon-set']}>
+            <IconButton onClick={onCallClick}>
+              <CallIcon className={styles['token-icon']} fontSize="large" />
+            </IconButton>
+            {notificationButton}
+          </div>
+          <RemoveButton />
         </div>
       </div>
-      <div>
-        <IconButton color="primary">
-          <CheckIcon fontSize="large" onClick={onDeleteClick} />
-        </IconButton>
-      </div>
-    </div>
+    </section>
   );
 }
 
-export default Item;
+export default Token;
