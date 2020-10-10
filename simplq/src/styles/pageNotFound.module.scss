@@ -5,11 +5,28 @@
   @include center-vertically();
   @include text-color();
   font-size: x-large;
-  min-height: 100vh;
+  min-height: 75vh;
+  flex: 1;
+  flex-direction: row;
+  flex-wrap: wrap;
   div {
     padding: 1rem;
   }
   Button {
     cursor: pointer;
+  }
+  .errtext {
+    text-align:left;
+    padding: 0 40px;
+  }
+  .buttondiv {
+    display: flex !important;
+    justify-content: center;
+  }
+  .errorimg {
+    max-width: 60vh;
+    @media (max-width: 768px) {
+      max-width: 80vw;
+    }
   }
 }
