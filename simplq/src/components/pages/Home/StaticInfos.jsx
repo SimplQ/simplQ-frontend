@@ -41,12 +41,17 @@ export const HowToCreate = () => (
           <img src="/images/share-24px.svg" alt="Share" />
           <li>
             <h3>Sharing a queue link</h3>
-            <p>Click on the copy to clipboard button and share the queue link with your users to join</p>
+            <p>
+              Click on the copy to clipboard button and share the queue link with your users to join
+            </p>
           </li>
           <img src="/images/people-24px.svg" alt="People" />
           <li>
             <h3>Managing your queue</h3>
-            <p>Manage your queues seamlessly and notify users from the dashboard when their turn is up</p>
+            <p>
+              Manage your queues seamlessly and notify users from the dashboard when their turn is
+              up
+            </p>
           </li>
         </ul>
       </div>
@@ -107,8 +112,8 @@ export const ExtraInfo = () => (
       <img src="/images/easy.svg" alt="easy to use" />
       <p className={styles['brief-description']}>Easy to use</p>
       <p className={styles['detailed-description']}>
-        We provide free queue management service and help you focus on important aspects of 
-        your activity
+        We provide free queue management service and help you focus on important aspects of your
+        activity
       </p>
     </div>
   </div>
