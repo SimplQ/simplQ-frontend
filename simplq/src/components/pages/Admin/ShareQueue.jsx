@@ -15,7 +15,7 @@ const ShareQueue = (props) => {
   const CopyToClipboardButton = () =>
     clicked ? (
       <>
-        <img src="/images/verified-24px.svg" alt="copied" />
+        <img className="verified_icon" src="/images/verified-24px.svg" alt="copied" />
         <p>Copied to clipboard</p>
       </>
     ) : (
