@@ -12,6 +12,8 @@
   text-align: center;
   transition: background 0.8s;
   background-position: center;
+  min-width: 14rem;
+  min-height: 2.5rem;
 
   &:focus {
     outline: none;
