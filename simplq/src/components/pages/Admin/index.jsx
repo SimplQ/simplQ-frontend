@@ -95,7 +95,7 @@ export default (props) => {
   const Navbar = () => (
     <div>
       <nav className={styles['navbar']}>
-        <Logo history={props.history} type="light" />
+        <Logo history={props.history} />
       </nav>
     </div>
   );

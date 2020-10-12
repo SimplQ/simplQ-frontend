@@ -10,6 +10,8 @@
   max-width: 35rem;
   margin: auto;
   padding: 2rem;
+  position: relative;
+  z-index: 10;
   & > div {
     margin: 1rem;
   }
@@ -33,6 +35,7 @@
     right: 0;
     text-align: center;
     align-items: center;
+    z-index: 1;
     .header-title {
       align-items: center;
     }
