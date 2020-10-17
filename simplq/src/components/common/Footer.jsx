@@ -14,6 +14,8 @@ export default () => (
             instant virtual queues.
           </b>
         </div>
+        <a href="/privacy">Privacy Policy</a>
+        <a href="/privacy#terms-of-service">Terms of Service</a>
       </div>
     </div>
 
