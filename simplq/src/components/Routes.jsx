@@ -6,6 +6,7 @@ import AdminQueue from './pages/Admin';
 import PageNotFound from './pages/PageNotFound';
 import { ErrorBoundary, ErrorNotification } from './ErrorHandler';
 import Home from './pages/Home';
+import TermsOfService from './pages/TermsOfService';
 
 export default () => {
   return (
@@ -16,6 +17,7 @@ export default () => {
           <Route path="/queue/:queueId" exact component={AdminQueue} />
           <Route path="/j/:queueName" exact component={JoinQueueWithDetails} />
           <Route path="/token/:tokenId" exact component={QueueStatus} />
+          <Route path="/privacy" exact component={TermsOfService} />
           <Route component={PageNotFound} />
         </Switch>
         <ErrorNotification />
