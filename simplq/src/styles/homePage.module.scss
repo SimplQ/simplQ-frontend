@@ -163,7 +163,8 @@
 
 .extra-info {
   background-color: $primary-color-dark;
-
+  .extra-container {
+  margin: 0;
   .card {
     padding: 0.5rem;
     max-height: 16rem;
@@ -186,6 +187,7 @@
       vertical-align: top;
       font-size: small;
     }
+  }
   }
 }
 
