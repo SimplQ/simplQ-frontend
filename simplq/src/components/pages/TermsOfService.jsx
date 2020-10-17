@@ -9,7 +9,7 @@ function TermsOfService(props) {
         <ClickableLogo history={props.history} />
       </div>
       <div className={styles['content']}>
-        <h2>Privacy Policy</h2>
+        <h2 id="privacy">Privacy Policy</h2>
         <p>
           Your privacy is important to us. It is SimplQ&apos;s policy to respect your privacy
           regarding any information we may collect from you across our website,&nbsp;
@@ -46,7 +46,7 @@ function TermsOfService(props) {
           and personal information, feel free to contact us.
         </p>
         <p>This policy is effective as of 17 October 2020.</p>
-        <h2>SimplQ Terms of Service</h2>
+        <h2 id="terms-of-service">SimplQ Terms of Service</h2>
         <h3>1. Terms</h3>
         <p>
           By accessing the website at&nbsp;
