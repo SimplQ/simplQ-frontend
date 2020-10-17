@@ -53,7 +53,7 @@
 
 .section {
   padding: 5rem 10rem;
-  @media screen and (max-width:550px) {
+  @media screen and (max-width: 550px) {
     padding: 2rem;
   }
   & > h2 {
@@ -63,7 +63,7 @@
   }
   & > .container {
     margin: 4rem 0;
-    @media screen and (max-width:550px) {
+    @media screen and (max-width: 550px) {
       margin: 2rem;
     }
     display: flex;
@@ -118,7 +118,7 @@
       flex: 0 1 25rem;
       text-align: left;
       margin: 2rem;
-      @media screen and (max-width:550px) {
+      @media screen and (max-width: 550px) {
         margin: 2rem 0;
       }
       .list-info {
@@ -182,7 +182,7 @@
       color: white;
       text-transform: capitalize;
     }
-  
+
     .detailed-description {
       color: white;
       vertical-align: top;
