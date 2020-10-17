@@ -4,13 +4,14 @@ import React from 'react';
 import styles from '../../../styles/navbar.module.scss';
 import { smoothScrollTo } from '../utilFns';
 
-const scrollToHowItWorks = () => {
-  // get the target div by ID
-  const element = document.getElementById('target_how_it_works');
-  smoothScrollTo(element);
-};
-
-const LeftNav = ({ open }) => {
+const LeftNav = ({ open, toggleClose }) => {
+  const scrollToHowItWorks = () => {
+    // Close the navbar on click
+    toggleClose();
+    // get the target div by ID
+    const element = document.getElementById('target_how_it_works');
+    smoothScrollTo(element);
+  };
   return (
     <div>
       <ul className={styles['left-nav']} open={open}>
