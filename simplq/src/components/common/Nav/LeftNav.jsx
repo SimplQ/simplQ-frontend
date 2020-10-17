@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 
 import React from 'react';
-import styles from '../../../../styles/homePage.module.scss';
-import { smoothScrollTo } from '../../../common/utilFns';
+import styles from '../../../styles/navbar.module.scss';
+import { smoothScrollTo } from '../utilFns';
 
 const scrollToHowItWorks = () => {
   // get the target div by ID
