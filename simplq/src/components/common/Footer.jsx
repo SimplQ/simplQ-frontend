@@ -26,6 +26,8 @@ export default () => (
             </b>
           </div>
         </div>
+        <a href="/privacy">Privacy Policy</a>
+        <a href="/privacy#terms-of-service">Terms of Service</a>
       </div>
 
       <div className={styles['card']}>
