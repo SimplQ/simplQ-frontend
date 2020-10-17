@@ -57,10 +57,11 @@
     padding: 0 1.5rem;
   }
   li:last-child {
+    position: fixed;
+    bottom: 1rem;
     @media (min-width: 787px) {
-      position: fixed;
-      top: 1.2rem;
-      right: 6rem;
+      top: .5rem;
+      right: 0rem;
     }
   }
   a {

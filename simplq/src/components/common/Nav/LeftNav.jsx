@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 
 import React from 'react';
+import { GoogleLogin } from 'react-google-login';
 import styles from '../../../styles/navbar.module.scss';
 import { smoothScrollTo } from '../utilFns';
 
@@ -12,6 +13,11 @@ const LeftNav = ({ open, toggleClose }) => {
     const element = document.getElementById('target_how_it_works');
     smoothScrollTo(element);
   };
+
+  const responseGoogle = (response) => {
+    console.log(response);
+  };
+
   return (
     <div>
       <ul className={styles['left-nav']} open={open}>
@@ -29,7 +35,13 @@ const LeftNav = ({ open, toggleClose }) => {
           </a>
         </li>
         <li>
-          <a>Sign In/Sign Up</a>
+          <GoogleLogin
+            clientId="113171837606-3ohbbjtobt1989o9miv2gtko7ok7tt1h.apps.googleusercontent.com"
+            buttonText="Login with Google"
+            onSuccess={responseGoogle}
+            onFailure={responseGoogle}
+            cookiePolicy="single_host_origin"
+          />
         </li>
       </ul>
     </div>
