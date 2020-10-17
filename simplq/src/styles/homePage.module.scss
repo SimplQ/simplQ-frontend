@@ -75,7 +75,7 @@
 .benefits-info {
   @include background-color();
   @include text-color();
-
+  padding-top: 1rem;
   .benefits-container {
     .benefit {
       margin: 2rem;
