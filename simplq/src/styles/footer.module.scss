@@ -4,117 +4,63 @@
   @include background-color();
   @include text-color();
   display: flex;
-  justify-content: center;
-  margin: 0;
-  padding-top: 70px;
-  padding-bottom: 70px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 0 10rem;
+  @media screen and (max-width: 550px) {
+    padding: 2rem;
+  }
   font-size: small;
   z-index: 20;
-  & > .main-card-container {
-    padding: 0;
-    margin: 0;
-    height: 100%;
+
+  & > .card {
+    flex: 1;
+    margin: 2rem;
+    min-width: 12.5rem;
+    max-width: 20.5rem;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 5%;
+    flex-direction: column;
 
-    & > .card {
-      flex: 1;
-      margin: 0.625rem;
-      padding: 0.3rem;
-      min-width: 12.5rem;
-      max-width: 20.5rem;
-      display: flex;
-      flex-direction: column;
+    & > h1 {
+      text-transform: capitalize;
+    }
 
-      & > .card-header {
+    & > .card-body {
+      & > .description-content-container {
         padding: 0;
-        margin: 0;
+        height: 100%;
+        margin: 1rem;
         display: flex;
-        min-height: 45%;
-        flex: 1;
-        font-size: smaller;
-
-        & > .simpleQ-image-container {
-          flex: 1;
-          width: 100%;
-          max-width: 6rem;
-          display: flex;
-          justify-content: center;
-          margin: 0;
-          padding: 0;
-
-          & > .new-logo-image {
-            max-width: 4rem;
-            max-height: 4rem;
-            display: flex;
-            justify-content: center;
-            margin: 0;
-          }
-        }
-
-        & > .logo-header-container {
-          margin: 0;
-          padding: 0;
-          display: flex;
-          align-items: center;
-          flex: 1;
-          flex-wrap: wrap;
-          font-family: $header-font;
-
-          & > h1 {
-            margin: 0;
-            padding: 0;
-          }
-        }
       }
 
-      & > .card-body {
-        flex: 2;
-        min-height: 55%;
+      & > span {
+        font-family: $header-font;
+      }
+
+      & > .open-source-content-container {
         padding: 0;
         margin: 0;
+        height: 100%;
         display: flex;
-        align-items: flex-end;
+        flex-direction: column;
+        justify-content: space-around;
+      }
 
-        & > .description-content-container {
-          padding: 0;
-          height: 100%;
-          margin: 0;
-          display: flex;
-          align-items: flex-end;
-        }
+      & > .list-container {
+        margin: 0;
+        padding: 0;
 
-        & > span {
-          font-family: $header-font;
-        }
-
-        & > .open-source-content-container {
-          padding: 0;
-          margin: 0;
-          height: 100%;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-        }
-
-        & > .list-container {
+        & > ul {
           margin: 0;
           padding: 0;
+          list-style-type: none;
 
-          & > ul {
-            margin: 0;
-            padding: 0;
-            list-style-type: none;
+          & > li {
+            color: #3a3768;
 
-            & > li {
+            & > a {
+              text-decoration: none;
               color: #3a3768;
-
-              & > a {
-                text-decoration: none;
-                color: #3a3768;
-              }
             }
           }
         }
