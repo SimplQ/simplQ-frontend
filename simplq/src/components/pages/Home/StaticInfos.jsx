@@ -94,7 +94,7 @@ export const HowToJoin = () => (
 
 export const ExtraInfo = () => (
   <div className={`${styles['section']} ${styles['extra-info']}`}>
-    <div className={`${styles['container']}`}>
+    <div className={`${styles['container']} ${styles['extra-container']}`}>
       <div className={styles['card']}>
         <img src="/images/free.svg" alt="free" />
         <p className={styles['brief-description']}>Always free</p>
