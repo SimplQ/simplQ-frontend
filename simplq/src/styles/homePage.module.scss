@@ -51,31 +51,42 @@
   }
 }
 
-.benefits-info {
-  @include background-color();
-  @include text-color();
-  @include center-vertically();
-  @include center-horizontally();
-  padding-bottom: 5rem;
-  h2 {
+.section {
+  padding: 5rem 10rem;
+  @media screen and (max-width: 550px) {
+    padding: 2rem;
+  }
+  & > h2 {
     @include standard-header();
     font-family: $header-font;
     font-size: 2rem;
   }
-  .benefits-container {
+  & > .container {
+    margin: 4rem 0;
+    @media screen and (max-width: 550px) {
+      margin: 2rem;
+    }
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-around;
+  }
+}
+
+.benefits-info {
+  @include background-color();
+  @include text-color();
+  padding-top: 1rem;
+  .benefits-container {
     .benefit {
-      height: 16rem;
-      width: 16rem;
-      padding: 2rem;
       margin: 2rem;
+      display: flex;
+      flex-direction: column;
       img {
-        height: 8rem;
-        width: 10rem;
+        height: 10rem;
+        margin-bottom: 2rem;
       }
       p {
+        text-align: center;
         font-weight: 600;
       }
     }
@@ -102,24 +113,14 @@
 }
 
 .queue-info {
-  @include center-vertically();
-  @include center-horizontally();
-  h2 {
-    @include standard-header();
-    font-family: $header-font;
-    font-size: 2rem;
-    margin: 1rem;
-  }
   .queue-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 100%;
-    padding: 0;
     .queue {
       flex: 0 1 25rem;
       text-align: left;
       margin: 2rem;
+      @media screen and (max-width: 550px) {
+        margin: 2rem 0;
+      }
       .list-info {
         width: 100%;
         list-style-type: none;
@@ -162,35 +163,36 @@
 
 .extra-info {
   background-color: $primary-color-dark;
-  padding: 3rem;
+  .extra-container {
+    margin: 0;
+    .card {
+      padding: 0.5rem;
+      max-height: 16rem;
+      max-width: 16rem;
+      text-align: center;
+
+      img {
+        width: 20%;
+        height: 20%;
+      }
+
+      .brief-description {
+        font-weight: bold;
+        color: white;
+        text-transform: capitalize;
+      }
+
+      .detailed-description {
+        color: white;
+        vertical-align: top;
+        font-size: small;
+      }
+    }
+  }
+}
+
+#curved-div-2 {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  text-align: center;
-  align-items: flex-start;
-
-  .card {
-    padding: 0.5rem;
-    max-height: 16rem;
-    max-width: 16rem;
-  }
-
-  img {
-    width: 20%;
-    height: 20%;
-  }
-
-  .brief-description {
-    font-weight: bold;
-    color: white;
-    text-transform: capitalize;
-  }
-
-  .detailed-description {
-    color: white;
-    vertical-align: top;
-    font-size: small;
-  }
 }
 
 .burger {
