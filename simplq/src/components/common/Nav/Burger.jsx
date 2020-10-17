@@ -6,16 +6,17 @@ import LeftNav from './LeftNav';
 
 const Burger = () => {
   const [open, setOpen] = useState(false);
+  const toggleClose = () => setOpen(!open);
 
   return (
     <>
-      <div className={styles['left-nav-overlay']} open={open} onClick={() => setOpen(!open)} />
-      <div className={styles['burger']} open={open} onClick={() => setOpen(!open)}>
-        <div open={open} onClick={() => setOpen(!open)} />
-        <div open={open} onClick={() => setOpen(!open)} />
-        <div open={open} onClick={() => setOpen(!open)} />
+      <div className={styles['left-nav-overlay']} open={open} onClick={toggleClose} />
+      <div className={styles['burger']} open={open} onClick={toggleClose}>
+        <div open={open} onClick={toggleClose} />
+        <div open={open} onClick={toggleClose} />
+        <div open={open} onClick={toggleClose} />
       </div>
-      <LeftNav open={open} />
+      <LeftNav open={open} toggleClose={toggleClose} />
     </>
   );
 };
