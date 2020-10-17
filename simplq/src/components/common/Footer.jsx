@@ -31,7 +31,6 @@ export default () => (
       <div className={styles['card']}>
         <div className={styles['card-header']}>
           <div className={styles['center-horizontally']}>
-            {' '}
             {/* TOFIX: No such class / wrong approach */}
             <h1>Open source</h1>
           </div>
@@ -54,7 +53,6 @@ export default () => (
       <div className={styles['card']}>
         <div className={styles['card-header']}>
           <div className={styles['center-horizontally']}>
-            {' '}
             {/* TOFIX: No such class / wrong approach */}
             <h1>Keep in touch</h1>
           </div>
