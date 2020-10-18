@@ -7,19 +7,12 @@ import { scrollToHomePageTop } from './utilFns';
 
 export default (props) => {
   const history = useHistory();
-
+  const defaultOnClick = () => {
+    history.push('/');
+    scrollToHomePageTop();
+  };
   return (
-    <div
-      className={styles['logo']}
-      onClick={
-        props.onClick
-          ? props.onClick
-          : () => {
-              history.push('/');
-              scrollToHomePageTop();
-            }
-      }
-    >
+    <div className={styles['logo']} onClick={props.onClick ? props.onClick : defaultOnClick}>
       <img src="/Simple-Q.png" alt="Home" />
       <p>SimplQ</p>
     </div>
