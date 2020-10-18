@@ -3,10 +3,10 @@
 import React from 'react';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
-import { useSelector, useDispatch } from 'react-redux';
 import PageNotFound from './pages/PageNotFound';
 import { setErrorNotifOpen } from '../store/appSlice';
 import { store } from '../store'; // TODO: Use Hooks
+import { useSelector, useDispatch } from 'react-redux';
 
 // ToDo: make functional
 export class ErrorBoundary extends React.Component {
@@ -25,7 +25,7 @@ export class ErrorBoundary extends React.Component {
     // You can also log the error to an error reporting service
     // logErrorToMyService(error, errorInfo);
     console.log('In componentDidCatch');
-    useDispatch(setErrorNotifOpen(true));
+    store.dispatch(setErrorNotifOpen(true));
   }
 
   render() {
