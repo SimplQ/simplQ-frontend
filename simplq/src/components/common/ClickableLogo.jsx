@@ -3,13 +3,13 @@
 import React from 'react';
 import { useHistory } from 'react-router';
 import styles from '../../styles/logo.module.scss';
-import { scrollToHomePageTop } from './utilFns';
+import { smoothScrollToHomePageTop } from './utilFns';
 
 export default (props) => {
   const history = useHistory();
   const defaultOnClick = () => {
     history.push('/');
-    scrollToHomePageTop();
+    smoothScrollToHomePageTop();
   };
   return (
     <div className={styles['logo']} onClick={props.onClick ? props.onClick : defaultOnClick}>
