@@ -1,33 +1,29 @@
 import React, { useState } from 'react';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Avatar, Button } from '@material-ui/core';
-import { setErrorNotifOpen } from '../../store/appSlice';
+import { setErrorNotifOpen, setLoggedInUser } from '../../store/appSlice';
 import styles from '../../styles/loginButton.module.scss';
 
 const LoginButton = () => {
-  const [profileObj, setProfileObj] = useState(null);
-  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
   const [loadingIndicator, setLoadingIndicator] = useState(false);
   const dispatch = useDispatch();
+  const loggedInUser = useSelector((state) => state.appReducer.loggedInUser);
 
   const onSuccessCallback = (response) => {
-    setProfileObj(response.profileObj);
-    setIsUserLoggedIn(true);
+    dispatch(setLoggedInUser(response.profileObj));
     setLoadingIndicator(false);
   };
 
   const onFailureCallback = () => {
-    setProfileObj(null);
-    setIsUserLoggedIn(false);
+    dispatch(setLoggedInUser(null));
     dispatch(setErrorNotifOpen('Login Failed. Please try again.'));
     setLoadingIndicator(false);
   };
 
   const onLogoutCallback = () => {
-    setIsUserLoggedIn(false);
-    setProfileObj(null);
+    dispatch(setLoggedInUser(null));
     setLoadingIndicator(false);
   };
 
@@ -36,15 +32,15 @@ const LoginButton = () => {
     return <div>Loading...</div>;
   }
 
-  if (isUserLoggedIn) {
+  if (loggedInUser) {
     return (
       <GoogleLogout
         render={(renderProps) => (
           <Button color="primary" onClick={renderProps.onClick} variant="outlined">
             <Avatar
               id={styles.avatar}
-              alt={`${profileObj.givenName} ${profileObj.familyName}`}
-              src={profileObj.imageUrl}
+              alt={`${loggedInUser.givenName} ${loggedInUser.familyName}`}
+              src={loggedInUser.imageUrl}
             />
             &nbsp;&nbsp;Logout
           </Button>
