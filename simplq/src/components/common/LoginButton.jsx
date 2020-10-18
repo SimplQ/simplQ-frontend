@@ -4,8 +4,8 @@ import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import { useDispatch, useSelector } from 'react-redux';
 import { Avatar, Button } from '@material-ui/core';
 import { setErrorNotifOpen } from '../../store/appSlice';
-import styles from '../../styles/loginButton.module.scss';
 import * as Auth from '../../services/auth';
+import styles from '../../styles/loginButton.module.scss';
 
 const LoginButton = () => {
   const [loadingIndicator, setLoadingIndicator] = useState(false);
