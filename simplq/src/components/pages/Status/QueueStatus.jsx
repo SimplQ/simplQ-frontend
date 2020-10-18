@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import * as TokenService from '../../../services/token';
 import { handleApiErrors } from '../../ErrorHandler';
 import styles from '../../../styles/statusPage.module.scss';
-import Header from '../../common/Header';
+import HeaderSection from '../../common/HeaderSection';
 import StatusContainer from './StatusContainer';
 import LoadingIndicator from '../../common/LoadingIndicator';
 import StatusSidePanel from './StatusSidePanel';
@@ -70,7 +70,7 @@ function QueueStatus(props) {
 
   return (
     <>
-      <Header className={styles['header']}>{tokenStatusResponse.queueName}</Header>
+      <HeaderSection queueName={tokenStatusResponse.queueName} />
       <div className={styles['main-body']}>
         <TokenNumber />
         <StatusContainer
