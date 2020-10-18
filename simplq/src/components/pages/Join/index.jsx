@@ -55,7 +55,7 @@ export default function JoinQueueWithDetails(props) {
             <Header className={styles['header']}>{queueStatusResponse.queueName}</Header>
           </div>
           <div className={styles['sub-header']}>
-            <h2>a short description</h2>
+            <h2>Ready to join</h2>
           </div>
         </div>
       </div>
