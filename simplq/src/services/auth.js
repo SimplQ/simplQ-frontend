@@ -7,7 +7,7 @@ export function isLoggedIn() {
   return store.getState().appReducer.isLoggedIn;
 }
 
-export async function getAccessToken() {
+export function getAccessToken() {
   if (!isLoggedIn()) {
     return 'anonymous';
   }
