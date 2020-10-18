@@ -1,15 +1,24 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import FileCopyIcon from '@material-ui/icons/FileCopy';
 import { ShareButton } from '../../common/Button/Button.stories';
 
 const ShareQueue = (props) => {
-  const [clicked, setClicked] = React.useState(false);
+  const [clicked, setClicked] = useState(false);
   const shareUrl = `${window.location.origin}/j/${props.queueName}`;
+
+  useEffect(() => {
+    // https://www.alexhughes.dev/blog/setTimeout-with-hooks/
+    if (!clicked) {
+      return () => {};
+    }
+    // changes back to old text and color after 5 seconds
+    const timerId = setTimeout(() => setClicked(false), 5000);
+    return () => clearTimeout(timerId);
+  }, [clicked]);
 
   const handleShareButtonClick = () => {
     setClicked(true);
-    setTimeout(() => setClicked(false), 5000); // changes back to old text and color after 5 seconds
   };
 
   const CopyToClipboardButton = () =>

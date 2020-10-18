@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/material.css';
+import { PhoneNumberUtil } from 'google-libphonenumber';
 import { handleEnterPress } from '../../common/utilFns';
 import InputField from '../../common/InputField';
 import styles from '../../../styles/joinPage.module.scss';
 import { JoinQButton } from '../../common/Button';
 import LoadingIndicator from '../../common/LoadingIndicator';
-import { PhoneNumberUtil } from 'google-libphonenumber';
 
 export function JoinQueueForm(props) {
   const [name, setName] = useState('');
@@ -30,7 +30,7 @@ export function JoinQueueForm(props) {
 
     if (country != null) {
       // to make sure that the number is parsed as an international number, prepend +.
-      const phoneNr = '+' + value;
+      const phoneNr = `+${value}`;
 
       try {
         const isValidNumber = phoneUtil.isValidNumberForRegion(
@@ -54,7 +54,8 @@ export function JoinQueueForm(props) {
     if (contact === '') {
       setInvalidContact(true);
       return;
-    } else if (invalidContact) {
+    }
+    if (invalidContact) {
       return;
     }
 
@@ -70,6 +71,7 @@ export function JoinQueueForm(props) {
   const JoinButton = () => (
     <div>{addingInProgress ? <LoadingIndicator /> : <JoinQButton onClick={handleClick} />}</div>
   );
+
   return (
     <div className={styles.form}>
       <InputField
