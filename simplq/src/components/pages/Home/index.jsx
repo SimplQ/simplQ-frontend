@@ -2,11 +2,11 @@ import React, { useEffect } from 'react';
 import { BenefitsInfo, HowToCreate, HowToJoin, ExtraInfo } from './StaticInfos';
 import LandingPage from './LandingPage';
 import Navbar from '../../common/Nav/Navbar';
-import { scrollToTop } from '../../common/utilFns';
+import { scrollToHomePageTop } from '../../common/utilFns';
 
 const Home = (props) => {
   // Scroll to top whenever home page is mounted
-  useEffect(scrollToTop, []);
+  useEffect(scrollToHomePageTop, []);
   return (
     <>
       <Navbar />

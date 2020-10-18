@@ -21,7 +21,7 @@ export const smoothScrollTo = (targetElement) => {
   });
 };
 
-export const scrollToTop = () => {
+export const scrollToHomePageTop = () => {
   const element = document.getElementById('target_top');
   if (element) {
     smoothScrollTo(element);

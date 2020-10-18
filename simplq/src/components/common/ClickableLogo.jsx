@@ -3,7 +3,7 @@
 import React from 'react';
 import { useHistory } from 'react-router';
 import styles from '../../styles/logo.module.scss';
-import { scrollToTop } from './utilFns';
+import { scrollToHomePageTop } from './utilFns';
 
 export default (props) => {
   const history = useHistory();
@@ -16,7 +16,7 @@ export default (props) => {
           ? props.onClick
           : () => {
               history.push('/');
-              scrollToTop();
+              scrollToHomePageTop();
             }
       }
     >
