@@ -6,7 +6,7 @@ import Header from './Header';
 export default (props) => (
   <div className={styles['header-bar']}>
     <div className={styles['simplq-logo']}>
-      <Logo history={props.history} />
+      <Logo />
     </div>
     <div className={styles['queue']}>
       <div className={styles['header-title']}>
