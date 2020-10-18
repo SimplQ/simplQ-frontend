@@ -13,6 +13,7 @@ import Header from '../../common/Header';
 import styles from '../../../styles/adminPage.module.scss';
 import SidePanel from './AdminSidePanel';
 import Logo from '../../common/ClickableLogo';
+import LoginButton from '../../common/LoginButton';
 
 const TIMEOUT = 10000;
 let timeoutId;
@@ -96,6 +97,7 @@ export default (props) => {
     <div>
       <nav className={styles['navbar']}>
         <Logo history={props.history} />
+        <LoginButton />
       </nav>
     </div>
   );
