@@ -3,6 +3,7 @@
 import React from 'react';
 import styles from '../../../styles/navbar.module.scss';
 import { smoothScrollTo } from '../utilFns';
+import LoginButton from '../LoginButton';
 
 const LeftNav = ({ open, toggleClose }) => {
   const scrollToHowItWorks = () => {
@@ -29,7 +30,7 @@ const LeftNav = ({ open, toggleClose }) => {
           </a>
         </li>
         <li>
-          <a>Sign In/Sign Up</a>
+          <LoginButton />
         </li>
       </ul>
     </div>
