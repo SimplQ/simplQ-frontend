@@ -56,10 +56,13 @@
   li {
     padding: 0 1.5rem;
   }
+  // Login Button
   li:last-child {
     position: fixed;
+    // In case of smaller screens with sidebar, display at the bottom
     bottom: 1rem;
     @media (min-width: 787px) {
+      // In case of navbar on larger screens, dispaly at top right
       top: 0.5rem;
       right: 0rem;
     }
