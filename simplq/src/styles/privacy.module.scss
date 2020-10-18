@@ -1,0 +1,13 @@
+@import 'utils';
+
+.header-bar {
+  @include background-color();
+  @include center-horizontally();
+  @include center-vertically();
+  min-height: 10rem;
+}
+
+.content {
+  margin: 3rem;
+  @include text-color();
+}

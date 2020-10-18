@@ -12,6 +12,10 @@ export default () => (
           <b>
             SimplQ is a completely web based queue management solution that anyone can use to create
             instant virtual queues.
+            <br />
+            <a href="/privacy">Privacy Policy</a>
+            <br />
+            <a href="/privacy#terms-of-service">Terms of Service</a>
           </b>
         </div>
       </div>
