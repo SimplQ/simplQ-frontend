@@ -35,6 +35,8 @@
   width: 40%;
   padding: 10%;
   min-width: 18rem;
+  z-index: 10;
+  margin: 2rem;
   p {
     @include center-horizontally();
     @include text-color();
@@ -91,7 +93,7 @@
 }
 
 .token-number {
-  // max-width: 5rem;
+  z-index: 10;
   padding: 5%;
   p {
     @include center-horizontally();

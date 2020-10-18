@@ -16,7 +16,7 @@ export default (props) => {
     /* eslint-disable react/jsx-one-expression-per-line */
     status = (
       <>
-        <p>Hello, </p>
+        <p>Hello {props.name}, </p>
         <p>your courrent position is:</p>
         <p className={styles['count']}>{props.aheadCount + 1}</p>
       </>

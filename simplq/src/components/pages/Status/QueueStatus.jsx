@@ -72,8 +72,9 @@ function QueueStatus(props) {
     <>
       <HeaderSection queueName={tokenStatusResponse.queueName} />
       <div className={styles['main-body']}>
-        <TokenNumber />
+        <TokenNumber tokenNumber={tokenStatusResponse.tokenNumber} />
         <StatusContainer
+          name={tokenStatusResponse.name}
           updateInProgress={updateInProgress}
           tokenStatus={tokenStatusResponse.tokenStatus}
           aheadCount={tokenStatusResponse.aheadCount}
