@@ -11,8 +11,8 @@ const LoginButton = () => {
   const dispatch = useDispatch();
   const loggedInUser = useSelector((state) => state.appReducer.loggedInUser);
 
-  const onSuccessCallback = (response) => {
-    dispatch(setLoggedInUser(response.profileObj));
+  const onSuccessCallback = (googleUser) => {
+    dispatch(setLoggedInUser(googleUser));
     setLoadingIndicator(false);
   };
 
@@ -59,6 +59,7 @@ const LoginButton = () => {
       onRequest={() => setLoadingIndicator(true)}
       isSignedIn
       cookiePolicy="single_host_origin"
+      responseType="id_token permission"
     />
   );
 };
