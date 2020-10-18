@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-
 import React, { useState } from 'react';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 
@@ -11,55 +9,61 @@ import styles from '../../styles/loginButton.module.scss';
 const LoginButton = () => {
   const [profileObj, setProfileObj] = useState(null);
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
+  const [loadingIndicator, setLoadingIndicator] = useState(false);
   const dispatch = useDispatch();
 
   const onSuccessCallback = (response) => {
     setProfileObj(response.profileObj);
     setIsUserLoggedIn(true);
-    dispatch(setErrorNotifOpen('Login Success'));
+    setLoadingIndicator(false);
   };
 
   const onFailureCallback = () => {
     setProfileObj(null);
     setIsUserLoggedIn(false);
-    dispatch(setErrorNotifOpen('Login Failed'));
+    dispatch(setErrorNotifOpen('Login Failed. Please try again.'));
+    setLoadingIndicator(false);
   };
 
   const onLogoutCallback = () => {
     setIsUserLoggedIn(false);
     setProfileObj(null);
-    dispatch(setErrorNotifOpen('Bye'));
+    setLoadingIndicator(false);
   };
 
+  if (loadingIndicator) {
+    // todo Use spinner
+    return <div>Loading...</div>;
+  }
+
+  if (isUserLoggedIn) {
+    return (
+      <GoogleLogout
+        render={(renderProps) => (
+          <Button color="primary" onClick={renderProps.onClick} variant="outlined">
+            <Avatar
+              id={styles.avatar}
+              alt={`${profileObj.givenName} ${profileObj.familyName}`}
+              src={profileObj.imageUrl}
+            />
+            &nbsp;&nbsp;Logout
+          </Button>
+        )}
+        onLogoutSuccess={onLogoutCallback}
+        buttonText="Logout"
+      />
+    );
+  }
   return (
-    <div>
-      {!isUserLoggedIn && (
-        <GoogleLogin
-          clientId="113171837606-3ohbbjtobt1989o9miv2gtko7ok7tt1h.apps.googleusercontent.com"
-          buttonText="Login with Google"
-          onSuccess={onSuccessCallback}
-          onFailure={onFailureCallback}
-          isSignedIn
-          cookiePolicy="single_host_origin"
-        />
-      )}
-      {isUserLoggedIn && (
-        <GoogleLogout
-          render={(renderProps) => (
-            <Button color="primary" onClick={renderProps.onClick} variant="outlined">
-              <Avatar
-                id={styles.avatar}
-                alt={`${profileObj.givenName} ${profileObj.familyName}`}
-                src={profileObj.imageUrl}
-              />
-              &nbsp;&nbsp;Logout
-            </Button>
-          )}
-          onLogoutSuccess={onLogoutCallback}
-          buttonText="Logout"
-        />
-      )}
-    </div>
+    <GoogleLogin
+      clientId="113171837606-3ohbbjtobt1989o9miv2gtko7ok7tt1h.apps.googleusercontent.com"
+      buttonText="Login with Google"
+      onSuccess={onSuccessCallback}
+      onFailure={onFailureCallback}
+      onRequest={() => setLoadingIndicator(true)}
+      isSignedIn
+      cookiePolicy="single_host_origin"
+    />
   );
 };
 
