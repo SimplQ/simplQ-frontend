@@ -13,7 +13,6 @@ const LeftNav = ({ open, toggleClose }) => {
     const element = document.getElementById('target_how_it_works');
     smoothScrollTo(element);
   };
-
   return (
     <div>
       <ul className={styles['left-nav']} open={open}>

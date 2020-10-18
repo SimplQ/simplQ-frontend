@@ -6,7 +6,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: 5rem 10rem;
+  padding: 0 10rem;
   @media screen and (max-width: 550px) {
     padding: 2rem;
   }
@@ -26,7 +26,6 @@
     }
 
     & > .card-body {
-      margin-top: 2rem;
       & > .description-content-container {
         padding: 0;
         height: 100%;
@@ -44,7 +43,7 @@
         height: 100%;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        justify-content: space-around;
       }
 
       & > .list-container {
