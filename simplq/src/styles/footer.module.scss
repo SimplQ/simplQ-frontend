@@ -53,12 +53,19 @@
         & > ul {
           margin: 0;
           padding: 0;
+          display: inline-flex;
           list-style-type: none;
-
+          li + li{
+            padding-left:1rem;
+          }
           & > li {
             color: #3a3768;
 
             & > a {
+              .youtube-icon{
+                   font-size: 40px;
+              }
+              font-size: 2rem;
               text-decoration: none;
               color: #3a3768;
             }
