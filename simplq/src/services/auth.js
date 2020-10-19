@@ -1,40 +1,35 @@
-import { Auth } from 'aws-amplify';
-import { v4 as uuidv4 } from 'uuid';
+import { store } from '../store';
+import { setIsLoggedIn } from '../store/appSlice';
 
-async function getAccessToken() {
-  const token = await Auth.currentSession();
-  return token.getAccessToken().getJwtToken().toString();
+let googleUser = null;
+
+export function isLoggedIn() {
+  return store.getState().appReducer.isLoggedIn;
 }
 
-async function loginElseCreateAnonAccount() {
-  const currentUser = await Auth.currentUserInfo();
-  if (currentUser) {
-    // user already logged in.
-    Promise.resolve(true);
+export function getAccessToken() {
+  if (!isLoggedIn()) {
+    return 'anonymous';
   }
-
-  let userId = localStorage.getItem('userId');
-  let tempKey = localStorage.getItem('tempKey');
-
-  if (!userId || !tempKey) {
-    userId = uuidv4();
-    tempKey = uuidv4();
-
-    await Auth.signUp({
-      username: userId,
-      password: tempKey,
-    })
-      .then((user) => {
-        localStorage.setItem('userId', userId);
-        localStorage.setItem('tempKey', tempKey);
-        return user;
-      })
-      .catch((err) => {
-        throw Error('Anon user registration failed: ', err);
-      });
-  }
-  await Auth.signIn(userId, tempKey);
-  Promise.resolve(true);
+  return googleUser.getAuthResponse().id_token;
 }
 
-export { getAccessToken, loginElseCreateAnonAccount };
+export function logIn(newGoogleUser) {
+  googleUser = newGoogleUser;
+  store.dispatch(setIsLoggedIn(true));
+}
+
+export function logOut() {
+  googleUser = null;
+  store.dispatch(setIsLoggedIn(false));
+}
+
+export function getName() {
+  return googleUser.getBasicProfile().getName();
+}
+
+export function getImageUrl() {
+  return googleUser.getBasicProfile().getImageUrl();
+}
+
+export default getAccessToken;
