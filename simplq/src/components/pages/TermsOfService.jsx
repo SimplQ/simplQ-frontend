@@ -2,11 +2,11 @@ import React from 'react';
 import styles from '../../styles/privacy.module.scss';
 import ClickableLogo from '../common/ClickableLogo';
 
-function TermsOfService(props) {
+function TermsOfService() {
   return (
     <>
       <div className={styles['header-bar']}>
-        <ClickableLogo history={props.history} />
+        <ClickableLogo />
       </div>
       <div className={styles['content']}>
         <h2 id="privacy">Privacy Policy</h2>

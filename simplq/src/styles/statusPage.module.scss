@@ -27,16 +27,26 @@
   margin: 0;
 }
 
-.count {
-  font-size: 2rem;
-}
-
 .status-box {
-  border: 1.5px solid $primary-color-dark;
-  border-radius: 1rem;
+  border-radius: 0.6rem;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  height: 50%;
   width: 40%;
   padding: 10%;
-  box-sizing: border-box;
+  min-width: 16rem;
+  z-index: 10;
+  margin: 2rem;
+  p {
+    @include center-horizontally();
+    @include text-color();
+    font-size: 1.2rem;
+    display: block;
+  }
+  .count {
+    font-family: 'Pacifico';
+    font-size: 4rem;
+  }
 }
 
 .detail {
@@ -79,5 +89,20 @@
     width: 12;
     height: 12;
     box-shadow: 'none';
+  }
+}
+
+.token-number {
+  z-index: 10;
+  padding: 5%;
+  p {
+    @include center-horizontally();
+    @include text-color();
+    font-size: 1rem;
+    display: block;
+  }
+  .count {
+    font-family: 'Pacifico';
+    font-size: 2rem;
   }
 }
