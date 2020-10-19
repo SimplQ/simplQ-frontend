@@ -14,7 +14,7 @@ const appSlice = createSlice({
   initialState: {
     errorText: '',
     notificationPermission: getNotificationStatus(),
-    loggedInUser: null,
+    isLoggedIn: false,
   },
   reducers: {
     setErrorNotifOpen: (state, action) => {
@@ -25,13 +25,13 @@ const appSlice = createSlice({
       // eslint-disable-next-line no-param-reassign
       state.notificationPermission = action.payload;
     },
-    setLoggedInUser: (state, action) => {
+    setIsLoggedIn: (state, action) => {
       // eslint-disable-next-line no-param-reassign
-      state.loggedInUser = action.payload;
+      state.isLoggedIn = action.payload;
     },
   },
 });
 
-export const { setErrorNotifOpen, setNotificationPermission, setLoggedInUser } = appSlice.actions;
+export const { setErrorNotifOpen, setNotificationPermission, setIsLoggedIn } = appSlice.actions;
 
 export default appSlice.reducer;

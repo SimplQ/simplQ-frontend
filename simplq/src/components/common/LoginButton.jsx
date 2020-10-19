@@ -3,27 +3,28 @@ import { GoogleLogin, GoogleLogout } from 'react-google-login';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { Avatar, Button } from '@material-ui/core';
-import { setErrorNotifOpen, setLoggedInUser } from '../../store/appSlice';
+import { setErrorNotifOpen } from '../../store/appSlice';
+import * as Auth from '../../services/auth';
 import styles from '../../styles/loginButton.module.scss';
 
 const LoginButton = () => {
   const [loadingIndicator, setLoadingIndicator] = useState(false);
   const dispatch = useDispatch();
-  const loggedInUser = useSelector((state) => state.appReducer.loggedInUser);
+  const isLoggedIn = useSelector((state) => state.appReducer.isLoggedIn);
 
-  const onSuccessCallback = (response) => {
-    dispatch(setLoggedInUser(response.profileObj));
+  const onSuccessCallback = (googleUser) => {
+    Auth.logIn(googleUser);
     setLoadingIndicator(false);
   };
 
   const onFailureCallback = () => {
-    dispatch(setLoggedInUser(null));
+    Auth.logOut();
     dispatch(setErrorNotifOpen('Login Failed. Please try again.'));
     setLoadingIndicator(false);
   };
 
   const onLogoutCallback = () => {
-    dispatch(setLoggedInUser(null));
+    Auth.logOut();
     setLoadingIndicator(false);
   };
 
@@ -32,16 +33,12 @@ const LoginButton = () => {
     return <div>Loading...</div>;
   }
 
-  if (loggedInUser) {
+  if (isLoggedIn) {
     return (
       <GoogleLogout
         render={(renderProps) => (
           <Button color="primary" onClick={renderProps.onClick} variant="outlined">
-            <Avatar
-              id={styles.avatar}
-              alt={`${loggedInUser.givenName} ${loggedInUser.familyName}`}
-              src={loggedInUser.imageUrl}
-            />
+            <Avatar id={styles.avatar} alt={Auth.getName()} src={Auth.getImageUrl()} />
             &nbsp;&nbsp;Logout
           </Button>
         )}
@@ -59,6 +56,7 @@ const LoginButton = () => {
       onRequest={() => setLoadingIndicator(true)}
       isSignedIn
       cookiePolicy="single_host_origin"
+      responseType="id_token permission"
     />
   );
 };
