@@ -60,7 +60,7 @@ export default () => (
             </li>
             <li>
               <a href="https://medium.com/@raimazach/virtualizing-queues-a-long-overdue-alternative-to-physical-queues-bfdc4b51070f">
-                <i class="fab fa-medium"></i>
+               <img src="images/ICON-MEDIUM.jpg" />
               </a>
             </li>
             <li>

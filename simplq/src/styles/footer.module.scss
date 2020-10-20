@@ -62,8 +62,13 @@
             color: #3a3768;
 
             & > a {
+
+              img{
+                height: 1.75rem;
+                width: 1.75rem;
+              }
               .youtube-icon{
-                   font-size: 40px;
+                   font-size: 2.5rem;
               }
               font-size: 2rem;
               text-decoration: none;
