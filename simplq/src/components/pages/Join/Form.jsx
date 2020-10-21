@@ -81,6 +81,7 @@ export function JoinQueueForm(props) {
         onChange={handleNameChange}
         error={invalidName}
         helperText={invalidName ? 'Enter a valid name' : ''}
+        autoFocus
       />
       <PhoneInput
         placeholder="Phone Number"
@@ -89,7 +90,6 @@ export function JoinQueueForm(props) {
         inputProps={{
           name: 'phone',
           required: true,
-          autoFocus: true,
         }}
         inputStyle={{
           width: '100%',
