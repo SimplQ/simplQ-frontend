@@ -3,7 +3,7 @@
   "name": "SimplQ provides a means to create and manage virtual queues instantly to help you and your customers have a great business experience",
   "icons": [
     {
-      "src": "LogoLight.png",
+      "src": "/images/Simple-Q.png",
       "type": "image/png"
     }
   ],

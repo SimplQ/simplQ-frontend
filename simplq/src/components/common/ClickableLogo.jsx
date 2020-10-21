@@ -13,7 +13,7 @@ export default (props) => {
   };
   return (
     <div className={styles['logo']} onClick={props.onClick ? props.onClick : defaultOnClick}>
-      <img src="/Simple-Q.png" alt="Home" />
+      <img src="/images/Simple-Q.png" alt="Home" />
       <p>SimplQ</p>
     </div>
   );
