@@ -1,5 +1,10 @@
 import React from 'react';
 import styles from '../../styles/footer.module.scss';
+import FacebookIcon from '@material-ui/icons/Facebook';
+import PhoneIcon from '@material-ui/icons/Phone';
+import YouTubeIcon from '@material-ui/icons/YouTube';
+import GitHubIcon from '@material-ui/icons/GitHub';
+import MailIcon from '@material-ui/icons/Mail';
 import { ForkOnGithubButton } from './Button/Button.stories';
 import ClickableLogo from './ClickableLogo';
 
@@ -44,24 +49,35 @@ export default () => (
         <div className={styles['list-container']}>
           <ul>
             <li>
-              <a href="https://iimb.qualtrics.com/jfe/form/SV_aY8FY91ztRX9NvD">Contact Us</a>
-            </li>
-            <li>
-              <a href="https://github.com/SimplQ/simplQ-frontend">Github</a>
-            </li>
-            <li>
-              <a href="https://medium.com/@raimazach/virtualizing-queues-a-long-overdue-alternative-to-physical-queues-bfdc4b51070f">
-                Medium
+              <a href="https://iimb.qualtrics.com/jfe/form/SV_aY8FY91ztRX9NvD">
+                <PhoneIcon fontSize={"large"} />
               </a>
             </li>
             <li>
-              <a href="https://www.youtube.com/channel/UCAb9PSXvrGZ4vvSneK1Nrow">Youtube</a>
+              <a href="https://github.com/SimplQ/simplQ-frontend">
+                <GitHubIcon fontSize={"large"} />
+              </a>
             </li>
             <li>
-              <a href="https://www.facebook.com/simplq/">Facebook</a>
+              <a href="https://medium.com/@raimazach/virtualizing-queues-a-long-overdue-alternative-to-physical-queues-bfdc4b51070f">
+               <img src="images/ICON-MEDIUM.jpg" />
+              </a>
             </li>
             <li>
-              <a href="mailto:contact@simplq.me">Gmail</a>
+              <a href="https://www.youtube.com/channel/UCAb9PSXvrGZ4vvSneK1Nrow">
+                {/* Youtube Icon was looking smaller that others, setting height/width manually via css to match other icons */}
+                <YouTubeIcon className={styles['youtube-icon']} fontSize={"large"}/>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.facebook.com/simplq/">
+                <FacebookIcon fontSize={"large"} />
+              </a>
+            </li>
+            <li>
+              <a href="mailto:contact@simplq.me">
+                <MailIcon fontSize={"large"}/>
+              </a>
             </li>
           </ul>
         </div>
