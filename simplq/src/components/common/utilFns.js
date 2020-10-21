@@ -20,3 +20,10 @@ export const smoothScrollTo = (targetElement) => {
     behavior: 'smooth',
   });
 };
+
+export const smoothScrollToHomePageTop = () => {
+  const element = document.getElementById('target_top');
+  if (element) {
+    smoothScrollTo(element);
+  }
+};

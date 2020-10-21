@@ -15,9 +15,11 @@ export default (props) => {
   } else {
     /* eslint-disable react/jsx-one-expression-per-line */
     status = (
-      <p>
-        People ahead of you :<span className={styles.count}>{props.aheadCount}</span>
-      </p>
+      <>
+        <p>Hello {props.name}, </p>
+        <p>your courrent position is:</p>
+        <p className={styles['count']}>{props.aheadCount + 1}</p>
+      </>
     );
   }
 
