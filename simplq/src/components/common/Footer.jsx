@@ -65,6 +65,7 @@ export default () => (
             </li>
             <li>
               <a href="https://www.youtube.com/channel/UCAb9PSXvrGZ4vvSneK1Nrow">
+                {/* Youtube Icon was looking smaller that others, setting height/width manually via css to match other icons */}
                 <YouTubeIcon className={styles['youtube-icon']} fontSize={"large"}/>
               </a>
             </li>
