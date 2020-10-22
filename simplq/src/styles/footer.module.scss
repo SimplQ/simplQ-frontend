@@ -55,20 +55,19 @@
           padding: 0;
           display: inline-flex;
           list-style-type: none;
-          li + li{
-            padding-left:1rem;
+          li + li {
+            padding-left: 1rem;
           }
           & > li {
             color: #3a3768;
 
             & > a {
-
-              img{
+              img {
                 height: 1.75rem;
                 width: 1.75rem;
               }
-              .youtube-icon{
-                   font-size: 2.5rem;
+              .youtube-icon {
+                font-size: 2.5rem;
               }
               font-size: 2rem;
               text-decoration: none;

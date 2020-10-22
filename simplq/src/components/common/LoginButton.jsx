@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Avatar, Button } from '@material-ui/core';
 import { setErrorNotifOpen } from '../../store/appSlice';
 import * as Auth from '../../services/auth';
+import LoadingIndicator from './LoadingIndicator';
 import styles from '../../styles/loginButton.module.scss';
 
 const LoginButton = () => {
@@ -29,8 +30,7 @@ const LoginButton = () => {
   };
 
   if (loadingIndicator) {
-    // todo Use spinner
-    return <div>Loading...</div>;
+    return LoadingIndicator;
   }
 
   if (isLoggedIn) {

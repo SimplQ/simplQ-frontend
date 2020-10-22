@@ -17,7 +17,7 @@ function QueueStatus(props) {
   const [updateInProgress, setUpdateInProgress] = useState(false);
 
   const showNotification = useCallback(() => {
-    const notificationImage = '/LogoLight.png';
+    const notificationImage = '/images/Simple-Q.png';
     const notificationText = `${tokenStatusResponse.queueName}: You've been notified by the queue manager.`;
     const notification = new Notification('SimplQ', {
       body: notificationText,
