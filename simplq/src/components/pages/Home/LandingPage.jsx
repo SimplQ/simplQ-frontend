@@ -2,18 +2,24 @@ import React from 'react';
 import Header from '../../common/Header';
 import styles from '../../../styles/homePage.module.scss';
 import CreateJoinForm from './CreateJoinForm';
+import MyQueues from './MyQueues';
+import { isLoggedIn } from '../../../services/auth';
 
 export default (props) => {
+  const subtitle = isLoggedIn()
+    ? 'Hi Navaneeth, welcome back!'
+    : 'A long overdue alternative to physical queues';
   return (
     <div id="target_top" className={styles['landing-page']}>
       <div>
         <Header className={styles['main-header']}>SimplQ</Header>
-        <p className={styles.subtitle}>A long overdue alternative to physical queues</p>
+        <p className={styles.subtitle}>{subtitle}</p>
         <p className={styles.description}>
           Create and manage queues with our free online queue management solution for easy and
           instant crowd control
         </p>
       </div>
+      <MyQueues />
       <CreateJoinForm history={props.history} />
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
         <path
