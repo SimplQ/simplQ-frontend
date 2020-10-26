@@ -9,7 +9,7 @@ import * as Auth from '../../../services/auth';
 export default (props) => {
   const isLoggedIn = useSelector((state) => state.appReducer.isLoggedIn);
   const subtitle = isLoggedIn
-    ? `Hi ${Auth.getName()}, welcome back!`
+    ? `Hi ${Auth.getGivenName()}, welcome back!`
     : 'A long overdue alternative to physical queues';
   return (
     <div id="target_top" className={styles['landing-page']}>

@@ -28,6 +28,10 @@ export function getName() {
   return googleUser.getBasicProfile().getName();
 }
 
+export function getGivenName() {
+  return googleUser.getBasicProfile().getGivenName();
+}
+
 export function getImageUrl() {
   return googleUser.getBasicProfile().getImageUrl();
 }
