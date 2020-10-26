@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
-
+import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { Avatar, Button } from '@material-ui/core';
 import { setErrorNotifOpen } from '../../store/appSlice';
@@ -12,6 +12,7 @@ const LoginButton = () => {
   const [loadingIndicator, setLoadingIndicator] = useState(false);
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.appReducer.isLoggedIn);
+  const history = useHistory();
 
   const onSuccessCallback = (googleUser) => {
     Auth.logIn(googleUser);
@@ -26,6 +27,7 @@ const LoginButton = () => {
 
   const onLogoutCallback = () => {
     Auth.logOut();
+    history.push('/');
     setLoadingIndicator(false);
   };
 
