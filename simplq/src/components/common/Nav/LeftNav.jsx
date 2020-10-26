@@ -22,9 +22,6 @@ const LeftNav = ({ open, toggleClose }) => {
           </a>
         </li>
         <li>
-          <a>My Queues</a>
-        </li>
-        <li>
           <a tabIndex={-1} href="https://iimb.qualtrics.com/jfe/form/SV_aY8FY91ztRX9NvD">
             Contact Us
           </a>

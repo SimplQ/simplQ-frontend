@@ -48,7 +48,7 @@ const CreateJoinForm = ({ history }) => {
     <div className={styles['create-join-form']}>
       <div className={styles['input-box']}>
         <InputField
-          placeholder="Enter a name for your new queue"
+          placeholder="Queue Name"
           value={textFieldValue}
           onChange={handleTextFieldChange}
           onKeyPress={(e) => handleEnterPress(e, handleCreateClick)}

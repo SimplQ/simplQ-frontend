@@ -21,7 +21,7 @@
   .description {
     @include center-horizontally();
     @include text-color();
-    margin-bottom: 4rem;
+    margin: 2rem;
     font-size: larger;
   }
   .create-join-form {
@@ -193,4 +193,27 @@
 
 #curved-div-2 {
   display: flex;
+}
+
+.my-queue {
+  @include text-color();
+  @include center-horizontally();
+  flex-direction: column;
+  .my-queue-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 20rem;
+    border-bottom: 0.1rem solid;
+    padding: 0.25rem 1rem;
+
+    &:hover {
+      background-color: #f9f9f9;
+    }
+
+    &:last-child() {
+      border-bottom: none;
+    }
+  }
 }

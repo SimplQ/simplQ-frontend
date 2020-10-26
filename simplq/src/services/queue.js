@@ -1,9 +1,17 @@
 import makeRequest from './axios';
+import { store } from '../store';
+import { setMyQueues } from '../store/appSlice';
+
+export const getMyQueues = async () => {
+  const response = await makeRequest('get', '/queues');
+  return response.data.queues;
+};
 
 export const create = async (queueName) => {
   const response = await makeRequest('post', '/queue', {
     queueName,
   });
+  getMyQueues().then((queues) => store.dispatch(setMyQueues(queues)));
   return response.data;
 };
 
