@@ -29,3 +29,8 @@ export const getStatusByName = async (queueName) => {
   const response = await makeRequest('get', `/queue/status?queueName=${queueName}`);
   return response.data;
 };
+
+export const deleteQueue = async (queueId) => {
+  const response = await makeRequest('delete', `/queue/${queueId}`);
+  return response.data;
+};

@@ -9,7 +9,7 @@ export default (props) => (
   <SidePanel>
     <AddMember queueId={props.queueId} joinQueueHandler={props.joinQueueHandler} />
     <PauseQueue />
-    <DeleteQueue />
+    <DeleteQueue queueId={props.queueId} />
     <QueueHistory />
   </SidePanel>
 );

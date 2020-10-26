@@ -2,20 +2,32 @@ import React from 'react';
 import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
 import { useHistory } from 'react-router';
+import { useSelector, useDispatch } from 'react-redux';
 import styles from '../../../styles/homePage.module.scss';
-import { useSelector } from 'react-redux';
+import { deleteQueue, getMyQueues } from '../../../services/queue';
+import { handleApiErrors } from '../../ErrorHandler';
+import { setMyQueues } from '../../../store/appSlice';
 
 export default () => {
   const history = useHistory();
+  const dispatch = useDispatch();
   const myQueues = useSelector((state) => state.appReducer.myQueues);
 
-  if (myQueues.length === 0) {
-    return null;
-  }
+  const onDeleteClick = (queueId) => {
+    deleteQueue(queueId)
+      .then(() => getMyQueues().then((myNewQueues) => dispatch(setMyQueues(myNewQueues))))
+      .catch((err) => handleApiErrors(err))
+      .then(() => history.push('/'))
+      .catch((err) => handleApiErrors(err));
+  };
 
   return (
     <div className={styles['my-queue']}>
-      <p>What would you like to do today? Here are your active queues:</p>
+      <p>
+        {myQueues.length === 0
+          ? "Looks like you don't have any active queues. Start by creating one..."
+          : 'What would you like to do today? Here are your active queues:'}
+      </p>
       {myQueues.map((queue) => {
         const handler = () => history.push(`/queue/${queue.queueId}`);
         return (
@@ -27,7 +39,7 @@ export default () => {
             className={styles['my-queue-item']}
           >
             <div>{queue.queueName}</div>
-            <IconButton>
+            <IconButton onClick={() => onDeleteClick(queue.queueId)}>
               <DeleteIcon />
             </IconButton>
           </div>
