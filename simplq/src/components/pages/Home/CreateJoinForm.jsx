@@ -51,12 +51,10 @@ const CreateJoinForm = ({ history }) => {
           placeholder="Enter a name for your new queue"
           value={textFieldValue}
           onChange={handleTextFieldChange}
-          onKeyPress={
-            (e) => handleEnterPress(e, handleCreateClick)
-            // eslint-disable-next-line react/jsx-curly-newline
-          }
+          onKeyPress={(e) => handleEnterPress(e, handleCreateClick)}
           error={invalidMsg.length > 0}
           helperText={invalidMsg}
+          autoFocus
         />
       </div>
       <div className={styles['button-group']}>
