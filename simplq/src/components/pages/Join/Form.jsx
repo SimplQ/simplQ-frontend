@@ -68,14 +68,14 @@ export function JoinQueueForm(props) {
     });
   };
 
-  const ActionButton = () => {
+  const CreateTokenButton = () => {
     if (addingInProgress)
       return (
         <div>
           <LoadingIndicator />
         </div>
       );
-    if (props.page === 'admin') return <AddToQueueButton onClick={handleClick} />;
+    if (props.buttonName === 'Add') return <AddToQueueButton onClick={handleClick} />;
     return <JoinQueueButton onClick={handleClick} />;
   };
 
@@ -105,7 +105,7 @@ export function JoinQueueForm(props) {
         onChange={handleContactChange}
         onKeyDown={(e) => handleEnterPress(e, handleClick)}
       />
-      <ActionButton />
+      <CreateTokenButton />
     </div>
   );
 }
