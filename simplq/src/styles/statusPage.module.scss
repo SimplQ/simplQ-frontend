@@ -33,7 +33,7 @@
     0 1px 5px 0 rgba(0, 0, 0, 0.12);
   height: 50%;
   width: 40%;
-  padding: 10%;
+  padding: 5% 10%;
   min-width: 16rem;
   z-index: 10;
   margin: 2rem;
@@ -46,6 +46,13 @@
   .count {
     font-family: 'Pacifico';
     font-size: 4rem;
+  }
+  .refresh-button {
+    @include center-horizontally();
+    padding-top: 1rem;
+    button {
+      padding: 0.3rem 3rem;
+    }
   }
 }
 
@@ -70,7 +77,7 @@
 }
 
 .notification-container {
-  margin-top: 295px;
+  margin-top: 12rem;
   display: flex;
   justify-content: flex-end;
   align-items: center;
