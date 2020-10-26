@@ -23,8 +23,15 @@ const LeftNav = ({ open, toggleClose, page }) => {
             </a>
           </li>
         ) : null}
+        {page === 'admin' ? (
+          <li>
+            <a tabIndex={0} href="/">
+              My Queues
+            </a>
+          </li>
+        ) : null}
         <li>
-          <a tabIndex={-1} href="https://iimb.qualtrics.com/jfe/form/SV_aY8FY91ztRX9NvD">
+          <a tabIndex={0} href="https://iimb.qualtrics.com/jfe/form/SV_aY8FY91ztRX9NvD">
             Contact Us
           </a>
         </li>
