@@ -5,7 +5,7 @@ import { PhoneNumberUtil } from 'google-libphonenumber';
 import { handleEnterPress } from '../../common/utilFns';
 import InputField from '../../common/InputField';
 import styles from '../../../styles/joinPage.module.scss';
-import { JoinQButton } from '../../common/Button';
+import { JoinQueueButton, AddToQueueButton } from '../../common/Button';
 import LoadingIndicator from '../../common/LoadingIndicator';
 
 export function JoinQueueForm(props) {
@@ -68,9 +68,16 @@ export function JoinQueueForm(props) {
     });
   };
 
-  const JoinButton = () => (
-    <div>{addingInProgress ? <LoadingIndicator /> : <JoinQButton onClick={handleClick} />}</div>
-  );
+  const ActionButton = () => {
+    if (addingInProgress)
+      return (
+        <div>
+          <LoadingIndicator />
+        </div>
+      );
+    if (props.page === 'admin') return <AddToQueueButton onClick={handleClick} />;
+    return <JoinQueueButton onClick={handleClick} />;
+  };
 
   return (
     <div className={styles.form}>
@@ -98,7 +105,7 @@ export function JoinQueueForm(props) {
         onChange={handleContactChange}
         onKeyDown={(e) => handleEnterPress(e, handleClick)}
       />
-      <JoinButton />
+      <ActionButton />
     </div>
   );
 }

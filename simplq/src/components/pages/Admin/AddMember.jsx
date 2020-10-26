@@ -17,6 +17,7 @@ export default (props) => {
           buttonName="Add"
           queueId={props.queueId}
           joinQueueHandler={props.joinQueueHandler}
+          page="admin"
         />
       </div>
     </SidePanelButton>
