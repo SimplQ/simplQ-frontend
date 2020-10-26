@@ -4,13 +4,14 @@ import Burger from './Burger';
 import Logo from '../ClickableLogo';
 import { smoothScrollToHomePageTop } from '../utilFns';
 
-const Navbar = () => {
+const Navbar = ({ page }) => {
   return (
     <nav className={styles['navbar']}>
       <Logo onClick={smoothScrollToHomePageTop} />
-      <Burger />
+      <Burger page={page} />
     </nav>
   );
 };
 
-export default Navbar;
+export const AdminNavbar = () => <Navbar page="admin" />;
+export const HomeNavbar = () => <Navbar page="home" />;

@@ -12,8 +12,7 @@ import { RefreshButton } from '../../common/Button/Button.stories';
 import Header from '../../common/Header';
 import styles from '../../../styles/adminPage.module.scss';
 import SidePanel from './AdminSidePanel';
-import Logo from '../../common/ClickableLogo';
-import LoginButton from '../../common/LoginButton';
+import { AdminNavbar } from '../../common/Nav/Navbar';
 
 const TIMEOUT = 10000;
 let timeoutId;
@@ -93,18 +92,9 @@ export default (props) => {
     </div>
   );
 
-  const Navbar = () => (
-    <div>
-      <nav className={styles['navbar']}>
-        <Logo />
-        <LoginButton />
-      </nav>
-    </div>
-  );
-
   return (
     <>
-      <Navbar />
+      <AdminNavbar />
       <HeaderSection />
       <div className={styles['main-body']}>
         <div
