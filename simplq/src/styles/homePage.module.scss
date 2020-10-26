@@ -199,7 +199,6 @@
   @include text-color();
   @include center-horizontally();
   flex-direction: column;
-  margin: 2rem;
   .my-queue-item {
     display: flex;
     flex-direction: row;

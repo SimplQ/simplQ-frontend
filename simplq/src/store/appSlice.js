@@ -1,12 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const MY_QUEUE_LOCALSTORAGE = 'my-local-queues';
-
-const getMyQueuesFromLocalStorage = () => {
-  const localQueues = JSON.parse(localStorage.getItem(MY_QUEUE_LOCALSTORAGE));
-  return localQueues || [];
-};
-
 // fix for Notification object not supported on iOS safari
 const getNotificationStatus = () => {
   try {
@@ -22,7 +15,7 @@ const appSlice = createSlice({
     errorText: '',
     notificationPermission: getNotificationStatus(),
     isLoggedIn: false,
-    myQueues: getMyQueuesFromLocalStorage(),
+    myQueues: [],
   },
   reducers: {
     setErrorNotifOpen: (state, action) => {
@@ -41,20 +34,6 @@ const appSlice = createSlice({
       const newQueuesList = action.payload;
       // eslint-disable-next-line no-param-reassign
       state.myQueues = newQueuesList;
-
-      // Flush to local storage
-      localStorage.setItem(MY_QUEUE_LOCALSTORAGE, JSON.stringify(newQueuesList));
-    },
-    addToMyQueues: (state, action) => {
-      const newQueue = action.payload;
-
-      // Flush to localstorage as well
-      const existingQueues = getMyQueuesFromLocalStorage();
-      existingQueues.push(newQueue);
-      localStorage.setItem(MY_QUEUE_LOCALSTORAGE, JSON.stringify(existingQueues));
-
-      // eslint-disable-next-line no-param-reassign
-      state.myQueues = existingQueues;
     },
   },
 });
