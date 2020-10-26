@@ -1,13 +1,15 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import Header from '../../common/Header';
 import styles from '../../../styles/homePage.module.scss';
 import CreateJoinForm from './CreateJoinForm';
 import MyQueues from './MyQueues';
-import { isLoggedIn } from '../../../services/auth';
+import * as Auth from '../../../services/auth';
 
 export default (props) => {
-  const subtitle = isLoggedIn()
-    ? 'Hi Navaneeth, welcome back!'
+  const isLoggedIn = useSelector((state) => state.appReducer.isLoggedIn);
+  const subtitle = isLoggedIn
+    ? `Hi ${Auth.getName()}, welcome back!`
     : 'A long overdue alternative to physical queues';
   return (
     <div id="target_top" className={styles['landing-page']}>
@@ -19,7 +21,7 @@ export default (props) => {
           instant crowd control
         </p>
       </div>
-      <MyQueues />
+      {isLoggedIn ? <MyQueues /> : <></>}
       <CreateJoinForm history={props.history} />
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
         <path

@@ -13,6 +13,10 @@ export default () => {
     QueueService.getMyQueues().then((queues) => setMyQueues(queues));
   }, [myQueues]);
 
+  if (myQueues.length === 0) {
+    return null;
+  }
+
   return (
     <div className={styles['my-queue']}>
       <p>What would you like to do today? Here are your active queues:</p>
