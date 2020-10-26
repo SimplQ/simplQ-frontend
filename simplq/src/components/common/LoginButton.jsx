@@ -3,10 +3,11 @@ import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { Avatar, Button } from '@material-ui/core';
-import { setErrorNotifOpen } from '../../store/appSlice';
+import { setErrorNotifOpen, setMyQueues } from '../../store/appSlice';
 import * as Auth from '../../services/auth';
 import LoadingIndicator from './LoadingIndicator';
 import styles from '../../styles/loginButton.module.scss';
+import { getMyQueues } from '../../services/queue';
 
 const LoginButton = () => {
   const [loadingIndicator, setLoadingIndicator] = useState(false);
@@ -16,6 +17,7 @@ const LoginButton = () => {
 
   const onSuccessCallback = (googleUser) => {
     Auth.logIn(googleUser);
+    getMyQueues().then((queues) => dispatch(setMyQueues(queues)));
     setLoadingIndicator(false);
   };
 

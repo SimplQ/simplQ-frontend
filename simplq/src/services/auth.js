@@ -1,6 +1,5 @@
 import { store } from '../store';
 import { setIsLoggedIn, setMyQueues } from '../store/appSlice';
-import { getMyQueues } from './queue';
 
 let googleUser = null;
 
@@ -17,8 +16,6 @@ export function getAccessToken() {
 
 export function logIn(newGoogleUser) {
   googleUser = newGoogleUser;
-
-  getMyQueues().then(myQueues => store.dispatch(setMyQueues(myQueues)))
   store.dispatch(setIsLoggedIn(true));
 }
 
