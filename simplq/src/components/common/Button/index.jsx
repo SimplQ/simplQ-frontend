@@ -1,5 +1,5 @@
 import StandardButton from './Button';
-import { CreateQueueButton, JoinQueueButton, AddToQueueButton } from './Button.stories';
+import { CreateQueueButton, JoinQueueButton } from './Button.stories';
 
-export { CreateQueueButton, JoinQueueButton, AddToQueueButton };
+export { CreateQueueButton, JoinQueueButton };
 export default StandardButton;
