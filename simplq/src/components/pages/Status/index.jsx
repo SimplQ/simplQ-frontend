@@ -78,6 +78,7 @@ function QueueStatus(props) {
           updateInProgress={updateInProgress}
           tokenStatus={tokenStatusResponse.tokenStatus}
           aheadCount={tokenStatusResponse.aheadCount}
+          update={update}
         />
         <StatusSidePanel leaveQueueHandler={onDeleteClick} queueId={tokenStatusResponse.queueId} />
       </div>
