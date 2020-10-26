@@ -27,6 +27,6 @@ export const getStatusByName = async (queueName) => {
 };
 
 export const getMyQueues = async () => {
-    const response = await makeRequest('get', '/queues');
-    return response.data.queues;
+  const response = await makeRequest('get', '/queues');
+  return response.data.queues;
 };

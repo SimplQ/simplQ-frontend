@@ -22,7 +22,7 @@ const appSlice = createSlice({
     errorText: '',
     notificationPermission: getNotificationStatus(),
     isLoggedIn: false,
-    myQueues: getMyQueuesFromLocalStorage()
+    myQueues: getMyQueuesFromLocalStorage(),
   },
   reducers: {
     setErrorNotifOpen: (state, action) => {
@@ -40,7 +40,7 @@ const appSlice = createSlice({
     setMyQueues: (state, action) => {
       const newQueuesList = action.payload;
       // eslint-disable-next-line no-param-reassign
-      state.myQueues = newQueuesList
+      state.myQueues = newQueuesList;
 
       // Flush to local storage
       localStorage.setItem(MY_QUEUE_LOCALSTORAGE, JSON.stringify(newQueuesList));
@@ -49,16 +49,22 @@ const appSlice = createSlice({
       const newQueue = action.payload;
 
       // Flush to localstorage as well
-      const existingQueues = getMyQueuesFromLocalStorage()
-      existingQueues.push(newQueue)
+      const existingQueues = getMyQueuesFromLocalStorage();
+      existingQueues.push(newQueue);
       localStorage.setItem(MY_QUEUE_LOCALSTORAGE, JSON.stringify(existingQueues));
 
       // eslint-disable-next-line no-param-reassign
-      state.myQueues = existingQueues; 
+      state.myQueues = existingQueues;
     },
   },
 });
 
-export const { setErrorNotifOpen, setNotificationPermission, setIsLoggedIn, setMyQueues, addToMyQueues } = appSlice.actions;
+export const {
+  setErrorNotifOpen,
+  setNotificationPermission,
+  setIsLoggedIn,
+  setMyQueues,
+  addToMyQueues,
+} = appSlice.actions;
 
 export default appSlice.reducer;
