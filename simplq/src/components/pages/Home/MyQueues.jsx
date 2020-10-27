@@ -2,24 +2,13 @@ import React from 'react';
 import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
 import { useHistory } from 'react-router';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import styles from '../../../styles/homePage.module.scss';
-import { deleteQueue, getMyQueues } from '../../../services/queue';
-import { handleApiErrors } from '../../ErrorHandler';
-import { setMyQueues } from '../../../store/appSlice';
+import { deleteQueue } from '../../../services/queue';
 
 export default () => {
   const history = useHistory();
-  const dispatch = useDispatch();
   const myQueues = useSelector((state) => state.appReducer.myQueues);
-
-  const onDeleteClick = (queueId) => {
-    deleteQueue(queueId)
-      .then(() => getMyQueues().then((myNewQueues) => dispatch(setMyQueues(myNewQueues))))
-      .catch((err) => handleApiErrors(err))
-      .then(() => history.push('/'))
-      .catch((err) => handleApiErrors(err));
-  };
 
   return (
     <div className={styles['my-queue']}>
@@ -39,7 +28,7 @@ export default () => {
             className={styles['my-queue-item']}
           >
             <div>{queue.queueName}</div>
-            <IconButton onClick={() => onDeleteClick(queue.queueId)}>
+            <IconButton onClick={() => deleteQueue(queue.queueId)}>
               <DeleteIcon />
             </IconButton>
           </div>

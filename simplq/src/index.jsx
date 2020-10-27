@@ -2,13 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import * as Sentry from '@sentry/react';
 import { Integrations } from '@sentry/tracing';
 import { store } from './store';
 import * as serviceWorker from './serviceWorker';
 import Layout from './components/Layout';
+import history from './services/history';
 
 Sentry.init({
   dsn: 'https://b95e1a087d284ecca9a50909d2a792e8@o444913.ingest.sentry.io/5420492',
@@ -27,7 +28,7 @@ const theme = createMuiTheme({
 ReactDOM.render(
   <>
     <ThemeProvider theme={theme}>
-      <Router>
+      <Router history={history}>
         <Provider store={store}>
           <Layout />
         </Provider>
