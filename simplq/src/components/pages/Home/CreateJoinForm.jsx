@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import * as QueueService from '../../../services/queue';
 import { handleApiErrors } from '../../ErrorHandler';
-import { CreateQueueButton, JoinQueueButton } from '../../common/Button';
+import Button, { CreateQueueButton } from '../../common/Button';
 import styles from '../../../styles/homePage.module.scss';
 import { handleEnterPress, isQueueNameValid } from '../../common/utilFns';
 import InputField from '../../common/InputField';
@@ -66,7 +66,7 @@ const CreateJoinForm = ({ history }) => {
           )}
         </div>
         <div>
-          <JoinQueueButton onClick={handleJoinClick} />
+          <Button onClick={handleJoinClick}>Join Queue</Button>
         </div>
       </div>
     </div>

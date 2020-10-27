@@ -13,10 +13,6 @@ export const CreateQueueButton = (props) => {
   return <StandardButton onClick={props.onClick}>Create Queue</StandardButton>;
 };
 
-export const JoinQueueButton = (props) => {
-  return <StandardButton onClick={props.onClick}>Join Queue</StandardButton>;
-};
-
 export const ShareButton = (props) => {
   return (
     <StandardButton onClick={props.onClick} outlined={props.outlined}>

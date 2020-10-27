@@ -5,7 +5,7 @@ import { PhoneNumberUtil } from 'google-libphonenumber';
 import { handleEnterPress } from '../../common/utilFns';
 import InputField from '../../common/InputField';
 import styles from '../../../styles/joinPage.module.scss';
-import Button, { JoinQueueButton } from '../../common/Button';
+import Button from '../../common/Button';
 import LoadingIndicator from '../../common/LoadingIndicator';
 
 export function JoinQueueForm(props) {
@@ -75,8 +75,7 @@ export function JoinQueueForm(props) {
           <LoadingIndicator />
         </div>
       );
-    if (props.buttonName === 'Add') return <Button onClick={handleClick}>Add to Queue</Button>;
-    return <JoinQueueButton onClick={handleClick} />;
+    return <Button onClick={handleClick}>{props.buttonText}</Button>;
   };
 
   return (
