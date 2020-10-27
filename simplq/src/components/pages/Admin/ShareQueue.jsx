@@ -5,7 +5,7 @@ import { ShareButton } from '../../common/Button/Button.stories';
 
 const ShareQueue = (props) => {
   const [clicked, setClicked] = useState(false);
-  const shareUrl = `${window.location.origin}/j/${props.queueName}`;
+  const shareUrl = `Hi! Use ${window.location.origin}/j/${props.queueName} to join my queue and get live updates.`;
 
   useEffect(() => {
     // https://www.alexhughes.dev/blog/setTimeout-with-hooks/

@@ -59,6 +59,7 @@
   // Login Button
   li:last-child {
     position: fixed;
+    height: min-content;
     button {
       background-color: white;
     }
