@@ -31,7 +31,7 @@ export default (props) => {
         setTokens(data.tokens);
         setQueueName(data.queueName);
         // TODO: setDescription as soon as the backend returns it
-        setDescription('A nice dummy description');
+        setDescription('Ready to share');
         timeoutId = setTimeout(update, TIMEOUT);
       })
       .catch((err) => {

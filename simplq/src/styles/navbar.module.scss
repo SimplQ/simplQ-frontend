@@ -65,9 +65,11 @@
     }
 
     // In case of smaller screens with sidebar, display at the bottom of sidebar
-    bottom: 1rem;
+    @media (max-width: 787px) {
+      bottom: 1rem;
+    }
     @media (min-width: 787px) {
-      // In case of navbar on larger screens, dispaly at top right of nav
+      // In case of navbar on larger screens, display at top right of nav
       top: 0.5rem;
       right: 0rem;
     }
