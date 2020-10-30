@@ -47,7 +47,11 @@ export default function JoinQueueWithDetails(props) {
     <div>
       <HeaderSection queueName={queueStatusResponse.queueName} history={props.history} />
       <p className={styles['message']}>Please enter your contact details to join this queue</p>
-      <JoinQueueForm queueId={queueId} joinQueueHandler={joinQueueHandler} />
+      <JoinQueueForm
+        queueId={queueId}
+        joinQueueHandler={joinQueueHandler}
+        buttonText="Join Queue"
+      />
     </div>
   );
 }

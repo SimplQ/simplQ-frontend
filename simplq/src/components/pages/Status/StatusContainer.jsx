@@ -18,8 +18,9 @@ export default (props) => {
     status = (
       <>
         <p>Hello {props.name}, </p>
-        <p>your courrent position is:</p>
-        <p className={styles['count']}>{props.aheadCount + 1}</p>
+        <br />
+        <p>People waiting in front of you:</p>
+        <p className={styles['count']}>{props.aheadCount}</p>
         <p>Please wait for your turn. You will be notified here.</p>
         <div className={styles['refresh-button']}>
           <Button onClick={props.update}>Refresh status</Button>

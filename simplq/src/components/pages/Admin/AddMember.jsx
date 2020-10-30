@@ -14,7 +14,7 @@ export default (props) => {
     >
       <div className={styles['admin-join-queue-form']}>
         <JoinQueueForm
-          buttonName="Add"
+          buttonText="Add To Queue"
           queueId={props.queueId}
           joinQueueHandler={props.joinQueueHandler}
         />
