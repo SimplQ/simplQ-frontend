@@ -9,7 +9,11 @@ import { deleteQueue } from '../../../services/queue';
 export default () => {
   const history = useHistory();
   const myQueues = useSelector((state) => state.appReducer.myQueues);
-
+  const handleDelete = (e, queue) => {
+    // Don't trigger parent's onClick
+    e.stopPropagation();
+    deleteQueue(queue.queueId).then(() => history.push('/'));
+  };
   return (
     <div className={styles['my-queue']}>
       <p>
@@ -28,7 +32,7 @@ export default () => {
             className={styles['my-queue-item']}
           >
             <div>{queue.queueName}</div>
-            <IconButton onClick={() => deleteQueue(queue.queueId).then(() => history.push('/'))}>
+            <IconButton onClick={(e) => handleDelete(e, queue)}>
               <DeleteIcon />
             </IconButton>
           </div>
