@@ -28,7 +28,7 @@ export default () => {
             className={styles['my-queue-item']}
           >
             <div>{queue.queueName}</div>
-            <IconButton onClick={() => deleteQueue(queue.queueId)}>
+            <IconButton onClick={() => deleteQueue(queue.queueId).then(() => history.push('/'))}>
               <DeleteIcon />
             </IconButton>
           </div>

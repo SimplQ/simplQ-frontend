@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router';
 import * as QueueService from '../../../services/queue';
 import { handleApiErrors } from '../../ErrorHandler';
 import Button, { CreateQueueButton } from '../../common/Button';
@@ -7,10 +8,11 @@ import { handleEnterPress, isQueueNameValid } from '../../common/utilFns';
 import InputField from '../../common/InputField';
 import LoadingIndicator from '../../common/LoadingIndicator';
 
-const CreateJoinForm = ({ history }) => {
+const CreateJoinForm = () => {
   const [textFieldValue, setTextFieldValue] = useState('');
   const [invalidMsg, setInvalidMsg] = useState('');
   const [createInProgress, setCreateInProgress] = useState(false);
+  const history = useHistory();
 
   const handleCreateClick = () => {
     if (textFieldValue === '') setInvalidMsg('Queue name is required');

@@ -6,7 +6,7 @@ import CreateJoinForm from './CreateJoinForm';
 import MyQueues from './MyQueues';
 import * as Auth from '../../../services/auth';
 
-export default (props) => {
+export default () => {
   const isLoggedIn = useSelector((state) => state.appReducer.isLoggedIn);
   const subtitle = isLoggedIn
     ? `Hi ${Auth.getGivenName()}, welcome back!`
@@ -22,7 +22,7 @@ export default (props) => {
         </p>
       </div>
       {isLoggedIn ? <MyQueues /> : <></>}
-      <CreateJoinForm history={props.history} />
+      <CreateJoinForm />
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
         <path
           fill="#6C63FF29"
