@@ -15,7 +15,6 @@
     "axios": "^0.19.2",
     "components": "^0.1.0",
     "google-libphonenumber": "^3.2.13",
-    "history": "^5.0.0",
     "material-ui-icons": "^1.0.0-beta.36",
     "moment": "^2.27.0",
     "node-sass": "^4.14.1",
@@ -28,9 +27,7 @@
     "react-router": "^5.2.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "^3.4.3",
-    "react-spinners": "^0.9.0",
-    "styled": "^1.0.0",
-    "uuid": "^8.1.0"
+    "react-spinners": "^0.9.0"
   },
   "scripts": {
     "start": "react-scripts start",
