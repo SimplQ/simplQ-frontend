@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { Collapse } from '@material-ui/core';
 import PropagateLoader from 'react-spinners/PropagateLoader';
-import styles from '../../styles/sidePanelButton.module.scss';
+import styles from '../../../styles/sidePanel.module.scss';
 
 const ExpandButton = ({ isOpen, onToggle }) => (
   <div
@@ -23,7 +23,7 @@ const ExpandButton = ({ isOpen, onToggle }) => (
   </div>
 );
 
-const SidePanelButton = ({
+const SidePanelItem = ({
   title,
   description,
   Icon,
@@ -36,7 +36,7 @@ const SidePanelButton = ({
   const toggleOpen = () => setOpen(!open);
 
   return (
-    <button type="button" className={styles['side-panel-button']} onClick={onClick}>
+    <button type="button" className={styles['side-panel-item']} onClick={onClick}>
       <div className={styles['header']}>
         <Icon className={styles['icon']} fontSize="large" />
         <div>
@@ -60,4 +60,4 @@ const SidePanelButton = ({
   );
 };
 
-export default SidePanelButton;
+export default SidePanelItem;

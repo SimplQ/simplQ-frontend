@@ -1,10 +1,10 @@
 import React from 'react';
 import ChatIcon from '@material-ui/icons/Chat';
-import SidePanelButton from '../../common/SidePanelButton';
+import SidePanelItem from '../../common/SidePanel/SidePanelItem';
 
 export default () => {
   return (
-    <SidePanelButton
+    <SidePanelItem
       Icon={ChatIcon}
       title="Contact Admin"
       description="Contact the queue admin for queries"

@@ -1,7 +1,7 @@
 import React from 'react';
 import CloseIcon from '@material-ui/icons/Close';
 import { useHistory } from 'react-router-dom';
-import SidePanelButton from '../../common/SidePanelButton';
+import SidePanelItem from '../../common/SidePanel/SidePanelItem';
 
 export default (props) => {
   const history = useHistory();
@@ -10,7 +10,7 @@ export default (props) => {
   }
 
   return (
-    <SidePanelButton
+    <SidePanelItem
       onClick={handleClick}
       Icon={CloseIcon}
       title="Leave Queue"

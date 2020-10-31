@@ -1,13 +1,13 @@
 import React from 'react';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { useHistory } from 'react-router';
-import SidePanelButton from '../../common/SidePanelButton';
+import SidePanelItem from '../../common/SidePanel/SidePanelItem';
 import { deleteQueue } from '../../../services/queue';
 
 export default ({ queueId }) => {
   const history = useHistory();
   return (
-    <SidePanelButton
+    <SidePanelItem
       Icon={DeleteIcon}
       title="Delete Queue"
       description="Permanently delete queue"

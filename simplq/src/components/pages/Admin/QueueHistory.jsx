@@ -1,10 +1,10 @@
 import React from 'react';
 import HistoryIcon from '@material-ui/icons/History';
-import SidePanelButton from '../../common/SidePanelButton';
+import SidePanelItem from '../../common/SidePanel/SidePanelItem';
 
 export default () => {
   return (
-    <SidePanelButton
+    <SidePanelItem
       Icon={HistoryIcon}
       title="Queue History"
       description="History of events in the queue"

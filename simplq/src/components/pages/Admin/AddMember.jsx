@@ -2,11 +2,11 @@ import React from 'react';
 import AddIcon from '@material-ui/icons/Add';
 import styles from '../../../styles/adminPage.module.scss';
 import JoinQueueForm from '../Join/Form';
-import SidePanelButton from '../../common/SidePanelButton';
+import SidePanelItem from '../../common/SidePanel/SidePanelItem';
 
 export default (props) => {
   return (
-    <SidePanelButton
+    <SidePanelItem
       Icon={AddIcon}
       title="Add Member"
       description="Add a person to this queue manually"
@@ -19,6 +19,6 @@ export default (props) => {
           joinQueueHandler={props.joinQueueHandler}
         />
       </div>
-    </SidePanelButton>
+    </SidePanelItem>
   );
 };
