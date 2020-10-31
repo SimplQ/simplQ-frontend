@@ -134,8 +134,6 @@
 }
 
 .header-title {
-  padding-left: 2rem;
-
   .sub-header {
     display: flex;
     font-family: Pacifico;
@@ -165,8 +163,6 @@
 
   .main-button-group {
     @include center-horizontally();
-    padding-right: 3rem;
-    padding-top: 1.5rem;
     margin-right: 0;
     & > div {
       margin: 0.5rem;
@@ -185,20 +181,5 @@
   margin: 3rem 6rem;
   @media screen and (max-width: 550px) {
     margin: 2rem;
-  }
-}
-
-@media screen and (max-width: 1000px) {
-  .header-bar {
-    align-items: center;
-
-    .header-title {
-      padding-left: 0;
-    }
-
-    .main-button-group {
-      margin: 0;
-      padding-right: 0;
-    }
   }
 }
