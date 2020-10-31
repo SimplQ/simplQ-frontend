@@ -71,7 +71,6 @@
 }
 
 .side-panel-item {
-  @include naked-button();
   font-size: 0.8rem;
   padding: 0;
   min-width: 15rem;
@@ -79,6 +78,7 @@
   color: $primary-color-dark;
 
   .header {
+    @include naked-button();
     display: grid;
     align-items: center;
     grid-template-columns: auto 1fr auto;
