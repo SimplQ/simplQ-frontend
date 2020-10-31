@@ -1,7 +1,7 @@
 import React from 'react';
 import CloseIcon from '@material-ui/icons/Close';
 import { useHistory } from 'react-router-dom';
-import SidePanelButton from '../../common/SidePanelButton';
+import SidePanelButton from '../../common/SidePanel/SidePanelButton';
 
 export default (props) => {
   const history = useHistory();

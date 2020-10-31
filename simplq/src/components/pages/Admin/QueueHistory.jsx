@@ -1,6 +1,6 @@
 import React from 'react';
 import HistoryIcon from '@material-ui/icons/History';
-import SidePanelButton from '../../common/SidePanelButton';
+import SidePanelButton from '../../common/SidePanel/SidePanelButton';
 
 export default () => {
   return (

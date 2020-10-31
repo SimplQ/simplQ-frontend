@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { Collapse } from '@material-ui/core';
 import PropagateLoader from 'react-spinners/PropagateLoader';
-import styles from '../../styles/sidePanelButton.module.scss';
+import styles from '../../../styles/sidePanelButton.module.scss';
 
 const ExpandButton = ({ isOpen, onToggle }) => (
   <div

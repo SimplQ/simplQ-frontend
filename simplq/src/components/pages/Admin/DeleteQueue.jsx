@@ -1,7 +1,7 @@
 import React from 'react';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { useHistory } from 'react-router';
-import SidePanelButton from '../../common/SidePanelButton';
+import SidePanelButton from '../../common/SidePanel/SidePanelButton';
 import { deleteQueue } from '../../../services/queue';
 
 export default ({ queueId }) => {
