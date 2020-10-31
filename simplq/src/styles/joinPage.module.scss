@@ -1,4 +1,6 @@
 @import 'utils';
+.main-content {
+  margin: 2rem;
 .message {
   text-align: center;
 }
@@ -15,4 +17,5 @@
   & > div {
     margin: 1rem;
   }
+}
 }

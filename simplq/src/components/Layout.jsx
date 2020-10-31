@@ -4,10 +4,14 @@ import Footer from './common/Footer';
 
 function Layout() {
   return (
-    <>
-      <Routes />
-      <Footer />
-    </>
+    <div className="box">
+      <div className="row content">
+        <Routes />
+      </div>
+      <div className="row footer">
+        <Footer />
+      </div>
+    </div>
   );
 }
 
