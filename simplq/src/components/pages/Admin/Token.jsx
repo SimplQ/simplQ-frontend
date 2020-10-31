@@ -105,7 +105,7 @@ function Token(props) {
       </div>
       <div className={styles['token-details']}>
         <div className={styles['token-name-time']}>
-          <p>Join time 11:02 pm</p>
+          <p>11:02 pm</p>
           <p>{name}</p>
         </div>
         <div className={styles['token-operations']}>
