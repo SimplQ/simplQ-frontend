@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { Collapse } from '@material-ui/core';
-import PropagateLoader from 'react-spinners/PropagateLoader';
 import styles from '../../../styles/sidePanel.module.scss';
+import LoadingIndicator from '../LoadingIndicator';
 
 const ExpandButton = ({ isOpen }) => (
   <div className={styles['expand-button']}>
@@ -56,7 +56,7 @@ const SidePanelItem = ({
         <Collapse timeout="auto" in={open}>
           {loading ? (
             <div className={styles['loading']}>
-              <PropagateLoader color="#3a3768" />
+              <LoadingIndicator />
             </div>
           ) : (
             children
