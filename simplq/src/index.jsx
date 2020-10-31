@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import * as Sentry from '@sentry/react';
 import { Integrations } from '@sentry/tracing';
@@ -27,11 +26,9 @@ const theme = createMuiTheme({
 ReactDOM.render(
   <>
     <ThemeProvider theme={theme}>
-      <Router>
-        <Provider store={store}>
-          <Layout />
-        </Provider>
-      </Router>
+      <Provider store={store}>
+        <Layout />
+      </Provider>
     </ThemeProvider>
   </>,
   document.getElementById('root')

@@ -2,20 +2,25 @@ import React from 'react';
 import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
 import { useHistory } from 'react-router';
-import styles from '../../../styles/homePage.module.scss';
 import { useSelector } from 'react-redux';
+import styles from '../../../styles/homePage.module.scss';
+import { deleteQueue } from '../../../services/queue';
 
 export default () => {
   const history = useHistory();
   const myQueues = useSelector((state) => state.appReducer.myQueues);
-
-  if (myQueues.length === 0) {
-    return null;
-  }
-
+  const handleDelete = (e, queue) => {
+    // Don't trigger parent's onClick
+    e.stopPropagation();
+    deleteQueue(queue.queueId).then(() => history.push('/'));
+  };
   return (
     <div className={styles['my-queue']}>
-      <p>What would you like to do today? Here are your active queues:</p>
+      <p>
+        {myQueues.length === 0
+          ? "Looks like you don't have any active queues. Start by creating one..."
+          : 'What would you like to do today? Here are your active queues:'}
+      </p>
       {myQueues.map((queue) => {
         const handler = () => history.push(`/queue/${queue.queueId}`);
         return (
@@ -27,7 +32,7 @@ export default () => {
             className={styles['my-queue-item']}
           >
             <div>{queue.queueName}</div>
-            <IconButton>
+            <IconButton onClick={(e) => handleDelete(e, queue)}>
               <DeleteIcon />
             </IconButton>
           </div>
