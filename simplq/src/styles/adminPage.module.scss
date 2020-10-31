@@ -11,7 +11,7 @@
 .token-list {
   @include center-horizontally();
   max-width: 40rem;
-  padding: 2rem;
+  padding: 2rem 0;
   margin: auto;
   display: flex;
   flex-direction: column;
@@ -183,11 +183,13 @@
   flex-wrap: wrap;
   justify-content: center;
   margin: 3rem 6rem;
+  @media screen and (max-width: 550px) {
+    margin: 2rem;
+  }
 }
 
 @media screen and (max-width: 1000px) {
   .header-bar {
-    flex-flow: column nowrap;
     align-items: center;
 
     .header-title {

@@ -47,39 +47,37 @@ export default () => (
       <h1>Keep in touch</h1>
       <div className={styles['card-body']}>
         <div className={styles['list-container']}>
-          <ul>
-            <li>
-              <a href="https://iimb.qualtrics.com/jfe/form/SV_aY8FY91ztRX9NvD">
-                <PhoneIcon fontSize="large" />
-              </a>
-            </li>
-            <li>
-              <a href="https://github.com/SimplQ/simplQ-frontend">
-                <GitHubIcon fontSize="large" />
-              </a>
-            </li>
-            <li>
-              <a href="https://medium.com/@raimazach/virtualizing-queues-a-long-overdue-alternative-to-physical-queues-bfdc4b51070f">
-                <img alt="medium-link" src="/images/ICON-MEDIUM.jpg" />
-              </a>
-            </li>
-            <li>
-              <a href="https://www.youtube.com/channel/UCAb9PSXvrGZ4vvSneK1Nrow">
-                {/* Youtube Icon was looking smaller that others, setting height/width manually via css to match other icons */}
-                <YouTubeIcon className={styles['youtube-icon']} fontSize="large" />
-              </a>
-            </li>
-            <li>
-              <a href="https://www.facebook.com/simplq/">
-                <FacebookIcon fontSize="large" />
-              </a>
-            </li>
-            <li>
-              <a href="mailto:contact@simplq.me">
-                <MailIcon fontSize="large" />
-              </a>
-            </li>
-          </ul>
+          <div className={styles['list-container-item']}>
+            <a href="https://iimb.qualtrics.com/jfe/form/SV_aY8FY91ztRX9NvD">
+              <PhoneIcon fontSize="large" />
+            </a>
+          </div>
+          <div className={styles['list-container-item']}>
+            <a href="https://github.com/SimplQ/simplQ-frontend">
+              <GitHubIcon fontSize="large" />
+            </a>
+          </div>
+          <div className={styles['list-container-item']}>
+            <a href="https://medium.com/@raimazach/virtualizing-queues-a-long-overdue-alternative-to-physical-queues-bfdc4b51070f">
+              <img alt="medium-link" src="/images/ICON-MEDIUM.jpg" />
+            </a>
+          </div>
+          <div className={styles['list-container-item']}>
+            <a href="https://www.youtube.com/channel/UCAb9PSXvrGZ4vvSneK1Nrow">
+              {/* Youtube Icon was looking smaller that others, setting height/width manually via css to match other icons */}
+              <YouTubeIcon className={styles['youtube-icon']} fontSize="large" />
+            </a>
+          </div>
+          <div className={styles['list-container-item']}>
+            <a href="https://www.facebook.com/simplq/">
+              <FacebookIcon fontSize="large" />
+            </a>
+          </div>
+          <div className={styles['list-container-item']}>
+            <a href="mailto:contact@simplq.me">
+              <MailIcon fontSize="large" />
+            </a>
+          </div>
         </div>
       </div>
     </div>
