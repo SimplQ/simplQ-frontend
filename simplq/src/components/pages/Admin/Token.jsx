@@ -13,6 +13,7 @@ function Token(props) {
   const name = props.token.name;
   const tokenId = props.token.tokenId;
   const tokenNumber = props.token.tokenNumber;
+  const contactNumber = props.token.contactNumber;
   const notifiable = props.token.notifiable;
   const [notifying, setNotifying] = useState(false);
   const [isNotifyHovering, setIsNotifyHovering] = useState(false);
@@ -40,7 +41,7 @@ function Token(props) {
   };
 
   const onCallClick = () => {
-    window.open(`tel:+${tokenNumber}`, '_self');
+    window.open(`tel:+${contactNumber}`, '_self');
   };
 
   let notificationButton = null;
@@ -54,8 +55,8 @@ function Token(props) {
   } else if (!notifiable) {
     // Not notifiable
     notificationButton = (
-      <IconButton edge="end" color="primary" aria-label="notify">
-        <NotificationsOffIcon fontSize="large" className={styles['token-icon']} />
+      <IconButton edge="end" color="primary" aria-label="notify" disabled>
+        <NotificationsOffIcon fontSize="large" className={styles['token-icon-disabled']} />
       </IconButton>
     );
   } else if (didNotify) {
