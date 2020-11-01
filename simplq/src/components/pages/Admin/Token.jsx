@@ -55,8 +55,8 @@ function Token(props) {
   } else if (!notifiable) {
     // Not notifiable
     notificationButton = (
-      <IconButton edge="end" color="primary" aria-label="notify">
-        <NotificationsOffIcon fontSize="large" className={styles['token-icon']} />
+      <IconButton edge="end" color="primary" aria-label="notify" disabled>
+        <NotificationsOffIcon fontSize="large" className={styles['token-icon-disabled']} />
       </IconButton>
     );
   } else if (didNotify) {
