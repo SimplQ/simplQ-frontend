@@ -1,0 +1,15 @@
+// REQUIRED TO KEEP FOOTER TO THE BOTTOM
+// Also see index.css
+// https://stackoverflow.com/a/24979148
+.box {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+
+  .content {
+    flex: 1 1 auto;
+  }
+  .footer {
+    flex: 0 1 40px;
+  }
+}

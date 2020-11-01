@@ -4,6 +4,10 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  margin: 3rem 6rem;
+  @media screen and (max-width: 550px) {
+    margin: 2rem;
+  }
 }
 
 .button-group {
