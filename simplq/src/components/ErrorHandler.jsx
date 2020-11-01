@@ -22,7 +22,7 @@ export class ErrorBoundary extends React.Component {
     // You can also log the error to an error reporting service
     // logErrorToMyService(error, errorInfo);
     console.log('In componentDidCatch');
-    store.dispatch(setErrorPopupMessage(true));
+    store.dispatch(setErrorPopupMessage('An error occured. Please try again'));
   }
 
   render() {
