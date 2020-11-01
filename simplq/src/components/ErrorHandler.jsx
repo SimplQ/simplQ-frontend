@@ -1,12 +1,9 @@
 /* eslint-disable */ // todo enable it back
 
 import React from 'react';
-import Snackbar from '@material-ui/core/Snackbar';
-import MuiAlert from '@material-ui/lab/Alert';
 import PageNotFound from './pages/PageNotFound';
-import { setErrorNotifOpen } from '../store/appSlice';
+import { setErrorPopupMessage } from '../store/appSlice';
 import { store } from '../store'; // TODO: Use Hooks
-import { useSelector, useDispatch } from 'react-redux';
 
 // ToDo: make functional
 export class ErrorBoundary extends React.Component {
@@ -25,7 +22,7 @@ export class ErrorBoundary extends React.Component {
     // You can also log the error to an error reporting service
     // logErrorToMyService(error, errorInfo);
     console.log('In componentDidCatch');
-    store.dispatch(setErrorNotifOpen(true));
+    store.dispatch(setErrorPopupMessage('An error occured. Please try again'));
   }
 
   render() {
@@ -37,39 +34,16 @@ export class ErrorBoundary extends React.Component {
   }
 }
 
-export const ErrorNotification = (props) => {
-  const errorText = useSelector((state) => state.appReducer.errorText);
-  const dispatch = useDispatch();
-  const handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-    dispatch(setErrorNotifOpen(false));
-  };
-
-  const Alert = (props) => {
-    return <MuiAlert elevation={6} variant="filled" {...props} />;
-  };
-
-  return (
-    <Snackbar open={errorText.length > 0} autoHideDuration={5000} onClose={handleClose}>
-      <Alert onClose={handleClose} severity="error">
-        {errorText}
-      </Alert>
-    </Snackbar>
-  );
-};
-
 export const handleApiErrors = (err) => {
   if (!err.response) {
-    store.dispatch(setErrorNotifOpen('You are offline. Please reconnect to the internet'));
+    store.dispatch(setErrorPopupMessage('You are offline. Please reconnect to the internet'));
   } else if (err.response.status === 422) {
     store.dispatch(
-      setErrorNotifOpen(
+      setErrorPopupMessage(
         `There's a problem with the data you've entered ${err.response.data.message}`
       )
     );
   } else {
-    store.dispatch(setErrorNotifOpen('An error occured. Please try again'));
+    store.dispatch(setErrorPopupMessage('An error occured. Please try again'));
   }
 };

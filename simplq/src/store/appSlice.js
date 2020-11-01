@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
 
 // fix for Notification object not supported on iOS safari
@@ -13,33 +14,34 @@ const appSlice = createSlice({
   name: 'appSlice',
   initialState: {
     errorText: '',
+    infoText: '',
     notificationPermission: getNotificationStatus(),
     isLoggedIn: false,
     myQueues: [],
   },
   reducers: {
-    setErrorNotifOpen: (state, action) => {
-      // eslint-disable-next-line no-param-reassign
+    setErrorPopupMessage: (state, action) => {
       state.errorText = action.payload;
     },
+    setInfoPopupMessage: (state, action) => {
+      state.infoText = action.payload;
+    },
     setNotificationPermission: (state, action) => {
-      // eslint-disable-next-line no-param-reassign
       state.notificationPermission = action.payload;
     },
     setIsLoggedIn: (state, action) => {
-      // eslint-disable-next-line no-param-reassign
       state.isLoggedIn = action.payload;
     },
     setMyQueues: (state, action) => {
       const newQueuesList = action.payload;
-      // eslint-disable-next-line no-param-reassign
       state.myQueues = newQueuesList;
     },
   },
 });
 
 export const {
-  setErrorNotifOpen,
+  setErrorPopupMessage,
+  setInfoPopupMessage,
   setNotificationPermission,
   setIsLoggedIn,
   setMyQueues,
