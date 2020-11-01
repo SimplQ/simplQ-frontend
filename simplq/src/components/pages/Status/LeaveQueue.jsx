@@ -2,12 +2,16 @@ import React from 'react';
 import CloseIcon from '@material-ui/icons/Close';
 import { useHistory } from 'react-router-dom';
 import SidePanelItem from '../../common/SidePanel/SidePanelItem';
+import { setInfoPopupMessage } from '../../../store/appSlice';
 
 export default (props) => {
   const history = useHistory();
-  function handleClick() {
-    props.leaveQueueHandler().then(() => history.push(`/`));
-  }
+  const handleClick = () => {
+    props.leaveQueueHandler().then(() => {
+      history.push(`/`);
+      setInfoPopupMessage('Successfully left queue');
+    });
+  };
 
   return (
     <SidePanelItem

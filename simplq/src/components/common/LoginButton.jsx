@@ -3,7 +3,7 @@ import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { Avatar, Button } from '@material-ui/core';
-import { setErrorNotifOpen, setMyQueues } from '../../store/appSlice';
+import { setErrorPopupMessage, setMyQueues } from '../../store/appSlice';
 import * as Auth from '../../services/auth';
 import LoadingIndicator from './LoadingIndicator';
 import styles from '../../styles/loginButton.module.scss';
@@ -23,7 +23,7 @@ const LoginButton = () => {
 
   const onFailureCallback = () => {
     Auth.logOut();
-    dispatch(setErrorNotifOpen('Login Failed. Please try again.'));
+    dispatch(setErrorPopupMessage('Login Failed. Please try again.'));
     setLoadingIndicator(false);
   };
 

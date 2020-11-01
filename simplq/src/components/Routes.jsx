@@ -4,7 +4,9 @@ import JoinQueueWithDetails from './pages/Join';
 import QueueStatus from './pages/Status';
 import AdminQueue from './pages/Admin';
 import PageNotFound from './pages/PageNotFound';
-import { ErrorBoundary, ErrorNotification } from './ErrorHandler';
+import { ErrorBoundary } from './ErrorHandler';
+import ErrorNotification from './common/Popups/errorPopup';
+import InfoNotification from './common/Popups/infoPopup';
 import Home from './pages/Home';
 import TermsOfService from './pages/TermsOfService';
 
@@ -23,6 +25,7 @@ export default () => {
           </Switch>
         </Router>
         <ErrorNotification />
+        <InfoNotification />
       </ErrorBoundary>
     </>
   );
