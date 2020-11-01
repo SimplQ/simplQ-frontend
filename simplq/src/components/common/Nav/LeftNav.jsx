@@ -3,7 +3,6 @@
 import React from 'react';
 import styles from '../../../styles/navbar.module.scss';
 import { smoothScrollTo } from '../utilFns';
-import LoginButton from '../LoginButton';
 
 const LeftNav = ({ open, toggleClose, page }) => {
   const scrollToHowItWorks = () => {
@@ -26,7 +25,8 @@ const LeftNav = ({ open, toggleClose, page }) => {
         {page === 'admin' ? (
           <li>
             <a tabIndex={0} href="/">
-              My Queues
+              {/* My Queues  */}
+              Home
             </a>
           </li>
         ) : null}
@@ -35,9 +35,7 @@ const LeftNav = ({ open, toggleClose, page }) => {
             Contact Us
           </a>
         </li>
-        <li>
-          <LoginButton />
-        </li>
+        <li />
       </ul>
     </div>
   );

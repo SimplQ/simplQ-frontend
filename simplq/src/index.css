@@ -1,8 +1,9 @@
 * {
   box-sizing: border-box;
 }
-
+html,
 body {
+  height: 100%;
   margin: 0;
   font-family: 'Quicksand', sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -13,4 +14,7 @@ body {
   background-color: white;
   padding: 0;
   margin: 0;
+  /* REQUIRED TO KEEP FOOTER TO THE BOTTOM */
+  /* Also see layout.module.scss */
+  height: 100%;
 }
