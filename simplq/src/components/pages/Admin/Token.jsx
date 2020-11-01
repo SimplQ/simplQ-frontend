@@ -4,6 +4,7 @@ import Notifications from '@material-ui/icons/Notifications';
 import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive';
 import NotificationsOffIcon from '@material-ui/icons/NotificationsOffSharp';
 import CallIcon from '@material-ui/icons/Call';
+import moment from 'moment';
 import * as TokenService from '../../../services/token';
 import { handleApiErrors } from '../../ErrorHandler';
 import styles from '../../../styles/adminPage.module.scss';
@@ -15,6 +16,7 @@ function Token(props) {
   const tokenNumber = props.token.tokenNumber;
   const contactNumber = props.token.contactNumber;
   const notifiable = props.token.notifiable;
+  const tokenCreationTimestamp = props.token.tokenCreationTimestamp;
   const [notifying, setNotifying] = useState(false);
   const [isNotifyHovering, setIsNotifyHovering] = useState(false);
   const [didNotify, setDidNotify] = useState(props.token.tokenStatus === 'NOTIFIED');
@@ -106,7 +108,7 @@ function Token(props) {
       </div>
       <div className={styles['token-details']}>
         <div className={styles['token-name-time']}>
-          <p>11:02 pm</p>
+          <p>{moment(tokenCreationTimestamp).format('hh:mm A')}</p>
           <p>{name}</p>
         </div>
         <div className={styles['token-operations']}>
