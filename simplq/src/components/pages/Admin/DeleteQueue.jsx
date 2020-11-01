@@ -11,7 +11,7 @@ export default ({ queueId }) => {
   const dispatch = useDispatch();
   const onDeleteClick = () => {
     deleteQueue(queueId).then(() => {
-      dispatch(setInfoPopupMessage('Successfully left queue'));
+      dispatch(setInfoPopupMessage('Successfully deleted queue'));
       history.push('/');
     });
   };
