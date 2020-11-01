@@ -1,4 +1,5 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { useHistory } from 'react-router';
 import SidePanelItem from '../../common/SidePanel/SidePanelItem';
@@ -7,11 +8,11 @@ import { setInfoPopupMessage } from '../../../store/appSlice';
 
 export default ({ queueId }) => {
   const history = useHistory();
-
+  const dispatch = useDispatch();
   const onDeleteClick = () => {
     deleteQueue(queueId).then(() => {
+      dispatch(setInfoPopupMessage('Successfully left queue'));
       history.push('/');
-      setInfoPopupMessage('Successfully left queue');
     });
   };
 
@@ -20,7 +21,7 @@ export default ({ queueId }) => {
       Icon={DeleteIcon}
       title="Delete Queue"
       description="Permanently delete queue"
-      onClick={() => onDeleteClick}
+      onClick={onDeleteClick}
     />
   );
 };

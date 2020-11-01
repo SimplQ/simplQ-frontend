@@ -16,7 +16,7 @@ export default () => {
 
   return (
     <Snackbar open={infoText.length > 0} autoHideDuration={5000} onClose={handleClose}>
-      <Alert onClose={handleClose} severity="error">
+      <Alert onClose={handleClose} severity="info">
         {infoText}
       </Alert>
     </Snackbar>

@@ -5,8 +5,8 @@ import QueueStatus from './pages/Status';
 import AdminQueue from './pages/Admin';
 import PageNotFound from './pages/PageNotFound';
 import { ErrorBoundary } from './ErrorHandler';
-import ErrorNotification from './common/Popups/errorPopup';
-import InfoNotification from './common/Popups/infoPopup';
+import ErrorNotification from './common/Popups/ErrorPopup';
+import InfoNotification from './common/Popups/InfoPopup';
 import Home from './pages/Home';
 import TermsOfService from './pages/TermsOfService';
 
@@ -24,8 +24,8 @@ export default () => {
             <Route component={PageNotFound} />
           </Switch>
         </Router>
-        <ErrorNotification />
         <InfoNotification />
+        <ErrorNotification />
       </ErrorBoundary>
     </>
   );
