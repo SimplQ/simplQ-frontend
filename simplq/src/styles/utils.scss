@@ -43,11 +43,11 @@ $header-font: 'Pacifico', Regular;
 }
 
 @mixin naked-button {
+  font: inherit;
   font-weight: 400;
   background: none;
   border: 0;
   color: inherit;
-  font: inherit;
   outline: inherit;
   padding: 0;
   cursor: pointer;
