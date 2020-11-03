@@ -9,7 +9,7 @@ const NotificationButton = () => {
 
   const hasPromiseBasedNotificationSupport = async () => {
     try {
-      await Notification.requestPermission().then();
+      await Notification.requestPermission();
     } catch (e) {
       return false;
     }
