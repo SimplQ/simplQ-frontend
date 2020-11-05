@@ -6,17 +6,17 @@ export const BenefitsInfo = () => (
     <img src="/images/corona.png" alt="background-illustration" className={styles['corona-1']} />
     <img src="/images/corona.png" alt="background-illustration" className={styles['corona-2']} />
     <img src="/images/corona.png" alt="background-illustration" className={styles['corona-3']} />
-    <h2>Why SimplQ ?</h2>
+    <h2 data-aos="zoom-in">Why SimplQ ?</h2>
     <div className={`${styles['container']} ${styles['benefits-container']}`}>
-      <div className={styles.benefit}>
+      <div data-aos="fade-up-right" className={styles.benefit}>
         <img src="/images/minimize_crowding.svg" alt="mimimze crowding" />
         <p>No more waiting in long lines</p>
       </div>
-      <div className={styles.benefit}>
+      <div data-aos="fade-up" className={styles.benefit}>
         <img src="/images/enforce_social_dist.svg" alt="Enforce social distancing" />
         <p>Enforce social distancing effectively</p>
       </div>
-      <div className={styles.benefit}>
+      <div data-aos="fade-up-left" className={styles.benefit}>
         <img src="/images/check_status.svg " alt="Check your current status" />
         <p>Check your current status in the queue</p>
       </div>
@@ -26,7 +26,13 @@ export const BenefitsInfo = () => (
 
 export const HowToCreate = () => (
   <>
-    <div id="target_how_it_works" className={`${styles['section']} ${styles['queue-info']}`}>
+    <div
+      data-aos="fade-up"
+      data-aos-duration="1500"
+      data-aos-delay="300"
+      id="target_how_it_works"
+      className={`${styles['section']} ${styles['queue-info']}`}
+    >
       <h2>Create a Queue at the click of a button</h2>
       <div className={`${styles['container']} ${styles['queue-container']}`}>
         <div className={styles.queue}>
@@ -69,9 +75,9 @@ export const HowToCreate = () => (
 
 export const HowToJoin = () => (
   <div className={`${styles['section']} ${styles['join-info']}`}>
-    <h2>Join a queue without being there</h2>
+    <h2 data-aos="zoom-in">Join a queue without being there</h2>
     <div className={`${styles['container']} ${styles['queue-container']}`}>
-      <div className={styles['queue']}>
+      <div data-aos="fade-right" className={styles['queue']}>
         <ul className={styles['list-info']}>
           <img src="/images/mobile_friendly-24px.svg" alt="Mobile friendly" />
           <li>
@@ -85,7 +91,7 @@ export const HowToJoin = () => (
           </li>
         </ul>
       </div>
-      <div className={styles['queue']}>
+      <div data-aos="fade-left" className={styles['queue']}>
         <img src="/images/join.svg" alt="Join" />
       </div>
     </div>

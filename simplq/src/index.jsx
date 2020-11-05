@@ -5,9 +5,12 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { Provider } from 'react-redux';
 import * as Sentry from '@sentry/react';
 import { Integrations } from '@sentry/tracing';
+import AOS from 'aos';
 import { store } from './store';
 import * as serviceWorker from './serviceWorker';
 import Layout from './components/Layout';
+
+AOS.init();
 
 Sentry.init({
   dsn: 'https://b95e1a087d284ecca9a50909d2a792e8@o444913.ingest.sentry.io/5420492',
