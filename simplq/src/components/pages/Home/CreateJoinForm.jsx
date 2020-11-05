@@ -47,7 +47,7 @@ const CreateJoinForm = () => {
   };
 
   return (
-    <div className={styles['create-join-form']}>
+    <div data-aos="zoom-in" className={styles['create-join-form']}>
       <div className={styles['input-box']}>
         <InputField
           placeholder="Queue Name"
