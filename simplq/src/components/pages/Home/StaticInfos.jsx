@@ -7,16 +7,16 @@ export const BenefitsInfo = () => (
     <img src="/images/corona.png" alt="background-illustration" className={styles['corona-2']} />
     <img src="/images/corona.png" alt="background-illustration" className={styles['corona-3']} />
     <h2 data-aos="zoom-in">Why SimplQ ?</h2>
-    <div className={`${styles['container']} ${styles['benefits-container']}`}>
-      <div data-aos="fade-up-right" className={styles.benefit}>
+    <div data-aos="zoom-in" className={`${styles['container']} ${styles['benefits-container']}`}>
+      <div className={styles.benefit}>
         <img src="/images/minimize_crowding.svg" alt="mimimze crowding" />
         <p>No more waiting in long lines</p>
       </div>
-      <div data-aos="fade-up" className={styles.benefit}>
+      <div className={styles.benefit}>
         <img src="/images/enforce_social_dist.svg" alt="Enforce social distancing" />
         <p>Enforce social distancing effectively</p>
       </div>
-      <div data-aos="fade-up-left" className={styles.benefit}>
+      <div className={styles.benefit}>
         <img src="/images/check_status.svg " alt="Check your current status" />
         <p>Check your current status in the queue</p>
       </div>
