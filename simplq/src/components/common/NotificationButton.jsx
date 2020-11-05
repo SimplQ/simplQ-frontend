@@ -7,9 +7,9 @@ const NotificationButton = () => {
   const dispatch = useDispatch();
   const notificationPermission = useSelector((state) => state.appReducer.notificationPermission);
 
-  const hasPromiseBasedNotificationSupport = () => {
+  const hasPromiseBasedNotificationSupport = async () => {
     try {
-      Notification.requestPermission().then();
+      await Notification.requestPermission();
     } catch (e) {
       return false;
     }
