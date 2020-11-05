@@ -13,7 +13,6 @@ export default () => {
     try {
       await Notification.requestPermission();
     } catch (e) {
-      console.error(e);
       return false;
     }
     return true;
