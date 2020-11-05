@@ -28,8 +28,7 @@ export const HowToCreate = () => (
   <>
     <div
       data-aos="fade-up"
-      data-aos-duration="1500"
-      data-aos-delay="300"
+      data-aos-duration="800"
       id="target_how_it_works"
       className={`${styles['section']} ${styles['queue-info']}`}
     >
