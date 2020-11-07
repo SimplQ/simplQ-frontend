@@ -11,15 +11,6 @@
 .token-list {
   @include center-horizontally();
   max-width: 40rem;
-  padding: 2rem 0;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-}
-
-.token-list-with-content {
-  @include center-horizontally();
-  max-width: 40rem;
   padding: 2rem;
   margin: 0 auto auto auto;
   display: flex;
@@ -136,53 +127,56 @@
   }
 }
 
-.header-title {
-  .sub-header {
+.admin-content {
+  min-height: 100vh;
+  .header-title {
+    .sub-header {
+      display: flex;
+      font-family: Pacifico, Arial, Helvetica, sans-serif;
+      font-size: 0.8rem;
+      font-weight: 300;
+      color: #3a3768;
+      align-items: center;
+    }
+  }
+
+  .header-bar {
+    @include background-color();
+    padding: 1.5rem;
+    padding-top: 4rem;
     display: flex;
-    font-family: Pacifico, Arial, Helvetica, sans-serif;
-    font-size: 0.8rem;
-    font-weight: 300;
-    color: #3a3768;
-    align-items: center;
-  }
-}
+    flex-wrap: wrap;
 
-.header-bar {
-  @include background-color();
-  padding: 1.5rem;
-  padding-top: 4rem;
-  display: flex;
-  flex-wrap: wrap;
-
-  .header {
-    @include standard-header();
-    font-size: 2.7rem;
-    margin-bottom: 0;
-  }
-
-  .admin-button {
-    padding: 0 0.1rem;
-  }
-
-  .main-button-group {
-    @include center-horizontally();
-    margin-right: 0;
-    & > div {
-      margin: 0.5rem;
+    .header {
+      @include standard-header();
+      font-size: 2.7rem;
+      margin-bottom: 0;
     }
-    @media screen and (max-width: 400px) {
-      padding-right: 0;
-      flex-direction: column;
+
+    .admin-button {
+      padding: 0 0.1rem;
+    }
+
+    .main-button-group {
+      @include center-horizontally();
+      margin-right: 0;
+      & > div {
+        margin: 0.5rem;
+      }
+      @media screen and (max-width: 400px) {
+        padding-right: 0;
+        flex-direction: column;
+      }
     }
   }
-}
 
-.main-body {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin: 3rem 6rem;
-  @media screen and (max-width: 550px) {
-    margin: 2rem;
+  .main-body {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 3rem 6rem;
+    @media screen and (max-width: 550px) {
+      margin: 2rem;
+    }
   }
 }
