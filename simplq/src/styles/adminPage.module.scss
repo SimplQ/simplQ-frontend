@@ -11,15 +11,6 @@
 .token-list {
   @include center-horizontally();
   max-width: 40rem;
-  padding: 2rem 0;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-}
-
-.token-list-with-content {
-  @include center-horizontally();
-  max-width: 40rem;
   padding: 2rem;
   margin: 0 auto auto auto;
   display: flex;
@@ -136,6 +127,8 @@
   }
 }
 
+.admin-content {
+  min-height: 100vh;
 .header-title {
   .sub-header {
     display: flex;
@@ -180,9 +173,11 @@
 .main-body {
   display: flex;
   flex-wrap: wrap;
+  align-items: stretch;
   justify-content: center;
   margin: 3rem 6rem;
   @media screen and (max-width: 550px) {
     margin: 2rem;
   }
+}
 }
