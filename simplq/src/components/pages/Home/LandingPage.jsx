@@ -13,7 +13,7 @@ export default () => {
     : 'A long overdue alternative to physical queues';
   return (
     <div id="target_top" className={styles['landing-page']}>
-      <div>
+      <div data-aos="zoom-in">
         <Header className={styles['main-header']}>SimplQ</Header>
         <p className={styles.subtitle}>{subtitle}</p>
         <p className={styles.description}>
