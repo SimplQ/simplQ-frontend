@@ -103,10 +103,9 @@
   }
 }
 
-
 .token-number {
   z-index: 10;
-  width:225px;
+  width: 225px;
   span {
     @include center-horizontally();
     @include text-color();
@@ -114,68 +113,67 @@
     display: block;
   }
 
-  .hanging-threads{
-    height:77px;
-    margin-left:30px;
-    width:161px;
-    margin-top:-48px;
-    border-right:3px solid #3a3768;
-    border-left:3px solid #3a3768;
+  .hanging-threads {
+    height: 77px;
+    margin-left: 30px;
+    width: 161px;
+    margin-top: -48px;
+    border-right: 3px solid #3a3768;
+    border-left: 3px solid #3a3768;
   }
 
-  .token-container{
-    display:flex;
+  .token-container {
+    display: flex;
     box-shadow: 0px 3px 6px #00000029;
     border: 1px solid #3a3768;
-    background-color:#DEDCFF;
-    height:61px;
-    border-radius:6px;
+    background-color: #dedcff;
+    height: 61px;
+    border-radius: 6px;
   }
 
-  .token{
-    text-align:center;
-    width:161px;
+  .token {
+    text-align: center;
+    width: 161px;
     font-size: 25px;
-    
-    border-left:3px solid #3a3768;
-    border-right:3px solid #3a3768;
-  }
 
-  .separator{
-    border-left:3px solid #3a3768;
-    height:29px;
-    width:161px;
+    border-left: 3px solid #3a3768;
     border-right: 3px solid #3a3768;
-    margin-left:30px;
   }
 
-  .count-container{
-    display:flex;
+  .separator {
+    border-left: 3px solid #3a3768;
+    height: 29px;
+    width: 161px;
+    border-right: 3px solid #3a3768;
+    margin-left: 30px;
+  }
+
+  .count-container {
+    display: flex;
     box-shadow: 0px 3px 6px #00000029;
-    background-color:#DEDCFF;
-    height:77px;
+    background-color: #dedcff;
+    height: 77px;
     border-radius: 6px;
     border: 1px solid #3a3768;
   }
 
   .count {
-    font-family:  Arial, Helvetica, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 45px;
     font-weight: bold;
-    width:161px;
-    height:45px;
-    text-align:center;
-    border-left:3px solid #3a3768;
-    border-right:3px solid #3a3768;
+    width: 161px;
+    height: 45px;
+    text-align: center;
+    border-left: 3px solid #3a3768;
+    border-right: 3px solid #3a3768;
   }
 
   //For Mobile and small sized devices.
   @media only screen and (max-width: 600px) {
-    margin-left:35px;
-    .hanging-threads{
-      height:55px;
-      margin-top:-35px;
+    margin-left: 35px;
+    .hanging-threads {
+      height: 55px;
+      margin-top: -35px;
     }
   }
 }
-
