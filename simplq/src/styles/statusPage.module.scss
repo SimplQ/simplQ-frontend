@@ -103,14 +103,13 @@
   }
 }
 
-
 .token-number {
   z-index: 10;
   width:14.0625rem;
   span {
     @include center-horizontally();
     @include text-color();
-    // font-size: 1rem;
+    font-size: 1rem;
     display: block;
   }
 
@@ -170,11 +169,10 @@
 
   //For Mobile and small sized devices.
   @media only screen and (max-width: 600px) {
-    margin-left:35px;
-    .hanging-threads{
-      height:55px;
-      margin-top:-35px;
+    margin-left: 2.1875rem;
+    .hanging-threads {
+      height: 3.4375rem;
+      margin-top: -2.1875rem;
     }
   }
 }
-
