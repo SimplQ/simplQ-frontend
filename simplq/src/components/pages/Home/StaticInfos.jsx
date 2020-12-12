@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../../../styles/homePage.module.scss';
+import styles from './home.module.scss';
 
 export const BenefitsInfo = () => (
   <div className={`${styles['section']} ${styles['benefits-info']}`}>

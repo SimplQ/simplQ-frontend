@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 
 import React from 'react';
-import styles from '../../../styles/navbar.module.scss';
+import styles from './nav.module.scss';
 import { smoothScrollTo } from '../utilFns';
 
 const LeftNav = ({ open, toggleClose, page }) => {

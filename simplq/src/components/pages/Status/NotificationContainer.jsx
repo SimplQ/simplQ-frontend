@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Switch from '@material-ui/core/Switch';
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 import { setNotificationPermission } from '../../../store/appSlice';
-import styles from '../../../styles/statusPage.module.scss';
+import styles from './status.module.scss';
 
 export default () => {
   const dispatch = useDispatch();

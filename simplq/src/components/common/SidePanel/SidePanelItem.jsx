@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { Collapse } from '@material-ui/core';
-import styles from '../../../styles/sidePanel.module.scss';
+import styles from './sidePanel.module.scss';
 import LoadingIndicator from '../LoadingIndicator';
 
 const ExpandButton = ({ isOpen }) => (

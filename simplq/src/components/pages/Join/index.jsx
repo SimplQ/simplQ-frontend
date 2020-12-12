@@ -3,7 +3,7 @@ import JoinQueueForm from './Form';
 import * as TokenService from '../../../services/token';
 import * as QueueService from '../../../services/queue';
 import { handleApiErrors } from '../../ErrorHandler';
-import styles from '../../../styles/joinPage.module.scss';
+import styles from './join.module.scss';
 import PageNotFound from '../PageNotFound';
 import LoadingIndicator from '../../common/LoadingIndicator';
 import HeaderSection from '../../common/HeaderSection';

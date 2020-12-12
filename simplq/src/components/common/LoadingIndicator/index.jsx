@@ -1,6 +1,6 @@
 import React from 'react';
 import PropagateLoader from 'react-spinners/PropagateLoader';
-import styles from '../../styles/loading.module.scss';
+import styles from './loading.module.scss';
 
 export default () => {
   return (
