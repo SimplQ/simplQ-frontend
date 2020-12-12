@@ -6,7 +6,7 @@ All react components go inside the **src/components** folder. The components whi
 
 **Redux** is used for state management. The general idea followed here is to put the state variables in redux if they are used by more than two components and it isn't clean or logical to pass them using props, e.g. things like exception handling state variables which are used by different components. All the redux specific code goes in **src/store**.
 
-All SCSS files are kept in the **src/styles** folder and are imported into the respective React scripts where they are used. Styling is done exclusively using these SCSS files and directly styling react components is discouraged. This way, there is a clear separation between application logic and styling.
+Styles are defined as SCSS files and are imported into the respective React components where they are used. Styling is done exclusively using these SCSS files and directly styling react components is discouraged. This way, there is a clear separation between application logic and styling.
 
 Since a lot of styles are reusable in our app, there is a file called **common.scss** which has many constants and mixins defined. Mixins provide a way to reuse css expressions. The idea followed here is that if a certain style needs to be reused more than once, define a mixin for it in **common.scss** and use it from there. The mixin names must be clear and concise. Try to define mixins only here since it will make it easier for people to check later on and will limit the need to import any file other than **common.scss**.
 
