@@ -89,7 +89,7 @@ export const HowToJoin = () => (
           </li>
         </ul>
       </div>
-      <div data-aos="fade-left" className={styles['queue']}>
+      <div data-aos="zoom-in" className={styles['queue']}>
         <img src="/images/join.svg" alt="Join" />
       </div>
     </div>
