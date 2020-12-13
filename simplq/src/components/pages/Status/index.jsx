@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import * as TokenService from '../../../services/token';
-import { handleApiErrors } from '../../ErrorHandler';
 import styles from '../../../styles/statusPage.module.scss';
 import HeaderSection from '../../common/HeaderSection';
 import StatusContainer from './StatusContainer';
@@ -42,8 +41,7 @@ function QueueStatus(props) {
         }
         timeoutId = setTimeout(update, TIMEOUT);
       })
-      .catch((err) => {
-        handleApiErrors(err);
+      .catch(() => {
         timeoutId = setTimeout(update, TIMEOUT);
       });
     // eslint-disable-next-line
@@ -56,12 +54,10 @@ function QueueStatus(props) {
 
   const onDeleteClick = async () => {
     setUpdateInProgress(true);
-    await TokenService.remove(tokenId)
-      .then((response) => {
-        setTokenStatusResponse({ ...tokenStatusResponse, tokenStatus: response.tokenStatus });
-        setUpdateInProgress(false);
-      })
-      .catch(handleApiErrors);
+    await TokenService.remove(tokenId).then((response) => {
+      setTokenStatusResponse({ ...tokenStatusResponse, tokenStatus: response.tokenStatus });
+      setUpdateInProgress(false);
+    });
   };
 
   if (!tokenStatusResponse) {

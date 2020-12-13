@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import JoinQueueForm from './Form';
 import * as TokenService from '../../../services/token';
 import * as QueueService from '../../../services/queue';
-import { handleApiErrors } from '../../ErrorHandler';
 import styles from '../../../styles/joinPage.module.scss';
 import PageNotFound from '../PageNotFound';
 import LoadingIndicator from '../../common/LoadingIndicator';
@@ -14,10 +13,7 @@ export default function JoinQueueWithDetails(props) {
   const [error, setError] = useState(false);
   useEffect(() => {
     async function fetchData() {
-      const response = await QueueService.getStatusByName(queueName).catch((e) => {
-        handleApiErrors(e);
-        setError(true);
-      });
+      const response = await QueueService.getStatusByName(queueName).catch(() => setError(true));
       setQueueStatusResponse(response);
     }
     fetchData();
@@ -34,13 +30,9 @@ export default function JoinQueueWithDetails(props) {
   const queueId = queueStatusResponse.queueId;
 
   const joinQueueHandler = (name, contactNumber) => {
-    return TokenService.create(name, contactNumber, true, queueId)
-      .then((response) => {
-        props.history.push(`/token/${response.tokenId}`);
-      })
-      .catch((err) => {
-        handleApiErrors(err);
-      });
+    return TokenService.create(name, contactNumber, true, queueId).then((response) => {
+      props.history.push(`/token/${response.tokenId}`);
+    });
   };
 
   return (

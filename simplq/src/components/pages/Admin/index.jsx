@@ -7,7 +7,6 @@ import TokenList from './TokenList';
 import * as TokenService from '../../../services/token';
 import * as QueueService from '../../../services/queue';
 import ShareQueue from './ShareQueue';
-import { handleApiErrors } from '../../ErrorHandler';
 import { RefreshButton } from '../../common/Button/Button.stories';
 import Header from '../../common/Header';
 import styles from '../../../styles/adminPage.module.scss';
@@ -34,8 +33,7 @@ export default (props) => {
         setDescription('Ready to share');
         timeoutId = setTimeout(update, TIMEOUT);
       })
-      .catch((err) => {
-        handleApiErrors(err);
+      .catch(() => {
         timeoutId = setTimeout(update, TIMEOUT);
       });
   }, [queueId]);
@@ -46,28 +44,24 @@ export default (props) => {
   }, [update]);
 
   const addNewToken = async (name, contactNumber) => {
-    try {
-      const response = await TokenService.create(name, contactNumber, false, queueId);
-      setTokens([
-        ...tokens,
-        {
-          tokenId: response.tokenId,
-          name,
-          contactNumber,
-          notifiable: false,
-          tokenStatus: response.tokenStatus,
-          tokenNumber: response.tokenNumber,
-        },
-      ]);
-    } catch (err) {
-      handleApiErrors(err);
-    }
+    const response = await TokenService.create(name, contactNumber, false, queueId);
+    setTokens([
+      ...tokens,
+      {
+        tokenId: response.tokenId,
+        name,
+        contactNumber,
+        notifiable: false,
+        tokenStatus: response.tokenStatus,
+        tokenNumber: response.tokenNumber,
+      },
+    ]);
   };
 
   const removeToken = (tokenId) => {
-    TokenService.remove(tokenId)
-      .then(() => setTokens(tokens.filter((token) => token.tokenId !== tokenId)))
-      .catch((err) => handleApiErrors(err));
+    TokenService.remove(tokenId).then(() =>
+      setTokens(tokens.filter((token) => token.tokenId !== tokenId))
+    );
   };
 
   const HeaderSection = () => (
