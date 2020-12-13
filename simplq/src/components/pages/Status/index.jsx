@@ -7,6 +7,7 @@ import StatusContainer from './StatusContainer';
 import LoadingIndicator from '../../common/LoadingIndicator';
 import StatusSidePanel from './StatusSidePanel';
 import TokenNumber from './TokenNumber';
+import { notify } from '../../../services/notification';
 
 const TIMEOUT = 10000;
 let timeoutId;
@@ -17,18 +18,7 @@ function QueueStatus(props) {
   const [updateInProgress, setUpdateInProgress] = useState(false);
 
   const showNotification = useCallback(() => {
-    const notificationImage = '/images/Simple-Q.png';
-    const notificationText = `${tokenStatusResponse.queueName}: You've been notified by the queue manager.`;
-    const notification = new Notification('SimplQ', {
-      body: notificationText,
-      icon: notificationImage,
-    });
-    document.addEventListener('visibilitychange', () => {
-      if (document.visibilityState === 'visible') {
-        // The tab has become visible so clear the now-stale Notification.
-        notification.close();
-      }
-    });
+    notify(`${tokenStatusResponse.queueName}: You've been notified by the queue manager.`);
   }, [tokenStatusResponse]);
 
   const oldTokenStatus = tokenStatusResponse ? tokenStatusResponse.tokenStatus : undefined;
