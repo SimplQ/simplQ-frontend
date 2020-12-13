@@ -1,4 +1,8 @@
-import { setNotificationPermission } from '../store/appSlice';
+import {
+  setErrorPopupMessage,
+  setInfoPopupMessage,
+  setNotificationPermission,
+} from '../store/appSlice';
 import { store } from '../store';
 
 const hasPromiseBasedNotificationSupport = async () => {
@@ -11,6 +15,13 @@ const hasPromiseBasedNotificationSupport = async () => {
 };
 
 const handlePermission = (permission) => {
+  if (permission === 'denied') {
+    store.dispatch(
+      setErrorPopupMessage(
+        'Your browser has disabled notifications, please enable from Browser Settings'
+      )
+    );
+  }
   // Some older versions of chrome doesn't store the permission in the Notification object. In that case we store it manually.
   if (!('permission' in Notification)) {
     Notification.permission = permission;
@@ -21,9 +32,7 @@ const handlePermission = (permission) => {
 export const enableNotifications = () => {
   // Let's check if the browser supports notifications
   if (!('Notification' in window)) {
-    // TODO: Display error
-    // eslint-disable-next-line no-console
-    console.log('This browser does not support notifications.');
+    store.dispatch(setErrorPopupMessage('This browser does not support notifications.'));
   } else if (hasPromiseBasedNotificationSupport()) {
     Notification.requestPermission().then(handlePermission);
   } else {
@@ -34,7 +43,7 @@ export const enableNotifications = () => {
 export const disableNotifications = () => {
   // It is  not possible for the website to remove permissions, the user will have to disable from browser settings.
   // https://stackoverflow.com/questions/28478185/remove-html5-notification-permissions
-  // TODO show error
+  store.dispatch(setInfoPopupMessage('Please disable notifications from your browser settings.'));
 };
 
 export const setNotificationPreference = (shouldNotify) => {
@@ -44,3 +53,15 @@ export const setNotificationPreference = (shouldNotify) => {
     disableNotifications();
   }
 };
+
+// fix for Notification object not supported on iOS safari
+const getNotificationStatus = () => {
+  try {
+    return Notification.permission;
+  } catch (error) {
+    return 'denied';
+  }
+};
+
+// Initilise notifications at start
+store.dispatch(setNotificationPermission(getNotificationStatus()));
