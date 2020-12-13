@@ -54,6 +54,19 @@ export const setNotificationPreference = (shouldNotify) => {
   }
 };
 
+export const notfity = (messageText) => {
+  const notification = new Notification('SimplQ', {
+    body: messageText,
+    icon: '/images/Simple-Q.png',
+  });
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') {
+      // The tab has become visible so clear the now-stale Notification.
+      notification.close();
+    }
+  });
+};
+
 // fix for Notification object not supported on iOS safari
 const getNotificationStatus = () => {
   try {
