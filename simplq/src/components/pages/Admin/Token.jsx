@@ -6,7 +6,6 @@ import NotificationsOffIcon from '@material-ui/icons/NotificationsOffSharp';
 import CallIcon from '@material-ui/icons/Call';
 import moment from 'moment';
 import * as TokenService from '../../../services/token';
-import { handleApiErrors } from '../../ErrorHandler';
 import styles from './admin.module.scss';
 import LoadingIndicator from '../../common/LoadingIndicator';
 
@@ -27,15 +26,12 @@ function Token(props) {
 
   const onNotifyClick = () => {
     setNotifying(true);
-    TokenService.notify(tokenId)
-      .then(() => {
-        setNotifying(false);
+    TokenService.notify(tokenId).then((response) => {
+      if (response) {
         setDidNotify(true);
-      })
-      .catch((err) => {
-        setNotifying(false);
-        handleApiErrors(err);
-      });
+      }
+      setNotifying(false);
+    });
   };
 
   const onDeleteClick = () => {

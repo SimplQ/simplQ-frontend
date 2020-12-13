@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router';
 import * as QueueService from '../../../services/queue';
-import { handleApiErrors } from '../../ErrorHandler';
 import Button, { CreateQueueButton } from '../../common/Button';
 import styles from './home.module.scss';
 import { handleEnterPress, isQueueNameValid } from '../../common/utilFns';
@@ -18,14 +17,12 @@ const CreateJoinForm = () => {
     if (textFieldValue === '') setInvalidMsg('Queue name is required');
     else {
       setCreateInProgress(true);
-      QueueService.create(textFieldValue)
-        .then((response) => {
+      QueueService.create(textFieldValue).then((response) => {
+        if (response) {
           history.push(`/queue/${response.queueId}`);
-        })
-        .catch((err) => {
-          handleApiErrors(err);
-        });
-      setCreateInProgress(false);
+        }
+        setCreateInProgress(false);
+      });
     }
   };
 

@@ -3,35 +3,31 @@ import { store } from '../store';
 import { setMyQueues } from '../store/appSlice';
 
 export const getMyQueues = async () => {
-  const response = await makeRequest('get', '/queues');
-  return response.data.queues;
+  return makeRequest('get', '/queues');
 };
 
 export const create = async (queueName) => {
   const response = await makeRequest('post', '/queue', {
     queueName,
   });
-  getMyQueues().then((queues) => store.dispatch(setMyQueues(queues)));
-  return response.data;
+  getMyQueues().then((subResponse) => store.dispatch(setMyQueues(subResponse.queues)));
+  return response;
 };
 
 export const get = async (queueId) => {
-  const response = await makeRequest('get', `/queue/${queueId}`);
-  return response.data;
+  return makeRequest('get', `/queue/${queueId}`);
 };
 
 export const getStatus = async (queueId) => {
-  const response = await makeRequest('get', `/queue/status?queueId=${queueId}`);
-  return response.data;
+  return makeRequest('get', `/queue/status?queueId=${queueId}`);
 };
 
 export const getStatusByName = async (queueName) => {
-  const response = await makeRequest('get', `/queue/status?queueName=${queueName}`);
-  return response.data;
+  return makeRequest('get', `/queue/status?queueName=${queueName}`);
 };
 
 export const deleteQueue = async (queueId) => {
   const response = await makeRequest('delete', `/queue/${queueId}`);
-  await getMyQueues().then((myQueues) => store.dispatch(setMyQueues(myQueues)));
-  return response.data;
+  await getMyQueues().then((subResponse) => store.dispatch(setMyQueues(subResponse.myQueues)));
+  return response;
 };

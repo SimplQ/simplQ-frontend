@@ -3,7 +3,6 @@ import moment from 'moment';
 import InfoIcon from '@material-ui/icons/Info';
 import styles from './status.module.scss';
 import * as QueueService from '../../../services/queue';
-import { handleApiErrors } from '../../ErrorHandler';
 import SidePanelItem from '../../common/SidePanel/SidePanelItem';
 
 const DetailRow = ({ title, value, large }) => (
@@ -20,7 +19,7 @@ export default (props) => {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await QueueService.getStatus(props.queueId).catch(handleApiErrors);
+      const response = await QueueService.getStatus(props.queueId);
       setQueueStatusResponse(response);
     }
     fetchData();
