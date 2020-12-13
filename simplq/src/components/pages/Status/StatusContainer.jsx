@@ -1,7 +1,7 @@
 import React from 'react';
 import LoadingIndicator from '../../common/LoadingIndicator';
 import Button from '../../common/Button';
-import styles from '../../../styles/statusPage.module.scss';
+import styles from './status.module.scss';
 
 export default (props) => {
   let status = null;

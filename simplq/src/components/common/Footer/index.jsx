@@ -4,9 +4,9 @@ import PhoneIcon from '@material-ui/icons/Phone';
 import YouTubeIcon from '@material-ui/icons/YouTube';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import MailIcon from '@material-ui/icons/Mail';
-import styles from '../../styles/footer.module.scss';
-import { ForkOnGithubButton } from './Button/Button.stories';
-import ClickableLogo from './ClickableLogo';
+import styles from './footer.module.scss';
+import { ForkOnGithubButton } from '../Button/Button.stories';
+import ClickableLogo from '../ClickableLogo';
 
 export default () => (
   <div id="target_contact_us" className={styles['footer']}>

@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../../../styles/navbar.module.scss';
+import styles from './nav.module.scss';
 import Burger from './Burger';
 import Logo from '../ClickableLogo';
 import { smoothScrollToHomePageTop } from '../utilFns';

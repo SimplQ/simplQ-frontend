@@ -1,6 +1,6 @@
 import React from 'react';
-import styles from '../../styles/privacy.module.scss';
-import ClickableLogo from '../common/ClickableLogo';
+import styles from './termsOfService.module.scss';
+import ClickableLogo from '../../common/ClickableLogo';
 
 function TermsOfService() {
   return (

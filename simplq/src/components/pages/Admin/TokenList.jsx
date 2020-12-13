@@ -1,6 +1,6 @@
 import React from 'react';
 import Token from './Token';
-import styles from '../../../styles/adminPage.module.scss';
+import styles from './admin.module.scss';
 import LoadingIndicator from '../../common/LoadingIndicator';
 
 function TokenList(props) {

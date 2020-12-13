@@ -1,13 +1,13 @@
 import React from 'react';
 import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
-import JoinQueueWithDetails from './pages/Join';
-import QueueStatus from './pages/Status';
-import AdminQueue from './pages/Admin';
-import PageNotFound from './pages/PageNotFound';
-import { ErrorBoundary } from './ErrorHandler';
-import PopupNotifications from './common/Popups';
-import Home from './pages/Home';
-import TermsOfService from './pages/TermsOfService';
+import JoinQueueWithDetails from '../pages/Join';
+import QueueStatus from '../pages/Status';
+import AdminQueue from '../pages/Admin';
+import PageNotFound from '../pages/PageNotFound';
+import { ErrorBoundary } from '../ErrorHandler';
+import PopupNotifications from '../common/Popup';
+import Home from '../pages/Home';
+import TermsOfService from '../pages/TermsOfService';
 
 export default () => {
   return (
