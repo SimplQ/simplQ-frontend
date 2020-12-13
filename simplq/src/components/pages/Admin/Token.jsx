@@ -46,21 +46,21 @@ function Token(props) {
   if (notifying) {
     // Notifying in progress
     notificationButton = (
-      <IconButton edge="end" color="primary" aria-label="notify">
+      <IconButton color="primary" aria-label="notify">
         <LoadingIndicator />
       </IconButton>
     );
   } else if (!notifiable) {
     // Not notifiable
     notificationButton = (
-      <IconButton edge="end" color="primary" aria-label="notify" disabled>
+      <IconButton color="primary" aria-label="notify" disabled>
         <NotificationsOffIcon fontSize="large" className={styles['token-icon-disabled']} />
       </IconButton>
     );
   } else if (didNotify) {
     // Notified
     notificationButton = (
-      <IconButton edge="end" color="primary" aria-label="notified">
+      <IconButton color="primary" aria-label="notified">
         <NotificationsActiveIcon fontSize="large" style={{ color: 'green' }} />
       </IconButton>
     );
