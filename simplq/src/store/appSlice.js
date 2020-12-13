@@ -6,7 +6,7 @@ const appSlice = createSlice({
   initialState: {
     errorText: '',
     infoText: '',
-    notificationPermission: null,
+    notificationPermission: null, // This state value is initilised by the notification service.
     isLoggedIn: false,
     myQueues: [],
   },
