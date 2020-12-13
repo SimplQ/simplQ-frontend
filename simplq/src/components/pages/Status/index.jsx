@@ -7,7 +7,7 @@ import StatusContainer from './StatusContainer';
 import LoadingIndicator from '../../common/LoadingIndicator';
 import StatusSidePanel from './StatusSidePanel';
 import TokenNumber from './TokenNumber';
-import { notfity } from '../../../services/notification';
+import { notify } from '../../../services/notification';
 
 const TIMEOUT = 10000;
 let timeoutId;
@@ -18,7 +18,7 @@ function QueueStatus(props) {
   const [updateInProgress, setUpdateInProgress] = useState(false);
 
   const showNotification = useCallback(() => {
-    notfity(`${tokenStatusResponse.queueName}: You've been notified by the queue manager.`);
+    notify(`${tokenStatusResponse.queueName}: You've been notified by the queue manager.`);
   }, [tokenStatusResponse]);
 
   const oldTokenStatus = tokenStatusResponse ? tokenStatusResponse.tokenStatus : undefined;

@@ -54,7 +54,7 @@ export const setNotificationPreference = (shouldNotify) => {
   }
 };
 
-export const notfity = (messageText) => {
+export const notify = (messageText) => {
   const notification = new Notification('SimplQ', {
     body: messageText,
     icon: '/images/Simple-Q.png',
