@@ -17,7 +17,7 @@ const handleApiErrors = (err) => {
   } else {
     store.dispatch(setErrorPopupMessage('An error occured. Please try again'));
   }
-  throw new Error(err);
+  return {};
 };
 
 const makeRequest = async (method, url, data) => {

@@ -18,9 +18,11 @@ const CreateJoinForm = () => {
     else {
       setCreateInProgress(true);
       QueueService.create(textFieldValue).then((response) => {
-        history.push(`/queue/${response.queueId}`);
+        if (response) {
+          history.push(`/queue/${response.queueId}`);
+        }
+        setCreateInProgress(false);
       });
-      setCreateInProgress(false);
     }
   };
 

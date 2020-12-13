@@ -7,14 +7,18 @@ import PageNotFound from '../PageNotFound';
 import LoadingIndicator from '../../common/LoadingIndicator';
 import HeaderSection from '../../common/HeaderSection';
 
-export default function JoinQueueWithDetails(props) {
+export default (props) => {
   const queueName = props.match.params.queueName;
   const [queueStatusResponse, setQueueStatusResponse] = useState();
   const [error, setError] = useState(false);
   useEffect(() => {
     async function fetchData() {
-      const response = await QueueService.getStatusByName(queueName).catch(() => setError(true));
-      setQueueStatusResponse(response);
+      const response = await QueueService.getStatusByName(queueName);
+      if (response) {
+        setQueueStatusResponse(response);
+      } else {
+        setError(true);
+      }
     }
     fetchData();
   }, [queueName]);
@@ -31,7 +35,9 @@ export default function JoinQueueWithDetails(props) {
 
   const joinQueueHandler = (name, contactNumber) => {
     return TokenService.create(name, contactNumber, true, queueId).then((response) => {
-      props.history.push(`/token/${response.tokenId}`);
+      if (response) {
+        props.history.push(`/token/${response.tokenId}`);
+      }
     });
   };
 
@@ -48,4 +54,4 @@ export default function JoinQueueWithDetails(props) {
       </div>
     </div>
   );
-}
+};

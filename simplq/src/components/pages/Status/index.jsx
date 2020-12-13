@@ -33,17 +33,15 @@ function QueueStatus(props) {
   const oldTokenStatus = tokenStatusResponse ? tokenStatusResponse.tokenStatus : undefined;
   const update = useCallback(() => {
     clearTimeout(timeoutId);
-    TokenService.get(tokenId)
-      .then((response) => {
+    TokenService.get(tokenId).then((response) => {
+      if (response) {
         setTokenStatusResponse(response);
         if (response.tokenStatus === 'NOTIFIED' && oldTokenStatus === 'WAITING') {
           showNotification();
         }
-        timeoutId = setTimeout(update, TIMEOUT);
-      })
-      .catch(() => {
-        timeoutId = setTimeout(update, TIMEOUT);
-      });
+      }
+      timeoutId = setTimeout(update, TIMEOUT);
+    });
     // eslint-disable-next-line
   }, [tokenId, oldTokenStatus]); // don't add showNotification, will result in infinite loop
 
@@ -55,7 +53,9 @@ function QueueStatus(props) {
   const onDeleteClick = async () => {
     setUpdateInProgress(true);
     await TokenService.remove(tokenId).then((response) => {
-      setTokenStatusResponse({ ...tokenStatusResponse, tokenStatus: response.tokenStatus });
+      if (response) {
+        setTokenStatusResponse({ ...tokenStatusResponse, tokenStatus: response.tokenStatus });
+      }
       setUpdateInProgress(false);
     });
   };

@@ -25,17 +25,15 @@ export default (props) => {
 
   const update = useCallback(() => {
     clearTimeout(timeoutId);
-    QueueService.get(queueId)
-      .then((data) => {
+    QueueService.get(queueId).then((data) => {
+      if (data) {
         setTokens(data.tokens);
         setQueueName(data.queueName);
         // TODO: setDescription as soon as the backend returns it
         setDescription('Ready to share');
-        timeoutId = setTimeout(update, TIMEOUT);
-      })
-      .catch(() => {
-        timeoutId = setTimeout(update, TIMEOUT);
-      });
+      }
+      timeoutId = setTimeout(update, TIMEOUT);
+    });
   }, [queueId]);
 
   useEffect(() => {
@@ -45,6 +43,9 @@ export default (props) => {
 
   const addNewToken = async (name, contactNumber) => {
     const response = await TokenService.create(name, contactNumber, false, queueId);
+    if (!response) {
+      return;
+    }
     setTokens([
       ...tokens,
       {
@@ -59,9 +60,11 @@ export default (props) => {
   };
 
   const removeToken = (tokenId) => {
-    TokenService.remove(tokenId).then(() =>
-      setTokens(tokens.filter((token) => token.tokenId !== tokenId))
-    );
+    TokenService.remove(tokenId).then((response) => {
+      if (response) {
+        setTokens(tokens.filter((token) => token.tokenId !== tokenId));
+      }
+    });
   };
 
   const HeaderSection = () => (

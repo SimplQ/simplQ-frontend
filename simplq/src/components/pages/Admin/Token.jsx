@@ -26,12 +26,12 @@ function Token(props) {
 
   const onNotifyClick = () => {
     setNotifying(true);
-    TokenService.notify(tokenId)
-      .then(() => {
-        setNotifying(false);
+    TokenService.notify(tokenId).then((response) => {
+      if (response) {
         setDidNotify(true);
-      })
-      .catch(() => setNotifying(false));
+      }
+      setNotifying(false);
+    });
   };
 
   const onDeleteClick = () => {
