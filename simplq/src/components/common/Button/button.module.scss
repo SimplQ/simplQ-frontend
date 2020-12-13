@@ -1,0 +1,74 @@
+@import '../../common.scss';
+
+.standard-button {
+  background-color: $primary-color-dark;
+  color: #fff;
+  display: inline-block;
+  padding: 0.2em 0.5em 0.3em 0.2em;
+  font-weight: bold;
+  font-size: large;
+  border: 2px solid $primary-color-dark;
+  border-radius: 0.6rem;
+  text-align: center;
+  transition: background 0.8s;
+  background-position: center;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    background: #4e4c66 radial-gradient(circle, transparent 1%, #4e4c66 1%) center/15000%;
+  }
+
+  &:active {
+    background-color: #9e99fc;
+    background-size: 100%;
+    transition: background 0s;
+  }
+}
+
+.standard-button img {
+  height: 1.5rem;
+}
+
+.standard-button-outlined {
+  @extend .standard-button;
+  background-color: #fff;
+  color: $primary-color-dark;
+  border: 1px solid $primary-color-dark;
+
+  &:hover {
+    background: #f8f8f8 radial-gradient(circle, transparent 1%, #f8f8f8 1%) center/15000%;
+  }
+
+  &:active {
+    background-color: #9e99fc;
+    background-size: 100%;
+    transition: background 0s;
+  }
+}
+
+.admin-main-button {
+  display: flex;
+  align-items: center;
+  max-width: 14rem;
+  min-height: 1rem;
+  & > * {
+    margin: 0.2rem;
+  }
+}
+
+.fork-on-github-button {
+  text-decoration: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: smaller;
+  padding: 1rem;
+
+  span {
+    margin-right: 0.5rem;
+  }
+}

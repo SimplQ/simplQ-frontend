@@ -1,0 +1,219 @@
+@import '../../common.scss';
+
+.landing-page {
+  min-height: 100vh;
+  padding-top: 5vh; // Extra padding as placeholder for navbar
+  margin: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  .main-header {
+    @include standard-header();
+    font-family: $header-font;
+    font-size: 5rem;
+  }
+  .subtitle {
+    @include center-horizontally();
+    @include text-color();
+    font-weight: 800;
+    margin: 1rem;
+    font-size: x-large;
+  }
+  .description {
+    @include center-horizontally();
+    @include text-color();
+    margin: 2rem;
+    font-size: larger;
+  }
+  .create-join-form {
+    margin: auto; // centering
+    max-width: 35rem;
+    position: relative;
+    // z-index set greater than that of svg below,
+    // otherwise button becomes unclicable on wider screens
+    z-index: 3;
+    .button-group {
+      @include center-horizontally();
+      flex-wrap: wrap;
+      button {
+        margin: 0.5rem 2rem;
+        min-width: 10rem;
+      }
+    }
+    .input-box {
+      min-height: 5rem;
+    }
+  }
+  svg {
+    // z-index set to lover value than upper create-join-form
+    z-index: 2;
+    // global margin of 1 rem set. Setting negative margin to fill till the edge
+    margin: 0 -1rem;
+  }
+}
+
+.section {
+  padding: 5rem 10rem;
+  @media screen and (max-width: 550px) {
+    padding: 2rem;
+  }
+  & > h2 {
+    @include standard-header();
+    font-family: $header-font;
+    font-size: 2rem;
+  }
+  & > .container {
+    margin: 4rem 0;
+    @media screen and (max-width: 550px) {
+      margin: 2rem;
+    }
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+}
+
+.benefits-info {
+  @include background-color();
+  @include text-color();
+  padding-top: 1rem;
+  .benefits-container {
+    .benefit {
+      margin: 2rem;
+      display: flex;
+      flex-direction: column;
+      img {
+        height: 10rem;
+        margin-bottom: 2rem;
+      }
+      p {
+        text-align: center;
+        font-weight: 600;
+      }
+    }
+  }
+  // Position needs to be set for parent so that corona particles can be
+  // positioned absolute to this div
+  position: relative;
+  .corona-1 {
+    height: 7rem;
+    position: absolute;
+    top: 0rem;
+    right: 15vw;
+  }
+  .corona-2 {
+    height: 3rem;
+    position: absolute;
+    left: 6rem;
+  }
+  .corona-3 {
+    height: 2rem;
+    position: absolute;
+    bottom: 2rem;
+  }
+}
+
+.queue-info {
+  .queue-container {
+    .queue {
+      flex: 0 1 25rem;
+      text-align: left;
+      margin: 2rem;
+      @media screen and (max-width: 550px) {
+        margin: 2rem 0;
+      }
+      .list-info {
+        width: 100%;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        justify-content: center;
+        img {
+          float: left;
+          position: relative;
+          bottom: -0.3rem;
+          width: 1rem;
+          height: 1rem;
+          margin-right: 0.6rem;
+        }
+        h3 {
+          color: #3a3768;
+          margin: 0;
+          padding: 0;
+        }
+        p {
+          margin: 1rem;
+          text-align: left;
+          color: #3a3768;
+          padding-left: 0.6rem;
+        }
+      }
+      img {
+        justify-content: center;
+        max-width: 100%;
+        height: auto;
+      }
+    }
+  }
+}
+
+.join-info {
+  @include background-color;
+  @extend .queue-info;
+}
+
+.extra-info {
+  background-color: $primary-color-dark;
+  .extra-container {
+    margin: 0;
+    .card {
+      padding: 0.5rem;
+      max-height: 16rem;
+      max-width: 16rem;
+      text-align: center;
+
+      img {
+        width: 20%;
+        height: 20%;
+      }
+
+      .brief-description {
+        font-weight: bold;
+        color: white;
+        text-transform: capitalize;
+      }
+
+      .detailed-description {
+        color: white;
+        vertical-align: top;
+        font-size: small;
+      }
+    }
+  }
+}
+
+#curved-div-2 {
+  display: flex;
+}
+
+.my-queue {
+  @include text-color();
+  @include center-horizontally();
+  flex-direction: column;
+  .my-queue-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 20rem;
+    border-bottom: 0.1rem solid;
+    padding: 0.25rem 1rem;
+
+    &:hover {
+      background-color: #f9f9f9;
+    }
+
+    &:last-child() {
+      border-bottom: none;
+    }
+  }
+}

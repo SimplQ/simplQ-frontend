@@ -1,0 +1,74 @@
+@import '../../common.scss';
+
+.footer {
+  @include background-color();
+  @include text-color();
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 0 10rem;
+  @media screen and (max-width: 550px) {
+    padding: 2rem;
+  }
+  font-size: small;
+  z-index: 20;
+
+  & > .card {
+    flex: 1;
+    margin: 2rem;
+    min-width: 12.5rem;
+    max-width: 20.5rem;
+    display: flex;
+    flex-direction: column;
+
+    & > h1 {
+      text-transform: capitalize;
+    }
+
+    & > .card-body {
+      & > .description-content-container {
+        padding: 0;
+        height: 100%;
+        margin: 1rem;
+        display: flex;
+      }
+
+      & > span {
+        font-family: $header-font;
+      }
+
+      & > .open-source-content-container {
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+      }
+
+      & > .list-container {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+        & > .list-container-item {
+          color: #3a3768;
+          margin-right: 1rem;
+          & > a {
+            img {
+              height: 1.75rem;
+              width: 1.75rem;
+            }
+            .youtube-icon {
+              font-size: 2.5rem;
+            }
+            font-size: 2rem;
+            text-decoration: none;
+            color: #3a3768;
+          }
+        }
+      }
+    }
+  }
+}

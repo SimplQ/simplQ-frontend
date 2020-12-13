@@ -1,37 +1,38 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import GitHubForkRibbon from 'react-github-fork-ribbon';
-
-import { BrowserRouter as Router } from 'react-router-dom';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { Provider } from 'react-redux';
-import Amplify from 'aws-amplify';
+import * as Sentry from '@sentry/react';
+import { Integrations } from '@sentry/tracing';
+import AOS from 'aos';
 import { store } from './store';
 import * as serviceWorker from './serviceWorker';
 import Layout from './components/Layout';
-import awsconfig from './aws-exports';
-import { loginElseCreateAnonAccount } from './services/auth';
 
-Amplify.configure(awsconfig);
+AOS.init();
 
-(async function () {
-  await loginElseCreateAnonAccount();
-})();
+Sentry.init({
+  dsn: 'https://b95e1a087d284ecca9a50909d2a792e8@o444913.ingest.sentry.io/5420492',
+  integrations: [new Integrations.BrowserTracing()],
+  tracesSampleRate: 1.0,
+});
 
-const Content = () => (
-  <GitHubForkRibbon href="//github.com/SimplQ/simplQ-frontend" target="_blank" position="right">
-    Fork me on GitHub
-  </GitHubForkRibbon>
-);
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#3A3768',
+    },
+  },
+});
 
 ReactDOM.render(
   <>
-    <Router>
+    <ThemeProvider theme={theme}>
       <Provider store={store}>
         <Layout />
       </Provider>
-    </Router>
-    <Content />
+    </ThemeProvider>
   </>,
   document.getElementById('root')
 );

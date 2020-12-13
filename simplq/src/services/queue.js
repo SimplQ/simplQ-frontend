@@ -1,61 +1,37 @@
-import * as axios from 'axios';
-import { getAccessToken } from './auth';
+import makeRequest from './axios';
+import { store } from '../store';
+import { setMyQueues } from '../store/appSlice';
 
-const BASE_URL = 'https://devbackend.simplq.me/v1';
-
-const makePostRequest = async (endPoint, payload) => {
-  const accessToken = await getAccessToken();
-  return axios.post(BASE_URL + endPoint, payload, {
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-    },
-  });
+export const getMyQueues = async () => {
+  const response = await makeRequest('get', '/queues');
+  return response.data.queues;
 };
 
-export const createQueue = async (queueName) => {
-  const response = await makePostRequest('/queue/create', {
+export const create = async (queueName) => {
+  const response = await makeRequest('post', '/queue', {
     queueName,
   });
+  getMyQueues().then((queues) => store.dispatch(setMyQueues(queues)));
   return response.data;
 };
 
-export const readQueue = async (queueId) => {
-  const response = await makePostRequest('/queue/info', {
-    queueId,
-  });
+export const get = async (queueId) => {
+  const response = await makeRequest('get', `/queue/${queueId}`);
   return response.data;
 };
 
-export const addtoQueue = async (name, contact, notifyable, queueId) => {
-  const response = await makePostRequest('/user/add', {
-    name,
-    contactNumber: contact,
-    queueId,
-    notifyable,
-  });
+export const getStatus = async (queueId) => {
+  const response = await makeRequest('get', `/queue/status?queueId=${queueId}`);
   return response.data;
 };
 
-export const userStatus = async (queueId, tokenId) => {
-  const response = await makePostRequest('/user/status', {
-    queueId,
-    tokenId,
-  });
+export const getStatusByName = async (queueName) => {
+  const response = await makeRequest('get', `/queue/status?queueName=${queueName}`);
   return response.data;
 };
 
-export const notifyUser = async (queueId, tokenId) => {
-  const response = await axios.post('/user/alert', {
-    queueId,
-    tokenId,
-  });
-  return response;
-};
-
-export const deleteFromQueue = async (queueId, tokenId) => {
-  const response = await axios.post('/user/delete', {
-    queueId,
-    tokenId,
-  });
-  return response;
+export const deleteQueue = async (queueId) => {
+  const response = await makeRequest('delete', `/queue/${queueId}`);
+  await getMyQueues().then((myQueues) => store.dispatch(setMyQueues(myQueues)));
+  return response.data;
 };
