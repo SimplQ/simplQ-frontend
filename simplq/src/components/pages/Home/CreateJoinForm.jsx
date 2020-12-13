@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router';
 import * as QueueService from '../../../services/queue';
 import Button, { CreateQueueButton } from '../../common/Button';
-import styles from '../../../styles/homePage.module.scss';
+import styles from './home.module.scss';
 import { handleEnterPress, isQueueNameValid } from '../../common/utilFns';
 import InputField from '../../common/InputField';
 import LoadingIndicator from '../../common/LoadingIndicator';

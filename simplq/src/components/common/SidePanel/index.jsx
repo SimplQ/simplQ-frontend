@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../../../styles/sidePanel.module.scss';
+import styles from './sidePanel.module.scss';
 
 export default (props) => (
   <>

@@ -1,21 +1,12 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
 
-// fix for Notification object not supported on iOS safari
-const getNotificationStatus = () => {
-  try {
-    return Notification.permission;
-  } catch (error) {
-    return 'denied';
-  }
-};
-
 const appSlice = createSlice({
   name: 'appSlice',
   initialState: {
     errorText: '',
     infoText: '',
-    notificationPermission: getNotificationStatus(),
+    notificationPermission: null, // This state value is initilised by the notification service.
     isLoggedIn: false,
     myQueues: [],
   },

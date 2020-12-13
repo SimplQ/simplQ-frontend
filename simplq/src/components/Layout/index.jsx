@@ -1,7 +1,7 @@
 import React from 'react';
 import Routes from './Routes';
-import Footer from './common/Footer';
-import styles from '../styles/layout.module.scss';
+import Footer from '../common/Footer';
+import styles from './layout.module.scss';
 
 function Layout() {
   return (

@@ -4,7 +4,7 @@ import 'react-phone-input-2/lib/material.css';
 import { PhoneNumberUtil } from 'google-libphonenumber';
 import { handleEnterPress } from '../../common/utilFns';
 import InputField from '../../common/InputField';
-import styles from '../../../styles/joinPage.module.scss';
+import styles from './join.module.scss';
 import Button from '../../common/Button';
 import LoadingIndicator from '../../common/LoadingIndicator';
 

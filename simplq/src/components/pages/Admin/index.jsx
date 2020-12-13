@@ -9,7 +9,7 @@ import * as QueueService from '../../../services/queue';
 import ShareQueue from './ShareQueue';
 import { RefreshButton } from '../../common/Button/Button.stories';
 import Header from '../../common/Header';
-import styles from '../../../styles/adminPage.module.scss';
+import styles from './admin.module.scss';
 import SidePanel from './AdminSidePanel';
 import { AdminNavbar } from '../../common/Nav/Navbar';
 

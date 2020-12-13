@@ -1,6 +1,6 @@
 import React from 'react';
 import AddIcon from '@material-ui/icons/Add';
-import styles from '../../../styles/adminPage.module.scss';
+import styles from './admin.module.scss';
 import JoinQueueForm from '../Join/Form';
 import SidePanelItem from '../../common/SidePanel/SidePanelItem';
 

@@ -2,7 +2,7 @@ import React from 'react';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import RefreshIcon from '@material-ui/icons/Refresh';
 import StandardButton from './Button';
-import styles from '../../../styles/buttons.module.scss';
+import styles from './button.module.scss';
 
 export default {
   component: StandardButton,

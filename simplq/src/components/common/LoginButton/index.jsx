@@ -3,11 +3,11 @@ import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { Avatar, Button } from '@material-ui/core';
-import { setErrorPopupMessage, setMyQueues } from '../../store/appSlice';
-import * as Auth from '../../services/auth';
-import LoadingIndicator from './LoadingIndicator';
-import styles from '../../styles/loginButton.module.scss';
-import { getMyQueues } from '../../services/queue';
+import { setErrorPopupMessage, setMyQueues } from '../../../store/appSlice';
+import * as Auth from '../../../services/auth';
+import LoadingIndicator from '../LoadingIndicator';
+import styles from './loginButton.module.scss';
+import { getMyQueues } from '../../../services/queue';
 
 const LoginButton = () => {
   const [loadingIndicator, setLoadingIndicator] = useState(false);

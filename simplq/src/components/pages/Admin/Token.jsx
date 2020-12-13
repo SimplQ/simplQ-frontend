@@ -6,7 +6,7 @@ import NotificationsOffIcon from '@material-ui/icons/NotificationsOffSharp';
 import CallIcon from '@material-ui/icons/Call';
 import moment from 'moment';
 import * as TokenService from '../../../services/token';
-import styles from '../../../styles/adminPage.module.scss';
+import styles from './admin.module.scss';
 import LoadingIndicator from '../../common/LoadingIndicator';
 
 function Token(props) {

@@ -1,7 +1,7 @@
 import React from 'react';
-import styles from '../../styles/headerSection.module.scss';
-import Logo from './ClickableLogo';
-import Header from './Header';
+import styles from './headerSection.module.scss';
+import Logo from '../ClickableLogo';
+import Header from '../Header';
 
 export default (props) => (
   <div className={styles['header-bar']}>
