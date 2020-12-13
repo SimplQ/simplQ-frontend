@@ -7,7 +7,7 @@ import CallIcon from '@material-ui/icons/Call';
 import moment from 'moment';
 import * as TokenService from '../../../services/token';
 import { handleApiErrors } from '../../ErrorHandler';
-import styles from '../../../styles/adminPage.module.scss';
+import styles from './admin.module.scss';
 import LoadingIndicator from '../../common/LoadingIndicator';
 
 function Token(props) {

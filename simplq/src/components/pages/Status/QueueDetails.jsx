@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import moment from 'moment';
 import InfoIcon from '@material-ui/icons/Info';
-import styles from '../../../styles/statusPage.module.scss';
+import styles from './status.module.scss';
 import * as QueueService from '../../../services/queue';
 import { handleApiErrors } from '../../ErrorHandler';
 import SidePanelItem from '../../common/SidePanel/SidePanelItem';

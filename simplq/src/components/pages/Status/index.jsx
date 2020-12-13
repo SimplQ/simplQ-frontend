@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import * as TokenService from '../../../services/token';
 import { handleApiErrors } from '../../ErrorHandler';
-import styles from '../../../styles/statusPage.module.scss';
+import styles from './status.module.scss';
 import HeaderSection from '../../common/HeaderSection';
 import StatusContainer from './StatusContainer';
 import LoadingIndicator from '../../common/LoadingIndicator';

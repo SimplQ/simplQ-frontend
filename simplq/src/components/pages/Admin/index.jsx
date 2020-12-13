@@ -7,12 +7,12 @@ import TokenList from './TokenList';
 import * as TokenService from '../../../services/token';
 import * as QueueService from '../../../services/queue';
 import ShareQueue from './ShareQueue';
-import { handleApiErrors } from '../../ErrorHandler';
 import { RefreshButton } from '../../common/Button/Button.stories';
 import Header from '../../common/Header';
-import styles from '../../../styles/adminPage.module.scss';
+import styles from './admin.module.scss';
 import SidePanel from './AdminSidePanel';
 import { AdminNavbar } from '../../common/Nav/Navbar';
+import { handleApiErrors } from '../../ErrorHandler';
 
 const TIMEOUT = 10000;
 let timeoutId;

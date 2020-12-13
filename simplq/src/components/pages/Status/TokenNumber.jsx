@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../../../styles/statusPage.module.scss';
+import styles from './status.module.scss';
 
 export default (props) => (
   <div className={styles['token-number']}>

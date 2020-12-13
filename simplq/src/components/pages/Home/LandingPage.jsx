@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import Header from '../../common/Header';
-import styles from '../../../styles/homePage.module.scss';
+import styles from './home.module.scss';
 import CreateJoinForm from './CreateJoinForm';
 import MyQueues from './MyQueues';
 import * as Auth from '../../../services/auth';

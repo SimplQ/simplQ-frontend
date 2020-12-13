@@ -1,6 +1,6 @@
 import React from 'react';
-import Button from '../common/Button';
-import styles from '../../styles/pageNotFound.module.scss';
+import Button from '../../common/Button';
+import styles from './pageNotFound.module.scss';
 
 function PageNotFound(props) {
   return (

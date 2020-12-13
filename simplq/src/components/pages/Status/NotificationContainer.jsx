@@ -2,8 +2,8 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import Switch from '@material-ui/core/Switch';
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
-import styles from '../../../styles/statusPage.module.scss';
-import { setNotificationPreference } from '../../../services/notification';
+import { setNotificationPermission } from '../../../services/notification';
+import styles from './status.module.scss';
 
 export default () => {
   const notificationPermission = useSelector((state) => state.appReducer.notificationPermission);

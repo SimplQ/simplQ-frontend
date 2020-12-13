@@ -3,7 +3,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
 import { useHistory } from 'react-router';
 import { useSelector } from 'react-redux';
-import styles from '../../../styles/homePage.module.scss';
+import styles from './home.module.scss';
 import { deleteQueue } from '../../../services/queue';
 
 export default () => {
