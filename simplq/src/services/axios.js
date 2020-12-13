@@ -17,6 +17,7 @@ const handleApiErrors = (err) => {
   } else {
     store.dispatch(setErrorPopupMessage('An error occured. Please try again'));
   }
+  // Return an empty respose on faulures. It is the callers responsibility to check if the response is empty, and take appropriate actions, if required.
   return {};
 };
 
@@ -30,7 +31,9 @@ const makeRequest = async (method, url, data) => {
       Authorization: `Bearer ${accessToken}`,
     },
     data,
-  }).catch(handleApiErrors);
+  })
+    .catch(handleApiErrors)
+    .then((response) => response.data);
 };
 
 export default makeRequest;

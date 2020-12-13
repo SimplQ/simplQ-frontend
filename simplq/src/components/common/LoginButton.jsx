@@ -17,7 +17,7 @@ const LoginButton = () => {
 
   const onSuccessCallback = (googleUser) => {
     Auth.logIn(googleUser);
-    getMyQueues().then((queues) => dispatch(setMyQueues(queues)));
+    getMyQueues().then((response) => dispatch(setMyQueues(response.queues)));
     setLoadingIndicator(false);
   };
 
