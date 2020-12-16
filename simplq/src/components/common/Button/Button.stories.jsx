@@ -16,7 +16,7 @@ export const CreateQueueButton = (props) => {
 export const ShareButton = (props) => {
   return (
     <StandardButton onClick={props.onClick} outlined={props.outlined}>
-      <div className={styles['admin-main-button']}>{props.children}</div>
+      <div className={styles['admin-primary-button']}>{props.children}</div>
     </StandardButton>
   );
 };

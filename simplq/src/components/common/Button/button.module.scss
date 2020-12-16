@@ -72,3 +72,31 @@
     margin-right: 0.5rem;
   }
 }
+
+.admin-primary-button {
+  @extend .standard-button;
+  background-color: $primary-color-dark;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 14rem;
+  min-height: 1rem;
+  max-height: 2rem;
+  margin: 3.2px;
+  & > * {
+    margin: 0.2rem;
+  }
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    background: #4e4c66 radial-gradient(circle, transparent 1%, #4e4c66 1%) center/15000%;
+  }
+
+  &:active {
+    background-color: #9e99fc;
+    background-size: 100%;
+    transition: background 0s;
+  }
+}
