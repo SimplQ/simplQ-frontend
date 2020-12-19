@@ -4,7 +4,7 @@
   background-color: $primary-color-dark;
   color: #fff;
   display: inline-block;
-  padding: 0.2em 0.5em 0.3em 0.2em;
+  padding: 0.5em;
   font-weight: bold;
   font-size: large;
   border: 2px solid $primary-color-dark;
@@ -12,6 +12,7 @@
   text-align: center;
   transition: background 0.8s;
   background-position: center;
+  text-transform: capitalize;
 
   &:focus {
     outline: none;
@@ -28,8 +29,10 @@
   }
 }
 
-.standard-button img {
-  height: 1.5rem;
+.icon {
+  display: inline;
+  vertical-align: middle;
+  margin: .5rem;
 }
 
 .standard-button-outlined {

@@ -9,7 +9,7 @@ const StandardButton = (props) => {
       onClick={onClick}
       className={props.outlined ? styles['standard-button-outlined'] : styles['standard-button']}
     >
-      {props.icon ? props.icon : null}
+      {props.icon ? <div className={styles['icon']}>{props.icon}</div> : null}
       {props.children}
     </button>
   );
