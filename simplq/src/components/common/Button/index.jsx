@@ -10,7 +10,7 @@ const StandardButton = (props) => {
       className={props.outlined ? styles['standard-button-outlined'] : styles['standard-button']}
     >
       {props.icon ? <div className={styles['icon']}>{props.icon}</div> : null}
-      {props.children}
+      <div className={styles['text']}>{props.children}</div>
     </button>
   );
 };

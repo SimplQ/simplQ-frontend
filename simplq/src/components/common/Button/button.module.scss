@@ -3,8 +3,9 @@
 .standard-button {
   background-color: $primary-color-dark;
   color: #fff;
-  display: inline-block;
-  padding: 0.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-weight: bold;
   font-size: large;
   border: 2px solid $primary-color-dark;
@@ -13,6 +14,8 @@
   transition: background 0.8s;
   background-position: center;
   text-transform: capitalize;
+  min-height: 2.5rem;
+  padding: 0.20rem 1rem;
 
   &:focus {
     outline: none;
@@ -32,7 +35,7 @@
 .icon {
   display: inline;
   vertical-align: middle;
-  margin: .5rem;
+  margin-right: .5rem;
 }
 
 .standard-button-outlined {
