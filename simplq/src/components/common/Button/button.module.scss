@@ -48,27 +48,3 @@
     transition: background 0s;
   }
 }
-
-.admin-main-button {
-  display: flex;
-  align-items: center;
-  max-width: 14rem;
-  min-height: 1rem;
-  & > * {
-    margin: 0.2rem;
-  }
-}
-
-.fork-on-github-button {
-  text-decoration: none;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: smaller;
-  padding: 1rem;
-
-  span {
-    margin-right: 0.5rem;
-  }
-}

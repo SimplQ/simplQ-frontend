@@ -1,5 +1,18 @@
-import StandardButton from './Button';
-import { CreateQueueButton } from './Button.stories';
+import React from 'react';
+import styles from './button.module.scss';
 
-export { CreateQueueButton };
+const StandardButton = (props) => {
+  const { onClick } = props;
+  return (
+    <button
+      type="submit"
+      onClick={onClick}
+      className={props.outlined ? styles['standard-button-outlined'] : styles['standard-button']}
+    >
+      {props.icon ? props.icon : null}
+      {props.children}
+    </button>
+  );
+};
+
 export default StandardButton;
