@@ -1,3 +1,4 @@
+import React from 'react';
 import HeaderSection from '.';
 
 export default {
@@ -5,4 +6,4 @@ export default {
   title: 'Header section',
 };
 
-export const MainHeaderSection = HeaderSection;
+export const MainHeaderSection = () => <HeaderSection queueName="My queue" />;
