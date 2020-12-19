@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import FileCopyIcon from '@material-ui/icons/FileCopy';
-import { ShareButton } from '../../common/Button/Button.stories';
+import { ShareButton } from '../../common/Button';
 
 const ShareQueue = (props) => {
   const [clicked, setClicked] = useState(false);

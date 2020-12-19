@@ -7,7 +7,7 @@ import TokenList from './TokenList';
 import * as TokenService from '../../../services/token';
 import * as QueueService from '../../../services/queue';
 import ShareQueue from './ShareQueue';
-import { RefreshButton } from '../../common/Button/Button.stories';
+import { RefreshButton } from '../../common/Button';
 import Header from '../../common/Header';
 import styles from './admin.module.scss';
 import SidePanel from './AdminSidePanel';
