@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from './Header';
+import Header from '.';
 import styles from './header.module.scss';
 
 export default {
@@ -10,7 +10,7 @@ export default {
 export const SimplQHeader = () => {
   return (
     <span className={styles['header-with-font']}>
-      <Header text="SimplQ" />
+      <Header>SimplQ</Header>
     </span>
   );
 };
