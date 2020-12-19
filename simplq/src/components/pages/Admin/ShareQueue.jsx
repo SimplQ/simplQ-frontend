@@ -10,13 +10,13 @@ const ShareQueue = (props) => {
   const dispatch = useDispatch();
 
   const handleShareButtonClick = () => {
-    dispatch(setInfoPopupMessage('Copied to clipboard'));
+    dispatch(setInfoPopupMessage('Copied queue link to clipboard'));
   };
 
   return (
     <CopyToClipboard text={shareUrl}>
       <StandardButton onClick={handleShareButtonClick} icon={<FileCopyIcon />}>
-        Copy to clipboard
+        Copy Queue Link
       </StandardButton>
     </CopyToClipboard>
   );
