@@ -33,17 +33,3 @@ export class ErrorBoundary extends React.Component {
     return this.props.children;
   }
 }
-
-export const handleApiErrors = (err) => {
-  if (!err.response) {
-    store.dispatch(setErrorPopupMessage('You are offline. Please reconnect to the internet'));
-  } else if (err.response.status === 422) {
-    store.dispatch(
-      setErrorPopupMessage(
-        `There's a problem with the data you've entered ${err.response.data.message}`
-      )
-    );
-  } else {
-    store.dispatch(setErrorPopupMessage('An error occured. Please try again'));
-  }
-};

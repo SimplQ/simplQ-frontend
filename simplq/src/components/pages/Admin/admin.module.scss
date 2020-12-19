@@ -11,7 +11,7 @@
 .token-list {
   @include center-horizontally();
   max-width: 40rem;
-  padding: 2rem;
+  padding: 1rem;
   margin: 0 auto auto auto;
   display: flex;
   flex-direction: column;
@@ -20,14 +20,14 @@
 .token {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: stretch;
 
   border-radius: 0.6rem;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+  border-top: 1px solid #cacaca;
+  box-shadow: 2px 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2),
     0 1px 5px 0 rgba(0, 0, 0, 0.12);
 
   width: 100%;
-  height: 4rem;
 
   margin: 1rem;
   padding: 0;
@@ -40,19 +40,14 @@
 
   .token-number {
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     border-radius: 0.4rem;
     min-width: 4rem;
-    max-width: max-content;
-    height: 4rem;
     background: $primary-color-dark;
-
-    margin-left: -0.1rem;
 
     & > p {
       margin: 0;
-      padding: 1rem;
       font-weight: bold;
       font-size: 2rem;
       color: #fafafa;
@@ -63,14 +58,14 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
+    align-items: stretch;
 
     width: 100%;
-
-    margin: 0 0 0 1rem;
+    margin-left: 1rem;
 
     .token-name-time {
       text-align: left;
+      align-self: center;
       & > p {
         margin: 0;
 
@@ -87,10 +82,12 @@
     .token-operations {
       display: flex;
       flex-direction: row;
-      align-items: center;
+      align-items: stretch;
 
       .token-icon-set {
         display: flex;
+        align-items: stretch;
+        flex-wrap: wrap;
         .token-icon {
           color: $primary-color-dark;
         }
@@ -100,20 +97,15 @@
       }
 
       .token-remove {
-        position: relative;
         background-color: lightcoral;
         margin: 0;
         padding: 0;
-        height: 3rem;
-        width: 4rem;
-        transform: rotate(-90deg);
-        border-radius: 0 0 0.5rem 0.5rem;
+        border-radius: 0 0.6rem 0.6rem 0;
 
         border: 0.1rem solid $primary-color-dark;
         display: flex;
         align-items: center;
         justify-content: center;
-        right: -0.5rem;
 
         & > p {
           text-transform: uppercase;
@@ -121,6 +113,7 @@
           font-size: 0.75rem;
           font-weight: bold;
           color: $primary-color-dark;
+          transform: rotate(-90deg);
         }
       }
     }
