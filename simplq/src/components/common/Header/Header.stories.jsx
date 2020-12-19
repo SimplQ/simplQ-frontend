@@ -6,4 +6,4 @@ export default {
   title: 'Header',
 };
 
-export const SimplQHeader = () => <Header>SimplQ</Header>;
+export const SampleHeader = () => <Header>Sample header</Header>;
