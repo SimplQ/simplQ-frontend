@@ -11,6 +11,8 @@ import { getMyQueues } from '../../../services/queue';
 
 const LoginButton = () => {
   const [loadingIndicator, setLoadingIndicator] = useState(false);
+  const [name, setName] = useState(null);
+  const [imageUrl, setImageUrl] = useState(null);
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.appReducer.isLoggedIn);
   const history = useHistory();
@@ -33,16 +35,23 @@ const LoginButton = () => {
     setLoadingIndicator(false);
   };
 
+  const onRequestCallback = () => {
+    Auth.init();
+    setLoadingIndicator(true);
+  };
+
   if (loadingIndicator) {
     return LoadingIndicator;
   }
 
   if (isLoggedIn) {
+    Auth.getName().then((name1) => setName(name1));
+    Auth.getImageUrl().then((imageUrl1) => setImageUrl(imageUrl1));
     return (
       <GoogleLogout
         render={(renderProps) => (
           <Button color="primary" onClick={renderProps.onClick} variant="outlined">
-            <Avatar id={styles.avatar} alt={Auth.getName()} src={Auth.getImageUrl()} />
+            <Avatar id={styles.avatar} alt={name} src={imageUrl} />
             &nbsp;&nbsp;Logout
           </Button>
         )}
@@ -57,7 +66,8 @@ const LoginButton = () => {
       buttonText="Login with Google"
       onSuccess={onSuccessCallback}
       onFailure={onFailureCallback}
-      onRequest={() => setLoadingIndicator(true)}
+      onRequest={onRequestCallback}
+      // onAutoLoadFinished={() => console.log("onAutoLoadFinished")}
       isSignedIn
       cookiePolicy="single_host_origin"
       responseType="id_token permission"
