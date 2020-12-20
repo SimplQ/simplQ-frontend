@@ -36,7 +36,6 @@ export const {
   setNotificationPermission,
   setIsLoggedIn,
   setMyQueues,
-  addToMyQueues,
 } = appSlice.actions;
 
 export default appSlice.reducer;
