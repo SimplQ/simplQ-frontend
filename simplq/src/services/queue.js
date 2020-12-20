@@ -28,6 +28,6 @@ export const getStatusByName = async (queueName) => {
 
 export const deleteQueue = async (queueId) => {
   const response = await makeRequest('delete', `/queue/${queueId}`);
-  await getMyQueues().then((subResponse) => store.dispatch(setMyQueues(subResponse.myQueues)));
+  await getMyQueues().then((subResponse) => store.dispatch(setMyQueues(subResponse.queues)));
   return response;
 };
