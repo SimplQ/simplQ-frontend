@@ -1,5 +1,8 @@
-import StandardHeader from './Header';
-import { SimplQHeader } from './Header.stories';
+import React from 'react';
+import styles from './header.module.scss';
 
-export { SimplQHeader };
+const StandardHeader = (props) => (
+  <h1 className={props.className ? props.className : styles.header}>{props.children}</h1>
+);
+
 export default StandardHeader;
