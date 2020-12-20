@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router';
 import * as QueueService from '../../../services/queue';
-import Button, { CreateQueueButton } from '../../common/Button';
 import styles from './home.module.scss';
 import { handleEnterPress, isQueueNameValid } from '../../common/utilFns';
 import InputField from '../../common/InputField';
 import LoadingIndicator from '../../common/LoadingIndicator';
+import StandardButton from '../../common/Button';
 
 const CreateJoinForm = () => {
   const [textFieldValue, setTextFieldValue] = useState('');
@@ -61,11 +61,11 @@ const CreateJoinForm = () => {
           {createInProgress ? (
             <LoadingIndicator />
           ) : (
-            <CreateQueueButton onClick={handleCreateClick} />
+            <StandardButton onClick={handleCreateClick}>Create Queue</StandardButton>
           )}
         </div>
         <div>
-          <Button onClick={handleJoinClick}>Join Queue</Button>
+          <StandardButton onClick={handleJoinClick}>Join Queue</StandardButton>
         </div>
       </div>
     </div>

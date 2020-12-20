@@ -5,8 +5,8 @@ import YouTubeIcon from '@material-ui/icons/YouTube';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import MailIcon from '@material-ui/icons/Mail';
 import styles from './footer.module.scss';
-import { ForkOnGithubButton } from '../Button';
 import ClickableLogo from '../ClickableLogo';
+import StandardButton from '../Button';
 
 export default () => (
   <div id="target_contact_us" className={styles['footer']}>
@@ -38,7 +38,15 @@ export default () => (
               community.
             </b>
           </p>
-          <ForkOnGithubButton />
+
+          <StandardButton
+            icon={<GitHubIcon />}
+            onClick={() => {
+              window.location.href = 'https://github.com/SimplQ/simplQ-frontend';
+            }}
+          >
+            Contribute on Github
+          </StandardButton>
         </div>
       </div>
     </div>

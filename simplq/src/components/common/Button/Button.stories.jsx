@@ -1,5 +1,6 @@
 import React from 'react';
-import StandardButton, { ForkOnGithubButton, RefreshButton } from './Button';
+import RefreshIcon from '@material-ui/icons/Refresh';
+import StandardButton from '.';
 
 export default {
   component: StandardButton,
@@ -7,5 +8,12 @@ export default {
 };
 
 export const Normal = () => <StandardButton>Click me</StandardButton>;
-export const GithubFork = ForkOnGithubButton;
-export const Refresh = RefreshButton;
+export const Outlined = () => <StandardButton outlined>Click me</StandardButton>;
+export const NormalWithIcon = () => (
+  <StandardButton icon={<RefreshIcon />}>Click me</StandardButton>
+);
+export const OutlinedWithIcon = () => (
+  <StandardButton icon={<RefreshIcon />} outlined>
+    Click me
+  </StandardButton>
+);

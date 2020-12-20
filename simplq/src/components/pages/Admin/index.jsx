@@ -3,15 +3,16 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import EditIcon from '@material-ui/icons/Edit';
+import RefreshIcon from '@material-ui/icons/Refresh';
 import TokenList from './TokenList';
 import * as TokenService from '../../../services/token';
 import * as QueueService from '../../../services/queue';
 import ShareQueue from './ShareQueue';
-import { RefreshButton } from '../../common/Button';
 import Header from '../../common/Header';
 import styles from './admin.module.scss';
 import SidePanel from './AdminSidePanel';
 import { AdminNavbar } from '../../common/Nav/Navbar';
+import StandardButton from '../../common/Button';
 
 const TIMEOUT = 10000;
 let timeoutId;
@@ -80,7 +81,9 @@ export default (props) => {
       </div>
       <div className={styles['main-button-group']}>
         <div className={styles['admin-button']}>
-          <RefreshButton onClick={update} />
+          <StandardButton onClick={update} icon={<RefreshIcon />} outlined>
+            Refresh status
+          </StandardButton>
         </div>
         <div className={styles['admin-button']}>
           <ShareQueue queueName={queueName} className={styles.shareButton} />
