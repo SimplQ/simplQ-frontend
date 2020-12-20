@@ -12,47 +12,47 @@ let googleUserPromise = null;
  * promise is initilised.
  * https://stackoverflow.com/questions/26150232/resolve-javascript-promise-outside-function-scope
  */
-export function init() {
-  googleUserPromise = new Promise(function (resolve) {
+export const init = () => {
+  googleUserPromise = new Promise((resolve) => {
     resolveGoogleUser = resolve;
   });
-}
+};
 init();
 
-export function isLoggedIn() {
+export const isLoggedIn = () => {
   return store.getState().appReducer.isLoggedIn;
-}
+};
 
-export function getAccessToken() {
+export const getAccessToken = () => {
   return googleUserPromise.then((googleUser) =>
     googleUser ? googleUser.getAuthResponse().id_token : 'anonymous'
   );
-}
+};
 
-export function logIn(newGoogleUser) {
+export const logIn = (newGoogleUser) => {
   resolveGoogleUser(newGoogleUser);
   store.dispatch(setIsLoggedIn(true));
-}
+};
 
-export function logOut() {
+export const logOut = () => {
   resolveGoogleUser(null);
   store.dispatch(setIsLoggedIn(false));
   store.dispatch(setMyQueues([]));
-}
+};
 
 /**
  * Below functions should be called only if logged in, otherwise googleUser will resolve to null.
  */
-export function getName() {
+export const getName = () => {
   return googleUserPromise.then((googleUser) => googleUser.getBasicProfile().getName());
-}
+};
 
-export function getGivenName() {
+export const getGivenName = () => {
   return googleUserPromise.then((googleUser) => googleUser.getBasicProfile().getGivenName());
-}
+};
 
-export function getImageUrl() {
+export const getImageUrl = () => {
   return googleUserPromise.then((googleUser) => googleUser.getBasicProfile().getImageUrl());
-}
+};
 
 export default getAccessToken;
