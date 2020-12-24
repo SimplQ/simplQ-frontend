@@ -25,5 +25,7 @@ export const smoothScrollToHomePageTop = () => {
   const element = document.getElementById('target_top');
   if (element) {
     smoothScrollTo(element);
+  } else {
+    window.location.href = '/';
   }
 };
