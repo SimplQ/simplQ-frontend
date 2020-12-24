@@ -11,7 +11,6 @@ import ShareQueue from './ShareQueue';
 import Header from '../../common/Header';
 import styles from './admin.module.scss';
 import SidePanel from './AdminSidePanel';
-import { AdminNavbar } from '../../common/Nav/Navbar';
 import StandardButton from '../../common/Button';
 
 const TIMEOUT = 10000;
@@ -94,7 +93,6 @@ export default (props) => {
 
   return (
     <div className={styles['admin-content']}>
-      <AdminNavbar />
       <HeaderSection />
       <div className={styles['main-body']}>
         <TokenList tokens={tokens} queueId={queueId} removeTokenHandler={removeToken} />
