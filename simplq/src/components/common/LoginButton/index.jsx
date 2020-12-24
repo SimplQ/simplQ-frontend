@@ -47,7 +47,7 @@ const LoginButton = () => {
   };
 
   if (loadingIndicator) {
-    return LoadingIndicator;
+    return <LoadingIndicator />;
   }
 
   if (isLoggedIn) {

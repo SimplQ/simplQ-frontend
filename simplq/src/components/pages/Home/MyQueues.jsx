@@ -25,6 +25,7 @@ export default () => {
         const handler = () => history.push(`/queue/${queue.queueId}`);
         return (
           <div
+            key={queue.queueId}
             tabIndex="0"
             role="button"
             onKeyDown={handler}
