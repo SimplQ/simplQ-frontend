@@ -40,8 +40,14 @@ const LoginButton = () => {
     setLoadingIndicator(true);
   };
 
+  const onAutoLoadFinished = (successLogin) => {
+    if (!successLogin) {
+      Auth.logOut();
+    }
+  };
+
   if (loadingIndicator) {
-    return LoadingIndicator;
+    return <LoadingIndicator />;
   }
 
   if (isLoggedIn) {
@@ -67,7 +73,7 @@ const LoginButton = () => {
       onSuccess={onSuccessCallback}
       onFailure={onFailureCallback}
       onRequest={onRequestCallback}
-      // onAutoLoadFinished={() => console.log("onAutoLoadFinished")}
+      onAutoLoadFinished={onAutoLoadFinished}
       isSignedIn
       cookiePolicy="single_host_origin"
       responseType="id_token permission"
