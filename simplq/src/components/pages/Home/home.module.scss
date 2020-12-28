@@ -161,6 +161,10 @@
   @extend .queue-info;
 }
 
+.get-started{
+  @extend .queue-info;
+}
+
 .extra-info {
   background-color: $primary-color-dark;
   .extra-container {
