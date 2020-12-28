@@ -1,5 +1,7 @@
 import React from 'react';
 import styles from './home.module.scss';
+import StandardButton from '../../common/Button';
+import { smoothScrollToHomePageTop } from '../../common/utilFns';
 
 export const BenefitsInfo = () => (
   <div className={`${styles['section']} ${styles['benefits-info']}`}>
@@ -128,5 +130,8 @@ export const ExtraInfo = () => (
 export const GetStarted = () => (
   <div data-aos="fade-up" className={`${styles['section']} ${styles['get-started']}`}>
     <h2 data-aos="zoom-in">Ready to get started with SimplQ?</h2>
+    <div className={`${styles['button-group']}`}>
+      <StandardButton onClick={smoothScrollToHomePageTop}>Start Now</StandardButton>
+    </div>
   </div>
 );
