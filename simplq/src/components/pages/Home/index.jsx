@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { BenefitsInfo, HowToCreate, HowToJoin, ExtraInfo } from './StaticInfos';
+import { BenefitsInfo, HowToCreate, HowToJoin, ExtraInfo, GetStarted } from './StaticInfos';
 import LandingPage from './LandingPage';
 import { smoothScrollToHomePageTop } from '../../common/utilFns';
 
@@ -13,6 +13,7 @@ const Home = () => {
       <HowToCreate />
       <HowToJoin />
       <ExtraInfo />
+      <GetStarted />
     </>
   );
 };

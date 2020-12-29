@@ -161,6 +161,19 @@
   @extend .queue-info;
 }
 
+.get-started{
+  @extend .queue-info;
+
+  .button-group {
+    @include center-horizontally();
+    flex-wrap: wrap;
+    button {
+      margin: 0.5rem 2rem;
+      min-width: 10rem;
+    }
+  }
+}
+
 .extra-info {
   background-color: $primary-color-dark;
   .extra-container {
