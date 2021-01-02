@@ -24,6 +24,9 @@ export const isLoggedIn = () => {
 };
 
 export const getAccessToken = () => {
+  if (!isLoggedIn()) {
+    return Promise.resolve('anonymous');
+  }
   return googleUserPromise.then((googleUser) =>
     googleUser ? googleUser.getAuthResponse().id_token : 'anonymous'
   );
