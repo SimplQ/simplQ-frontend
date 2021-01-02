@@ -62,6 +62,7 @@ const LoginButton = () => {
           </Button>
         )}
         onLogoutSuccess={onLogoutCallback}
+        onRequest={onRequestCallback}
         buttonText="Logout"
       />
     );
