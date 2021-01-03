@@ -24,7 +24,10 @@ export const isLoggedIn = () => {
 };
 
 export const getAccessToken = () => {
-  if (!isLoggedIn()) {
+  // isLoggedIn will return null before it's initilised. Hence need to explicitly check if it's false, to return 'anonymous'
+  // In case of null or true, proceed to wait till googleUserPromise is resolved. GoogleUserPromise resolves to null in case
+  // user is not logged in, then also 'anonymous' is returned
+  if (isLoggedIn() === false) {
     return Promise.resolve('anonymous');
   }
   return googleUserPromise.then((googleUser) =>
