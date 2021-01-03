@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import styles from './nav.module.scss';
 import LeftNav from './LeftNav';
 
-const Burger = ({ page }) => {
+const Burger = () => {
   const [open, setOpen] = useState(false);
   const toggleClose = () => setOpen(!open);
 
@@ -16,7 +16,7 @@ const Burger = ({ page }) => {
         <div open={open} onClick={toggleClose} />
         <div open={open} onClick={toggleClose} />
       </div>
-      <LeftNav open={open} toggleClose={toggleClose} page={page} />
+      <LeftNav open={open} toggleClose={toggleClose} />
     </>
   );
 };

@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
-import { BenefitsInfo, HowToCreate, HowToJoin, ExtraInfo } from './StaticInfos';
+import { BenefitsInfo, HowToCreate, HowToJoin, ExtraInfo, GetStarted } from './StaticInfos';
 import LandingPage from './LandingPage';
-import { HomeNavbar } from '../../common/Nav/Navbar';
 import { smoothScrollToHomePageTop } from '../../common/utilFns';
 
 const Home = () => {
@@ -9,12 +8,12 @@ const Home = () => {
   useEffect(smoothScrollToHomePageTop, []);
   return (
     <>
-      <HomeNavbar />
       <LandingPage />
       <BenefitsInfo />
       <HowToCreate />
       <HowToJoin />
       <ExtraInfo />
+      <GetStarted />
     </>
   );
 };

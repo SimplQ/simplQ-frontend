@@ -3,8 +3,9 @@
 .standard-button {
   background-color: $primary-color-dark;
   color: #fff;
-  display: inline-block;
-  padding: 0.2em 0.5em 0.3em 0.2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-weight: bold;
   font-size: large;
   border: 2px solid $primary-color-dark;
@@ -12,6 +13,9 @@
   text-align: center;
   transition: background 0.8s;
   background-position: center;
+  text-transform: capitalize;
+  min-height: 2.5rem;
+  padding: 0.2rem 1rem;
 
   &:focus {
     outline: none;
@@ -28,8 +32,9 @@
   }
 }
 
-.standard-button img {
-  height: 1.5rem;
+.icon {
+  display: flex;
+  margin-right: 0.5rem;
 }
 
 .standard-button-outlined {
@@ -46,29 +51,5 @@
     background-color: #9e99fc;
     background-size: 100%;
     transition: background 0s;
-  }
-}
-
-.admin-main-button {
-  display: flex;
-  align-items: center;
-  max-width: 14rem;
-  min-height: 1rem;
-  & > * {
-    margin: 0.2rem;
-  }
-}
-
-.fork-on-github-button {
-  text-decoration: none;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: smaller;
-  padding: 1rem;
-
-  span {
-    margin-right: 0.5rem;
   }
 }

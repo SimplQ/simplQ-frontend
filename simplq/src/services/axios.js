@@ -22,7 +22,7 @@ const handleApiErrors = (err) => {
 };
 
 const makeRequest = async (method, url, data) => {
-  const accessToken = getAccessToken();
+  const accessToken = await getAccessToken();
   return axios({
     method,
     baseURL,

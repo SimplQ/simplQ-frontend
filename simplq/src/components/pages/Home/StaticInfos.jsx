@@ -1,5 +1,7 @@
 import React from 'react';
 import styles from './home.module.scss';
+import StandardButton from '../../common/Button';
+import { smoothScrollToHomePageTop } from '../../common/utilFns';
 
 export const BenefitsInfo = () => (
   <div className={`${styles['section']} ${styles['benefits-info']}`}>
@@ -9,7 +11,7 @@ export const BenefitsInfo = () => (
     <h2 data-aos="zoom-in">Why SimplQ ?</h2>
     <div data-aos="zoom-in" className={`${styles['container']} ${styles['benefits-container']}`}>
       <div className={styles.benefit}>
-        <img src="/images/minimize_crowding.svg" alt="mimimze crowding" />
+        <img src="/images/minimize_crowding.svg" alt="minimize crowding" />
         <p>No more waiting in long lines</p>
       </div>
       <div className={styles.benefit}>
@@ -121,6 +123,15 @@ export const ExtraInfo = () => (
           We provide free queue management thereby allowing you to focus on better things
         </p>
       </div>
+    </div>
+  </div>
+);
+
+export const GetStarted = () => (
+  <div data-aos="fade-up" className={`${styles['section']} ${styles['get-started']}`}>
+    <h2 data-aos="zoom-in">Ready to get started with SimplQ?</h2>
+    <div className={`${styles['button-group']}`}>
+      <StandardButton onClick={smoothScrollToHomePageTop}>Start Now</StandardButton>
     </div>
   </div>
 );

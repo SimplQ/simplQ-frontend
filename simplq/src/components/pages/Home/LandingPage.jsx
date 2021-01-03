@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import Header from '../../common/Header';
 import styles from './home.module.scss';
@@ -8,9 +8,12 @@ import * as Auth from '../../../services/auth';
 
 export default () => {
   const isLoggedIn = useSelector((state) => state.appReducer.isLoggedIn);
-  const subtitle = isLoggedIn
-    ? `Hi ${Auth.getGivenName()}, welcome back!`
-    : 'A long overdue alternative to physical queues';
+  const [givenName, setGivenName] = useState(null);
+  let subtitle = 'A long overdue alternative to physical queues';
+  if (isLoggedIn) {
+    Auth.getGivenName().then((givenName1) => setGivenName(givenName1));
+    subtitle = `Hi ${givenName}, welcome back!`;
+  }
   return (
     <div id="target_top" className={styles['landing-page']}>
       <div data-aos="zoom-in">

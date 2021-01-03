@@ -1,16 +1,9 @@
 import React from 'react';
-import Header from './Header';
-import styles from './header.module.scss';
+import Header from '.';
 
 export default {
   component: Header,
   title: 'Header',
 };
 
-export const SimplQHeader = () => {
-  return (
-    <span className={styles['header-with-font']}>
-      <Header text="SimplQ" />
-    </span>
-  );
-};
+export const SampleHeader = () => <Header>Sample header</Header>;

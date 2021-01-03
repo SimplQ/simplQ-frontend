@@ -11,6 +11,20 @@
       gtag('js', new Date());
       gtag('config', 'UA-170959407-1');
     </script>
+    <script>
+      /* Scroll to anchor doesn't work properly in firefox:
+         Temp fix: https://support.mozilla.org/en-US/questions/1267968
+      */
+      function pgshow(e) {
+        var elId = window.location.hash;
+        if (elId.length > 1) {
+          el = document.getElementById(elId.substr(1));
+          if (el) el.scrollIntoView(true);
+        }
+      }
+      // pageshow fires after load and on Back/Forward
+      window.addEventListener('pageshow', pgshow);
+    </script>
     <meta charset="utf-8" />
     <link rel="icon" type="image/png" href="%PUBLIC_URL%/images/Simple-Q.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />

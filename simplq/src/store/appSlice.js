@@ -7,7 +7,7 @@ const appSlice = createSlice({
     errorText: '',
     infoText: '',
     notificationPermission: null, // This state value is initilised by the notification service.
-    isLoggedIn: false,
+    isLoggedIn: null, // This state value is initilised by the auth service.
     myQueues: [],
   },
   reducers: {
@@ -36,7 +36,6 @@ export const {
   setNotificationPermission,
   setIsLoggedIn,
   setMyQueues,
-  addToMyQueues,
 } = appSlice.actions;
 
 export default appSlice.reducer;
