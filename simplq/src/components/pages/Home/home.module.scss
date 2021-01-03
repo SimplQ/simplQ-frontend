@@ -25,7 +25,8 @@
     font-size: larger;
   }
   .create-join-form {
-    margin: auto; // centering
+    margin: auto; // auto for centering
+    padding-top: 2rem;
     max-width: 35rem;
     position: relative;
     // z-index set greater than that of svg below,
