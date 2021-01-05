@@ -4,7 +4,8 @@
   @include background-color();
   @include center-horizontally();
   @include center-vertically();
-  min-height: 10rem;
+  padding-top: 4rem;
+  min-height: 15rem;
 }
 
 .content {
