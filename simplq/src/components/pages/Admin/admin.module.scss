@@ -156,9 +156,9 @@
       & > div {
         margin: 0.5rem;
       }
-      @media screen and (max-width: 400px) {
-        padding-right: 0;
+      @media screen and (max-width: 500px) {
         flex-direction: column;
+        margin: 0 auto;
       }
     }
   }
