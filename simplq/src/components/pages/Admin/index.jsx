@@ -12,6 +12,7 @@ import Header from '../../common/Header';
 import styles from './admin.module.scss';
 import SidePanel from './AdminSidePanel';
 import StandardButton from '../../common/Button';
+import Ribbon from '../../common/Ribbon';
 
 const TIMEOUT = 10000;
 let timeoutId;
@@ -94,6 +95,7 @@ export default (props) => {
   return (
     <div className={styles['admin-content']}>
       <HeaderSection />
+      <Ribbon />
       <div className={styles['main-body']}>
         <TokenList tokens={tokens} queueId={queueId} removeTokenHandler={removeToken} />
         <SidePanel queueId={queueId} joinQueueHandler={addNewToken} />
