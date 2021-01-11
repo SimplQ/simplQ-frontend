@@ -10,10 +10,7 @@ const ComponentToPrint = forwardRef(({ style, url }, ref) => {
     <div className={style} ref={ref}>
       <h2>Scan this QR to begin!</h2>
       <QRCode value={url} />
-      <p>
-        or visit
-        {url}
-      </p>
+      <p>{`or visit ${url}`}</p>
     </div>
   );
 });
