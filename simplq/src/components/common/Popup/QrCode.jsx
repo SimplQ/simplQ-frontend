@@ -4,10 +4,14 @@ import { QRCode } from 'react-qrcode-logo';
 import PrintIcon from '@material-ui/icons/Print';
 import { useReactToPrint } from 'react-to-print';
 import StandardButton from '../Button';
+import { title } from '../utilFns';
 
-const ComponentToPrint = forwardRef(({ style, url }, ref) => {
+const ComponentToPrint = forwardRef(({ style, url, queueName }, ref) => {
   return (
     <div className={style} ref={ref}>
+      <h1>
+        <u>{title(queueName)}</u>
+      </h1>
       <h2>Scan this QR to begin!</h2>
       <QRCode value={url} />
       <p>{`or visit ${url}`}</p>
@@ -44,6 +48,8 @@ const QrCode = (props) => {
         alignItems: 'center',
         justifyContent: 'center',
         flexDirection: 'column',
+        width: '100%',
+        height: '80%',
       },
     };
   })();
@@ -63,6 +69,7 @@ const QrCode = (props) => {
           <ComponentToPrint
             style={styles['centered']}
             url={`${window.location.origin}/j/${queueName}`}
+            queueName={queueName}
             ref={componentPrintRef}
           />
           <StandardButton onClick={handlePrint} icon={<PrintIcon />}>
