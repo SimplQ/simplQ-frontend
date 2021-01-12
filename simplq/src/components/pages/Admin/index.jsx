@@ -1,9 +1,8 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { useState, useEffect, useCallback } from 'react';
-import IconButton from '@material-ui/core/IconButton';
-import EditIcon from '@material-ui/icons/Edit';
 import RefreshIcon from '@material-ui/icons/Refresh';
+import CropFreeIcon from '@material-ui/icons/CropFree';
 import TokenList from './TokenList';
 import * as TokenService from '../../../services/token';
 import * as QueueService from '../../../services/queue';
@@ -13,6 +12,7 @@ import styles from './admin.module.scss';
 import SidePanel from './AdminSidePanel';
 import StandardButton from '../../common/Button';
 import Ribbon from '../../common/Ribbon';
+import QRCode from '../../common/Popup/QrCode';
 
 const TIMEOUT = 10000;
 let timeoutId;
@@ -23,6 +23,7 @@ export default (props) => {
   const [tokens, setTokens] = useState();
   const [queueName, setQueueName] = useState();
   const [description, setDescription] = useState('');
+  const [showQrCodeModal, setShowQrCodeModal] = useState(false);
 
   const update = useCallback(() => {
     clearTimeout(timeoutId);
@@ -36,6 +37,10 @@ export default (props) => {
       timeoutId = setTimeout(update, TIMEOUT);
     });
   }, [queueId]);
+
+  const generateQrCOde = useCallback(() => {
+    setShowQrCodeModal(true);
+  }, []);
 
   useEffect(() => {
     update();
@@ -74,12 +79,17 @@ export default (props) => {
         <Header className={styles['header']}>{queueName}</Header>
         <div className={styles['sub-header']}>
           <h2>{description}</h2>
-          <IconButton size="small">
-            <EditIcon />
-          </IconButton>
         </div>
       </div>
       <div className={styles['main-button-group']}>
+        <div className={styles['admin-button']}>
+          <StandardButton onClick={generateQrCOde} icon={<CropFreeIcon />} outlined>
+            Generate QrCode
+          </StandardButton>
+          {showQrCodeModal && (
+            <QRCode queueName={queueName} show={showQrCodeModal} onClose={setShowQrCodeModal} />
+          )}
+        </div>
         <div className={styles['admin-button']}>
           <StandardButton onClick={update} icon={<RefreshIcon />} outlined>
             Refresh status
