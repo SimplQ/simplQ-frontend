@@ -1,8 +1,6 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { useState, useEffect, useCallback } from 'react';
-import IconButton from '@material-ui/core/IconButton';
-import EditIcon from '@material-ui/icons/Edit';
 import RefreshIcon from '@material-ui/icons/Refresh';
 import CropFreeIcon from '@material-ui/icons/CropFree';
 import TokenList from './TokenList';
@@ -80,9 +78,6 @@ export default (props) => {
         <Header className={styles['header']}>{queueName}</Header>
         <div className={styles['sub-header']}>
           <h2>{description}</h2>
-          <IconButton size="small">
-            <EditIcon />
-          </IconButton>
         </div>
       </div>
       <div className={styles['main-button-group']}>
