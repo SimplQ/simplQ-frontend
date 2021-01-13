@@ -18,7 +18,7 @@ export default () => {
           <span style={{ fontWeight: 'bold' }}>Temporary queue warning!&emsp;</span>
           <span>
             {
-              'Please sign up to make your queue permanent. {Temporary queues will last only for 10 days}'
+              'Please sign up to make your queue permanent.'
             }
           </span>
         </div>
