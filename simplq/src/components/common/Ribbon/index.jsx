@@ -16,11 +16,7 @@ export default () => {
       <div className={styles['ribbon-container']}>
         <div className={styles['ribbon-text']}>
           <span style={{ fontWeight: 'bold' }}>Temporary queue warning!&emsp;</span>
-          <span>
-            {
-              'Please sign up to make your queue permanent. {Temporary queues will last only for 10 days}'
-            }
-          </span>
+          <span>{'Please sign up to make your queue permanent.'}</span>
         </div>
         <div className={styles['ribbon-button']}>
           <CloseIcon
