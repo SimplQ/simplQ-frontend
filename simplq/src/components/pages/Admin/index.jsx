@@ -1,8 +1,6 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { useState, useEffect, useCallback } from 'react';
-import IconButton from '@material-ui/core/IconButton';
-import EditIcon from '@material-ui/icons/Edit';
 import RefreshIcon from '@material-ui/icons/Refresh';
 import CropFreeIcon from '@material-ui/icons/CropFree';
 import TokenList from './TokenList';
@@ -13,6 +11,7 @@ import Header from '../../common/Header';
 import styles from './admin.module.scss';
 import SidePanel from './AdminSidePanel';
 import StandardButton from '../../common/Button';
+import Ribbon from '../../common/Ribbon';
 import QRCode from '../../common/Popup/QrCode';
 
 const TIMEOUT = 10000;
@@ -80,9 +79,6 @@ export default (props) => {
         <Header className={styles['header']}>{queueName}</Header>
         <div className={styles['sub-header']}>
           <h2>{description}</h2>
-          <IconButton size="small">
-            <EditIcon />
-          </IconButton>
         </div>
       </div>
       <div className={styles['main-button-group']}>
@@ -109,6 +105,7 @@ export default (props) => {
   return (
     <div className={styles['admin-content']}>
       <HeaderSection />
+      <Ribbon />
       <div className={styles['main-body']}>
         <TokenList tokens={tokens} queueId={queueId} removeTokenHandler={removeToken} />
         <SidePanel queueId={queueId} joinQueueHandler={addNewToken} />
