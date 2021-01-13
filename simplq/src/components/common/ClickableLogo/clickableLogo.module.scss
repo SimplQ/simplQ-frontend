@@ -3,6 +3,7 @@
 .logo {
   display: flex;
   cursor: pointer;
+  margin: 0 auto;
   p {
     font-family: $header-font;
     color: $primary-color-dark;
