@@ -26,7 +26,7 @@ const QrCode = (props) => {
   const isMobile = useMediaQuery((theme) => theme.breakpoints.down('sm'));
 
   const componentPrintRef = useRef();
-  
+
   const handlePrint = useReactToPrint({
     content: () => componentPrintRef.current,
   });
