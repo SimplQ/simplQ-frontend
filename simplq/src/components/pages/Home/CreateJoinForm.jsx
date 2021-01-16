@@ -57,16 +57,18 @@ const CreateJoinForm = () => {
         />
       </div>
       <div className={styles['button-group']}>
-        <div>
-          {createInProgress ? (
-            <LoadingIndicator />
-          ) : (
-            <StandardButton onClick={handleCreateClick}>Create Queue</StandardButton>
-          )}
-        </div>
-        <div>
-          <StandardButton onClick={handleJoinClick}>Join Queue</StandardButton>
-        </div>
+        {createInProgress ? (
+          <LoadingIndicator />
+        ) : (
+          <>
+            <div>
+              <StandardButton onClick={handleCreateClick}>Create Queue</StandardButton>
+            </div>
+            <div>
+              <StandardButton onClick={handleJoinClick}>Join Queue</StandardButton>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
