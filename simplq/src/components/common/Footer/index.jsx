@@ -67,7 +67,7 @@ export default () => (
           </div>
           <div className={styles['list-container-item']}>
             <a href="https://medium.com/@raimazach/virtualizing-queues-a-long-overdue-alternative-to-physical-queues-bfdc4b51070f">
-              <img alt="medium-link" src="/images/ICON-MEDIUM.jpg" />
+              <img alt="medium-link" src="/images/ICON-MEDIUM.svg" />
             </a>
           </div>
           <div className={styles['list-container-item']}>
