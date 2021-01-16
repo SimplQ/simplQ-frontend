@@ -3,6 +3,7 @@ import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { Avatar, Button } from '@material-ui/core';
+import * as Sentry from '@sentry/react';
 import { setErrorPopupMessage, setMyQueues } from '../../../store/appSlice';
 import * as Auth from '../../../services/auth';
 import LoadingIndicator from '../LoadingIndicator';
@@ -11,6 +12,8 @@ import { getMyQueues } from '../../../services/queue';
 
 const LoginButton = () => {
   const [loadingIndicator, setLoadingIndicator] = useState(false);
+  const [name, setName] = useState(null);
+  const [imageUrl, setImageUrl] = useState(null);
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.appReducer.isLoggedIn);
   const history = useHistory();
@@ -21,9 +24,10 @@ const LoginButton = () => {
     setLoadingIndicator(false);
   };
 
-  const onFailureCallback = () => {
+  const onFailureCallback = (resp) => {
+    Sentry.captureMessage(resp);
     Auth.logOut();
-    dispatch(setErrorPopupMessage('Login Failed. Please try again.'));
+    dispatch(setErrorPopupMessage(`Login Failed. ${resp.details}`));
     setLoadingIndicator(false);
   };
 
@@ -33,20 +37,34 @@ const LoginButton = () => {
     setLoadingIndicator(false);
   };
 
+  const onRequestCallback = () => {
+    Auth.init();
+    setLoadingIndicator(true);
+  };
+
+  const onAutoLoadFinished = (successLogin) => {
+    if (!successLogin) {
+      Auth.logOut();
+    }
+  };
+
   if (loadingIndicator) {
-    return LoadingIndicator;
+    return <LoadingIndicator />;
   }
 
   if (isLoggedIn) {
+    Auth.getName().then((name1) => setName(name1));
+    Auth.getImageUrl().then((imageUrl1) => setImageUrl(imageUrl1));
     return (
       <GoogleLogout
         render={(renderProps) => (
           <Button color="primary" onClick={renderProps.onClick} variant="outlined">
-            <Avatar id={styles.avatar} alt={Auth.getName()} src={Auth.getImageUrl()} />
+            <Avatar id={styles.avatar} alt={name} src={imageUrl} />
             &nbsp;&nbsp;Logout
           </Button>
         )}
         onLogoutSuccess={onLogoutCallback}
+        onRequest={onRequestCallback}
         buttonText="Logout"
       />
     );
@@ -57,7 +75,8 @@ const LoginButton = () => {
       buttonText="Login with Google"
       onSuccess={onSuccessCallback}
       onFailure={onFailureCallback}
-      onRequest={() => setLoadingIndicator(true)}
+      onRequest={onRequestCallback}
+      onAutoLoadFinished={onAutoLoadFinished}
       isSignedIn
       cookiePolicy="single_host_origin"
       responseType="id_token permission"

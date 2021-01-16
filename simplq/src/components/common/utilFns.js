@@ -25,5 +25,9 @@ export const smoothScrollToHomePageTop = () => {
   const element = document.getElementById('target_top');
   if (element) {
     smoothScrollTo(element);
+  } else {
+    window.location.href = '/';
   }
 };
+
+export const title = (txt) => txt?.charAt(0)?.toUpperCase() + txt?.substr(1)?.toLowerCase();

@@ -1,17 +1,19 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { useState, useEffect, useCallback } from 'react';
-import IconButton from '@material-ui/core/IconButton';
-import EditIcon from '@material-ui/icons/Edit';
+import RefreshIcon from '@material-ui/icons/Refresh';
+import CropFreeIcon from '@material-ui/icons/CropFree';
+import { useSelector } from 'react-redux';
 import TokenList from './TokenList';
 import * as TokenService from '../../../services/token';
 import * as QueueService from '../../../services/queue';
 import ShareQueue from './ShareQueue';
-import { RefreshButton } from '../../common/Button/Button.stories';
 import Header from '../../common/Header';
 import styles from './admin.module.scss';
 import SidePanel from './AdminSidePanel';
-import { AdminNavbar } from '../../common/Nav/Navbar';
+import StandardButton from '../../common/Button';
+import Ribbon from '../../common/Ribbon';
+import QRCode from '../../common/Popup/QrCode';
 
 const TIMEOUT = 10000;
 let timeoutId;
@@ -22,6 +24,8 @@ export default (props) => {
   const [tokens, setTokens] = useState();
   const [queueName, setQueueName] = useState();
   const [description, setDescription] = useState('');
+  const [showQrCodeModal, setShowQrCodeModal] = useState(false);
+  const isLoggedIn = useSelector((state) => state.appReducer.isLoggedIn);
 
   const update = useCallback(() => {
     clearTimeout(timeoutId);
@@ -35,6 +39,10 @@ export default (props) => {
       timeoutId = setTimeout(update, TIMEOUT);
     });
   }, [queueId]);
+
+  const generateQrCOde = useCallback(() => {
+    setShowQrCodeModal(true);
+  }, []);
 
   useEffect(() => {
     update();
@@ -73,14 +81,21 @@ export default (props) => {
         <Header className={styles['header']}>{queueName}</Header>
         <div className={styles['sub-header']}>
           <h2>{description}</h2>
-          <IconButton size="small">
-            <EditIcon />
-          </IconButton>
         </div>
       </div>
       <div className={styles['main-button-group']}>
         <div className={styles['admin-button']}>
-          <RefreshButton onClick={update} />
+          <StandardButton onClick={generateQrCOde} icon={<CropFreeIcon />} outlined>
+            Generate QrCode
+          </StandardButton>
+          {showQrCodeModal && (
+            <QRCode queueName={queueName} show={showQrCodeModal} onClose={setShowQrCodeModal} />
+          )}
+        </div>
+        <div className={styles['admin-button']}>
+          <StandardButton onClick={update} icon={<RefreshIcon />} outlined>
+            Refresh status
+          </StandardButton>
         </div>
         <div className={styles['admin-button']}>
           <ShareQueue queueName={queueName} className={styles.shareButton} />
@@ -91,8 +106,13 @@ export default (props) => {
 
   return (
     <div className={styles['admin-content']}>
-      <AdminNavbar />
       <HeaderSection />
+      {isLoggedIn || isLoggedIn === null ? null : (
+        <Ribbon
+          title="Temporary queue warning!"
+          subTitle="Please sign up to make your queue permanent."
+        />
+      )}
       <div className={styles['main-body']}>
         <TokenList tokens={tokens} queueId={queueId} removeTokenHandler={removeToken} />
         <SidePanel queueId={queueId} joinQueueHandler={addNewToken} />
