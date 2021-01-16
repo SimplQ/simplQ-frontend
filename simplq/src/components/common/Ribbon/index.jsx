@@ -8,7 +8,7 @@ export default ({ title, subTitle }) => {
   if (!open) {
     return null;
   }
-    
+
   return (
     <div className={styles['ribbon-warning']}>
       <div className={styles['ribbon-container']}>
