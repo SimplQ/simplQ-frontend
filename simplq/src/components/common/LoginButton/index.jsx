@@ -3,6 +3,7 @@ import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { Avatar, Button } from '@material-ui/core';
+import * as Sentry from '@sentry/react';
 import { setErrorPopupMessage, setMyQueues } from '../../../store/appSlice';
 import * as Auth from '../../../services/auth';
 import LoadingIndicator from '../LoadingIndicator';
@@ -23,9 +24,10 @@ const LoginButton = () => {
     setLoadingIndicator(false);
   };
 
-  const onFailureCallback = () => {
+  const onFailureCallback = (resp) => {
+    Sentry.captureMessage(resp);
     Auth.logOut();
-    dispatch(setErrorPopupMessage('Login Failed. Please try again.'));
+    dispatch(setErrorPopupMessage(`Login Failed. ${resp.details}`));
     setLoadingIndicator(false);
   };
 
