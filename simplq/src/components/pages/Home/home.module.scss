@@ -32,6 +32,7 @@
     // z-index set greater than that of svg below,
     // otherwise button becomes unclicable on wider screens
     z-index: 3;
+    width: 100%;
     .button-group {
       @include center-horizontally();
       flex-wrap: wrap;
