@@ -86,7 +86,7 @@ export default (props) => {
       <div className={styles['main-button-group']}>
         <div className={styles['admin-button']}>
           <StandardButton onClick={generateQrCOde} icon={<CropFreeIcon />} outlined>
-            Generate QrCode
+            Generate QR Code
           </StandardButton>
           {showQrCodeModal && (
             <QRCode queueName={queueName} show={showQrCodeModal} onClose={setShowQrCodeModal} />

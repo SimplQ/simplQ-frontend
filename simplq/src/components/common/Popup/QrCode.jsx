@@ -5,17 +5,22 @@ import PrintIcon from '@material-ui/icons/Print';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import { useReactToPrint } from 'react-to-print';
 import StandardButton from '../Button';
-import { title } from '../utilFns';
+import { getSentenceCaseText } from '../utilFns';
 
 const ComponentToPrint = forwardRef(({ style, url, queueName }, ref) => {
   return (
     <div className={style} ref={ref}>
       <h1>
-        <u>{title(queueName)}</u>
+        <u>{getSentenceCaseText(queueName)}</u>
       </h1>
       <h2>Scan this QR to begin!</h2>
       <QRCode value={url} />
-      <p style={{ textAlign: 'center' }}>{`or visit ${url}`}</p>
+      <p style={{ textAlign: 'center' }}>
+        {'or visit '}
+        <a href={url} target="_blank" rel="noopener noreferrer">
+          {url}
+        </a>
+      </p>
     </div>
   );
 });
