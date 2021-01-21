@@ -14,6 +14,9 @@ import SidePanel from './AdminSidePanel';
 import StandardButton from '../../common/Button';
 import Ribbon from '../../common/Ribbon';
 import QRCode from '../../common/Popup/QrCode';
+import Tour,{Arrow}  from 'reactour'
+import { disableScroll, enableScroll } from "./ControlScroll";
+import {toursteps, checkUserTourStatus} from "./TourSteps";
 
 const TIMEOUT = 10000;
 let timeoutId;
@@ -26,6 +29,12 @@ export default (props) => {
   const [description, setDescription] = useState('');
   const [showQrCodeModal, setShowQrCodeModal] = useState(false);
   const isLoggedIn = useSelector((state) => state.appReducer.isLoggedIn);
+  const [tourOpen, setTourOpen ] = useState(checkUserTourStatus());
+  function closeTour() {
+    setTourOpen(false);
+  } 
+
+  
 
   const update = useCallback(() => {
     clearTimeout(timeoutId);
@@ -47,7 +56,7 @@ export default (props) => {
   useEffect(() => {
     update();
     return () => clearTimeout(timeoutId);
-  }, [update]);
+  },[update]);
 
   const addNewToken = async (name, contactNumber) => {
     const response = await TokenService.create(name, contactNumber, false, queueId);
@@ -83,7 +92,7 @@ export default (props) => {
           <h2>{description}</h2>
         </div>
       </div>
-      <div className={styles['main-button-group']}>
+      <div  className={styles['main-button-group']}>
         <div className={styles['admin-button']}>
           <StandardButton onClick={generateQrCOde} icon={<CropFreeIcon />} outlined>
             Generate QrCode
@@ -98,7 +107,7 @@ export default (props) => {
           </StandardButton>
         </div>
         <div className={styles['admin-button']}>
-          <ShareQueue queueName={queueName} className={styles.shareButton} />
+          <ShareQueue tag="reactour__shareQueue" queueName={queueName} className={styles.shareButton} />
         </div>
       </div>
     </div>
@@ -106,6 +115,21 @@ export default (props) => {
 
   return (
     <div className={styles['admin-content']}>
+   
+      <Tour 
+        showNavigation={false}
+        steps={toursteps}
+        showNavigationNumber = {false}
+        showNumber={false}
+        showCloseButton={false}
+        isOpen={tourOpen}
+        rounded={10}
+        onRequestClose={closeTour}
+        onAfterOpen={disableScroll}
+        onBeforeClose={enableScroll}
+        >
+        </Tour>
+
       <HeaderSection />
       {isLoggedIn || isLoggedIn === null ? null : (
         <Ribbon

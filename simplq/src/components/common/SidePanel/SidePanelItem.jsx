@@ -25,6 +25,7 @@ const SidePanelItem = ({
   loading = false,
   onClick,
   children,
+  tag = ""
 }) => {
   const [open, setOpen] = useState(false);
   const onClickHandler = () => {
@@ -36,9 +37,10 @@ const SidePanelItem = ({
     }
   };
 
+ 
   return (
     <div className={styles['side-panel-item']}>
-      <div
+      <div data-tut={tag} 
         className={styles['header']}
         tabIndex={0}
         role="button"
