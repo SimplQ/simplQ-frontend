@@ -9,9 +9,9 @@ export const Navbar = () => {
   const { authState, authService } = useOktaAuth();
   const login = () => authService.login();
 
-  console.log("authState: ", authState);
-  console.log("authService: ", authService)
-  
+  console.log('authState: ', authState);
+  console.log('authService: ', authService);
+
   return (
     <nav className={styles['navbar']}>
       <Logo onClick={smoothScrollToHomePageTop} />
