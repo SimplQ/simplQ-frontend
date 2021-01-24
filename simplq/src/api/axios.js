@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { store } from '../store';
 import { setErrorPopupMessage } from '../store/appSlice';
-import getAccessToken from './auth';
 
 const baseURL = 'https://devbackend.simplq.me/v1';
 
@@ -21,16 +20,10 @@ const handleApiErrors = (err) => {
   return {};
 };
 
-const makeRequest = async (method, url, data) => {
-  const accessToken = await getAccessToken();
+const makeRequest = async (request) => {
   return axios({
-    method,
     baseURL,
-    url,
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-    },
-    data,
+    ...request,
   })
     .catch(handleApiErrors)
     .then((response) => response.data);
