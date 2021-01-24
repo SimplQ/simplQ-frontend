@@ -4,6 +4,7 @@ import JoinQueueWithDetails from '../pages/Join';
 import QueueStatus from '../pages/Status';
 import AdminQueue from '../pages/Admin';
 import PageNotFound from '../pages/PageNotFound';
+import Unauthorized from '../pages/Unauthorized';
 import { ErrorBoundary } from '../ErrorHandler';
 import PopupNotifications from '../common/Popup';
 import Home from '../pages/Home';
@@ -22,6 +23,7 @@ export default () => {
             <Route path="/j/:queueName" exact component={JoinQueueWithDetails} />
             <Route path="/token/:tokenId" exact component={QueueStatus} />
             <Route path="/privacy" exact component={TermsOfService} />
+            <Route path="/unauthorized" exact component={Unauthorized} />
             <Route component={PageNotFound} />
           </Switch>
         </Router>

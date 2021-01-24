@@ -14,6 +14,8 @@ const handleApiErrors = (err) => {
         `There's a problem with the data you've entered ${err.response.data.message}`
       )
     );
+  } else if (err.response.status === 401) {
+    window.location.href = `${window.location.origin}/unauthorized`;
   } else {
     store.dispatch(setErrorPopupMessage('An error occured. Please try again'));
   }
