@@ -2,8 +2,9 @@ import React, { useState, useEffect, useMemo } from 'react';
 import moment from 'moment';
 import InfoIcon from '@material-ui/icons/Info';
 import styles from './status.module.scss';
-import * as QueueService from '../../../services/queue';
+import { QueueRequestFactory } from '../../../api/requestFactory';
 import SidePanelItem from '../../common/SidePanel/SidePanelItem';
+import useRequest from '../../../api/useRequest';
 
 const DetailRow = ({ title, value, large }) => (
   <div className={styles['detail-row']}>
@@ -16,14 +17,15 @@ const DetailRow = ({ title, value, large }) => (
 
 export default (props) => {
   const [queueStatusResponse, setQueueStatusResponse] = useState();
+  const { requestMaker } = useRequest();
 
   useEffect(() => {
     async function fetchData() {
-      const response = await QueueService.getStatus(props.queueId);
+      const response = await requestMaker(QueueRequestFactory.getStatus(props.queueId));
       setQueueStatusResponse(response);
     }
     fetchData();
-  }, [props.queueId]);
+  }, [props.queueId, requestMaker]);
 
   const creationTime = useMemo(() => {
     if (!queueStatusResponse) return '';

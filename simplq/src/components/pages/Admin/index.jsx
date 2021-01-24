@@ -5,8 +5,7 @@ import RefreshIcon from '@material-ui/icons/Refresh';
 import CropFreeIcon from '@material-ui/icons/CropFree';
 import { useSelector } from 'react-redux';
 import TokenList from './TokenList';
-import * as TokenService from '../../../services/token';
-import * as QueueService from '../../../services/queue';
+import { TokenRequestFactory, QueueRequestFactory } from '../../../api/requestFactory';
 import ShareQueue from './ShareQueue';
 import Header from '../../common/Header';
 import styles from './admin.module.scss';
@@ -14,6 +13,7 @@ import SidePanel from './AdminSidePanel';
 import StandardButton from '../../common/Button';
 import Ribbon from '../../common/Ribbon';
 import QRCode from '../../common/Popup/QrCode';
+import useRequest from '../../../api/useRequest';
 
 const TIMEOUT = 10000;
 let timeoutId;
@@ -26,10 +26,11 @@ export default (props) => {
   const [description, setDescription] = useState('');
   const [showQrCodeModal, setShowQrCodeModal] = useState(false);
   const isLoggedIn = useSelector((state) => state.appReducer.isLoggedIn);
+  const { requestMaker } = useRequest();
 
   const update = useCallback(() => {
     clearTimeout(timeoutId);
-    QueueService.get(queueId).then((data) => {
+    requestMaker(QueueRequestFactory.get(queueId)).then((data) => {
       if (data) {
         setTokens(data.tokens);
         setQueueName(data.queueName);
@@ -38,7 +39,7 @@ export default (props) => {
       }
       timeoutId = setTimeout(update, TIMEOUT);
     });
-  }, [queueId]);
+  }, [queueId, requestMaker]);
 
   const generateQrCOde = useCallback(() => {
     setShowQrCodeModal(true);
@@ -50,7 +51,9 @@ export default (props) => {
   }, [update]);
 
   const addNewToken = async (name, contactNumber) => {
-    const response = await TokenService.create(name, contactNumber, false, queueId);
+    const response = await requestMaker(
+      TokenRequestFactory.create(name, contactNumber, false, queueId)
+    );
     if (!response) {
       return;
     }
@@ -68,7 +71,7 @@ export default (props) => {
   };
 
   const removeToken = (tokenId) => {
-    TokenService.remove(tokenId).then((response) => {
+    requestMaker(TokenRequestFactory.remove(tokenId)).then((response) => {
       if (response) {
         setTokens(tokens.filter((token) => token.tokenId !== tokenId));
       }
