@@ -4,6 +4,7 @@ import AddMember from './AddMember';
 import PauseQueue from './PauseQueue';
 import DeleteQueue from './DeleteQueue';
 import QueueHistory from './QueueHistory';
+import QueueDetails from '../Status/QueueDetails';
 
 export default (props) => (
   <SidePanel>
@@ -11,5 +12,6 @@ export default (props) => (
     <PauseQueue />
     <DeleteQueue queueId={props.queueId} />
     <QueueHistory />
+    <QueueDetails queueId={props.queueId} />
   </SidePanel>
 );
