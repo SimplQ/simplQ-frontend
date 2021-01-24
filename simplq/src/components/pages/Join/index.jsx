@@ -6,6 +6,7 @@ import styles from './join.module.scss';
 import PageNotFound from '../PageNotFound';
 import LoadingIndicator from '../../common/LoadingIndicator';
 import HeaderSection from '../../common/HeaderSection';
+import QueueStats from '../../common/QueueStats';
 
 export default (props) => {
   const queueName = props.match.params.queueName;
@@ -45,6 +46,7 @@ export default (props) => {
     <div>
       <HeaderSection queueName={queueStatusResponse.queueName} history={props.history} />
       <div className={styles['main-content']}>
+        <QueueStats queueStatus={queueStatusResponse} />
         <p className={styles['message']}>Please enter your contact details to join this queue</p>
         <JoinQueueForm
           queueId={queueId}
