@@ -27,13 +27,11 @@ export default (props) => {
   }, [queueCreationTimestamp]);
 
   return (
-    <div>
-      <div className={styles['detail']}>
-        <DetailRow title="Queue status:" value={status} />
-        <DetailRow title="People currently in queue:" value={numberOfActiveTokens} large />
-        <DetailRow title="Queue creation time:" value={creationTime} />
-        <DetailRow title="Total number of people joined in queue:" value={totalNumberOfTokens} />
-      </div>
+    <div className={styles['detail']}>
+      <DetailRow title="Queue status:" value={status} />
+      <DetailRow title="People currently in queue:" value={numberOfActiveTokens} large />
+      <DetailRow title="Total number of people joined in queue:" value={totalNumberOfTokens} />
+      <DetailRow title="Queue creation time:" value={creationTime} />
     </div>
   );
 };

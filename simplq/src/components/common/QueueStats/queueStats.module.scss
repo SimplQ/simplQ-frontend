@@ -4,11 +4,13 @@
   display:flex;
   flex-direction: column;
   padding: 0.5rem 2rem;
+  max-width: 35rem;
 
   .detail-row {
     display: flex;
     align-items: center;
-    height: 24px;
+    justify-content: space-between;
+    height: 1.5rem;
 
     .detail-value {
       font-size: larger;
