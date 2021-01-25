@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import * as TokenService from '../../../services/token';
+import { TokenRequestFactory } from '../../../api/requestFactory';
 import styles from './status.module.scss';
 import HeaderSection from '../../common/HeaderSection';
 import StatusContainer from './StatusContainer';
@@ -7,6 +7,7 @@ import LoadingIndicator from '../../common/LoadingIndicator';
 import StatusSidePanel from './StatusSidePanel';
 import TokenNumber from './TokenNumber';
 import { notify } from '../../../services/notification';
+import useRequest from '../../../api/useRequest';
 
 const TIMEOUT = 10000;
 let timeoutId;
@@ -15,6 +16,7 @@ function QueueStatus(props) {
   const tokenId = props.match.params.tokenId;
   const [tokenStatusResponse, setTokenStatusResponse] = useState();
   const [updateInProgress, setUpdateInProgress] = useState(false);
+  const { requestMaker } = useRequest();
 
   const showNotification = useCallback(() => {
     notify(`${tokenStatusResponse.queueName}: You've been notified by the queue manager.`);
@@ -23,7 +25,7 @@ function QueueStatus(props) {
   const oldTokenStatus = tokenStatusResponse ? tokenStatusResponse.tokenStatus : undefined;
   const update = useCallback(() => {
     clearTimeout(timeoutId);
-    TokenService.get(tokenId).then((response) => {
+    requestMaker(TokenRequestFactory.get(tokenId)).then((response) => {
       if (response) {
         setTokenStatusResponse(response);
         if (response.tokenStatus === 'NOTIFIED' && oldTokenStatus === 'WAITING') {
@@ -42,7 +44,7 @@ function QueueStatus(props) {
 
   const onDeleteClick = async () => {
     setUpdateInProgress(true);
-    await TokenService.remove(tokenId).then((response) => {
+    await requestMaker(TokenRequestFactory.remove(tokenId)).then((response) => {
       if (response) {
         setTokenStatusResponse({ ...tokenStatusResponse, tokenStatus: response.tokenStatus });
       }

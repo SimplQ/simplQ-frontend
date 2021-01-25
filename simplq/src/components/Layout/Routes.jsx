@@ -22,6 +22,7 @@ export default () => {
             <Route path="/j/:queueName" exact component={JoinQueueWithDetails} />
             <Route path="/token/:tokenId" exact component={QueueStatus} />
             <Route path="/privacy" exact component={TermsOfService} />
+            <Route path="/pageNotFound/queueName=:queueName" exact component={PageNotFound} />
             <Route component={PageNotFound} />
           </Switch>
         </Router>

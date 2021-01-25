@@ -1,33 +1,37 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router';
-import * as QueueService from '../../../services/queue';
-import styles from './home.module.scss';
-import { handleEnterPress, isQueueNameValid } from '../../common/utilFns';
-import InputField from '../../common/InputField';
-import LoadingIndicator from '../../common/LoadingIndicator';
-import StandardButton from '../../common/Button';
+import { QueueRequestFactory } from '../../../api/requestFactory';
+import styles from './createJoinForm.module.scss';
+import { handleEnterPress } from '../../../utils/eventHandling';
+import { isQueueNameValid } from '../../../utils/textOperations';
+import InputField from '../InputField';
+import LoadingIndicator from '../LoadingIndicator';
+import StandardButton from '../Button';
+import useRequest from '../../../api/useRequest';
 
-const CreateJoinForm = () => {
-  const [textFieldValue, setTextFieldValue] = useState('');
+const CreateJoinForm = (props) => {
+  const [textFieldValue, setTextFieldValue] = useState(props.defaultTextFieldValue);
   const [invalidMsg, setInvalidMsg] = useState('');
   const [createInProgress, setCreateInProgress] = useState(false);
+  const { requestMaker } = useRequest();
   const history = useHistory();
 
   const handleCreateClick = () => {
-    if (textFieldValue === '') setInvalidMsg('Queue name is required');
-    else {
-      setCreateInProgress(true);
-      QueueService.create(textFieldValue).then((response) => {
-        if (response) {
-          history.push(`/queue/${response.queueId}`);
-        }
-        setCreateInProgress(false);
-      });
+    if (!textFieldValue) {
+      setInvalidMsg('Queue name is required');
+      return;
     }
+    setCreateInProgress(true);
+    requestMaker(QueueRequestFactory.create(textFieldValue)).then((response) => {
+      if (response) {
+        history.push(`/queue/${response.queueId}`);
+      }
+      setCreateInProgress(false);
+    });
   };
 
   const handleJoinClick = () => {
-    if (textFieldValue === '') setInvalidMsg('Queue name is required');
+    if (!textFieldValue) setInvalidMsg('Queue name is required');
     else {
       history.push(`/j/${textFieldValue}`);
     }

@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './home.module.scss';
 import StandardButton from '../../common/Button';
-import { smoothScrollToHomePageTop } from '../../common/utilFns';
+import { smoothScrollToHomePageTop } from '../../../utils/scrollingOperations';
 
 export const BenefitsInfo = () => (
   <div className={`${styles['section']} ${styles['benefits-info']}`}>

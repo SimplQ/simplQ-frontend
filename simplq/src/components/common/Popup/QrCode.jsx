@@ -5,7 +5,7 @@ import PrintIcon from '@material-ui/icons/Print';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import { useReactToPrint } from 'react-to-print';
 import StandardButton from '../Button';
-import { getSentenceCaseText } from '../utilFns';
+import { getSentenceCaseText } from '../../../utils/textOperations';
 
 const ComponentToPrint = forwardRef(({ style, url, queueName }, ref) => {
   return (

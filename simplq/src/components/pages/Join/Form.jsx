@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/material.css';
 import { PhoneNumberUtil } from 'google-libphonenumber';
-import { handleEnterPress } from '../../common/utilFns';
+import { handleEnterPress } from '../../../utils/eventHandling';
 import InputField from '../../common/InputField';
 import styles from './join.module.scss';
 import Button from '../../common/Button';

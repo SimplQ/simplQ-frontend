@@ -3,7 +3,7 @@
 import React from 'react';
 import { useHistory } from 'react-router';
 import styles from './clickableLogo.module.scss';
-import { smoothScrollToHomePageTop } from '../utilFns';
+import { smoothScrollToHomePageTop } from '../../../utils/scrollingOperations';
 
 export default (props) => {
   const history = useHistory();
