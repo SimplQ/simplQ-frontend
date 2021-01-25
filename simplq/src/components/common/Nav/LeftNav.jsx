@@ -2,7 +2,7 @@
 
 import React from 'react';
 import styles from './nav.module.scss';
-import { smoothScrollTo } from '../utilFns';
+import { smoothScrollTo } from '../../../utils/scrollingOperations';
 import LoginButton from '../LoginButton';
 
 const LeftNav = ({ open, toggleClose }) => {
