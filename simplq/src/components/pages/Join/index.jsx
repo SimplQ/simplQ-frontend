@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import JoinQueueForm from './Form';
 import { TokenRequestFactory, QueueRequestFactory } from '../../../api/requestFactory';
 import styles from './join.module.scss';
-import PageNotFound from '../PageNotFound';
 import LoadingIndicator from '../../common/LoadingIndicator';
 import HeaderSection from '../../common/HeaderSection';
 import useRequest from '../../../api/useRequest';
@@ -10,7 +9,6 @@ import useRequest from '../../../api/useRequest';
 export default (props) => {
   const queueName = props.match.params.queueName;
   const [queueStatusResponse, setQueueStatusResponse] = useState();
-  const [error, setError] = useState(false);
   const { requestMaker } = useRequest();
   useEffect(() => {
     async function fetchData() {
@@ -18,15 +16,11 @@ export default (props) => {
       if (response) {
         setQueueStatusResponse(response);
       } else {
-        setError(true);
+        props.history.push(`/pageNotFound/queueName=${queueName}`);
       }
     }
     fetchData();
   }, [queueName, requestMaker]);
-
-  if (error) {
-    return <PageNotFound history={props.history} />;
-  }
 
   if (!queueStatusResponse) {
     return <LoadingIndicator />;

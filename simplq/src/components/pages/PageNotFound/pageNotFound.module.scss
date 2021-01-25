@@ -10,20 +10,23 @@
   flex-direction: row;
   flex-wrap: wrap;
   div {
-    padding: 1rem;
+    padding: 0.3rem;
   }
   Button {
     cursor: pointer;
   }
-  .errtext {
+  .text {
     text-align: left;
     padding: 0 40px;
+  }
+  .center {
+    @include center-horizontally();
   }
   .buttondiv {
     display: flex;
     justify-content: center;
   }
-  .errorimg {
+  .img {
     max-width: 60vh;
     @media (max-width: 768px) {
       max-width: 80vw;

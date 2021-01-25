@@ -1,23 +1,23 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router';
 import { QueueRequestFactory } from '../../../api/requestFactory';
-import styles from './home.module.scss';
+import styles from './createJoinForm.module.scss';
 import { handleEnterPress } from '../../../utils/eventHandling';
 import { isQueueNameValid } from '../../../utils/textOperations';
-import InputField from '../../common/InputField';
-import LoadingIndicator from '../../common/LoadingIndicator';
-import StandardButton from '../../common/Button';
+import InputField from '../InputField';
+import LoadingIndicator from '../LoadingIndicator';
+import StandardButton from '../Button';
 import useRequest from '../../../api/useRequest';
 
-const CreateJoinForm = () => {
-  const [textFieldValue, setTextFieldValue] = useState('');
+const CreateJoinForm = (props) => {
+  const [textFieldValue, setTextFieldValue] = useState(props.defaultTextFieldValue);
   const [invalidMsg, setInvalidMsg] = useState('');
   const [createInProgress, setCreateInProgress] = useState(false);
   const { requestMaker } = useRequest();
   const history = useHistory();
 
   const handleCreateClick = () => {
-    if (textFieldValue === '') {
+    if (!textFieldValue) {
       setInvalidMsg('Queue name is required');
       return;
     }
@@ -31,7 +31,7 @@ const CreateJoinForm = () => {
   };
 
   const handleJoinClick = () => {
-    if (textFieldValue === '') setInvalidMsg('Queue name is required');
+    if (!textFieldValue) setInvalidMsg('Queue name is required');
     else {
       history.push(`/j/${textFieldValue}`);
     }
