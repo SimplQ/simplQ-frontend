@@ -1,5 +1,4 @@
 import React from 'react';
-import { isJoinPageUrl } from '../../../utils/textOperations';
 import Button from '../../common/Button';
 import styles from './pageNotFound.module.scss';
 import CreateJoinForm from '../../common/CreateJoinForm';
@@ -7,7 +6,8 @@ import CreateJoinForm from '../../common/CreateJoinForm';
 function PageNotFound(props) {
   const MainContent = () => {
     const urlPath = window.location.href;
-    if (isJoinPageUrl(urlPath)) {
+    if (urlPath.includes('queueName=')) {
+      // display CreateJoinForm
       return (
         <div className={styles.main}>
           <div className={styles.text}>
@@ -16,7 +16,7 @@ function PageNotFound(props) {
               A queue with that name doesn&apos;t exist, please enter a valid queue name or create
               one
             </p>
-            <CreateJoinForm value={urlPath.split('/j/')[1]} />
+            <CreateJoinForm defaultTextFieldValue={props.match.params.queueName} />
           </div>
         </div>
       );

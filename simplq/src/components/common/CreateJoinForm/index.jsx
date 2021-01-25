@@ -9,13 +9,13 @@ import LoadingIndicator from '../LoadingIndicator';
 import StandardButton from '../Button';
 
 const CreateJoinForm = (props) => {
-  const [textFieldValue, setTextFieldValue] = useState(props.value);
+  const [textFieldValue, setTextFieldValue] = useState(props.defaultTextFieldValue);
   const [invalidMsg, setInvalidMsg] = useState('');
   const [createInProgress, setCreateInProgress] = useState(false);
   const history = useHistory();
 
   const handleCreateClick = () => {
-    if (textFieldValue === '') setInvalidMsg('Queue name is required');
+    if (!textFieldValue) setInvalidMsg('Queue name is required');
     else {
       setCreateInProgress(true);
       QueueService.create(textFieldValue).then((response) => {
@@ -28,7 +28,7 @@ const CreateJoinForm = (props) => {
   };
 
   const handleJoinClick = () => {
-    if (textFieldValue === '') setInvalidMsg('Queue name is required');
+    if (!textFieldValue) setInvalidMsg('Queue name is required');
     else {
       history.push(`/j/${textFieldValue}`);
     }
