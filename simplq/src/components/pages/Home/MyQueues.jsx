@@ -17,7 +17,7 @@ export default () => {
   useEffect(() => {
     if (isAuthenticated)
       requestMaker(QueueRequestFactory.getMyQueues()).then((resp) => setMyQueues(resp.queues));
-  }, [requestMaker, isAuthenticated]);
+  });
 
   if (isLoading) {
     return <LoadingIndicator />;
