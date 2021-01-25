@@ -8,7 +8,7 @@ function Unauthorized(props) {
       <div className={styles.main}>
         <div className={styles.errtext}>
           <h1>Oops!</h1>
-          <h3>Looks like you don&apost have permission to access this page.</h3>
+          <h3>Looks like you don&apos;t have permission to access this page.</h3>
           <div className={styles.buttondiv}>
             <div>
               <Button onClick={() => props.history.push('/')}>Return home</Button>
