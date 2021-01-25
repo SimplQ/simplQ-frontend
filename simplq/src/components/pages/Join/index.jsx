@@ -46,7 +46,9 @@ export default (props) => {
     <div>
       <HeaderSection queueName={queueStatusResponse.queueName} history={props.history} />
       <div className={styles['main-content']}>
-        <QueueStats queueStatus={queueStatusResponse} />
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <QueueStats queueStatus={queueStatusResponse} />
+        </div>
         <p className={styles['message']}>Please enter your contact details to join this queue</p>
         <JoinQueueForm
           queueId={queueId}
