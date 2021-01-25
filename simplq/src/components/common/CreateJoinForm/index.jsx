@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router';
 import * as QueueService from '../../../services/queue';
-import styles from './home.module.scss';
+import styles from './createJoinForm.module.scss';
 import { handleEnterPress } from '../../../utils/eventHandling';
 import { isQueueNameValid } from '../../../utils/textOperations';
-import InputField from '../../common/InputField';
-import LoadingIndicator from '../../common/LoadingIndicator';
-import StandardButton from '../../common/Button';
+import InputField from '../InputField';
+import LoadingIndicator from '../LoadingIndicator';
+import StandardButton from '../Button';
 
-const CreateJoinForm = () => {
-  const [textFieldValue, setTextFieldValue] = useState('');
+const CreateJoinForm = (props) => {
+  const [textFieldValue, setTextFieldValue] = useState(props.value);
   const [invalidMsg, setInvalidMsg] = useState('');
   const [createInProgress, setCreateInProgress] = useState(false);
   const history = useHistory();

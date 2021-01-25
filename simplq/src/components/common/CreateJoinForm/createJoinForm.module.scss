@@ -1,0 +1,23 @@
+@import '../../common.scss';
+
+.create-join-form {
+  margin: auto; // auto for centering
+  padding-top: 2rem;
+  max-width: 35rem;
+  position: relative;
+  // z-index set greater than that of svg below,
+  // otherwise button becomes unclicable on wider screens
+  z-index: 3;
+  width: 100%;
+  .button-group {
+    @include center-horizontally();
+    flex-wrap: wrap;
+    button {
+      margin: 0.5rem 2rem;
+      min-width: 10rem;
+    }
+  }
+  .input-box {
+    min-height: 5rem;
+  }
+}
