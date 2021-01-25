@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './nav.module.scss';
 import Burger from './Burger';
 import Logo from '../ClickableLogo';
-import { smoothScrollToHomePageTop } from '../utilFns';
+import { smoothScrollToHomePageTop } from '../../../utils/scrollingOperations';
 
 export const Navbar = () => {
   return (
