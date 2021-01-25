@@ -4,15 +4,18 @@ import IconButton from '@material-ui/core/IconButton';
 import { useHistory } from 'react-router';
 import { useSelector } from 'react-redux';
 import styles from './home.module.scss';
-import { deleteQueue } from '../../../services/queue';
+import { QueueRequestFactory } from '../../../api/requestFactory';
+import useRequest from '../../../api/useRequest';
 
 export default () => {
   const history = useHistory();
   const myQueues = useSelector((state) => state.appReducer.myQueues);
+  const { requestMaker } = useRequest();
+
   const handleDelete = (e, queue) => {
     // Don't trigger parent's onClick
     e.stopPropagation();
-    deleteQueue(queue.queueId).then(() => history.push('/'));
+    requestMaker(QueueRequestFactory.deleteQueue(queue.queueId)).then(() => history.push('/'));
   };
   return (
     <div className={styles['my-queue']}>

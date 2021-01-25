@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import JoinQueueForm from './Form';
-import * as TokenService from '../../../services/token';
-import * as QueueService from '../../../services/queue';
+import { TokenRequestFactory, QueueRequestFactory } from '../../../api/requestFactory';
 import styles from './join.module.scss';
 import LoadingIndicator from '../../common/LoadingIndicator';
 import HeaderSection from '../../common/HeaderSection';
+import useRequest from '../../../api/useRequest';
 
 export default (props) => {
   const queueName = props.match.params.queueName;
   const [queueStatusResponse, setQueueStatusResponse] = useState();
+  const { requestMaker } = useRequest();
   useEffect(() => {
     async function fetchData() {
-      const response = await QueueService.getStatusByName(queueName);
+      const response = await requestMaker(QueueRequestFactory.getStatusByName(queueName));
       if (response) {
         setQueueStatusResponse(response);
       } else {
@@ -19,7 +20,7 @@ export default (props) => {
       }
     }
     fetchData();
-  }, [queueName]);
+  }, [queueName, requestMaker]);
 
   if (!queueStatusResponse) {
     return <LoadingIndicator />;
@@ -28,11 +29,13 @@ export default (props) => {
   const queueId = queueStatusResponse.queueId;
 
   const joinQueueHandler = (name, contactNumber) => {
-    return TokenService.create(name, contactNumber, true, queueId).then((response) => {
-      if (response) {
-        props.history.push(`/token/${response.tokenId}`);
+    return requestMaker(TokenRequestFactory.create(name, contactNumber, true, queueId)).then(
+      (response) => {
+        if (response) {
+          props.history.push(`/token/${response.tokenId}`);
+        }
       }
-    });
+    );
   };
 
   return (

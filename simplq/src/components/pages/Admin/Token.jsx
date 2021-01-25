@@ -5,9 +5,10 @@ import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive';
 import NotificationsOffIcon from '@material-ui/icons/NotificationsOffSharp';
 import CallIcon from '@material-ui/icons/Call';
 import moment from 'moment';
-import * as TokenService from '../../../services/token';
+import { TokenRequestFactory } from '../../../api/requestFactory';
 import styles from './admin.module.scss';
 import LoadingIndicator from '../../common/LoadingIndicator';
+import useRequest from '../../../api/useRequest';
 
 function Token(props) {
   const name = props.token.name;
@@ -19,6 +20,7 @@ function Token(props) {
   const [notifying, setNotifying] = useState(false);
   const [isNotifyHovering, setIsNotifyHovering] = useState(false);
   const [didNotify, setDidNotify] = useState(props.token.tokenStatus === 'NOTIFIED');
+  const { requestMaker } = useRequest();
 
   const handleMouseHover = () => {
     setIsNotifyHovering(!isNotifyHovering);
@@ -26,7 +28,7 @@ function Token(props) {
 
   const onNotifyClick = () => {
     setNotifying(true);
-    TokenService.notify(tokenId).then((response) => {
+    requestMaker(TokenRequestFactory.notify(tokenId)).then((response) => {
       if (response) {
         setDidNotify(true);
       }
