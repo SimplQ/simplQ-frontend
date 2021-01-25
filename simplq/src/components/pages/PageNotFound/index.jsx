@@ -5,8 +5,7 @@ import CreateJoinForm from '../../common/CreateJoinForm';
 
 function PageNotFound(props) {
   const MainContent = () => {
-    const urlPath = window.location.href;
-    if (urlPath.includes('queueName=')) {
+    if (props.match.params.queueName) {
       // display CreateJoinForm
       return (
         <div className={styles.main}>
