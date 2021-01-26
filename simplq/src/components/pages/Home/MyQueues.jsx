@@ -6,22 +6,17 @@ import { useAuth0 } from '@auth0/auth0-react';
 import styles from './home.module.scss';
 import { QueueRequestFactory } from '../../../api/requestFactory';
 import useRequest from '../../../api/useRequest';
-import LoadingIndicator from '../../common/LoadingIndicator';
 
 export default () => {
   const history = useHistory();
   const { requestMaker } = useRequest();
   const [myQueues, setMyQueues] = useState([]);
-  const { isAuthenticated, isLoading } = useAuth0();
+  const { isAuthenticated } = useAuth0();
 
   useEffect(() => {
     if (isAuthenticated)
       requestMaker(QueueRequestFactory.getMyQueues()).then((resp) => setMyQueues(resp.queues));
   });
-
-  if (isLoading) {
-    return <LoadingIndicator />;
-  }
 
   if (!isAuthenticated) {
     return null;

@@ -25,7 +25,7 @@ export default (props) => {
   const [queueName, setQueueName] = useState();
   const [description, setDescription] = useState('');
   const [showQrCodeModal, setShowQrCodeModal] = useState(false);
-  const { isAuthenticated, isLoading } = useAuth0();
+  const { isAuthenticated } = useAuth0();
   const { requestMaker } = useRequest();
 
   const update = useCallback(() => {
@@ -110,7 +110,7 @@ export default (props) => {
   return (
     <div className={styles['admin-content']}>
       <HeaderSection />
-      {isAuthenticated || isLoading ? null : (
+      {isAuthenticated ? null : (
         <Ribbon
           title="Temporary queue warning!"
           subTitle="Please sign up to make your queue permanent."
