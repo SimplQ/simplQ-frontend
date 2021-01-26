@@ -2,16 +2,11 @@ import React from 'react';
 import { Avatar, Button } from '@material-ui/core';
 import { useAuth0 } from '@auth0/auth0-react';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import LoadingIndicator from '../LoadingIndicator';
 import styles from './loginButton.module.scss';
 
 // Docs: https://auth0.com/docs/quickstart/spa/react
 const LoginButton = () => {
-  const { user, isAuthenticated, isLoading, logout, loginWithRedirect } = useAuth0();
-
-  if (isLoading) {
-    return <LoadingIndicator />;
-  }
+  const { user, isAuthenticated, logout, loginWithRedirect } = useAuth0();
 
   if (isAuthenticated) {
     return (

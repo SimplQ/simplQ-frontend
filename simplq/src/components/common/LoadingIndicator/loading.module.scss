@@ -3,5 +3,4 @@
 .main {
   @include center-vertically();
   @include center-horizontally();
-  min-height: 30vh;
 }
