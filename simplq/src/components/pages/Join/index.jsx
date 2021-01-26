@@ -4,6 +4,7 @@ import { TokenRequestFactory, QueueRequestFactory } from '../../../api/requestFa
 import styles from './join.module.scss';
 import LoadingIndicator from '../../common/LoadingIndicator';
 import HeaderSection from '../../common/HeaderSection';
+import QueueStats from '../../common/QueueStats';
 import useRequest from '../../../api/useRequest';
 
 export default (props) => {
@@ -42,6 +43,9 @@ export default (props) => {
     <div>
       <HeaderSection queueName={queueStatusResponse.queueName} history={props.history} />
       <div className={styles['main-content']}>
+        <div className={styles['queue-stats']}>
+          <QueueStats queueStatus={queueStatusResponse} />
+        </div>
         <p className={styles['message']}>Please enter your contact details to join this queue</p>
         <JoinQueueForm
           queueId={queueId}

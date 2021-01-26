@@ -35,3 +35,4 @@ jobs:
           prettier: true
           prettier_dir: simplq/
           auto_fix: true
+
