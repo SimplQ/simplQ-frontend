@@ -1,16 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
 import { useHistory } from 'react-router';
-import { useSelector } from 'react-redux';
+import { useAuth0 } from '@auth0/auth0-react';
 import styles from './home.module.scss';
 import { QueueRequestFactory } from '../../../api/requestFactory';
 import useRequest from '../../../api/useRequest';
 
 export default () => {
   const history = useHistory();
-  const myQueues = useSelector((state) => state.appReducer.myQueues);
   const { requestMaker } = useRequest();
+  const [myQueues, setMyQueues] = useState([]);
+  const { isAuthenticated } = useAuth0();
+
+  useEffect(() => {
+    if (isAuthenticated)
+      requestMaker(QueueRequestFactory.getMyQueues()).then((resp) => setMyQueues(resp.queues));
+  });
+
+  if (!isAuthenticated) {
+    return null;
+  }
 
   const handleDelete = (e, queue) => {
     // Don't trigger parent's onClick

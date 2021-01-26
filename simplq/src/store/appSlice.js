@@ -7,8 +7,6 @@ const appSlice = createSlice({
     errorText: '',
     infoText: '',
     notificationPermission: null, // This state value is initilised by the notification service.
-    isLoggedIn: null, // This state value is initilised by the auth service.
-    myQueues: [],
   },
   reducers: {
     setErrorPopupMessage: (state, action) => {
@@ -20,13 +18,6 @@ const appSlice = createSlice({
     setNotificationPermission: (state, action) => {
       state.notificationPermission = action.payload;
     },
-    setIsLoggedIn: (state, action) => {
-      state.isLoggedIn = action.payload;
-    },
-    setMyQueues: (state, action) => {
-      const newQueuesList = action.payload;
-      state.myQueues = newQueuesList;
-    },
   },
 });
 
@@ -34,8 +25,6 @@ export const {
   setErrorPopupMessage,
   setInfoPopupMessage,
   setNotificationPermission,
-  setIsLoggedIn,
-  setMyQueues,
 } = appSlice.actions;
 
 export default appSlice.reducer;

@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import RefreshIcon from '@material-ui/icons/Refresh';
 import CropFreeIcon from '@material-ui/icons/CropFree';
-import { useSelector } from 'react-redux';
+import { useAuth0 } from '@auth0/auth0-react';
 import TokenList from './TokenList';
 import { TokenRequestFactory, QueueRequestFactory } from '../../../api/requestFactory';
 import ShareQueue from './ShareQueue';
@@ -25,7 +25,7 @@ export default (props) => {
   const [queueName, setQueueName] = useState();
   const [description, setDescription] = useState('');
   const [showQrCodeModal, setShowQrCodeModal] = useState(false);
-  const isLoggedIn = useSelector((state) => state.appReducer.isLoggedIn);
+  const { isAuthenticated } = useAuth0();
   const { requestMaker } = useRequest();
 
   const update = useCallback(() => {
@@ -110,7 +110,7 @@ export default (props) => {
   return (
     <div className={styles['admin-content']}>
       <HeaderSection />
-      {isLoggedIn || isLoggedIn === null ? null : (
+      {isAuthenticated ? null : (
         <Ribbon
           title="Temporary queue warning!"
           subTitle="Please sign up to make your queue permanent."

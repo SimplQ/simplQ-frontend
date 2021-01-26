@@ -1,18 +1,15 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React from 'react';
+import { useAuth0 } from '@auth0/auth0-react';
 import Header from '../../common/Header';
 import styles from './home.module.scss';
 import CreateJoinForm from '../../common/CreateJoinForm';
 import MyQueues from './MyQueues';
-import * as Auth from '../../../services/auth';
 
 export default () => {
-  const isLoggedIn = useSelector((state) => state.appReducer.isLoggedIn);
-  const [givenName, setGivenName] = useState(null);
   let subtitle = 'A long overdue alternative to physical queues';
-  if (isLoggedIn) {
-    Auth.getGivenName().then((givenName1) => setGivenName(givenName1));
-    subtitle = `Hi ${givenName}, welcome back!`;
+  const { user, isAuthenticated } = useAuth0();
+  if (isAuthenticated) {
+    subtitle = `Hi ${user.name}, welcome back!`;
   }
   return (
     <div id="target_top" className={styles['landing-page']}>
@@ -24,7 +21,7 @@ export default () => {
           instant crowd control
         </p>
       </div>
-      {isLoggedIn ? <MyQueues /> : <></>}
+      <MyQueues />
       <CreateJoinForm />
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
         <path
