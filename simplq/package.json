@@ -85,6 +85,9 @@
     "*.{js,jsx,ts,tsx}": [
       "npx prettier --write",
       "eslint --ext .js,.jsx --fix"
+    ],
+    "*.scss": [
+      "prettier --write"
     ]
   }
 }
