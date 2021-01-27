@@ -1,8 +1,3 @@
-import React from 'react';
-import styles from './header.module.scss';
+import Header from './Header';
 
-const StandardHeader = (props) => (
-  <h1 className={props.className ? props.className : styles.header}>{props.children}</h1>
-);
-
-export default StandardHeader;
+export default Header;
