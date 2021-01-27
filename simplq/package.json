@@ -86,6 +86,8 @@
       "npx prettier --write",
       "eslint --ext .js,.jsx --fix"
     ],
-    "*.scss": ["prettier --write"]
+    "*.scss": [
+      "prettier --write"
+    ]
   }
 }
