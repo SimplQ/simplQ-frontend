@@ -1,34 +1,48 @@
 import React from 'react';
-export const toursteps = [
+ 
+export const getToursteps = (screenInnerWidth) => {
+  //console.log(screenInnerWidth);
+  let tourProperties = {
+    fontSize: "25px",//screenInnerWidth / 30,
+    isArrowVisible: screenInnerWidth >=1275
+  };
+  console.log(screenInnerWidth,tourProperties.isArrowVisible);
+  return [
     {
-      selector: '[data-tut="reactour__addMember"]',
+      selector: '[reactour-selector="reactour__addMember"]',
       content:  ()=> (
-        <div>
-          <span style={{padding:"70px" }} >
-            <img src=" /images/sharequeueArrow.png"  height="80" width="120" />
-          </span>
-          <br/>
+        <>
+          { tourProperties.isArrowVisible && 
+              <>
+              <span style={{padding:"70px" }} >
+              <img  src=" /images/sharequeueArrow.png"  height="80" width="120" />
+              </span>
+              <br/>
+               </>
+            }
           <div style={{transform: "rotate(-5deg)" }}>
             Add users to the queue manually
           </div>
-        </div>
+        </>
       ),
       style: {
         fontFamily: "Pacifico",
         backgroundColor: "transparent",
         color: "white",
-        fontSize:"25px",
+        fontSize: tourProperties.fontSize, // "25px",
         boxShadow: "none"
       },
       position: 'left'
     },
     {
-      selector: '[data-tut="reactour__shareQueue"]',
+      selector: '[reactour-selector="reactour__shareQueue"]',
       content: () => (
-        <div>
+        <>
+           { tourProperties.isArrowVisible && 
             <img  src=" /images/sharequeueArrow.png"  height="80" width="120" />
+           }
           <div style={{transform: "rotate(-10deg)"}}>Share Queue</div>
-        </div>),
+        </>),
         style: {
                   fontFamily: "Pacifico",
                   backgroundColor: "transparent",
@@ -39,9 +53,10 @@ export const toursteps = [
                 position: 'top'
     }
   ];
+}
 
-  export function checkUserTourStatus() {
-    var isuserBeenOnTour = localStorage.getItem("__user_been_on_tour__");
+  export const hasUserBeenOnTour = () => {
+    let isuserBeenOnTour = localStorage.getItem("__user_been_on_tour__");
     if(isuserBeenOnTour === null)
     {
       localStorage.setItem("__user_been_on_tour__",true);

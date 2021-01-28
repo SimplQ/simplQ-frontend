@@ -16,7 +16,7 @@ import Ribbon from '../../common/Ribbon';
 import QRCode from '../../common/Popup/QrCode';
 import Tour,{Arrow}  from 'reactour'
 import { disableScroll, enableScroll } from "./ControlScroll";
-import {toursteps, checkUserTourStatus} from "./TourSteps";
+import {getToursteps, hasUserBeenOnTour} from "./TourSteps";
 
 const TIMEOUT = 10000;
 let timeoutId;
@@ -29,13 +29,11 @@ export default (props) => {
   const [description, setDescription] = useState('');
   const [showQrCodeModal, setShowQrCodeModal] = useState(false);
   const isLoggedIn = useSelector((state) => state.appReducer.isLoggedIn);
-  const [tourOpen, setTourOpen ] = useState(checkUserTourStatus());
-  function closeTour() {
-    setTourOpen(false);
-  } 
+  const [tourOpen, setTourOpen ] = useState(hasUserBeenOnTour());
+  const [toursteps, setToursteps] = useState(getToursteps(window.innerHeight));
 
+  const closeTour = () => setTourOpen(false);
   
-
   const update = useCallback(() => {
     clearTimeout(timeoutId);
     QueueService.get(queueId).then((data) => {
@@ -53,6 +51,13 @@ export default (props) => {
     setShowQrCodeModal(true);
   }, []);
 
+  useEffect(()=>{
+    window.addEventListener("resize", resize);
+    return ()=> window.removeEventListener("resize", resize);
+  } );
+ 
+   const resize = () => setToursteps(getToursteps(window.innerWidth));
+  
   useEffect(() => {
     update();
     return () => clearTimeout(timeoutId);
@@ -92,7 +97,7 @@ export default (props) => {
           <h2>{description}</h2>
         </div>
       </div>
-      <div  className={styles['main-button-group']}>
+      <div className={styles['main-button-group']}>
         <div className={styles['admin-button']}>
           <StandardButton onClick={generateQrCOde} icon={<CropFreeIcon />} outlined>
             Generate QrCode
@@ -107,7 +112,7 @@ export default (props) => {
           </StandardButton>
         </div>
         <div className={styles['admin-button']}>
-          <ShareQueue tag="reactour__shareQueue" queueName={queueName} className={styles.shareButton} />
+          <ShareQueue tour_tag="reactour__shareQueue" queueName={queueName} className={styles.shareButton} />
         </div>
       </div>
     </div>

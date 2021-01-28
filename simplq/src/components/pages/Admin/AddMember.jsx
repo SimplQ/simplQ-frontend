@@ -11,7 +11,7 @@ export default (props) => {
       title="Add Member"
       description="Add a person to this queue manually"
       expandable
-      tag="reactour__addMember"
+      tour_tag="reactour__addMember"
     >
       <div className={styles['admin-join-queue-form']}>
         <JoinQueueForm
