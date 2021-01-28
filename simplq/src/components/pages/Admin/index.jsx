@@ -13,6 +13,9 @@ import SidePanel from './AdminSidePanel';
 import StandardButton from '../../common/Button';
 import Ribbon from '../../common/Ribbon';
 import QRCode from '../../common/Popup/QrCode';
+import Tour,{Arrow}  from 'reactour'
+import { disableScroll, enableScroll } from "./ControlScroll";
+import {getToursteps, hasUserBeenOnTour} from "./TourSteps";
 import useRequest from '../../../api/useRequest';
 
 const TIMEOUT = 10000;
@@ -25,9 +28,13 @@ export default (props) => {
   const [queueName, setQueueName] = useState();
   const [description, setDescription] = useState('');
   const [showQrCodeModal, setShowQrCodeModal] = useState(false);
+  const [tourOpen, setTourOpen ] = useState(hasUserBeenOnTour());
+  const [toursteps, setToursteps] = useState(getToursteps(window.innerHeight));
   const { isAuthenticated } = useAuth0();
   const { requestMaker } = useRequest();
 
+  const closeTour = () => setTourOpen(false);
+  
   const update = useCallback(() => {
     clearTimeout(timeoutId);
     requestMaker(QueueRequestFactory.get(queueId)).then((data) => {
@@ -45,10 +52,17 @@ export default (props) => {
     setShowQrCodeModal(true);
   }, []);
 
+  useEffect(()=>{
+    window.addEventListener("resize", resize);
+    return ()=> window.removeEventListener("resize", resize);
+  } );
+ 
+   const resize = () => setToursteps(getToursteps(window.innerWidth));
+  
   useEffect(() => {
     update();
     return () => clearTimeout(timeoutId);
-  }, [update]);
+  },[update]);
 
   const addNewToken = async (name, contactNumber) => {
     const response = await requestMaker(
@@ -101,7 +115,7 @@ export default (props) => {
           </StandardButton>
         </div>
         <div className={styles['admin-button']}>
-          <ShareQueue queueName={queueName} className={styles.shareButton} />
+          <ShareQueue tour_tag="reactour__shareQueue" queueName={queueName} className={styles.shareButton} />
         </div>
       </div>
     </div>
@@ -109,6 +123,21 @@ export default (props) => {
 
   return (
     <div className={styles['admin-content']}>
+   
+      <Tour 
+        showNavigation={false}
+        steps={toursteps}
+        showNavigationNumber = {false}
+        showNumber={false}
+        showCloseButton={false}
+        isOpen={tourOpen}
+        rounded={10}
+        onRequestClose={closeTour}
+        onAfterOpen={disableScroll}
+        onBeforeClose={enableScroll}
+        >
+        </Tour>
+
       <HeaderSection />
       {isAuthenticated ? null : (
         <Ribbon
