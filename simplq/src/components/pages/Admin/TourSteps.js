@@ -1,12 +1,10 @@
 import React from 'react';
  
 export const getToursteps = (screenInnerWidth) => {
-  //console.log(screenInnerWidth);
   let tourProperties = {
-    fontSize: "25px",//screenInnerWidth / 30,
+    fontSize: "1.563rem",
     isArrowVisible: screenInnerWidth >=1275
   };
-  console.log(screenInnerWidth,tourProperties.isArrowVisible);
   return [
     {
       selector: '[reactour-selector="reactour__addMember"]',
@@ -14,7 +12,7 @@ export const getToursteps = (screenInnerWidth) => {
         <>
           { tourProperties.isArrowVisible && 
               <>
-              <span style={{padding:"70px" }} >
+              <span style={{padding:"4.375rem" }} >
               <img  src=" /images/sharequeueArrow.png"  height="80" width="120" />
               </span>
               <br/>
@@ -29,7 +27,7 @@ export const getToursteps = (screenInnerWidth) => {
         fontFamily: "Pacifico",
         backgroundColor: "transparent",
         color: "white",
-        fontSize: tourProperties.fontSize, // "25px",
+        fontSize: tourProperties.fontSize, 
         boxShadow: "none"
       },
       position: 'left'
@@ -47,7 +45,7 @@ export const getToursteps = (screenInnerWidth) => {
                   fontFamily: "Pacifico",
                   backgroundColor: "transparent",
                   color: "white",
-                  fontSize:"25px",
+                  fontSize:"1.563rem",
                   boxShadow: "none"
                 },
                 position: 'top'
@@ -56,8 +54,8 @@ export const getToursteps = (screenInnerWidth) => {
 }
 
   export const hasUserBeenOnTour = () => {
-    let isuserBeenOnTour = localStorage.getItem("__user_been_on_tour__");
-    if(isuserBeenOnTour === null)
+    const tourStatus = localStorage.getItem("__user_been_on_tour__");
+    if(tourStatus === null)
     {
       localStorage.setItem("__user_been_on_tour__",true);
       return true;

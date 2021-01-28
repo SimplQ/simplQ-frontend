@@ -28,7 +28,6 @@ export default (props) => {
   const [queueName, setQueueName] = useState();
   const [description, setDescription] = useState('');
   const [showQrCodeModal, setShowQrCodeModal] = useState(false);
-  const isLoggedIn = useSelector((state) => state.appReducer.isLoggedIn);
   const [tourOpen, setTourOpen ] = useState(hasUserBeenOnTour());
   const [toursteps, setToursteps] = useState(getToursteps(window.innerHeight));
   const { isAuthenticated } = useAuth0();
