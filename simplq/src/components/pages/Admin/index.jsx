@@ -3,10 +3,9 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import RefreshIcon from '@material-ui/icons/Refresh';
 import CropFreeIcon from '@material-ui/icons/CropFree';
-import { useSelector } from 'react-redux';
+import { useAuth0 } from '@auth0/auth0-react';
 import TokenList from './TokenList';
-import * as TokenService from '../../../services/token';
-import * as QueueService from '../../../services/queue';
+import { TokenRequestFactory, QueueRequestFactory } from '../../../api/requestFactory';
 import ShareQueue from './ShareQueue';
 import Header from '../../common/Header';
 import styles from './admin.module.scss';
@@ -17,6 +16,7 @@ import QRCode from '../../common/Popup/QrCode';
 import Tour,{Arrow}  from 'reactour'
 import { disableScroll, enableScroll } from "./ControlScroll";
 import {getToursteps, hasUserBeenOnTour} from "./TourSteps";
+import useRequest from '../../../api/useRequest';
 
 const TIMEOUT = 10000;
 let timeoutId;
@@ -31,12 +31,14 @@ export default (props) => {
   const isLoggedIn = useSelector((state) => state.appReducer.isLoggedIn);
   const [tourOpen, setTourOpen ] = useState(hasUserBeenOnTour());
   const [toursteps, setToursteps] = useState(getToursteps(window.innerHeight));
+  const { isAuthenticated } = useAuth0();
+  const { requestMaker } = useRequest();
 
   const closeTour = () => setTourOpen(false);
   
   const update = useCallback(() => {
     clearTimeout(timeoutId);
-    QueueService.get(queueId).then((data) => {
+    requestMaker(QueueRequestFactory.get(queueId)).then((data) => {
       if (data) {
         setTokens(data.tokens);
         setQueueName(data.queueName);
@@ -45,7 +47,7 @@ export default (props) => {
       }
       timeoutId = setTimeout(update, TIMEOUT);
     });
-  }, [queueId]);
+  }, [queueId, requestMaker]);
 
   const generateQrCOde = useCallback(() => {
     setShowQrCodeModal(true);
@@ -64,7 +66,9 @@ export default (props) => {
   },[update]);
 
   const addNewToken = async (name, contactNumber) => {
-    const response = await TokenService.create(name, contactNumber, false, queueId);
+    const response = await requestMaker(
+      TokenRequestFactory.create(name, contactNumber, false, queueId)
+    );
     if (!response) {
       return;
     }
@@ -82,7 +86,7 @@ export default (props) => {
   };
 
   const removeToken = (tokenId) => {
-    TokenService.remove(tokenId).then((response) => {
+    requestMaker(TokenRequestFactory.remove(tokenId)).then((response) => {
       if (response) {
         setTokens(tokens.filter((token) => token.tokenId !== tokenId));
       }
@@ -100,7 +104,7 @@ export default (props) => {
       <div className={styles['main-button-group']}>
         <div className={styles['admin-button']}>
           <StandardButton onClick={generateQrCOde} icon={<CropFreeIcon />} outlined>
-            Generate QrCode
+            Generate QR Code
           </StandardButton>
           {showQrCodeModal && (
             <QRCode queueName={queueName} show={showQrCodeModal} onClose={setShowQrCodeModal} />
@@ -136,7 +140,7 @@ export default (props) => {
         </Tour>
 
       <HeaderSection />
-      {isLoggedIn || isLoggedIn === null ? null : (
+      {isAuthenticated ? null : (
         <Ribbon
           title="Temporary queue warning!"
           subTitle="Please sign up to make your queue permanent."

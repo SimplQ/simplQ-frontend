@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 
 import React from 'react';
-import styles from './nav.module.scss';
-import { smoothScrollTo } from '../utilFns';
+import styles from './Nav.module.scss';
+import { smoothScrollTo } from '../../../utils/scrollingOperations';
 import LoginButton from '../LoginButton';
 
 const LeftNav = ({ open, toggleClose }) => {

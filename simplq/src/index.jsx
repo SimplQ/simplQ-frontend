@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import * as Sentry from '@sentry/react';
 import { Integrations } from '@sentry/tracing';
 import AOS from 'aos';
+import { Auth0Provider } from '@auth0/auth0-react';
 import { store } from './store';
 import * as serviceWorker from './serviceWorker';
 import Layout from './components/Layout';
@@ -27,11 +28,19 @@ const theme = createMuiTheme({
 });
 
 ReactDOM.render(
-  <ThemeProvider theme={theme}>
-    <Provider store={store}>
-      <Layout />
-    </Provider>
-  </ThemeProvider>,
+  <Auth0Provider
+    domain="simplq.us.auth0.com"
+    clientId="9BAywifjAy6n0sx8WbuQubMGGjofpwd6"
+    redirectUri={window.location.origin}
+    audience="https://devbackend.simplq.me/v1"
+    scope="read:current_user update:current_user_metadata"
+  >
+    <ThemeProvider theme={theme}>
+      <Provider store={store}>
+        <Layout />
+      </Provider>
+    </ThemeProvider>
+  </Auth0Provider>,
   document.getElementById('root')
 );
 

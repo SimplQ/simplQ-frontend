@@ -1,8 +1,3 @@
-import React from 'react';
-import styles from './sidePanel.module.scss';
+import SidePanel from './SidePanel';
 
-export default (props) => (
-  <>
-    <div className={styles['side-panel']}>{props.children}</div>
-  </>
-);
+export default SidePanel;
