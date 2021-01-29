@@ -16,7 +16,7 @@ export default () => {
   useEffect(() => {
     if (isAuthenticated)
       requestMaker(QueueRequestFactory.getMyQueues()).then((resp) => setMyQueues(resp.queues));
-  });
+  }, [requestMaker]);
 
   if (!isAuthenticated) {
     return null;
