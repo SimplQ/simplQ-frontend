@@ -27,6 +27,7 @@ export default () => {
     e.stopPropagation();
     requestMaker(QueueRequestFactory.deleteQueue(queue.queueId)).then(() => history.push('/'));
   };
+
   return (
     <div className={styles['my-queue']}>
       <p>
