@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { Collapse } from '@material-ui/core';
-import styles from './sidePanel.module.scss';
+import styles from './SidePanel.module.scss';
 import LoadingIndicator from '../LoadingIndicator';
 
 const ExpandButton = ({ isOpen }) => (
@@ -25,6 +25,7 @@ const SidePanelItem = ({
   loading = false,
   onClick,
   children,
+  tour_tag  = ""
 }) => {
   const [open, setOpen] = useState(false);
   const onClickHandler = () => {
@@ -36,9 +37,10 @@ const SidePanelItem = ({
     }
   };
 
+ 
   return (
     <div className={styles['side-panel-item']}>
-      <div
+      <div reactour-selector={tour_tag} 
         className={styles['header']}
         tabIndex={0}
         role="button"

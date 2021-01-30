@@ -1,6 +1,11 @@
 @import '../../common.scss';
 .main-content {
   margin: 2rem;
+
+  .queue-stats {
+    display: flex;
+    justify-content: center;
+  }
 }
 
 // BELOW CSS IS SHARED BETWEEN JOIN PAGE AND ADMIN PAGE'S ADD MANUALLY SECTION

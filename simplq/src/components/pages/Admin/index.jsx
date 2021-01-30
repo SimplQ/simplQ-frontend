@@ -3,10 +3,9 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import RefreshIcon from '@material-ui/icons/Refresh';
 import CropFreeIcon from '@material-ui/icons/CropFree';
-import { useSelector } from 'react-redux';
+import { useAuth0 } from '@auth0/auth0-react';
 import TokenList from './TokenList';
-import * as TokenService from '../../../services/token';
-import * as QueueService from '../../../services/queue';
+import { TokenRequestFactory, QueueRequestFactory } from '../../../api/requestFactory';
 import ShareQueue from './ShareQueue';
 import Header from '../../common/Header';
 import styles from './admin.module.scss';
@@ -14,6 +13,10 @@ import SidePanel from './AdminSidePanel';
 import StandardButton from '../../common/Button';
 import Ribbon from '../../common/Ribbon';
 import QRCode from '../../common/Popup/QrCode';
+import Tour,{Arrow}  from 'reactour'
+import { disableScroll, enableScroll } from "./ControlScroll";
+import {getToursteps, hasUserBeenOnTour} from "./TourSteps";
+import useRequest from '../../../api/useRequest';
 
 const TIMEOUT = 10000;
 let timeoutId;
@@ -25,11 +28,16 @@ export default (props) => {
   const [queueName, setQueueName] = useState();
   const [description, setDescription] = useState('');
   const [showQrCodeModal, setShowQrCodeModal] = useState(false);
-  const isLoggedIn = useSelector((state) => state.appReducer.isLoggedIn);
+  const [tourOpen, setTourOpen ] = useState(hasUserBeenOnTour());
+  const [toursteps, setToursteps] = useState(getToursteps(window.innerHeight));
+  const { isAuthenticated } = useAuth0();
+  const { requestMaker } = useRequest();
 
+  const closeTour = () => setTourOpen(false);
+  
   const update = useCallback(() => {
     clearTimeout(timeoutId);
-    QueueService.get(queueId).then((data) => {
+    requestMaker(QueueRequestFactory.get(queueId)).then((data) => {
       if (data) {
         setTokens(data.tokens);
         setQueueName(data.queueName);
@@ -38,19 +46,28 @@ export default (props) => {
       }
       timeoutId = setTimeout(update, TIMEOUT);
     });
-  }, [queueId]);
+  }, [queueId, requestMaker]);
 
   const generateQrCOde = useCallback(() => {
     setShowQrCodeModal(true);
   }, []);
 
+  useEffect(()=>{
+    window.addEventListener("resize", resize);
+    return ()=> window.removeEventListener("resize", resize);
+  } );
+ 
+   const resize = () => setToursteps(getToursteps(window.innerWidth));
+  
   useEffect(() => {
     update();
     return () => clearTimeout(timeoutId);
-  }, [update]);
+  },[update]);
 
   const addNewToken = async (name, contactNumber) => {
-    const response = await TokenService.create(name, contactNumber, false, queueId);
+    const response = await requestMaker(
+      TokenRequestFactory.create(name, contactNumber, false, queueId)
+    );
     if (!response) {
       return;
     }
@@ -68,7 +85,7 @@ export default (props) => {
   };
 
   const removeToken = (tokenId) => {
-    TokenService.remove(tokenId).then((response) => {
+    requestMaker(TokenRequestFactory.remove(tokenId)).then((response) => {
       if (response) {
         setTokens(tokens.filter((token) => token.tokenId !== tokenId));
       }
@@ -98,7 +115,7 @@ export default (props) => {
           </StandardButton>
         </div>
         <div className={styles['admin-button']}>
-          <ShareQueue queueName={queueName} className={styles.shareButton} />
+          <ShareQueue tour_tag="reactour__shareQueue" queueName={queueName} className={styles.shareButton} />
         </div>
       </div>
     </div>
@@ -106,8 +123,23 @@ export default (props) => {
 
   return (
     <div className={styles['admin-content']}>
+   
+      <Tour 
+        showNavigation={false}
+        steps={toursteps}
+        showNavigationNumber = {false}
+        showNumber={false}
+        showCloseButton={false}
+        isOpen={tourOpen}
+        rounded={10}
+        onRequestClose={closeTour}
+        onAfterOpen={disableScroll}
+        onBeforeClose={enableScroll}
+        >
+        </Tour>
+
       <HeaderSection />
-      {isLoggedIn || isLoggedIn === null ? null : (
+      {isAuthenticated ? null : (
         <Ribbon
           title="Temporary queue warning!"
           subTitle="Please sign up to make your queue permanent."
