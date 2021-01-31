@@ -14,7 +14,6 @@ import SidePanel from './AdminSidePanel';
 import StandardButton from '../../common/Button';
 import Ribbon from '../../common/Ribbon';
 import QRCode from '../../common/Popup/QrCode';
-import Tour,{Arrow}  from 'reactour'
 import { disableScroll, enableScroll } from "./ControlScroll";
 import {getToursteps, hasUserBeenOnTour, stepChange} from "./TourSteps";
 import useRequest from '../../../api/useRequest';
