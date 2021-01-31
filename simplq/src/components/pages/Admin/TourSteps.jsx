@@ -45,6 +45,7 @@ export const getToursteps = (screenInnerWidth) => {
               alt="share queue arrow"
               height="80"
               width="120"
+              style={{ transform: 'rotate(-10deg)' }}
             />
           ) : null}
           <div style={{ transform: 'rotate(-10deg)' }}>Share Queue</div>
