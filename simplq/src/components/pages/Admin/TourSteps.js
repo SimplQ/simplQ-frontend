@@ -1,5 +1,5 @@
 import React from 'react';
- 
+
 export const getToursteps = (screenInnerWidth) => {
   let tourProperties = {
     fontSize: "1.563rem",
@@ -10,14 +10,15 @@ export const getToursteps = (screenInnerWidth) => {
       selector: '[reactour-selector="reactour__addMember"]',
       content:  ()=> (
         <>
-          { tourProperties.isArrowVisible && 
+          { 
+          tourProperties.isArrowVisible && 
               <>
               <span style={{padding:"4.375rem" }} >
               <img  src=" /images/sharequeueArrow.png"  height="80" width="120" />
               </span>
               <br/>
                </>
-            }
+           }
           <div style={{transform: "rotate(-5deg)" }}>
             Add users to the queue manually
           </div>
@@ -36,9 +37,7 @@ export const getToursteps = (screenInnerWidth) => {
       selector: '[reactour-selector="reactour__shareQueue"]',
       content: () => (
         <>
-           { tourProperties.isArrowVisible && 
-            <img  src=" /images/sharequeueArrow.png"  height="80" width="120" />
-           }
+           {tourProperties.isArrowVisible && <img  src=" /images/sharequeueArrow.png"  height="80" width="120" style={{transform: "rotate(-10deg)"}} /> }
           <div style={{transform: "rotate(-10deg)"}}>Share Queue</div>
         </>),
         style: {
@@ -46,7 +45,7 @@ export const getToursteps = (screenInnerWidth) => {
                   backgroundColor: "transparent",
                   color: "white",
                   fontSize:"1.563rem",
-                  boxShadow: "none"
+                  boxShadow: "none",
                 },
                 position: 'top'
     }
@@ -63,3 +62,28 @@ export const getToursteps = (screenInnerWidth) => {
     else
     return false;
   }
+
+  export const stepChange = (stepNumber) => {
+    if(stepNumber == 0)
+    {
+      let leftArrow = document.querySelector("[data-tour-elem='left-arrow']");
+      let rightArrow = document.querySelector("[data-tour-elem='right-arrow']");
+      if(leftArrow && rightArrow)
+      {
+        leftArrow.childNodes[0].style.color = "grey";
+        rightArrow.childNodes[0].style.color = "White";
+      }
+    }
+    else if(stepNumber == 1)
+    {
+      let leftArrow = document.querySelector("[data-tour-elem='left-arrow']");
+      let rightArrow = document.querySelector("[data-tour-elem='right-arrow']");
+
+      if(leftArrow && rightArrow)
+      {
+        leftArrow.childNodes[0].style.color = "White";
+        rightArrow.childNodes[0].style.color = "Grey";
+      }
+    }
+  }
+  

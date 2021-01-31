@@ -15,7 +15,7 @@ import Ribbon from '../../common/Ribbon';
 import QRCode from '../../common/Popup/QrCode';
 import Tour,{Arrow}  from 'reactour'
 import { disableScroll, enableScroll } from "./ControlScroll";
-import {getToursteps, hasUserBeenOnTour} from "./TourSteps";
+import {getToursteps, hasUserBeenOnTour, stepChange} from "./TourSteps";
 import useRequest from '../../../api/useRequest';
 
 const TIMEOUT = 10000;
@@ -125,6 +125,7 @@ export default (props) => {
     <div className={styles['admin-content']}>
    
       <Tour 
+        showButton={false}
         showNavigation={false}
         steps={toursteps}
         showNavigationNumber = {false}
@@ -135,6 +136,7 @@ export default (props) => {
         onRequestClose={closeTour}
         onAfterOpen={disableScroll}
         onBeforeClose={enableScroll}
+        getCurrentStep={stepChange}
         >
         </Tour>
 
