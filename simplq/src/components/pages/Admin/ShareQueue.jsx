@@ -15,7 +15,11 @@ const ShareQueue = (props) => {
 
   return (
     <CopyToClipboard text={shareUrl}>
-      <StandardButton onClick={handleShareButtonClick} icon={<FileCopyIcon />} tour_tag={props.tour_tag} >
+      <StandardButton
+        onClick={handleShareButtonClick}
+        icon={<FileCopyIcon />}
+        tourTag={props.tourTag}
+      >
         Copy Queue Link
       </StandardButton>
     </CopyToClipboard>
