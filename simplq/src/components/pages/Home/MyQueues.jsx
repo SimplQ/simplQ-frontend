@@ -3,6 +3,8 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
 import { useHistory } from 'react-router';
 import { useAuth0 } from '@auth0/auth0-react';
+import { fetchQueues } from 'store/queuesSlice';
+import { useDispatch, useSelector } from 'react-redux';
 import styles from './home.module.scss';
 import { QueueRequestFactory } from '../../../api/requestFactory';
 import useRequest from '../../../api/useRequest';
@@ -12,11 +14,25 @@ export default () => {
   const { requestMaker } = useRequest();
   const [myQueues, setMyQueues] = useState([]);
   const { isAuthenticated } = useAuth0();
+  const auth = useAuth0();
+  const dispatch = useDispatch();
+  const queues = useSelector((state) => state.queues);
 
   useEffect(() => {
     if (isAuthenticated)
       requestMaker(QueueRequestFactory.getMyQueues()).then((resp) => setMyQueues(resp.queues));
   }, [requestMaker]);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      const arg = {
+        auth,
+        // example payload for async thunk
+        payload: { someKey: 'Some value' },
+      };
+      dispatch(fetchQueues(arg));
+    }
+  }, []);
 
   if (!isAuthenticated) {
     return null;
@@ -34,7 +50,7 @@ export default () => {
           ? "Looks like you don't have any active queues. Start by creating one..."
           : 'What would you like to do today? Here are your active queues:'}
       </p>
-      {myQueues.map((queue) => {
+      {queues.map((queue) => {
         const handler = () => history.push(`/queue/${queue.queueId}`);
         return (
           <div

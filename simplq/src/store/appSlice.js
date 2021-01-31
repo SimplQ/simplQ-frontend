@@ -1,5 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
+import { fetchQueues } from 'store/queuesSlice';
 
 const appSlice = createSlice({
   name: 'appSlice',
@@ -17,6 +18,17 @@ const appSlice = createSlice({
     },
     setNotificationPermission: (state, action) => {
       state.notificationPermission = action.payload;
+    },
+  },
+  extraReducers: {
+    [fetchQueues.pending]: (state, action) => {
+      state.infoText = `Loading queues for ${action.meta.arg.auth.user.name}...`;
+    },
+    [fetchQueues.rejected]: (state, action) => {
+      state.errorText = action.error.message;
+    },
+    [fetchQueues.fulfilled]: (state, action) => {
+      state.infoText = `Number of queues fetched: ${action.payload.queues.length}`;
     },
   },
 });
