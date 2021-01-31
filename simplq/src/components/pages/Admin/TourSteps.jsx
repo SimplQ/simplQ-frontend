@@ -70,3 +70,28 @@ export const hasUserBeenOnTour = () => {
   }
   return false;
 };
+
+  export const stepChange = (stepNumber) => {
+    if(stepNumber == 0)
+    {
+      let leftArrow = document.querySelector("[data-tour-elem='left-arrow']");
+      let rightArrow = document.querySelector("[data-tour-elem='right-arrow']");
+      if(leftArrow && rightArrow)
+      {
+        leftArrow.childNodes[0].style.color = "grey";
+        rightArrow.childNodes[0].style.color = "White";
+      }
+    }
+    else if(stepNumber == 1)
+    {
+      let leftArrow = document.querySelector("[data-tour-elem='left-arrow']");
+      let rightArrow = document.querySelector("[data-tour-elem='right-arrow']");
+
+      if(leftArrow && rightArrow)
+      {
+        leftArrow.childNodes[0].style.color = "White";
+        rightArrow.childNodes[0].style.color = "Grey";
+      }
+    }
+  }
+  

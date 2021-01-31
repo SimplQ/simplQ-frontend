@@ -15,7 +15,7 @@ import StandardButton from '../../common/Button';
 import Ribbon from '../../common/Ribbon';
 import QRCode from '../../common/Popup/QrCode';
 import { disableScroll, enableScroll } from "./ControlScroll";
-import {getToursteps, hasUserBeenOnTour, stepChange} from "./TourSteps";
+import {getToursteps, hasUserBeenOnTour, stepChange} from "./TourSteps.jsx";
 import useRequest from '../../../api/useRequest';
 
 const TIMEOUT = 10000;
