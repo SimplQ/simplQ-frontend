@@ -79,7 +79,7 @@ export const hasUserBeenOnTour = () => {
       if(leftArrow && rightArrow)
       {
         leftArrow.childNodes[0].style.color = "grey";
-        rightArrow.childNodes[0].style.color = "White";
+        rightArrow.childNodes[0].style.color = "white";
       }
     }
     else if(stepNumber == 1)
@@ -89,8 +89,8 @@ export const hasUserBeenOnTour = () => {
 
       if(leftArrow && rightArrow)
       {
-        leftArrow.childNodes[0].style.color = "White";
-        rightArrow.childNodes[0].style.color = "Grey";
+        leftArrow.childNodes[0].style.color = "white";
+        rightArrow.childNodes[0].style.color = "grey";
       }
     }
   }
