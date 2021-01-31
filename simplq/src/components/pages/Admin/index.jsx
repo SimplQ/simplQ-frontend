@@ -4,6 +4,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import RefreshIcon from '@material-ui/icons/Refresh';
 import CropFreeIcon from '@material-ui/icons/CropFree';
 import { useAuth0 } from '@auth0/auth0-react';
+import Tour from 'reactour';
 import TokenList from './TokenList';
 import { TokenRequestFactory, QueueRequestFactory } from '../../../api/requestFactory';
 import ShareQueue from './ShareQueue';
@@ -28,13 +29,12 @@ export default (props) => {
   const [queueName, setQueueName] = useState();
   const [description, setDescription] = useState('');
   const [showQrCodeModal, setShowQrCodeModal] = useState(false);
-  const [tourOpen, setTourOpen ] = useState(hasUserBeenOnTour());
+  const [tourOpen, setTourOpen] = useState(hasUserBeenOnTour());
   const [toursteps, setToursteps] = useState(getToursteps(window.innerHeight));
   const { isAuthenticated } = useAuth0();
   const { requestMaker } = useRequest();
 
   const closeTour = () => setTourOpen(false);
-  
   const update = useCallback(() => {
     clearTimeout(timeoutId);
     requestMaker(QueueRequestFactory.get(queueId)).then((data) => {
@@ -52,13 +52,13 @@ export default (props) => {
     setShowQrCodeModal(true);
   }, []);
 
-  useEffect(()=>{
-    window.addEventListener("resize", resize);
-    return ()=> window.removeEventListener("resize", resize);
-  } );
- 
-   const resize = () => setToursteps(getToursteps(window.innerWidth));
-  
+  const resize = () => setToursteps(getToursteps(window.innerWidth));
+
+  useEffect(() => {
+    window.addEventListener('resize', resize);
+    return () => window.removeEventListener('resize', resize);
+  });
+
   useEffect(() => {
     update();
     return () => clearTimeout(timeoutId);
@@ -115,7 +115,11 @@ export default (props) => {
           </StandardButton>
         </div>
         <div className={styles['admin-button']}>
-          <ShareQueue tour_tag="reactour__shareQueue" queueName={queueName} className={styles.shareButton} />
+          <ShareQueue
+            tourTag="reactour__shareQueue"
+            queueName={queueName}
+            className={styles.shareButton}
+          />
         </div>
       </div>
     </div>
@@ -123,12 +127,10 @@ export default (props) => {
 
   return (
     <div className={styles['admin-content']}>
-   
-      <Tour 
-        showButton={false}
+      <Tour
         showNavigation={false}
         steps={toursteps}
-        showNavigationNumber = {false}
+        showNavigationNumber={false}
         showNumber={false}
         showCloseButton={false}
         isOpen={tourOpen}
