@@ -15,7 +15,7 @@ import StandardButton from '../../common/Button';
 import Ribbon from '../../common/Ribbon';
 import QRCode from '../../common/Popup/QrCode';
 import { disableScroll, enableScroll } from "./ControlScroll";
-import {getToursteps, hasUserBeenOnTour, stepChange} from "./TourSteps.jsx";
+import { getToursteps, hasUserBeenOnTour, stepChange } from "./TourSteps.jsx";
 import useRequest from '../../../api/useRequest';
 
 const TIMEOUT = 10000;
@@ -34,6 +34,7 @@ export default (props) => {
   const { requestMaker } = useRequest();
 
   const closeTour = () => setTourOpen(false);
+
   const update = useCallback(() => {
     clearTimeout(timeoutId);
     requestMaker(QueueRequestFactory.get(queueId)).then((data) => {
@@ -61,7 +62,7 @@ export default (props) => {
   useEffect(() => {
     update();
     return () => clearTimeout(timeoutId);
-  },[update]);
+  }, [update]);
 
   const addNewToken = async (name, contactNumber) => {
     const response = await requestMaker(
