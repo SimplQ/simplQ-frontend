@@ -37,7 +37,6 @@ const SidePanelItem = ({
     }
   };
 
- 
   return (
     <div className={styles['side-panel-item']}>
       <div
