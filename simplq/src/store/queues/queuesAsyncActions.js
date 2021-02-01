@@ -46,4 +46,30 @@ const fetchQueues = createAsyncThunk('queues/requestStatus', async () => {
   return undefined;
 });
 
-export { fetchQueues, useFetchQueues };
+/**
+ * A hook to access the deleteQueue async action creator.
+ *
+ * @returns — deleteQueue async async action creator
+ */
+const useDeleteQueue = () => {
+  const auth = useAuth();
+
+  const deleteQueue = createAsyncThunk('deleteQueue/requestStatus', async (arg) => {
+    if (!auth || !auth.isAuthenticated) {
+      return { queues: [] };
+    }
+
+    const { queueId } = arg;
+    const authedRequest = makeAuthedRequest(auth, QueueRequestFactory.deleteQueue(queueId));
+    const response = await authedRequest;
+    return response;
+  });
+
+  return deleteQueue;
+};
+
+const deleteQueue = createAsyncThunk('deleteQueue/requestStatus', async () => {
+  return undefined;
+});
+
+export { fetchQueues, useFetchQueues, deleteQueue, useDeleteQueue };

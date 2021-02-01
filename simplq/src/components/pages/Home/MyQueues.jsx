@@ -2,20 +2,18 @@ import React, { useEffect, useState } from 'react';
 import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
 import { useHistory } from 'react-router';
-import { useFetchQueues, selectQueues } from 'store/queues';
+import { useFetchQueues, useDeleteQueue, selectQueues } from 'store/queues';
 import { unwrapResult } from '@reduxjs/toolkit';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './home.module.scss';
-import { QueueRequestFactory } from '../../../api/requestFactory';
-import useRequest from '../../../api/useRequest';
 
 export default () => {
   const history = useHistory();
-  const { requestMaker } = useRequest();
   const [myQueues, setMyQueues] = useState([]);
   const dispatch = useDispatch();
   const queues = useSelector(selectQueues);
   const fetchQueues = useFetchQueues();
+  const deleteQueue = useDeleteQueue();
 
   useEffect(() => {
     dispatch(fetchQueues())
@@ -26,8 +24,15 @@ export default () => {
 
   const handleDelete = (e, queue) => {
     // Don't trigger parent's onClick
+    const arg = { queueId: queue.queueId };
     e.stopPropagation();
-    requestMaker(QueueRequestFactory.deleteQueue(queue.queueId)).then(() => history.push('/'));
+    dispatch(deleteQueue(arg))
+      // Optinal way to triger update.
+      // A better way would be to do all of this in redux async action.
+      // Instead of fetching queues again, update redux store on successfule delete.
+      .then(() => {
+        return dispatch(fetchQueues());
+      });
   };
   return (
     <div className={styles['my-queue']}>
