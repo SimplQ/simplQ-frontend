@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchQueues } from 'store/queuesSlice';
+import { fetchQueues } from 'store/queues';
 
 const appSlice = createSlice({
   name: 'appSlice',
@@ -21,8 +21,8 @@ const appSlice = createSlice({
     },
   },
   extraReducers: {
-    [fetchQueues.pending]: (state, action) => {
-      state.infoText = `Loading queues for ${action.meta.arg.auth.user.name}...`;
+    [fetchQueues.pending]: (state) => {
+      state.infoText = `Loading queues...`;
     },
     [fetchQueues.rejected]: (state, action) => {
       state.errorText = action.error.message;

@@ -1,10 +1,10 @@
 import { combineReducers, configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
-import queuesSlice from 'store/queuesSlice';
+import queuesReducer from 'store/queues';
 import appReducer from './appSlice';
 
 export const rootReducer = combineReducers({
   appReducer,
-  queues: queuesSlice,
+  queues: queuesReducer,
 });
 
 export const store = configureStore({

@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
 import { useHistory } from 'react-router';
-import { useAuth0 } from '@auth0/auth0-react';
-import { fetchQueues } from 'store/queuesSlice';
+import { useFetchQueues, selectQueues } from 'store/queues';
+import { unwrapResult } from '@reduxjs/toolkit';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './home.module.scss';
 import { QueueRequestFactory } from '../../../api/requestFactory';
@@ -13,30 +13,16 @@ export default () => {
   const history = useHistory();
   const { requestMaker } = useRequest();
   const [myQueues, setMyQueues] = useState([]);
-  const { isAuthenticated } = useAuth0();
-  const auth = useAuth0();
   const dispatch = useDispatch();
-  const queues = useSelector((state) => state.queues);
+  const queues = useSelector(selectQueues);
+  const fetchQueues = useFetchQueues();
 
   useEffect(() => {
-    if (isAuthenticated)
-      requestMaker(QueueRequestFactory.getMyQueues()).then((resp) => setMyQueues(resp.queues));
-  }, [requestMaker]);
-
-  useEffect(() => {
-    if (isAuthenticated) {
-      const arg = {
-        auth,
-        // example payload for async thunk
-        payload: { someKey: 'Some value' },
-      };
-      dispatch(fetchQueues(arg));
-    }
-  }, []);
-
-  if (!isAuthenticated) {
-    return null;
-  }
+    dispatch(fetchQueues())
+      // Optinal way to retrive results without useSelector()
+      .then(unwrapResult)
+      .then((payload) => setMyQueues(payload.queues));
+  }, [dispatch]);
 
   const handleDelete = (e, queue) => {
     // Don't trigger parent's onClick
