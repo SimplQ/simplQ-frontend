@@ -63,36 +63,21 @@ export const getToursteps = (screenInnerWidth) => {
   ];
 };
 
-export const hasUserBeenOnTour = () => {
-  const tourStatus = localStorage.getItem('__user_been_on_tour__');
-  if (tourStatus === null) {
-    localStorage.setItem('__user_been_on_tour__', true);
-    return true;
+export const stepChange = (stepNumber) => {
+  if (stepNumber === 0) {
+    const leftArrow = document.querySelector("[data-tour-elem='left-arrow']");
+    const rightArrow = document.querySelector("[data-tour-elem='right-arrow']");
+    if (leftArrow && rightArrow) {
+      leftArrow.childNodes[0].style.color = 'grey';
+      rightArrow.childNodes[0].style.color = 'white';
+    }
+  } else if (stepNumber === 1) {
+    const leftArrow = document.querySelector("[data-tour-elem='left-arrow']");
+    const rightArrow = document.querySelector("[data-tour-elem='right-arrow']");
+
+    if (leftArrow && rightArrow) {
+      leftArrow.childNodes[0].style.color = 'white';
+      rightArrow.childNodes[0].style.color = 'grey';
+    }
   }
-  return false;
 };
-
-  export const stepChange = (stepNumber) => {
-    if(stepNumber == 0)
-    {
-      let leftArrow = document.querySelector("[data-tour-elem='left-arrow']");
-      let rightArrow = document.querySelector("[data-tour-elem='right-arrow']");
-      if(leftArrow && rightArrow)
-      {
-        leftArrow.childNodes[0].style.color = "grey";
-        rightArrow.childNodes[0].style.color = "white";
-      }
-    }
-    else if(stepNumber == 1)
-    {
-      let leftArrow = document.querySelector("[data-tour-elem='left-arrow']");
-      let rightArrow = document.querySelector("[data-tour-elem='right-arrow']");
-
-      if(leftArrow && rightArrow)
-      {
-        leftArrow.childNodes[0].style.color = "white";
-        rightArrow.childNodes[0].style.color = "grey";
-      }
-    }
-  }
-  
