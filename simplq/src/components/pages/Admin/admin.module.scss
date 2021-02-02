@@ -8,9 +8,24 @@
   height: max-content;
 }
 
-.button-group {
-  background-color: $primary-color-dark;
-  border-radius: 0.6rem !important;
+.share {
+  .button-background {
+    background-color: $primary-color-dark;
+    border-radius: 0.6rem !important;
+  }
+
+  .popper {
+    z-index: 100;
+    background-color: #fff;
+  }
+
+  .share-button {
+    display: flex;
+  }
+
+  .share-icon {
+    margin-right: 10px;
+  }
 }
 
 .token-list {

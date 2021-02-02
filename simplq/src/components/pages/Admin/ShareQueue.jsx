@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, memo } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import FileCopyIcon from '@material-ui/icons/FileCopy';
 import { useDispatch } from 'react-redux';
@@ -25,8 +25,8 @@ import StandardButton from '../../common/Button';
 import { setInfoPopupMessage } from '../../../store/appSlice';
 import styles from './admin.module.scss';
 
-const CopyButton = (props) => {
-  const link = `${window.location.origin}/j/${props.queueName}`;
+const CopyButton = ({ queueName, tourTag }) => {
+  const link = `${window.location.origin}/j/${queueName}`;
   const dispatch = useDispatch();
 
   const handleShareButtonClick = () => {
@@ -35,18 +35,14 @@ const CopyButton = (props) => {
 
   return (
     <CopyToClipboard text={link}>
-      <StandardButton
-        onClick={handleShareButtonClick}
-        icon={<FileCopyIcon />}
-        tourTag={props.tourTag}
-      >
+      <StandardButton onClick={handleShareButtonClick} icon={<FileCopyIcon />} tourTag={tourTag}>
         Copy Queue Link
       </StandardButton>
     </CopyToClipboard>
   );
 };
 
-const ShareQueue = (props) => {
+const ShareQueue = ({ queueName, tourTag }) => {
   const [open, setOpen] = useState(false);
   const anchorRef = useRef(null);
 
@@ -61,20 +57,20 @@ const ShareQueue = (props) => {
     setOpen(false);
   };
 
-  const quote = `Hi! Use ${window.location.origin}/j/${props.queueName} to join my queue and get live updates.`;
-  const link = `${window.location.origin}/j/${props.queueName}`;
+  const link = `${window.location.origin}/j/${queueName}`;
+  const quote = `Hi! Use ${link} to join my queue and get live updates.`;
 
   return (
-    <>
+    <div className={styles['share']}>
       <ButtonGroup
         variant="contained"
-        className={styles['button-group']}
+        className={styles['button-background']}
         ref={anchorRef}
         aria-label="split button"
       >
-        <CopyButton {...props} />
+        <CopyButton {...{ queueName, tourTag }} />
         <Button
-          className={styles['button-group']}
+          className={styles['button-background']}
           color="primary"
           size="small"
           onClick={handleToggle}
@@ -83,7 +79,7 @@ const ShareQueue = (props) => {
         </Button>
       </ButtonGroup>
       <Popper
-        style={{ zIndex: 100, backgroundColor: '#fff' }}
+        className={styles['popper']}
         open={open}
         anchorEl={anchorRef.current}
         transition
@@ -102,20 +98,28 @@ const ShareQueue = (props) => {
                 <MenuList>
                   Share
                   <MenuItem>
-                    <FacebookShareButton url={link} quote={quote} style={{ display: 'flex' }}>
-                      <FacebookIcon size={24} round style={{ marginRight: 10 }} />
+                    <FacebookShareButton
+                      url={link}
+                      quote={quote}
+                      className={styles['share-button']}
+                    >
+                      <FacebookIcon size={24} round className={styles['share-icon']} />
                       Facebook
                     </FacebookShareButton>
                   </MenuItem>
                   <MenuItem>
-                    <TwitterShareButton url={link} title={quote} style={{ display: 'flex' }}>
-                      <TwitterIcon size={24} round style={{ marginRight: 10 }} />
+                    <TwitterShareButton url={link} title={quote} className={styles['share-button']}>
+                      <TwitterIcon size={24} round className={styles['share-icon']} />
                       Twitter
                     </TwitterShareButton>
                   </MenuItem>
                   <MenuItem>
-                    <WhatsappShareButton url={link} title={quote} style={{ display: 'flex' }}>
-                      <WhatsappIcon size={24} round style={{ marginRight: 10 }} />
+                    <WhatsappShareButton
+                      url={link}
+                      title={quote}
+                      className={styles['share-button']}
+                    >
+                      <WhatsappIcon size={24} round className={styles['share-icon']} />
                       Whatsapp
                     </WhatsappShareButton>
                   </MenuItem>
@@ -125,8 +129,8 @@ const ShareQueue = (props) => {
           </Grow>
         )}
       </Popper>
-    </>
+    </div>
   );
 };
 
-export default ShareQueue;
+export default memo(ShareQueue);
