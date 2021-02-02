@@ -42,9 +42,7 @@ const useFetchQueues = () => {
  *
  * @returns fetchQueues async action creator
  */
-const fetchQueues = createAsyncThunk('queues/requestStatus', async () => {
-  return undefined;
-});
+const fetchQueues = createAsyncThunk('queues/requestStatus');
 
 /**
  * A hook to access the deleteQueue async action creator.
@@ -68,8 +66,6 @@ const useDeleteQueue = () => {
   return deleteQueue;
 };
 
-const deleteQueue = createAsyncThunk('deleteQueue/requestStatus', async () => {
-  return undefined;
-});
+const deleteQueue = createAsyncThunk('deleteQueue/requestStatus');
 
 export { fetchQueues, useFetchQueues, deleteQueue, useDeleteQueue };
