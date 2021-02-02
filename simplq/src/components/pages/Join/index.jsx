@@ -21,7 +21,7 @@ export default (props) => {
       }
     }
     fetchData();
-  }, [queueName, requestMaker]);
+  }, [queueName, requestMaker, props.history]);
 
   if (!queueStatusResponse) {
     return <LoadingIndicator />;
