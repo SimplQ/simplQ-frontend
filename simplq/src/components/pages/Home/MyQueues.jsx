@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
 import { useHistory } from 'react-router';
@@ -10,12 +10,12 @@ export default () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const queues = useSelector(selectQueues);
-  const fetchQueues = useFetchQueues();
+  const fetchQueues = useCallback(useFetchQueues(), []);
   const deleteQueue = useDeleteQueue();
 
   useEffect(() => {
     dispatch(fetchQueues());
-  }, [dispatch]);
+  }, [dispatch, fetchQueues]);
 
   const handleDelete = (e, queue) => {
     // Don't trigger parent's onClick
