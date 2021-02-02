@@ -1,4 +1,4 @@
-import React, { useState, useRef, memo } from 'react';
+import React, { useState, useRef } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import FileCopyIcon from '@material-ui/icons/FileCopy';
 import { useDispatch } from 'react-redux';
@@ -25,10 +25,8 @@ import StandardButton from '../../common/Button';
 import { setInfoPopupMessage } from '../../../store/appSlice';
 import styles from './admin.module.scss';
 
-const CopyButton = ({ queueName, tourTag }) => {
-  const link = `${window.location.origin}/j/${queueName}`;
+const CopyButton = ({ tourTag, link }) => {
   const dispatch = useDispatch();
-
   const handleShareButtonClick = () => {
     dispatch(setInfoPopupMessage('Copied queue link to clipboard'));
   };
@@ -68,7 +66,7 @@ const ShareQueue = ({ queueName, tourTag }) => {
         ref={anchorRef}
         aria-label="split button"
       >
-        <CopyButton {...{ queueName, tourTag }} />
+        <CopyButton {...{ tourTag, link }} />
         <Button
           className={styles['button-background']}
           color="primary"
@@ -133,4 +131,4 @@ const ShareQueue = ({ queueName, tourTag }) => {
   );
 };
 
-export default memo(ShareQueue);
+export default ShareQueue;
