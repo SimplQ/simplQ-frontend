@@ -1,25 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
 import { useHistory } from 'react-router';
 import { useFetchQueues, useDeleteQueue, selectQueues } from 'store/queues';
-import { unwrapResult } from '@reduxjs/toolkit';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './home.module.scss';
 
 export default () => {
   const history = useHistory();
-  const [myQueues, setMyQueues] = useState([]);
   const dispatch = useDispatch();
   const queues = useSelector(selectQueues);
   const fetchQueues = useFetchQueues();
   const deleteQueue = useDeleteQueue();
 
   useEffect(() => {
-    dispatch(fetchQueues())
-      // Optinal way to retrive results without useSelector()
-      .then(unwrapResult)
-      .then((payload) => setMyQueues(payload.queues));
+    dispatch(fetchQueues());
   }, [dispatch]);
 
   const handleDelete = (e, queue) => {
@@ -27,17 +22,14 @@ export default () => {
     const arg = { queueId: queue.queueId };
     e.stopPropagation();
     dispatch(deleteQueue(arg))
-      // Optinal way to triger update.
-      // A better way would be to do all of this in redux async action.
-      // Instead of fetching queues again, update redux store on successfule delete.
-      .then(() => {
-        return dispatch(fetchQueues());
-      });
+      // waht is the next line?
+      .then(() => history.push('/'));
   };
+
   return (
     <div className={styles['my-queue']}>
       <p>
-        {myQueues.length === 0
+        {queues.length === 0
           ? "Looks like you don't have any active queues. Start by creating one..."
           : 'What would you like to do today? Here are your active queues:'}
       </p>

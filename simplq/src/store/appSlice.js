@@ -30,16 +30,14 @@ const appSlice = createSlice({
     [fetchQueues.fulfilled]: (state, action) => {
       state.infoText = `Number of queues fetched: ${action.payload.queues.length}`;
     },
-    [deleteQueue.pending]: (state, action) => {
-      console.log('deleteQueue.pending action', action);
+    [deleteQueue.pending]: (state) => {
       state.infoText = `Deleting queue...`;
     },
     [deleteQueue.rejected]: (state, action) => {
       state.errorText = action.error.message;
     },
     [deleteQueue.fulfilled]: (state, action) => {
-      console.log('deleteQueue.fulfiled action', action);
-      state.infoText = `Deleted ${action.payload}`;
+      state.infoText = `Deleted ${action.payload.queueName}`;
     },
   },
 });

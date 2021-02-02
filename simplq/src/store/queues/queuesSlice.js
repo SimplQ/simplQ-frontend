@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchQueues } from './queuesAsyncActions';
+import { fetchQueues, deleteQueue } from './queuesAsyncActions';
 
 const queuesSlice = createSlice({
   name: 'queues',
@@ -12,6 +12,13 @@ const queuesSlice = createSlice({
     // handle fulfiled request
     [fetchQueues.fulfilled]: (state, action) => {
       return action.payload.queues;
+    },
+    [deleteQueue.fulfilled]: (state, action) => {
+      const { queueId } = action.payload;
+      const index = state.findIndex((queue) => queue.queueId === queueId);
+      if (index > -1) {
+        state.splice(index, 1);
+      }
     },
   },
 });
