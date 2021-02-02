@@ -8,6 +8,11 @@
   height: max-content;
 }
 
+.button-group {
+  background-color: $primary-color-dark;
+  border-radius: 0.6rem !important;
+}
+
 .token-list {
   @include center-horizontally();
   max-width: 40rem;
