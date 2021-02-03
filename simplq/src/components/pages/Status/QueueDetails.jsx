@@ -1,21 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import InfoIcon from '@material-ui/icons/Info';
-import QueueStats from '../../common/QueueStats';
-import { QueueRequestFactory } from '../../../api/requestFactory';
+import QueueStats from 'components/common/QueueStats';
+import { useGetQueueStatus } from 'store/queues';
+import { useDispatch } from 'react-redux';
 import SidePanelItem from '../../common/SidePanel/SidePanelItem';
-import useRequest from '../../../api/useRequest';
 
-export default (props) => {
-  const [queueStatusResponse, setQueueStatusResponse] = useState();
-  const { requestMaker } = useRequest();
+export default ({ queueId }) => {
+  const [queueStatus, setQueueStatus] = useState();
+  const dispatch = useDispatch();
+  const getQueueStatus = useCallback(useGetQueueStatus(), []);
 
   useEffect(() => {
-    async function fetchData() {
-      const response = await requestMaker(QueueRequestFactory.getStatus(props.queueId));
-      setQueueStatusResponse(response);
-    }
-    fetchData();
-  }, [props.queueId, requestMaker]);
+    // TODO: Can this state be reused? Do we need a reducer for it?
+    dispatch(getQueueStatus(queueId)).then((status) => setQueueStatus(status));
+  }, [queueId, dispatch, getQueueStatus]);
 
   return (
     <SidePanelItem
@@ -23,9 +21,9 @@ export default (props) => {
       title="Queue Details"
       description="Other information about the queue"
       expandable
-      loading={!queueStatusResponse}
+      loading={!queueStatus}
     >
-      <QueueStats queueStatus={queueStatusResponse} />
+      <QueueStats queueStatus={queueStatus} />
     </SidePanelItem>
   );
 };

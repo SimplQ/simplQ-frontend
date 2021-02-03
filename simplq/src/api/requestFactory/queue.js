@@ -11,6 +11,16 @@ export const get = (queueId) => ({ method: 'get', url: `/queue/${queueId}` });
 // This endpoint can be envoked by non-owners as well.
 export const getStatus = (queueId) => ({ method: 'get', url: `/queue/status?queueId=${queueId}` });
 
+/**
+ *
+ * @param {string} queueId
+ * @returns {Object} request - partial axious request without baseURL
+ */
+export const getQueueStatus = (queueId) => ({
+  method: 'get',
+  url: `/queue/status?queueId=${queueId}`,
+});
+
 // Same as getStatus, but fetch by name instead of ID.
 export const getStatusByName = (queueName) => ({
   method: 'get',
