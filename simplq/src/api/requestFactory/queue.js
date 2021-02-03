@@ -7,10 +7,6 @@ export const create = (queueName) => ({ method: 'post', url: '/queue', data: { q
 // Get a queue by id. Returns all active tokens in the queue
 export const get = (queueId) => ({ method: 'get', url: `/queue/${queueId}` });
 
-// Return public stats for the queue, like number of people currently in the queue etc.
-// This endpoint can be envoked by non-owners as well.
-export const getStatus = (queueId) => ({ method: 'get', url: `/queue/status?queueId=${queueId}` });
-
 /**
  *
  * @param {string} queueId
