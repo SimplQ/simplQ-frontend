@@ -1,4 +1,5 @@
 import React from 'react';
+import * as Sentry from '@sentry/react';
 
 export const getToursteps = (screenInnerWidth) => {
   const tourProperties = {
@@ -64,20 +65,22 @@ export const getToursteps = (screenInnerWidth) => {
 };
 
 export const stepChange = (stepNumber) => {
-  if (stepNumber === 0) {
-    const leftArrow = document.querySelector("[data-tour-elem='left-arrow']");
-    const rightArrow = document.querySelector("[data-tour-elem='right-arrow']");
-    if (leftArrow && rightArrow) {
-      leftArrow.childNodes[0].style.color = 'grey';
-      rightArrow.childNodes[0].style.color = 'white';
-    }
-  } else if (stepNumber === 1) {
-    const leftArrow = document.querySelector("[data-tour-elem='left-arrow']");
-    const rightArrow = document.querySelector("[data-tour-elem='right-arrow']");
+  const leftArrow = document.querySelector("[data-tour-elem='left-arrow']");
+  const rightArrow = document.querySelector("[data-tour-elem='right-arrow']");
 
     if (leftArrow && rightArrow) {
-      leftArrow.childNodes[0].style.color = 'white';
-      rightArrow.childNodes[0].style.color = 'grey';
-    }
+      if (stepNumber === 0) {
+          leftArrow.childNodes[0].style.color = 'grey';
+          rightArrow.childNodes[0].style.color = 'white';
+        }
+      else if (stepNumber === 1) {
+          leftArrow.childNodes[0].style.color = 'white';
+          rightArrow.childNodes[0].style.color = 'grey';
+      }
   }
-};
+  else
+  {
+    Sentry.captureMessage("left-arrow or right-arrow selectors of reatTour package not found");
+  }
+
+}
