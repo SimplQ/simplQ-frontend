@@ -1,9 +1,8 @@
 /* eslint-disable no-param-reassign */
-import useAuth from 'api/auth';
+import useAuth, { makeAuthedRequest } from 'api/auth';
 
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { QueueRequestFactory } from 'api/requestFactory';
-import makeAuthedRequest from 'api/axios-alt';
 
 /**
  * A hook to access the fetchQuees async action creator.
