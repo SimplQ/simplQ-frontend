@@ -19,9 +19,9 @@ export default () => {
 
   const handleDelete = (e, queue) => {
     // Don't trigger parent's onClick
-    const arg = { queueId: queue.queueId };
     e.stopPropagation();
-    dispatch(deleteQueue(arg))
+
+    dispatch(deleteQueue({ queueId: queue.queueId }))
       // waht is the next line?
       .then(() => history.push('/'));
   };
