@@ -51,8 +51,10 @@ node_modules/
 .yarn-integrity
 
 # dotenv environment variables file
-.env
 node_modules/
 
 # For Jetbrains-Webstorm files
 .idea
+
+# Configuration will be generated
+simplq/src/config.js
