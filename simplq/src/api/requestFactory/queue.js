@@ -14,7 +14,7 @@ export const getStatus = (queueId) => ({ method: 'get', url: `/queue/status?queu
 /**
  *
  * @param {string} queueId
- * @returns {Object} request - partial axious request without baseURL
+ * @returns {Object} request - partial axios request without baseURL
  */
 export const getQueueStatus = (queueId) => ({
   method: 'get',

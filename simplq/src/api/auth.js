@@ -5,7 +5,7 @@ import axios from 'axios';
 const baseURL = 'https://devbackend.simplq.me/v1';
 
 /**
- * Async function for for sending request with Auth0
+ * Async function for sending request with Auth0
  *
  * It combines useRequest and makeRequest. Since
  * @auth0/auth0-react can work only wthin a component,
