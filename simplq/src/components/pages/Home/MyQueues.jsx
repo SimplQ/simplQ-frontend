@@ -21,9 +21,7 @@ export default () => {
     // Don't trigger parent's onClick
     e.stopPropagation();
 
-    dispatch(deleteQueue({ queueId: queue.queueId }))
-      // waht is the next line?
-      .then(() => history.push('/'));
+    dispatch(deleteQueue({ queueId: queue.queueId }));
   };
 
   return (
