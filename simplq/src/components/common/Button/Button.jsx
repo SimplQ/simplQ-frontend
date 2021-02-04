@@ -8,7 +8,7 @@ const StandardButton = (props) => {
       type="submit"
       onClick={onClick}
       className={props.outlined ? styles['standard-button-outlined'] : styles['standard-button']}
-      reactour-selector={props.tour_tag}
+      reactour-selector={props.tourTag}
     >
       {props.icon ? <div className={styles['icon']}>{props.icon}</div> : null}
       <div className={styles['text']}>{props.children}</div>

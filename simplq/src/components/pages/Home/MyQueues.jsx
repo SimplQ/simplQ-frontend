@@ -16,7 +16,7 @@ export default () => {
   useEffect(() => {
     if (isAuthenticated)
       requestMaker(QueueRequestFactory.getMyQueues()).then((resp) => setMyQueues(resp.queues));
-  }, [requestMaker]);
+  }, [requestMaker, isAuthenticated]);
 
   if (!isAuthenticated) {
     return null;
@@ -27,6 +27,7 @@ export default () => {
     e.stopPropagation();
     requestMaker(QueueRequestFactory.deleteQueue(queue.queueId)).then(() => history.push('/'));
   };
+
   return (
     <div className={styles['my-queue']}>
       <p>
