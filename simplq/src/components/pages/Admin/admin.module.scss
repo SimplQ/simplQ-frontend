@@ -8,6 +8,25 @@
   height: max-content;
 }
 
+.share {
+  .button-background {
+    background-color: $primary-color-dark;
+    border-radius: 0.6rem;
+  }
+
+  .popper {
+    background-color: #fff;
+  }
+
+  .share-button {
+    display: flex;
+  }
+
+  .share-icon {
+    margin-right: 2rem;
+  }
+}
+
 .token-list {
   @include center-horizontally();
   max-width: 40rem;
