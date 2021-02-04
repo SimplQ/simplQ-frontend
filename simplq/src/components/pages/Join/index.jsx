@@ -1,27 +1,33 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
+import { unwrapResult } from '@reduxjs/toolkit';
+import { useGetQueueStatusByName } from 'store/queues';
+import { useDispatch } from 'react-redux';
 import JoinQueueForm from './Form';
-import { TokenRequestFactory, QueueRequestFactory } from '../../../api/requestFactory';
+import { TokenRequestFactory } from '../../../api/requestFactory';
 import styles from './join.module.scss';
 import LoadingIndicator from '../../common/LoadingIndicator';
 import HeaderSection from '../../common/HeaderSection';
 import QueueStats from '../../common/QueueStats';
 import useRequest from '../../../api/useRequest';
 
-export default (props) => {
-  const queueName = props.match.params.queueName;
+export default ({ history, match }) => {
+  const queueName = match.params.queueName;
+  const getQueueStatusByName = useCallback(useGetQueueStatusByName(), []);
+  const dispatch = useDispatch();
   const [queueStatusResponse, setQueueStatusResponse] = useState();
   const { requestMaker } = useRequest();
+
   useEffect(() => {
-    async function fetchData() {
-      const response = await requestMaker(QueueRequestFactory.getStatusByName(queueName));
-      if (response) {
-        setQueueStatusResponse(response);
-      } else {
-        props.history.push(`/pageNotFound/queueName=${queueName}`);
-      }
-    }
-    fetchData();
-  }, [queueName, requestMaker, props.history]);
+    dispatch(getQueueStatusByName({ queueName }))
+      .then(unwrapResult)
+      .then((status) => {
+        if (status) {
+          setQueueStatusResponse(status);
+        } else {
+          history.push(`/pageNotFound/queueName=${queueName}`);
+        }
+      });
+  }, [queueName, dispatch, getQueueStatusByName, history]);
 
   if (!queueStatusResponse) {
     return <LoadingIndicator />;
@@ -33,7 +39,7 @@ export default (props) => {
     return requestMaker(TokenRequestFactory.create(name, contactNumber, true, queueId)).then(
       (response) => {
         if (response) {
-          props.history.push(`/token/${response.tokenId}`);
+          history.push(`/token/${response.tokenId}`);
         }
       }
     );
@@ -41,7 +47,7 @@ export default (props) => {
 
   return (
     <div>
-      <HeaderSection queueName={queueStatusResponse.queueName} history={props.history} />
+      <HeaderSection queueName={queueStatusResponse.queueName} history={history} />
       <div className={styles['main-content']}>
         <div className={styles['queue-stats']}>
           <QueueStats queueStatus={queueStatusResponse} />
