@@ -19,7 +19,6 @@
     "react/destructuring-assignment": 0,
     "prefer-destructuring": 0,
     "import/no-named-as-default": 0,
-    "dot-notation": 0,
-    "react/jsx-props-no-spreading": 0
+    "dot-notation": 0
   }
 }

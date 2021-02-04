@@ -86,7 +86,9 @@ const ShareQueue = ({ queueName, tourTag }) => {
       >
         {({ TransitionProps, placement }) => (
           <Grow
-            {...TransitionProps}
+            in={TransitionProps?.in}
+            onEnter={TransitionProps?.onEnter}
+            onExited={TransitionProps?.onExited}
             style={{
               transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom',
             }}
