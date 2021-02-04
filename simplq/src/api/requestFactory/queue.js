@@ -17,8 +17,13 @@ export const getQueueStatus = (queueId) => ({
   url: `/queue/status?queueId=${queueId}`,
 });
 
-// Same as getStatus, but fetch by name instead of ID.
-export const getStatusByName = (queueName) => ({
+/**
+ * Request creator to fetch queue status by name
+ *
+ * @param {string} queueName
+ * @returns {Object} request - partial axios request without baseURL
+ */
+export const getQueueStatusByName = (queueName) => ({
   method: 'get',
   url: `/queue/status?queueName=${queueName}`,
 });
