@@ -11,4 +11,6 @@ export {
   useDeleteQueue,
   getQueueStatus,
   useGetQueueStatus,
+  getQueueStatusByName,
+  useGetQueueStatusByName,
 } from './queuesAsyncActions';

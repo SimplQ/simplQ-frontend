@@ -91,6 +91,32 @@ const useGetQueueStatus = () => {
 
 const getQueueStatus = createAsyncThunk('getQueueStatus/requestStatus');
 
+/**
+ * A hook to access the getQueueStatusByName async action creator.
+ *
+ * @returns — getQueueStatusByName async action creator
+ */
+const useGetQueueStatusByName = () => {
+  const auth = useAuth();
+
+  const getQueueStatusByName = createAsyncThunk(
+    'getQueueStatusByName/requestStatus',
+    async ({ queueName }) => {
+      if (!auth || !auth.isAuthenticated) {
+        return {};
+      }
+
+      const authedRequest = makeAuthedRequest(auth, RequestFactory.getQueueStatusByName(queueName));
+      const response = await authedRequest;
+      return response;
+    }
+  );
+
+  return getQueueStatusByName;
+};
+
+const getQueueStatusByName = createAsyncThunk('getQueueStatus/requestStatus');
+
 export {
   fetchQueues,
   useFetchQueues,
@@ -98,4 +124,6 @@ export {
   useDeleteQueue,
   getQueueStatus,
   useGetQueueStatus,
+  getQueueStatusByName,
+  useGetQueueStatusByName,
 };
