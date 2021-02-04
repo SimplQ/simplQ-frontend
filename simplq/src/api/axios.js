@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { store } from '../store';
 import { setErrorPopupMessage } from '../store/appSlice';
+/* eslint-disable  import/no-unresolved, import/extensions */
 import { baseURL } from '../config';
 
 const handleApiErrors = (err) => {
