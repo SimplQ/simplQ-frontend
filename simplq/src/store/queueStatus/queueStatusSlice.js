@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { getQueueStatus, getQueueStatusByName } from 'store/asyncActions';
 
-const selectedQueueSlice = createSlice({
-  name: 'selectedQueue',
+const queueStatusSlice = createSlice({
+  name: 'queueStatus',
   initialState: {},
   reducers: {},
   extraReducers: {
@@ -16,6 +16,6 @@ const selectedQueueSlice = createSlice({
   },
 });
 
-export default selectedQueueSlice.reducer;
+export default queueStatusSlice.reducer;
 
-export const selectSelectedQueue = (state) => state.selectedQueue;
+export const selectQueueStatus = (state) => state.queueStatus;

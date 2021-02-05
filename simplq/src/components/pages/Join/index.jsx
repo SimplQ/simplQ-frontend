@@ -1,7 +1,7 @@
 import React, { useEffect, useCallback } from 'react';
 import { useGetQueueStatusByName } from 'store/asyncActions';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectSelectedQueue } from 'store/selectedQueue';
+import { selectQueueStatus } from 'store/queueStatus';
 import JoinQueueForm from './Form';
 import { TokenRequestFactory } from '../../../api/requestFactory';
 import styles from './join.module.scss';
@@ -14,7 +14,7 @@ export default ({ history, match }) => {
   const queueName = match.params.queueName;
   const getQueueStatusByName = useCallback(useGetQueueStatusByName(), []);
   const dispatch = useDispatch();
-  const queueStatus = useSelector(selectSelectedQueue);
+  const queueStatus = useSelector(selectQueueStatus);
   const { requestMaker } = useRequest();
 
   useEffect(() => {

@@ -2,12 +2,12 @@ import React, { useEffect, useCallback } from 'react';
 import InfoIcon from '@material-ui/icons/Info';
 import QueueStats from 'components/common/QueueStats';
 import { useGetQueueStatus } from 'store/asyncActions';
-import { selectSelectedQueue } from 'store/selectedQueue';
+import { selectQueueStatus } from 'store/queueStatus';
 import { useDispatch, useSelector } from 'react-redux';
 import SidePanelItem from '../../common/SidePanel/SidePanelItem';
 
 export default ({ queueId }) => {
-  const queueStatus = useSelector(selectSelectedQueue);
+  const queueStatus = useSelector(selectQueueStatus);
   const dispatch = useDispatch();
   const getQueueStatus = useCallback(useGetQueueStatus(), []);
 
