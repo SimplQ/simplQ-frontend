@@ -1,5 +1,4 @@
 import React, { useEffect, useCallback } from 'react';
-import { unwrapResult } from '@reduxjs/toolkit';
 import { useGetQueueStatusByName } from 'store/asyncActions';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectSelectedQueue } from 'store/selectedQueue';
@@ -19,12 +18,7 @@ export default ({ history, match }) => {
   const { requestMaker } = useRequest();
 
   useEffect(() => {
-    dispatch(getQueueStatusByName({ queueName }))
-      .then(unwrapResult)
-      // TODO: Do this in async action
-      .catch(() => {
-        history.push(`/pageNotFound/queueName=${queueName}`);
-      });
+    dispatch(getQueueStatusByName({ queueName }));
   }, [queueName, dispatch, getQueueStatusByName, history]);
 
   if (!queueStatus.status) {

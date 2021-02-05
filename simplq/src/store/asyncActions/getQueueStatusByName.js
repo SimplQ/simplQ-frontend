@@ -1,4 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { useHistory } from 'react-router-dom';
 import useAuth, { makeAuthedRequest } from 'api/auth';
 import * as RequestFactory from 'api/requestFactory';
 
@@ -9,17 +10,24 @@ import * as RequestFactory from 'api/requestFactory';
  */
 const useGetQueueStatusByName = () => {
   const auth = useAuth();
+  const history = useHistory();
 
   const getQueueStatusByName = createAsyncThunk(
     'getQueueStatusByName/requestStatus',
-    async ({ queueName }) => {
+    async ({ queueName }, { rejectWithValue }) => {
       if (!auth || !auth.isAuthenticated) {
         return {};
       }
 
       const authedRequest = makeAuthedRequest(auth, RequestFactory.getQueueStatusByName(queueName));
-      const response = await authedRequest;
-      return response;
+
+      try {
+        const response = await authedRequest;
+        return response;
+      } catch (error) {
+        history.push(`/pageNotFound/queueName=${queueName}`);
+        return rejectWithValue({ message: `Queue ${queueName} does not exist, try again...` });
+      }
     }
   );
 

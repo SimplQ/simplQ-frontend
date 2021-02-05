@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
-import { getUserQueues, deleteQueue } from 'store/asyncActions';
+import { getUserQueues, deleteQueue, getQueueStatusByName } from 'store/asyncActions';
 
 const appSlice = createSlice({
   name: 'appSlice',
@@ -38,6 +38,9 @@ const appSlice = createSlice({
     },
     [deleteQueue.fulfilled]: (state, action) => {
       state.infoText = `Deleted ${action.payload.queueName}`;
+    },
+    [getQueueStatusByName.rejected]: (state, action) => {
+      state.errorText = action.payload.message;
     },
   },
 });
