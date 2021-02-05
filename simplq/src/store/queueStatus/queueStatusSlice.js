@@ -13,6 +13,13 @@ const queueStatusSlice = createSlice({
     [getQueueStatusByName.fulfilled]: (state, action) => {
       return action.payload;
     },
+    // handle peding request
+    [getQueueStatus.pnding]: () => {
+      return {};
+    },
+    [getQueueStatusByName.pending]: () => {
+      return {};
+    },
   },
 });
 
