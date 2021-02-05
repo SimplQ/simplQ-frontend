@@ -17,10 +17,6 @@ const useGetQueueStatusByName = () => {
   const getQueueStatusByName = createAsyncThunk(
     typePrefix,
     async ({ queueName }, { rejectWithValue }) => {
-      if (!auth || !auth.isAuthenticated) {
-        return {};
-      }
-
       const authedRequest = makeAuthedRequest(auth, RequestFactory.getQueueStatusByName(queueName));
 
       try {

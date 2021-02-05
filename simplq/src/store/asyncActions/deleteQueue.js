@@ -13,10 +13,6 @@ const useDeleteQueue = () => {
   const auth = useAuth();
 
   const deleteQueue = createAsyncThunk(typePrefix, async (arg) => {
-    if (!auth || !auth.isAuthenticated) {
-      return { queues: [] };
-    }
-
     const { queueId } = arg;
     const authedRequest = makeAuthedRequest(auth, RequestFactory.deleteQueue(queueId));
     const response = await authedRequest;

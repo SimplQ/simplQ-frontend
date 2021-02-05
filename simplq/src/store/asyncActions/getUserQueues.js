@@ -19,9 +19,6 @@ const useGetUserQueues = () => {
   const auth = useAuth();
 
   const getUserQueues = createAsyncThunk(typePrefix, async () => {
-    if (!auth || !auth.isAuthenticated) {
-      return { queues: [] };
-    }
     const authedRequest = makeAuthedRequest(auth, RequestFactory.getUserQueues());
     const response = await authedRequest;
     return response;
