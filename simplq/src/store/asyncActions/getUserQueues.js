@@ -5,15 +5,15 @@ import * as RequestFactory from 'api/requestFactory';
 const typePrefix = 'getUserQueues/requestStatus';
 
 /**
- * A hook to access the fetchQuees async action creator.
+ * A hook to access the getUserQueues async action creator.
  *
- * @returns — fetchQueues async async action creator
+ * @returns — getUserQueues async action creator
  *
  * @example
  *
- * import useFetchQueues from 'store/queues'
+ * import useGetUserQueues from 'store/queues'
  *
- * const fetchQueues = useFetchQueues()
+ * const getUserQueues = useGetUserQueues()
  */
 const useGetUserQueues = () => {
   const auth = useAuth();
@@ -28,7 +28,7 @@ const useGetUserQueues = () => {
 };
 
 /**
- * A shadow function that returns fetchQueues async action creator.
+ * A shadow function that returns getUserQueues async action creator.
  *
  * This should be used just for the action creators that it generates.
 
@@ -36,7 +36,7 @@ const useGetUserQueues = () => {
  *
  * @see https://redux-toolkit.js.org/api/createAsyncThunk#return-value
  *
- * @returns fetchQueues() async action creator
+ * @returns getUserQueues() async action creator
  */
 const getUserQueues = createAsyncThunk(typePrefix);
 

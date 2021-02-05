@@ -8,7 +8,7 @@ const typePrefix = 'getQueueStatusByName/requestStatus';
 /**
  * A hook to access the getQueueStatusByName async action creator.
  *
- * @returns — getQueueStatusByName async action creator
+ * @returns — getQueueStatusByName action creator
  */
 const useGetQueueStatusByName = () => {
   const auth = useAuth();

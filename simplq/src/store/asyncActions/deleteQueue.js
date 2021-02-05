@@ -7,7 +7,7 @@ const typePrefix = 'deleteQueue/requestStatus';
 /**
  * A hook to access the deleteQueue async action creator.
  *
- * @returns — deleteQueue async async action creator
+ * @returns — deleteQueue async action creator
  */
 const useDeleteQueue = () => {
   const auth = useAuth();
