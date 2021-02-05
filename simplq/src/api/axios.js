@@ -1,8 +1,9 @@
 import axios from 'axios';
 import { store } from '../store';
 import { setErrorPopupMessage } from '../store/appSlice';
-
-const baseURL = 'https://devbackend.simplq.me/v1';
+// config.js is generated at runtime, so disabling eslint warning
+/* eslint-disable  import/no-unresolved, import/extensions */
+import { baseURL } from '../config';
 
 const handleApiErrors = (err) => {
   if (!err.response) {

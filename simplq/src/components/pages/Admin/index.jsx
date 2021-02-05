@@ -115,11 +115,7 @@ export default (props) => {
           </StandardButton>
         </div>
         <div className={styles['admin-button']}>
-          <ShareQueue
-            tourTag="reactour__shareQueue"
-            queueName={queueName}
-            className={styles.shareButton}
-          />
+          <ShareQueue tourTag="reactour__shareQueue" queueName={queueName} />
         </div>
       </div>
     </div>
