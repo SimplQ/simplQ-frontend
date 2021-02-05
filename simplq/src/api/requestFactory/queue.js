@@ -1,5 +1,5 @@
 /**
- * Get metadata for all queues creaetd by the current user
+ * Get metadata for all queues created by the current user
  *
  * @returns {Object} request - partial axios request without baseURL
  */
