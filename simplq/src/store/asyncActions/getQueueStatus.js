@@ -2,6 +2,8 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import useAuth, { makeAuthedRequest } from 'api/auth';
 import * as RequestFactory from 'api/requestFactory';
 
+const typePrefix = 'getQueueStatus/requestStatus';
+
 /**
  * A hook to access the deleteQueue async action creator.
  *
@@ -10,7 +12,7 @@ import * as RequestFactory from 'api/requestFactory';
 const useGetQueueStatus = () => {
   const auth = useAuth();
 
-  const getQueueStatus = createAsyncThunk('getQueueStatus/requestStatus', async ({ queueId }) => {
+  const getQueueStatus = createAsyncThunk(typePrefix, async ({ queueId }) => {
     if (!auth || !auth.isAuthenticated) {
       return {};
     }
@@ -23,6 +25,6 @@ const useGetQueueStatus = () => {
   return getQueueStatus;
 };
 
-const getQueueStatus = createAsyncThunk('getQueueStatus/requestStatus');
+const getQueueStatus = createAsyncThunk(typePrefix);
 
 export { getQueueStatus, useGetQueueStatus };

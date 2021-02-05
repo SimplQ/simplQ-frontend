@@ -2,6 +2,8 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import useAuth, { makeAuthedRequest } from 'api/auth';
 import * as RequestFactory from 'api/requestFactory';
 
+const typePrefix = 'getUserQueues/requestStatus';
+
 /**
  * A hook to access the fetchQuees async action creator.
  *
@@ -16,7 +18,7 @@ import * as RequestFactory from 'api/requestFactory';
 const useGetUserQueues = () => {
   const auth = useAuth();
 
-  const getUserQueues = createAsyncThunk('queues/requestStatus', async () => {
+  const getUserQueues = createAsyncThunk(typePrefix, async () => {
     if (!auth || !auth.isAuthenticated) {
       return { queues: [] };
     }
@@ -39,6 +41,6 @@ const useGetUserQueues = () => {
  *
  * @returns fetchQueues() async action creator
  */
-const getUserQueues = createAsyncThunk('queues/requestStatus');
+const getUserQueues = createAsyncThunk(typePrefix);
 
 export { getUserQueues, useGetUserQueues };

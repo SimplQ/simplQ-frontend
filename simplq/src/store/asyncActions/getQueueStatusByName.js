@@ -3,6 +3,8 @@ import { useHistory } from 'react-router-dom';
 import useAuth, { makeAuthedRequest } from 'api/auth';
 import * as RequestFactory from 'api/requestFactory';
 
+const typePrefix = 'getQueueStatusByName/requestStatus';
+
 /**
  * A hook to access the getQueueStatusByName async action creator.
  *
@@ -13,7 +15,7 @@ const useGetQueueStatusByName = () => {
   const history = useHistory();
 
   const getQueueStatusByName = createAsyncThunk(
-    'getQueueStatusByName/requestStatus',
+    typePrefix,
     async ({ queueName }, { rejectWithValue }) => {
       if (!auth || !auth.isAuthenticated) {
         return {};
@@ -34,6 +36,6 @@ const useGetQueueStatusByName = () => {
   return getQueueStatusByName;
 };
 
-const getQueueStatusByName = createAsyncThunk('getQueueStatusByName/requestStatus');
+const getQueueStatusByName = createAsyncThunk(typePrefix);
 
 export { getQueueStatusByName, useGetQueueStatusByName };
