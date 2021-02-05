@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchQueues, deleteQueue } from 'store/queues';
+import { getUserQueues, deleteQueue } from 'store/asyncActions';
 
 const appSlice = createSlice({
   name: 'appSlice',
@@ -21,13 +21,13 @@ const appSlice = createSlice({
     },
   },
   extraReducers: {
-    [fetchQueues.pending]: (state) => {
+    [getUserQueues.pending]: (state) => {
       state.infoText = `Loading queues...`;
     },
-    [fetchQueues.rejected]: (state, action) => {
+    [getUserQueues.rejected]: (state, action) => {
       state.errorText = action.error.message;
     },
-    [fetchQueues.fulfilled]: (state, action) => {
+    [getUserQueues.fulfilled]: (state, action) => {
       state.infoText = `Number of queues fetched: ${action.payload.queues.length}`;
     },
     [deleteQueue.pending]: (state) => {

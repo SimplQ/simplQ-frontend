@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { unwrapResult } from '@reduxjs/toolkit';
-import { useGetQueueStatusByName } from 'store/queues';
+import { useGetQueueStatusByName } from 'store/asyncActions';
 import { useDispatch } from 'react-redux';
 import JoinQueueForm from './Form';
 import { TokenRequestFactory } from '../../../api/requestFactory';

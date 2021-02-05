@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { unwrapResult } from '@reduxjs/toolkit';
 import InfoIcon from '@material-ui/icons/Info';
 import QueueStats from 'components/common/QueueStats';
-import { useGetQueueStatus } from 'store/queues';
+import { useGetQueueStatus } from 'store/asyncActions';
 import { useDispatch } from 'react-redux';
 import SidePanelItem from '../../common/SidePanel/SidePanelItem';
 

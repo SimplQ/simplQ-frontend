@@ -1,5 +1,5 @@
 // Get metadata for all queues creaetd by the current user
-export const getMyQueues = () => ({ method: 'get', url: '/queues' });
+export const getUserQueues = () => ({ method: 'get', url: '/queues' });
 
 // Create a new queue
 export const create = (queueName) => ({ method: 'post', url: '/queue', data: { queueName } });

@@ -1,7 +1,5 @@
-/* eslint-disable no-param-reassign */
-
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchQueues, deleteQueue } from './queuesAsyncActions';
+import { getUserQueues, deleteQueue } from 'store/asyncActions';
 
 const queuesSlice = createSlice({
   name: 'queues',
@@ -10,7 +8,7 @@ const queuesSlice = createSlice({
   reducers: {},
   extraReducers: {
     // handle fulfiled request
-    [fetchQueues.fulfilled]: (state, action) => {
+    [getUserQueues.fulfilled]: (state, action) => {
       return action.payload.queues;
     },
     [deleteQueue.fulfilled]: (state, action) => {
