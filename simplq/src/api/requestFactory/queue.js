@@ -1,4 +1,8 @@
-// Get metadata for all queues creaetd by the current user
+/**
+ * Get metadata for all queues creaetd by the current user
+ *
+ * @returns {Object} request - partial axios request without baseURL
+ */
 export const getUserQueues = () => ({ method: 'get', url: '/queues' });
 
 // Create a new queue
@@ -8,6 +12,7 @@ export const create = (queueName) => ({ method: 'post', url: '/queue', data: { q
 export const get = (queueId) => ({ method: 'get', url: `/queue/${queueId}` });
 
 /**
+ * Request creator to fetch queue status by id
  *
  * @param {string} queueId
  * @returns {Object} request - partial axios request without baseURL
@@ -28,5 +33,10 @@ export const getQueueStatusByName = (queueName) => ({
   url: `/queue/status?queueName=${queueName}`,
 });
 
-// Delete a queue by ID
+/**
+ * Request creator to delete queue by id
+ *
+ * @param {string} queueId
+ * @returns {Object} request - partial axios request without baseURL
+ */
 export const deleteQueue = (queueId) => ({ method: 'delete', url: `/queue/${queueId}` });
