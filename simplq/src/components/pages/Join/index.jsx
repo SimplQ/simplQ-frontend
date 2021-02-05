@@ -1,7 +1,8 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { unwrapResult } from '@reduxjs/toolkit';
 import { useGetQueueStatusByName } from 'store/asyncActions';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectSelectedQueue } from 'store/selectedQueue';
 import JoinQueueForm from './Form';
 import { TokenRequestFactory } from '../../../api/requestFactory';
 import styles from './join.module.scss';
@@ -14,26 +15,23 @@ export default ({ history, match }) => {
   const queueName = match.params.queueName;
   const getQueueStatusByName = useCallback(useGetQueueStatusByName(), []);
   const dispatch = useDispatch();
-  const [queueStatusResponse, setQueueStatusResponse] = useState();
+  const queueStatus = useSelector(selectSelectedQueue);
   const { requestMaker } = useRequest();
 
   useEffect(() => {
     dispatch(getQueueStatusByName({ queueName }))
       .then(unwrapResult)
-      .then((status) => {
-        if (status) {
-          setQueueStatusResponse(status);
-        } else {
-          history.push(`/pageNotFound/queueName=${queueName}`);
-        }
+      // TODO: Do this in async action
+      .catch(() => {
+        history.push(`/pageNotFound/queueName=${queueName}`);
       });
   }, [queueName, dispatch, getQueueStatusByName, history]);
 
-  if (!queueStatusResponse) {
+  if (!queueStatus.status) {
     return <LoadingIndicator />;
   }
 
-  const queueId = queueStatusResponse.queueId;
+  const queueId = queueStatus.queueId;
 
   const joinQueueHandler = (name, contactNumber) => {
     return requestMaker(TokenRequestFactory.create(name, contactNumber, true, queueId)).then(
@@ -47,10 +45,10 @@ export default ({ history, match }) => {
 
   return (
     <div>
-      <HeaderSection queueName={queueStatusResponse.queueName} history={history} />
+      <HeaderSection queueName={queueStatus.queueName} history={history} />
       <div className={styles['main-content']}>
         <div className={styles['queue-stats']}>
-          <QueueStats queueStatus={queueStatusResponse} />
+          <QueueStats queueStatus={queueStatus} />
         </div>
         <p className={styles['message']}>Please enter your contact details to join this queue</p>
         <JoinQueueForm
