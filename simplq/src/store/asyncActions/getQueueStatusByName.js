@@ -26,6 +26,6 @@ const useGetQueueStatusByName = () => {
   return getQueueStatusByName;
 };
 
-const getQueueStatusByName = createAsyncThunk('getQueueStatus/requestStatus');
+const getQueueStatusByName = createAsyncThunk('getQueueStatusByName/requestStatus');
 
 export { getQueueStatusByName, useGetQueueStatusByName };
