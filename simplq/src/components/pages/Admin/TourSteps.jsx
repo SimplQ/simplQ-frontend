@@ -68,19 +68,15 @@ export const stepChange = (stepNumber) => {
   const leftArrow = document.querySelector("[data-tour-elem='left-arrow']");
   const rightArrow = document.querySelector("[data-tour-elem='right-arrow']");
 
-    if (leftArrow && rightArrow) {
-      if (stepNumber === 0) {
-          leftArrow.childNodes[0].style.color = 'grey';
-          rightArrow.childNodes[0].style.color = 'white';
-        }
-      else if (stepNumber === 1) {
-          leftArrow.childNodes[0].style.color = 'white';
-          rightArrow.childNodes[0].style.color = 'grey';
-      }
+  if (leftArrow && rightArrow) {
+    if (stepNumber === 0) {
+      leftArrow.childNodes[0].style.color = 'grey';
+      rightArrow.childNodes[0].style.color = 'white';
+    } else if (stepNumber === 1) {
+      leftArrow.childNodes[0].style.color = 'white';
+      rightArrow.childNodes[0].style.color = 'grey';
+    }
+  } else {
+    Sentry.captureMessage('left-arrow or right-arrow selectors of reatTour package not found');
   }
-  else
-  {
-    Sentry.captureMessage("left-arrow or right-arrow selectors of reatTour package not found");
-  }
-
-}
+};
