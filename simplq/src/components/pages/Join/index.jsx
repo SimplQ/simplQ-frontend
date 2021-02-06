@@ -1,21 +1,19 @@
 import React, { useEffect, useCallback } from 'react';
-import { useGetQueueStatusByName } from 'store/asyncActions';
 import { useDispatch, useSelector } from 'react-redux';
+import { useGetQueueStatusByName, useJoinQueue } from 'store/asyncActions';
 import { selectQueueStatus } from 'store/queueStatus';
 import JoinQueueForm from './Form';
-import { TokenRequestFactory } from '../../../api/requestFactory';
 import styles from './join.module.scss';
 import LoadingIndicator from '../../common/LoadingIndicator';
 import HeaderSection from '../../common/HeaderSection';
 import QueueStats from '../../common/QueueStats';
-import useRequest from '../../../api/useRequest';
 
 export default ({ history, match }) => {
   const queueName = match.params.queueName;
   const getQueueStatusByName = useCallback(useGetQueueStatusByName(), []);
+  const joinQueue = useJoinQueue();
   const dispatch = useDispatch();
   const queueStatus = useSelector(selectQueueStatus);
-  const { requestMaker } = useRequest();
 
   useEffect(() => {
     dispatch(getQueueStatusByName({ queueName }));
@@ -28,13 +26,9 @@ export default ({ history, match }) => {
   const queueId = queueStatus.queueId;
 
   const joinQueueHandler = (name, contactNumber) => {
-    return requestMaker(TokenRequestFactory.create(name, contactNumber, true, queueId)).then(
-      (response) => {
-        if (response) {
-          history.push(`/token/${response.tokenId}`);
-        }
-      }
-    );
+    // TODO: Refactor JoinQueueForm to get state from redux.
+    // TODO: remove return
+    return dispatch(joinQueue({ name, contactNumber, notifiable: true, queueId }));
   };
 
   return (

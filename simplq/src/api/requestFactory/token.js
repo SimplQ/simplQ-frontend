@@ -18,18 +18,6 @@ export const createToken = (name, contactNumber, notifiable, queueId) => ({
   },
 });
 
-// Create a new token. This request is used to add a new token intoo the queue
-export const create = (name, contact, notifiable, queueId) => ({
-  method: 'post',
-  url: '/token',
-  data: {
-    name,
-    contactNumber: contact,
-    queueId,
-    notifiable,
-  },
-});
-
 // Get a token by ID
 export const get = (tokenId) => ({ method: 'get', url: `/token/${tokenId}` });
 

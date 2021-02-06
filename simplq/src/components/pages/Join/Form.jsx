@@ -61,6 +61,7 @@ export function JoinQueueForm(props) {
 
     setAddingInProgress(true);
 
+    // TODO: Read state from redux
     props.joinQueueHandler(name, contact).then(() => {
       setName('');
       setContact('');
