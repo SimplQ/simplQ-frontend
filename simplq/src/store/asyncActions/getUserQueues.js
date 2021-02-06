@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import useAuth, { makeAuthedRequest } from 'api/auth';
 import * as RequestFactory from 'api/requestFactory';
 
-const typePrefix = 'getUserQueues/requestStatus';
+const typePrefix = 'getUserQueues/action';
 
 /**
  * A hook to access the getUserQueues async action creator.

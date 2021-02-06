@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import useAuth, { makeAuthedRequest } from 'api/auth';
 import * as RequestFactory from 'api/requestFactory';
 
-const typePrefix = 'getQueueStatusByName/requestStatus';
+const typePrefix = 'getQueueStatusByName/action';
 
 /**
  * A hook to access the getQueueStatusByName async action creator.
