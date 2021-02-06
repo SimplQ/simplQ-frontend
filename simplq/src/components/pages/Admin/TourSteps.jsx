@@ -1,4 +1,5 @@
 import React from 'react';
+import * as Sentry from '@sentry/react';
 
 export const getToursteps = (screenInnerWidth) => {
   const tourProperties = {
@@ -45,6 +46,7 @@ export const getToursteps = (screenInnerWidth) => {
               alt="share queue arrow"
               height="80"
               width="120"
+              style={{ transform: 'rotate(-10deg)' }}
             />
           ) : null}
           <div style={{ transform: 'rotate(-10deg)' }}>Share Queue</div>
@@ -62,11 +64,23 @@ export const getToursteps = (screenInnerWidth) => {
   ];
 };
 
-export const hasUserBeenOnTour = () => {
-  const tourStatus = localStorage.getItem('__user_been_on_tour__');
-  if (tourStatus === null) {
-    localStorage.setItem('__user_been_on_tour__', true);
-    return true;
+export const stepChange = (stepNumber) => {
+  const leftArrow = document.querySelector("[data-tour-elem='left-arrow']");
+  const rightArrow = document.querySelector("[data-tour-elem='right-arrow']");
+
+    if (leftArrow && rightArrow) {
+      if (stepNumber === 0) {
+          leftArrow.childNodes[0].style.color = 'grey';
+          rightArrow.childNodes[0].style.color = 'white';
+        }
+      else if (stepNumber === 1) {
+          leftArrow.childNodes[0].style.color = 'white';
+          rightArrow.childNodes[0].style.color = 'grey';
+      }
   }
-  return false;
-};
+  else
+  {
+    Sentry.captureMessage("left-arrow or right-arrow selectors of reatTour package not found");
+  }
+
+}
