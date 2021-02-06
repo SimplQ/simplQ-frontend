@@ -7,8 +7,7 @@ const baseURL = 'https://devbackend.simplq.me/v1';
 /**
  * Async function for sending request with Auth0
  *
- * It combines useRequest and makeRequest. Since
- * @auth0/auth0-react can work only wthin a component,
+ * Since @auth0/auth0-react can work only wthin a component,
  * the whole auth object created with useAuth() must be
  * passed as parameter.
  *
