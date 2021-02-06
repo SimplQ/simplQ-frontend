@@ -17,8 +17,8 @@ import { createSlice } from '@reduxjs/toolkit';
  *
  * const actionStatus = useSelector((state) => state['deleteQueue'])
  */
-const actionSlice = createSlice({
-  name: 'action',
+const actionStatusSlice = createSlice({
+  name: 'actionStatus',
   initialState: {},
   reducers: {},
   extraReducers: (builder) => {
@@ -32,4 +32,4 @@ const actionSlice = createSlice({
   },
 });
 
-export default actionSlice.reducer;
+export default actionStatusSlice.reducer;
