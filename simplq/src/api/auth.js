@@ -1,8 +1,7 @@
 import { useAuth0 } from '@auth0/auth0-react';
 
 import axios from 'axios';
-// TODO: Read base url from env
-const baseURL = 'https://devbackend.simplq.me/v1';
+import { baseURL } from '../config';
 
 /**
  * Async function for sending request with Auth0
