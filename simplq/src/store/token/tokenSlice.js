@@ -10,10 +10,6 @@ const tokenSlice = createSlice({
     [getToken.fulfilled]: (state, action) => {
       return action.payload;
     },
-    // handle pending request
-    [getToken.pending]: () => {
-      return {};
-    },
   },
 });
 
