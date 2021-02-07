@@ -19,7 +19,7 @@ function QueueStatus(props) {
   const deleteToken = useGetToken();
 
   useEffect(() => {
-    dispatch(getToken({ tokenId }));
+    dispatch(getToken({ tokenId, refresh: true }));
   }, [tokenId, dispatch, getToken]);
 
   const onDeleteClick = () => {
