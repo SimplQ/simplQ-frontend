@@ -1,14 +1,22 @@
+/* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
 import { getToken } from 'store/asyncActions';
 
 const tokenSlice = createSlice({
   name: 'token',
-  initialState: {},
+  initialState: {
+    token: {},
+    loaded: false,
+  },
   reducers: {},
   extraReducers: {
-    // handle fulfiled request
+    // handle fulfilled request
     [getToken.fulfilled]: (state, action) => {
-      return action.payload;
+      return { token: action.payload, loaded: true };
+    },
+    // handle pending request
+    [getToken.pending]: (state) => {
+      state.loaded = false;
     },
   },
 });
