@@ -10,3 +10,5 @@ export { deleteQueue, useDeleteQueue } from './deleteQueue';
 export { getQueueStatus, useGetQueueStatus } from './getQueueStatus';
 export { getQueueStatusByName, useGetQueueStatusByName } from './getQueueStatusByName';
 export { joinQueue, useJoinQueue } from './joinQueue';
+
+export { getToken, useGetToken } from './getToken';
