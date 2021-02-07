@@ -4,7 +4,6 @@ import React, { useState, useEffect, useCallback } from 'react';
 import RefreshIcon from '@material-ui/icons/Refresh';
 import CropFreeIcon from '@material-ui/icons/CropFree';
 import { useAuth0 } from '@auth0/auth0-react';
-import Tour from 'reactour';
 import TokenList from './TokenList';
 import { TokenRequestFactory, QueueRequestFactory } from '../../../api/requestFactory';
 import ShareQueue from './ShareQueue';
@@ -14,9 +13,9 @@ import SidePanel from './AdminSidePanel';
 import StandardButton from '../../common/Button';
 import Ribbon from '../../common/Ribbon';
 import QRCode from '../../common/Popup/QrCode';
-import { disableScroll, enableScroll } from './ControlScroll';
-import { getToursteps, hasUserBeenOnTour } from './TourSteps';
+import { getToursteps, stepChange } from './TourSteps';
 import useRequest from '../../../api/useRequest';
+import Tour from '../../common/Tour/Tour';
 
 const TIMEOUT = 10000;
 let timeoutId;
@@ -28,12 +27,10 @@ export default (props) => {
   const [queueName, setQueueName] = useState();
   const [description, setDescription] = useState('');
   const [showQrCodeModal, setShowQrCodeModal] = useState(false);
-  const [tourOpen, setTourOpen] = useState(hasUserBeenOnTour());
+
   const [toursteps, setToursteps] = useState(getToursteps(window.innerHeight));
   const { isAuthenticated } = useAuth0();
   const { requestMaker } = useRequest();
-
-  const closeTour = () => setTourOpen(false);
 
   const update = useCallback(() => {
     clearTimeout(timeoutId);
@@ -123,19 +120,7 @@ export default (props) => {
 
   return (
     <div className={styles['admin-content']}>
-      <Tour
-        showNavigation={false}
-        steps={toursteps}
-        showNavigationNumber={false}
-        showNumber={false}
-        showCloseButton={false}
-        isOpen={tourOpen}
-        rounded={10}
-        onRequestClose={closeTour}
-        onAfterOpen={disableScroll}
-        onBeforeClose={enableScroll}
-      />
-
+      <Tour toursteps={toursteps} stepChange={stepChange} />
       <HeaderSection />
       {isAuthenticated ? null : (
         <Ribbon
