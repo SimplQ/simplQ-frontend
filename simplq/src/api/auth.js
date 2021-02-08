@@ -1,8 +1,10 @@
 import { useAuth0 } from '@auth0/auth0-react';
 
 import axios from 'axios';
-// TODO: Read base url from env
-const baseURL = 'https://devbackend.simplq.me/v1';
+
+// config.js is generated at runtime, so disabling eslint warning
+/* eslint-disable  import/no-unresolved, import/extensions */
+import { baseURL } from '../config';
 
 /**
  * Async function for sending request with Auth0
@@ -18,7 +20,6 @@ const makeAuthedRequest = async (auth, request) => {
   const accessToken = auth.isAuthenticated
     ? await auth.getAccessTokenSilently({ audience: baseURL })
     : 'anonymous';
-
   return axios({
     baseURL,
     ...request,
