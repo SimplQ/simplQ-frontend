@@ -31,7 +31,7 @@ export default ({ history, match }) => {
     <div>
       <HeaderSection queueName={queueStatus.queueName} history={history} />
       <div className={styles['main-content']}>
-        <LoadingStatus dependsOn={{ getQueueStatusByName }}>
+        <LoadingStatus dependsOn="getQueueStatusByName">
           <div className={styles['queue-stats']}>
             <QueueStats queueStatus={queueStatus} />
           </div>

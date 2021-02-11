@@ -4,14 +4,14 @@ import { useSelector } from 'react-redux';
 import Loading from './Loading';
 
 const LoadingStatus = ({ children, dependsOn }) => {
-  const actionName = Object.keys(dependsOn)[0];
+  const actionName = dependsOn;
   const actionStatus = useSelector((state) => state.actionStatus[actionName]);
 
   return <Loading actionStatus={actionStatus}>{children}</Loading>;
 };
 
 LoadingStatus.propTypes = {
-  dependsOn: PropTypes.objectOf(PropTypes.function).isRequired,
+  dependsOn: PropTypes.string.isRequired,
 };
 
 export default LoadingStatus;
