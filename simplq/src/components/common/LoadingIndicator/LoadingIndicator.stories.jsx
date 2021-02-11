@@ -1,8 +1,8 @@
-import Indicator from '.';
+import LoadingIndicator from '.';
 
 export default {
-  component: Indicator,
-  title: 'Indicator',
+  component: LoadingIndicator,
+  title: 'LoadingIndicator',
 };
 
-export const MainIndicator = Indicator;
+export const MainLoadingIndicator = LoadingIndicator;
