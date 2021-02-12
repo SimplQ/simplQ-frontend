@@ -1,8 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import PropagateLoader from 'react-spinners/PropagateLoader';
 import styles from './Loading.module.scss';
 
-export default ({ children, actionStatus, isLoading }) => {
+const Loading = ({ children, actionStatus, isLoading }) => {
   if (actionStatus === 'fulfilled' || isLoading === false) {
     return <>{children}</>;
   }
@@ -21,3 +22,15 @@ export default ({ children, actionStatus, isLoading }) => {
     </div>
   );
 };
+
+Loading.defaultProps = {
+  isLoading: undefined,
+  actionStatus: undefined,
+};
+
+Loading.propTypes = {
+  isLoading: PropTypes.bool,
+  actionStatus: PropTypes.oneOf(['pending', 'fulfilled', 'rejected']),
+};
+
+export default Loading;
