@@ -2,16 +2,12 @@ import React from 'react';
 import PropagateLoader from 'react-spinners/PropagateLoader';
 import styles from './Loading.module.scss';
 
-export default ({ children, actionStatus }) => {
-  if (!actionStatus || actionStatus === 'pending') {
-    return (
-      <div className={styles.main}>
-        <PropagateLoader color="#3a3768" />
-      </div>
-    );
+export default ({ children, actionStatus, isLoading }) => {
+  if (actionStatus === 'fulfilled' || isLoading === false) {
+    return <>{children}</>;
   }
 
-  if (!actionStatus || actionStatus === 'rejected') {
+  if (actionStatus === 'rejected') {
     return (
       <div className={styles.main}>
         An unknown error occured. Please look at the console log for more nfo.
@@ -19,5 +15,9 @@ export default ({ children, actionStatus }) => {
     );
   }
 
-  return <>{children}</>;
+  return (
+    <div className={styles.main}>
+      <PropagateLoader color="#3a3768" />
+    </div>
+  );
 };

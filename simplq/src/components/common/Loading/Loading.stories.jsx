@@ -4,21 +4,33 @@ import Loading from './Loading';
 export default {
   component: Loading,
   title: 'Loading',
+  argTypes: {
+    actionStatus: {
+      control: {
+        type: 'select',
+        options: ['pending', 'fulfilled', 'rejected'],
+      },
+    },
+  },
 };
 
 const Template = (args) => (
-  <Loading actionStatus={args.actionStatus}>
+  /* eslint-disable-next-line react/jsx-props-no-spreading */
+  <Loading {...args}>
     <p>Some child component to display</p>
   </Loading>
 );
 
-export const StateUnknown = Template.bind({});
+export const StatusUnknown = Template.bind({});
 
-export const StatePending = Template.bind({});
-StatePending.args = { actionStatus: 'pending' };
+export const IsLoading = Template.bind({});
+IsLoading.args = { isLoading: true };
 
-export const StateFulfilled = Template.bind({});
-StateFulfilled.args = { actionStatus: 'fullfiled' };
+export const StatusPending = Template.bind({});
+StatusPending.args = { actionStatus: 'pending' };
 
-export const StateRejected = Template.bind({});
-StateRejected.args = { actionStatus: 'rejected' };
+export const StatusFulfilled = Template.bind({});
+StatusFulfilled.args = { actionStatus: 'fulfilled' };
+
+export const StatusRejected = Template.bind({});
+StatusRejected.args = { actionStatus: 'rejected' };
