@@ -7,7 +7,7 @@ import QueueStats from 'components/common/QueueStats';
 import LoadingStatus from 'components/common/Loading';
 
 import JoinQueueForm from './Form';
-import styles from './join.module.scss';
+import styles from './JoinPage.module.scss';
 
 export default ({ match }) => {
   const queueName = match.params.queueName;
