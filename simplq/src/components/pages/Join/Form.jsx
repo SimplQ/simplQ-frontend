@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/material.css';
 import { PhoneNumberUtil } from 'google-libphonenumber';
-import { handleEnterPress } from '../../../utils/eventHandling';
-import InputField from '../../common/InputField';
+import InputField from 'components/common/InputField';
+import Button from 'components/common/Button';
+import LoadingIndicator from 'components/common/LoadingIndicator';
+import { handleEnterPress } from 'utils/eventHandling';
 import styles from './join.module.scss';
-import Button from '../../common/Button';
-import LoadingIndicator from '../../common/LoadingIndicator';
 
 export function JoinQueueForm(props) {
   const [name, setName] = useState('');

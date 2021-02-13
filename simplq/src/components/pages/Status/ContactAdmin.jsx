@@ -1,6 +1,6 @@
 import React from 'react';
 import ChatIcon from '@material-ui/icons/Chat';
-import SidePanelItem from '../../common/SidePanel/SidePanelItem';
+import SidePanelItem from 'components/common/SidePanel/SidePanelItem';
 
 export default () => {
   return (

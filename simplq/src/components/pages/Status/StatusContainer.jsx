@@ -1,6 +1,6 @@
 import React from 'react';
-import LoadingIndicator from '../../common/LoadingIndicator';
-import Button from '../../common/Button';
+import LoadingIndicator from 'components/common/LoadingIndicator';
+import Button from 'components/common/Button';
 import styles from './status.module.scss';
 
 export default (props) => {
