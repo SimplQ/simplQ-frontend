@@ -7,7 +7,7 @@ import NotificationContainer from './NotificationContainer';
 
 export default (props) => (
   <SidePanel>
-    <LeaveQueue leaveQueueHandler={props.leaveQueueHandler} />
+    <LeaveQueue />
     <ContactAdmin />
     <QueueDetails queueId={props.queueId} />
     <NotificationContainer />

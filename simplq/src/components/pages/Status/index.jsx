@@ -14,17 +14,11 @@ function QueueStatus(props) {
   const tokenId = props.match.params.tokenId;
   const dispatch = useDispatch();
   const token = useSelector(selectToken);
-  // const token = {}
   const getToken = useGetToken();
-  const deleteToken = useGetToken();
 
   useEffect(() => {
     dispatch(getToken({ tokenId, refresh: true }));
   }, [tokenId, dispatch, getToken]);
-
-  const onDeleteClick = () => {
-    dispatch(deleteToken(tokenId));
-  };
 
   if (token === undefined || Object.keys(token).length === 0) {
     // TODO
@@ -38,7 +32,7 @@ function QueueStatus(props) {
         {/* should we be getting token direclty from the store from TokenNumber and StatusContainer, or is passing down info like this fine? */}
         <TokenNumber tokenNumber={token.tokenNumber} />
         <StatusContainer token={token} />
-        <StatusSidePanel leaveQueueHandler={onDeleteClick} queueId={token.queueId} />
+        <StatusSidePanel queueId={token.queueId} />
       </div>
     </>
   );
