@@ -38,3 +38,14 @@ Loaded.parameters = {
     queueStatus: QueueStatsStories.Active.args.queueStatus,
   },
 };
+
+export const Joining = Template.bind({});
+Joining.parameters = {
+  state: {
+    actionStatus: {
+      getQueueStatusByName: 'fulfilled',
+      joinQueue: 'pending',
+    },
+    queueStatus: QueueStatsStories.Active.args.queueStatus,
+  },
+};
