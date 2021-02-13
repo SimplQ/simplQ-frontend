@@ -2,8 +2,8 @@ import {
   setErrorPopupMessage,
   setInfoPopupMessage,
   setNotificationPermission,
-} from '../store/appSlice';
-import { store } from '../store';
+} from 'store/appSlice';
+import { store } from 'store';
 
 const hasPromiseBasedNotificationSupport = async () => {
   try {
