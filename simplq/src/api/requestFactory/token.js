@@ -1,12 +1,20 @@
-// Create a new token. This request is used to add a new token intoo the queue
-export const create = (name, contact, notifiable, queueId) => ({
+/**
+ * Request creator to create new token
+ *
+ * @param {string} name
+ * @param {string} contactNumber
+ * @param {boolean} notifiable
+ * @param {string} queueId
+ * @returns {Object} request - partial axios request without baseURL
+ */
+export const createToken = (name, contactNumber, notifiable, queueId) => ({
   method: 'post',
   url: '/token',
   data: {
     name,
-    contactNumber: contact,
-    queueId,
+    contactNumber,
     notifiable,
+    queueId,
   },
 });
 
