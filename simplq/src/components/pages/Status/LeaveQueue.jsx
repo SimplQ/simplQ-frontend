@@ -1,21 +1,20 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import CloseIcon from '@material-ui/icons/Close';
-import { useHistory } from 'react-router-dom';
-import { useGetToken } from 'store/asyncActions';
+import { useDeleteToken } from 'store/asyncActions';
+import { selectToken } from 'store/token';
 import SidePanelItem from '../../common/SidePanel/SidePanelItem';
-import { setInfoPopupMessage } from '../../../store/appSlice';
 
-export default (props) => {
-  const deleteToken = useGetToken(); // fix
-  const history = useHistory();
+export default () => {
   const dispatch = useDispatch();
+  const deleteToken = useDeleteToken();
+  const token = useSelector(selectToken);
+
   const onDeleteClick = () => {
-    dispatch(deleteToken(props.tokenId));
-    dispatch(setInfoPopupMessage('Successfully left queue'));
-    history.push(`/`);
+    dispatch(deleteToken({ tokenId: token.tokenId, goHome: true }));
   };
 
+  // TODO: The item should be disabled if token is already deteled
   return (
     <SidePanelItem
       onClick={onDeleteClick}

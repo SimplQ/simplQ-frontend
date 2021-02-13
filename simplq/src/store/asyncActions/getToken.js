@@ -15,24 +15,21 @@ const REFRESH_INTERVAL = 3000;
 const useGetToken = () => {
   const auth = useAuth();
 
-  const getToken = useCallback(
-    createAsyncThunk(typePrefix, async ({ tokenId, refresh }, { dispatch }) => {
-      if (timer) {
-        clearTimeout(timer);
+  const getToken = createAsyncThunk(typePrefix, async ({ tokenId, refresh }, { dispatch }) => {
+    if (timer) {
+      clearTimeout(timer);
+    }
+    const authedRequest = makeAuthedRequest(auth, RequestFactory.getToken(tokenId));
+    const response = await authedRequest.then((resp) => {
+      if (refresh === true) {
+        timer = setTimeout(() => dispatch(getToken({ tokenId, refresh })), REFRESH_INTERVAL);
       }
-      const authedRequest = makeAuthedRequest(auth, RequestFactory.getToken(tokenId));
-      const response = await authedRequest.then((resp) => {
-        if (refresh === true) {
-          timer = setTimeout(() => dispatch(getToken({ tokenId, refresh })), REFRESH_INTERVAL);
-        }
-        return resp;
-      });
-      return response;
-    }),
-    []
-  );
+      return resp;
+    });
+    return response;
+  });
 
-  return getToken;
+  return useCallback(getToken, []);
 };
 
 const getToken = createAsyncThunk(typePrefix);
