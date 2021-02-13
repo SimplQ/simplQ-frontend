@@ -27,10 +27,12 @@ export default ({ match }) => {
     // TODO: remove return
     return dispatch(joinQueue({ name, contactNumber, notifiable: true, queueId }));
   };
-
+  // TODO: If HeaderSection is used just in JoinPage
+  // it should be renamed into something else and moved
+  // closer to JoinPage
   return (
     <div>
-      <HeaderSection queueName={queueStatus.queueName} />
+      <HeaderSection queueName={queueName} />
       <div className={styles['main-content']}>
         <LoadingStatus dependsOn="getQueueStatusByName">
           <div className={styles['queue-stats']}>
