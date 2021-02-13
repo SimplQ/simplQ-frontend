@@ -23,9 +23,7 @@ export default ({ match }) => {
   const queueId = queueStatus.queueId;
 
   const joinQueueHandler = (name, contactNumber) => {
-    // TODO: Refactor JoinQueueForm to get state from redux.
-    // TODO: remove return
-    return dispatch(joinQueue({ name, contactNumber, notifiable: true, queueId }));
+    dispatch(joinQueue({ name, contactNumber, notifiable: true, queueId }));
   };
   // TODO: If HeaderSection is used just in JoinPage
   // it should be renamed into something else and moved

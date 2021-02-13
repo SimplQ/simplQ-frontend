@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/material.css';
 import { PhoneNumberUtil } from 'google-libphonenumber';
@@ -6,7 +7,7 @@ import { PhoneNumberUtil } from 'google-libphonenumber';
 import { handleEnterPress } from 'utils/eventHandling';
 import InputField from 'components/common/InputField';
 import Button from 'components/common/Button';
-import LoadingIndicator from 'components/common/LoadingIndicator';
+import Loading from 'components/common/Loading/Loading';
 import styles from './JoinPage.module.scss';
 
 export function JoinQueueForm({ joinQueueHandler, buttonText }) {
@@ -14,7 +15,20 @@ export function JoinQueueForm({ joinQueueHandler, buttonText }) {
   const [invalidName, setInvalidName] = useState(false);
   const [contact, setContact] = useState('');
   const [invalidContact, setInvalidContact] = useState(false);
-  const [addingInProgress, setAddingInProgress] = useState(false);
+  const actionStatus = useSelector((state) => state.actionStatus['joinQueue']);
+  const prevActionStatus = useRef();
+
+  // TODO: check if this works when admin page is refactored to use actions
+  useEffect(() => {
+    // Reset form only after successful action
+    if (prevActionStatus.current === 'pending' && actionStatus === 'fulfilled') {
+      setContact('');
+      setName('');
+    }
+
+    // Set previous action status for next render
+    prevActionStatus.current = actionStatus;
+  }, [actionStatus]);
 
   function handleNameChange(e) {
     if (name.match('^[A-Za-z0-9 ]*$')) {
@@ -60,24 +74,7 @@ export function JoinQueueForm({ joinQueueHandler, buttonText }) {
       return;
     }
 
-    setAddingInProgress(true);
-
-    // TODO: Read state from redux
-    joinQueueHandler(name, contact).then(() => {
-      setName('');
-      setContact('');
-      setAddingInProgress(false);
-    });
-  };
-
-  const CreateTokenButton = () => {
-    if (addingInProgress)
-      return (
-        <div>
-          <LoadingIndicator />
-        </div>
-      );
-    return <Button onClick={handleClick}>{buttonText}</Button>;
+    joinQueueHandler(name, contact);
   };
 
   return (
@@ -106,7 +103,9 @@ export function JoinQueueForm({ joinQueueHandler, buttonText }) {
         onChange={handleContactChange}
         onKeyDown={(e) => handleEnterPress(e, handleClick)}
       />
-      <CreateTokenButton />
+      <Loading isLoading={actionStatus === 'pending'}>
+        <Button onClick={handleClick}>{buttonText}</Button>
+      </Loading>
     </div>
   );
 }
