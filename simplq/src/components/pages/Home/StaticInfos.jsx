@@ -1,6 +1,6 @@
 import React from 'react';
+import StandardButton from 'components/common/Button';
 import styles from './home.module.scss';
-import StandardButton from '../../common/Button';
 import { smoothScrollToHomePageTop } from '../../../utils/scrollingOperations';
 
 export const BenefitsInfo = () => (

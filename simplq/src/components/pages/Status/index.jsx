@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import HeaderSection from 'components/common/HeaderSection';
+import LoadingIndicator from 'components/common/LoadingIndicator';
 import { TokenRequestFactory } from '../../../api/requestFactory';
 import styles from './status.module.scss';
-import HeaderSection from '../../common/HeaderSection';
 import StatusContainer from './StatusContainer';
-import LoadingIndicator from '../../common/LoadingIndicator';
 import StatusSidePanel from './StatusSidePanel';
 import TokenNumber from './TokenNumber';
 import { notify } from '../../../services/notification';

@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useGetQueueStatusByName, useJoinQueue } from 'store/asyncActions';
 import { selectQueueStatus } from 'store/queueStatus';
 import LoadingStatus from 'components/common/Loading';
+import HeaderSection from 'components/common/HeaderSection';
+import QueueStats from 'components/common/QueueStats';
 import JoinQueueForm from './Form';
 import styles from './join.module.scss';
-import HeaderSection from '../../common/HeaderSection';
-import QueueStats from '../../common/QueueStats';
 
 export default ({ history, match }) => {
   const queueName = match.params.queueName;
