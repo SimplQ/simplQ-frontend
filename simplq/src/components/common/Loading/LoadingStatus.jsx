@@ -6,7 +6,6 @@ import Loading from './Loading';
 const LoadingStatus = ({ children, dependsOn }) => {
   const actionName = dependsOn;
   const actionStatus = useSelector((state) => state.actionStatus[actionName]);
-  console.log('actionStatus', actionName);
 
   return <Loading actionStatus={actionStatus}>{children}</Loading>;
 };
