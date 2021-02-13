@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import useAuth, { makeAuthedRequest } from 'api/auth';
+import { useMakeAuthedRequest } from 'api/auth';
 import * as RequestFactory from 'api/requestFactory';
 
 const typePrefix = 'deleteQueue/action';
@@ -10,11 +10,11 @@ const typePrefix = 'deleteQueue/action';
  * @returns — deleteQueue async action creator
  */
 const useDeleteQueue = () => {
-  const auth = useAuth();
+  const makeAuthedRequest = useMakeAuthedRequest();
 
   const deleteQueue = createAsyncThunk(typePrefix, async (arg) => {
     const { queueId } = arg;
-    const authedRequest = makeAuthedRequest(auth, RequestFactory.deleteQueue(queueId));
+    const authedRequest = makeAuthedRequest(RequestFactory.deleteQueue(queueId));
     const response = await authedRequest;
     return response;
   });

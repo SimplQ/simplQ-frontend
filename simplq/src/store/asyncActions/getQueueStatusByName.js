@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { useHistory } from 'react-router-dom';
-import useAuth, { makeAuthedRequest } from 'api/auth';
+import { useMakeAuthedRequest } from 'api/auth';
 import * as RequestFactory from 'api/requestFactory';
 
 const typePrefix = 'getQueueStatusByName/action';
@@ -11,13 +11,13 @@ const typePrefix = 'getQueueStatusByName/action';
  * @returns — getQueueStatusByName action creator
  */
 const useGetQueueStatusByName = () => {
-  const auth = useAuth();
+  const makeAuthedRequest = useMakeAuthedRequest();
   const history = useHistory();
 
   const getQueueStatusByName = createAsyncThunk(
     typePrefix,
     async ({ queueName }, { rejectWithValue }) => {
-      const authedRequest = makeAuthedRequest(auth, RequestFactory.getQueueStatusByName(queueName));
+      const authedRequest = makeAuthedRequest(RequestFactory.getQueueStatusByName(queueName));
 
       try {
         const response = await authedRequest;
