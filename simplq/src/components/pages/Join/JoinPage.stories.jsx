@@ -1,5 +1,6 @@
 import React from 'react';
 
+import * as QueueStatsStories from 'components/common/QueueStats/QueueStats.stories';
 import JoinPage from './JoinPage';
 
 export default {
@@ -34,13 +35,6 @@ Loaded.parameters = {
     actionStatus: {
       getQueueStatusByName: 'fulfilled',
     },
-    queueStatus: {
-      queueId: '49b1ffa6-87fd-4a46-b95f-5588711cecca',
-      queueName: 'MockQueue',
-      status: 'ACTIVE',
-      numberOfActiveTokens: 0,
-      totalNumberOfTokens: 0,
-      queueCreationTimestamp: '2020-12-15T08:07:55.374+0000',
-    },
+    queueStatus: QueueStatsStories.Active.args.queueStatus,
   },
 };
