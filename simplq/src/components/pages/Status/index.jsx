@@ -5,7 +5,6 @@ import { selectToken } from 'store/token';
 import styles from './status.module.scss';
 import HeaderSection from '../../common/HeaderSection';
 import StatusContainer from './StatusContainer';
-import LoadingIndicator from '../../common/LoadingIndicator';
 import StatusSidePanel from './StatusSidePanel';
 import TokenNumber from './TokenNumber';
 
@@ -20,19 +19,13 @@ function QueueStatus(props) {
     dispatch(getToken({ tokenId, refresh: true }));
   }, [tokenId, dispatch, getToken]);
 
-  if (token === undefined || Object.keys(token).length === 0) {
-    // TODO
-    return <LoadingIndicator />;
-  }
-
   return (
     <>
       <HeaderSection queueName={token ? token.queueName : 'Loading...'} />
       <div className={styles['main-body']}>
-        {/* should we be getting token direclty from the store from TokenNumber and StatusContainer, or is passing down info like this fine? */}
-        <TokenNumber tokenNumber={token.tokenNumber} />
-        <StatusContainer token={token} />
-        <StatusSidePanel queueId={token.queueId} />
+        <TokenNumber />
+        <StatusContainer />
+        <StatusSidePanel />
       </div>
     </>
   );

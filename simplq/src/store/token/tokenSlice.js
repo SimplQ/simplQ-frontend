@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
 import { getToken } from 'store/asyncActions';
 
@@ -6,7 +7,7 @@ const tokenSlice = createSlice({
   initialState: {},
   reducers: {},
   extraReducers: {
-    // handle fulfiled request
+    // handle fulfilled request
     [getToken.fulfilled]: (state, action) => {
       return action.payload;
     },

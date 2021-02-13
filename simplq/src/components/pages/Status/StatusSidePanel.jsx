@@ -5,11 +5,11 @@ import ContactAdmin from './ContactAdmin';
 import QueueDetails from './QueueDetails';
 import NotificationContainer from './NotificationContainer';
 
-export default (props) => (
+export default () => (
   <SidePanel>
     <LeaveQueue />
     <ContactAdmin />
-    <QueueDetails queueId={props.queueId} />
+    <QueueDetails />
     <NotificationContainer />
   </SidePanel>
 );
