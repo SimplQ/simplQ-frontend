@@ -9,7 +9,7 @@ import Button from 'components/common/Button';
 import LoadingIndicator from 'components/common/LoadingIndicator';
 import styles from './JoinPage.module.scss';
 
-export function JoinQueueForm(props) {
+export function JoinQueueForm({ joinQueueHandler, buttonText }) {
   const [name, setName] = useState('');
   const [invalidName, setInvalidName] = useState(false);
   const [contact, setContact] = useState('');
@@ -63,7 +63,7 @@ export function JoinQueueForm(props) {
     setAddingInProgress(true);
 
     // TODO: Read state from redux
-    props.joinQueueHandler(name, contact).then(() => {
+    joinQueueHandler(name, contact).then(() => {
       setName('');
       setContact('');
       setAddingInProgress(false);
@@ -77,7 +77,7 @@ export function JoinQueueForm(props) {
           <LoadingIndicator />
         </div>
       );
-    return <Button onClick={handleClick}>{props.buttonText}</Button>;
+    return <Button onClick={handleClick}>{buttonText}</Button>;
   };
 
   return (
