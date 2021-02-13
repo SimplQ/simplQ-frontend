@@ -1,7 +1,7 @@
 import React from 'react';
-import Button from '../../common/Button';
+import Button from 'components/common/Button';
+import CreateJoinForm from 'components/common/CreateJoinForm';
 import styles from './pageNotFound.module.scss';
-import CreateJoinForm from '../../common/CreateJoinForm';
 
 function PageNotFound(props) {
   const MainContent = () => {

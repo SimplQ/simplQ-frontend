@@ -1,5 +1,5 @@
 import React from 'react';
-import SidePanel from '../../common/SidePanel';
+import SidePanel from 'components/common/SidePanel';
 import AddMember from './AddMember';
 import PauseQueue from './PauseQueue';
 import DeleteQueue from './DeleteQueue';

@@ -1,7 +1,7 @@
 import React from 'react';
+import LoadingIndicator from 'components/common/LoadingIndicator';
 import Token from './Token';
 import styles from './admin.module.scss';
-import LoadingIndicator from '../../common/LoadingIndicator';
 
 function TokenList(props) {
   const queueId = props.queueId;

@@ -5,7 +5,7 @@ import { useGetQueueStatus } from 'store/asyncActions';
 import { selectQueueStatus } from 'store/queueStatus';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectToken } from 'store/token';
-import SidePanelItem from '../../common/SidePanel/SidePanelItem';
+import SidePanelItem from 'components/common/SidePanel/SidePanelItem';
 
 export default () => {
   const queueStatus = useSelector(selectQueueStatus);

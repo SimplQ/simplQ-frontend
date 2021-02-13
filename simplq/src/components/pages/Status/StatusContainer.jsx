@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useGetToken } from 'store/asyncActions';
 import { selectToken } from 'store/token';
 import LoadingStatus from 'components/common/Loading/LoadingStatus';
-import Button from '../../common/Button';
+import Button from 'components/common/Button';
 import styles from './status.module.scss';
 
 export default () => {

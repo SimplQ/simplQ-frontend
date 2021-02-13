@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { store } from '../store';
-import { setErrorPopupMessage } from '../store/appSlice';
+import { store } from 'store';
+import { setErrorPopupMessage } from 'store/appSlice';
 // config.js is generated at runtime, so disabling eslint warning
 /* eslint-disable  import/no-unresolved, import/extensions */
 import { baseURL } from '../config';
