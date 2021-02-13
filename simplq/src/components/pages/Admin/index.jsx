@@ -13,9 +13,9 @@ import SidePanel from './AdminSidePanel';
 import StandardButton from '../../common/Button';
 import Ribbon from '../../common/Ribbon';
 import QRCode from '../../common/Popup/QrCode';
-import { getToursteps, stepChange } from './TourSteps';
+import { getToursteps } from './TourSteps';
 import useRequest from '../../../api/useRequest';
-import Tour from '../../common/Tour/Tour';
+import Tour from '../../common/Tour';
 
 const TIMEOUT = 10000;
 let timeoutId;
@@ -120,7 +120,7 @@ export default (props) => {
 
   return (
     <div className={styles['admin-content']}>
-      <Tour toursteps={toursteps} stepChange={stepChange} />
+      <Tour toursteps={toursteps} />
       <HeaderSection />
       {isAuthenticated ? null : (
         <Ribbon
