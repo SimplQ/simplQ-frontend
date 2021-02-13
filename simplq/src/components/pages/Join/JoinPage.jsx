@@ -9,7 +9,7 @@ import LoadingStatus from 'components/common/Loading';
 import JoinQueueForm from './Form';
 import styles from './join.module.scss';
 
-export default ({ history, match }) => {
+export default ({ match }) => {
   const queueName = match.params.queueName;
   const getQueueStatusByName = useCallback(useGetQueueStatusByName(), []);
   const joinQueue = useJoinQueue();
@@ -18,7 +18,7 @@ export default ({ history, match }) => {
 
   useEffect(() => {
     dispatch(getQueueStatusByName({ queueName }));
-  }, [queueName, dispatch, getQueueStatusByName, history]);
+  }, [queueName, dispatch, getQueueStatusByName]);
 
   const queueId = queueStatus.queueId;
 
@@ -30,7 +30,7 @@ export default ({ history, match }) => {
 
   return (
     <div>
-      <HeaderSection queueName={queueStatus.queueName} history={history} />
+      <HeaderSection queueName={queueStatus.queueName} />
       <div className={styles['main-content']}>
         <LoadingStatus dependsOn="getQueueStatusByName">
           <div className={styles['queue-stats']}>
