@@ -6,7 +6,7 @@ import HeaderSection from 'components/common/HeaderSection';
 import QueueStats from 'components/common/QueueStats';
 import LoadingStatus from 'components/common/Loading';
 
-import JoinQueueForm from './Form';
+import JoinQueueForm from './JoinForm';
 import styles from './JoinPage.module.scss';
 
 export default ({ match }) => {

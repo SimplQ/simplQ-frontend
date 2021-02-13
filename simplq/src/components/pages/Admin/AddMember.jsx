@@ -1,7 +1,7 @@
 import React from 'react';
 import AddIcon from '@material-ui/icons/Add';
 import styles from './admin.module.scss';
-import JoinQueueForm from '../Join/Form';
+import JoinQueueForm from '../Join/JoinForm';
 import SidePanelItem from '../../common/SidePanel/SidePanelItem';
 
 export default (props) => {
