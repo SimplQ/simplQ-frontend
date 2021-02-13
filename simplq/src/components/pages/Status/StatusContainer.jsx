@@ -1,11 +1,13 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useGetToken } from 'store/asyncActions';
-import LoadingIndicator from '../../common/LoadingIndicator';
+import { selectToken } from 'store/token';
+import LoadingStatus from 'components/common/Loading/LoadingStatus';
 import Button from '../../common/Button';
 import styles from './status.module.scss';
 
-export default ({ token }) => {
+export default () => {
+  const token = useSelector(selectToken);
   const dispatch = useDispatch();
   const getToken = useGetToken();
 
@@ -14,9 +16,7 @@ export default ({ token }) => {
   };
 
   let status = null;
-  if (false) {
-    status = null; // TODO
-  } else if (token.tokenStatus === 'REMOVED') {
+  if (token.tokenStatus === 'REMOVED') {
     status = <p>You have been removed from the queue, have a nice day</p>;
   } else if (token.tokenStatus === 'NOTIFIED') {
     status = <p>Your turn is up, please proceed to the counter</p>;
@@ -38,8 +38,9 @@ export default ({ token }) => {
     );
   }
 
-  // TODO
-  if (!status) return <LoadingIndicator />;
-
-  return <div className={styles['status-box']}>{status}</div>;
+  return (
+    <div className={styles['status-box']}>
+      <LoadingStatus dependsOn={{ getToken }}>{status}</LoadingStatus>
+    </div>
+  );
 };

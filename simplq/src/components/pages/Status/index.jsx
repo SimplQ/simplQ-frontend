@@ -27,7 +27,7 @@ function QueueStatus(props) {
 
   return (
     <>
-      <HeaderSection queueName={token.queueName} />
+      <HeaderSection queueName={token ? token.queueName : 'Loading...'} />
       <div className={styles['main-body']}>
         {/* should we be getting token direclty from the store from TokenNumber and StatusContainer, or is passing down info like this fine? */}
         <TokenNumber tokenNumber={token.tokenNumber} />

@@ -21,7 +21,7 @@ export default ({ queueId }) => {
       title="Queue Details"
       description="Other information about the queue"
       expandable
-      loading={!queueStatus}
+      loading={false} // TODO: Should be queueStatus's loading
     >
       <QueueStats queueStatus={queueStatus} />
     </SidePanelItem>
