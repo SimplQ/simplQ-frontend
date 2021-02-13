@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
-import JoinQueueWithDetails from '../pages/Join';
+import JoinQueueWithDetails from 'components/pages/Join/JoinPage';
 import QueueStatus from '../pages/Status';
 import AdminQueue from '../pages/Admin';
 import PageNotFound from '../pages/PageNotFound';
