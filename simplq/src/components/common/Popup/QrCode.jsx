@@ -4,8 +4,8 @@ import { QRCode } from 'react-qrcode-logo';
 import PrintIcon from '@material-ui/icons/Print';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import { useReactToPrint } from 'react-to-print';
+import { getSentenceCaseText } from 'utils/textOperations';
 import StandardButton from '../Button';
-import { getSentenceCaseText } from '../../../utils/textOperations';
 
 const ComponentToPrint = forwardRef(({ style, url, queueName }, ref) => {
   return (

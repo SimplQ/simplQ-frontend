@@ -22,7 +22,7 @@ import {
   WhatsappIcon,
 } from 'react-share';
 import StandardButton from 'components/common/Button';
-import { setInfoPopupMessage } from '../../../store/appSlice';
+import { setInfoPopupMessage } from 'store/appSlice';
 import styles from './admin.module.scss';
 
 const CopyButton = ({ tourTag, link }) => {

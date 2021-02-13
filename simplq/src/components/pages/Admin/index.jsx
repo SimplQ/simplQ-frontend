@@ -9,13 +9,13 @@ import StandardButton from 'components/common/Button';
 import Ribbon from 'components/common/Ribbon';
 import QRCode from 'components/common/Popup/QrCode';
 import Tour from 'components/common/Tour/Tour';
+import { TokenRequestFactory, QueueRequestFactory } from 'api/requestFactory';
+import useRequest from 'api/useRequest';
 import TokenList from './TokenList';
-import { TokenRequestFactory, QueueRequestFactory } from '../../../api/requestFactory';
 import ShareQueue from './ShareQueue';
 import styles from './admin.module.scss';
 import SidePanel from './AdminSidePanel';
 import { getToursteps, stepChange } from './TourSteps';
-import useRequest from '../../../api/useRequest';
 
 const TIMEOUT = 10000;
 let timeoutId;

@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import CloseIcon from '@material-ui/icons/Close';
 import { useHistory } from 'react-router-dom';
 import SidePanelItem from 'components/common/SidePanel/SidePanelItem';
-import { setInfoPopupMessage } from '../../../store/appSlice';
+import { setInfoPopupMessage } from 'store/appSlice';
 
 export default (props) => {
   const history = useHistory();

@@ -5,8 +5,8 @@ import { PhoneNumberUtil } from 'google-libphonenumber';
 import InputField from 'components/common/InputField';
 import Button from 'components/common/Button';
 import LoadingIndicator from 'components/common/LoadingIndicator';
+import { handleEnterPress } from 'utils/eventHandling';
 import styles from './join.module.scss';
-import { handleEnterPress } from '../../../utils/eventHandling';
 
 export function JoinQueueForm(props) {
   const [name, setName] = useState('');
