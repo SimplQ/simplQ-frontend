@@ -1,13 +1,11 @@
 import LoadingStatus from 'components/common/Loading';
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { useGetToken } from 'store/asyncActions';
 import { selectToken } from 'store/token';
 import styles from './status.module.scss';
 
 export default () => {
   const token = useSelector(selectToken);
-  const getToken = useGetToken();
 
   return (
     <div className={styles['token-number']}>
@@ -18,7 +16,7 @@ export default () => {
       <div className={styles['separator']} />
       <div className={styles['count-container']}>
         <span className={styles['count']}>
-          <LoadingStatus dependsOn={{ getToken }}>{token.tokenNumber}</LoadingStatus>
+          <LoadingStatus dependsOn="getToken">{token.tokenNumber}</LoadingStatus>
         </span>
       </div>
     </div>
