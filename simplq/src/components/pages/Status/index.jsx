@@ -3,11 +3,11 @@ import HeaderSection from 'components/common/HeaderSection';
 import LoadingIndicator from 'components/common/LoadingIndicator';
 import { TokenRequestFactory } from 'api/requestFactory';
 import useRequest from 'api/useRequest';
+import { notify } from 'services/notification';
 import styles from './status.module.scss';
 import StatusContainer from './StatusContainer';
 import StatusSidePanel from './StatusSidePanel';
 import TokenNumber from './TokenNumber';
-import { notify } from '../../../services/notification';
 
 const TIMEOUT = 10000;
 let timeoutId;
