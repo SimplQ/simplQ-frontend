@@ -1,7 +1,7 @@
 import React from 'react';
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
-// import { action } from '@storybook/addon-actions';
+import { action } from '@storybook/addon-actions';
 
 import { rootReducer } from 'store';
 
@@ -12,6 +12,8 @@ const reduxDecorator = (Story, context) => {
     reducer: rootReducer,
     preloadedState: state,
   });
+
+  store.dispatch = action('dispatch');
 
   const Decorator = () => {
     return (
