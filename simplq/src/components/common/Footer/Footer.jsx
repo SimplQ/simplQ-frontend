@@ -27,7 +27,19 @@ export default () => (
     </div>
 
     <div className={styles['card']}>
-      <h1>Open source</h1>
+      <h1>
+        Open source
+        <br />
+        <a
+          className="github-button"
+          href="https://github.com/simplQ/simplQ-frontend"
+          data-color-scheme="no-preference: light; light: light; dark: dark;"
+          data-show-count="true"
+          aria-label="Star simplQ/simplQ-frontend on GitHub"
+        >
+          Star
+        </a>
+      </h1>
       <div className={styles['card-body']}>
         <div className={styles['open-source-content-container']}>
           <p>
