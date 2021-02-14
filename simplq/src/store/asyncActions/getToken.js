@@ -1,7 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import useAuth, { makeAuthedRequest } from 'api/auth';
 import * as RequestFactory from 'api/requestFactory';
-import { useCallback } from 'react';
 
 const typePrefix = 'getToken/action';
 let timer = null;
@@ -29,7 +28,7 @@ const useGetToken = () => {
     return response;
   });
 
-  return useCallback(getToken, []);
+  return getToken;
 };
 
 const getToken = createAsyncThunk(typePrefix);

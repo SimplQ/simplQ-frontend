@@ -1,5 +1,6 @@
 import HeaderSection from 'components/common/HeaderSection';
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { useGetToken } from 'store/asyncActions';
 import { selectToken } from 'store/token';
@@ -13,7 +14,7 @@ function QueueStatus(props) {
   const tokenId = props.match.params.tokenId;
   const dispatch = useDispatch();
   const token = useSelector(selectToken);
-  const getToken = useGetToken();
+  const getToken = useCallback(useGetToken(), []);
 
   useEffect(() => {
     dispatch(getToken({ tokenId, refresh: true }));
