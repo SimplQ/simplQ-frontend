@@ -4,18 +4,19 @@ import React, { useState, useEffect, useCallback } from 'react';
 import RefreshIcon from '@material-ui/icons/Refresh';
 import CropFreeIcon from '@material-ui/icons/CropFree';
 import { useAuth0 } from '@auth0/auth0-react';
+import Header from 'components/common/Header';
+import StandardButton from 'components/common/Button';
+import Ribbon from 'components/common/Ribbon';
+import QRCode from 'components/common/Popup/QrCode';
+import Tour from '../../common/Tour';
+import { TokenRequestFactory, QueueRequestFactory } from 'api/requestFactory';
+import useRequest from 'api/useRequest';
 import TokenList from './TokenList';
-import { TokenRequestFactory, QueueRequestFactory } from '../../../api/requestFactory';
 import ShareQueue from './ShareQueue';
-import Header from '../../common/Header';
 import styles from './admin.module.scss';
 import SidePanel from './AdminSidePanel';
-import StandardButton from '../../common/Button';
-import Ribbon from '../../common/Ribbon';
-import QRCode from '../../common/Popup/QrCode';
 import { getToursteps } from './TourSteps';
-import useRequest from '../../../api/useRequest';
-import Tour from '../../common/Tour';
+
 
 const TIMEOUT = 10000;
 let timeoutId;

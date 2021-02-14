@@ -2,8 +2,8 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React from 'react';
 import { useHistory } from 'react-router';
+import { smoothScrollToHomePageTop } from 'utils/scrollingOperations';
 import styles from './ClickableLogo.module.scss';
-import { smoothScrollToHomePageTop } from '../../../utils/scrollingOperations';
 
 export default (props) => {
   const history = useHistory();

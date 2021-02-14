@@ -1,7 +1,7 @@
 import React from 'react';
 import Snackbar from '@material-ui/core/Snackbar';
 import { useSelector, useDispatch } from 'react-redux';
-import { setErrorPopupMessage } from '../../../store/appSlice';
+import { setErrorPopupMessage } from 'store/appSlice';
 import Alert from './Alert';
 
 export default () => {
