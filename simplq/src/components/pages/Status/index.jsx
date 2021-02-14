@@ -1,76 +1,35 @@
-import React, { useState, useEffect, useCallback } from 'react';
 import HeaderSection from 'components/common/HeaderSection';
-import LoadingIndicator from 'components/common/LoadingIndicator';
-import { TokenRequestFactory } from 'api/requestFactory';
-import useRequest from 'api/useRequest';
-import { notify } from 'services/notification';
+import React, { useEffect, useCallback } from 'react';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { useGetToken } from 'store/asyncActions';
+import { selectToken } from 'store/token';
 import styles from './status.module.scss';
 import StatusContainer from './StatusContainer';
 import StatusSidePanel from './StatusSidePanel';
 import TokenNumber from './TokenNumber';
 
-const TIMEOUT = 10000;
-let timeoutId;
-
+// TODO Rename component to token status, component and folder/page name
 function QueueStatus(props) {
   const tokenId = props.match.params.tokenId;
-  const [tokenStatusResponse, setTokenStatusResponse] = useState();
-  const [updateInProgress, setUpdateInProgress] = useState(false);
-  const { requestMaker } = useRequest();
-
-  const showNotification = useCallback(() => {
-    notify(`${tokenStatusResponse.queueName}: You've been notified by the queue manager.`);
-  }, [tokenStatusResponse]);
-
-  const oldTokenStatus = tokenStatusResponse ? tokenStatusResponse.tokenStatus : undefined;
-  const update = useCallback(() => {
-    clearTimeout(timeoutId);
-    requestMaker(TokenRequestFactory.get(tokenId)).then((response) => {
-      if (response) {
-        setTokenStatusResponse(response);
-        if (response.tokenStatus === 'NOTIFIED' && oldTokenStatus === 'WAITING') {
-          showNotification();
-        }
-      }
-      timeoutId = setTimeout(update, TIMEOUT);
-    });
-    // eslint-disable-next-line
-  }, [tokenId, oldTokenStatus]); // don't add showNotification, will result in infinite loop
+  const dispatch = useDispatch();
+  const token = useSelector(selectToken);
+  const getToken = useCallback(useGetToken(), []);
 
   useEffect(() => {
-    update();
-    return () => clearTimeout(timeoutId);
-  }, [update]);
-
-  const onDeleteClick = async () => {
-    setUpdateInProgress(true);
-    await requestMaker(TokenRequestFactory.remove(tokenId)).then((response) => {
-      if (response) {
-        setTokenStatusResponse({ ...tokenStatusResponse, tokenStatus: response.tokenStatus });
-      }
-      setUpdateInProgress(false);
-    });
-  };
-
-  if (!tokenStatusResponse) {
-    return <LoadingIndicator />;
-  }
+    dispatch(getToken({ tokenId, refresh: true }));
+  }, [tokenId, dispatch, getToken]);
 
   return (
     <>
-      <HeaderSection queueName={tokenStatusResponse.queueName} />
+      <HeaderSection queueName={token ? token.queueName : 'Loading...'} />
       <div className={styles['main-body']}>
-        <TokenNumber tokenNumber={tokenStatusResponse.tokenNumber} />
-        <StatusContainer
-          name={tokenStatusResponse.name}
-          updateInProgress={updateInProgress}
-          tokenStatus={tokenStatusResponse.tokenStatus}
-          aheadCount={tokenStatusResponse.aheadCount}
-          update={update}
-        />
-        <StatusSidePanel leaveQueueHandler={onDeleteClick} queueId={tokenStatusResponse.queueId} />
+        <TokenNumber />
+        <StatusContainer />
+        <StatusSidePanel />
       </div>
     </>
   );
 }
+
 export default QueueStatus;
