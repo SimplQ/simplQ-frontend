@@ -29,6 +29,7 @@ export default () => (
     <div className={styles['card']}>
       <h1>
         Open source
+        <br />
         <a
           className="github-button"
           href="https://github.com/simplQ/simplQ-frontend"
