@@ -8,14 +8,15 @@ import Header from 'components/common/Header';
 import StandardButton from 'components/common/Button';
 import Ribbon from 'components/common/Ribbon';
 import QRCode from 'components/common/Popup/QrCode';
-import Tour from 'components/common/Tour/Tour';
+import Tour from 'components/common/Tour';
 import { TokenRequestFactory, QueueRequestFactory } from 'api/requestFactory';
 import useRequest from 'api/useRequest';
 import TokenList from './TokenList';
 import ShareQueue from './ShareQueue';
 import styles from './admin.module.scss';
 import SidePanel from './AdminSidePanel';
-import { getToursteps, stepChange } from './TourSteps';
+import getToursteps from './TourSteps';
+
 
 const TIMEOUT = 10000;
 let timeoutId;
@@ -120,7 +121,7 @@ export default (props) => {
 
   return (
     <div className={styles['admin-content']}>
-      <Tour toursteps={toursteps} stepChange={stepChange} />
+      <Tour toursteps={toursteps} />
       <HeaderSection />
       {isAuthenticated ? null : (
         <Ribbon

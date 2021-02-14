@@ -25,7 +25,7 @@ import StandardButton from 'components/common/Button';
 import { setInfoPopupMessage } from 'store/appSlice';
 import styles from './admin.module.scss';
 
-const CopyButton = ({ tourTag, link }) => {
+const CopyButton = ({ link }) => {
   const dispatch = useDispatch();
   const handleShareButtonClick = () => {
     dispatch(setInfoPopupMessage('Copied queue link to clipboard'));
@@ -33,7 +33,7 @@ const CopyButton = ({ tourTag, link }) => {
 
   return (
     <CopyToClipboard text={link}>
-      <StandardButton onClick={handleShareButtonClick} icon={<FileCopyIcon />} tourTag={tourTag}>
+      <StandardButton onClick={handleShareButtonClick} icon={<FileCopyIcon />}>
         Copy Queue Link
       </StandardButton>
     </CopyToClipboard>
@@ -61,12 +61,13 @@ const ShareQueue = ({ queueName, tourTag }) => {
   return (
     <div className={styles['share']}>
       <ButtonGroup
+        reactour-selector={tourTag}
         variant="contained"
         className={styles['button-background']}
         ref={anchorRef}
         aria-label="split button"
       >
-        <CopyButton {...{ tourTag, link }} />
+        <CopyButton {...{ link }} />
         <Button
           className={styles['button-background']}
           color="primary"

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Tour from 'reactour';
+import * as Sentry from '@sentry/react';
 import { enableScroll, disableScroll } from './ControlScroll';
 
 export default (props) => {
@@ -15,6 +16,23 @@ export default (props) => {
 
   const closeTour = () => setTourOpen(false);
 
+  const stepChange = (stepNumber) => {
+    const leftArrow = document.querySelector("[data-tour-elem='left-arrow']");
+    const rightArrow = document.querySelector("[data-tour-elem='right-arrow']");
+
+    if (leftArrow && rightArrow) {
+      if (stepNumber === 0) {
+        leftArrow.childNodes[0].style.color = 'grey';
+        rightArrow.childNodes[0].style.color = 'white';
+      } else if (stepNumber === props.toursteps.length - 1) {
+        leftArrow.childNodes[0].style.color = 'white';
+        rightArrow.childNodes[0].style.color = 'grey';
+      }
+    } else {
+      Sentry.captureMessage('left-arrow or right-arrow selectors of reatTour package not found');
+    }
+  };
+
   return (
     <Tour
       showNavigation={false}
@@ -27,7 +45,7 @@ export default (props) => {
       onRequestClose={closeTour}
       onAfterOpen={disableScroll}
       onBeforeClose={enableScroll}
-      getCurrentStep={props.stepChange}
+      getCurrentStep={stepChange}
     />
   );
 };
