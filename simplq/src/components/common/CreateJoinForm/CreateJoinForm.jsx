@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router';
-import { QueueRequestFactory } from 'api/requestFactory';
+import { createQueue } from 'api/requestFactory';
 import useRequest from 'api/useRequest';
 import { handleEnterPress } from 'utils/eventHandling';
 import { isQueueNameValid } from 'utils/textOperations';
@@ -22,7 +22,7 @@ const CreateJoinForm = (props) => {
       return;
     }
     setCreateInProgress(true);
-    requestMaker(QueueRequestFactory.create(textFieldValue)).then((response) => {
+    requestMaker(createQueue(textFieldValue)).then((response) => {
       if (response) {
         history.push(`/queue/${response.queueId}`);
       }

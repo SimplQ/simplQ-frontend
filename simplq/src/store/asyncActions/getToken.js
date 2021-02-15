@@ -6,6 +6,8 @@ const typePrefix = 'getToken/action';
 let timer = null;
 const REFRESH_INTERVAL = 3000;
 
+// TODO https://overreacted.io/making-setinterval-declarative-with-react-hooks/#just-show-me-the-code
+
 /**
  * A hook to access the getToken async action creator.
  *

@@ -6,21 +6,25 @@ import NotificationsOffIcon from '@material-ui/icons/NotificationsOffSharp';
 import CallIcon from '@material-ui/icons/Call';
 import moment from 'moment';
 import LoadingIndicator from 'components/common/LoadingIndicator';
-import { TokenRequestFactory } from 'api/requestFactory';
+import { notifyToken } from 'api/requestFactory';
+import { useDeleteToken } from 'store/asyncActions';
 import useRequest from 'api/useRequest';
+import { useDispatch } from 'react-redux';
 import styles from './admin.module.scss';
 
-function Token(props) {
-  const name = props.token.name;
-  const tokenId = props.token.tokenId;
-  const tokenNumber = props.token.tokenNumber;
-  const contactNumber = props.token.contactNumber;
-  const notifiable = props.token.notifiable;
-  const tokenCreationTimestamp = props.token.tokenCreationTimestamp;
+function Token({ token }) {
+  const name = token.name;
+  const tokenId = token.tokenId;
+  const tokenNumber = token.tokenNumber;
+  const contactNumber = token.contactNumber;
+  const notifiable = token.notifiable;
+  const tokenCreationTimestamp = token.tokenCreationTimestamp;
   const [notifying, setNotifying] = useState(false);
   const [isNotifyHovering, setIsNotifyHovering] = useState(false);
-  const [didNotify, setDidNotify] = useState(props.token.tokenStatus === 'NOTIFIED');
+  const [didNotify, setDidNotify] = useState(token.tokenStatus === 'NOTIFIED');
   const { requestMaker } = useRequest();
+  const deleteToken = useDeleteToken();
+  const dispatch = useDispatch();
 
   const handleMouseHover = () => {
     setIsNotifyHovering(!isNotifyHovering);
@@ -28,7 +32,7 @@ function Token(props) {
 
   const onNotifyClick = () => {
     setNotifying(true);
-    requestMaker(TokenRequestFactory.notify(tokenId)).then((response) => {
+    requestMaker(notifyToken(tokenId)).then((response) => {
       if (response) {
         setDidNotify(true);
       }
@@ -37,7 +41,7 @@ function Token(props) {
   };
 
   const onDeleteClick = () => {
-    props.removeTokenHandler(tokenId);
+    dispatch(deleteToken({ tokenId: token.tokenId, goHome: false, popUp: false }));
   };
 
   const onCallClick = () => {

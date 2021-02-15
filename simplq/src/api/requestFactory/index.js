@@ -15,10 +15,13 @@
  * useRequest  hook. (See src/api/useRequest.js for usage example)
  *
  */
-import * as QueueRequestFactory from './queue';
-import * as TokenRequestFactory from './token';
 
-export { QueueRequestFactory, TokenRequestFactory };
-
-export { getUserQueues, deleteQueue, getQueueStatus, getQueueStatusByName } from './queue';
-export { createToken, getToken, deleteToken } from './token';
+export {
+  createQueue,
+  getUserQueues,
+  deleteQueue,
+  getQueueStatus,
+  getQueueStatusByName,
+  getActiveTokens,
+} from './queue';
+export { createToken, getToken, deleteToken, notifyToken } from './token';

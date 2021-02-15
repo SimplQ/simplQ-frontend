@@ -1,19 +1,21 @@
 import React from 'react';
 import LoadingIndicator from 'components/common/LoadingIndicator';
+import { selectActiveTokens } from 'store/queue';
+import { useSelector } from 'react-redux';
 import Token from './Token';
 import styles from './admin.module.scss';
 
-function TokenList(props) {
-  const queueId = props.queueId;
+function TokenList({ queueId }) {
   let listContent = null;
+  const tokens = useSelector(selectActiveTokens);
 
-  if (!props.tokens) {
+  if (!tokens) {
     listContent = (
       <div className={styles['token-list']}>
         <LoadingIndicator />
       </div>
     );
-  } else if (props.tokens.length === 0) {
+  } else if (tokens.length === 0) {
     listContent = (
       <div className={styles['token-list']}>
         <p>Your queue has been created and is currently empty. Waiting for people to join...</p>
@@ -22,13 +24,8 @@ function TokenList(props) {
   } else {
     listContent = (
       <div className={styles['token-list']}>
-        {props.tokens.map((token) => (
-          <Token
-            removeTokenHandler={props.removeTokenHandler}
-            token={token}
-            queueId={queueId}
-            key={token.tokenId}
-          />
+        {tokens.map((token) => (
+          <Token token={token} queueId={queueId} key={token.tokenId} />
         ))}
       </div>
     );

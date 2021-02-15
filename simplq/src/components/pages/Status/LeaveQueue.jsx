@@ -11,10 +11,10 @@ export default () => {
   const token = useSelector(selectToken);
 
   const onDeleteClick = () => {
-    dispatch(deleteToken({ tokenId: token.tokenId, goHome: true }));
+    dispatch(deleteToken({ tokenId: token.tokenId, goHome: true, popUp: true }));
   };
 
-  // TODO: The item should be disabled if token is already deteled
+  // TODO: The item should be disabled if token is already deleted
   return (
     <SidePanelItem
       onClick={onDeleteClick}

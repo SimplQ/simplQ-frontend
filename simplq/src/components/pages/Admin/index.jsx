@@ -9,7 +9,7 @@ import StandardButton from 'components/common/Button';
 import Ribbon from 'components/common/Ribbon';
 import QRCode from 'components/common/Popup/QrCode';
 import Tour from 'components/common/Tour';
-import { TokenRequestFactory, QueueRequestFactory } from 'api/requestFactory';
+import { getActiveTokens } from 'api/requestFactory';
 import useRequest from 'api/useRequest';
 import TokenList from './TokenList';
 import ShareQueue from './ShareQueue';
@@ -17,14 +17,12 @@ import styles from './admin.module.scss';
 import SidePanel from './AdminSidePanel';
 import getToursteps from './TourSteps';
 
-
 const TIMEOUT = 10000;
 let timeoutId;
 
 export default (props) => {
   const queueId = props.match.params.queueId;
 
-  const [tokens, setTokens] = useState();
   const [queueName, setQueueName] = useState();
   const [description, setDescription] = useState('');
   const [showQrCodeModal, setShowQrCodeModal] = useState(false);
@@ -35,9 +33,8 @@ export default (props) => {
 
   const update = useCallback(() => {
     clearTimeout(timeoutId);
-    requestMaker(QueueRequestFactory.get(queueId)).then((data) => {
+    requestMaker(getActiveTokens(queueId)).then((data) => {
       if (data) {
-        setTokens(data.tokens);
         setQueueName(data.queueName);
         // TODO: setDescription as soon as the backend returns it
         setDescription('Ready to share');
@@ -61,34 +58,6 @@ export default (props) => {
     update();
     return () => clearTimeout(timeoutId);
   }, [update]);
-
-  const addNewToken = async (name, contactNumber) => {
-    const response = await requestMaker(
-      TokenRequestFactory.create(name, contactNumber, false, queueId)
-    );
-    if (!response) {
-      return;
-    }
-    setTokens([
-      ...tokens,
-      {
-        tokenId: response.tokenId,
-        name,
-        contactNumber,
-        notifiable: false,
-        tokenStatus: response.tokenStatus,
-        tokenNumber: response.tokenNumber,
-      },
-    ]);
-  };
-
-  const removeToken = (tokenId) => {
-    requestMaker(TokenRequestFactory.remove(tokenId)).then((response) => {
-      if (response) {
-        setTokens(tokens.filter((token) => token.tokenId !== tokenId));
-      }
-    });
-  };
 
   const HeaderSection = () => (
     <div className={styles['header-bar']}>
@@ -130,8 +99,8 @@ export default (props) => {
         />
       )}
       <div className={styles['main-body']}>
-        <TokenList tokens={tokens} queueId={queueId} removeTokenHandler={removeToken} />
-        <SidePanel queueId={queueId} joinQueueHandler={addNewToken} />
+        <TokenList queueId={queueId} />
+        <SidePanel queueId={queueId} />
       </div>
     </div>
   );

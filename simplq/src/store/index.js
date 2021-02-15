@@ -1,7 +1,7 @@
 import { combineReducers, configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
-import queuesReducer from 'store/queues';
+import queuesReducer from 'store/allQueues';
 import queueStatusReducer from 'store/queueStatus';
-import actionStatusReducer from 'store/actionStatus';
+import actionStatusReducer from 'store/queue';
 import tokenReducer from 'store/token';
 import appReducer from './appSlice';
 

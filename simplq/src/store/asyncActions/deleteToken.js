@@ -21,7 +21,9 @@ const useDeleteToken = () => {
     const { tokenId } = arg;
     const authedRequest = makeAuthedRequest(RequestFactory.deleteToken(tokenId));
     const response = await authedRequest;
-    dispatch(setInfoPopupMessage('Successfully left queue'));
+    if (arg.popUp) {
+      dispatch(setInfoPopupMessage('Successfully left queue'));
+    }
     if (arg.goHome) {
       history.push('/');
     }
