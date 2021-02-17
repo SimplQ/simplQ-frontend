@@ -5,7 +5,7 @@ import { useHistory } from 'react-router';
 import { useGetUserQueues, useDeleteQueue } from 'store/asyncActions';
 import { selectQueues } from 'store/queues';
 import { useDispatch, useSelector } from 'react-redux';
-import styles from './home.module.scss';
+import styles from './Home.module.scss';
 
 export default () => {
   const history = useHistory();

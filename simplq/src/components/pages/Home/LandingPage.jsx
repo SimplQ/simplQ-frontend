@@ -2,7 +2,7 @@ import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import Header from 'components/common/Header';
 import CreateJoinForm from 'components/common/CreateJoinForm';
-import styles from './home.module.scss';
+import styles from './Home.module.scss';
 import MyQueues from './MyQueues';
 
 export default () => {
