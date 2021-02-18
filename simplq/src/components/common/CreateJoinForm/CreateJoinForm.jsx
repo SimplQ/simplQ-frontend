@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router';
-import { QueueRequestFactory } from '../../../api/requestFactory';
+import { QueueRequestFactory } from 'api/requestFactory';
+import useRequest from 'api/useRequest';
+import { handleEnterPress } from 'utils/eventHandling';
+import { isQueueNameValid } from 'utils/textOperations';
 import styles from './CreateJoinForm.module.scss';
-import { handleEnterPress } from '../../../utils/eventHandling';
-import { isQueueNameValid } from '../../../utils/textOperations';
 import InputField from '../InputField';
 import LoadingIndicator from '../LoadingIndicator';
 import StandardButton from '../Button';
-import useRequest from '../../../api/useRequest';
 
 const CreateJoinForm = (props) => {
   const [textFieldValue, setTextFieldValue] = useState(props.defaultTextFieldValue);

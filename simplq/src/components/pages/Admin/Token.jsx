@@ -6,9 +6,9 @@ import NotificationsOffIcon from '@material-ui/icons/NotificationsOffSharp';
 import CallIcon from '@material-ui/icons/Call';
 import moment from 'moment';
 import LoadingIndicator from 'components/common/LoadingIndicator';
-import { TokenRequestFactory } from '../../../api/requestFactory';
+import { TokenRequestFactory } from 'api/requestFactory';
+import useRequest from 'api/useRequest';
 import styles from './admin.module.scss';
-import useRequest from '../../../api/useRequest';
 
 function Token(props) {
   const name = props.token.name;

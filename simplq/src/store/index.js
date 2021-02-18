@@ -2,12 +2,14 @@ import { combineReducers, configureStore, getDefaultMiddleware } from '@reduxjs/
 import queuesReducer from 'store/queues';
 import queueStatusReducer from 'store/queueStatus';
 import actionStatusReducer from 'store/actionStatus';
+import tokenReducer from 'store/token';
 import appReducer from './appSlice';
 
 export const rootReducer = combineReducers({
   appReducer,
   queues: queuesReducer,
   queueStatus: queueStatusReducer,
+  token: tokenReducer,
   actionStatus: actionStatusReducer,
 });
 

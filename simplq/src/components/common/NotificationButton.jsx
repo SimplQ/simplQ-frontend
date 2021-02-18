@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { setNotificationPermission } from 'store/appSlice';
 import Button from './Button';
-import { setNotificationPermission } from '../../store/appSlice';
 
 const NotificationButton = () => {
   const dispatch = useDispatch();
