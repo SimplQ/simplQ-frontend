@@ -9,7 +9,7 @@ import AOS from 'aos';
 import { Auth0Provider } from '@auth0/auth0-react';
 import { store } from './store';
 import * as serviceWorker from './serviceWorker';
-import Layout from './components/Layout';
+import Layout from './components/Layout/Layout';
 
 AOS.init();
 

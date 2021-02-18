@@ -3,7 +3,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import Footer from 'components/common/Footer';
 import LoadingIndicator from 'components/common/LoadingIndicator';
 import Routes from './Routes';
-import styles from './layout.module.scss';
+import styles from './Layout.module.scss';
 
 function Layout() {
   const { isLoading } = useAuth0();
