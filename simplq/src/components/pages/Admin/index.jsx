@@ -17,7 +17,6 @@ import styles from './admin.module.scss';
 import SidePanel from './AdminSidePanel';
 import getToursteps from './TourSteps';
 
-
 const TIMEOUT = 10000;
 let timeoutId;
 
