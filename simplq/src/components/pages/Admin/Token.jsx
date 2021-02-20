@@ -67,6 +67,12 @@ function Token({ token }) {
     </IconButton>
   );
 
+  const CallButton = () => (
+    <IconButton onClick={onCallClick}>
+      <CallIcon className={styles['token-icon']} fontSize="large" />
+    </IconButton>
+  );
+
   const RemoveButton = () => (
     <div
       role="button"
@@ -92,9 +98,7 @@ function Token({ token }) {
         </div>
         <div className={styles['token-operations']}>
           <div className={styles['token-icon-set']}>
-            <IconButton onClick={onCallClick}>
-              <CallIcon className={styles['token-icon']} fontSize="large" />
-            </IconButton>
+            <CallButton />
             <NotifyButton />
           </div>
           <RemoveButton />
