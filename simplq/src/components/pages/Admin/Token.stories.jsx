@@ -28,6 +28,21 @@ Waiting.args = {
   },
 };
 
+export const NotifyInProgress = Template.bind({});
+NotifyInProgress.args = {
+  token: {
+    ...Waiting.args.token,
+    notifiable: true,
+  },
+};
+NotifyInProgress.parameters = {
+  state: {
+    actionStatus: {
+      notifyToken: 'pending',
+    },
+  },
+};
+
 export const Notified = Template.bind({});
 Notified.args = {
   token: {

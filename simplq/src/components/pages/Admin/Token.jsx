@@ -6,7 +6,7 @@ import NotificationsOffIcon from '@material-ui/icons/NotificationsOffSharp';
 import DeleteIcon from '@material-ui/icons/Delete';
 import CallIcon from '@material-ui/icons/Call';
 import moment from 'moment';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useDeleteToken, useNotifyToken } from 'store/asyncActions';
 import styles from './admin.module.scss';
 
@@ -24,6 +24,7 @@ function Token({ token }) {
   const dispatch = useDispatch();
   const deleteToken = useDeleteToken();
   const notifyToken = useNotifyToken();
+  const notifyStatus = useSelector((state) => state.actionStatus['notifyToken']);
 
   const handleMouseHover = () => {
     setIsNotifyHovering(!isNotifyHovering);
@@ -42,7 +43,8 @@ function Token({ token }) {
   };
 
   const NotifyIcon = () => {
-    if (notifiable === false) {
+    // TODO: Add some visual (blinking) while notifyToken is pending
+    if (notifiable === false || notifyStatus === 'pending') {
       return <NotificationsOffIcon fontSize="large" className={styles['token-icon-disabled']} />;
     }
     if (tokenStatus === 'NOTIFIED') {
@@ -57,7 +59,7 @@ function Token({ token }) {
 
   const NotifyButton = () => (
     <IconButton
-      disabled={notifiable === false || tokenStatus === 'NOTIFIED'}
+      disabled={notifiable === false || tokenStatus === 'NOTIFIED' || notifyStatus === 'pending'}
       color="primary"
       aria-label="notify"
       onClick={onNotifyClick}
