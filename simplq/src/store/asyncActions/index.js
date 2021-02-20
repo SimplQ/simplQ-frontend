@@ -14,3 +14,4 @@ export { getSelectedQueue, useGetSelectedQueue } from './getSelectedQueue';
 
 export { getToken, useGetToken } from './getToken';
 export { deleteToken, useDeleteToken } from './deleteToken';
+export { notifyToken, useNotifyToken } from './notifyToken';
