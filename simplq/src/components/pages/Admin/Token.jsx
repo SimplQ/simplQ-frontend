@@ -40,40 +40,32 @@ function Token({ token }) {
     window.open(`tel:+${contactNumber}`, '_self');
   };
 
-  let notificationButton = null;
-  if (!notifiable) {
-    // Not notifiable
-    notificationButton = (
-      <IconButton color="primary" aria-label="notify" disabled>
-        <NotificationsOffIcon fontSize="large" className={styles['token-icon-disabled']} />
-      </IconButton>
+  const NotifyIcon = () => {
+    if (notifiable === false) {
+      return <NotificationsOffIcon fontSize="large" className={styles['token-icon-disabled']} />;
+    }
+    if (tokenStatus === 'NOTIFIED') {
+      return <NotificationsActiveIcon fontSize="large" style={{ color: 'green' }} />;
+    }
+    return isNotifyHovering ? (
+      <NotificationsActiveIcon fontSize="large" className={styles['token-icon']} />
+    ) : (
+      <Notifications fontSize="large" className={styles['token-icon']} />
     );
-  } else if (tokenStatus === 'NOTIFIED') {
-    // Notified
-    notificationButton = (
-      <IconButton color="primary" aria-label="notified">
-        <NotificationsActiveIcon fontSize="large" style={{ color: 'green' }} />
-      </IconButton>
-    );
-  } else {
-    // Yet to notify
-    notificationButton = (
-      <IconButton
-        color="primary"
-        edge="end"
-        aria-label="notify"
-        onClick={onNotifyClick}
-        onMouseEnter={handleMouseHover}
-        onMouseLeave={handleMouseHover}
-      >
-        {isNotifyHovering ? (
-          <NotificationsActiveIcon fontSize="large" className={styles['token-icon']} />
-        ) : (
-          <Notifications fontSize="large" className={styles['token-icon']} />
-        )}
-      </IconButton>
-    );
-  }
+  };
+
+  const NotifyButton = () => (
+    <IconButton
+      disabled={notifiable === false || tokenStatus === 'NOTIFIED'}
+      color="primary"
+      aria-label="notify"
+      onClick={onNotifyClick}
+      onMouseEnter={handleMouseHover}
+      onMouseLeave={handleMouseHover}
+    >
+      <NotifyIcon />
+    </IconButton>
+  );
 
   const RemoveButton = () => (
     <div
@@ -103,7 +95,7 @@ function Token({ token }) {
             <IconButton onClick={onCallClick}>
               <CallIcon className={styles['token-icon']} fontSize="large" />
             </IconButton>
-            {notificationButton}
+            <NotifyButton />
           </div>
           <RemoveButton />
         </div>
