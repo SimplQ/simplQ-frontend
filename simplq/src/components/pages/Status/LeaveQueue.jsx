@@ -11,7 +11,7 @@ export default () => {
   const token = useSelector(selectToken);
 
   const onDeleteClick = () => {
-    dispatch(deleteToken({ tokenId: token.tokenId, goHome: true }));
+    dispatch(deleteToken({ tokenId: token.tokenId, goToHomePage: true, showPopUp: true }));
   };
 
   // TODO: The item should be disabled if token is already deteled

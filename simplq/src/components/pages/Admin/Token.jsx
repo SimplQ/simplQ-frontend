@@ -7,20 +7,27 @@ import CallIcon from '@material-ui/icons/Call';
 import moment from 'moment';
 import LoadingIndicator from 'components/common/LoadingIndicator';
 import { TokenRequestFactory } from 'api/requestFactory';
+import { useDeleteToken } from 'store/asyncActions';
+import { useDispatch } from 'react-redux';
 import useRequest from 'api/useRequest';
 import styles from './admin.module.scss';
 
-function Token(props) {
-  const name = props.token.name;
-  const tokenId = props.token.tokenId;
-  const tokenNumber = props.token.tokenNumber;
-  const contactNumber = props.token.contactNumber;
-  const notifiable = props.token.notifiable;
-  const tokenCreationTimestamp = props.token.tokenCreationTimestamp;
+function Token({ token }) {
+  const {
+    name,
+    tokenId,
+    tokenNumber,
+    contactNumber,
+    notifiable,
+    tokenCreationTimestamp,
+    tokenStatus,
+  } = token;
   const [notifying, setNotifying] = useState(false);
   const [isNotifyHovering, setIsNotifyHovering] = useState(false);
-  const [didNotify, setDidNotify] = useState(props.token.tokenStatus === 'NOTIFIED');
+  const [didNotify, setDidNotify] = useState(tokenStatus === 'NOTIFIED');
   const { requestMaker } = useRequest();
+  const deleteToken = useDeleteToken();
+  const dispatch = useDispatch();
 
   const handleMouseHover = () => {
     setIsNotifyHovering(!isNotifyHovering);
@@ -37,7 +44,7 @@ function Token(props) {
   };
 
   const onDeleteClick = () => {
-    props.removeTokenHandler(tokenId);
+    dispatch(deleteToken({ tokenId, goToHomePage: false, showPopUp: false }));
   };
 
   const onCallClick = () => {

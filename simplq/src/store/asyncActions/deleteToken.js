@@ -17,13 +17,14 @@ const useDeleteToken = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const deleteToken = createAsyncThunk(typePrefix, async (arg) => {
-    const { tokenId } = arg;
+  const deleteToken = createAsyncThunk(typePrefix, async ({ tokenId, goToHomePage, showPopUp }) => {
     const authedRequest = makeAuthedRequest(RequestFactory.deleteToken(tokenId));
     const response = await authedRequest;
-    dispatch(setInfoPopupMessage('Successfully left queue'));
-    if (arg.goHome) {
+    if (goToHomePage) {
       history.push('/');
+    }
+    if (showPopUp) {
+      dispatch(setInfoPopupMessage('Successfully left queue'));
     }
     return response;
   });

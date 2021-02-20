@@ -82,7 +82,7 @@ export default (props) => {
   };
 
   const removeToken = (tokenId) => {
-    requestMaker(TokenRequestFactory.remove(tokenId)).then((response) => {
+    requestMaker(TokenRequestFactory.deleteToken(tokenId)).then((response) => {
       if (response) {
         setTokens(tokens.filter((token) => token.tokenId !== tokenId));
       }
