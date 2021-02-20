@@ -26,6 +26,14 @@ export const createToken = (name, contactNumber, notifiable, queueId) => ({
  */
 export const getToken = (tokenId) => ({ method: 'get', url: `/token/${tokenId}` });
 
+/**
+ * Request creator to notify token.
+ *
+ * @param {string} tokenId
+ * @returns {Object} request - partial axios request without baseURL
+ */
+export const notifyToken = (tokenId) => ({ method: 'put', url: `/token/notify/${tokenId}` });
+
 // Notify a token This will result in the user being notified by SMS, which is an upcoming feature
 export const notify = (tokenId) => ({ method: 'put', url: `/token/notify/${tokenId}` });
 
