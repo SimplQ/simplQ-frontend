@@ -3,6 +3,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Notifications from '@material-ui/icons/Notifications';
 import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive';
 import NotificationsOffIcon from '@material-ui/icons/NotificationsOffSharp';
+import DeleteIcon from '@material-ui/icons/Delete';
 import CallIcon from '@material-ui/icons/Call';
 import moment from 'moment';
 import { useDispatch } from 'react-redux';
@@ -74,16 +75,15 @@ function Token({ token }) {
   );
 
   const RemoveButton = () => (
-    <div
+    <IconButton
       role="button"
       onClick={onDeleteClick}
       tabIndex={-1}
       onKeyDown={onDeleteClick}
-      className={styles['token-remove']}
       aria-label="remove"
     >
-      <p>remove</p>
-    </div>
+      <DeleteIcon color="secondary" fontSize="large" />
+    </IconButton>
   );
 
   return (
@@ -100,8 +100,8 @@ function Token({ token }) {
           <div className={styles['token-icon-set']}>
             <CallButton />
             <NotifyButton />
+            <RemoveButton />
           </div>
-          <RemoveButton />
         </div>
       </div>
     </section>
