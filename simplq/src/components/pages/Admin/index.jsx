@@ -34,7 +34,7 @@ export default (props) => {
 
   const update = useCallback(() => {
     clearTimeout(timeoutId);
-    requestMaker(QueueRequestFactory.get(queueId)).then((data) => {
+    requestMaker(QueueRequestFactory.getActiveTokens(queueId)).then((data) => {
       if (data) {
         setTokens(data.tokens);
         setQueueName(data.queueName);

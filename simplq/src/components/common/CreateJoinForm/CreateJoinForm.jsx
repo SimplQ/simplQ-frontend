@@ -22,7 +22,7 @@ const CreateJoinForm = (props) => {
       return;
     }
     setCreateInProgress(true);
-    requestMaker(QueueRequestFactory.create(textFieldValue)).then((response) => {
+    requestMaker(QueueRequestFactory.createQueue(textFieldValue)).then((response) => {
       if (response) {
         history.push(`/queue/${response.queueId}`);
       }

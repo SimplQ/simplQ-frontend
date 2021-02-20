@@ -11,7 +11,7 @@ import makeRequest from './axios';
 // const MyAwesomeComponent = () => {
 //   const { requestMaker } = useRequest();
 //   ...
-//   requestMaker(QueueRequestFactory.create(textFieldValue))
+//   requestMaker(QueueRequestFactory.createQueue(textFieldValue))
 //     .then((response) => {
 //       // Handle response here
 //       ...
