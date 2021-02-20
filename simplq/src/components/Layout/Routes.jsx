@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 import JoinQueueWithDetails from 'components/pages/Join/JoinPage';
 import QueueStatus from 'components/pages/Status';
-import AdminQueue from 'components/pages/Admin';
+import AdminPage from 'components/pages/Admin/AdminPage';
 import PageNotFound from 'components/pages/PageNotFound';
 import PopupNotifications from 'components/common/Popup';
 import HomePage from 'components/pages/Home/HomePage';
@@ -18,7 +18,7 @@ export default () => {
           <Navbar />
           <Switch>
             <Route path="/" exact component={HomePage} />
-            <Route path="/queue/:queueId" exact component={AdminQueue} />
+            <Route path="/queue/:queueId" exact component={AdminPage} />
             <Route path="/j/:queueName" exact component={JoinQueueWithDetails} />
             <Route path="/token/:tokenId" exact component={QueueStatus} />
             <Route path="/privacy" exact component={TermsOfService} />
