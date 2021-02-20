@@ -3,6 +3,7 @@ import queuesReducer from 'store/queues';
 import queueStatusReducer from 'store/queueStatus';
 import actionStatusReducer from 'store/actionStatus';
 import tokenReducer from 'store/token';
+import selectedQueueReducer from 'store/selectedQueue';
 import appReducer from './appSlice';
 
 export const rootReducer = combineReducers({
@@ -11,6 +12,7 @@ export const rootReducer = combineReducers({
   queueStatus: queueStatusReducer,
   token: tokenReducer,
   actionStatus: actionStatusReducer,
+  selectedQueue: selectedQueueReducer,
 });
 
 export const store = configureStore({
