@@ -20,5 +20,11 @@ import * as TokenRequestFactory from './token';
 
 export { QueueRequestFactory, TokenRequestFactory };
 
-export { getUserQueues, deleteQueue, getQueueStatus, getQueueStatusByName } from './queue';
+export {
+  getUserQueues,
+  getQueue,
+  deleteQueue,
+  getQueueStatus,
+  getQueueStatusByName,
+} from './queue';
 export { createToken, getToken, deleteToken } from './token';
