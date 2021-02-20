@@ -6,10 +6,7 @@ import NotificationsOffIcon from '@material-ui/icons/NotificationsOffSharp';
 import CallIcon from '@material-ui/icons/Call';
 import moment from 'moment';
 import { useDispatch } from 'react-redux';
-import { useDeleteToken } from 'store/asyncActions';
-import LoadingIndicator from 'components/common/LoadingIndicator';
-import { TokenRequestFactory } from 'api/requestFactory';
-import useRequest from 'api/useRequest';
+import { useDeleteToken, useNotifyToken } from 'store/asyncActions';
 import styles from './admin.module.scss';
 
 function Token({ token }) {
@@ -22,25 +19,17 @@ function Token({ token }) {
     tokenCreationTimestamp,
     tokenStatus,
   } = token;
-  const [notifying, setNotifying] = useState(false);
   const [isNotifyHovering, setIsNotifyHovering] = useState(false);
-  const [didNotify, setDidNotify] = useState(tokenStatus === 'NOTIFIED');
-  const { requestMaker } = useRequest();
   const dispatch = useDispatch();
   const deleteToken = useDeleteToken();
+  const notifyToken = useNotifyToken();
 
   const handleMouseHover = () => {
     setIsNotifyHovering(!isNotifyHovering);
   };
 
   const onNotifyClick = () => {
-    setNotifying(true);
-    requestMaker(TokenRequestFactory.notify(tokenId)).then((response) => {
-      if (response) {
-        setDidNotify(true);
-      }
-      setNotifying(false);
-    });
+    dispatch(notifyToken({ tokenId }));
   };
 
   const onDeleteClick = () => {
@@ -52,21 +41,14 @@ function Token({ token }) {
   };
 
   let notificationButton = null;
-  if (notifying) {
-    // Notifying in progress
-    notificationButton = (
-      <IconButton color="primary" aria-label="notify">
-        <LoadingIndicator />
-      </IconButton>
-    );
-  } else if (!notifiable) {
+  if (!notifiable) {
     // Not notifiable
     notificationButton = (
       <IconButton color="primary" aria-label="notify" disabled>
         <NotificationsOffIcon fontSize="large" className={styles['token-icon-disabled']} />
       </IconButton>
     );
-  } else if (didNotify) {
+  } else if (tokenStatus === 'NOTIFIED') {
     // Notified
     notificationButton = (
       <IconButton color="primary" aria-label="notified">

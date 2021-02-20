@@ -34,9 +34,6 @@ export const getToken = (tokenId) => ({ method: 'get', url: `/token/${tokenId}` 
  */
 export const notifyToken = (tokenId) => ({ method: 'put', url: `/token/notify/${tokenId}` });
 
-// Notify a token This will result in the user being notified by SMS, which is an upcoming feature
-export const notify = (tokenId) => ({ method: 'put', url: `/token/notify/${tokenId}` });
-
 /**
  * Remove a token from the queue. Can be called only by the person who created the token, and the queue manager
  *
