@@ -1,8 +1,8 @@
 import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import Header from 'components/common/Header';
-import CreateJoinForm from 'components/common/CreateJoinForm';
-import styles from './home.module.scss';
+import QueueForm from 'components/common/CreateJoinForm';
+import styles from './Home.module.scss';
 import MyQueues from './MyQueues';
 
 export default () => {
@@ -22,7 +22,7 @@ export default () => {
         </p>
       </div>
       <MyQueues />
-      <CreateJoinForm />
+      <QueueForm />
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
         <path
           fill="#6C63FF29"

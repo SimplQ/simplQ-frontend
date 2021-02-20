@@ -5,7 +5,7 @@ import QueueStatus from 'components/pages/Status';
 import AdminQueue from 'components/pages/Admin';
 import PageNotFound from 'components/pages/PageNotFound';
 import PopupNotifications from 'components/common/Popup';
-import Home from 'components/pages/Home';
+import HomePage from 'components/pages/Home/HomePage';
 import TermsOfService from 'components/pages/TermsOfService';
 import Navbar from 'components/common/Nav/Navbar';
 import { ErrorBoundary } from '../ErrorHandler';
@@ -17,7 +17,7 @@ export default () => {
         <Router>
           <Navbar />
           <Switch>
-            <Route path="/" exact component={Home} />
+            <Route path="/" exact component={HomePage} />
             <Route path="/queue/:queueId" exact component={AdminQueue} />
             <Route path="/j/:queueName" exact component={JoinQueueWithDetails} />
             <Route path="/token/:tokenId" exact component={QueueStatus} />

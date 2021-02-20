@@ -1,22 +1,17 @@
-import React, { useEffect, useCallback } from 'react';
+import React from 'react';
 import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
 import { useHistory } from 'react-router';
-import { useGetUserQueues, useDeleteQueue } from 'store/asyncActions';
+import { useDeleteQueue } from 'store/asyncActions';
 import { selectQueues } from 'store/queues';
 import { useDispatch, useSelector } from 'react-redux';
-import styles from './home.module.scss';
+import styles from './Home.module.scss';
 
 export default () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const queues = useSelector(selectQueues);
-  const getUserQueues = useCallback(useGetUserQueues(), []);
   const deleteQueue = useDeleteQueue();
-
-  useEffect(() => {
-    dispatch(getUserQueues());
-  }, [dispatch, getUserQueues]);
 
   const handleDelete = (e, queue) => {
     // Don't trigger parent's onClick
