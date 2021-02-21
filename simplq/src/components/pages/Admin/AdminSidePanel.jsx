@@ -6,12 +6,12 @@ import DeleteQueue from './DeleteQueue';
 import QueueHistory from './QueueHistory';
 import QueueDetails from '../Status/QueueDetails';
 
-export default (props) => (
+export default ({ queueId }) => (
   <SidePanel>
-    <AddMember queueId={props.queueId} joinQueueHandler={props.joinQueueHandler} />
+    <AddMember queueId={queueId} />
     <PauseQueue />
-    <DeleteQueue queueId={props.queueId} />
+    <DeleteQueue queueId={queueId} />
     <QueueHistory />
-    <QueueDetails queueId={props.queueId} />
+    <QueueDetails queueId={queueId} />
   </SidePanel>
 );

@@ -5,7 +5,7 @@ import { createSlice } from '@reduxjs/toolkit';
 /**
  * Async Action Status slice
  *
- * Keeps the state of all dispathced async actions
+ * Keeps the state of all dispatched async actions
  * where action type has form `[actionName]/action`
  * (e.g, `deleteQueue/action`). The state can be
  * pending, fulfilled, or rejected. Use useSelector to get
