@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { useMakeAuthedRequest } from 'api/auth';
 import * as RequestFactory from 'api/requestFactory';
+import { useHistory } from 'react-router';
 
 const typePrefix = 'deleteQueue/action';
 
@@ -11,11 +12,15 @@ const typePrefix = 'deleteQueue/action';
  */
 const useDeleteQueue = () => {
   const makeAuthedRequest = useMakeAuthedRequest();
+  const history = useHistory();
 
   const deleteQueue = createAsyncThunk(typePrefix, async (arg) => {
-    const { queueId } = arg;
+    const { queueId, goHome } = arg;
     const authedRequest = makeAuthedRequest(RequestFactory.deleteQueue(queueId));
     const response = await authedRequest;
+    if (goHome) {
+      history.push('/');
+    }
     return response;
   });
 
