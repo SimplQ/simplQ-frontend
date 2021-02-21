@@ -7,7 +7,7 @@ import { PhoneNumberUtil } from 'google-libphonenumber';
 import { handleEnterPress } from 'utils/eventHandling';
 import InputField from 'components/common/InputField';
 import Button from 'components/common/Button';
-import LoadingStatus from 'components/common/Loading';
+import Loading from 'components/common/Loading/Loading';
 import styles from './JoinPage.module.scss';
 
 export function JoinQueueForm({ joinQueueHandler, buttonText }) {
@@ -103,9 +103,9 @@ export function JoinQueueForm({ joinQueueHandler, buttonText }) {
         onChange={handleContactChange}
         onKeyDown={(e) => handleEnterPress(e, handleClick)}
       />
-      <LoadingStatus dependsOn="joinQueue">
+      <Loading isLoading={actionStatus === 'pending'}>
         <Button onClick={handleClick}>{buttonText}</Button>
-      </LoadingStatus>
+      </Loading>
     </div>
   );
 }

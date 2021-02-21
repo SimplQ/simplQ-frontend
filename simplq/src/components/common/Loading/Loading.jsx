@@ -4,12 +4,8 @@ import PropagateLoader from 'react-spinners/PropagateLoader';
 import styles from './Loading.module.scss';
 
 const Loading = ({ children, actionStatus, isLoading }) => {
-  if (actionStatus === 'pending' || isLoading === true) {
-    return (
-      <div className={styles.main}>
-        <PropagateLoader color="#3a3768" />
-      </div>
-    );
+  if (actionStatus === 'fulfilled' || isLoading === false) {
+    return <>{children}</>;
   }
 
   if (actionStatus === 'rejected') {
@@ -20,7 +16,11 @@ const Loading = ({ children, actionStatus, isLoading }) => {
     );
   }
 
-  return <>{children}</>;
+  return (
+    <div className={styles.main}>
+      <PropagateLoader color="#3a3768" />
+    </div>
+  );
 };
 
 Loading.defaultProps = {

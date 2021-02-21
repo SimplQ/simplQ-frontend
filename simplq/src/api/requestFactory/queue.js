@@ -5,13 +5,8 @@
  */
 export const getUserQueues = () => ({ method: 'get', url: '/queues' });
 
-/**
- * Create a new queue with given name
- *
- * @returns {Object} request - partial axios request without baseURL
- */
-
-export const createQueue = (queueName) => ({ method: 'post', url: '/queue', data: { queueName } });
+// Create a new queue
+export const create = (queueName) => ({ method: 'post', url: '/queue', data: { queueName } });
 
 // Get a queue by id. Returns all active tokens in the queue
 export const get = (queueId) => ({ method: 'get', url: `/queue/${queueId}` });
