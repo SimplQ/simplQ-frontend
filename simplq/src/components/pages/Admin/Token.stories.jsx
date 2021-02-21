@@ -32,13 +32,26 @@ export const NotifyInProgress = Template.bind({});
 NotifyInProgress.args = {
   token: {
     ...Waiting.args.token,
-    notifiable: true,
   },
 };
 NotifyInProgress.parameters = {
   state: {
     actionStatus: {
       notifyToken: 'pending',
+    },
+  },
+};
+
+export const DeleteInProgress = Template.bind({});
+NotifyInProgress.args = {
+  token: {
+    ...Waiting.args.token,
+  },
+};
+DeleteInProgress.parameters = {
+  state: {
+    actionStatus: {
+      deleteToken: 'pending',
     },
   },
 };

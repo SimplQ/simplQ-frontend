@@ -25,6 +25,7 @@ function Token({ token }) {
   const deleteToken = useDeleteToken();
   const notifyToken = useNotifyToken();
   const notifyStatus = useSelector((state) => state.actionStatus['notifyToken']);
+  const deleteStatus = useSelector((state) => state.actionStatus['deleteToken']);
 
   const handleMouseHover = () => {
     setIsNotifyHovering(!isNotifyHovering);
@@ -78,6 +79,7 @@ function Token({ token }) {
 
   const RemoveButton = () => (
     <IconButton
+      disabled={deleteStatus === 'pending'}
       role="button"
       onClick={onDeleteClick}
       tabIndex={-1}
