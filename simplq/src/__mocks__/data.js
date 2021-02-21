@@ -66,7 +66,7 @@ export const queue = {
       tokenId: '2ae5ff76-8507-4887-b069-5f78bd791109',
       tokenNumber: 4,
       tokenCreationTimestamp: '2021-02-13T17:00:05.468+0000',
-      tokenStatus: 'WAITING',
+      tokenStatus: 'NOTIFIED',
       notifiable: true,
     },
     {
