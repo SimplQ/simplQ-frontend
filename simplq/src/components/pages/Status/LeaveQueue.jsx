@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import CloseIcon from '@material-ui/icons/Close';
 import { useDeleteToken } from 'store/asyncActions';
 import { selectToken } from 'store/token';
-import SidePanelItem from '../../common/SidePanel/SidePanelItem';
+import SidePanelItem from 'components/common/SidePanel/SidePanelItem';
 
 export default () => {
   const dispatch = useDispatch();
