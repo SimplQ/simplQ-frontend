@@ -23,7 +23,7 @@ export default ({ match }) => {
   const queueId = queueStatus.queueId;
 
   const joinQueueHandler = (name, contactNumber) => {
-    dispatch(joinQueue({ name, contactNumber, notifiable: true, queueId }));
+    dispatch(joinQueue({ name, contactNumber, notifiable: true, queueId, goToStatusPage: true }));
   };
   // TODO: If HeaderSection is used just in JoinPage
   // it should be renamed into something else and moved
