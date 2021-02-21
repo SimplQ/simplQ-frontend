@@ -10,6 +10,8 @@ const ANONYMOUS_DEVICE_ID_KEY = 'anonymous-device-id';
 
 /**
  * Gets the authorization header value to be used to make the request.
+ *
+ * @param {Object} auth object returned by useAuth() from @auth0/auth0-react.
  */
 const getAuthHeaderValue = async (auth) => {
   // If user is logged in, get the token from the login provider.
