@@ -7,7 +7,7 @@ const appSlice = createSlice({
   initialState: {
     errorText: '',
     infoText: '',
-    notificationPermission: null, // This state value is initilised by the notification service.
+    notificationPermission: null, // This state value is initialised by the notification service.
   },
   reducers: {
     setErrorPopupMessage: (state, action) => {
