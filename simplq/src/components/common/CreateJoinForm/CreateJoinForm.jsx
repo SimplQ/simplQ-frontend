@@ -1,33 +1,28 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router';
-import { QueueRequestFactory } from 'api/requestFactory';
-import useRequest from 'api/useRequest';
 import { handleEnterPress } from 'utils/eventHandling';
 import { isQueueNameValid } from 'utils/textOperations';
+import { useCreateQueue } from 'store/asyncActions';
+import { useDispatch, useSelector } from 'react-redux';
+import Loading from 'components/common/Loading/Loading';
 import styles from './CreateJoinForm.module.scss';
 import InputField from '../InputField';
-import LoadingIndicator from '../LoadingIndicator';
 import StandardButton from '../Button';
 
 const CreateJoinForm = (props) => {
   const [textFieldValue, setTextFieldValue] = useState(props.defaultTextFieldValue);
   const [invalidMsg, setInvalidMsg] = useState('');
-  const [createInProgress, setCreateInProgress] = useState(false);
-  const { requestMaker } = useRequest();
   const history = useHistory();
+  const createQueue = useCreateQueue();
+  const dispatch = useDispatch();
+  const actionStatus = useSelector((state) => state.actionStatus['createQueue']);
 
   const handleCreateClick = () => {
     if (!textFieldValue) {
       setInvalidMsg('Queue name is required');
       return;
     }
-    setCreateInProgress(true);
-    requestMaker(QueueRequestFactory.create(textFieldValue)).then((response) => {
-      if (response) {
-        history.push(`/queue/${response.queueId}`);
-      }
-      setCreateInProgress(false);
-    });
+    dispatch(createQueue(textFieldValue));
   };
 
   const handleJoinClick = () => {
@@ -61,18 +56,14 @@ const CreateJoinForm = (props) => {
         />
       </div>
       <div className={styles['button-group']}>
-        {createInProgress ? (
-          <LoadingIndicator />
-        ) : (
-          <>
-            <div>
-              <StandardButton onClick={handleCreateClick}>Create Queue</StandardButton>
-            </div>
-            <div>
-              <StandardButton onClick={handleJoinClick}>Join Queue</StandardButton>
-            </div>
-          </>
-        )}
+        <Loading isLoading={actionStatus === 'pending'}>
+          <div>
+            <StandardButton onClick={handleCreateClick}>Create Queue</StandardButton>
+          </div>
+          <div>
+            <StandardButton onClick={handleJoinClick}>Join Queue</StandardButton>
+          </div>
+        </Loading>
       </div>
     </div>
   );
