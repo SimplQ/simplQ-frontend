@@ -21,7 +21,7 @@ const CreateJoinForm = (props) => {
       setInvalidMsg('Queue name is required');
       return;
     }
-    dispatch(createQueue(textFieldValue));
+    dispatch(createQueue({ queueName: textFieldValue }));
   };
 
   const handleJoinClick = () => {
