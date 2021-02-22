@@ -19,18 +19,11 @@ const selectedQueueSlice = createSlice({
       const { queueId, queueName, queueCreationTimestamp, tokens } = action.payload;
       return { queueId, queueName, queueCreationTimestamp, tokens };
     },
-    // handle pending request
-    [getSelectedQueue.pending]: () => {
-      return {
-        queueId: null,
-        queueName: null,
-        queueCreationTimestamp: null,
-        tokens: [],
-      };
-    },
   },
 });
 
 export default selectedQueueSlice.reducer;
+
+export const selectQueueName = (state) => state.selectedQueue.queueName;
 
 export const selectTokens = (state) => state.selectedQueue.tokens;

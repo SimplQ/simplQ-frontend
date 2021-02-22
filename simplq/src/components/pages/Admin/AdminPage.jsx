@@ -2,10 +2,11 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { useState, useEffect, useCallback } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectTokens, selectQueueName } from 'store/selectedQueue';
 import Ribbon from 'components/common/Ribbon';
 import Tour from 'components/common/Tour';
-import { QueueRequestFactory } from 'api/requestFactory';
-import useRequest from 'api/useRequest';
+import { useGetSelectedQueue } from 'store/asyncActions';
 import HeaderSection from './AdminHeaderSection';
 import TokenList from './TokenList';
 import styles from './admin.module.scss';
@@ -17,27 +18,22 @@ let timeoutId;
 
 export default (props) => {
   const queueId = props.match.params.queueId;
-
-  const [tokens, setTokens] = useState();
-  const [queueName, setQueueName] = useState();
-  const [description, setDescription] = useState('');
+  const queueName = useSelector(selectQueueName);
+  const tokens = useSelector(selectTokens);
+  const description = queueName && 'Ready to share';
+  const dispatch = useDispatch();
+  const getSelectedQueue = useGetSelectedQueue();
 
   const [toursteps, setToursteps] = useState(getToursteps(window.innerHeight));
   const { isAuthenticated } = useAuth0();
-  const { requestMaker } = useRequest();
 
   const update = useCallback(() => {
     clearTimeout(timeoutId);
-    requestMaker(QueueRequestFactory.get(queueId)).then((data) => {
-      if (data) {
-        setTokens(data.tokens);
-        setQueueName(data.queueName);
-        // TODO: setDescription as soon as the backend returns it
-        setDescription('Ready to share');
-      }
-      timeoutId = setTimeout(update, TIMEOUT);
-    });
-  }, [queueId, requestMaker]);
+    dispatch(getSelectedQueue({ queueId }));
+    setTimeout(update, TIMEOUT);
+    // TODO: Check if this is good solution.
+    /* eslint-disable-next-line */
+  }, [queueId]);
 
   const resize = () => setToursteps(getToursteps(window.innerWidth));
 

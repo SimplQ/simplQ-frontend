@@ -1,5 +1,5 @@
-import reducer, { selectTokens } from './selectedQueueSlice';
+import reducer from './selectedQueueSlice';
 
 export default reducer;
 
-export { selectTokens };
+export { selectQueueName, selectTokens } from './selectedQueueSlice';
