@@ -1,13 +1,13 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
-import { getUserQueues, deleteQueue, getQueueStatusByName } from 'store/asyncActions';
+import { getUserQueues, deleteQueue, getQueueStatusByName, joinQueue } from 'store/asyncActions';
 
 const appSlice = createSlice({
   name: 'appSlice',
   initialState: {
     errorText: '',
     infoText: '',
-    notificationPermission: null, // This state value is initilised by the notification service.
+    notificationPermission: null, // This state value is initialised by the notification service.
   },
   reducers: {
     setErrorPopupMessage: (state, action) => {
@@ -41,6 +41,15 @@ const appSlice = createSlice({
     },
     [getQueueStatusByName.rejected]: (state, action) => {
       state.errorText = action.payload.message;
+    },
+    [joinQueue.pending]: (state) => {
+      state.infoText = `Adding to queue...`;
+    },
+    [joinQueue.rejected]: (state, action) => {
+      state.errorText = action.error.message;
+    },
+    [joinQueue.fulfilled]: (state, action) => {
+      state.infoText = `Added to ${action.payload.queueName}`;
     },
   },
 });

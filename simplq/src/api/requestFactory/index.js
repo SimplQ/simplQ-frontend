@@ -22,9 +22,10 @@ export { QueueRequestFactory, TokenRequestFactory };
 
 export {
   getUserQueues,
+  getQueue,
   deleteQueue,
   getQueueStatus,
   getQueueStatusByName,
   createQueue,
 } from './queue';
-export { createToken, getToken, deleteToken } from './token';
+export { createToken, getToken, deleteToken, notifyToken } from './token';

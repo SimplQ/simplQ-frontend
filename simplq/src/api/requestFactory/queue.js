@@ -13,6 +13,14 @@ export const getUserQueues = () => ({ method: 'get', url: '/queues' });
 
 export const createQueue = (queueName) => ({ method: 'post', url: '/queue', data: { queueName } });
 
+/**
+ * Request creator to fetch queue and belonging tokens by id
+ *
+ * @param {string} queueId
+ * @returns {Object} request - partial axios request without baseURL
+ */
+export const getQueue = (queueId) => ({ method: 'get', url: `/queue/${queueId}` });
+
 // Get a queue by id. Returns all active tokens in the queue
 export const get = (queueId) => ({ method: 'get', url: `/queue/${queueId}` });
 

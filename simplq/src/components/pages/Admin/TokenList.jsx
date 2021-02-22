@@ -1,40 +1,23 @@
 import React from 'react';
-import LoadingIndicator from 'components/common/LoadingIndicator';
+import Loading from 'components/common/Loading/Loading';
 import Token from './Token';
 import styles from './admin.module.scss';
 
-function TokenList(props) {
-  const queueId = props.queueId;
-  let listContent = null;
+function TokenList({ tokens }) {
+  const Dispaly = () =>
+    tokens.length === 0 ? (
+      <p>Your queue has been created and is currently empty. Waiting for people to join...</p>
+    ) : (
+      tokens.map((token) => <Token token={token} key={token.tokenId} />)
+    );
 
-  if (!props.tokens) {
-    listContent = (
+  return (
+    <Loading isLoading={tokens === undefined}>
       <div className={styles['token-list']}>
-        <LoadingIndicator />
+        <Dispaly />
       </div>
-    );
-  } else if (props.tokens.length === 0) {
-    listContent = (
-      <div className={styles['token-list']}>
-        <p>Your queue has been created and is currently empty. Waiting for people to join...</p>
-      </div>
-    );
-  } else {
-    listContent = (
-      <div className={styles['token-list']}>
-        {props.tokens.map((token) => (
-          <Token
-            removeTokenHandler={props.removeTokenHandler}
-            token={token}
-            queueId={queueId}
-            key={token.tokenId}
-          />
-        ))}
-      </div>
-    );
-  }
-
-  return listContent;
+    </Loading>
+  );
 }
 
 export default TokenList;

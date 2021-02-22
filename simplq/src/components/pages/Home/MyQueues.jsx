@@ -17,7 +17,7 @@ export default () => {
     // Don't trigger parent's onClick
     e.stopPropagation();
 
-    dispatch(deleteQueue({ queueId: queue.queueId }));
+    dispatch(deleteQueue({ queueId: queue.queueId, goHome: false }));
   };
 
   return (

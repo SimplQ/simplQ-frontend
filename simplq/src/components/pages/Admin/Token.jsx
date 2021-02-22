@@ -3,100 +3,91 @@ import IconButton from '@material-ui/core/IconButton';
 import Notifications from '@material-ui/icons/Notifications';
 import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive';
 import NotificationsOffIcon from '@material-ui/icons/NotificationsOffSharp';
+import DeleteIcon from '@material-ui/icons/Delete';
 import CallIcon from '@material-ui/icons/Call';
 import moment from 'moment';
-import LoadingIndicator from 'components/common/LoadingIndicator';
-import { TokenRequestFactory } from 'api/requestFactory';
-import useRequest from 'api/useRequest';
+import { useDispatch, useSelector } from 'react-redux';
+import { useDeleteToken, useNotifyToken } from 'store/asyncActions';
 import styles from './admin.module.scss';
 
-function Token(props) {
-  const name = props.token.name;
-  const tokenId = props.token.tokenId;
-  const tokenNumber = props.token.tokenNumber;
-  const contactNumber = props.token.contactNumber;
-  const notifiable = props.token.notifiable;
-  const tokenCreationTimestamp = props.token.tokenCreationTimestamp;
-  const [notifying, setNotifying] = useState(false);
+function Token({ token }) {
+  const {
+    name,
+    tokenId,
+    tokenNumber,
+    contactNumber,
+    notifiable,
+    tokenCreationTimestamp,
+    tokenStatus,
+  } = token;
   const [isNotifyHovering, setIsNotifyHovering] = useState(false);
-  const [didNotify, setDidNotify] = useState(props.token.tokenStatus === 'NOTIFIED');
-  const { requestMaker } = useRequest();
+  const dispatch = useDispatch();
+  const deleteToken = useDeleteToken();
+  const notifyToken = useNotifyToken();
+  const notifyStatus = useSelector((state) => state.actionStatus['notifyToken']);
+  const deleteStatus = useSelector((state) => state.actionStatus['deleteToken']);
 
   const handleMouseHover = () => {
     setIsNotifyHovering(!isNotifyHovering);
   };
 
   const onNotifyClick = () => {
-    setNotifying(true);
-    requestMaker(TokenRequestFactory.notify(tokenId)).then((response) => {
-      if (response) {
-        setDidNotify(true);
-      }
-      setNotifying(false);
-    });
+    dispatch(notifyToken({ tokenId }));
   };
 
   const onDeleteClick = () => {
-    props.removeTokenHandler(tokenId);
+    dispatch(deleteToken({ tokenId }));
   };
 
   const onCallClick = () => {
     window.open(`tel:+${contactNumber}`, '_self');
   };
 
-  let notificationButton = null;
-  if (notifying) {
-    // Notifying in progress
-    notificationButton = (
-      <IconButton color="primary" aria-label="notify">
-        <LoadingIndicator />
-      </IconButton>
+  const NotifyIcon = () => {
+    // TODO: Add some visual (blinking) while notifyToken is pending
+    if (notifiable === false || notifyStatus === 'pending') {
+      return <NotificationsOffIcon fontSize="large" className={styles['token-icon-disabled']} />;
+    }
+    if (tokenStatus === 'NOTIFIED') {
+      return <NotificationsActiveIcon fontSize="large" style={{ color: 'green' }} />;
+    }
+    return isNotifyHovering ? (
+      <NotificationsActiveIcon fontSize="large" className={styles['token-icon']} />
+    ) : (
+      <Notifications fontSize="large" className={styles['token-icon']} />
     );
-  } else if (!notifiable) {
-    // Not notifiable
-    notificationButton = (
-      <IconButton color="primary" aria-label="notify" disabled>
-        <NotificationsOffIcon fontSize="large" className={styles['token-icon-disabled']} />
-      </IconButton>
-    );
-  } else if (didNotify) {
-    // Notified
-    notificationButton = (
-      <IconButton color="primary" aria-label="notified">
-        <NotificationsActiveIcon fontSize="large" style={{ color: 'green' }} />
-      </IconButton>
-    );
-  } else {
-    // Yet to notify
-    notificationButton = (
-      <IconButton
-        color="primary"
-        edge="end"
-        aria-label="notify"
-        onClick={onNotifyClick}
-        onMouseEnter={handleMouseHover}
-        onMouseLeave={handleMouseHover}
-      >
-        {isNotifyHovering ? (
-          <NotificationsActiveIcon fontSize="large" className={styles['token-icon']} />
-        ) : (
-          <Notifications fontSize="large" className={styles['token-icon']} />
-        )}
-      </IconButton>
-    );
-  }
+  };
+
+  const NotifyButton = () => (
+    <IconButton
+      disabled={notifiable === false || tokenStatus === 'NOTIFIED' || notifyStatus === 'pending'}
+      color="primary"
+      aria-label="notify"
+      onClick={onNotifyClick}
+      onMouseEnter={handleMouseHover}
+      onMouseLeave={handleMouseHover}
+    >
+      <NotifyIcon />
+    </IconButton>
+  );
+
+  const CallButton = () => (
+    <IconButton onClick={onCallClick}>
+      <CallIcon className={styles['token-icon']} fontSize="large" />
+    </IconButton>
+  );
 
   const RemoveButton = () => (
-    <div
+    <IconButton
+      disabled={deleteStatus === 'pending'}
       role="button"
       onClick={onDeleteClick}
       tabIndex={-1}
       onKeyDown={onDeleteClick}
-      className={styles['token-remove']}
       aria-label="remove"
     >
-      <p>remove</p>
-    </div>
+      <DeleteIcon color="secondary" fontSize="large" />
+    </IconButton>
   );
 
   return (
@@ -111,12 +102,10 @@ function Token(props) {
         </div>
         <div className={styles['token-operations']}>
           <div className={styles['token-icon-set']}>
-            <IconButton onClick={onCallClick}>
-              <CallIcon className={styles['token-icon']} fontSize="large" />
-            </IconButton>
-            {notificationButton}
+            <CallButton />
+            <NotifyButton />
+            <RemoveButton />
           </div>
-          <RemoveButton />
         </div>
       </div>
     </section>
