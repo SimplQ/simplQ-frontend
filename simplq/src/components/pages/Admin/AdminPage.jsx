@@ -30,7 +30,7 @@ export default (props) => {
   const update = useCallback(() => {
     clearTimeout(timeoutId);
     dispatch(getSelectedQueue({ queueId }));
-    setTimeout(update, TIMEOUT);
+    timeoutId = setTimeout(update, TIMEOUT);
     // TODO: Check if this is good solution.
     /* eslint-disable-next-line */
   }, [queueId]);
