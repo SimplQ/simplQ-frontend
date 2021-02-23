@@ -25,7 +25,6 @@ export default (props) => {
 
   const [toursteps, setToursteps] = useState(getToursteps(window.innerHeight));
   const { isAuthenticated } = useAuth0();
-  console.log('In admin page');
   const update = useCallback(() => {
     clearTimeout(timeoutId);
     dispatch(getSelectedQueue({ queueId }));

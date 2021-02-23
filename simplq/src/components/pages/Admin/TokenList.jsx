@@ -13,7 +13,6 @@ function TokenList() {
     ) : (
       tokens.map((token) => <Token token={token} key={token.tokenId} />)
     );
-  console.log('In token page');
 
   return (
     <Loading isLoading={tokens === undefined}>
