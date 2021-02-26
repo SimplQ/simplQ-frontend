@@ -13,7 +13,7 @@ function TermsOfService() {
         <p>
           Your privacy is important to us. It is SimplQ&apos;s policy to respect your privacy
           regarding any information we may collect from you across our website,&nbsp;
-          <a href="http://simplq.me">http://simplq.me</a>
+          <a href="https://simplq.me">https://simplq.me</a>
           <span>, and other sites we own and operate.</span>
         </p>
         <p>
@@ -50,7 +50,7 @@ function TermsOfService() {
         <h3>1. Terms</h3>
         <p>
           By accessing the website at&nbsp;
-          <a href="http://simplq.me">http://simplq.me</a>
+          <a href="https://simplq.me">https://simplq.me</a>
           <span>
             , you are agreeing to be bound by these terms of service, all applicable laws and
             regulations, and agree that you are responsible for compliance with any applicable local
