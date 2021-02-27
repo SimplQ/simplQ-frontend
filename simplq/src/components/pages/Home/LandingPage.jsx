@@ -1,28 +1,16 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import Header from 'components/common/Header';
 import QueueForm from 'components/common/CreateJoinForm';
-import { useGetUserQueues } from 'store/asyncActions';
-import { useDispatch } from 'react-redux';
 import styles from './Home.module.scss';
 import MyQueues from './MyQueues';
 
 export default () => {
   let subtitle = 'A long overdue alternative to physical queues';
-  const { user, isAuthenticated, isLoading } = useAuth0();
+  const { user, isAuthenticated } = useAuth0();
   if (isAuthenticated) {
     subtitle = `Hi ${user.name}, welcome back!`;
   }
-  const dispatch = useDispatch();
-  const getUserQueues = useGetUserQueues();
-
-  useEffect(() => {
-    // TODO: Server still returns queues for anonymous users
-    //  Dispatch action only if auth is loaded
-    if (isLoading === false) {
-      dispatch(getUserQueues());
-    }
-  }, [isLoading, isAuthenticated, getUserQueues, dispatch]);
 
   return (
     <div id="target_top" className={styles['landing-page']}>
