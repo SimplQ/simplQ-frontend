@@ -35,7 +35,8 @@
     "react-spinners": "^0.9.0",
     "react-to-print": "^2.12.2",
     "reactour": "^1.18.0",
-    "styled-components": "^5.2.1"
+    "styled-components": "^5.2.1",
+    "uuid": "^8.3.2"
   },
   "scripts": {
     "start": "npm run config && react-scripts start",
