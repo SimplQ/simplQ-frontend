@@ -13,11 +13,11 @@ export const smoothScrollTo = (targetElement) => {
   });
 };
 
-export const smoothScrollToHomePageTop = () => {
+export const smoothScrollToHomePageTop = (history) => {
   const element = document.getElementById('target_top');
   if (element) {
     smoothScrollTo(element);
   } else {
-    window.location.href = '/';
+    history.push('/');
   }
 };
