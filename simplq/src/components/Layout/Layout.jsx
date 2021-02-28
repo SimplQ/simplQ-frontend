@@ -13,7 +13,8 @@ function Layout() {
   const getUserQueues = useGetUserQueues();
 
   useEffect(() => {
-    //  Dispatch action only if auth is loaded
+    // All the backend API calls that should happen at the start goes here.
+    // They will the dispached as soon as Auth0 has initilised.
     if (isLoading === false) {
       dispatch(getUserQueues());
     }
@@ -22,8 +23,8 @@ function Layout() {
   return (
     <div className={styles['box']}>
       <div className={styles['content']}>
-        {/* TODO:  Since we have better way for managing loading status
-        remove conditional loading of the layout once it is handled elswhere */}
+        {/* We load the main app content only after Auth0 has been initilised. 
+        This helps ensure that no backend API calls are made before auth the initilisation */}
         <Loading isLoading={isLoading}>
           <Routes />
         </Loading>
