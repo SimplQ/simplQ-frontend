@@ -4,18 +4,18 @@ import QueueStats from 'components/common/QueueStats';
 import { useGetQueueStatus } from 'store/asyncActions';
 import { selectQueueStatus } from 'store/queueStatus';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectToken } from 'store/token';
+import { selectTokens } from 'store/selectedQueue';
 import SidePanelItem from 'components/common/SidePanel/SidePanelItem';
 
-export default () => {
+export default ({ queueId }) => {
   const queueStatus = useSelector(selectQueueStatus);
   const dispatch = useDispatch();
   const getQueueStatus = useCallback(useGetQueueStatus(), []);
-  const token = useSelector(selectToken);
+  const tokens = useSelector(selectTokens);
 
   useEffect(() => {
-    dispatch(getQueueStatus({ queueId: token.queueId }));
-  }, [token, dispatch, getQueueStatus]);
+    dispatch(getQueueStatus({ queueId }));
+  }, [queueId, tokens, dispatch, getQueueStatus]);
 
   return (
     <SidePanelItem

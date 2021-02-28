@@ -1,10 +1,10 @@
 import React from 'react';
 import SidePanel from 'components/common/SidePanel';
+import QueueDetails from './QueueDetails';
 import AddMember from './AddMember';
 import PauseQueue from './PauseQueue';
 import DeleteQueue from './DeleteQueue';
 import QueueHistory from './QueueHistory';
-import QueueDetails from '../Status/QueueDetails';
 
 export default ({ queueId }) => (
   <SidePanel>

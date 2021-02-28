@@ -25,7 +25,7 @@ const getAuthHeaderValue = async (auth) => {
     localStorage.setItem(ANONYMOUS_DEVICE_ID_KEY, `anonymous-${uuidv4()}`);
   }
 
-  return Promise.resolve(`Anonymous ${localStorage.getItem(ANONYMOUS_DEVICE_ID_KEY)}`);
+  return `Anonymous ${localStorage.getItem(ANONYMOUS_DEVICE_ID_KEY)}`;
 };
 
 /**
