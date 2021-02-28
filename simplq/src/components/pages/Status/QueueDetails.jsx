@@ -7,15 +7,21 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectToken } from 'store/token';
 import SidePanelItem from 'components/common/SidePanel/SidePanelItem';
 
-export default () => {
+export default ({ queueId }) => {
   const queueStatus = useSelector(selectQueueStatus);
-  const token = useSelector(selectToken);
   const dispatch = useDispatch();
   const getQueueStatus = useCallback(useGetQueueStatus(), []);
+  const token = useSelector(selectToken);
 
   useEffect(() => {
-    dispatch(getQueueStatus({ queueId: token.queueId }));
-  }, [token, dispatch, getQueueStatus]);
+    if (queueId) {
+      // from AdminSidePanel
+      dispatch(getQueueStatus({ queueId }));
+    } else {
+      // from StatusSidePanel
+      dispatch(getQueueStatus({ queueId: token.queueId }));
+    }
+  }, [queueId, token, dispatch, getQueueStatus]);
 
   return (
     <SidePanelItem
