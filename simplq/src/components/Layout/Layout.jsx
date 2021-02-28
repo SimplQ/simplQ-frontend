@@ -13,10 +13,9 @@ function Layout() {
   const getUserQueues = useGetUserQueues();
 
   useEffect(() => {
-    // All the backend API calls that should happen at the start goes here. 
+    // All the backend API calls that should happen at the start goes here.
     // They will the dispached as soon as Auth0 has initilised.
     if (isLoading === false) {
-      
       dispatch(getUserQueues());
     }
   }, [isLoading, isAuthenticated, getUserQueues, dispatch]);
