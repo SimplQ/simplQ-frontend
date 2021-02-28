@@ -1,6 +1,6 @@
 import React from 'react';
 import SidePanel from 'components/common/SidePanel';
-import QueueDetails from 'components/pages/Status/QueueDetails';
+import QueueDetails from './QueueDetails';
 import AddMember from './AddMember';
 import PauseQueue from './PauseQueue';
 import DeleteQueue from './DeleteQueue';
