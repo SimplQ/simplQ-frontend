@@ -12,7 +12,6 @@ export default ({ queueId }) => {
   const dispatch = useDispatch();
   const getQueueStatus = useCallback(useGetQueueStatus(), []);
   const tokens = useSelector(selectTokens);
-  const actionStatus = useSelector((state) => state.actionStatus['getQueueStatus']);
 
   useEffect(() => {
     dispatch(getQueueStatus({ queueId }));
@@ -24,7 +23,6 @@ export default ({ queueId }) => {
       title="Queue Details"
       description="Other information about the queue"
       expandable
-      loading={actionStatus === 'pending'}
     >
       <QueueStats queueStatus={queueStatus} />
     </SidePanelItem>
