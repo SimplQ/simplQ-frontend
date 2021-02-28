@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectTokens, selectQueueName } from 'store/selectedQueue';
+import { selectQueueName } from 'store/selectedQueue';
 import Ribbon from 'components/common/Ribbon';
 import Tour from 'components/common/Tour';
 import { useGetSelectedQueue } from 'store/asyncActions';
@@ -19,14 +19,12 @@ let timeoutId;
 export default (props) => {
   const queueId = props.match.params.queueId;
   const queueName = useSelector(selectQueueName);
-  const tokens = useSelector(selectTokens);
   const description = queueName && 'Ready to share';
   const dispatch = useDispatch();
   const getSelectedQueue = useGetSelectedQueue();
 
   const [toursteps, setToursteps] = useState(getToursteps(window.innerHeight));
   const { isAuthenticated } = useAuth0();
-
   const update = useCallback(() => {
     clearTimeout(timeoutId);
     dispatch(getSelectedQueue({ queueId }));
@@ -58,7 +56,7 @@ export default (props) => {
         />
       )}
       <div className={styles['main-body']}>
-        <TokenList tokens={tokens} queueId={queueId} />
+        <TokenList queueId={queueId} />
         <SidePanel queueId={queueId} />
       </div>
     </div>

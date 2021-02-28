@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
+import { useGetUserQueues } from 'store/asyncActions';
+import { useDispatch } from 'react-redux';
 import { useAuth0 } from '@auth0/auth0-react';
 import Footer from 'components/common/Footer';
 import Loading from 'components/common/Loading/Loading';
-import { useGetUserQueues } from 'store/asyncActions';
-import { useDispatch } from 'react-redux';
 import Routes from './Routes';
 import styles from './Layout.module.scss';
 
@@ -13,8 +13,8 @@ function Layout() {
   const getUserQueues = useGetUserQueues();
 
   useEffect(() => {
-    // TODO: Server still returns queues for anonymous users
-    //  Dispatch action only if auth is loaded
+    // All the backend API calls that should happen at the start goes here.
+    // They will the dispached as soon as Auth0 has initilised.
     if (isLoading === false) {
       dispatch(getUserQueues());
     }
@@ -23,8 +23,8 @@ function Layout() {
   return (
     <div className={styles['box']}>
       <div className={styles['content']}>
-        {/* TODO:  Since we have better way for managing loading status
-        remove conditional loading of the layout once it is handled elswhere */}
+        {/* We load the main app content only after Auth0 has been initilised. 
+        This helps ensure that no backend API calls are made before auth the initilisation */}
         <Loading isLoading={isLoading}>
           <Routes />
         </Loading>

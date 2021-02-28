@@ -8,8 +8,7 @@ import styles from './ClickableLogo.module.scss';
 export default (props) => {
   const history = useHistory();
   const defaultOnClick = () => {
-    history.push('/');
-    smoothScrollToHomePageTop();
+    smoothScrollToHomePageTop(history);
   };
   return (
     <div className={styles['logo']} onClick={props.onClick ? props.onClick : defaultOnClick}>

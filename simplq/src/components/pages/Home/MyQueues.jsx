@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
 import { useHistory } from 'react-router';
 import { useDeleteQueue } from 'store/asyncActions';
 import { selectQueues } from 'store/queues';
 import { useDispatch, useSelector } from 'react-redux';
+import { setInfoPopupMessage } from 'store/appSlice';
 import styles from './Home.module.scss';
 
 export default () => {
@@ -12,6 +13,12 @@ export default () => {
   const dispatch = useDispatch();
   const queues = useSelector(selectQueues);
   const deleteQueue = useDeleteQueue();
+
+  useEffect(() => {
+    if (queues) {
+      dispatch(setInfoPopupMessage(`Number of queues fetched: ${queues.length}`));
+    }
+  }, [dispatch, queues]);
 
   const handleDelete = (e, queue) => {
     // Don't trigger parent's onClick

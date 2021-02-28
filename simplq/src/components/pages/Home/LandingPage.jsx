@@ -11,6 +11,7 @@ export default () => {
   if (isAuthenticated) {
     subtitle = `Hi ${user.name}, welcome back!`;
   }
+
   return (
     <div id="target_top" className={styles['landing-page']}>
       <div data-aos="zoom-in">

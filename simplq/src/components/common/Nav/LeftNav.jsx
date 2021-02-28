@@ -1,11 +1,14 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 
 import React from 'react';
-import { smoothScrollTo } from 'utils/scrollingOperations';
+import { smoothScrollTo, smoothScrollToHomePageTop, onLoadById } from 'utils/scrollingOperations';
+import { useHistory } from 'react-router';
 import styles from './Nav.module.scss';
 import LoginButton from '../LoginButton';
 
 const LeftNav = ({ open, toggleClose }) => {
+  const history = useHistory();
+
   const scrollToHowItWorks = () => {
     // Close the navbar on click
     toggleClose();
@@ -15,14 +18,21 @@ const LeftNav = ({ open, toggleClose }) => {
       // element is on the current page, just have to scroll to it
       smoothScrollTo(element);
     } else {
-      window.location.href = '/#target_how_it_works';
+      history.push('/');
+      // wait till page loads before getting element
+      onLoadById('target_how_it_works', smoothScrollTo);
     }
   };
   return (
     <div>
       <ul className={styles['left-nav']} open={open}>
         <li>
-          <a tabIndex={0} href="/">
+          <a
+            role="link"
+            tabIndex={0}
+            onKeyDown={() => smoothScrollToHomePageTop(history)}
+            onClick={() => smoothScrollToHomePageTop(history)}
+          >
             Home
           </a>
         </li>
