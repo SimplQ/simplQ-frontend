@@ -7,7 +7,7 @@ import { selectQueueName } from 'store/selectedQueue';
 import Ribbon from 'components/common/Ribbon';
 import Tour from 'components/common/Tour';
 import { useGetSelectedQueue } from 'store/asyncActions';
-import HeaderSection from './AdminHeaderSection';
+import HeaderSection from './HeaderSection';
 import TokenList from './TokenList';
 import styles from './admin.module.scss';
 import SidePanel from './AdminSidePanel';

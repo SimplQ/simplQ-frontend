@@ -5,7 +5,7 @@ import QueueStatus from 'components/pages/Status';
 import AdminPage from 'components/pages/Admin/AdminPage';
 import PageNotFound from 'components/pages/PageNotFound';
 import PopupNotifications from 'components/common/Popup';
-import HomePage from 'components/pages/Home/HomePage';
+import HomePage from 'components/pages/Home/Home';
 import TermsOfService from 'components/pages/TermsOfService';
 import Navbar from 'components/common/Nav/Navbar';
 import { ErrorBoundary } from '../ErrorHandler';
