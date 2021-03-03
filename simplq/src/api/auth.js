@@ -59,30 +59,5 @@ const useMakeAuthedRequest = () => {
   return makeAuthedRequest;
 };
 
-/**
- * Async function for sending request with Auth0
- * TODO: Remove this function if not used.
- *
- * Since @auth0/auth0-react can work only wthin a component,
- * the whole auth object created with useAuth() must be
- * passed as parameter.
- *
- * @param {Object} auth object returned by useAuth() from @auth0/auth0-react.
- * @param {Object} request object created by requestFactory.
- */
-const makeAuthedRequest = async (auth, request) => {
-  return axios({
-    baseURL,
-    ...request,
-    headers: {
-      ...request.headers,
-      // Add the Authorization header to the existing headers
-      Authorization: await getAuthHeaderValue(auth),
-    },
-  }).then((response) => {
-    return response.data;
-  });
-};
-
-export { makeAuthedRequest, useMakeAuthedRequest };
+export { useMakeAuthedRequest };
 export default useAuth0;
