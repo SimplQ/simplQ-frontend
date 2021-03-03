@@ -5,8 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useGetToken } from 'store/asyncActions';
 import { selectToken } from 'store/token';
 import styles from './status.module.scss';
-import StatusContainer from './StatusContainer';
-import StatusSidePanel from './StatusSidePanel';
+import TokenStatus from './TokenStatus';
+import TokenSidePanel from './TokenSidePanel';
 import TokenNumber from './TokenNumber';
 
 // TODO Rename component to token status, component and folder/page name
@@ -25,8 +25,8 @@ function TokenStatusPage(props) {
       <HeaderSection queueName={token ? token.queueName : 'Loading...'} />
       <div className={styles['main-body']}>
         <TokenNumber />
-        <StatusContainer />
-        <StatusSidePanel />
+        <TokenStatus />
+        <TokenSidePanel />
       </div>
     </>
   );
