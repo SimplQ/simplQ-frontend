@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 import JoinQueueWithDetails from 'components/pages/Join/JoinPage';
-import TokenStatusPage from 'components/pages/Status/TokenStatusPage';
+import TokenStatusPage from 'components/pages/TokenStatus/TokenStatusPage';
 import AdminPage from 'components/pages/Admin/AdminPage';
 import PageNotFound from 'components/pages/PageNotFound';
 import PopupNotifications from 'components/common/Popup';
