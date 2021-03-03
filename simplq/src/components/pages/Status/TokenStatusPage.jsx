@@ -10,7 +10,7 @@ import StatusSidePanel from './StatusSidePanel';
 import TokenNumber from './TokenNumber';
 
 // TODO Rename component to token status, component and folder/page name
-function QueueStatus(props) {
+function TokenStatusPage(props) {
   const tokenId = props.match.params.tokenId;
   const dispatch = useDispatch();
   const token = useSelector(selectToken);
@@ -32,4 +32,4 @@ function QueueStatus(props) {
   );
 }
 
-export default QueueStatus;
+export default TokenStatusPage;
