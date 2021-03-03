@@ -1,5 +1,5 @@
 import React from 'react';
-import { createdToken as token } from '__mocks__/data';
+import * as Tokens from './TokenStatus.stories';
 import TokenStatusPage from './TokenStatusPage';
 
 export default {
@@ -22,26 +22,20 @@ const Template = (args) => (
 export const Waiting = Template.bind({});
 Waiting.parameters = {
   state: {
-    token,
+    token: Tokens.Waiting.parameters.state.token,
   },
 };
 
 export const Notified = Template.bind({});
 Notified.parameters = {
   state: {
-    token: {
-      ...token,
-      tokenStatus: 'NOTIFIED',
-    },
+    token: Tokens.Notified.parameters.state.token,
   },
 };
 
 export const Removed = Template.bind({});
 Removed.parameters = {
   state: {
-    token: {
-      ...token,
-      tokenStatus: 'REMOVED',
-    },
+    token: Tokens.Removed.parameters.state.token,
   },
 };

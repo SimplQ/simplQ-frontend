@@ -1,5 +1,5 @@
 import React from 'react';
-import { createdToken as token } from '__mocks__/data';
+import { Waiting } from './TokenStatus.stories';
 import TokenNumber from './TokenNumber';
 
 export default {
@@ -15,6 +15,6 @@ const Template = (args) => (
 export const Default = Template.bind({});
 Default.parameters = {
   state: {
-    token,
+    token: Waiting.parameters.state.token,
   },
 };
