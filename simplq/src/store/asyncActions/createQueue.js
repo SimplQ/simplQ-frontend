@@ -14,7 +14,7 @@ const useCreateQueue = () => {
   const makeAuthedRequest = useMakeAuthedRequest();
   const history = useHistory();
 
-  const createQueue = createAsyncThunk(typePrefix, async ({ queueName }) => {
+  return createAsyncThunk(typePrefix, async ({ queueName }) => {
     const authedRequest = makeAuthedRequest(RequestFactory.createQueue(queueName));
     const response = await authedRequest;
     if (response) {
@@ -22,8 +22,6 @@ const useCreateQueue = () => {
     }
     return response;
   });
-
-  return createQueue;
 };
 
 const createQueue = createAsyncThunk(typePrefix);
