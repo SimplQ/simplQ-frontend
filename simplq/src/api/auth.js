@@ -43,7 +43,7 @@ const useMakeAuthedRequest = () => {
    * @returns {Object} request response data as a Promise.
    */
   const makeAuthedRequest = async (request) => {
-    const authedRequest = axios({
+    const { data } = await axios({
       baseURL,
       ...request,
       headers: {
@@ -52,8 +52,8 @@ const useMakeAuthedRequest = () => {
         Authorization: await getAuthHeaderValue(auth),
       },
     });
-    const response = await authedRequest;
-    return response.data;
+
+    return data;
   };
 
   return makeAuthedRequest;
