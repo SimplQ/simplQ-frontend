@@ -3,7 +3,7 @@
 import React from 'react';
 import PageNotFound from './pages/PageNotFound';
 import { setErrorPopupMessage } from 'store/appSlice';
-import { store } from 'store'; 
+import { store } from 'store';
 
 export class ErrorBoundary extends React.Component {
   constructor(props) {
