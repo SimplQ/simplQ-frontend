@@ -14,7 +14,7 @@ const useDeleteQueue = () => {
   const makeAuthedRequest = useMakeAuthedRequest();
   const history = useHistory();
 
-  return createAsyncThunk(typePrefix, async (arg) => {
+  const deleteQueue = createAsyncThunk(typePrefix, async (arg) => {
     const { queueId, goHome } = arg;
     const authedRequest = makeAuthedRequest(RequestFactory.deleteQueue(queueId));
     const response = await authedRequest;
@@ -23,6 +23,8 @@ const useDeleteQueue = () => {
     }
     return response;
   });
+
+  return deleteQueue;
 };
 
 const deleteQueue = createAsyncThunk(typePrefix);
