@@ -22,7 +22,7 @@ export default (props) => {
   const creationTime = useMemo(() => {
     if (!queueCreationTimestamp) return '';
 
-    const localTimeStamp = moment(queueCreationTimestamp); // TODO: Make sure the local time is always displayed
+    const localTimeStamp = moment(queueCreationTimestamp);
     return `${localTimeStamp.format('LT')} ${localTimeStamp.format('ll')}`;
   }, [queueCreationTimestamp]);
 
