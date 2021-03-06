@@ -1,6 +1,5 @@
 import React from 'react';
 
-// import { queue } from '__mocks__/data';
 import AdminHeaderSection from './AdminHeaderSection';
 import styles from './admin.module.scss';
 
