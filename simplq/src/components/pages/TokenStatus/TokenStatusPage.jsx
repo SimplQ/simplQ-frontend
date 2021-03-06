@@ -9,7 +9,6 @@ import TokenStatus from './TokenStatus';
 import TokenSidePanel from './TokenSidePanel';
 import TokenNumber from './TokenNumber';
 
-// TODO Rename component to token status, component and folder/page name
 function TokenStatusPage(props) {
   const tokenId = props.match.params.tokenId;
   const dispatch = useDispatch();
