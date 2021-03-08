@@ -13,9 +13,7 @@ const useNotifyToken = () => {
   const makeAuthedRequest = useMakeAuthedRequest();
 
   const notifyToken = createAsyncThunk(typePrefix, async ({ tokenId }) => {
-    const authedRequest = makeAuthedRequest(RequestFactory.notifyToken(tokenId));
-    const response = await authedRequest;
-    return response;
+    return makeAuthedRequest(RequestFactory.notifyToken(tokenId));
   });
 
   return notifyToken;

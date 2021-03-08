@@ -19,9 +19,7 @@ const useGetUserQueues = () => {
   const makeAuthedRequest = useMakeAuthedRequest();
 
   const getUserQueues = createAsyncThunk(typePrefix, async () => {
-    const authedRequest = makeAuthedRequest(RequestFactory.getUserQueues());
-    const response = await authedRequest;
-    return response;
+    return makeAuthedRequest(RequestFactory.getUserQueues());
   });
 
   return getUserQueues;
