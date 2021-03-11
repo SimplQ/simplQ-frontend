@@ -8,6 +8,8 @@ import styles from './Footer.module.scss';
 import ClickableLogo from '../ClickableLogo';
 import StandardButton from '../Button';
 
+const dayOfWeek = () => new Intl.DateTimeFormat('default', { weekday: 'long' }).format(new Date());
+
 export default () => (
   <div id="target_contact_us" className={styles['footer']}>
     <div className={styles['card']}>
@@ -18,9 +20,13 @@ export default () => (
             SimplQ is a completely web based queue management solution that anyone can use to create
             instant virtual queues.
             <br />
+            <br />
             <a href="/privacy">Privacy Policy</a>
             <br />
             <a href="/privacy#terms-of-service">Terms of Service</a>
+            <br />
+            <br />
+            <i>Enjoy the rest of your {dayOfWeek()}!</i>
           </b>
         </div>
       </div>
