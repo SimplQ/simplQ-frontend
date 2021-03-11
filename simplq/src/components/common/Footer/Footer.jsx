@@ -23,9 +23,9 @@ export default () => (
             <a href="/privacy">Privacy Policy</a>
             <br />
             <a href="/privacy#terms-of-service">Terms of Service</a>
-            <br />
-            <i>Enjoy the rest of your {dayOfWeek()}!</i>
           </b>
+          <br />
+          <i>Enjoy the rest of your {dayOfWeek()}!</i>
         </div>
       </div>
     </div>
