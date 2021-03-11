@@ -24,7 +24,7 @@ export default () => (
             <br />
             <a href="/privacy#terms-of-service">Terms of Service</a>
           </b>
-          <br />
+          <br /><br />
           <i>Enjoy the rest of your {dayOfWeek()}!</i>
         </div>
       </div>
