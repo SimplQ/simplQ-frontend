@@ -8,6 +8,8 @@ import styles from './Footer.module.scss';
 import ClickableLogo from '../ClickableLogo';
 import StandardButton from '../Button';
 
+const dayOfWeek = () => new Intl.DateTimeFormat('en-US', {weekkday: 'long'}).format(new Date()) 
+
 export default () => (
   <div id="target_contact_us" className={styles['footer']}>
     <div className={styles['card']}>
@@ -21,6 +23,8 @@ export default () => (
             <a href="/privacy">Privacy Policy</a>
             <br />
             <a href="/privacy#terms-of-service">Terms of Service</a>
+            <br />
+            <i>Enjoy the rest of your {dayOfWeek()}!</i>
           </b>
         </div>
       </div>
