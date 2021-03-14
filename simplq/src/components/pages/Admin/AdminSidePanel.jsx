@@ -9,7 +9,7 @@ import QueueHistory from './QueueHistory';
 export default ({ queueId }) => (
   <SidePanel>
     <AddMember queueId={queueId} />
-    <PauseQueue />
+    <PauseQueue queueId={queueId} />
     <DeleteQueue queueId={queueId} />
     <QueueHistory />
     <QueueDetails queueId={queueId} />

@@ -53,3 +53,16 @@ export const getQueueStatusByName = (queueName) => ({
  * @returns {Object} request - partial axios request without baseURL
  */
 export const deleteQueue = (queueId) => ({ method: 'delete', url: `/queue/${queueId}` });
+
+/**
+ * Request creator to pause queue by id
+ *
+ * @param {string} queueId
+ * @param {string} status
+ * @returns {Object} request - partial axios request without baseURL
+ */
+export const pauseQueue = (queueId, status) => ({
+  method: 'post',
+  url: `/queue/${queueId}`,
+  data: { status },
+});
