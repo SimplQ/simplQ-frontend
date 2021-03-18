@@ -46,4 +46,4 @@ Implementation Roadmap: https://github.com/SimplQ/simplQ-frontend/issues/207
 
 # Deploy
 
-Changes to master are automatically deployed to  [dev.simplq.me/](https://dev.simplq.me/). Periodically, the Ionic team will inspect dev and promote it to [simplq.me](https://simplq.me).
+Changes to master are automatically deployed to  [dev.simplq.me/](https://dev.simplq.me/). Periodically, we inspect dev and promote it to [simplq.me](https://simplq.me).
