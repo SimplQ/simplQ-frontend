@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useGetToken } from 'store/asyncActions';
+import { useGetToken, useGetQueueStatus } from 'store/asyncActions';
 import { selectToken } from 'store/token';
 import { selectQueueStatus } from 'store/queueStatus';
+
 import LoadingStatus from 'components/common/Loading/LoadingStatus';
 import Button from 'components/common/Button';
 import styles from './status.module.scss';
@@ -12,6 +13,11 @@ export default () => {
   const dispatch = useDispatch();
   const getToken = useGetToken();
   const queueStatus = useSelector(selectQueueStatus);
+  const getQueueStatus = useCallback(useGetQueueStatus(), []);
+
+  useEffect(() => {
+    dispatch(getQueueStatus({ queueId: token.queueId }));
+  }, []);
 
   const onRefreshClick = () => {
     dispatch(getToken({ tokenId: token.tokenId }));
