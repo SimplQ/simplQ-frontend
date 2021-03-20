@@ -33,7 +33,7 @@ ReactDOM.render(
     clientId="9BAywifjAy6n0sx8WbuQubMGGjofpwd6"
     redirectUri={window.location.origin}
     audience="https://devbackend.simplq.me/v1"
-    scope="read:current_user update:current_user_metadata"
+    scope="read:current_user update:current_user_metadata offline_access"
   >
     <ThemeProvider theme={theme}>
       <Provider store={store}>
