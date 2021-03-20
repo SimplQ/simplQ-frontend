@@ -3,11 +3,13 @@
 import React from 'react';
 import { smoothScrollTo, smoothScrollToHomePageTop, onLoadById } from 'utils/scrollingOperations';
 import { useHistory } from 'react-router';
+import { ReactTypeformEmbed } from 'react-typeform-embed';
 import styles from './Nav.module.scss';
 import LoginButton from '../LoginButton';
 
 const LeftNav = ({ open, toggleClose }) => {
   const history = useHistory();
+  let typeformEmbed = null;
 
   const scrollToHowItWorks = () => {
     // Close the navbar on click
@@ -22,6 +24,10 @@ const LeftNav = ({ open, toggleClose }) => {
       // wait till page loads before getting element
       onLoadById('target_how_it_works', smoothScrollTo);
     }
+  };
+
+  const opneContactUs = () => {
+    typeformEmbed.typeform.open();
   };
   return (
     <div>
@@ -42,7 +48,7 @@ const LeftNav = ({ open, toggleClose }) => {
           </a>
         </li>
         <li>
-          <a tabIndex={0} href="https://iimb.qualtrics.com/jfe/form/SV_aY8FY91ztRX9NvD">
+          <a role="link" tabIndex={0} onKeyDown={opneContactUs} onClick={opneContactUs}>
             Contact Us
           </a>
         </li>
@@ -50,6 +56,16 @@ const LeftNav = ({ open, toggleClose }) => {
           <LoginButton />
         </li>
       </ul>
+      <ReactTypeformEmbed
+        popup
+        url="https://kss9gyhvcy3.typeform.com/to/kHJHPLEr"
+        hideHeaders
+        hideFooter
+        style={{ top: -100 }}
+        ref={(tf) => {
+          typeformEmbed = tf;
+        }}
+      />
     </div>
   );
 };
