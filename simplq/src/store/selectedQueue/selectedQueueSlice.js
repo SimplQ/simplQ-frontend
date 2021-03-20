@@ -1,5 +1,7 @@
+/* eslint-disable no-param-reassign */
+
 import { createSlice } from '@reduxjs/toolkit';
-import { getSelectedQueue } from 'store/asyncActions';
+import { deleteToken, getSelectedQueue, joinQueue } from 'store/asyncActions';
 
 const selectedQueueSlice = createSlice({
   name: 'selectedQueue',
@@ -18,6 +20,16 @@ const selectedQueueSlice = createSlice({
     [getSelectedQueue.fulfilled]: (state, action) => {
       const { queueId, queueName, queueCreationTimestamp, tokens } = action.payload;
       return { queueId, queueName, queueCreationTimestamp, tokens };
+    },
+    // add newly created token to admin's list
+    [joinQueue.fulfilled]: (state, action) => {
+      state.tokens.push(action.payload);
+      return state;
+    },
+    // remove deleted token to admin's list
+    [deleteToken.fulfilled]: (state, action) => {
+      state.tokens = state.tokens.filter((token) => token.tokenId !== action.payload.tokenId);
+      return state;
     },
   },
 });
