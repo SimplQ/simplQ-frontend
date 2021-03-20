@@ -59,7 +59,7 @@ const useMakeAuthedRequest = () => {
       if (error.response) {
         // Response has been received from the server
         const message = error.response.data.message;
-        throw new Error(message || 'Unknow error occured');
+        throw new Error(message || 'Unknown error occured. We are looking into this.');
       } else {
         // No response from server, should be a network issue
         throw new Error('Are you offline? Check your internet connection and try again.');
