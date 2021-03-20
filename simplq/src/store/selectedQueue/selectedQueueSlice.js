@@ -21,12 +21,12 @@ const selectedQueueSlice = createSlice({
       const { queueId, queueName, queueCreationTimestamp, tokens } = action.payload;
       return { queueId, queueName, queueCreationTimestamp, tokens };
     },
-    // add newly created token to admin's list
+    // add newly created token to currently selected queue's token list
     [joinQueue.fulfilled]: (state, action) => {
       state.tokens.push(action.payload);
       return state;
     },
-    // remove deleted token to admin's list
+    // remove deleted token from currently selected queue's token list
     [deleteToken.fulfilled]: (state, action) => {
       state.tokens = state.tokens.filter((token) => token.tokenId !== action.payload.tokenId);
       return state;
