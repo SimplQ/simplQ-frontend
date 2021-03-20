@@ -27,7 +27,6 @@ const LeftNav = ({ open, toggleClose }) => {
   };
 
   const opneContactUs = () => {
-    console.log('here');
     typeformEmbed.typeform.open();
   };
   return (
