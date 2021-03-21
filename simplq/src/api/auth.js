@@ -1,6 +1,7 @@
 import { useAuth0 } from '@auth0/auth0-react';
 import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios';
+import * as Sentry from '@sentry/react';
 
 // config.js is generated at runtime, so disabling eslint warning
 /* eslint-disable  import/no-unresolved, import/extensions */
@@ -51,6 +52,18 @@ const useMakeAuthedRequest = () => {
         // Add the Authorization header to the existing headers
         Authorization: await getAuthHeaderValue(auth),
       },
+    }).catch((error) => {
+      // log error to sentry for alerting
+      Sentry.captureException(error);
+      // In case of request failure, extract error from response body
+      if (error.response) {
+        // Response has been received from the server
+        const message = error.response.data.message;
+        throw new Error(message || 'Unknown error occured. We are looking into this.');
+      } else {
+        // No response from server, should be a network issue
+        throw new Error('Are you offline? Check your internet connection and try again.');
+      }
     });
 
     return data;

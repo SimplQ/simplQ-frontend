@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getUserQueues, deleteQueue } from 'store/asyncActions';
+import { getUserQueues, deleteQueue, createQueue } from 'store/asyncActions';
 
 const queuesSlice = createSlice({
   name: 'queues',
@@ -11,12 +11,17 @@ const queuesSlice = createSlice({
     [getUserQueues.fulfilled]: (state, action) => {
       return action.payload.queues;
     },
+    // remove deleted queue from queues list
     [deleteQueue.fulfilled]: (state, action) => {
       const { queueId } = action.payload;
       const index = state.findIndex((queue) => queue.queueId === queueId);
       if (index > -1) {
         state.splice(index, 1);
       }
+    },
+    // add newly created queue to queues list
+    [createQueue.fulfilled]: (state, action) => {
+      state.push(action.payload);
     },
   },
 });

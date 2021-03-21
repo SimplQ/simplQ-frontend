@@ -14,7 +14,9 @@ export default () => {
   const token = useSelector(selectToken);
 
   useEffect(() => {
-    dispatch(getQueueStatus({ queueId: token.queueId }));
+    if (token.queueId) {
+      dispatch(getQueueStatus({ queueId: token.queueId }));
+    }
   }, [token, dispatch, getQueueStatus]);
 
   return (

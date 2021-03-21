@@ -11,7 +11,7 @@ import HeaderSection from './AdminHeaderSection';
 import TokenList from './TokenList';
 import styles from './admin.module.scss';
 import SidePanel from './AdminSidePanel';
-import getToursteps from './TourSteps';
+import getToursteps from './getTourSteps';
 
 const TIMEOUT = 10000;
 let timeoutId;

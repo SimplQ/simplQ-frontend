@@ -34,6 +34,8 @@ ReactDOM.render(
     redirectUri={window.location.origin}
     audience="https://devbackend.simplq.me/v1"
     scope="read:current_user update:current_user_metadata"
+    cacheLocation="localstorage"
+    useRefreshTokens
   >
     <ThemeProvider theme={theme}>
       <Provider store={store}>

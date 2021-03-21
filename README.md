@@ -43,6 +43,7 @@ This [readme](/simplq/readme.md) file details the file structure and tools used.
 
 Implementation Roadmap: https://github.com/SimplQ/simplQ-frontend/issues/207
 
-# Hall of Frame
 
-[![](https://sourcerer.io/fame/daltonfury42/SimplQ/simplQ-frontend/images/0)](https://sourcerer.io/fame/daltonfury42/SimplQ/simplQ-frontend/links/0)[![](https://sourcerer.io/fame/daltonfury42/SimplQ/simplQ-frontend/images/1)](https://sourcerer.io/fame/daltonfury42/SimplQ/simplQ-frontend/links/1)[![](https://sourcerer.io/fame/daltonfury42/SimplQ/simplQ-frontend/images/2)](https://sourcerer.io/fame/daltonfury42/SimplQ/simplQ-frontend/links/2)[![](https://sourcerer.io/fame/daltonfury42/SimplQ/simplQ-frontend/images/3)](https://sourcerer.io/fame/daltonfury42/SimplQ/simplQ-frontend/links/3)[![](https://sourcerer.io/fame/daltonfury42/SimplQ/simplQ-frontend/images/4)](https://sourcerer.io/fame/daltonfury42/SimplQ/simplQ-frontend/links/4)[![](https://sourcerer.io/fame/daltonfury42/SimplQ/simplQ-frontend/images/5)](https://sourcerer.io/fame/daltonfury42/SimplQ/simplQ-frontend/links/5)[![](https://sourcerer.io/fame/daltonfury42/SimplQ/simplQ-frontend/images/6)](https://sourcerer.io/fame/daltonfury42/SimplQ/simplQ-frontend/links/6)[![](https://sourcerer.io/fame/daltonfury42/SimplQ/simplQ-frontend/images/7)](https://sourcerer.io/fame/daltonfury42/SimplQ/simplQ-frontend/links/7)
+# Deploy
+
+Changes to master are automatically deployed to  [dev.simplq.me/](https://dev.simplq.me/). Periodically, we inspect dev and promote it to [simplq.me](https://simplq.me).

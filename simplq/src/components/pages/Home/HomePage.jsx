@@ -3,7 +3,7 @@ import { smoothScrollToHomePageTop } from 'utils/scrollingOperations';
 import { BenefitsInfo, HowToCreate, HowToJoin, ExtraInfo, GetStarted } from './StaticInfos';
 import LandingPage from './LandingPage';
 
-const Home = () => {
+const HomePage = () => {
   // Scroll to top whenever home page is mounted
   useEffect(smoothScrollToHomePageTop, []);
   return (
@@ -18,4 +18,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomePage;
