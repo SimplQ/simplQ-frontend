@@ -4,10 +4,12 @@ import PauseIcon from '@material-ui/icons/Pause';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import SidePanelItem from 'components/common/SidePanel/SidePanelItem';
 import { usePauseQueue } from 'store/asyncActions/pauseQueue';
+// import { selectQueueDetails } from 'store/selectedQueue';
 
 export default ({ queueId }) => {
   const dispatch = useDispatch();
   const pauseQueue = usePauseQueue();
+  // const queueDetails = useSelector(selectQueueDetails);
 
   const [description, setDescription] = useState('Temporarily stop people from joining');
   const [isActive, setIsActive] = useState(false);
