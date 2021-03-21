@@ -32,10 +32,16 @@ export default ({ match }) => {
   const getJoinQueueOptions = () => {
     if (queueStatus.status === 'PAUSED') {
       return (
+        /* eslint-disable react/jsx-one-expression-per-line */
         <>
-          <p className={styles['message']}>Hi! The queue is currently not accepting people. </p>
+          <p className={styles['message']}>
+            Hi! The queue is currently not accepting people currently.{' '}
+          </p>
+          <p className={styles['message']}>
+            Wait until the queue starts accepting people again, or contact the queue manager.{' '}
+          </p>
           <div className={styles.form}>
-            <Button onClick={onRefreshClick}>Refresh status</Button>
+            <Button onClick={onRefreshClick}>Check Again</Button>
           </div>
         </>
       );
