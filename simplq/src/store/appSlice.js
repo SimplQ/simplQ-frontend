@@ -1,6 +1,10 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
-import { deleteQueue, getQueueStatusByName, joinQueue } from 'store/asyncActions';
+import { createQueue, deleteQueue, joinQueue } from 'store/asyncActions';
+
+function isRejectedAction(action) {
+  return action.type.endsWith('rejected');
+}
 
 const appSlice = createSlice({
   name: 'appSlice',
@@ -20,28 +24,30 @@ const appSlice = createSlice({
       state.notificationPermission = action.payload;
     },
   },
-  extraReducers: {
-    [deleteQueue.pending]: (state) => {
-      state.infoText = `Deleting queue...`;
-    },
-    [deleteQueue.rejected]: (state, action) => {
-      state.errorText = action.error.message;
-    },
-    [deleteQueue.fulfilled]: (state, action) => {
-      state.infoText = `Deleted ${action.payload.queueName}`;
-    },
-    [getQueueStatusByName.rejected]: (state, action) => {
-      state.errorText = action.payload.message;
-    },
-    [joinQueue.pending]: (state) => {
-      state.infoText = `Adding to queue...`;
-    },
-    [joinQueue.rejected]: (state, action) => {
-      state.errorText = action.error.message;
-    },
-    [joinQueue.fulfilled]: (state, action) => {
-      state.infoText = `Added to ${action.payload.queueName}`;
-    },
+  extraReducers: (builder) => {
+    builder
+      .addCase(joinQueue.pending, (state) => {
+        state.infoText = `Adding to queue...`;
+      })
+      .addCase(joinQueue.fulfilled, (state, action) => {
+        state.infoText = `Added ${action.payload.name}`;
+      })
+      .addCase(createQueue.pending, (state) => {
+        state.infoText = `Creating new queue...`;
+      })
+      .addCase(createQueue.fulfilled, (state) => {
+        state.infoText = `Your queue is ready to use.`;
+      })
+      .addCase(deleteQueue.pending, (state) => {
+        state.infoText = `Deleting queue...`;
+      })
+      .addCase(deleteQueue.fulfilled, (state, action) => {
+        state.infoText = `Deleted ${action.payload.queueName}`;
+      })
+      .addMatcher(isRejectedAction, (state, action) => {
+        // All failed network calls are handled here
+        state.errorText = action.error.message;
+      });
   },
 });
 
