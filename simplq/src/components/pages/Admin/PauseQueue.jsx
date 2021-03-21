@@ -35,6 +35,7 @@ export default ({ queueId }) => {
       title={isActive ? 'Resume Queue' : 'Pause Queue'}
       description={description}
       onClick={getPausedOptions}
+      style={!isActive ? 'side-panel-item' : 'side-panel-item-alt'}
     />
   );
 };
