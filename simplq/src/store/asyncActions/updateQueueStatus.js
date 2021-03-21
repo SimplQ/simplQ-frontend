@@ -3,18 +3,18 @@ import { useMakeAuthedRequest } from 'api/auth';
 import * as RequestFactory from 'api/requestFactory';
 import { useHistory } from 'react-router';
 
-const typePrefix = 'pauseQueue/action';
+const typePrefix = 'updateQueueStatus/action';
 
 /**
  * A hook to access the pauseQueue async action creator.
  *
  * @returns — pauseQueue async action creator
  */
-const usePauseQueue = () => {
+const useUpdateQueueStatus = () => {
   const makeAuthedRequest = useMakeAuthedRequest();
   const history = useHistory();
 
-  const pauseQueue = createAsyncThunk(typePrefix, async (arg) => {
+  const updateQueueStatus = createAsyncThunk(typePrefix, async (arg) => {
     const { queueId, status } = arg;
     const authedRequest = makeAuthedRequest(RequestFactory.setQueueStatus(queueId, status));
     const response = await authedRequest;
@@ -24,9 +24,9 @@ const usePauseQueue = () => {
     return response;
   });
 
-  return pauseQueue;
+  return updateQueueStatus;
 };
 
-const pauseQueue = createAsyncThunk(typePrefix);
+const updateQueueStatus = createAsyncThunk(typePrefix);
 
-export { pauseQueue, usePauseQueue };
+export { updateQueueStatus, useUpdateQueueStatus };

@@ -1,26 +1,29 @@
+/* eslint-disable */ // TODO: Remove this
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import PauseIcon from '@material-ui/icons/Pause';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import SidePanelItem from 'components/common/SidePanel/SidePanelItem';
-import { usePauseQueue } from 'store/asyncActions/pauseQueue';
-// import { selectQueueDetails } from 'store/selectedQueue';
+import { useUpdateQueueStatus } from 'store/asyncActions/updateQueueStatus';
+import { selectQueueDetails } from 'store/selectedQueue';
 
 export default ({ queueId }) => {
   const dispatch = useDispatch();
-  const pauseQueue = usePauseQueue();
-  // const queueDetails = useSelector(selectQueueDetails);
+  const updateQueueStatus = useUpdateQueueStatus();
+  const queueDetails = useSelector((state) => state.selectQueueDetails);
+  // const queueDetailsIsActive = useSelector((state) => state.selectQueueDetails);
+  // const queueDetailsDescription = useSelector((state) => state.selectQueueDetails);
 
   const [description, setDescription] = useState('Temporarily stop people from joining');
   const [isActive, setIsActive] = useState(false);
 
   const onPanelClick = (chosenStatus) => {
-    dispatch(pauseQueue({ queueId, status: chosenStatus }));
+    dispatch(updateQueueStatus({ queueId, status: chosenStatus }));
   };
 
   // TODO: clean up this implementation
   const getPausedOptions = () => {
-    if (!isActive) {
+    if (!queueDetails.isActive) {
       setDescription('Start allowing people to join the queue');
       onPanelClick('PAUSED');
       setIsActive(true);
@@ -33,11 +36,11 @@ export default ({ queueId }) => {
 
   return (
     <SidePanelItem
-      Icon={isActive ? PlayArrowIcon : PauseIcon}
-      title={isActive ? 'Resume Queue' : 'Pause Queue'}
-      description={description}
+      Icon={queueDetails.isActive ? PlayArrowIcon : PauseIcon}
+      title={queueDetails.isActive ? 'Resume Queue' : 'Pause Queue'}
+      description={queueDetails.description}
       onClick={getPausedOptions}
-      style={!isActive ? 'side-panel-item' : 'side-panel-item-alt'}
+      style={!queueDetails.isActive ? 'side-panel-item-active' : 'side-panel-item-paused'}
     />
   );
 };

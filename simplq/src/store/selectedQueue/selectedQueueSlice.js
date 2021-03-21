@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 
 import { createSlice } from '@reduxjs/toolkit';
-import { deleteToken, getSelectedQueue, joinQueue } from 'store/asyncActions';
+import { deleteToken, getSelectedQueue, joinQueue, updateQueueStatus } from 'store/asyncActions';
 
 const selectedQueueSlice = createSlice({
   name: 'selectedQueue',
@@ -10,14 +10,9 @@ const selectedQueueSlice = createSlice({
     queueName: null,
     queueCreationTimestamp: null,
     tokens: [],
-    queueDetails: {},
+    queueDetails: { isActive: false, description: '' },
   },
-  reducers: {
-    updateQueueStatus: (state, action) => {
-      state.queueDetails.isActive = action.isActive;
-      state.queueDetails.description = action.description;
-    },
-  },
+  reducers: {},
   extraReducers: {
     [getSelectedQueue.rejected]: (state, action) => {
       return action;
@@ -35,6 +30,11 @@ const selectedQueueSlice = createSlice({
     // remove deleted token from currently selected queue's token list
     [deleteToken.fulfilled]: (state, action) => {
       state.tokens = state.tokens.filter((token) => token.tokenId !== action.payload.tokenId);
+      return state;
+    },
+    [updateQueueStatus.fulfilled]: (state, action) => {
+      state.queueDetails.isActive = action.isActive;
+      state.queueDetails.description = action.description;
       return state;
     },
   },
