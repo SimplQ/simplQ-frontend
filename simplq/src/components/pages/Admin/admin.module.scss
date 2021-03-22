@@ -135,6 +135,11 @@
           transform: rotate(-90deg);
         }
       }
+
+      .token-remove-disabled {
+        @extend .token-remove;
+        background-color: #7a7676;
+      }
     }
   }
 }
