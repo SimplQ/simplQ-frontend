@@ -3,7 +3,6 @@ import IconButton from '@material-ui/core/IconButton';
 import Notifications from '@material-ui/icons/Notifications';
 import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive';
 import NotificationsOffIcon from '@material-ui/icons/NotificationsOffSharp';
-import DeleteIcon from '@material-ui/icons/Delete';
 import CallIcon from '@material-ui/icons/Call';
 import moment from 'moment';
 import { useDispatch, useSelector } from 'react-redux';
@@ -36,7 +35,7 @@ function Token({ token }) {
   };
 
   const onDeleteClick = () => {
-    dispatch(deleteToken({ tokenId }));
+    if (deleteStatus !== 'pending') dispatch(deleteToken({ tokenId }));
   };
 
   const onCallClick = () => {
@@ -77,18 +76,21 @@ function Token({ token }) {
     </IconButton>
   );
 
-  const RemoveButton = () => (
-    <IconButton
-      disabled={deleteStatus === 'pending'}
-      role="button"
-      onClick={onDeleteClick}
-      tabIndex={-1}
-      onKeyDown={onDeleteClick}
-      aria-label="remove"
-    >
-      <DeleteIcon color="secondary" fontSize="large" />
-    </IconButton>
-  );
+  const RemoveButton = () => {
+    const styleName = deleteStatus === 'pending' ? 'token-remove-disabled' : 'token-remove';
+    return (
+      <div
+        role="button"
+        onClick={onDeleteClick}
+        tabIndex={-1}
+        onKeyDown={onDeleteClick}
+        className={styles[styleName]}
+        aria-label="remove"
+      >
+        <p>remove</p>
+      </div>
+    );
+  };
 
   return (
     <section className={styles.token}>
