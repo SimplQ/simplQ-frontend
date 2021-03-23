@@ -6,16 +6,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectTokens } from 'store/selectedQueue';
 import styles from './QueueStats.module.scss';
 
-const DetailRow = ({ title, value, large }) => {
-  return (
-    <div className={styles['detail-row']}>
-      <span className={styles['detail-name']}>{title}</span>
-      <span className={`${styles['detail-value']} ${large ? styles['large-value'] : ''}`}>
-        {value}
-      </span>
-    </div>
-  );
-};
+const DetailRow = ({ title, value, large }) => (
+  <div className={styles['detail-row']}>
+    <span className={styles['detail-name']}>{title}</span>
+    <span className={`${styles['detail-value']} ${large ? styles['large-value'] : ''}`}>
+      {value}
+    </span>
+  </div>
+);
 
 export default ({ queueId }) => {
   const dispatch = useDispatch();
