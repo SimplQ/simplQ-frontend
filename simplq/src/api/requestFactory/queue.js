@@ -21,9 +21,6 @@ export const createQueue = (queueName) => ({ method: 'post', url: '/queue', data
  */
 export const getQueue = (queueId) => ({ method: 'get', url: `/queue/${queueId}` });
 
-// Get a queue by id. Returns all active tokens in the queue
-export const get = (queueId) => ({ method: 'get', url: `/queue/${queueId}` });
-
 /**
  * Request creator to fetch queue status by id
  *

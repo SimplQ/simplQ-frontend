@@ -12,14 +12,6 @@ const Loading = ({ children, actionStatus, isLoading }) => {
     );
   }
 
-  if (actionStatus === 'rejected') {
-    return (
-      <div className={styles.main}>
-        An unknown error occured. Please look at the console log for more nfo.
-      </div>
-    );
-  }
-
   return <>{children}</>;
 };
 
