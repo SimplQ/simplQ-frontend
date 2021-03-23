@@ -23,7 +23,9 @@ export default ({ queueId }) => {
   const tokens = useSelector(selectTokens);
 
   useEffect(() => {
-    dispatch(getQueueStatus({ queueId }));
+    if (queueId) {
+      dispatch(getQueueStatus({ queueId }));
+    }
   }, [queueId, tokens, dispatch, getQueueStatus]);
 
   const { status, queueCreationTimestamp, numberOfActiveTokens, totalNumberOfTokens } = useSelector(
