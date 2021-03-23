@@ -75,6 +75,7 @@
   min-width: 15rem;
   text-align: left;
   color: $primary-color-dark;
+  border-bottom: 2px solid $primary-color-dark;
 
   .header {
     @include naked-button();
@@ -120,6 +121,11 @@
 
     & > * {
       margin: 0.2rem;
+    }
+
+    &:hover {
+      background: #4e4c66 radial-gradient(circle, transparent 1%, #4e4c66 1%) center/15000%;
+      cursor: pointer;
     }
 
     .icon {
