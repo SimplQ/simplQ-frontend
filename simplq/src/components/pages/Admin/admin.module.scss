@@ -120,6 +120,7 @@
         margin: 0;
         padding: 0;
         border-radius: 0 0.6rem 0.6rem 0;
+        cursor: pointer;
 
         border: 0.1rem solid $primary-color-dark;
         display: flex;
@@ -134,6 +135,11 @@
           color: $primary-color-dark;
           transform: rotate(-90deg);
         }
+      }
+
+      .token-remove-disabled {
+        @extend .token-remove;
+        background-color: #7a7676;
       }
     }
   }

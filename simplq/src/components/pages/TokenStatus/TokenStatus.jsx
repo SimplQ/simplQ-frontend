@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useGetToken } from 'store/asyncActions';
 import { selectToken } from 'store/token';
-import LoadingStatus from 'components/common/Loading/LoadingStatus';
+import Loading from 'components/common/Loading/Loading';
 import Button from 'components/common/Button';
 import styles from './status.module.scss';
 
@@ -40,7 +40,7 @@ export default () => {
 
   return (
     <div className={styles['status-box']}>
-      <LoadingStatus dependsOn="getToken">{status}</LoadingStatus>
+      <Loading isLoading={!token.tokenStatus}>{status}</Loading>
     </div>
   );
 };
