@@ -55,7 +55,7 @@ export const getQueueStatusByName = (queueName) => ({
 export const deleteQueue = (queueId) => ({ method: 'delete', url: `/queue/${queueId}` });
 
 /**
- * Request creator to pause queue by id with a new status
+ * Request creator to set the queue status
  *
  * @param {string} queueId
  * @param {string} status new status of the queue. Possible values are PAUSED and ACTIVE

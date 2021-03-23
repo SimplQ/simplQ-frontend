@@ -6,9 +6,9 @@ import { useHistory } from 'react-router';
 const typePrefix = 'updateQueueStatus/action';
 
 /**
- * A hook to access the pauseQueue async action creator.
+ * A hook to access the updateQueueStatus async action creator.
  *
- * @returns — pauseQueue async action creator
+ * @returns — updateQueueStatus async action creator
  */
 const useUpdateQueueStatus = () => {
   const makeAuthedRequest = useMakeAuthedRequest();

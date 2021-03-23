@@ -5,22 +5,12 @@ import { deleteToken, getSelectedQueue, joinQueue, updateQueueStatus } from 'sto
 
 const selectedQueueSlice = createSlice({
   name: 'selectedQueue',
-  initialState: {
-    queueId: null,
-    queueName: null,
-    queueCreationTimestamp: null,
-    tokens: [],
-    queueDetails: { isActive: false, description: '' },
-  },
+  initialState: {},
   reducers: {},
   extraReducers: {
-    [getSelectedQueue.rejected]: (state, action) => {
-      return action;
-    },
     // handle fulfiled request
     [getSelectedQueue.fulfilled]: (state, action) => {
-      const { queueId, queueName, queueCreationTimestamp, tokens } = action.payload;
-      return { queueId, queueName, queueCreationTimestamp, tokens };
+      return action.payload;
     },
     // add newly created token to currently selected queue's token list
     [joinQueue.fulfilled]: (state, action) => {
@@ -32,9 +22,9 @@ const selectedQueueSlice = createSlice({
       state.tokens = state.tokens.filter((token) => token.tokenId !== action.payload.tokenId);
       return state;
     },
+    // update queue status on updates
     [updateQueueStatus.fulfilled]: (state, action) => {
-      state.queueDetails.isActive = action.isActive;
-      state.queueDetails.description = action.description;
+      state.status = action.payload.status;
       return state;
     },
   },
@@ -46,4 +36,4 @@ export const selectQueueName = (state) => state.selectedQueue.queueName;
 
 export const selectTokens = (state) => state.selectedQueue.tokens;
 
-export const selectQueueDetails = (state) => state.selectedQueue.queueDetails;
+export const selectQueueStatus = (state) => state.selectedQueue.status;
