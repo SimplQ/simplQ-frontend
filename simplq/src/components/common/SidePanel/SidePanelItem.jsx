@@ -24,7 +24,7 @@ const SidePanelItem = ({
   onClick,
   children,
   tourTag = '',
-  style = 'side-panel-item-active',
+  style = 'side-panel-item',
 }) => {
   const [open, setOpen] = useState(false);
   const onClickHandler = () => {

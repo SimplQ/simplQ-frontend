@@ -12,7 +12,7 @@ export { getQueueStatusByName, useGetQueueStatusByName } from './getQueueStatusB
 export { joinQueue, useJoinQueue } from './joinQueue';
 export { getSelectedQueue, useGetSelectedQueue } from './getSelectedQueue';
 export { createQueue, useCreateQueue } from './createQueue';
-export { updateQueueStatus, useUpdateQueueStatus } from './updateQueueStatus';
+export { setQueueStatus, useSetQueueStatus } from './setQueueStatus';
 
 export { getToken, useGetToken } from './getToken';
 export { deleteToken, useDeleteToken } from './deleteToken';

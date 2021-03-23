@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 
 import { createSlice } from '@reduxjs/toolkit';
-import { deleteToken, getSelectedQueue, joinQueue, updateQueueStatus } from 'store/asyncActions';
+import { deleteToken, getSelectedQueue, joinQueue, setQueueStatus } from 'store/asyncActions';
 
 const selectedQueueSlice = createSlice({
   name: 'selectedQueue',
@@ -23,7 +23,7 @@ const selectedQueueSlice = createSlice({
       return state;
     },
     // update queue status on updates
-    [updateQueueStatus.fulfilled]: (state, action) => {
+    [setQueueStatus.fulfilled]: (state, action) => {
       state.status = action.payload.status;
       return state;
     },

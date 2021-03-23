@@ -3,18 +3,18 @@ import { useMakeAuthedRequest } from 'api/auth';
 import * as RequestFactory from 'api/requestFactory';
 import { useHistory } from 'react-router';
 
-const typePrefix = 'updateQueueStatus/action';
+const typePrefix = 'setQueueStatus/action';
 
 /**
- * A hook to access the updateQueueStatus async action creator.
+ * A hook to access the setQueueStatus async action creator.
  *
- * @returns — updateQueueStatus async action creator
+ * @returns — setQueueStatus async action creator
  */
-const useUpdateQueueStatus = () => {
+const useSetQueueStatus = () => {
   const makeAuthedRequest = useMakeAuthedRequest();
   const history = useHistory();
 
-  const updateQueueStatus = createAsyncThunk(typePrefix, async (arg) => {
+  const setQueueStatus = createAsyncThunk(typePrefix, async (arg) => {
     const { queueId, status } = arg;
     const authedRequest = makeAuthedRequest(RequestFactory.setQueueStatus(queueId, status));
     const response = await authedRequest;
@@ -24,9 +24,9 @@ const useUpdateQueueStatus = () => {
     return response;
   });
 
-  return updateQueueStatus;
+  return setQueueStatus;
 };
 
-const updateQueueStatus = createAsyncThunk(typePrefix);
+const setQueueStatus = createAsyncThunk(typePrefix);
 
-export { updateQueueStatus, useUpdateQueueStatus };
+export { setQueueStatus, useSetQueueStatus };
