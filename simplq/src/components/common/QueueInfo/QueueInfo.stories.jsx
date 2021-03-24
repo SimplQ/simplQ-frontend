@@ -1,19 +1,19 @@
 import React from 'react';
-import QueueStats from '.';
+import QueueInfo from '.';
 
 export default {
-  component: QueueStats,
-  title: 'QueueStats',
+  component: QueueInfo,
+  title: 'QueueInfo',
 };
 
 const Template = (args) => (
   /* eslint-disable-next-line react/jsx-props-no-spreading */
-  <QueueStats {...args} />
+  <QueueInfo {...args} />
 );
 
 export const Active = Template.bind({});
 Active.args = {
-  queueStatus: {
+  queueInfo: {
     queueId: '49b1ffa6-87fd-4a46-b95f-5588711cecca',
     queueName: 'aa',
     status: 'ACTIVE',
@@ -25,16 +25,16 @@ Active.args = {
 
 export const Paused = Template.bind({});
 Paused.args = {
-  queueStatus: {
-    ...Active.args.queueStatus,
+  queueInfo: {
+    ...Active.args.queueInfo,
     status: 'PAUSED',
   },
 };
 
 export const Deleted = Template.bind({});
 Deleted.args = {
-  queueStatus: {
-    ...Active.args.queueStatus,
+  queueInfo: {
+    ...Active.args.queueInfo,
     status: 'DELETED',
   },
 };

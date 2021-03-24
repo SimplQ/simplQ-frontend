@@ -7,8 +7,8 @@
 
 export { getUserQueues, useGetUserQueues } from './getUserQueues';
 export { deleteQueue, useDeleteQueue } from './deleteQueue';
-export { getQueueStatus, useGetQueueStatus } from './getQueueStatus';
-export { getQueueStatusByName, useGetQueueStatusByName } from './getQueueStatusByName';
+export { getQueueInfo, useGetQueueInfo } from './getQueueInfo';
+export { getQueueInfoByName, useGetQueueInfoByName } from './getQueueInfoByName';
 export { joinQueue, useJoinQueue } from './joinQueue';
 export { getSelectedQueue, useGetSelectedQueue } from './getSelectedQueue';
 export { createQueue, useCreateQueue } from './createQueue';
