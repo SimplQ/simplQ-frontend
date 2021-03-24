@@ -1,9 +1,9 @@
 import React, { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useGetQueueStatusByName, useJoinQueue } from 'store/asyncActions';
-import { selectQueueStatus } from 'store/queueStatus';
+import { useGetQueueInfoByName, useJoinQueue } from 'store/asyncActions';
+import { selectQueueInfo } from 'store/queueInfo';
 import HeaderSection from 'components/common/HeaderSection';
-import QueueStats from 'components/common/QueueStats';
+import QueueInfo from 'components/common/QueueInfo';
 import LoadingStatus from 'components/common/Loading';
 
 import JoinQueueForm from './JoinForm';
@@ -11,16 +11,16 @@ import styles from './JoinPage.module.scss';
 
 export default ({ match }) => {
   const queueName = match.params.queueName;
-  const getQueueStatusByName = useCallback(useGetQueueStatusByName(), []);
+  const getQueueInfoByName = useCallback(useGetQueueInfoByName(), []);
   const joinQueue = useJoinQueue();
   const dispatch = useDispatch();
-  const queueStatus = useSelector(selectQueueStatus);
+  const queueInfo = useSelector(selectQueueInfo);
 
   useEffect(() => {
-    dispatch(getQueueStatusByName({ queueName }));
-  }, [queueName, dispatch, getQueueStatusByName]);
+    dispatch(getQueueInfoByName({ queueName }));
+  }, [queueName, dispatch, getQueueInfoByName]);
 
-  const queueId = queueStatus.queueId;
+  const queueId = queueInfo.queueId;
 
   const joinQueueHandler = (name, contactNumber) => {
     dispatch(joinQueue({ name, contactNumber, notifiable: true, queueId, goToStatusPage: true }));
@@ -32,9 +32,9 @@ export default ({ match }) => {
     <div>
       <HeaderSection queueName={queueName} />
       <div className={styles['main-content']}>
-        <LoadingStatus dependsOn="getQueueStatusByName">
+        <LoadingStatus dependsOn="getQueueInfoByName">
           <div className={styles['queue-stats']}>
-            <QueueStats queueStatus={queueStatus} />
+            <QueueInfo queueInfo={queueInfo} />
           </div>
           <p className={styles['message']}>Please enter your contact details to join this queue</p>
           <JoinQueueForm

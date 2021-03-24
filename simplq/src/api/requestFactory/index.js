@@ -20,8 +20,8 @@ export {
   getUserQueues,
   getQueue,
   deleteQueue,
-  getQueueStatus,
-  getQueueStatusByName,
+  getQueueInfo,
+  getQueueInfoByName,
   createQueue,
 } from './queue';
 export { createToken, getToken, deleteToken, notifyToken } from './token';

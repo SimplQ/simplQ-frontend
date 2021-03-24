@@ -1,6 +1,6 @@
 import React from 'react';
 
-import * as QueueStatsStories from 'components/common/QueueStats/QueueStats.stories';
+import * as QueueInfoStories from 'components/common/QueueInfo/QueueInfo.stories';
 import JoinPage from './JoinPage';
 
 export default {
@@ -24,7 +24,7 @@ export const Loading = Template.bind({});
 Loading.parameters = {
   state: {
     actionStatus: {
-      getQueueStatusByName: 'pending',
+      getQueueInfoByName: 'pending',
     },
   },
 };
@@ -33,9 +33,9 @@ export const Loaded = Template.bind({});
 Loaded.parameters = {
   state: {
     actionStatus: {
-      getQueueStatusByName: 'fulfilled',
+      getQueueInfoByName: 'fulfilled',
     },
-    queueStatus: QueueStatsStories.Active.args.queueStatus,
+    queueInfo: QueueInfoStories.Active.args.queueInfo,
   },
 };
 
@@ -43,9 +43,9 @@ export const Joining = Template.bind({});
 Joining.parameters = {
   state: {
     actionStatus: {
-      getQueueStatusByName: 'fulfilled',
+      getQueueInfoByName: 'fulfilled',
       joinQueue: 'pending',
     },
-    queueStatus: QueueStatsStories.Active.args.queueStatus,
+    queueInfo: QueueInfoStories.Active.args.queueInfo,
   },
 };

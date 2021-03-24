@@ -1,17 +1,17 @@
 import React from 'react';
 import InfoIcon from '@material-ui/icons/Info';
-import QueueStats from 'components/common/QueueStats';
+import QueueInfo from 'components/common/QueueInfo';
 import SidePanelItem from 'components/common/SidePanel/SidePanelItem';
 
 export default ({ queueId }) => {
   return (
     <SidePanelItem
       Icon={InfoIcon}
-      title="Queue Details"
+      title="Queue Information"
       description="Other information about the queue"
       expandable
     >
-      <QueueStats queueId={queueId} />
+      <QueueInfo queueId={queueId} />
     </SidePanelItem>
   );
 };

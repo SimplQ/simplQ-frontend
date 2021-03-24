@@ -22,23 +22,23 @@ export const createQueue = (queueName) => ({ method: 'post', url: '/queue', data
 export const getQueue = (queueId) => ({ method: 'get', url: `/queue/${queueId}` });
 
 /**
- * Request creator to fetch queue status by id
+ * Request creator to fetch queue info by id
  *
  * @param {string} queueId
  * @returns {Object} request - partial axios request without baseURL
  */
-export const getQueueStatus = (queueId) => ({
+export const getQueueInfo = (queueId) => ({
   method: 'get',
   url: `/queue/status?queueId=${queueId}`,
 });
 
 /**
- * Request creator to fetch queue status by name
+ * Request creator to fetch queue info by name
  *
  * @param {string} queueName
  * @returns {Object} request - partial axios request without baseURL
  */
-export const getQueueStatusByName = (queueName) => ({
+export const getQueueInfoByName = (queueName) => ({
   method: 'get',
   url: `/queue/status?queueName=${queueName}`,
 });

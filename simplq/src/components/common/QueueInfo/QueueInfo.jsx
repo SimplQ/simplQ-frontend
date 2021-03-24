@@ -1,10 +1,10 @@
 import React, { useEffect, useCallback, useMemo } from 'react';
 import moment from 'moment';
-import { useGetQueueStatus } from 'store/asyncActions';
-import { selectQueueStatus } from 'store/queueStatus';
+import { useGetQueueInfo } from 'store/asyncActions';
+import { selectQueueInfo } from 'store/queueInfo';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectTokens } from 'store/selectedQueue';
-import styles from './QueueStats.module.scss';
+import styles from './QueueInfo.module.scss';
 
 const DetailRow = ({ title, value, large }) => (
   <div className={styles['detail-row']}>
@@ -17,17 +17,17 @@ const DetailRow = ({ title, value, large }) => (
 
 export default ({ queueId }) => {
   const dispatch = useDispatch();
-  const getQueueStatus = useCallback(useGetQueueStatus(), []);
+  const getQueueInfo = useCallback(useGetQueueInfo(), []);
   const tokens = useSelector(selectTokens);
 
   useEffect(() => {
     if (queueId) {
-      dispatch(getQueueStatus({ queueId }));
+      dispatch(getQueueInfo({ queueId }));
     }
-  }, [queueId, tokens, dispatch, getQueueStatus]);
+  }, [queueId, tokens, dispatch, getQueueInfo]);
 
   const { status, queueCreationTimestamp, numberOfActiveTokens, totalNumberOfTokens } = useSelector(
-    selectQueueStatus
+    selectQueueInfo
   );
 
   const creationTime = useMemo(() => {

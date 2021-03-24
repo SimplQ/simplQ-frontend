@@ -116,7 +116,7 @@ export const deletedQueue = {
   status: 'DELETED',
 };
 
-export const queueStatus = {
+export const queueInfo = {
   queueId: '376ef115-12f1-4845-a5b7-f8fa190a866e',
   queueName: 'Q',
   status: 'ACTIVE',
