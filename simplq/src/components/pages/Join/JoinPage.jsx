@@ -5,7 +5,7 @@ import { selectQueueInfo } from 'store/queueInfo';
 import HeaderSection from 'components/common/HeaderSection';
 import QueueInfo from 'components/common/QueueInfo';
 import LoadingStatus from 'components/common/Loading';
-
+import Button from 'components/common/Button';
 import JoinQueueForm from './JoinForm';
 import styles from './JoinPage.module.scss';
 
@@ -25,6 +25,38 @@ export default ({ match }) => {
   const joinQueueHandler = (name, contactNumber) => {
     dispatch(joinQueue({ name, contactNumber, notifiable: true, queueId, goToStatusPage: true }));
   };
+
+  const onRefreshClick = () => {
+    dispatch(getQueueStatusByName({ queueName }));
+  };
+  const getJoinQueueOptions = () => {
+    if (queueStatus.status === 'PAUSED') {
+      return (
+        /* eslint-disable react/jsx-one-expression-per-line */
+        <>
+          <p className={styles['message']}>
+            Hi! The queue is currently not accepting people currently.
+          </p>
+          <p className={styles['message']}>
+            Wait until the queue starts accepting people again, or contact the queue manager
+          </p>
+          <div className={styles.form}>
+            <Button onClick={onRefreshClick}>Check Again</Button>
+          </div>
+        </>
+      );
+    }
+    return (
+      <>
+        <p className={styles['message']}>Please enter your contact details to join this queue</p>
+        <JoinQueueForm
+          queueId={queueId}
+          joinQueueHandler={joinQueueHandler}
+          buttonText="Join Queue"
+        />
+      </>
+    );
+  };
   // TODO: If HeaderSection is used just in JoinPage
   // it should be renamed into something else and moved
   // closer to JoinPage
@@ -36,12 +68,7 @@ export default ({ match }) => {
           <div className={styles['queue-stats']}>
             <QueueInfo queueInfo={queueInfo} />
           </div>
-          <p className={styles['message']}>Please enter your contact details to join this queue</p>
-          <JoinQueueForm
-            queueId={queueId}
-            joinQueueHandler={joinQueueHandler}
-            buttonText="Join Queue"
-          />
+          {getJoinQueueOptions()}
         </LoadingStatus>
       </div>
     </div>

@@ -24,6 +24,7 @@ const SidePanelItem = ({
   onClick,
   children,
   tourTag = '',
+  style = 'side-panel-item',
 }) => {
   const [open, setOpen] = useState(false);
   const onClickHandler = () => {
@@ -36,7 +37,7 @@ const SidePanelItem = ({
   };
 
   return (
-    <div className={styles['side-panel-item']}>
+    <div className={styles[style]}>
       <div
         reactour-selector={tourTag}
         className={styles['header']}
