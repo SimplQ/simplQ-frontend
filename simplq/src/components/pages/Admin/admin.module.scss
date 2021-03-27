@@ -85,6 +85,7 @@
     .token-name-time {
       text-align: left;
       align-self: center;
+      word-break: break-word;
       & > p {
         margin: 0;
 
@@ -105,8 +106,10 @@
 
       .token-icon-set {
         display: flex;
+        @media screen and (max-width: 600px) {
+          flex-direction: column;
+        }
         align-items: stretch;
-        flex-wrap: wrap;
         .token-icon {
           color: $primary-color-dark;
         }
