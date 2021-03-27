@@ -13,7 +13,7 @@ import styles from './admin.module.scss';
 import SidePanel from './AdminSidePanel';
 import getToursteps from './getTourSteps';
 
-const TIMEOUT = 1000000;
+const TIMEOUT = 10000;
 let timeoutId;
 
 export default (props) => {
