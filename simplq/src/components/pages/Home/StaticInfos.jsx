@@ -1,7 +1,7 @@
 import React from 'react';
-import styles from './home.module.scss';
-import StandardButton from '../../common/Button';
-import { smoothScrollToHomePageTop } from '../../../utils/scrollingOperations';
+import StandardButton from 'components/common/Button';
+import { smoothScrollToHomePageTop } from 'utils/scrollingOperations';
+import styles from './Home.module.scss';
 
 export const BenefitsInfo = () => (
   <div className={`${styles['section']} ${styles['benefits-info']}`}>
@@ -63,7 +63,7 @@ export const HowToCreate = () => (
         </div>
       </div>
     </div>
-    <svg id={styles['curved-div-2']} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 50">
+    <svg id={styles['curved-div-2']} xmlns="https://www.w3.org/2000/svg" viewBox="0 0 1440 50">
       <path
         fill="#6C63FF29"
         fillOpacity="1"

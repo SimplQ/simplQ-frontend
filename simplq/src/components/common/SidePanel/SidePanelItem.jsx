@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { Collapse } from '@material-ui/core';
 import styles from './SidePanel.module.scss';
-import LoadingIndicator from '../LoadingIndicator';
 
 const ExpandButton = ({ isOpen }) => (
   <div className={styles['expand-button']}>
@@ -22,7 +21,6 @@ const SidePanelItem = ({
   description,
   Icon,
   expandable = false,
-  loading = false,
   onClick,
   children,
   tourTag = '',
@@ -56,13 +54,7 @@ const SidePanelItem = ({
       </div>
       {expandable && (
         <Collapse timeout="auto" in={open}>
-          {loading ? (
-            <div className={styles['loading']}>
-              <LoadingIndicator />
-            </div>
-          ) : (
-            children
-          )}
+          {children}
         </Collapse>
       )}
     </div>

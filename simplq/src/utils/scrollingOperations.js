@@ -13,11 +13,28 @@ export const smoothScrollTo = (targetElement) => {
   });
 };
 
-export const smoothScrollToHomePageTop = () => {
+export const smoothScrollToHomePageTop = (history) => {
   const element = document.getElementById('target_top');
   if (element) {
     smoothScrollTo(element);
   } else {
-    window.location.href = '/';
+    history.push('/');
   }
+};
+
+/**
+ * Execute a callback as soon as an element is available on the DOM.
+ *
+ * id - element id to wait on
+ * callback - callback to execute as soon as the element becomes available. The
+ * element is passed to the callback and it is triggered.
+ * */
+export const onLoadById = (id, callback) => {
+  const checkAndExecute = setInterval(() => {
+    const element = document.getElementById(id);
+    if (element) {
+      callback(element);
+      clearInterval(checkAndExecute);
+    }
+  }, 100);
 };

@@ -1,0 +1,23 @@
+@import 'components/common.scss';
+
+.detail {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 0rem;
+
+  .detail-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .detail-value {
+      font-size: larger;
+      padding-left: 1rem;
+    }
+
+    .large-value {
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+  }
+}

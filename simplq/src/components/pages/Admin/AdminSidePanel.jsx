@@ -1,17 +1,17 @@
 import React from 'react';
-import SidePanel from '../../common/SidePanel';
+import SidePanel from 'components/common/SidePanel';
+import QueueDetails from './QueueInfo';
 import AddMember from './AddMember';
 import PauseQueue from './PauseQueue';
 import DeleteQueue from './DeleteQueue';
 import QueueHistory from './QueueHistory';
-import QueueDetails from '../Status/QueueDetails';
 
-export default (props) => (
+export default ({ queueId }) => (
   <SidePanel>
-    <AddMember queueId={props.queueId} joinQueueHandler={props.joinQueueHandler} />
+    <AddMember queueId={queueId} />
     <PauseQueue />
-    <DeleteQueue queueId={props.queueId} />
+    <DeleteQueue queueId={queueId} />
     <QueueHistory />
-    <QueueDetails queueId={props.queueId} />
+    <QueueDetails queueId={queueId} />
   </SidePanel>
 );

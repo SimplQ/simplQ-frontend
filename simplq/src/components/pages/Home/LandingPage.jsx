@@ -1,8 +1,8 @@
 import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
-import Header from '../../common/Header';
-import styles from './home.module.scss';
-import CreateJoinForm from '../../common/CreateJoinForm';
+import Header from 'components/common/Header';
+import QueueForm from 'components/common/CreateJoinForm';
+import styles from './Home.module.scss';
 import MyQueues from './MyQueues';
 
 export default () => {
@@ -11,6 +11,7 @@ export default () => {
   if (isAuthenticated) {
     subtitle = `Hi ${user.name}, welcome back!`;
   }
+
   return (
     <div id="target_top" className={styles['landing-page']}>
       <div data-aos="zoom-in">
@@ -22,8 +23,8 @@ export default () => {
         </p>
       </div>
       <MyQueues />
-      <CreateJoinForm />
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+      <QueueForm />
+      <svg xmlns="https://www.w3.org/2000/svg" viewBox="0 0 1440 320">
         <path
           fill="#6C63FF29"
           fillOpacity="1"

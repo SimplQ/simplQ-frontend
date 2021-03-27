@@ -1,41 +1,32 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
 import { useHistory } from 'react-router';
-import { useAuth0 } from '@auth0/auth0-react';
-import styles from './home.module.scss';
-import { QueueRequestFactory } from '../../../api/requestFactory';
-import useRequest from '../../../api/useRequest';
+import { useDeleteQueue } from 'store/asyncActions';
+import { selectQueues } from 'store/queues';
+import { useDispatch, useSelector } from 'react-redux';
+import styles from './Home.module.scss';
 
 export default () => {
   const history = useHistory();
-  const { requestMaker } = useRequest();
-  const [myQueues, setMyQueues] = useState([]);
-  const { isAuthenticated } = useAuth0();
-
-  useEffect(() => {
-    if (isAuthenticated)
-      requestMaker(QueueRequestFactory.getMyQueues()).then((resp) => setMyQueues(resp.queues));
-  }, [requestMaker, isAuthenticated]);
-
-  if (!isAuthenticated) {
-    return null;
-  }
+  const dispatch = useDispatch();
+  const queues = useSelector(selectQueues);
+  const deleteQueue = useDeleteQueue();
 
   const handleDelete = (e, queue) => {
     // Don't trigger parent's onClick
     e.stopPropagation();
-    requestMaker(QueueRequestFactory.deleteQueue(queue.queueId)).then(() => history.push('/'));
+    dispatch(deleteQueue({ queueId: queue.queueId, goHome: false }));
   };
 
   return (
     <div className={styles['my-queue']}>
       <p>
-        {myQueues.length === 0
+        {queues.length === 0
           ? "Looks like you don't have any active queues. Start by creating one..."
           : 'What would you like to do today? Here are your active queues:'}
       </p>
-      {myQueues.map((queue) => {
+      {queues.map((queue) => {
         const handler = () => history.push(`/queue/${queue.queueId}`);
         return (
           <div

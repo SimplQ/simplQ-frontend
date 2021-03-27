@@ -1,21 +1,52 @@
-// Get metadata for all queues creaetd by the current user
-export const getMyQueues = () => ({ method: 'get', url: '/queues' });
+/**
+ * Get metadata for all queues created by the current user
+ *
+ * @returns {Object} request - partial axios request without baseURL
+ */
+export const getUserQueues = () => ({ method: 'get', url: '/queues' });
 
-// Create a new queue
-export const create = (queueName) => ({ method: 'post', url: '/queue', data: { queueName } });
+/**
+ * Create a new queue with given name
+ *
+ * @returns {Object} request - partial axios request without baseURL
+ */
 
-// Get a queue by id. Returns all active tokens in the queue
-export const get = (queueId) => ({ method: 'get', url: `/queue/${queueId}` });
+export const createQueue = (queueName) => ({ method: 'post', url: '/queue', data: { queueName } });
 
-// Return public stats for the queue, like number of people currently in the queue etc.
-// This endpoint can be envoked by non-owners as well.
-export const getStatus = (queueId) => ({ method: 'get', url: `/queue/status?queueId=${queueId}` });
+/**
+ * Request creator to fetch queue and belonging tokens by id
+ *
+ * @param {string} queueId
+ * @returns {Object} request - partial axios request without baseURL
+ */
+export const getQueue = (queueId) => ({ method: 'get', url: `/queue/${queueId}` });
 
-// Same as getStatus, but fetch by name instead of ID.
-export const getStatusByName = (queueName) => ({
+/**
+ * Request creator to fetch queue info by id
+ *
+ * @param {string} queueId
+ * @returns {Object} request - partial axios request without baseURL
+ */
+export const getQueueInfo = (queueId) => ({
+  method: 'get',
+  url: `/queue/status?queueId=${queueId}`,
+});
+
+/**
+ * Request creator to fetch queue info by name
+ *
+ * @param {string} queueName
+ * @returns {Object} request - partial axios request without baseURL
+ */
+export const getQueueInfoByName = (queueName) => ({
   method: 'get',
   url: `/queue/status?queueName=${queueName}`,
 });
 
-// Delete a queue by ID
+/**
+ * Request creator to delete queue by id
+ *
+ * @param {string} queueId
+ * @returns {Object} request - partial axios request without baseURL
+ */
 export const deleteQueue = (queueId) => ({ method: 'delete', url: `/queue/${queueId}` });

@@ -1,6 +1,6 @@
 import React from 'react';
 import PauseIcon from '@material-ui/icons/Pause';
-import SidePanelItem from '../../common/SidePanel/SidePanelItem';
+import SidePanelItem from 'components/common/SidePanel/SidePanelItem';
 
 export default () => {
   return (

@@ -1,11 +1,16 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 
 import React from 'react';
+import { smoothScrollTo, smoothScrollToHomePageTop, onLoadById } from 'utils/scrollingOperations';
+import { useHistory } from 'react-router';
+import { ReactTypeformEmbed } from 'react-typeform-embed';
 import styles from './Nav.module.scss';
-import { smoothScrollTo } from '../../../utils/scrollingOperations';
 import LoginButton from '../LoginButton';
 
 const LeftNav = ({ open, toggleClose }) => {
+  const history = useHistory();
+  let typeformEmbed = null;
+
   const scrollToHowItWorks = () => {
     // Close the navbar on click
     toggleClose();
@@ -15,14 +20,25 @@ const LeftNav = ({ open, toggleClose }) => {
       // element is on the current page, just have to scroll to it
       smoothScrollTo(element);
     } else {
-      window.location.href = '/#target_how_it_works';
+      history.push('/');
+      // wait till page loads before getting element
+      onLoadById('target_how_it_works', smoothScrollTo);
     }
+  };
+
+  const opneContactUs = () => {
+    typeformEmbed.typeform.open();
   };
   return (
     <div>
       <ul className={styles['left-nav']} open={open}>
         <li>
-          <a tabIndex={0} href="/">
+          <a
+            role="link"
+            tabIndex={0}
+            onKeyDown={() => smoothScrollToHomePageTop(history)}
+            onClick={() => smoothScrollToHomePageTop(history)}
+          >
             Home
           </a>
         </li>
@@ -32,7 +48,7 @@ const LeftNav = ({ open, toggleClose }) => {
           </a>
         </li>
         <li>
-          <a tabIndex={0} href="https://iimb.qualtrics.com/jfe/form/SV_aY8FY91ztRX9NvD">
+          <a role="link" tabIndex={0} onKeyDown={opneContactUs} onClick={opneContactUs}>
             Contact Us
           </a>
         </li>
@@ -40,6 +56,16 @@ const LeftNav = ({ open, toggleClose }) => {
           <LoginButton />
         </li>
       </ul>
+      <ReactTypeformEmbed
+        popup
+        url="https://kss9gyhvcy3.typeform.com/to/kHJHPLEr"
+        hideHeaders
+        hideFooter
+        style={{ top: -100 }}
+        ref={(tf) => {
+          typeformEmbed = tf;
+        }}
+      />
     </div>
   );
 };

@@ -26,5 +26,4 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         AmplifyAppId: ${{ secrets.AmplifyAppId }}
-        BackendEnvARN: ${{ secrets.BackendEnvARN }}
         AWS_REGION: 'ap-southeast-1'
