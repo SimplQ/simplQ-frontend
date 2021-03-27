@@ -27,10 +27,10 @@ export default ({ match }) => {
   };
 
   const onRefreshClick = () => {
-    dispatch(getQueueStatusByName({ queueName }));
+    dispatch(getQueueInfoByName({ queueName }));
   };
   const getJoinQueueOptions = () => {
-    if (queueStatus.status === 'PAUSED') {
+    if (queueInfo.status === 'PAUSED') {
       return (
         /* eslint-disable react/jsx-one-expression-per-line */
         <>
