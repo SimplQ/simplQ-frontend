@@ -148,6 +148,7 @@
 .admin-content {
   min-height: 100vh;
   .header-title {
+    word-break: break-word;
     .sub-header {
       display: flex;
       font-family: Pacifico, Arial, Helvetica, sans-serif;
