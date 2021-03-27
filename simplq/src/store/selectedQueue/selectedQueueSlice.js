@@ -5,7 +5,9 @@ import { deleteToken, getSelectedQueue, joinQueue, setQueueStatus } from 'store/
 
 const selectedQueueSlice = createSlice({
   name: 'selectedQueue',
-  initialState: {},
+  initialState: {
+    tokens: [],
+  },
   reducers: {},
   extraReducers: {
     // handle fulfiled request
