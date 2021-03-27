@@ -106,8 +106,8 @@ function Token({ token }) {
           <div className={styles['token-icon-set']}>
             <CallButton />
             <NotifyButton />
-            <RemoveButton />
           </div>
+          <RemoveButton />
         </div>
       </div>
     </section>
