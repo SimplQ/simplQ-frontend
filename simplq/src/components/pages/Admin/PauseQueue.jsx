@@ -1,5 +1,4 @@
-/* eslint-disable */ // TODO: Remove this
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PauseIcon from '@material-ui/icons/Pause';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
@@ -16,9 +15,8 @@ export default ({ queueId }) => {
   const paused = queueStatus === 'PAUSED';
 
   const toggleQueueStatus = () => {
-    paused
-      ? dispatch(setQueueStatus({ queueId, status: 'ACTIVE' }))
-      : dispatch(setQueueStatus({ queueId, status: 'PAUSED' }));
+    const status = paused ? 'ACTIVE' : 'PAUSED';
+    dispatch(setQueueStatus({ queueId, status }));
   };
 
   return (
