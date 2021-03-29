@@ -14,7 +14,7 @@ const useSetQueueStatus = () => {
   const makeAuthedRequest = useMakeAuthedRequest();
   const history = useHistory();
 
-  return createAsyncThunk(typePrefix, async (arg) => {
+  const setQueueStatus = createAsyncThunk(typePrefix, async (arg) => {
     const { queueId, status } = arg;
     const authedRequest = makeAuthedRequest(RequestFactory.setQueueStatus(queueId, status));
     const response = await authedRequest;
@@ -23,6 +23,8 @@ const useSetQueueStatus = () => {
     }
     return response;
   });
+
+  return setQueueStatus;
 };
 
 const setQueueStatus = createAsyncThunk(typePrefix);

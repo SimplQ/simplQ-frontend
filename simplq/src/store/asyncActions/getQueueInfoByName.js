@@ -14,17 +14,22 @@ const useGetQueueInfoByName = () => {
   const makeAuthedRequest = useMakeAuthedRequest();
   const history = useHistory();
 
-  return createAsyncThunk(typePrefix, async ({ queueName }, { rejectWithValue }) => {
-    const authedRequest = makeAuthedRequest(RequestFactory.getQueueInfoByName(queueName));
+  const getQueueInfoByName = createAsyncThunk(
+    typePrefix,
+    async ({ queueName }, { rejectWithValue }) => {
+      const authedRequest = makeAuthedRequest(RequestFactory.getQueueInfoByName(queueName));
 
-    try {
-      const response = await authedRequest;
-      return response;
-    } catch (error) {
-      history.push(`/pageNotFound/queueName=${queueName}`);
-      return rejectWithValue({ message: `Queue ${queueName} does not exist, try again...` });
+      try {
+        const response = await authedRequest;
+        return response;
+      } catch (error) {
+        history.push(`/pageNotFound/queueName=${queueName}`);
+        return rejectWithValue({ message: `Queue ${queueName} does not exist, try again...` });
+      }
     }
-  });
+  );
+
+  return getQueueInfoByName;
 };
 
 const getQueueInfoByName = createAsyncThunk(typePrefix);
