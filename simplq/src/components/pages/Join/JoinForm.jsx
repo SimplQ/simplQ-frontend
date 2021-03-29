@@ -40,13 +40,12 @@ export function JoinQueueForm({ joinQueueHandler, buttonText }) {
   }
 
   function handleContactChange(value, country) {
-    setContact(value);
+    // to make sure that the number is parsed as an international number, prepend +.
+    const phoneNr = `+${value}`;
+    setContact(phoneNr);
     const phoneUtil = PhoneNumberUtil.getInstance();
 
     if (country != null) {
-      // to make sure that the number is parsed as an international number, prepend +.
-      const phoneNr = `+${value}`;
-
       try {
         const isValidNumber = phoneUtil.isValidNumberForRegion(
           phoneUtil.parse(phoneNr, country.countryCode),
@@ -61,7 +60,7 @@ export function JoinQueueForm({ joinQueueHandler, buttonText }) {
     }
   }
 
-  const handleClick = () => {
+  const onSubmit = () => {
     if (name === '') {
       setInvalidName(true);
       return;
@@ -82,7 +81,7 @@ export function JoinQueueForm({ joinQueueHandler, buttonText }) {
       <InputField
         placeholder="Name"
         value={name}
-        onKeyPress={(e) => handleEnterPress(e, handleClick)}
+        onKeyPress={(e) => handleEnterPress(e, onSubmit)}
         onChange={handleNameChange}
         error={invalidName}
         helperText={invalidName ? 'Enter a valid name' : ''}
@@ -101,10 +100,10 @@ export function JoinQueueForm({ joinQueueHandler, buttonText }) {
         }}
         isValid={() => (invalidContact ? 'Phone number is not valid' : true)}
         onChange={handleContactChange}
-        onKeyDown={(e) => handleEnterPress(e, handleClick)}
+        onKeyDown={(e) => handleEnterPress(e, onSubmit)}
       />
       <LoadingStatus dependsOn="joinQueue">
-        <Button onClick={handleClick}>{buttonText}</Button>
+        <Button onClick={onSubmit}>{buttonText}</Button>
       </LoadingStatus>
     </div>
   );
