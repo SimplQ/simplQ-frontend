@@ -3,7 +3,7 @@
   "name": "SimplQ - A long overdue alternative to physical queues",
   "icons": [
     {
-      "src": "/images/Simple-Q-192x192.png",
+      "src": "/images/Simple-Q-144x144.png",
       "sizes": "144x144",
       "type": "image/png"
     }
