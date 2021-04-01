@@ -1,9 +1,10 @@
 {
   "short_name": "SimplQ",
-  "name": "SimplQ provides a means to create and manage virtual queues instantly to help you and your customers have a great business experience",
+  "name": "SimplQ - A long overdue alternative to physical queues",
   "icons": [
     {
-      "src": "/images/Simple-Q.png",
+      "src": "/images/Simple-Q-144x144.png",
+      "sizes": "144x144",
       "type": "image/png"
     }
   ],
