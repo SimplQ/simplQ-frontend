@@ -1,41 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SettingsIcon from '@material-ui/icons/Settings';
 import Modal from 'components/common/Modal';
-import PrintIcon from '@material-ui/icons/Print';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
-import { makeStyles } from '@material-ui/core/styles';
 import SidePanelItem from 'components/common/SidePanel/SidePanelItem';
 import { useUpdateQueueSettings } from 'store/asyncActions';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
+import SaveIcon from '@material-ui/icons/Save';
+import { selectMaxQueueCapacity } from 'store/selectedQueue';
 import Button from '../../common/Button';
 import InputField from '../../common/InputField';
-
-const style = makeStyles((theme) => ({
-  modalContent: {
-    display: 'flex',
-    padding: theme.spacing(1),
-  },
-  actionContainer: {
-    display: 'flex',
-    justifyContent: 'space-evenly',
-  },
-  title: {
-    display: 'flex',
-    justifyContent: 'center',
-    textDecoration: 'underline',
-  },
-  sizeInput: {
-    marginBottom: theme.spacing(3),
-  },
-}));
+import styles from './QueueSettings.module.scss';
 
 const MAX_SIZE = 100000;
 
 export default ({ queueId }) => {
-  const classes = style();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [size, setSize] = React.useState(1);
+  const maxQueueSize = useSelector(selectMaxQueueCapacity);
+  const [size, setSize] = React.useState(maxQueueSize);
+
+  useEffect(() => {
+    setSize(maxQueueSize);
+  }, [maxQueueSize]);
 
   const handleSizeChange = (e) => {
     const positiveInteger = /^\d+$/i;
@@ -54,16 +40,17 @@ export default ({ queueId }) => {
 
   const handleSave = () => {
     dispatch(updateSettings({ queueId, settings: { maxQueueCapacity: size } }));
+    toggleModal();
   };
   return (
     <>
       <SidePanelItem Icon={SettingsIcon} title="Queue Settings" onClick={toggleModal} />
       <Modal open={isModalOpen}>
-        <Grid container className={classes.modalContent} direction="column">
-          <h2 className={classes.title}>Settings</h2>
+        <Grid container className={styles['modal-content']} direction="column">
+          <h2 className={styles['title']}>Settings</h2>
           <InputField
             inputProps={{ 'data-testid': 'size-input' }}
-            className={classes.sizeInput}
+            className={styles['size-input']}
             label="Maximum Queue Capacity"
             value={size}
             type="number"
@@ -72,8 +59,8 @@ export default ({ queueId }) => {
             helperText={isInvalidSize() && `Enter a number between 1 and ${MAX_SIZE}`}
             autoFocus
           />
-          <div className={classes.actionContainer}>
-            <Button icon={<PrintIcon />} onClick={handleSave} disabled={isInvalidSize()}>
+          <div className={styles['action-container']}>
+            <Button icon={<SaveIcon />} onClick={handleSave} disabled={isInvalidSize()}>
               Save
             </Button>
             <Button icon={<HighlightOffIcon />} onClick={toggleModal} outlined>

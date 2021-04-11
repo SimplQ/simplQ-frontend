@@ -18,4 +18,6 @@ const useUpdateQueueSettings = () => {
   return updateQueueSettings;
 };
 
-export default useUpdateQueueSettings;
+const updateQueueSettings = createAsyncThunk(typePrefix);
+
+export { useUpdateQueueSettings, updateQueueSettings };

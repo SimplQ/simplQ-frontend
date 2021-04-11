@@ -4,11 +4,15 @@ import QueueSettings from '../QueueSettings';
 
 jest.mock('react-redux', () => ({
   useDispatch: () => jest.fn(),
+  useSelector: (arg) => arg,
 }));
 
 const mockUpdateSettings = jest.fn();
 jest.mock('store/asyncActions', () => ({
   useUpdateQueueSettings: () => mockUpdateSettings,
+}));
+jest.mock('store/selectedQueue', () => ({
+  selectMaxQueueCapacity: () => 10,
 }));
 
 describe('Queue settings', () => {
@@ -42,7 +46,7 @@ describe('Queue settings', () => {
       expect(mockUpdateSettings).toHaveBeenCalledTimes(1);
       expect(mockUpdateSettings).toHaveBeenCalledWith({
         queueId: 'd3-220c-4b',
-        settings: { maxQueueCapacity: 1 },
+        settings: { maxQueueCapacity: 10 },
       });
     });
 

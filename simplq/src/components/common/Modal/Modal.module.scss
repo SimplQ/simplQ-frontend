@@ -1,0 +1,22 @@
+@import 'components/common.scss';
+
+.root {
+  overflow: scroll;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content {
+  position: absolute;
+  top: 20%;
+  background-color: #fff;
+  border-radius: 25px;
+  outline: none;
+  width: 400px;
+  padding: 10px;
+  @media (max-width: 960px) {
+    width: 95%;
+    margin: 10px;
+  }
+}
