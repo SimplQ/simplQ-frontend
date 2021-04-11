@@ -13,14 +13,14 @@ export class ErrorBoundary extends React.Component {
 
   static getDerivedStateFromError(error) {
     // Update state so the next render will show the fallback UI.
-    console.log('In getDerivedStateFromError');
+    console.log('Something caused a crash, falling back to 404 url, sorry...');
+    console.log(error);
     return { hasError: true };
   }
 
   componentDidCatch(error, errorInfo) {
     // You can also log the error to an error reporting service
     // logErrorToMyService(error, errorInfo);
-    console.log('In componentDidCatch');
     store.dispatch(setErrorPopupMessage('An error occured. Please try again'));
   }
 

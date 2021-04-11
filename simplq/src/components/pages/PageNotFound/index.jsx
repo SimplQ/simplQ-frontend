@@ -5,7 +5,7 @@ import styles from './pageNotFound.module.scss';
 
 function PageNotFound(props) {
   const MainContent = () => {
-    if (props.match.params.queueName) {
+    if (props?.match?.params?.queueName) {
       // display CreateJoinForm
       return (
         <div className={styles.main}>
