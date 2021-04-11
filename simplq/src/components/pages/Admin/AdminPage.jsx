@@ -24,7 +24,7 @@ export default (props) => {
   const getSelectedQueue = useGetSelectedQueue();
 
   const [toursteps, setToursteps] = useState(getToursteps(window.innerHeight));
-  const { isAuthenticated } = useAuth0();
+  const { isAuthenticated } = useAuth0().x.y;
   const update = useCallback(() => {
     clearTimeout(timeoutId);
     dispatch(getSelectedQueue({ queueId }));
