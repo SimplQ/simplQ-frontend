@@ -54,7 +54,10 @@ const useMakeAuthedRequest = () => {
       },
     }).catch((error) => {
       // log error to sentry for alerting
-      Sentry.captureException(error);
+      Sentry.withScope((scope) => {
+        scope.setTag('Caught-at', 'API request');
+        Sentry.captureException(error);
+      });
       // In case of request failure, extract error from response body
       if (error.response) {
         // Response has been received from the server

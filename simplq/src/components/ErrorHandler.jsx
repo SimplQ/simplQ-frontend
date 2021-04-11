@@ -26,6 +26,7 @@ export class ErrorBoundary extends React.Component {
     store.dispatch(setErrorPopupMessage('An error occured. Please try again'));
     // log error to sentry for alerting
     Sentry.withScope((scope) => {
+      scope.setTag('Caught-at', 'Error Boundary');
       scope.setExtras(errorInfo);
       Sentry.captureException(error);
     });
