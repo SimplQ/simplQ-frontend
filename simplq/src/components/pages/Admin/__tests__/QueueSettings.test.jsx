@@ -1,15 +1,16 @@
 import { render, fireEvent } from '@testing-library/react';
 import React from 'react';
+import { act } from 'react-dom/test-utils';
 import QueueSettings from '../QueueSettings';
 
+const mockUpdateSettings = jest.fn();
 jest.mock('react-redux', () => ({
-  useDispatch: () => jest.fn(),
+  useDispatch: () => mockUpdateSettings,
   useSelector: (arg) => arg,
 }));
 
-const mockUpdateSettings = jest.fn();
 jest.mock('store/asyncActions', () => ({
-  useUpdateQueueSettings: () => mockUpdateSettings,
+  useUpdateQueueSettings: () => (arg) => arg,
 }));
 jest.mock('store/selectedQueue', () => ({
   selectMaxQueueCapacity: () => 10,
@@ -41,12 +42,27 @@ describe('Queue settings', () => {
       expect(queryById('size-input')).toBeFalsy();
     });
 
-    it('on click save button should update the settings', () => {
-      getText('Save').click();
-      expect(mockUpdateSettings).toHaveBeenCalledTimes(1);
-      expect(mockUpdateSettings).toHaveBeenCalledWith({
-        queueId: 'd3-220c-4b',
-        settings: { maxQueueCapacity: 10 },
+    describe('on click save button', () => {
+      it('should dispatch action with valid payload', async () => {
+        mockUpdateSettings.mockReturnValueOnce({});
+        await act(async () => getText('Save').click());
+        expect(mockUpdateSettings).toHaveBeenCalledTimes(1);
+        expect(mockUpdateSettings).toHaveBeenCalledWith({
+          queueId: 'd3-220c-4b',
+          settings: { maxQueueCapacity: 10 },
+        });
+      });
+
+      it('should close the dialog if api call is success', async () => {
+        mockUpdateSettings.mockReturnValueOnce({});
+        await act(async () => getText('Save').click());
+        expect(queryById('size-input')).toBeFalsy();
+      });
+
+      it('should not close the dialog if api call fails', async () => {
+        mockUpdateSettings.mockReturnValueOnce({ error: {} });
+        await act(async () => getText('Save').click());
+        expect(queryById('size-input')).toBeTruthy();
       });
     });
 

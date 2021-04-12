@@ -8,8 +8,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import SaveIcon from '@material-ui/icons/Save';
 import { selectMaxQueueCapacity } from 'store/selectedQueue';
-import Button from '../../common/Button';
-import InputField from '../../common/InputField';
+import Button from 'components/common/Button';
+import InputField from 'components/common/InputField';
 import styles from './QueueSettings.module.scss';
 
 const MAX_SIZE = 100000;
@@ -38,9 +38,13 @@ export default ({ queueId }) => {
 
   const toggleModal = () => setIsModalOpen((isOpen) => !isOpen);
 
-  const handleSave = () => {
-    dispatch(updateSettings({ queueId, settings: { maxQueueCapacity: size } }));
-    toggleModal();
+  const handleSave = async () => {
+    const response = await dispatch(
+      updateSettings({ queueId, settings: { maxQueueCapacity: size } })
+    );
+    if (!response.error) {
+      toggleModal();
+    }
   };
   return (
     <>
