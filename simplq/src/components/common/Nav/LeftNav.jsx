@@ -48,7 +48,7 @@ const LeftNav = ({ open, toggleClose }) => {
           </a>
         </li>
         <li>
-          <a role="link" tabIndex={0} onKeyDown={openContactUs} onClick={openContactUs}>
+          <a role="link" tabIndex={0} onKeyDown={openContactUs.x.y} onClick={openContactUs}>
             Contact Us
           </a>
         </li>

@@ -25,11 +25,14 @@ export class ErrorBoundary extends React.Component {
     // logErrorToMyService(error, errorInfo);
     store.dispatch(setErrorPopupMessage('An error occured. Please try again'));
     // log error to sentry for alerting
+    let eventId;
     Sentry.withScope((scope) => {
       scope.setTag('Caught-at', 'Error Boundary');
       scope.setExtras(errorInfo);
-      Sentry.captureException(error);
+      eventId = Sentry.captureException(error);
     });
+    // eslint-disable-next-line no-console
+    console.log(`Sentry exception captured, event id is ${eventId}`);
   }
 
   render() {
