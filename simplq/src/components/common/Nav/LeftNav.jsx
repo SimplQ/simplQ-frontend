@@ -26,8 +26,8 @@ const LeftNav = ({ open, toggleClose }) => {
     }
   };
 
-  const opneContactUs = () => {
-    typeformEmbed.typeform.open();
+  const openContactUs = () => {
+    typeformEmbed.typeform.open().x.y();
   };
   return (
     <div>
@@ -48,7 +48,7 @@ const LeftNav = ({ open, toggleClose }) => {
           </a>
         </li>
         <li>
-          <a role="link" tabIndex={0} onKeyDown={opneContactUs} onClick={opneContactUs}>
+          <a role="link" tabIndex={0} onKeyDown={openContactUs} onClick={openContactUs}>
             Contact Us
           </a>
         </li>

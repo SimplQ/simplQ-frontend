@@ -5,7 +5,7 @@ import styles from './pageNotFound.module.scss';
 
 function PageNotFound(props) {
   const MainContent = () => {
-    if (props.match.params.queueName) {
+    if (props?.match?.params?.queueName) {
       // display CreateJoinForm
       return (
         <div className={styles.main}>
@@ -20,6 +20,7 @@ function PageNotFound(props) {
         </div>
       );
     }
+
     return (
       <div className={styles.main}>
         <div className={styles.text}>
@@ -27,7 +28,13 @@ function PageNotFound(props) {
           <h3>Looks like the bugs stole that page.</h3>
           <div className={styles.buttondiv}>
             <div>
-              <Button onClick={() => props.history.push('/')}>Return home</Button>
+              <Button
+                onClick={() => {
+                  window.location.href = '/';
+                }}
+              >
+                Return home
+              </Button>
             </div>
             <div>
               <a
