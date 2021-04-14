@@ -1,6 +1,4 @@
 import React from 'react';
-import { setErrorPopupMessage } from 'store/appSlice';
-import { store } from 'store';
 import * as Sentry from '@sentry/react';
 import PageNotFound from './pages/PageNotFound';
 
@@ -23,7 +21,6 @@ export class ErrorBoundary extends React.Component {
   componentDidCatch(error, errorInfo) {
     // You can also log the error to an error reporting service
     // logErrorToMyService(error, errorInfo);
-    store.dispatch(setErrorPopupMessage('An error occured. Please try again'));
     // log error to sentry for alerting
     let eventId;
     Sentry.withScope((scope) => {

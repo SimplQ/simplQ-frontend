@@ -27,7 +27,7 @@ const LeftNav = ({ open, toggleClose }) => {
   };
 
   const openContactUs = () => {
-    typeformEmbed.typeform.open().x.y();
+    typeformEmbed.typeform.open();
   };
   return (
     <div>
