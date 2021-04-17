@@ -12,11 +12,9 @@ const typePrefix = 'getQueueInfo/action';
 const useGetQueueInfo = () => {
   const makeAuthedRequest = useMakeAuthedRequest();
 
-  const getQueueInfo = createAsyncThunk(typePrefix, async ({ queueId }) => {
-    const authedRequest = makeAuthedRequest(RequestFactory.getQueueInfo(queueId));
-    const response = await authedRequest;
-    return response;
-  });
+  const getQueueInfo = createAsyncThunk(typePrefix, async ({ queueId }) =>
+    makeAuthedRequest(RequestFactory.getQueueInfo(queueId))
+  );
 
   return getQueueInfo;
 };

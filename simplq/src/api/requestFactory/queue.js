@@ -50,3 +50,16 @@ export const getQueueInfoByName = (queueName) => ({
  * @returns {Object} request - partial axios request without baseURL
  */
 export const deleteQueue = (queueId) => ({ method: 'delete', url: `/queue/${queueId}` });
+
+/**
+ * Request creator to set the queue status
+ *
+ * @param {string} queueId
+ * @param {string} status new status of the queue. Possible values are PAUSED and ACTIVE
+ * @returns {Object} request - partial axios request without baseURL
+ */
+export const setQueueStatus = (queueId, status) => ({
+  method: 'post',
+  url: `/queue/${queueId}`,
+  data: { status },
+});

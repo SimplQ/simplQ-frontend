@@ -23,5 +23,6 @@ export {
   getQueueInfo,
   getQueueInfoByName,
   createQueue,
+  setQueueStatus,
 } from './queue';
 export { createToken, getToken, deleteToken, notifyToken } from './token';
