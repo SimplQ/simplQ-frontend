@@ -127,11 +127,43 @@ export const ExtraInfo = () => (
   </div>
 );
 
-export const GetStarted = () => (
+export const Pricing = () => (
   <div data-aos="fade-up" className={`${styles['section']} ${styles['get-started']}`}>
-    <h2 data-aos="zoom-in">Ready to get started with SimplQ?</h2>
-    <div className={`${styles['button-group']}`}>
-      <StandardButton onClick={smoothScrollToHomePageTop}>Start Now</StandardButton>
+    <h2 data-aos="zoom-in">Pricng - Plans for every usecase</h2>
+    <div className={styles['container']}>
+      <div className={styles['price-card']}>
+        <h1>Free</h1>
+        <p className={styles['subtitle']}>Basic for small businesses</p>
+        <li>
+          <ul>Unlimeted Queues</ul>
+          <ul>6000 tokens per month</ul>
+        </li>
+        <p className={styles['amount']}>$0</p>
+        <StandardButton onClick={smoothScrollToHomePageTop}>Start for free</StandardButton>
+      </div>
+      <div className={styles['price-card']}>
+        <h1>Business</h1>
+        <p className={styles['subtitle']}>For bigger companies</p>
+        <li>
+          <ul>Everything in free plan.</ul>
+          <ul>20,000 tokens per month.</ul>
+          <ul>Priority Support.</ul>
+        </li>
+        <p className={styles['amount']}>$23/mo</p>
+        <StandardButton onClick={smoothScrollToHomePageTop}>Upgrade</StandardButton>
+      </div>
+      <div className={styles['price-card']}>
+        <h1>Enterprise</h1>
+        <p className={styles['subtitle']}>Best for unique requirements that need to scale.</p>
+        <li>
+          <ul>Everything in business plan.</ul>
+          <ul>No token or user limits.</ul>
+          <ul>In house installation support.</ul>
+          <ul>Custom features, integrations, branding.</ul>
+        </li>
+        <StandardButton onClick={smoothScrollToHomePageTop}>Contact Sales</StandardButton>
+      </div>
     </div>
+    <p>* No credit card required till you upgrade.</p>
   </div>
 );
