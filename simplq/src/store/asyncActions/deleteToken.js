@@ -21,7 +21,6 @@ const useDeleteToken = () => {
     const { tokenId } = arg;
     const authedRequest = makeAuthedRequest(RequestFactory.deleteToken(tokenId));
     const response = await authedRequest;
-    // TODO: remove token from redux store on success
     if (arg.goHome) {
       dispatch(setInfoPopupMessage('Successfully left queue'));
       history.push('/');

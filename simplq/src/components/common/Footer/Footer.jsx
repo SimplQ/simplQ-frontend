@@ -1,6 +1,5 @@
 import React from 'react';
 import FacebookIcon from '@material-ui/icons/Facebook';
-import PhoneIcon from '@material-ui/icons/Phone';
 import YouTubeIcon from '@material-ui/icons/YouTube';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import MailIcon from '@material-ui/icons/Mail';
@@ -26,7 +25,7 @@ export default () => (
             <a href="/privacy#terms-of-service">Terms of Service</a>
             <br />
             <br />
-            <i>Enjoy the rest of your {dayOfWeek()}!</i>
+            <i>{`Enjoy the rest of your ${dayOfWeek()}!`}</i>
           </b>
         </div>
       </div>
@@ -73,11 +72,6 @@ export default () => (
       <h1>Keep in touch</h1>
       <div className={styles['card-body']}>
         <div className={styles['list-container']}>
-          <div className={styles['list-container-item']}>
-            <a href="https://iimb.qualtrics.com/jfe/form/SV_aY8FY91ztRX9NvD">
-              <PhoneIcon fontSize="large" />
-            </a>
-          </div>
           <div className={styles['list-container-item']}>
             <a href="https://github.com/SimplQ/simplQ-frontend">
               <GitHubIcon fontSize="large" />
