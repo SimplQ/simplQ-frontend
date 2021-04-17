@@ -48,7 +48,13 @@ const LeftNav = ({ open, toggleClose }) => {
           </a>
         </li>
         <li>
-          <a role="link" tabIndex={0} onKeyDown={openContactUs} onClick={openContactUs}>
+          <a
+            className={styles['contact-us']}
+            role="link"
+            tabIndex={0}
+            onKeyDown={openContactUs}
+            onClick={openContactUs}
+          >
             Contact Us
           </a>
         </li>
@@ -65,6 +71,7 @@ const LeftNav = ({ open, toggleClose }) => {
         ref={(tf) => {
           typeformEmbed = tf;
         }}
+        buttonText="Contact Us"
       />
     </div>
   );
