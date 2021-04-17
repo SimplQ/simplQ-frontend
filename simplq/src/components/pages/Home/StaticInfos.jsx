@@ -161,7 +161,13 @@ export const Pricing = () => (
           <ul>In house installation support.</ul>
           <ul>Custom features, integrations, branding.</ul>
         </li>
-        <StandardButton onClick={smoothScrollToHomePageTop}>Contact Sales</StandardButton>
+        <StandardButton
+          onClick={() => {
+            window.location = 'https://kss9gyhvcy3.typeform.com/to/kHJHPLEr';
+          }}
+        >
+          Contact Sales
+        </StandardButton>
       </div>
     </div>
     <p>* No credit card required till you upgrade.</p>
