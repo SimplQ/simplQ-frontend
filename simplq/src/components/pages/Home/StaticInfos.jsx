@@ -127,11 +127,50 @@ export const ExtraInfo = () => (
   </div>
 );
 
-export const GetStarted = () => (
+export const Pricing = () => (
   <div data-aos="fade-up" className={`${styles['section']} ${styles['get-started']}`}>
-    <h2 data-aos="zoom-in">Ready to get started with SimplQ?</h2>
-    <div className={`${styles['button-group']}`}>
-      <StandardButton onClick={smoothScrollToHomePageTop}>Start Now</StandardButton>
+    <h2 data-aos="zoom-in">Pricing - Plans for every use case</h2>
+    <div className={styles['container']}>
+      <div className={styles['price-card']}>
+        <h1>Free</h1>
+        <p className={styles['subtitle']}>Basic for small businesses.</p>
+        <li>
+          <ul>Unlimited Queues</ul>
+          <ul>20,000 tokens per month.</ul>
+        </li>
+        <p className={styles['amount']}>$0</p>
+        <StandardButton onClick={smoothScrollToHomePageTop}>Start for free</StandardButton>
+      </div>
+      <div className={styles['price-card']}>
+        <h1>Business</h1>
+        <p className={styles['subtitle']}>For bigger companies.</p>
+        <li>
+          <ul>Everything in the free plan.</ul>
+          <ul>Unlimited tokens per month.</ul>
+          <ul>Custom subdomains.</ul>
+          <ul>Multi-user support.</ul>
+          <ul>Priority Customer Support.</ul>
+        </li>
+        <p className={styles['amount']}>$8.99/mo</p>
+        <StandardButton onClick={smoothScrollToHomePageTop}>Upgrade</StandardButton>
+      </div>
+      <div className={styles['price-card']}>
+        <h1>Enterprise</h1>
+        <p className={styles['subtitle']}>Best for unique requirements that need to scale.</p>
+        <li>
+          <ul>Everything in the business plan.</ul>
+          <ul>In-house installation support.</ul>
+          <ul>Custom features, integrations, branding.</ul>
+        </li>
+        <StandardButton
+          onClick={() => {
+            window.location = 'https://kss9gyhvcy3.typeform.com/to/kHJHPLEr';
+          }}
+        >
+          Contact Sales
+        </StandardButton>
+      </div>
     </div>
+    <p>* No credit card required till you upgrade.</p>
   </div>
 );
