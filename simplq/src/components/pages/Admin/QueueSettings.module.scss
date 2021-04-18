@@ -1,0 +1,20 @@
+@import 'components/common.scss';
+
+.modal-content {
+  padding: .5rem;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  text-decoration: underline;
+}
+
+.size-input {
+  margin-bottom: 1.5rem;
+}
+
+.action-container {
+  display: flex;
+  justify-content: space-evenly;
+}
