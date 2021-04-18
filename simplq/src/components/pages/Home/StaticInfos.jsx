@@ -129,14 +129,14 @@ export const ExtraInfo = () => (
 
 export const Pricing = () => (
   <div data-aos="fade-up" className={`${styles['section']} ${styles['get-started']}`}>
-    <h2 data-aos="zoom-in">Pricng - Plans for every usecase</h2>
+    <h2 data-aos="zoom-in">Pricing - Plans for every usecase</h2>
     <div className={styles['container']}>
       <div className={styles['price-card']}>
         <h1>Free</h1>
         <p className={styles['subtitle']}>Basic for small businesses</p>
         <li>
           <ul>Unlimited Queues</ul>
-          <ul>6000 tokens per month</ul>
+          <ul>6000 queue joiners per month</ul>
         </li>
         <p className={styles['amount']}>$0</p>
         <StandardButton onClick={smoothScrollToHomePageTop}>Start for free</StandardButton>
