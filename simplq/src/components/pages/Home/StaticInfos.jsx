@@ -179,7 +179,6 @@ export const Pricing = () => (
         <p className={styles['subtitle']}>Best for unique requirements that need to scale.</p>
         <li>
           <ul>Everything in the business plan.</ul>
-          <ul>No token or user limits.</ul>
           <ul>In-house installation support.</ul>
           <ul>Custom features, integrations, branding.</ul>
         </li>
