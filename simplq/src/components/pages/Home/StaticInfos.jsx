@@ -147,9 +147,11 @@ export const Pricing = () => (
         <li>
           <ul>Everything in the free plan.</ul>
           <ul>20,000 tokens per month.</ul>
-          <ul>Priority Support.</ul>
+          <ul>Custom subdomains</ul>
+          <ul>Multi-user support</ul>
+          <ul>Priority Customer Support.</ul>
         </li>
-        <p className={styles['amount']}>$23/mo</p>
+        <p className={styles['amount']}>$8.99/mo</p>
         <StandardButton onClick={smoothScrollToHomePageTop}>Upgrade</StandardButton>
       </div>
       <div className={styles['price-card']}>
