@@ -23,7 +23,7 @@ export default ({ queueId }) => {
     <SidePanelItem
       Icon={paused ? PlayArrowIcon : PauseIcon}
       title={paused ? 'Resume Queue' : 'Pause Queue'}
-      description={paused ? activeDescription : pausedDescription}
+      description={paused ? pausedDescription : activeDescription}
       onClick={toggleQueueStatus}
       style={paused ? 'side-panel-item-selected' : 'side-panel-item'}
     />
