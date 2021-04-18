@@ -43,7 +43,7 @@
   & > .container {
     margin: 4rem 0;
     @media screen and (max-width: 550px) {
-      margin: 2rem;
+      margin: 2rem 0;
     }
     display: flex;
     flex-wrap: wrap;
@@ -207,5 +207,40 @@
     &:last-child() {
       border-bottom: none;
     }
+  }
+}
+
+.price-card {
+  display: flex;
+  flex-direction: column;
+  // border: 1px solid #ccc;
+  border-radius: 1rem;
+  box-shadow: 0 4px 8px 0 rgba(31, 14, 14, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin: 2rem;
+  padding: 2rem;
+  @media screen and (max-width: 550px) {
+    margin: 1rem;
+    padding: 1rem;
+  }
+  text-align: center;
+  list-style: none;
+  h1 {
+    margin-bottom: 0;
+  }
+  ul {
+    margin: 1rem;
+    @media screen and (max-width: 550px) {
+      margin: 1 0.2rem;
+    }
+    padding: 0;
+  }
+  .subtitle {
+    margin-top: 0;
+    font-size: small;
+    font-weight: lighter;
+  }
+  .amount {
+    font-size: x-large;
+    font-weight: bolder;
   }
 }
