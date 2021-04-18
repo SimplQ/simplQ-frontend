@@ -135,7 +135,7 @@ export const Pricing = () => (
         <h1>Free</h1>
         <p className={styles['subtitle']}>Basic for small businesses</p>
         <li>
-          <ul>Unlimeted Queues</ul>
+          <ul>Unlimited Queues</ul>
           <ul>6000 tokens per month</ul>
         </li>
         <p className={styles['amount']}>$0</p>
@@ -145,7 +145,7 @@ export const Pricing = () => (
         <h1>Business</h1>
         <p className={styles['subtitle']}>For bigger companies</p>
         <li>
-          <ul>Everything in free plan.</ul>
+          <ul>Everything in the free plan.</ul>
           <ul>20,000 tokens per month.</ul>
           <ul>Priority Support.</ul>
         </li>
@@ -156,7 +156,7 @@ export const Pricing = () => (
         <h1>Enterprise</h1>
         <p className={styles['subtitle']}>Best for unique requirements that need to scale.</p>
         <li>
-          <ul>Everything in business plan.</ul>
+          <ul>Everything in the business plan.</ul>
           <ul>No token or user limits.</ul>
           <ul>In house installation support.</ul>
           <ul>Custom features, integrations, branding.</ul>
