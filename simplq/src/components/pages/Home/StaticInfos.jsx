@@ -66,12 +66,14 @@ export const HowToCreate = () => (
         </div>
         <p>
           SimplQ customer waiting experience software is a simple and affordable ticket, table or
-          place in line solution, adding value to any crowded business. Unlike other similar
-          solutions, SimplQ is open source software build by software enthusiasts from around the
-          world. This lets us bring you the core functionalities in our free plan without
-          unnecessary fees. We also have an affordable month-to-month subscription option if you
-          want to be a long term supporter. Talk to us if you need dedicated support or have any
-          custom requirements.
+          place in line solution, adding value to any crowded business.
+        </p>
+        <p>
+          What makes us different? Unlike other similar solutions, SimplQ is open source software
+          build by software enthusiasts from around the world. This lets us bring you the core
+          functionalities in our free plan without unnecessary fees. We also have an affordable
+          month-to-month subscription option if you want to be a long term supporter. Talk to us if
+          you need dedicated support or have any custom requirements.
         </p>
         <p>
           We are generic enough to allow customers to choose the best way for them to use it but
