@@ -12,7 +12,7 @@ export const BenefitsInfo = () => (
     <div data-aos="zoom-in" className={`${styles['container']} ${styles['benefits-container']}`}>
       <div className={styles.benefit}>
         <img src="/images/minimize_crowding.svg" alt="minimize crowding" />
-        <p>Reduces waiting time and improves patient satisfaction.</p>
+        <p>Reduces waiting time and improves customer satisfaction.</p>
       </div>
       <div className={styles.benefit}>
         <img src="/images/enforce_social_dist.svg" alt="Enforce social distancing" />
@@ -66,21 +66,21 @@ export const HowToCreate = () => (
         </div>
         <p>
           SimplQ customer waiting experience software is a simple and affordable ticket, table or
-          place in line solution, adding value to any crowded business.
+          place-in-line solution, adding value to any crowded business.
         </p>
         <p>
           What makes us different? Unlike other similar solutions, SimplQ is open source software
-          build by software enthusiasts from around the world. This lets us bring you the core
+          built by software enthusiasts from around the world. This lets us bring you the core
           functionalities in our free plan without unnecessary fees. We also have an affordable
           month-to-month subscription option if you want to be a long term supporter. Talk to us if
           you need dedicated support or have any custom requirements.
         </p>
         <p>
-          We are generic enough to allow customers to choose the best way for them to use it but
+          We are generic enough to allow customers to choose the best way for them to use it, but
           small enough to care about the individual needs of every customer.
         </p>
 
-        <h3>This is what makes us stand out from other crowd control solutions.</h3>
+        <h3>This is what makes us stand out from other crowd-control solutions.</h3>
       </div>
     </div>
     <svg id={styles['curved-div-2']} xmlns="https://www.w3.org/2000/svg" viewBox="0 0 1440 50">

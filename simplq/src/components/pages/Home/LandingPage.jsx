@@ -6,7 +6,7 @@ import styles from './Home.module.scss';
 import MyQueues from './MyQueues';
 
 export default () => {
-  let subtitle = 'Give Your Customers a Delightful Customer Waiting Experience.';
+  let subtitle = 'Give Your Customers a Delightful Waiting Experience.';
   const { user, isAuthenticated } = useAuth0();
   if (isAuthenticated) {
     subtitle = `Hi ${user.name}, welcome back!`;
