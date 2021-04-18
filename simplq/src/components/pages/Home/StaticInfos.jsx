@@ -149,7 +149,7 @@ export const ExtraInfo = () => (
 
 export const Pricing = () => (
   <div data-aos="fade-up" className={`${styles['section']} ${styles['get-started']}`}>
-    <h2 data-aos="zoom-in">Pricing - Plans for every usecase</h2>
+    <h2 data-aos="zoom-in">Pricing - Plans for every use case</h2>
     <div className={styles['container']}>
       <div className={styles['price-card']}>
         <h1>Free</h1>
