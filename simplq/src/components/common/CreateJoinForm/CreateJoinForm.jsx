@@ -46,7 +46,7 @@ const CreateJoinForm = (props) => {
       <div className={styles['input-box']}>
         <InputField
           placeholder="Queue Name"
-          value={textFieldValue}
+          value={textFieldValue || ''}
           onChange={handleTextFieldChange}
           onKeyPress={(e) => handleEnterPress(e, handleCreateClick)}
           error={invalidMsg.length > 0}
