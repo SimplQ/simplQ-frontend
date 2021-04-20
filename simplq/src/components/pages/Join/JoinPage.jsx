@@ -1,6 +1,5 @@
 import React, { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 import { useGetQueueInfoByName, useJoinQueue } from 'store/asyncActions';
 import { selectQueueInfo } from 'store/queueInfo';
 import HeaderSection from 'components/common/HeaderSection';
@@ -17,12 +16,8 @@ export default ({ match }) => {
   const dispatch = useDispatch();
   const queueInfo = useSelector(selectQueueInfo);
 
-  const history = useHistory();
-
   useEffect(() => {
-    if (history.action === 'POP') {
-      history.push('/');
-    } else dispatch(getQueueInfoByName({ queueName }));
+    dispatch(getQueueInfoByName({ queueName }));
   }, [queueName, dispatch, getQueueInfoByName]);
 
   const queueId = queueInfo.queueId;
