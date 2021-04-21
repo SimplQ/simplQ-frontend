@@ -13,12 +13,12 @@ jest.mock('store/selectedQueue', () => ({
   selectMaxQueueCapacity: 57,
 }));
 jest.mock('store/queueInfo', () => ({
-  selectQueueInfo: jest.fn(),
+  selectQueueInfo: { numberOfActiveTokens: 24 },
 }));
 
 describe('Queue info', () => {
-  it('should render queue capacity', () => {
-    const { getByText } = render(<QueueInfo />);
-    getByText('57');
+  it('should render available queue slots', () => {
+    const { getByTestId } = render(<QueueInfo />);
+    expect(getByTestId('slots-value')).toHaveTextContent('33');
   });
 });
