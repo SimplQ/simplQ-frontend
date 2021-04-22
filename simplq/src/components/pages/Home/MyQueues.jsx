@@ -23,7 +23,7 @@ export default () => {
     <div className={styles['my-queue']}>
       <p>
         {queues.length === 0
-          ? "Looks like you don't have any active queues. Start by creating one..."
+          ? "Are you a hospital or a vaccine center? Start by createing a queue:"
           : 'What would you like to do today? Here are your active queues:'}
       </p>
       {queues.map((queue) => {

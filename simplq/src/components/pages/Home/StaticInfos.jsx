@@ -8,19 +8,19 @@ export const BenefitsInfo = () => (
     <img src="/images/corona.png" alt="background-illustration" className={styles['corona-1']} />
     <img src="/images/corona.png" alt="background-illustration" className={styles['corona-2']} />
     <img src="/images/corona.png" alt="background-illustration" className={styles['corona-3']} />
-    <h2 data-aos="zoom-in">Your customers will love it.</h2>
+    <h2 data-aos="zoom-in">Help covid warriors maintain social distancing when vaccination starts for all.</h2>
     <div data-aos="zoom-in" className={`${styles['container']} ${styles['benefits-container']}`}>
       <div className={styles.benefit}>
-        <img src="/images/minimize_crowding.svg" alt="minimize crowding" />
-        <p>Reduces waiting time and improves customer satisfaction.</p>
+        <img src="/images/minimize_crowding.png" alt="minimize crowding" />
+        <p>Avoid people crowding in front of the vaccine center.</p>
       </div>
       <div className={styles.benefit}>
-        <img src="/images/enforce_social_dist.svg" alt="Enforce social distancing" />
+        <img src="/images/social_dist.jpg" alt="Enforce social distancing" />
         <p>Social distancing tool for post-COVID digital world.</p>
       </div>
       <div className={styles.benefit}>
         <img src="/images/check_status.svg " alt="Check your current status" />
-        <p>Digital tokens and live status updates.</p>
+        <p>People can wait patiently and see how many people are in front of them in the queue.</p>
       </div>
     </div>
   </div>
@@ -33,7 +33,7 @@ export const HowToCreate = () => (
       id="target_how_it_works"
       className={`${styles['section']} ${styles['queue-info']}`}
     >
-      <h2>Why you should be using SimplQ</h2>
+      <h2>How to use SimplQ</h2>
       <div className={`${styles['container']} ${styles['queue-container']}`}>
         <div className={styles.queue}>
           <img src="/images/queue_creation.svg" alt="Queue creation" />
@@ -44,15 +44,17 @@ export const HowToCreate = () => (
             <li>
               <h3>1. Create Queue</h3>
               <p>
-                Enter queue name of your choice and create a brand new queue totally free of cost
+                Enter the name of the hospital to generate a queue.
               </p>
             </li>
             <img src="/images/share-24px.svg" alt="Share" />
             <li>
-              <h3>2. Share Queue</h3>
+              <h3>2. Add people to the queue</h3>
               <p>
-                Click the share button and send the queue link to your users for them to join. Or
-                print the QR code and stick it at a place where people can scan it.
+                When people come to get vaccinated, add them to the queue by taking their name and mobile number.
+              </p>
+              <p>
+                Ask them to wait outside without crowding in front of the vaccine .
               </p>
             </li>
             <img src="/images/people-24px.svg" alt="People" />
@@ -65,8 +67,7 @@ export const HowToCreate = () => (
           </ul>
         </div>
         <p>
-          SimplQ customer waiting experience software is a simple and affordable ticket, table or
-          place-in-line solution, adding value to any crowded business.
+          India is undergoing one of the biggest healthcare challenges it has every had to face. Our vaccine centers are already crowded, and from May 1st we are opening for all above 18 years of age.
         </p>
         <p>
           What makes us different? Unlike other similar solutions, SimplQ is open source software
@@ -102,11 +103,11 @@ export const HowToJoin = () => (
           <img src="/images/mobile_friendly-24px.svg" alt="Mobile friendly" />
           <li>
             <h3>Join a queue</h3>
-            <p>Get the shared queue link and enter your details to join a queue</p>
+            <p>When you react the vaccine center, give your mobile number to get into the queue.</p>
           </li>
           <img src="/images/alarm-24px.svg" alt="Alarm" />
           <li>
-            <h3>Waiting for your turn</h3>
+            <h3>Waiting for the staff to vall you when your turn in near</h3>
             <p>Check your token status in queue and get notified when your turn is up</p>
           </li>
         </ul>
@@ -153,17 +154,17 @@ export const Pricing = () => (
     <div className={styles['container']}>
       <div className={styles['price-card']}>
         <h1>Free</h1>
-        <p className={styles['subtitle']}>Basic for small businesses.</p>
+        <p className={styles['subtitle']}>Free for public use.</p>
         <li>
           <ul>Unlimited Queues</ul>
-          <ul>20,000 tokens per month.</ul>
+          <ul>Eveything</ul>
         </li>
         <p className={styles['amount']}>$0</p>
         <StandardButton onClick={smoothScrollToHomePageTop}>Start for free</StandardButton>
       </div>
       <div className={styles['price-card']}>
         <h1>Business</h1>
-        <p className={styles['subtitle']}>For bigger companies.</p>
+        <p className={styles['subtitle']}>Want to bring social distancing for your customers?</p>
         <li>
           <ul>Everything in the free plan.</ul>
           <ul>Unlimited tokens per month.</ul>
@@ -187,7 +188,7 @@ export const Pricing = () => (
             window.location = 'https://kss9gyhvcy3.typeform.com/to/kHJHPLEr';
           }}
         >
-          Contact Sales
+          Contact Me
         </StandardButton>
       </div>
     </div>

@@ -12,8 +12,8 @@ const HomePage = () => {
       <BenefitsInfo />
       <HowToCreate />
       <HowToJoin />
-      <ExtraInfo />
-      <Pricing />
+      {/* <ExtraInfo /> */}
+      {/* <Pricing /> */}
     </>
   );
 };
