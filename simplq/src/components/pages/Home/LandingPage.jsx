@@ -16,15 +16,21 @@ export default () => {
   return (
     <div id="target_top" className={styles['landing-page']}>
       <div data-aos="zoom-in">
-      {/* <img style={{height: "150px"}} src="/images/make-india.jpeg"  /> */}
-      <div className={styles.homelogos}>
-       <img style={{height: "150px"}}  src="https://www.clipartmax.com/png/small/479-4790229_we-only-send-information-updates-and-promo-offers-png-make-in-india.png" />
-       <img style={{height: "200px"}} src="/images/corona-hd.jpg"  /> 
-       <img style={{height: "200px"}} src="/images/black-queue.webp"  /> 
-       </div>
-        <Header >social distancing queues</Header>
-        <p className={styles.subtitle}> <span className={styles.flag}>🇮🇳  💉</span>  Get safely vaccinated <span className={styles.flag}>💉  🇮🇳 </span></p>
-
+        {/* <img style={{height: "150px"}} src="/images/make-india.jpeg"  /> */}
+        <div className={styles.homelogos}>
+          <img
+            style={{ height: '150px' }}
+            src="https://www.clipartmax.com/png/small/479-4790229_we-only-send-information-updates-and-promo-offers-png-make-in-india.png"
+          />
+          <img style={{ height: '200px' }} src="/images/corona-hd.jpg" />
+          <img style={{ height: '200px' }} src="/images/black-queue.webp" />
+        </div>
+        <Header>social distancing queues</Header>
+        <p className={styles.subtitle}>
+          {' '}
+          <span className={styles.flag}>🇮🇳 💉</span> Get safely vaccinated{' '}
+          <span className={styles.flag}>💉 🇮🇳 </span>
+        </p>
       </div>
       <MyQueues />
       <QueueForm />
