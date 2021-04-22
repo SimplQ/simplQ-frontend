@@ -8,7 +8,9 @@ export const BenefitsInfo = () => (
     <img src="/images/corona.png" alt="background-illustration" className={styles['corona-1']} />
     <img src="/images/corona.png" alt="background-illustration" className={styles['corona-2']} />
     <img src="/images/corona.png" alt="background-illustration" className={styles['corona-3']} />
-    <h2 data-aos="zoom-in">Help covid warriors maintain social distancing when vaccination starts for all.</h2>
+    <h2 data-aos="zoom-in">
+      Help covid warriors maintain social distancing when vaccination starts for all.
+    </h2>
     <div data-aos="zoom-in" className={`${styles['container']} ${styles['benefits-container']}`}>
       <div className={styles.benefit}>
         <img src="/images/minimize_crowding.png" alt="minimize crowding" />
@@ -43,19 +45,16 @@ export const HowToCreate = () => (
             <img src="/images/wand.svg" alt="Wand" />
             <li>
               <h3>1. Create Queue</h3>
-              <p>
-                Enter the name of the hospital to generate a queue.
-              </p>
+              <p>Enter the name of the hospital to generate a queue.</p>
             </li>
             <img src="/images/share-24px.svg" alt="Share" />
             <li>
               <h3>2. Add people to the queue</h3>
               <p>
-                When people come to get vaccinated, add them to the queue by taking their name and mobile number.
+                When people come to get vaccinated, add them to the queue by taking their name and
+                mobile number.
               </p>
-              <p>
-                Ask them to wait outside without crowding in front of the vaccine .
-              </p>
+              <p>Ask them to wait outside without crowding in front of the vaccine .</p>
             </li>
             <img src="/images/people-24px.svg" alt="People" />
             <li>
@@ -67,7 +66,9 @@ export const HowToCreate = () => (
           </ul>
         </div>
         <p>
-          India is undergoing one of the biggest healthcare challenges it has every had to face. Our vaccine centers are already crowded, and from May 1st we are opening for all above 18 years of age.
+          India is undergoing one of the biggest healthcare challenges it has every had to face. Our
+          vaccine centers are already crowded, and from May 1st we are opening for all above 18
+          years of age.
         </p>
         <p>
           What makes us different? Unlike other similar solutions, SimplQ is open source software
