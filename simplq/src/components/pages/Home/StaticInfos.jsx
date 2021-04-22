@@ -67,10 +67,13 @@ export const HowToCreate = () => (
           </ul>
         </div>
         <p>
-          India is undergoing one of the biggest healthcare challenges it has every had to face. Our vaccine centers are already crowded, and from May 1st we are opening for all above 18 years of age.
+        India is going to do the biggest ever vaccination drive in history. Our vaccine centers are already crowded, and from May 1st we are opening for all above 18 years of age.
         </p>
-        <p>
-          What makes us different? Unlike other similar solutions, SimplQ is open source software
+        <iframe
+src="https://www.youtube.com/embed/0uljPj5KcNE">
+</iframe>
+<p>
+          SimplQ is open source software
           built by software enthusiasts from around the world. This lets us bring you the core
           functionalities in our free plan without unnecessary fees. We also have an affordable
           month-to-month subscription option if you want to be a long term supporter. Talk to us if

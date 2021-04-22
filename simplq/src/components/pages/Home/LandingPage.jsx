@@ -6,20 +6,25 @@ import styles from './Home.module.scss';
 import MyQueues from './MyQueues';
 
 export default () => {
-  let subtitle = '#IndiaFightsBack - Get vaccinated - help stop the spread.';
+  // let subtitle = '#IndiaFightsBack 🇮🇳  💉 Get vaccinated 💉 🇮🇳  help stop the spread.';
+  // let subtitle = '';
   const { user, isAuthenticated } = useAuth0();
-  if (isAuthenticated) {
-    subtitle = `Hi ${user.name}, welcome back!`;
-  }
+  // if (isAuthenticated) {
+  //   subtitle = `Hi ${user.name}, welcome back!`;
+  // }
 
   return (
     <div id="target_top" className={styles['landing-page']}>
       <div data-aos="zoom-in">
-        <Header className={styles['main-header']}>SimplQ</Header>
-        <p className={styles.subtitle}>{subtitle}</p>
-        <p className={styles.description}>
-          Help covid warriors maintain social distancing when vaccination starts for all.
-        </p>
+      {/* <img style={{height: "150px"}} src="/images/make-india.jpeg"  /> */}
+      <div className={styles.homelogos}>
+       <img style={{height: "150px"}}  src="https://www.clipartmax.com/png/small/479-4790229_we-only-send-information-updates-and-promo-offers-png-make-in-india.png" />
+       <img style={{height: "200px"}} src="/images/corona-hd.jpg"  /> 
+       <img style={{height: "200px"}} src="/images/black-queue.webp"  /> 
+       </div>
+        <Header >social distancing queues</Header>
+        <p className={styles.subtitle}> <span className={styles.flag}>🇮🇳  💉</span>  Get safely vaccinated <span className={styles.flag}>💉  🇮🇳 </span></p>
+
       </div>
       <MyQueues />
       <QueueForm />

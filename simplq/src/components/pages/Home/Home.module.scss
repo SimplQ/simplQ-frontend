@@ -37,7 +37,7 @@
   }
   & > h2 {
     @include standard-header();
-    font-family: $header-font;
+    // font-family: $header-font;
     font-size: 2rem;
   }
   & > .container {
@@ -191,6 +191,9 @@
 .my-queue {
   @include text-color();
   @include center-horizontally();
+  p {
+    font-size: larger;
+  }
   flex-direction: column;
   .my-queue-item {
     display: flex;
@@ -244,4 +247,14 @@
     font-size: x-large;
     font-weight: bolder;
   }
+}
+
+.flag {
+  font-size: 60px;
+}
+
+.homelogos {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3rem;
 }
