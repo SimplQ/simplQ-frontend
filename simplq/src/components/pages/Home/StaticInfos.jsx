@@ -66,17 +66,15 @@ export const HowToCreate = () => (
           </ul>
         </div>
         <p>
-        India is going to do the biggest ever vaccination drive in history. Our vaccine centers are already crowded, and from May 1st we are opening for all above 18 years of age.
+          India is going to do the biggest ever vaccination drive in history. Our vaccine centers
+          are already crowded, and from May 1st we are opening for all above 18 years of age.
         </p>
-        <iframe
-src="https://www.youtube.com/embed/0uljPj5KcNE">
-</iframe>
-<p>
-          SimplQ is open source software
-          built by software enthusiasts from around the world. This lets us bring you the core
-          functionalities in our free plan without unnecessary fees. We also have an affordable
-          month-to-month subscription option if you want to be a long term supporter. Talk to us if
-          you need dedicated support or have any custom requirements.
+        <iframe title="Covid situation" src="https://www.youtube.com/embed/0uljPj5KcNE" />
+        <p>
+          SimplQ is open source software built by software enthusiasts from around the world. This
+          lets us bring you the core functionalities in our free plan without unnecessary fees. We
+          also have an affordable month-to-month subscription option if you want to be a long term
+          supporter. Talk to us if you need dedicated support or have any custom requirements.
         </p>
         <p>
           We are generic enough to allow customers to choose the best way for them to use it, but
@@ -158,14 +156,14 @@ export const Pricing = () => (
         <h1>Free</h1>
         <p className={styles['subtitle']}>Free for public use.</p>
         <li>
-          <ul>Unlimited Queues</ul>
-          <ul>Eveything</ul>
+          <ul>Unlimited Queues.</ul>
+          <ul>Unlimited tokens per month.</ul>
         </li>
         <p className={styles['amount']}>$0</p>
         <StandardButton onClick={smoothScrollToHomePageTop}>Start for free</StandardButton>
       </div>
       <div className={styles['price-card']}>
-        <h1>Business</h1>
+        <h1>Non Health Care Business</h1>
         <p className={styles['subtitle']}>Want to bring social distancing for your customers?</p>
         <li>
           <ul>Everything in the free plan.</ul>
@@ -174,8 +172,8 @@ export const Pricing = () => (
           <ul>Multi-user support.</ul>
           <ul>Priority Customer Support.</ul>
         </li>
-        <p className={styles['amount']}>$8.99/mo</p>
-        <StandardButton onClick={smoothScrollToHomePageTop}>Upgrade</StandardButton>
+        <p className={styles['amount']}>Rs. 399/mo</p>
+        <StandardButton onClick={smoothScrollToHomePageTop}>Contact Me</StandardButton>
       </div>
       <div className={styles['price-card']}>
         <h1>Enterprise</h1>

@@ -255,6 +255,15 @@
 
 .homelogos {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   margin-top: 3rem;
+  flex-wrap: wrap;
+
+  img {
+    @media screen and (max-width: 550px) {
+      max-width: 100px;
+    }
+    margin: 1rem;
+    max-height: 120px;
+  }
 }
