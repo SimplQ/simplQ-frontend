@@ -46,8 +46,8 @@ export const HowToCreate = () => (
           <ul className={styles['list-info']}>
             <img src="/images/wand.svg" alt="Wand" />
             <li>
-              <h3>1. Create Queue</h3>
-              <p>All you need is a name.</p>
+              <h3>1. Create Vaccine Queue</h3>
+              <p>All you need is a queue name.</p>
             </li>
             <img src="/images/share-24px.svg" alt="Share" />
             <li>
