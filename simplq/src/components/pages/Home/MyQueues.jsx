@@ -25,9 +25,7 @@ export default () => {
     <div className={styles['my-queue']}>
       <p>
         {queues.length === 0 ? (
-          <span>
-            Are you <b>hospital</b> or <b>vaccine center</b>? Start by createing queue:
-          </span>
+          <br />
         ) : (
           <span>
             <u>
@@ -54,6 +52,10 @@ export default () => {
           </div>
         );
       })}
+
+      <p>
+        Are you <b>hospital</b> or <b>vaccine center</b>? Start by createing queue:
+      </p>
     </div>
   );
 };
