@@ -1,3 +1,5 @@
+/* eslint-disable  react/jsx-one-expression-per-line */
+
 import React from 'react';
 import StandardButton from 'components/common/Button';
 import { smoothScrollToHomePageTop } from 'utils/scrollingOperations';
@@ -14,11 +16,11 @@ export const BenefitsInfo = () => (
     <div data-aos="zoom-in" className={`${styles['container']} ${styles['benefits-container']}`}>
       <div className={styles.benefit}>
         <img src="/images/minimize_crowding.png" alt="minimize crowding" />
-        <p>Avoid people crowding in front of the vaccine center.</p>
+        <p>No more crowd at vaccine centers.</p>
       </div>
       <div className={styles.benefit}>
         <img src="/images/social_dist.jpg" alt="Enforce social distancing" />
-        <p>Social distancing tool for post-COVID digital world.</p>
+        <p>Social distancing tool for the digital world.</p>
       </div>
       <div className={styles.benefit}>
         <img src="/images/check_status.svg " alt="Check your current status" />
@@ -35,7 +37,7 @@ export const HowToCreate = () => (
       id="target_how_it_works"
       className={`${styles['section']} ${styles['queue-info']}`}
     >
-      <h2>How to use SimplQ</h2>
+      <h2>How to use SimplQueue</h2>
       <div className={`${styles['container']} ${styles['queue-container']}`}>
         <div className={styles.queue}>
           <img src="/images/queue_creation.svg" alt="Queue creation" />
@@ -45,7 +47,7 @@ export const HowToCreate = () => (
             <img src="/images/wand.svg" alt="Wand" />
             <li>
               <h3>1. Create Queue</h3>
-              <p>Enter the name of the hospital to generate a queue.</p>
+              <p>All you need is a name.</p>
             </li>
             <img src="/images/share-24px.svg" alt="Share" />
             <li>
@@ -58,9 +60,10 @@ export const HowToCreate = () => (
             </li>
             <img src="/images/people-24px.svg" alt="People" />
             <li>
-              <h3>3. Manage queue</h3>
+              <h3>3. Share QR Code with people.</h3>
               <p>
-                Manage your queues seamlessly and efficiently to provide a better user experience
+                People can scan a QR code to check their position number in the queue. Token number
+                can be send via <b>SMS</b>.
               </p>
             </li>
           </ul>
@@ -72,16 +75,20 @@ export const HowToCreate = () => (
         <iframe title="Covid situation" src="https://www.youtube.com/embed/0uljPj5KcNE" />
         <p>
           SimplQ is open source software built by software enthusiasts from around the world. This
-          lets us bring you the core functionalities in our free plan without unnecessary fees. We
-          also have an affordable month-to-month subscription option if you want to be a long term
-          supporter. Talk to us if you need dedicated support or have any custom requirements.
+          lets us bring you the core functionalities for free without any unnecessary fees. We also
+          have an affordable month-to-month subscription option if you want to be a long term
+          supporter.{' '}
+          <a target="_blank" rel="noreferrer" href="https://wa.me/919400413350">
+            Talk to me
+          </a>{' '}
+          if you need dedicated support or have any custom requirements.
         </p>
         <p>
           We are generic enough to allow customers to choose the best way for them to use it, but
           small enough to care about the individual needs of every customer.
         </p>
 
-        <h3>This is what makes us stand out from other crowd-control solutions.</h3>
+        <h3>SimplQ crowd-control solutions.</h3>
       </div>
     </div>
     <svg id={styles['curved-div-2']} xmlns="https://www.w3.org/2000/svg" viewBox="0 0 1440 50">
@@ -96,7 +103,7 @@ export const HowToCreate = () => (
 
 export const HowToJoin = () => (
   <div className={`${styles['section']} ${styles['join-info']}`}>
-    <h2 data-aos="zoom-in">Join a queue without being there</h2>
+    <h2 data-aos="zoom-in">Join a queue without crowd</h2>
     <div className={`${styles['container']} ${styles['queue-container']}`}>
       <div data-aos="fade-right" className={styles['queue']}>
         <ul className={styles['list-info']}>
@@ -107,7 +114,7 @@ export const HowToJoin = () => (
           </li>
           <img src="/images/alarm-24px.svg" alt="Alarm" />
           <li>
-            <h3>Waiting for the staff to vall you when your turn in near</h3>
+            <h3>Waiting for the staff to call you when your turn in near</h3>
             <p>Check your token status in queue and get notified when your turn is up</p>
           </li>
         </ul>

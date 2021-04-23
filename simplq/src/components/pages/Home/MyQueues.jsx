@@ -26,10 +26,14 @@ export default () => {
       <p>
         {queues.length === 0 ? (
           <span>
-            Are you <b>hospital</b> or a <b>vaccine center</b>? Start by createing queue:
+            Are you <b>hospital</b> or <b>vaccine center</b>? Start by createing queue:
           </span>
         ) : (
-          <span>What would you like to do today? Here are your active queues:</span>
+          <span>
+            <u>
+              <b>Your Queues</b>
+            </u>
+          </span>
         )}
       </p>
       {queues.map((queue) => {

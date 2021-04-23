@@ -1,3 +1,5 @@
+/* eslint-disable  react/jsx-one-expression-per-line */
+
 import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import Header from 'components/common/Header';
@@ -33,7 +35,12 @@ export default () => {
           <img src="/images/corona-hd.jpg" alt="Coronavirus" />
           <img src="/images/black-queue.webp" alt="Social Distancing" />
         </div>
-        <Header>social distancing queues</Header>
+        <Header>
+          <span role="img" aria-label="hospital">
+            🏥
+          </span>{' '}
+          social distancing queues
+        </Header>
         {subtitle}
       </div>
       <MyQueues />
