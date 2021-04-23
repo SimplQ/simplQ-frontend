@@ -1,3 +1,5 @@
+/* eslint-disable  react/jsx-one-expression-per-line */
+
 import React from 'react';
 import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
@@ -22,9 +24,13 @@ export default () => {
   return (
     <div className={styles['my-queue']}>
       <p>
-        {queues.length === 0
-          ? <span>Are you <b>hospital</b> or a <b>vaccine center</b>? Start by createing queue:</span>
-          : <span>What would you like to do today? Here are your active queues:</span>}
+        {queues.length === 0 ? (
+          <span>
+            Are you <b>hospital</b> or a <b>vaccine center</b>? Start by createing queue:
+          </span>
+        ) : (
+          <span>What would you like to do today? Here are your active queues:</span>
+        )}
       </p>
       {queues.map((queue) => {
         const handler = () => history.push(`/queue/${queue.queueId}`);
