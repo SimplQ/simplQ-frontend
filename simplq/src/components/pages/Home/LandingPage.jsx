@@ -21,7 +21,7 @@ export default () => {
   );
   const { user, isAuthenticated } = useAuth0();
   if (isAuthenticated) {
-    subtitle = `Hi ${user.name}, welcome back!`;
+    subtitle = <p className={styles.subtitle}>Hi {user.name}, welcome back!</p>;
   }
 
   return (

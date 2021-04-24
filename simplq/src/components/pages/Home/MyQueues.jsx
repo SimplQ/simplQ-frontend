@@ -54,7 +54,7 @@ export default () => {
       })}
 
       <p>
-        Are you <b>hospital</b> or <b>vaccine center</b>? Start by createing queue:
+        Are you a <b>hospital</b> or <b>vaccine center</b>? Start by creating queue:
       </p>
     </div>
   );
