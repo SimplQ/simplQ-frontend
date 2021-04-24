@@ -14,7 +14,7 @@ const ComponentToPrint = forwardRef(({ style, url, queueName }, ref) => {
       <h1>
         <u>{getSentenceCaseText(queueName)}</u>
       </h1>
-      <h2>Scan this QR to begin!</h2>
+      <h2>Scan this QR to get your position in the line</h2>
       <QRCode value={url} />
       <p style={{ textAlign: 'center' }}>
         {'or visit '}
@@ -26,9 +26,7 @@ const ComponentToPrint = forwardRef(({ style, url, queueName }, ref) => {
   );
 });
 
-const QrCode = (props) => {
-  const { queueName, show, onClose } = props;
-
+export const QrCode = ({ queueName, handleModalClose }) => {
   const componentPrintRef = useRef();
 
   const handlePrint = useReactToPrint({
@@ -53,28 +51,43 @@ const QrCode = (props) => {
     };
   })();
 
-  const handleModalClose = () => onClose(false);
+  const CloseButton = ({ handleModalCloseHandler }) => {
+    if (handleModalCloseHandler) {
+      return (
+        <StandardButton onClick={handleModalCloseHandler} icon={<HighlightOffIcon />} outlined>
+          Close
+        </StandardButton>
+      );
+    }
+    return <></>;
+  };
 
   return (
-    <Modal open={queueName ? show : !show} onClose={handleModalClose}>
-      <div className={styles['centered']}>
-        <ComponentToPrint
-          style={styles['centered']}
-          url={`${window.location.origin}/j/${queueName}`}
-          queueName={queueName}
-          ref={componentPrintRef}
-        />
-        <div className={styles['actionContainer']}>
-          <StandardButton onClick={handlePrint} icon={<PrintIcon />}>
-            Print
-          </StandardButton>
-          <StandardButton onClick={handleModalClose} icon={<HighlightOffIcon />} outlined>
-            Close
-          </StandardButton>
-        </div>
+    <div className={styles['centered']}>
+      <ComponentToPrint
+        style={styles['centered']}
+        url={`${window.location.origin}/j/${queueName}`}
+        queueName={queueName}
+        ref={componentPrintRef}
+      />
+      <div className={styles['actionContainer']}>
+        <StandardButton onClick={handlePrint} icon={<PrintIcon />}>
+          Print
+        </StandardButton>
+        <CloseButton handleModalCloseHandler={handleModalClose} />
       </div>
+    </div>
+  );
+};
+
+const QrCodeModal = (props) => {
+  const { queueName, show, onClose } = props;
+  const handleModalClose = () => onClose(false);
+  return (
+    <Modal open={queueName ? show : !show} onClose={handleModalClose}>
+      <QrCode queueName={queueName} handleModalClose={handleModalClose} />
     </Modal>
   );
 };
 
-export default QrCode;
+export default QrCodeModal;
