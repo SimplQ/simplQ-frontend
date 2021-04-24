@@ -10,7 +10,7 @@ const EmptyTokenList = ({ queueName }) => {
   return (
     <>
       <p>
-        Your queue has been created and is currently empty. Add people to he queue and share the
+        Your line has been created and is currently empty. Add people to the line and share the
         below QR code for them to see their status
       </p>
       <QrCode queueName={queueName} />
