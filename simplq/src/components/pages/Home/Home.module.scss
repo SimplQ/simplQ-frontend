@@ -198,14 +198,11 @@
     align-items: center;
     min-width: 18rem;
     border-bottom: 0.1rem solid;
+    border-top: 0.1rem solid;
     padding: 0.25rem 1rem;
 
     &:hover {
       background-color: #f9f9f9;
-    }
-
-    &:last-child() {
-      border-bottom: none;
     }
   }
 }
