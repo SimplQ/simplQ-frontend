@@ -11,7 +11,7 @@ import ShareQueue from './ShareQueue';
 import styles from './admin.module.scss';
 
 const HeaderSection = ({ description, queueName, queueId }) => {
-  const [showQrCodeModal, setShowQrCodeModal] = useState(false);
+  const [showQrCodeModal, setShowQrCodeModal] = useState(true);
   const dispatch = useDispatch();
   const getSelectedQueue = useGetSelectedQueue();
 
@@ -33,7 +33,7 @@ const HeaderSection = ({ description, queueName, queueId }) => {
       </div>
       <div className={styles['main-button-group']}>
         <div className={styles['admin-button']}>
-          <StandardButton onClick={generateQrCOde} icon={<CropFreeIcon />} outlined>
+          <StandardButton onClick={generateQrCOde} icon={<CropFreeIcon />}>
             Generate QR Code
           </StandardButton>
           {showQrCodeModal && (
@@ -41,12 +41,12 @@ const HeaderSection = ({ description, queueName, queueId }) => {
           )}
         </div>
         <div className={styles['admin-button']}>
+          <ShareQueue tourTag="reactour__shareQueue" queueName={queueName} />
+        </div>
+        <div className={styles['admin-button']}>
           <StandardButton onClick={handleRefreshClick} icon={<RefreshIcon />} outlined>
             Refresh status
           </StandardButton>
-        </div>
-        <div className={styles['admin-button']}>
-          <ShareQueue tourTag="reactour__shareQueue" queueName={queueName} />
         </div>
       </div>
     </div>

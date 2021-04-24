@@ -56,7 +56,7 @@ export default (props) => {
         />
       )}
       <div className={styles['main-body']}>
-        <TokenList queueId={queueId} />
+        <TokenList queueName={queueName} queueId={queueId} />
         <SidePanel queueId={queueId} />
       </div>
     </div>
