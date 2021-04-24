@@ -17,3 +17,4 @@ export const OutlinedWithIcon = () => (
     Click me
   </StandardButton>
 );
+export const Disabled = () => <StandardButton disabled>Disabled</StandardButton>;

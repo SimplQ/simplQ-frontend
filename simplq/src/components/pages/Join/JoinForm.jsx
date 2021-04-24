@@ -1,11 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import PhoneInput from 'react-phone-input-2';
-import 'react-phone-input-2/lib/material.css';
-import { PhoneNumberUtil } from 'google-libphonenumber';
 
 import { handleEnterPress } from 'utils/eventHandling';
 import InputField from 'components/common/InputField';
+import PhoneInput from 'components/common/PhoneInput';
 import Button from 'components/common/Button';
 import LoadingStatus from 'components/common/Loading';
 import styles from './JoinPage.module.scss';
@@ -13,8 +11,8 @@ import styles from './JoinPage.module.scss';
 export function JoinQueueForm({ joinQueueHandler, buttonText }) {
   const [name, setName] = useState('');
   const [invalidName, setInvalidName] = useState(false);
-  const [contact, setContact] = useState('');
   const [invalidContact, setInvalidContact] = useState(false);
+  const [contact, setContact] = useState('');
   const actionStatus = useSelector((state) => state.actionStatus['joinQueue']);
   const prevActionStatus = useRef();
 
@@ -36,27 +34,6 @@ export function JoinQueueForm({ joinQueueHandler, buttonText }) {
       setInvalidName(false);
     } else {
       setInvalidName(true);
-    }
-  }
-
-  function handleContactChange(value, country) {
-    // to make sure that the number is parsed as an international number, prepend +.
-    const phoneNr = `+${value}`;
-    setContact(phoneNr);
-    const phoneUtil = PhoneNumberUtil.getInstance();
-
-    if (country != null) {
-      try {
-        const isValidNumber = phoneUtil.isValidNumberForRegion(
-          phoneUtil.parse(phoneNr, country.countryCode),
-          country.countryCode
-        );
-        setInvalidContact(!isValidNumber);
-      } catch (error) {
-        setInvalidContact(true);
-      }
-    } else {
-      setInvalidContact(true);
     }
   }
 
@@ -88,19 +65,10 @@ export function JoinQueueForm({ joinQueueHandler, buttonText }) {
         autoFocus
       />
       <PhoneInput
-        placeholder="Phone Number"
-        country="in"
-        value={contact}
-        inputProps={{
-          name: 'phone',
-          required: true,
-        }}
-        inputStyle={{
-          width: '100%',
-        }}
-        isValid={() => (invalidContact ? 'Phone number is not valid' : true)}
-        onChange={handleContactChange}
-        onKeyDown={(e) => handleEnterPress(e, onSubmit)}
+        isValid={!invalidContact}
+        contact={contact}
+        onChange={setContact}
+        onKeyDown={onSubmit}
       />
       <LoadingStatus dependsOn="joinQueue">
         <Button onClick={onSubmit}>{buttonText}</Button>
