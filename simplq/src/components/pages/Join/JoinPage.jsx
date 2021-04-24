@@ -64,10 +64,10 @@ export default ({ match }) => {
         /* eslint-disable react/jsx-one-expression-per-line */
         <>
           <p className={styles['message']}>
-            Hi! The queue is currently not accepting people currently.
+            Hi! The line is currently not accepting people currently.
           </p>
           <p className={styles['message']}>
-            Wait until the queue starts accepting people again, or contact the queue manager
+            Wait until the line starts accepting people again, or contact the queue manager
           </p>
           <div className={styles.form}>
             <Button onClick={onRefreshClick}>Check Again</Button>
@@ -78,7 +78,7 @@ export default ({ match }) => {
     if (queueInfo.selfJoinAllowed) {
       return (
         <>
-          <p className={styles['message']}>Please enter your contact details to join this queue</p>
+          <p className={styles['message']}>Please enter your contact details to join this line</p>
           <JoinQueueForm
             queueId={queueId}
             joinQueueHandler={joinQueueHandler}
@@ -95,13 +95,13 @@ export default ({ match }) => {
     return (
       <div className={styles['phone-only-container']}>
         <p className={styles['message']}>
-          Enter the contact number you gave while joining the queue.
+          Enter the contact number you gave while joining the line.
         </p>
         <div className={styles['phone-input']}>
           <PhoneInput isValid={!invalidContactNumber} onChange={setContactNumber} />
         </div>
         <LoadingStatus dependsOn="getTokenByContactNumber">
-          <Button onClick={onSubmitGetToken}>Get Token</Button>
+          <Button onClick={onSubmitGetToken}>Know Your Position</Button>
         </LoadingStatus>
       </div>
     );

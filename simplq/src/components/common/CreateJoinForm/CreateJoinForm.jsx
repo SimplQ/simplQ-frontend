@@ -18,14 +18,14 @@ const CreateJoinForm = (props) => {
 
   const handleCreateClick = () => {
     if (!textFieldValue) {
-      setInvalidMsg('Queue name is required');
+      setInvalidMsg('Line name is required');
       return;
     }
     dispatch(createQueue({ queueName: textFieldValue }));
   };
 
   const handleJoinClick = () => {
-    if (!textFieldValue) setInvalidMsg('Queue name is required');
+    if (!textFieldValue) setInvalidMsg('Line name is required');
     else {
       history.push(`/j/${textFieldValue}`);
     }
@@ -45,7 +45,7 @@ const CreateJoinForm = (props) => {
     <div data-aos="zoom-in" className={styles['create-join-form']}>
       <div className={styles['input-box']}>
         <InputField
-          placeholder="Queue Name"
+          placeholder="Line Name"
           value={textFieldValue || ''}
           onChange={handleTextFieldChange}
           onKeyPress={(e) => handleEnterPress(e, handleCreateClick)}
@@ -57,10 +57,10 @@ const CreateJoinForm = (props) => {
       <div className={styles['button-group']}>
         <LoadingStatus dependsOn="createQueue">
           <div>
-            <StandardButton onClick={handleCreateClick}>Create Queue</StandardButton>
+            <StandardButton onClick={handleCreateClick}>Create Line</StandardButton>
           </div>
           <div>
-            <StandardButton onClick={handleJoinClick}>Join Queue</StandardButton>
+            <StandardButton onClick={handleJoinClick}>Know Your Position</StandardButton>
           </div>
         </LoadingStatus>
       </div>
