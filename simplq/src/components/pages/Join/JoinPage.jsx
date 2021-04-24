@@ -53,7 +53,9 @@ export default ({ match }) => {
       return;
     }
 
-    dispatch(getTokenByContactNumber({ queueId, contactNumber }));
+    dispatch(
+      getTokenByContactNumber({ queueId, contactNumber, redirectToTokenPageOnSuccess: true })
+    );
   };
 
   const getJoinQueueOptions = () => {
