@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { smoothScrollToHomePageTop } from 'utils/scrollingOperations';
-import { BenefitsInfo, HowToCreate, HowToJoin, ExtraInfo, Pricing } from './StaticInfos';
+import { BenefitsInfo, HowToCreate, HowToJoin, ExtraInfo } from './StaticInfos';
 import LandingPage from './LandingPage';
 
 const HomePage = () => {

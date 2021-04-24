@@ -7,7 +7,7 @@ export const Navbar = () => {
   return (
     <nav className={styles['navbar']}>
       <Logo />
-      <a target="_blank" rel="noreferrer" href="https://wa.me/919400413350">
+      <a target="_blank" rel="noopener noreferrer" href="https://wa.me/919400413350">
         <img
           alt="whatsapp me"
           style={{ height: '30px', margin: '1rem' }}

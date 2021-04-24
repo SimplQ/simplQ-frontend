@@ -95,7 +95,7 @@ export const HowToCreate = () => (
           lets us bring you the core functionalities for free without any unnecessary fees. We also
           have an affordable month-to-month subscription option if you want to be a long term
           supporter.{' '}
-          <a target="_blank" rel="noreferrer" href="https://wa.me/919400413350">
+          <a target="_blank" rel="noopener noreferrer" href="https://wa.me/919400413350">
             Talk to me
           </a>{' '}
           if you need dedicated support or have any custom requirements.
