@@ -13,7 +13,7 @@ export default () => {
       <span role="img" aria-label="syringe" className={styles.flag}>
         🇮🇳 💉
       </span>
-      Get safely vaccinated
+      Maintain distance, stay safe
       <span role="img" aria-label="syringe" className={styles.flag}>
         💉 🇮🇳
       </span>

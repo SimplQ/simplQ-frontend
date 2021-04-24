@@ -13,7 +13,6 @@ const HomePage = () => {
       <HowToCreate />
       <HowToJoin />
       <ExtraInfo />
-      <Pricing />
     </>
   );
 };
