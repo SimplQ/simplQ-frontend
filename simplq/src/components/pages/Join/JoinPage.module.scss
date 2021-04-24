@@ -1,6 +1,9 @@
 @import 'components/common.scss';
 .main-content {
-  margin: 2rem;
+  padding: 2rem;
+  max-width: 35rem;
+  margin: auto;
+  padding-bottom: 5rem;
 
   .queue-stats {
     display: flex;
@@ -17,12 +20,19 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  max-width: 35rem;
-  margin: auto;
   padding: 2rem;
   position: relative;
   z-index: 10;
   & > div {
     margin: 1rem;
+  }
+}
+
+.phone-only-container {
+  display: flex;
+  flex-direction: column;
+
+  .phone-input {
+    margin: 2rem 0;
   }
 }

@@ -63,3 +63,16 @@ export const setQueueStatus = (queueId, status) => ({
   url: `/queue/${queueId}`,
   data: { status },
 });
+
+/**
+ * Request creator to update queue settings
+ *
+ * @param {string} queueId
+ * @param {Object} settings
+ * @returns {Object} request - partial axios request without baseURL
+ */
+export const updateQueueSettings = (queueId, settings) => ({
+  method: 'patch',
+  url: `/queue/${queueId}`,
+  data: settings,
+});

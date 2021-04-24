@@ -6,10 +6,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectTokens } from 'store/selectedQueue';
 import styles from './QueueInfo.module.scss';
 
-const DetailRow = ({ title, value, large }) => (
+const DetailRow = ({ title, value, large, valueId }) => (
   <div className={styles['detail-row']}>
     <span className={styles['detail-name']}>{title}</span>
-    <span className={`${styles['detail-value']} ${large ? styles['large-value'] : ''}`}>
+    <span
+      className={`${styles['detail-value']} ${large ? styles['large-value'] : ''}`}
+      data-testid={valueId}
+    >
       {value}
     </span>
   </div>
@@ -26,9 +29,15 @@ export default ({ queueId }) => {
     }
   }, [queueId, tokens, dispatch, getQueueInfo]);
 
-  const { status, queueCreationTimestamp, numberOfActiveTokens, totalNumberOfTokens } = useSelector(
-    selectQueueInfo
-  );
+  const {
+    status,
+    queueCreationTimestamp,
+    numberOfActiveTokens,
+    totalNumberOfTokens,
+    maxQueueCapacity,
+  } = useSelector(selectQueueInfo);
+
+  const availableSlots = maxQueueCapacity - numberOfActiveTokens;
 
   const creationTime = useMemo(() => {
     if (!queueCreationTimestamp) return '';
@@ -40,6 +49,7 @@ export default ({ queueId }) => {
   return (
     <div className={styles['detail']}>
       <DetailRow title="Queue status:" value={status} />
+      <DetailRow title="Available Slots:" value={availableSlots} large valueId="slots-value" />
       <DetailRow title="People currently in queue:" value={numberOfActiveTokens} large />
       <DetailRow title="Total number of people joined in queue:" value={totalNumberOfTokens} />
       <DetailRow title="Queue creation time:" value={creationTime} />
