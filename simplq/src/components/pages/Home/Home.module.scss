@@ -204,8 +204,8 @@
       background-color: #f9f9f9;
     }
 
-    &:last-child() {
-      border-bottom: none;
+    &:first-child() {
+      border-top: 0.1rem solid;
     }
   }
 }
