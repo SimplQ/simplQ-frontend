@@ -10,27 +10,23 @@ export const BenefitsInfo = () => (
     <img src="/images/corona.png" alt="background-illustration" className={styles['corona-1']} />
     <img src="/images/corona.png" alt="background-illustration" className={styles['corona-2']} />
     <img src="/images/corona.png" alt="background-illustration" className={styles['corona-3']} />
-    <h2 data-aos="zoom-in">
-      Covid Emergency Contact Links
-    </h2>
-    <h3 data-aos="zoom-in">
-    Hydrabad
-    </h3>
+    <h2 data-aos="zoom-in">Covid Emergency Contact Links</h2>
+    <h3 data-aos="zoom-in">Hydrabad</h3>
     <a href="https://hydcovidresources.com">Hydrabad Covid Resources</a>
     {/* <iframe src="https://hydcovidresources.com/full" title="Hydrabad Covid Resources" width="100%" height="500"></iframe> */}
-    <h3 data-aos="zoom-in">
-      Bangalore
-    </h3>
-    <a href="https://docs.google.com/spreadsheets/d/1M9J1nDFLxJ2hevqNuPA7puhrxGRl_dZTT8LQNdHMcmA/edit#gid=0">Govt helpline contact for oxygen and remdesivi</a>
+    <h3 data-aos="zoom-in">Bangalore</h3>
+    <a href="https://docs.google.com/spreadsheets/d/1M9J1nDFLxJ2hevqNuPA7puhrxGRl_dZTT8LQNdHMcmA/edit#gid=0">
+      Govt helpline contact for oxygen and remdesivi
+    </a>
 
-    <h3 data-aos="zoom-in">
-      Delhi
-    </h3>
-  
+    <h3 data-aos="zoom-in">Delhi</h3>
+
     <a href="https://bbmpgov.com/chbms/">Covid-19 Hospital Bed Status</a>
 
-    <h3>Faq and general Govt Guidelines</h3> 
-    <a href="https://www.mohfw.gov.in/covid_vaccination/vaccination/questions-and-answers.html">Vaccination Information - Govt of India</a>
+    <h3>Faq and general Govt Guidelines</h3>
+    <a href="https://www.mohfw.gov.in/covid_vaccination/vaccination/questions-and-answers.html">
+      Vaccination Information - Govt of India
+    </a>
     <h2 data-aos="zoom-in">
       Help covid warriors maintain social distancing when vaccination starts for all.
     </h2>
@@ -107,7 +103,7 @@ export const HowToCreate = () => (
         <p>
           We are generic enough to allow customers to choose the best way for them to use it, but
           small enough to care about the individual needs of every customer.
-        </p>  
+        </p>
       </div>
     </div>
     <svg id={styles['curved-div-2']} xmlns="https://www.w3.org/2000/svg" viewBox="0 0 1440 50">
@@ -129,7 +125,10 @@ export const HowToJoin = () => (
           <img src="/images/mobile_friendly-24px.svg" alt="Mobile friendly" />
           <li>
             <h3>Join a queue</h3>
-            <p>When you react the vaccine center or hosital, give your mobile number to get into the queue.</p>
+            <p>
+              When you react the vaccine center or hosital, give your mobile number to get into the
+              queue.
+            </p>
           </li>
           <img src="/images/alarm-24px.svg" alt="Alarm" />
           <li>
