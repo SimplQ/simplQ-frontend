@@ -41,3 +41,8 @@ export const notifyToken = (tokenId) => ({ method: 'put', url: `/token/notify/${
  * @returns {Object} request - partial axios request without baseURL
  */
 export const deleteToken = (tokenId) => ({ method: 'delete', url: `/token/${tokenId}` });
+
+export const getTokenByContactNumber = (queueId, contactNumber) => ({
+  method: 'get',
+  url: `/token?queueId=${queueId}&contactNumber=${encodeURIComponent(contactNumber)}`,
+});

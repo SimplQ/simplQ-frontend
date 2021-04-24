@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useGetQueueInfoByName, useJoinQueue } from 'store/asyncActions';
 import { selectQueueInfo } from 'store/queueInfo';
@@ -6,15 +6,20 @@ import HeaderSection from 'components/common/HeaderSection';
 import QueueInfo from 'components/common/QueueInfo';
 import LoadingStatus from 'components/common/Loading';
 import Button from 'components/common/Button';
+import PhoneInput from 'components/common/PhoneInput';
+import { useGetTokenByContactNumber } from 'store/asyncActions/getTokenByContactNumber';
 import JoinQueueForm from './JoinForm';
 import styles from './JoinPage.module.scss';
 
 export default ({ match }) => {
   const queueName = match.params.queueName;
   const getQueueInfoByName = useCallback(useGetQueueInfoByName(), []);
+  const getTokenByContactNumber = useCallback(useGetTokenByContactNumber(), []);
   const joinQueue = useJoinQueue();
   const dispatch = useDispatch();
   const queueInfo = useSelector(selectQueueInfo);
+  const [invalidContactNumber, setInvalidContactNumber] = useState(false);
+  const [contactNumber, setContactNumber] = useState('');
 
   useEffect(() => {
     dispatch(getQueueInfoByName({ queueName }));
@@ -22,13 +27,37 @@ export default ({ match }) => {
 
   const queueId = queueInfo.queueId;
 
-  const joinQueueHandler = (name, contactNumber) => {
-    dispatch(joinQueue({ name, contactNumber, notifiable: true, queueId, goToStatusPage: true }));
+  const joinQueueHandler = (name1, contactNumber1) => {
+    dispatch(
+      joinQueue({
+        name: name1,
+        contactNumber: contactNumber1,
+        notifiable: true,
+        queueId,
+        goToStatusPage: true,
+      })
+    );
   };
 
   const onRefreshClick = () => {
     dispatch(getQueueInfoByName({ queueName }));
   };
+
+  const onSubmitGetToken = () => {
+    if (contactNumber === '') {
+      setInvalidContactNumber(true);
+      return;
+    }
+
+    if (invalidContactNumber) {
+      return;
+    }
+
+    dispatch(
+      getTokenByContactNumber({ queueId, contactNumber, redirectToTokenPageOnSuccess: true })
+    );
+  };
+
   const getJoinQueueOptions = () => {
     if (queueInfo.status === 'PAUSED') {
       return (
@@ -46,15 +75,35 @@ export default ({ match }) => {
         </>
       );
     }
+    if (queueInfo.selfJoinAllowed) {
+      return (
+        <>
+          <p className={styles['message']}>Please enter your contact details to join this queue</p>
+          <JoinQueueForm
+            queueId={queueId}
+            joinQueueHandler={joinQueueHandler}
+            buttonText="Join Queue"
+          />
+          <p className={styles['message']}>
+            Please make sure the contact number is correct and is available, you might be called on
+            the number when your turn comes.
+          </p>
+        </>
+      );
+    }
+
     return (
-      <>
-        <p className={styles['message']}>Please enter your contact details to join this queue</p>
-        <JoinQueueForm
-          queueId={queueId}
-          joinQueueHandler={joinQueueHandler}
-          buttonText="Join Queue"
-        />
-      </>
+      <div className={styles['phone-only-container']}>
+        <p className={styles['message']}>
+          Enter the contact number you gave while joining the queue.
+        </p>
+        <div className={styles['phone-input']}>
+          <PhoneInput isValid={!invalidContactNumber} onChange={setContactNumber} />
+        </div>
+        <LoadingStatus dependsOn="getTokenByContactNumber">
+          <Button onClick={onSubmitGetToken}>Get Token</Button>
+        </LoadingStatus>
+      </div>
     );
   };
   // TODO: If HeaderSection is used just in JoinPage
