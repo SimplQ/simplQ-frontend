@@ -30,7 +30,9 @@ export default () => {
         <br />
         <p>People waiting in front of you:</p>
         <p className={styles['count']}>{token.aheadCount}</p>
-        <p>Please wait for your turn. We will call you <b>as soon as possible<b>.</p>
+        <p>
+          Please wait for your turn. We will call you <b>as soon as possible</b>
+        </p>
         <div className={styles['refresh-button']}>
           <Button onClick={onRefreshClick}>Refresh status</Button>
         </div>
