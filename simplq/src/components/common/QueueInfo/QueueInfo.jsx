@@ -3,7 +3,7 @@ import moment from 'moment';
 import { useGetQueueInfo } from 'store/asyncActions';
 import { selectQueueInfo } from 'store/queueInfo';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectTokens, selectMaxQueueCapacity } from 'store/selectedQueue';
+import { selectTokens } from 'store/selectedQueue';
 import styles from './QueueInfo.module.scss';
 
 const DetailRow = ({ title, value, large, valueId }) => (
@@ -29,11 +29,15 @@ export default ({ queueId }) => {
     }
   }, [queueId, tokens, dispatch, getQueueInfo]);
 
-  const { status, queueCreationTimestamp, numberOfActiveTokens, totalNumberOfTokens } = useSelector(
-    selectQueueInfo
-  );
+  const {
+    status,
+    queueCreationTimestamp,
+    numberOfActiveTokens,
+    totalNumberOfTokens,
+    maxQueueCapacity,
+  } = useSelector(selectQueueInfo);
 
-  const availableSlots = useSelector(selectMaxQueueCapacity) - numberOfActiveTokens;
+  const availableSlots = maxQueueCapacity - numberOfActiveTokens;
 
   const creationTime = useMemo(() => {
     if (!queueCreationTimestamp) return '';

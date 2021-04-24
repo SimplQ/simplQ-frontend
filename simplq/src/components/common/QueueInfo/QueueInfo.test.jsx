@@ -9,11 +9,9 @@ jest.mock('react-redux', () => ({
 jest.mock('store/asyncActions', () => ({
   useGetQueueInfo: jest.fn(),
 }));
-jest.mock('store/selectedQueue', () => ({
-  selectMaxQueueCapacity: 57,
-}));
+jest.mock('store/selectedQueue', () => ({}));
 jest.mock('store/queueInfo', () => ({
-  selectQueueInfo: { numberOfActiveTokens: 24 },
+  selectQueueInfo: { maxQueueCapacity: 57, numberOfActiveTokens: 24 },
 }));
 
 describe('Queue info', () => {
