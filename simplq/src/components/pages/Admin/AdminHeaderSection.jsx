@@ -11,7 +11,7 @@ import ShareQueue from './ShareQueue';
 import styles from './admin.module.scss';
 
 const HeaderSection = ({ description, queueName, queueId }) => {
-  const [showQrCodeModal, setShowQrCodeModal] = useState(true);
+  const [showQrCodeModal, setShowQrCodeModal] = useState(false);
   const dispatch = useDispatch();
   const getSelectedQueue = useGetSelectedQueue();
 
