@@ -62,7 +62,7 @@
       if (!localStorage.getItem('chat-shown')) {
         setTimeout(() => {
           document.getElementById('chat-typeform').click();
-          localStorage.setItem('chat-shown', true)
+          localStorage.setItem('chat-shown', true);
         }, 10000);
       }
     </script>
@@ -70,7 +70,13 @@
 
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="chat-typeform" data-tf-popover="PPh4SmaA" data-tf-chat data-tf-button-color="#0445AF"></div><script src="//embed.typeform.com/next/embed.js"></script>
+    <div
+      id="chat-typeform"
+      data-tf-popover="PPh4SmaA"
+      data-tf-chat
+      data-tf-button-color="#0445AF"
+    ></div>
+    <script src="//embed.typeform.com/next/embed.js"></script>
     <div id="root"></div>
     <!--
       This HTML file is a template.
