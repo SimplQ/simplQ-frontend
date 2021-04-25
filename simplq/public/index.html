@@ -58,10 +58,25 @@
     -->
     <title>SimplQ</title>
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <script>
+      if (!localStorage.getItem('chat-shown')) {
+        setTimeout(() => {
+          document.getElementById('chat-typeform').click();
+          localStorage.setItem('chat-shown', true);
+        }, 10000);
+      }
+    </script>
   </head>
 
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div
+      id="chat-typeform"
+      data-tf-popover="PPh4SmaA"
+      data-tf-chat
+      data-tf-button-color="#0445AF"
+    ></div>
+    <script src="//embed.typeform.com/next/embed.js"></script>
     <div id="root"></div>
     <!--
       This HTML file is a template.
