@@ -10,26 +10,72 @@ export const BenefitsInfo = () => (
     <img src="/images/corona.png" alt="background-illustration" className={styles['corona-1']} />
     <img src="/images/corona.png" alt="background-illustration" className={styles['corona-2']} />
     <img src="/images/corona.png" alt="background-illustration" className={styles['corona-3']} />
+
     <h2 data-aos="zoom-in">Covid Emergency Contact Links</h2>
-    <h3 data-aos="zoom-in">Hydrabad</h3>
-    <a href="https://hydcovidresources.com">Hydrabad Covid Resources</a>
-    {/* <iframe src="https://hydcovidresources.com/full" title="Hydrabad Covid Resources" width="100%" height="500"></iframe> */}
-    <h3 data-aos="zoom-in">Bangalore</h3>
-    <a href="https://docs.google.com/spreadsheets/d/1M9J1nDFLxJ2hevqNuPA7puhrxGRl_dZTT8LQNdHMcmA/edit#gid=0">
-      Govt helpline contact for oxygen and remdesivi
-    </a>
+    <div className={styles['resource-container']}>
+      <div>
+        <h3 data-aos="zoom-in">Countywide</h3>
+        <p>
+          <a href="https://airtable.com/shrIlOoS6PyhIIVEv/tblEh7J9M3aZmgSgo/viwMGzLDgblhMFcwh?blocks=bipKp2Nvee9X72oZp">
+            CovidFYI Master Data (Community Driven Aggregator) (City/Resource wise)
+          </a>
+        </p>
+        <p>
+          <a href="https://coronaresources.web.app/">
+            CoronaResources (Community Driven Aggregator) (City/Resource wise)
+          </a>
+        </p>
 
-    <h3 data-aos="zoom-in">Delhi</h3>
-
-    <a href="https://bbmpgov.com/chbms/">Covid-19 Hospital Bed Status</a>
-
-    <h3>Faq and general Govt Guidelines</h3>
-    <a href="https://www.mohfw.gov.in/covid_vaccination/vaccination/questions-and-answers.html">
-      Vaccination Information - Govt of India
-    </a>
-    <h2 data-aos="zoom-in">
-      Help covid warriors maintain social distancing when vaccination starts for all.
-    </h2>
+        <p>
+          <a href="https://external.sprinklr.com/insights/explorer/dashboard/601b9e214c7a6b689d76f493/tab/8?id=DASHBOARD_601b9e214c7a6b689d76f493">
+            Social Media resources post dashboard (City wise)
+          </a>
+        </p>
+        <p>
+          <a href="https://covid19-twitter.in/">Twitter search tool (Tier 2/3 Cities supported)</a>
+        </p>
+        <p>
+          <a href="https://life.coronasafe.network/">
+            Coronasafe (Community Driven Aggregator) (City/Resource wise)
+          </a>
+        </p>
+      </div>
+      <div>
+        <h3 data-aos="zoom-in">Hydrabad</h3>
+        <p>
+          <a href="https://hydcovidresources.com">
+            Hydrabad Covid Resources (Community Driven Aggregator)
+          </a>
+        </p>
+      </div>
+      <div>
+        <h3 data-aos="zoom-in">Bangalore</h3>
+        <p>
+          <a href="https://docs.google.com/spreadsheets/d/1M9J1nDFLxJ2hevqNuPA7puhrxGRl_dZTT8LQNdHMcmA/edit#gid=0">
+            Govt helpline contact for oxygen and remdesivi
+          </a>
+        </p>
+      </div>
+      <div>
+        <h3 data-aos="zoom-in">Delhi</h3>
+        <p>
+          <a href="https://bbmpgov.com/chbms/">Covid-19 Hospital Bed Status</a>
+        </p>
+      </div>
+      <div>
+        <h3 data-aos="zoom-in">Faq and general Govt Guidelines</h3>
+        <p>
+          <a href="https://www.mohfw.gov.in/covid_vaccination/vaccination/questions-and-answers.html">
+            Vaccination Information - Govt of India
+          </a>
+        </p>
+      </div>
+      <div>
+        <h3 data-aos="zoom-in">Make a Donation</h3>
+        <a href="https://hemkuntfoundation.com/donate-now/">Hemkunt Foundation</a>
+      </div>
+    </div>
+    <h2 data-aos="zoom-in">Help covid warriors maintain social distancing.</h2>
     <div data-aos="zoom-in" className={`${styles['container']} ${styles['benefits-container']}`}>
       <div className={styles.benefit}>
         <img src="/images/minimize_crowding.png" alt="minimize crowding" />

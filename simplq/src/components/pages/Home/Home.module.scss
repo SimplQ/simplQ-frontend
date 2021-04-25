@@ -264,3 +264,12 @@
     max-height: 120px;
   }
 }
+
+.resource-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  div {
+    width: 25rem;
+  }
+}
