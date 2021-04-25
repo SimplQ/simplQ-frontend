@@ -28,10 +28,7 @@ export default () => {
     <div id="target_top" className={styles['landing-page']}>
       <div data-aos="zoom-in">
         <div className={styles.homelogos}>
-          <img
-            src="https://www.clipartkey.com/mpngs/m/47-473184_make-in-india-campaign-logo.png"
-            alt="Made with love from India"
-          />
+          <img src="/images/make_in_india.png" alt="Made with love from India" />
           <img src="/images/corona-hd.jpg" alt="Coronavirus" />
           <img src="/images/black-queue.webp" alt="Social Distancing" />
         </div>
