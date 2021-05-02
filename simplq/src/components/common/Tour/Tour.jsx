@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import Tour from 'reactour';
 import * as Sentry from '@sentry/react';
+import DoneIcon from '@material-ui/icons/DoneRounded';
 import { enableScroll, disableScroll } from './ControlScroll';
+import styles from './Tour.module.scss';
 
 export default (props) => {
   const hasUserBeenOnTour = () => {
@@ -24,9 +26,9 @@ export default (props) => {
       if (stepNumber === 0) {
         leftArrow.childNodes[0].style.color = 'grey';
         rightArrow.childNodes[0].style.color = 'white';
-      } else if (stepNumber === props.toursteps.length - 1) {
+      } else {
         leftArrow.childNodes[0].style.color = 'white';
-        rightArrow.childNodes[0].style.color = 'grey';
+        rightArrow.childNodes[0].style.color = 'white';
       }
     } else {
       Sentry.captureMessage('left-arrow or right-arrow selectors of reatTour package not found');
@@ -46,6 +48,7 @@ export default (props) => {
       onAfterOpen={disableScroll}
       onBeforeClose={enableScroll}
       getCurrentStep={stepChange}
+      lastStepNextButton={<DoneIcon className={styles['last-step-next-button']} />}
     />
   );
 };

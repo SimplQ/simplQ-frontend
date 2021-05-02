@@ -26,7 +26,7 @@ const ComponentToPrint = forwardRef(({ style, url, queueName }, ref) => {
   );
 });
 
-export const QrCode = ({ queueName, handleModalClose }) => {
+export const QrCode = ({ queueName, tourTag, handleModalClose }) => {
   const componentPrintRef = useRef();
 
   const handlePrint = useReactToPrint({
@@ -71,7 +71,7 @@ export const QrCode = ({ queueName, handleModalClose }) => {
         ref={componentPrintRef}
       />
       <div className={styles['actionContainer']}>
-        <StandardButton onClick={handlePrint} icon={<PrintIcon />}>
+        <StandardButton tourTag={tourTag} onClick={handlePrint} icon={<PrintIcon />}>
           Print
         </StandardButton>
         <CloseButton handleModalCloseHandler={handleModalClose} />
