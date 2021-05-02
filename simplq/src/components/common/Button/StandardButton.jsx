@@ -9,7 +9,6 @@ const StandardButton = (props) => {
       onClick={onClick}
       disabled={disabled}
       className={props.outlined ? styles['standard-button-outlined'] : styles['standard-button']}
-      reactour-selector={props.tourTag}
     >
       {props.icon ? <div className={styles['icon']}>{props.icon}</div> : null}
       <div className={styles['text']}>{props.children}</div>

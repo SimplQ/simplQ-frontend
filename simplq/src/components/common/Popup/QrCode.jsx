@@ -70,8 +70,11 @@ export const QrCode = ({ queueName, tourTag, handleModalClose }) => {
         queueName={queueName}
         ref={componentPrintRef}
       />
-      <div className={styles['actionContainer']}>
-        <StandardButton tourTag={tourTag} onClick={handlePrint} icon={<PrintIcon />}>
+      <div
+        reactour-selector={tourTag}
+        className={handleModalClose ? styles['actionContainer'] : null}
+      >
+        <StandardButton onClick={handlePrint} icon={<PrintIcon />}>
           Print
         </StandardButton>
         <CloseButton handleModalCloseHandler={handleModalClose} />
