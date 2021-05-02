@@ -13,7 +13,7 @@ const EmptyTokenList = ({ queueName }) => {
         Your line has been created and is currently empty. Add people to the line and share the
         below QR code for them to see their status
       </p>
-      <QrCode queueName={queueName} />
+      <QrCode tourTag="reactour__printQRCode" queueName={queueName} />
     </>
   );
 };
