@@ -1,5 +1,15 @@
 @import 'components/common.scss';
 
-.last-step-next-button {
+.tour-box {
+  button {
+    margin: 0 0.625rem 0 0;
+  }
+}
+
+.nav-button {
   color: #fff;
+}
+
+.disabled-nav-button {
+  color: #999999;
 }
