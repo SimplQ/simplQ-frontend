@@ -6,18 +6,44 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectQueueName } from 'store/selectedQueue';
 import Ribbon from 'components/common/Ribbon';
 import Tour from 'components/common/Tour';
-import { useGetSelectedQueue } from 'store/asyncActions';
+import { useGetSelectedQueue, useGetQueueInfo } from 'store/asyncActions';
+import { selectQueueInfo } from 'store/queueInfo';
 import HeaderSection from './AdminHeaderSection';
 import TokenList from './TokenList';
 import styles from './admin.module.scss';
 import SidePanel from './AdminSidePanel';
 import getToursteps from './getTourSteps';
+import PageNotFound from '../PageNotFound';
 
 const TIMEOUT = 10000;
 let timeoutId;
 
-export default (props) => {
+const isQueueDeleteStatusUnknown = (queueInfo) => !queueInfo || Object.keys(queueInfo).length === 0;
+const isQueueDeleted = (queueInfo) => queueInfo.status === 'DELETED';
+
+const AdminPage = (props) => {
   const queueId = props.match.params.queueId;
+  const queueInfo = useSelector(selectQueueInfo);
+  const dispatch = useDispatch();
+  const getQueueInfo = useCallback(useGetQueueInfo(), []);
+
+  useEffect(() => {
+    dispatch(getQueueInfo({ queueId }));
+  }, [dispatch, queueId, getQueueInfo]);
+
+  if (isQueueDeleteStatusUnknown(queueInfo)) {
+    return <></>;
+  }
+
+  if (isQueueDeleted(queueInfo)) {
+    return <PageNotFound />;
+  }
+
+  return <AdminPageView queueId={queueId} />;
+};
+
+const AdminPageView = (props) => {
+  const { queueId } = props;
   const queueName = useSelector(selectQueueName);
   const description = queueName && 'Ready to share';
   const dispatch = useDispatch();
@@ -62,3 +88,5 @@ export default (props) => {
     </div>
   );
 };
+
+export default AdminPage;
