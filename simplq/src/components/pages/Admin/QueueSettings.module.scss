@@ -14,7 +14,21 @@
   margin-bottom: 1.5rem;
 }
 
+.self-join-checkbox {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 1.5rem;
+}
+
 .action-container {
   display: flex;
   justify-content: space-evenly;
+}
+
+.checkbox-label-unchecked {
+  opacity: 0.5;
+}
+
+.checkbox-label-checked {
+  color: $primary-color-dark;
 }
