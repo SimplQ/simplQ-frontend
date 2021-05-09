@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import SettingsIcon from '@material-ui/icons/Settings';
 import Modal from 'components/common/Modal';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 import SidePanelItem from 'components/common/SidePanel/SidePanelItem';
 import { useUpdateQueueSettings } from 'store/asyncActions';
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,7 +10,6 @@ import SaveIcon from '@material-ui/icons/Save';
 import { selectMaxQueueCapacity, selectIsSelfJoinAllowed } from 'store/selectedQueue';
 import Button from 'components/common/Button';
 import InputField from 'components/common/InputField';
-import Checkbox from '@material-ui/core/Checkbox';
 import styles from './QueueSettings.module.scss';
 
 const MAX_SIZE = 100000;
@@ -25,7 +23,7 @@ export default ({ queueId }) => {
 
   useEffect(() => {
     setSize(maxQueueSize);
-    setSelfJoin(isSelfJoinAllowed);
+    setSelfJoin(!!isSelfJoinAllowed);
   }, [maxQueueSize, isSelfJoinAllowed]);
 
   const handleSizeChange = (e) => {
@@ -43,7 +41,7 @@ export default ({ queueId }) => {
 
   const toggleModal = () => setIsModalOpen((isOpen) => !isOpen);
 
-  const handleSelfJoinCb = React.useCallback(
+  const handleSelfJoinCheckBox = React.useCallback(
     (userChoiceEvent) => {
       const userChoice = userChoiceEvent?.target?.checked;
       setSelfJoin(!!userChoice);
@@ -80,7 +78,7 @@ export default ({ queueId }) => {
             helperText={isInvalidSize() && `Enter a number between 1 and ${MAX_SIZE}`}
             autoFocus
           />
-          <CheckboxComponent selfJoin={selfJoin} handleSelfJoinCb={handleSelfJoinCb} />
+          <CheckboxComponent selfJoin={selfJoin} handleSelfJoinCheckBox={handleSelfJoinCheckBox} />
           <div className={styles['action-container']}>
             <Button icon={<SaveIcon />} onClick={handleSave} disabled={isInvalidSize()}>
               Save
@@ -96,30 +94,26 @@ export default ({ queueId }) => {
 };
 
 const CheckboxComponent = (props) => {
-  const { selfJoin, handleSelfJoinCb } = props;
+  const { selfJoin, handleSelfJoinCheckBox } = props;
   return (
     /* eslint-disable react/jsx-wrap-multilines */
     <div className={styles['self-join-checkbox']}>
-      <FormControlLabel
-        control={
-          <Checkbox
-            checked={selfJoin}
-            color="primary"
-            name="selfJoinCheckBox"
-            onChange={handleSelfJoinCb}
-            size="small"
-          />
-        }
-        label={
-          <span
-            className={
-              selfJoin ? styles['checkbox-label-checked'] : styles['checkbox-label-unchecked']
-            }
-          >
-            Self Join
-          </span>
-        }
+      <input
+        className={styles['self-join-input']}
+        type="checkbox"
+        name="selfJoinCheckBox"
+        checked={selfJoin}
+        onChange={handleSelfJoinCheckBox}
       />
+      <span
+        className={
+          selfJoin
+            ? `${styles['self-join-label']} ${styles['checkbox-label-checked']}`
+            : `${styles['self-join-label']} ${styles['checkbox-label-unchecked']}`
+        }
+      >
+        Self Join
+      </span>
     </div>
   );
 };

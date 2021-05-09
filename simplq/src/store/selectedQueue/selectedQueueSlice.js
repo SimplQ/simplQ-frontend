@@ -54,4 +54,4 @@ export const selectQueueStatus = (state) => state.selectedQueue.status;
 
 export const selectMaxQueueCapacity = (state) => state.selectedQueue.maxQueueCapacity;
 
-export const selectIsSelfJoinAllowed = (state) => state.selectedQueue.isSelfJoinAllowed;
+export const selectIsSelfJoinAllowed = (state) => state.selectedQueue.selfJoinAllowed;
