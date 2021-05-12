@@ -16,7 +16,10 @@ const queueInfoSlice = createSlice({
     [deleteQueue.fulfilled]: (state, action) => {
       const { queueId } = action.payload;
       if (state.queueId === queueId) {
-        return {};
+        return {
+          ...state,
+          status: 'DELETED',
+        };
       }
       return state;
     },

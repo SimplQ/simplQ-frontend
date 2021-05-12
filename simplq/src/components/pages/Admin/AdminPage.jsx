@@ -8,38 +8,39 @@ import Ribbon from 'components/common/Ribbon';
 import Tour from 'components/common/Tour';
 import { useGetSelectedQueue, useGetQueueInfo } from 'store/asyncActions';
 import { selectQueueInfo } from 'store/queueInfo';
+import { setErrorPopupMessage } from 'store/appSlice';
+import { useHistory } from 'react-router';
 import HeaderSection from './AdminHeaderSection';
 import TokenList from './TokenList';
 import styles from './admin.module.scss';
 import SidePanel from './AdminSidePanel';
 import getToursteps from './getTourSteps';
-import PageNotFound from '../PageNotFound';
 
 const TIMEOUT = 10000;
 let timeoutId;
 
-const isQueueDeleteStatusUnknown = (queueInfo) => !queueInfo || Object.keys(queueInfo).length === 0;
-const isQueueDeleted = (queueInfo) => queueInfo.status === 'DELETED';
+const isQueueActive = (queueInfo) => queueInfo?.status === 'ACTIVE';
+const isQueueDeleted = (queueInfo) => queueInfo?.status === 'DELETED';
 
 const AdminPage = (props) => {
   const queueId = props.match.params.queueId;
   const queueInfo = useSelector(selectQueueInfo);
   const dispatch = useDispatch();
+  const history = useHistory();
   const getQueueInfo = useCallback(useGetQueueInfo(), []);
 
   useEffect(() => {
     dispatch(getQueueInfo({ queueId }));
   }, [dispatch, queueId, getQueueInfo]);
 
-  if (isQueueDeleteStatusUnknown(queueInfo)) {
-    return <></>;
-  }
+  useEffect(() => {
+    if (queueInfo && queueId === queueInfo?.queueId && isQueueDeleted(queueInfo)) {
+      dispatch(setErrorPopupMessage('This queue is deleted.'));
+      history.push('/');
+    }
+  }, [dispatch, history, queueId, queueInfo]);
 
-  if (isQueueDeleted(queueInfo)) {
-    return <PageNotFound />;
-  }
-
-  return <AdminPageView queueId={queueId} />;
+  return isQueueActive(queueInfo) ? <AdminPageView queueId={queueId} /> : <></>;
 };
 
 const AdminPageView = (props) => {
