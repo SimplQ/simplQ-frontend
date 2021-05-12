@@ -38,6 +38,7 @@ const selectedQueueSlice = createSlice({
     // update queue settings
     [updateQueueSettings.fulfilled]: (state, action) => {
       state.maxQueueCapacity = action.payload.maxQueueCapacity;
+      state.isSelfJoinAllowed = action.payload.isSelfJoinAllowed;
       return state;
     },
   },
@@ -52,3 +53,5 @@ export const selectTokens = (state) => state.selectedQueue.tokens;
 export const selectQueueStatus = (state) => state.selectedQueue.status;
 
 export const selectMaxQueueCapacity = (state) => state.selectedQueue.maxQueueCapacity;
+
+export const selectIsSelfJoinAllowed = (state) => state.selectedQueue.selfJoinAllowed;
