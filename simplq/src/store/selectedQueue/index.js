@@ -7,4 +7,5 @@ export {
   selectTokens,
   selectQueueStatus,
   selectMaxQueueCapacity,
+  selectIsSelfJoinAllowed,
 } from './selectedQueueSlice';

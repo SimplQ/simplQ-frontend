@@ -14,7 +14,44 @@
   margin-bottom: 1.5rem;
 }
 
+.self-join-checkbox {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 1.5rem;
+}
+
 .action-container {
   display: flex;
   justify-content: space-evenly;
+}
+
+.self-join-input {
+  -webkit-appearance: none;
+  background-color: inherit;
+  border: 0.5px solid #cacece;
+  border-radius: 3px;
+  display: inline-block;
+  margin: 0;
+  padding: 9px;
+  position: relative;
+}
+
+.self-join-input:checked {
+  background-color: $primary-color-dark;
+}
+
+.self-join-input:hover {
+  cursor: pointer;
+}
+
+.self-join-label {
+  margin-left: 0.5rem;
+}
+
+.checkbox-label-unchecked {
+  opacity: 0.5;
+}
+
+.checkbox-label-checked {
+  color: $primary-color-dark;
 }

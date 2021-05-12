@@ -7,7 +7,7 @@ import { useUpdateQueueSettings } from 'store/asyncActions';
 import { useDispatch, useSelector } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import SaveIcon from '@material-ui/icons/Save';
-import { selectMaxQueueCapacity } from 'store/selectedQueue';
+import { selectMaxQueueCapacity, selectIsSelfJoinAllowed } from 'store/selectedQueue';
 import Button from 'components/common/Button';
 import InputField from 'components/common/InputField';
 import styles from './QueueSettings.module.scss';
@@ -17,11 +17,14 @@ const MAX_SIZE = 100000;
 export default ({ queueId }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const maxQueueSize = useSelector(selectMaxQueueCapacity);
+  const isSelfJoinAllowed = useSelector(selectIsSelfJoinAllowed);
   const [size, setSize] = React.useState(maxQueueSize);
+  const [selfJoin, setSelfJoin] = React.useState(false);
 
   useEffect(() => {
     setSize(maxQueueSize);
-  }, [maxQueueSize]);
+    setSelfJoin(!!isSelfJoinAllowed);
+  }, [maxQueueSize, isSelfJoinAllowed]);
 
   const handleSizeChange = (e) => {
     const positiveInteger = /^\d+$/i;
@@ -38,14 +41,26 @@ export default ({ queueId }) => {
 
   const toggleModal = () => setIsModalOpen((isOpen) => !isOpen);
 
+  const handleSelfJoinCheckBox = React.useCallback(
+    (userChoiceEvent) => {
+      const userChoice = userChoiceEvent?.target?.checked;
+      setSelfJoin(!!userChoice);
+    },
+    [setSelfJoin]
+  );
+
   const handleSave = async () => {
     const response = await dispatch(
-      updateSettings({ queueId, settings: { maxQueueCapacity: size } })
+      updateSettings({
+        queueId,
+        settings: { maxQueueCapacity: size, isSelfJoinAllowed: selfJoin },
+      })
     );
     if (!response.error) {
       toggleModal();
     }
   };
+
   return (
     <>
       <SidePanelItem Icon={SettingsIcon} title="Queue Settings" onClick={toggleModal} />
@@ -63,6 +78,7 @@ export default ({ queueId }) => {
             helperText={isInvalidSize() && `Enter a number between 1 and ${MAX_SIZE}`}
             autoFocus
           />
+          <CheckboxComponent selfJoin={selfJoin} handleSelfJoinCheckBox={handleSelfJoinCheckBox} />
           <div className={styles['action-container']}>
             <Button icon={<SaveIcon />} onClick={handleSave} disabled={isInvalidSize()}>
               Save
@@ -74,5 +90,30 @@ export default ({ queueId }) => {
         </Grid>
       </Modal>
     </>
+  );
+};
+
+const CheckboxComponent = (props) => {
+  const { selfJoin, handleSelfJoinCheckBox } = props;
+  return (
+    /* eslint-disable react/jsx-wrap-multilines */
+    <div className={styles['self-join-checkbox']}>
+      <input
+        className={styles['self-join-input']}
+        type="checkbox"
+        name="selfJoinCheckBox"
+        checked={selfJoin}
+        onChange={handleSelfJoinCheckBox}
+      />
+      <span
+        className={
+          selfJoin
+            ? `${styles['self-join-label']} ${styles['checkbox-label-checked']}`
+            : `${styles['self-join-label']} ${styles['checkbox-label-unchecked']}`
+        }
+      >
+        Self Join
+      </span>
+    </div>
   );
 };
