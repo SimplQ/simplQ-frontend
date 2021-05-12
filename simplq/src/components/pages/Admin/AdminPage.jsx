@@ -6,7 +6,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectQueueName } from 'store/selectedQueue';
 import Ribbon from 'components/common/Ribbon';
 import Tour from 'components/common/Tour';
-import { useGetSelectedQueue } from 'store/asyncActions';
+import { useGetSelectedQueue, useGetQueueInfo } from 'store/asyncActions';
+import { selectQueueInfo } from 'store/queueInfo';
+import { setErrorPopupMessage } from 'store/appSlice';
+import { useHistory } from 'react-router';
 import HeaderSection from './AdminHeaderSection';
 import TokenList from './TokenList';
 import styles from './admin.module.scss';
@@ -16,8 +19,31 @@ import getToursteps from './getTourSteps';
 const TIMEOUT = 10000;
 let timeoutId;
 
-export default (props) => {
+const isQueueDeleted = (queueInfo) => queueInfo?.status === 'DELETED';
+
+const AdminPage = (props) => {
   const queueId = props.match.params.queueId;
+  const queueInfo = useSelector(selectQueueInfo);
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const getQueueInfo = useCallback(useGetQueueInfo(), []);
+
+  useEffect(() => {
+    dispatch(getQueueInfo({ queueId }));
+  }, [dispatch, queueId, getQueueInfo]);
+
+  useEffect(() => {
+    if (queueInfo && queueId === queueInfo?.queueId && isQueueDeleted(queueInfo)) {
+      dispatch(setErrorPopupMessage('This queue is deleted.'));
+      history.push('/');
+    }
+  }, [dispatch, history, queueId, queueInfo]);
+
+  return <AdminPageView queueId={queueId} />;
+};
+
+const AdminPageView = (props) => {
+  const { queueId } = props;
   const queueName = useSelector(selectQueueName);
   const description = queueName && 'Ready to share';
   const dispatch = useDispatch();
@@ -62,3 +88,5 @@ export default (props) => {
     </div>
   );
 };
+
+export default AdminPage;
