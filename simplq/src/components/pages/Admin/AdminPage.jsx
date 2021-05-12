@@ -19,7 +19,6 @@ import getToursteps from './getTourSteps';
 const TIMEOUT = 10000;
 let timeoutId;
 
-const isQueueActive = (queueInfo) => queueInfo?.status === 'ACTIVE';
 const isQueueDeleted = (queueInfo) => queueInfo?.status === 'DELETED';
 
 const AdminPage = (props) => {
@@ -40,7 +39,7 @@ const AdminPage = (props) => {
     }
   }, [dispatch, history, queueId, queueInfo]);
 
-  return isQueueActive(queueInfo) ? <AdminPageView queueId={queueId} /> : <></>;
+  return <AdminPageView queueId={queueId} />;
 };
 
 const AdminPageView = (props) => {
