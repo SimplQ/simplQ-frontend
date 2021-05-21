@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectQueueName } from 'store/selectedQueue';
 import Ribbon from 'components/common/Ribbon';
 import Tour from 'components/common/Tour';
-import { useGetSelectedQueue, useGetQueueInfo } from 'store/asyncActions';
+import { useGetSelectedQueue } from 'store/asyncActions';
 import { selectQueueInfo } from 'store/queueInfo';
 import { setErrorPopupMessage } from 'store/appSlice';
 import { useHistory } from 'react-router';
@@ -26,18 +26,11 @@ const AdminPage = (props) => {
   const queueInfo = useSelector(selectQueueInfo);
   const dispatch = useDispatch();
   const history = useHistory();
-  const getQueueInfo = useCallback(useGetQueueInfo(), []);
 
-  useEffect(() => {
-    dispatch(getQueueInfo({ queueId }));
-  }, [dispatch, queueId, getQueueInfo]);
-
-  useEffect(() => {
-    if (queueInfo && queueId === queueInfo?.queueId && isQueueDeleted(queueInfo)) {
-      dispatch(setErrorPopupMessage('This queue is deleted.'));
-      history.push('/');
-    }
-  }, [dispatch, history, queueId, queueInfo]);
+  if (queueInfo && queueId === queueInfo?.queueId && isQueueDeleted(queueInfo)) {
+    dispatch(setErrorPopupMessage('This queue is deleted.'));
+    history.push('/');
+  }
 
   return <AdminPageView queueId={queueId} />;
 };
