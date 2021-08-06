@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getQueueInfo, getQueueInfoByName } from 'store/asyncActions';
+import { deleteQueue, getQueueInfo, getQueueInfoByName } from 'store/asyncActions';
 
 const queueInfoSlice = createSlice({
   name: 'queueInfo',
@@ -12,6 +12,16 @@ const queueInfoSlice = createSlice({
     },
     [getQueueInfoByName.fulfilled]: (state, action) => {
       return action.payload;
+    },
+    [deleteQueue.fulfilled]: (state, action) => {
+      const { queueId } = action.payload;
+      if (state.queueId === queueId) {
+        return {
+          ...state,
+          status: 'DELETED',
+        };
+      }
+      return state;
     },
   },
 });

@@ -60,6 +60,31 @@ const getToursteps = (screenInnerWidth) => {
       },
       position: 'top',
     },
+    {
+      selector: '[reactour-selector="reactour__printQRCode"]',
+      content: () => (
+        <>
+          {tourProperties.isArrowVisible ? (
+            <img
+              src="/images/sharequeueArrow.png"
+              alt="share queue arrow"
+              height="80"
+              width="120"
+              style={{ transform: 'rotate(-10deg)' }}
+            />
+          ) : null}
+          <div style={{ transform: 'rotate(-10deg)' }}>Print QR Code</div>
+        </>
+      ),
+      style: {
+        fontFamily: 'Pacifico',
+        backgroundColor: 'transparent',
+        color: 'white',
+        fontSize: '1.563rem',
+        boxShadow: 'none',
+      },
+      position: 'left',
+    },
   ];
 };
 export default getToursteps;
