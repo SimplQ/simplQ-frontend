@@ -16,7 +16,6 @@ export function JoinQueueForm({ joinQueueHandler, buttonText }) {
   const actionStatus = useSelector((state) => state.actionStatus['joinQueue']);
   const prevActionStatus = useRef();
 
-  // TODO: check if this works when admin page is refactored to use actions
   useEffect(() => {
     // Reset form only after successful action
     if (prevActionStatus.current === 'pending' && actionStatus === 'fulfilled') {
