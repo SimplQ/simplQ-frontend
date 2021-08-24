@@ -11,8 +11,8 @@ export default ({ name, tokenNumber, creationTime, tokenCreationTimestamp }) => 
         <div className={itemStyles['center-content']}>
           <p>
             <strong>
-              {name}
-              was Removed
+              <span className={name.length > 40 ? itemStyles['name-short'] : ''}>{name}</span>
+              &nbsp;was Removed
             </strong>
           </p>
           <p>{creationTime(tokenCreationTimestamp)}</p>

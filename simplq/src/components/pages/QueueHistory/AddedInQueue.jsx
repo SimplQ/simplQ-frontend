@@ -12,7 +12,7 @@ export default ({ name, tokenNumber, creationTime, tokenCreationTimestamp }) => 
           <p>
             <strong>
               {name}
-              was Added
+              &nbsp;was Added
             </strong>
           </p>
           <p>{creationTime(tokenCreationTimestamp)}</p>
