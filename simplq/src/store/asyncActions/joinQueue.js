@@ -21,7 +21,6 @@ const useJoinQueue = () => {
         RequestFactory.createToken(name, contactNumber, notifiable, queueId)
       );
       const response = await authedRequest;
-      console.log(response);
       if (goToStatusPage) {
         history.push(`/token/${response.tokenId}`);
       }
