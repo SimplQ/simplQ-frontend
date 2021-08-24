@@ -18,11 +18,14 @@ const selectedQueueSlice = createSlice({
   extraReducers: {
     // handle fulfilled request
     [getSelectedQueue.fulfilled]: (state, action) => {
+      console.log('payload', action.payload);
       return action.payload;
     },
     // add newly created token to currently selected queue's token list
     [joinQueue.fulfilled]: (state, action) => {
       state.tokens.push(action.payload);
+      console.log('queue payload', action.payload);
+      console.log('state', state.proxy);
       return state;
     },
     // remove deleted token from currently selected queue's token list
@@ -47,6 +50,8 @@ const selectedQueueSlice = createSlice({
 export default selectedQueueSlice.reducer;
 
 export const selectQueueName = (state) => state.selectedQueue.queueName;
+
+export const selectRemoveTokens = (state) => state.selectedQueue.removedTokens;
 
 export const selectTokens = (state) => state.selectedQueue.tokens;
 

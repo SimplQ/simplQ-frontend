@@ -1,0 +1,23 @@
+@import 'components/common.scss';
+
+.queue-history-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  border-bottom: 1px solid;
+
+  .center-content {
+    display: flex;
+    flex-direction: column;
+
+    p {
+      margin-bottom: 0px;
+      margin-top: 0px !important;
+    }
+  }
+
+  .token-number {
+    font-size: 24px;
+  }
+}
