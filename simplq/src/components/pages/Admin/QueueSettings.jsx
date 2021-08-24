@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import SettingsIcon from '@material-ui/icons/Settings';
-import Modal from 'components/common/Modal';
+import { Dialog, Grid } from '@material-ui/core';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import SidePanelItem from 'components/common/SidePanel/SidePanelItem';
 import { useUpdateQueueSettings } from 'store/asyncActions';
 import { useDispatch, useSelector } from 'react-redux';
-import Grid from '@material-ui/core/Grid';
 import SaveIcon from '@material-ui/icons/Save';
 import { selectMaxQueueCapacity, selectIsSelfJoinAllowed } from 'store/selectedQueue';
 import Button from 'components/common/Button';
@@ -64,7 +63,7 @@ export default ({ queueId }) => {
   return (
     <>
       <SidePanelItem Icon={SettingsIcon} title="Queue Settings" onClick={toggleModal} />
-      <Modal open={isModalOpen}>
+      <Dialog PaperProps={{ style: { width: '27%', borderRadius: 30 } }} open={isModalOpen}>
         <Grid container className={styles['modal-content']} direction="column">
           <h2 className={styles['title']}>Settings</h2>
           <InputField
@@ -88,7 +87,7 @@ export default ({ queueId }) => {
             </Button>
           </div>
         </Grid>
-      </Modal>
+      </Dialog>
     </>
   );
 };
