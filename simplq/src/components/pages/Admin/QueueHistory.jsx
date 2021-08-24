@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import HistoryIcon from '@material-ui/icons/History';
 import SidePanelItem from 'components/common/SidePanel/SidePanelItem';
 import { useSelector } from 'react-redux';
-import { selectRemoveTokens, selectTokens } from 'store/selectedQueue';
+import { selectRemovedTokens, selectTokens } from 'store/selectedQueue';
 import moment from 'moment';
-import AddedInQueue from '../QueueHistory/AddedInQueue';
-import RemovedFromQueue from '../QueueHistory/RemovedFromQueue';
+import QueueHistoryListItem from '../QueueHistory/QueueHistoryListItem.jsx';
 import styles from './QueueHistory.module.scss';
+
+const MAX_ITEMS = 6;
 
 export default () => {
   const [tokens, setTokens] = useState([]);
@@ -17,7 +18,7 @@ export default () => {
   const [sortedData, setSortedData] = useState([]);
 
   const added = useSelector(selectTokens);
-  const removed = useSelector(selectRemoveTokens);
+  const removed = useSelector(selectRemovedTokens);
 
   useEffect(() => {
     (async () => {
@@ -25,7 +26,7 @@ export default () => {
       let lastRemoved = [];
       let lastRemovedPrime = [];
       if (added) {
-        lastAdded = await added.filter((item) => {
+        lastAdded = added.filter((item) => {
           let isPresent = false;
           tokens.forEach((token) => {
             if (item.tokenId === token.tokenId) {
@@ -37,7 +38,7 @@ export default () => {
         });
       }
       if (removed) {
-        lastRemoved = await removed.filter((item) => {
+        lastRemoved = removed.filter((item) => {
           let isPresent = false;
           removedTokens.forEach((removedToken) => {
             if (item.tokenId === removedToken.tokenId) {
@@ -80,7 +81,7 @@ export default () => {
   };
 
   const increaseCount = () => {
-    if (count === sortedData.length / 6) {
+    if (count === sortedData.length / MAX_ITEMS) {
       return;
     }
     setCount(count + 1);
@@ -101,46 +102,26 @@ export default () => {
       expandable
     >
       {showMore
-        ? sortedData.slice(count * 6, (count + 1) * 6).map((item) => {
+        ? sortedData.slice(count * MAX_ITEMS, (count + 1) * MAX_ITEMS).map((item) => {
             return (
-              <>
-                {item.tokenStatus === 'WAITING' ? (
-                  <AddedInQueue
-                    creationTime={creationTime}
-                    name={item.name}
-                    tokenNumber={item.tokenNumber}
-                    tokenCreationTimestamp={item.tokenCreationTimestamp}
-                  />
-                ) : (
-                  <RemovedFromQueue
-                    creationTime={creationTime}
-                    name={item.name}
-                    tokenNumber={item.tokenNumber}
-                    tokenCreationTimestamp={item.tokenCreationTimestamp}
-                  />
-                )}
-              </>
+              <QueueHistoryListItem
+                creationTime={creationTime}
+                name={item.name}
+                tokenNumber={item.tokenNumber}
+                tokenCreationTimestamp={item.tokenCreationTimestamp}
+                tokenStatus={item.tokenStatus}
+              />
             );
           })
         : sortedData.slice(0, 2).map((item) => {
             return (
-              <>
-                {item.tokenStatus === 'WAITING' ? (
-                  <AddedInQueue
-                    creationTime={creationTime}
-                    name={item.name}
-                    tokenNumber={item.tokenNumber}
-                    tokenCreationTimestamp={item.tokenCreationTimestamp}
-                  />
-                ) : (
-                  <RemovedFromQueue
-                    creationTime={creationTime}
-                    name={item.name}
-                    tokenNumber={item.tokenNumber}
-                    tokenCreationTimestamp={item.tokenCreationTimestamp}
-                  />
-                )}
-              </>
+              <QueueHistoryListItem
+                creationTime={creationTime}
+                name={item.name}
+                tokenNumber={item.tokenNumber}
+                tokenCreationTimestamp={item.tokenCreationTimestamp}
+                tokenStatus={item.tokenStatus}
+              />
             );
           })}
       {showMore ? (

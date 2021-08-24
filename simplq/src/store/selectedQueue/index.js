@@ -3,7 +3,7 @@ import reducer from './selectedQueueSlice';
 export default reducer;
 
 export {
-  selectRemoveTokens,
+  selectRemovedTokens,
   selectQueueName,
   selectTokens,
   selectQueueStatus,
