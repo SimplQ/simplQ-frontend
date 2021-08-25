@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import SettingsIcon from '@material-ui/icons/Settings';
-import Modal from 'components/common/Modal';
+import { Grid } from '@material-ui/core';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import SidePanelItem from 'components/common/SidePanel/SidePanelItem';
 import { useUpdateQueueSettings } from 'store/asyncActions';
 import { useDispatch, useSelector } from 'react-redux';
-import Grid from '@material-ui/core/Grid';
 import SaveIcon from '@material-ui/icons/Save';
 import { selectMaxQueueCapacity, selectIsSelfJoinAllowed } from 'store/selectedQueue';
 import Button from 'components/common/Button';
 import InputField from 'components/common/InputField';
+import Modal from '../../common/Modal/Modal';
 import styles from './QueueSettings.module.scss';
 
 const MAX_SIZE = 100000;
