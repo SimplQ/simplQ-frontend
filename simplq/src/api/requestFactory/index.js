@@ -19,6 +19,7 @@
 export {
   getUserQueues,
   getQueue,
+  getQueueHistory,
   deleteQueue,
   getQueueInfo,
   getQueueInfoByName,
@@ -26,4 +27,11 @@ export {
   setQueueStatus,
   updateQueueSettings,
 } from './queue';
-export { createToken, getToken, deleteToken, notifyToken, getTokenByContactNumber } from './token';
+
+export {
+  createToken,
+  getToken,
+  deleteToken,
+  notifyToken,
+  getTokenByContactNumber,
+} from './token';

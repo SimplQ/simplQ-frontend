@@ -1,5 +1,5 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import { useMakeAuthedRequest } from 'api/auth';
+import {createAsyncThunk} from '@reduxjs/toolkit';
+import {useMakeAuthedRequest} from 'api/auth';
 import * as RequestFactory from 'api/requestFactory';
 
 const typePrefix = 'getToken/action';
@@ -12,25 +12,33 @@ const REFRESH_INTERVAL = 3000;
  * @returns — getToken async action creator
  */
 const useGetToken = () => {
-  const makeAuthedRequest = useMakeAuthedRequest();
+  const makeAuthedRequest = useMakeAuthedRequest ();
 
-  const getToken = createAsyncThunk(typePrefix, async ({ tokenId, refresh }, { dispatch }) => {
-    if (timer) {
-      clearTimeout(timer);
-    }
-    const authedRequest = makeAuthedRequest(RequestFactory.getToken(tokenId));
-    const response = await authedRequest.then((resp) => {
-      if (refresh === true) {
-        timer = setTimeout(() => dispatch(getToken({ tokenId, refresh })), REFRESH_INTERVAL);
+  const getToken = createAsyncThunk (
+    typePrefix,
+    async ({tokenId, refresh}, {dispatch}) => {
+      if (timer) {
+        clearTimeout (timer);
       }
-      return resp;
-    });
-    return response;
-  });
+      const authedRequest = makeAuthedRequest (
+        RequestFactory.getToken (tokenId)
+      );
+      const response = await authedRequest.then (resp => {
+        if (refresh === true) {
+          timer = setTimeout (
+            () => dispatch (getToken ({tokenId, refresh})),
+            REFRESH_INTERVAL
+          );
+        }
+        return resp;
+      });
+      return response;
+    }
+  );
 
   return getToken;
 };
 
-const getToken = createAsyncThunk(typePrefix);
+const getToken = createAsyncThunk (typePrefix);
 
-export { getToken, useGetToken };
+export {getToken, useGetToken};

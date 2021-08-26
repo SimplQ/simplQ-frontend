@@ -3,7 +3,7 @@
  *
  * @returns {Object} request - partial axios request without baseURL
  */
-export const getUserQueues = () => ({ method: 'get', url: '/queues' });
+export const getUserQueues = () => ({method: 'get', url: '/queues'});
 
 /**
  * Create a new queue with given name
@@ -11,7 +11,11 @@ export const getUserQueues = () => ({ method: 'get', url: '/queues' });
  * @returns {Object} request - partial axios request without baseURL
  */
 
-export const createQueue = (queueName) => ({ method: 'post', url: '/queue', data: { queueName } });
+export const createQueue = queueName => ({
+  method: 'post',
+  url: '/queue',
+  data: {queueName},
+});
 
 /**
  * Request creator to fetch queue and belonging tokens by id
@@ -19,7 +23,18 @@ export const createQueue = (queueName) => ({ method: 'post', url: '/queue', data
  * @param {string} queueId
  * @returns {Object} request - partial axios request without baseURL
  */
-export const getQueue = (queueId) => ({ method: 'get', url: `/queue/${queueId}` });
+export const getQueue = queueId => ({method: 'get', url: `/queue/${queueId}`});
+
+/**
+ * Request creator to fetch queue and belonging tokens by id
+ *
+ * @param {string} queueId
+ * @returns {Object} request - partial axios request without baseURL
+ */
+export const getQueueHistory = queueId => ({
+  method: 'get',
+  url: `/queue/${queueId}/events`,
+});
 
 /**
  * Request creator to fetch queue info by id
@@ -27,7 +42,7 @@ export const getQueue = (queueId) => ({ method: 'get', url: `/queue/${queueId}` 
  * @param {string} queueId
  * @returns {Object} request - partial axios request without baseURL
  */
-export const getQueueInfo = (queueId) => ({
+export const getQueueInfo = queueId => ({
   method: 'get',
   url: `/queue/status?queueId=${queueId}`,
 });
@@ -38,7 +53,7 @@ export const getQueueInfo = (queueId) => ({
  * @param {string} queueName
  * @returns {Object} request - partial axios request without baseURL
  */
-export const getQueueInfoByName = (queueName) => ({
+export const getQueueInfoByName = queueName => ({
   method: 'get',
   url: `/queue/status?queueName=${queueName}`,
 });
@@ -49,7 +64,10 @@ export const getQueueInfoByName = (queueName) => ({
  * @param {string} queueId
  * @returns {Object} request - partial axios request without baseURL
  */
-export const deleteQueue = (queueId) => ({ method: 'delete', url: `/queue/${queueId}` });
+export const deleteQueue = queueId => ({
+  method: 'delete',
+  url: `/queue/${queueId}`,
+});
 
 /**
  * Request creator to set the queue status
@@ -61,7 +79,7 @@ export const deleteQueue = (queueId) => ({ method: 'delete', url: `/queue/${queu
 export const setQueueStatus = (queueId, status) => ({
   method: 'post',
   url: `/queue/${queueId}`,
-  data: { status },
+  data: {status},
 });
 
 /**

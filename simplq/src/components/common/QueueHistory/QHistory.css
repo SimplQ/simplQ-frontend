@@ -1,0 +1,48 @@
+.history-row {
+    padding: 5px;
+    border-bottom: 1px solid black;
+    height: 60px;
+}
+
+.history-row-icon {
+    text-align: center;
+    /*background-color: red;*/
+    display: inline;
+    float: left;
+    width: 50px;
+    height: 50px;
+    padding: 2.5%;
+}
+
+.history-row-info {
+    /*background-color: blue;*/
+    display: inline;
+    float: left;
+    width: 280px;
+    height: 50px;
+    padding-top: 2%;
+    padding-left: 20px;
+}
+
+.history-row-info-topic {
+    font-size: 125%;
+    font-weight: bolder;
+}
+
+.history-row-info-timestamp {
+    font-size: 90%;
+    font-weight: 300;
+}
+
+.history-row-token {
+    text-align: center;
+    /*background-color: green;*/
+    display: inline;
+    float: left;
+    width: 90px;
+    height: 50px;
+    padding: 2.5%;
+    line-height: 28px;
+    font-weight: 900;
+    font-size: 150%;
+}

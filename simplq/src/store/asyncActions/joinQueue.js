@@ -1,6 +1,6 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import { useHistory } from 'react-router-dom';
-import { useMakeAuthedRequest } from 'api/auth';
+import {createAsyncThunk} from '@reduxjs/toolkit';
+import {useHistory} from 'react-router-dom';
+import {useMakeAuthedRequest} from 'api/auth';
 import * as RequestFactory from 'api/requestFactory';
 
 const typePrefix = 'joinQueue/action';
@@ -11,18 +11,18 @@ const typePrefix = 'joinQueue/action';
  * @returns — joinQueue async action creator
  */
 const useJoinQueue = () => {
-  const makeAuthedRequest = useMakeAuthedRequest();
-  const history = useHistory();
+  const makeAuthedRequest = useMakeAuthedRequest ();
+  const history = useHistory ();
 
-  const joinQueue = createAsyncThunk(
+  const joinQueue = createAsyncThunk (
     typePrefix,
-    async ({ name, contactNumber, notifiable, queueId, goToStatusPage }) => {
-      const authedRequest = makeAuthedRequest(
-        RequestFactory.createToken(name, contactNumber, notifiable, queueId)
+    async ({name, contactNumber, notifiable, queueId, goToStatusPage}) => {
+      const authedRequest = makeAuthedRequest (
+        RequestFactory.createToken (name, contactNumber, notifiable, queueId)
       );
       const response = await authedRequest;
       if (goToStatusPage) {
-        history.push(`/token/${response.tokenId}`);
+        history.push (`/token/${response.tokenId}`);
       }
       return response;
     }
@@ -31,6 +31,6 @@ const useJoinQueue = () => {
   return joinQueue;
 };
 
-const joinQueue = createAsyncThunk(typePrefix);
+const joinQueue = createAsyncThunk (typePrefix);
 
-export { joinQueue, useJoinQueue };
+export {joinQueue, useJoinQueue};

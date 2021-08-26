@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 
-import { createSlice } from '@reduxjs/toolkit';
+import {createSlice} from '@reduxjs/toolkit';
 import {
   deleteToken,
   getSelectedQueue,
@@ -9,7 +9,7 @@ import {
   updateQueueSettings,
 } from 'store/asyncActions';
 
-const selectedQueueSlice = createSlice({
+const selectedQueueSlice = createSlice ({
   name: 'selectedQueue',
   initialState: {
     tokens: [],
@@ -22,12 +22,14 @@ const selectedQueueSlice = createSlice({
     },
     // add newly created token to currently selected queue's token list
     [joinQueue.fulfilled]: (state, action) => {
-      state.tokens.push(action.payload);
+      state.tokens.push (action.payload);
       return state;
     },
     // remove deleted token from currently selected queue's token list
     [deleteToken.fulfilled]: (state, action) => {
-      state.tokens = state.tokens.filter((token) => token.tokenId !== action.payload.tokenId);
+      state.tokens = state.tokens.filter (
+        token => token.tokenId !== action.payload.tokenId
+      );
       return state;
     },
     // update queue status on updates
@@ -46,12 +48,14 @@ const selectedQueueSlice = createSlice({
 
 export default selectedQueueSlice.reducer;
 
-export const selectQueueName = (state) => state.selectedQueue.queueName;
+export const selectQueueName = state => state.selectedQueue.queueName;
 
-export const selectTokens = (state) => state.selectedQueue.tokens;
+export const selectTokens = state => state.selectedQueue.tokens;
 
-export const selectQueueStatus = (state) => state.selectedQueue.status;
+export const selectQueueStatus = state => state.selectedQueue.status;
 
-export const selectMaxQueueCapacity = (state) => state.selectedQueue.maxQueueCapacity;
+export const selectMaxQueueCapacity = state =>
+  state.selectedQueue.maxQueueCapacity;
 
-export const selectIsSelfJoinAllowed = (state) => state.selectedQueue.selfJoinAllowed;
+export const selectIsSelfJoinAllowed = state =>
+  state.selectedQueue.selfJoinAllowed;

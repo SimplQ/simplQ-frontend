@@ -1,4 +1,8 @@
-import { combineReducers, configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import {
+  combineReducers,
+  configureStore,
+  getDefaultMiddleware,
+} from '@reduxjs/toolkit';
 import queuesReducer from 'store/queues';
 import queueInfoReducer from 'store/queueInfo';
 import actionStatusReducer from 'store/actionStatus';
@@ -6,7 +10,7 @@ import tokenReducer from 'store/token';
 import selectedQueueReducer from 'store/selectedQueue';
 import appReducer from './appSlice';
 
-export const rootReducer = combineReducers({
+export const rootReducer = combineReducers ({
   appReducer,
   queues: queuesReducer,
   queueInfo: queueInfoReducer,
@@ -15,9 +19,9 @@ export const rootReducer = combineReducers({
   selectedQueue: selectedQueueReducer,
 });
 
-export const store = configureStore({
+export const store = configureStore ({
   reducer: rootReducer,
-  middleware: getDefaultMiddleware({
+  middleware: getDefaultMiddleware ({
     serializableCheck: {
       // Ignore auth in async thunks
       ignoredActionPaths: ['meta.arg.auth'],

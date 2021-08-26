@@ -1,12 +1,12 @@
 /* eslint-disable no-param-reassign */
-import { createSlice } from '@reduxjs/toolkit';
-import { createQueue, deleteQueue, joinQueue } from 'store/asyncActions';
+import {createSlice} from '@reduxjs/toolkit';
+import {createQueue, deleteQueue, joinQueue} from 'store/asyncActions';
 
-function isRejectedAction(action) {
-  return action.type.endsWith('rejected');
+function isRejectedAction (action) {
+  return action.type.endsWith ('rejected');
 }
 
-const appSlice = createSlice({
+const appSlice = createSlice ({
   name: 'appSlice',
   initialState: {
     errorText: '',
@@ -24,27 +24,27 @@ const appSlice = createSlice({
       state.notificationPermission = action.payload;
     },
   },
-  extraReducers: (builder) => {
+  extraReducers: builder => {
     builder
-      .addCase(joinQueue.pending, (state) => {
+      .addCase (joinQueue.pending, state => {
         state.infoText = `Adding to queue...`;
       })
-      .addCase(joinQueue.fulfilled, (state, action) => {
+      .addCase (joinQueue.fulfilled, (state, action) => {
         state.infoText = `Added ${action.payload.name}`;
       })
-      .addCase(createQueue.pending, (state) => {
+      .addCase (createQueue.pending, state => {
         state.infoText = `Creating new queue...`;
       })
-      .addCase(createQueue.fulfilled, (state) => {
+      .addCase (createQueue.fulfilled, state => {
         state.infoText = `Your queue is ready to use.`;
       })
-      .addCase(deleteQueue.pending, (state) => {
+      .addCase (deleteQueue.pending, state => {
         state.infoText = `Deleting queue...`;
       })
-      .addCase(deleteQueue.fulfilled, (state, action) => {
+      .addCase (deleteQueue.fulfilled, (state, action) => {
         state.infoText = `Deleted ${action.payload.queueName}`;
       })
-      .addMatcher(isRejectedAction, (state, action) => {
+      .addMatcher (isRejectedAction, (state, action) => {
         // All failed network calls are handled here
         state.errorText = action.error.message;
       });

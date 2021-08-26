@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 
-import { createSlice } from '@reduxjs/toolkit';
+import {createSlice} from '@reduxjs/toolkit';
 
 /**
  * Async Action Status slice
@@ -17,15 +17,15 @@ import { createSlice } from '@reduxjs/toolkit';
  *
  * const actionStatus = useSelector((state) => state['deleteQueue'])
  */
-const actionStatusSlice = createSlice({
+const actionStatusSlice = createSlice ({
   name: 'actionStatus',
   initialState: {},
   reducers: {},
-  extraReducers: (builder) => {
-    builder.addMatcher(
-      (action) => action.type.includes('action'),
+  extraReducers: builder => {
+    builder.addMatcher (
+      action => action.type.includes ('action'),
       (state, action) => {
-        const [name, , status] = action.type.split('/');
+        const [name, , status] = action.type.split ('/');
         state[name] = status;
       }
     );
