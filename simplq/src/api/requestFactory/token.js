@@ -24,7 +24,7 @@ export const createToken = (name, contactNumber, notifiable, queueId) => ({
  * @param {string} tokenId
  * @returns {Object} request - partial axios request without baseURL
  */
-export const getToken = tokenId => ({method: 'get', url: `/token/${tokenId}`});
+export const getToken = (tokenId) => ({method: 'get', url: `/token/${tokenId}`});
 
 /**
  * Request creator to notify token.
@@ -32,7 +32,7 @@ export const getToken = tokenId => ({method: 'get', url: `/token/${tokenId}`});
  * @param {string} tokenId
  * @returns {Object} request - partial axios request without baseURL
  */
-export const notifyToken = tokenId => ({
+export const notifyToken = (tokenId) => ({
   method: 'put',
   url: `/token/notify/${tokenId}`,
 });
@@ -43,7 +43,7 @@ export const notifyToken = tokenId => ({
  * @param {string} tokenId
  * @returns {Object} request - partial axios request without baseURL
  */
-export const deleteToken = tokenId => ({
+export const deleteToken = (tokenId) => ({
   method: 'delete',
   url: `/token/${tokenId}`,
 });

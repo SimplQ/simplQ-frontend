@@ -6,7 +6,7 @@ function isRejectedAction (action) {
   return action.type.endsWith ('rejected');
 }
 
-const appSlice = createSlice ({
+const appSlice = (createSlice) ({
   name: 'appSlice',
   initialState: {
     errorText: '',
@@ -24,21 +24,21 @@ const appSlice = createSlice ({
       state.notificationPermission = action.payload;
     },
   },
-  extraReducers: builder => {
+  extraReducers: (builder) => {
     builder
-      .addCase (joinQueue.pending, state => {
+      .addCase (joinQueue.pending, (state) => {
         state.infoText = `Adding to queue...`;
       })
       .addCase (joinQueue.fulfilled, (state, action) => {
         state.infoText = `Added ${action.payload.name}`;
       })
-      .addCase (createQueue.pending, state => {
+      .addCase (createQueue.pending, (state) => {
         state.infoText = `Creating new queue...`;
       })
-      .addCase (createQueue.fulfilled, state => {
+      .addCase (createQueue.fulfilled, (state) => {
         state.infoText = `Your queue is ready to use.`;
       })
-      .addCase (deleteQueue.pending, state => {
+      .addCase (deleteQueue.pending, (state) => {
         state.infoText = `Deleting queue...`;
       })
       .addCase (deleteQueue.fulfilled, (state, action) => {

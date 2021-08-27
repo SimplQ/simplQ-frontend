@@ -14,7 +14,7 @@ const queuesSlice = createSlice ({
     // remove deleted queue from queues list
     [deleteQueue.fulfilled]: (state, action) => {
       const {queueId} = action.payload;
-      const index = state.findIndex (queue => queue.queueId === queueId);
+      const index = state.findIndex ((queue) => queue.queueId === queueId);
       if (index > -1) {
         state.splice (index, 1);
       }
@@ -28,4 +28,4 @@ const queuesSlice = createSlice ({
 
 export default queuesSlice.reducer;
 
-export const selectQueues = state => state.queues;
+export const selectQueues = (state) => state.queues;

@@ -1,63 +1,45 @@
-import React from 'react'
-import HistoryIcon from '@material-ui/icons/History'
-import SidePanelItem from 'components/common/SidePanel/SidePanelItem'
-import QueueHistory from 'components/common/QueueHistory/QueueHistory'
-import TablePagination from '@material-ui/core/TablePagination'
-import Data from 'data/QueueEvents.json'
+import React from 'react';
+import HistoryIcon from '@material-ui/icons/History';
+import SidePanelItem from 'components/common/SidePanel/SidePanelItem';
+import QueueHistory from 'components/common/QueueHistory/QueueHistory';
+import TablePagination from '@material-ui/core/TablePagination';
+import Data from 'data/QueueEvents.json';
 
-class QueueHistoryPanel extends React.PureComponent {
-    constructor(props) {
-        super(props)
+export default (props) => {
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
-        this.state = {
-            page: 0,
-            rowsPerPage: 5
-        }
-    }
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
 
-    handlePageChange = (event, newPage) => {
-        this.setState({ page: newPage })
-    }
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
 
-    handleChangeRowsPerPage = (event) => {
-        this.setState({
-            page: 0,
-            rowsPerPage: event.target.value
-        })
-    }
-
-    render() {
-        return (
-            <SidePanelItem
-                Icon={HistoryIcon}
-                title="Queue History"
-                description="History of events in the queue"
-                expandable
-            >
-                <QueueHistory
-                    queueId={this.props.queueId}
-                    data={Data.slice(
-                        this.state.page * this.state.rowsPerPage,
-                        Math.min(
-                            Data.length,
-                            (this.state.page + 1) * this.state.rowsPerPage
-                        )
-                    )}
-                />
-                <div>
-                    <TablePagination
-                        component="div"
-                        rowsPerPageOptions={[5, 10, 25, 50, 100]}
-                        count={Data.length}
-                        page={this.state.page}
-                        onPageChange={this.handlePageChange}
-                        rowsPerPage={this.state.rowsPerPage}
-                        onRowsPerPageChange={this.handleChangeRowsPerPage}
-                    />
-                </div>
-            </SidePanelItem>
-        )
-    }
-}
-
-export default QueueHistoryPanel
+  return (
+    <SidePanelItem
+      Icon={HistoryIcon}
+      title="Queue History"
+      description="History of events in the queue"
+      expandable
+    >
+      <QueueHistory
+        queueId={props.queueId}
+        data={Data.slice(page * rowsPerPage, Math.min(Data.length, (page + 1) * rowsPerPage))}
+      />
+      <div>
+        <TablePagination
+          component="div"
+          rowsPerPageOptions={[5, 10, 25, 50, 100]}
+          count={Data.length}
+          page={page}
+          onPageChange={handleChangePage}
+          rowsPerPage={rowsPerPage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+        />
+      </div>
+    </SidePanelItem>
+  );
+};

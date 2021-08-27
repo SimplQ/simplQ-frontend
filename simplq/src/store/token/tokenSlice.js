@@ -16,4 +16,4 @@ const tokenSlice = createSlice ({
 
 export default tokenSlice.reducer;
 
-export const selectToken = state => state.token;
+export const selectToken = (state) => state.token;

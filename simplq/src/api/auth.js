@@ -14,7 +14,7 @@ const ANONYMOUS_DEVICE_ID_KEY = 'anonymous-device-id';
  *
  * @param {Object} auth object returned by useAuth() from @auth0/auth0-react.
  */
-const getAuthHeaderValue = async auth => {
+const getAuthHeaderValue = async (auth) => {
   // If user is logged in, get the token from the login provider.
   if (auth.isAuthenticated) {
     return `Bearer ${await auth.getAccessTokenSilently ({audience: baseURL})}`;
@@ -43,7 +43,7 @@ const useMakeAuthedRequest = () => {
    * @param {Object} request object created by requestFactory.
    * @returns {Object} request response data as a Promise.
    */
-  const makeAuthedRequest = async request => {
+  const makeAuthedRequest = async (request) => {
     const {data} = await axios ({
       baseURL,
       ...request,
@@ -52,10 +52,10 @@ const useMakeAuthedRequest = () => {
         // Add the Authorization header to the existing headers
         Authorization: await getAuthHeaderValue (auth),
       },
-    }).catch (error => {
+    }).catch ((error) => {
       // log error to sentry for alerting
       let eventId;
-      Sentry.withScope (scope => {
+      Sentry.withScope ((scope) => {
         scope.setTag ('Caught-at', 'API request');
         eventId = Sentry.captureException (error);
       });

@@ -48,14 +48,14 @@ const selectedQueueSlice = createSlice ({
 
 export default selectedQueueSlice.reducer;
 
-export const selectQueueName = state => state.selectedQueue.queueName;
+export const selectQueueName = (state) => state.selectedQueue.queueName;
 
-export const selectTokens = state => state.selectedQueue.tokens;
+export const selectTokens = (state) => state.selectedQueue.tokens;
 
-export const selectQueueStatus = state => state.selectedQueue.status;
+export const selectQueueStatus = (state) => state.selectedQueue.status;
 
-export const selectMaxQueueCapacity = state =>
+export const selectMaxQueueCapacity = (state) =>
   state.selectedQueue.maxQueueCapacity;
 
-export const selectIsSelfJoinAllowed = state =>
+export const selectIsSelfJoinAllowed = (state) =>
   state.selectedQueue.selfJoinAllowed;

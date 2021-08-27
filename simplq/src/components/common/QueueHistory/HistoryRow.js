@@ -9,71 +9,69 @@ import PauseIcon from '@material-ui/icons/Pause';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import UpdateIcon from '@material-ui/icons/Update';
 
-class QueueRow extends React.PureComponent {
-  getMessage = () => {
-    this.message = '';
-    if (this.props.data.action === 'ADDED') {
-      this.message = this.props.data.name.trim () + ' was added';
-    } else if (this.props.data.action === 'REMOVED') {
-      this.message = this.props.data.name.trim () + ' was removed';
-    } else if (this.props.data.action === 'NOTIFIED') {
-      this.message = this.props.data.name.trim () + ' was notified';
-    } else if (this.props.data.action === 'JOINED') {
-      this.message = this.props.data.name.trim () + ' joined the queue';
-    } else if (this.props.data.action === 'PAUSED') {
-      this.message = 'The queue was paused';
-    } else if (this.props.data.action === 'RESUMED') {
-      this.message = 'The queue was resumed back';
-    } else if (this.props.data.action === 'UPDATED') {
-      this.message = 'Queue Settings was updated';
+export default (props) => {
+
+  const getMessage = () => {
+    var message = '';
+    console.log(props);
+    if (props.data.action === 'ADDED') {
+      message = props.data.name.trim () + ' was added';
+    } else if (props.data.action === 'REMOVED') {
+      message = props.data.name.trim () + ' was removed';
+    } else if (props.data.action === 'NOTIFIED') {
+      message = props.data.name.trim () + ' was notified';
+    } else if (props.data.action === 'JOINED') {
+      message = props.data.name.trim () + ' joined the queue';
+    } else if (props.data.action === 'PAUSED') {
+      message = 'The queue was paused';
+    } else if (props.data.action === 'RESUMED') {
+      message = 'The queue was resumed back';
+    } else if (props.data.action === 'UPDATED') {
+      message = 'Queue Settings was updated';
     } else {
-      this.message = null;
+      message = null;
     }
-    return this.message;
+    return message;
   };
 
-  getIcon () {
-    return this.props.data.action === 'ADDED'
+  const getIcon = () => {
+    return props.data.action === 'ADDED'
       ? <AddIcon fontSize="medium" />
-      : this.props.data.action === 'REMOVED'
+      : props.data.action === 'REMOVED'
           ? <DeleteIcon fontSize="medium" />
-          : this.props.data.action === 'NOTIFIED'
+          : props.data.action === 'NOTIFIED'
               ? <NotificationsIcon fontSize="medium" />
-              : this.props.data.action === 'JOINED'
+              : props.data.action === 'JOINED'
                   ? <TouchAppIcon fontSize="medium" />
-                  : this.props.data.action === 'PAUSED'
+                  : props.data.action === 'PAUSED'
                       ? <PauseIcon fontSize="medium" />
-                      : this.props.data.action === 'RESUMED'
+                      : props.data.action === 'RESUMED'
                           ? <PlayArrowIcon fontSize="medium" />
-                          : this.props.data.action === 'UPDATED'
+                          : props.data.action === 'UPDATED'
                               ? <UpdateIcon fontSize="medium" />
                               : null;
   }
 
-  render () {
-    return (
-      <React.Fragment>
-        <div className="background-color-red history-row">
-          <div className="history-row-icon">
-            {this.getIcon ()}
-          </div>
-          <div className="history-row-info">
-            <span className="history-row-info-topic">{this.getMessage ()}</span>
-            <br />
-            <span className="history-row-info-timestamp">
-              {moment (this.props.data.actionTimestamp).format (
-                'hh:mm a, MMMM DD, YYYY'
-              )}
-            </span>
-            <br />
-          </div>
-          <div className="history-row-token">
-            {this.props.data.tokenNumber}
-          </div>
+  return (
+    <React.Fragment>
+      <div className="background-color-red history-row">
+        <div className="history-row-icon">
+          {getIcon ()}
         </div>
-      </React.Fragment>
-    );
-  }
+        <div className="history-row-info">
+          <span className="history-row-info-topic">{getMessage ()}</span>
+          <br />
+          <span className="history-row-info-timestamp">
+            {moment (props.data.actionTimestamp).format (
+              'hh:mm a, MMMM DD, YYYY'
+            )}
+          </span>
+          <br />
+        </div>
+        <div className="history-row-token">
+          {props.data.tokenNumber}
+        </div>
+      </div>
+    </React.Fragment>
+  );
 }
-
-export default QueueRow;
