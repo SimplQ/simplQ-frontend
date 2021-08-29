@@ -1,5 +1,5 @@
 import React from 'react';
-import './QHistory.css';
+import styles from './HistoryRow.module.scss';
 import moment from 'moment';
 import AddIcon from '@material-ui/icons/Add';
 import NotificationsIcon from '@material-ui/icons/Notifications';
@@ -13,7 +13,6 @@ export default (props) => {
 
   const getMessage = () => {
     var message = '';
-    console.log(props);
     if (props.data.action === 'ADDED') {
       message = props.data.name.trim () + ' was added';
     } else if (props.data.action === 'REMOVED') {
@@ -35,40 +34,60 @@ export default (props) => {
   };
 
   const getIcon = () => {
+    const fontSize = "180%";
     return props.data.action === 'ADDED'
-      ? <AddIcon fontSize="medium" />
+      ? <AddIcon  style={{fontSize: fontSize}} />
       : props.data.action === 'REMOVED'
-          ? <DeleteIcon fontSize="medium" />
+          ? <DeleteIcon style={{fontSize: fontSize}} />
           : props.data.action === 'NOTIFIED'
-              ? <NotificationsIcon fontSize="medium" />
+              ? <NotificationsIcon style={{fontSize: fontSize}} />
               : props.data.action === 'JOINED'
-                  ? <TouchAppIcon fontSize="medium" />
+                  ? <TouchAppIcon style={{fontSize: fontSize}} />
                   : props.data.action === 'PAUSED'
-                      ? <PauseIcon fontSize="medium" />
+                      ? <PauseIcon style={{fontSize: fontSize}} />
                       : props.data.action === 'RESUMED'
-                          ? <PlayArrowIcon fontSize="medium" />
+                          ? <PlayArrowIcon style={{fontSize: fontSize}}/>
                           : props.data.action === 'UPDATED'
-                              ? <UpdateIcon fontSize="medium" />
+                              ? <UpdateIcon style={{fontSize: fontSize}} />
+                              : null;
+  }
+
+  const getSmallIcon = () => {
+    const fontSize = "120%";
+    return props.data.action === 'ADDED'
+      ? <AddIcon  style={{fontSize: fontSize}} />
+      : props.data.action === 'REMOVED'
+          ? <DeleteIcon style={{fontSize: fontSize}} />
+          : props.data.action === 'NOTIFIED'
+              ? <NotificationsIcon style={{fontSize: fontSize}} />
+              : props.data.action === 'JOINED'
+                  ? <TouchAppIcon style={{fontSize: fontSize}} />
+                  : props.data.action === 'PAUSED'
+                      ? <PauseIcon style={{fontSize: fontSize}} />
+                      : props.data.action === 'RESUMED'
+                          ? <PlayArrowIcon style={{fontSize: fontSize}}/>
+                          : props.data.action === 'UPDATED'
+                              ? <UpdateIcon style={{fontSize: fontSize}} />
                               : null;
   }
 
   return (
     <React.Fragment>
-      <div className="background-color-red history-row">
-        <div className="history-row-icon">
-          {getIcon ()}
+      <div className={styles["history-row"]}>
+        <div className={styles["history-row-icon"]}>
+          {window.innerWidth>=700?getIcon ():getSmallIcon()}
         </div>
-        <div className="history-row-info">
-          <span className="history-row-info-topic">{getMessage ()}</span>
+        <div className={styles["history-row-info"]}>
+          <span className={styles["history-row-info-topic"]}>{getMessage ()}</span>
           <br />
-          <span className="history-row-info-timestamp">
+          <span className={styles["history-row-info-timestamp"]}>
             {moment (props.data.actionTimestamp).format (
               'hh:mm a, MMMM DD, YYYY'
             )}
           </span>
           <br />
         </div>
-        <div className="history-row-token">
+        <div className={styles["history-row-token"]}>
           {props.data.tokenNumber}
         </div>
       </div>

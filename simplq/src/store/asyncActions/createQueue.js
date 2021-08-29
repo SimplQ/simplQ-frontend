@@ -22,7 +22,6 @@ const useCreateQueue = () => {
     if (response) {
       history.push (`/queue/${response.queueId}`);
     }
-    console.log (response);
     return response;
   });
 

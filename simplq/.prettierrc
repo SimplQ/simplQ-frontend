@@ -1,8 +1,8 @@
 {
-    "useTabs": false,
-    "printWidth": 100,
-    "singleQuote": true,
-    "bracketSpacing": true,
-    "trailingComma": "es5",
-    "quoteProps": "consistent"
+  "useTabs": false,
+  "printWidth": 100,
+  "singleQuote": true,
+  "bracketSpacing": true,
+  "trailingComma": "es5",
+  "quoteProps": "consistent"
 }

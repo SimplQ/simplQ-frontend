@@ -6,7 +6,7 @@ function isRejectedAction (action) {
   return action.type.endsWith ('rejected');
 }
 
-const appSlice = (createSlice) ({
+const appSlice = createSlice ({
   name: 'appSlice',
   initialState: {
     errorText: '',

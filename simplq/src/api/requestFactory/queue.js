@@ -26,7 +26,7 @@ export const createQueue = (queueName) => ({
 export const getQueue = (queueId) => ({method: 'get', url: `/queue/${queueId}`});
 
 /**
- * Request creator to fetch queue and belonging tokens by id
+ * Request creator to fetch list of queue-events by queue-id
  *
  * @param {string} queueId
  * @returns {Object} request - partial axios request without baseURL

@@ -17,7 +17,7 @@ import {createSlice} from '@reduxjs/toolkit';
  *
  * const actionStatus = useSelector((state) => state['deleteQueue'])
  */
-const actionStatusSlice = (createSlice) ({
+const actionStatusSlice = createSlice ({
   name: 'actionStatus',
   initialState: {},
   reducers: {},

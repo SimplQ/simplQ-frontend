@@ -1,50 +1,73 @@
-import React, {useState} from 'react'
-import {Fab, TextareaAutosize} from '@material-ui/core'
-import {ArrowBack} from '@material-ui/icons'
-import { Link } from "react-router-dom";
-import QrScan from 'react-qr-reader'
+import React, { Component } from 'react';
+import QrReader from 'react-qr-scanner';
+import styles from "./QR_Scanner.module.scss";
 
-const QRscanner = () => {
-
-    const [qrscan, setQrscan] = useState('No result');
-    const handleScan = data => {
-        if (data) {
-            setQrscan(data)
-        }
-    }
-    const handleError = err => {
-        console.error(err)
-    }
-
-    return (
-      <div>
-            <Link to="/">
-            <Fab style={{marginRight:10}} color="primary">
-                <ArrowBack/>
-            </Fab>
-            </Link>
-            <span>QR Scanner</span>
-            
-            <center>
-            <div style={{marginTop:30}}>
-                <QrScan
-                    delay={300}
-                    onError={handleError}
-                    onScan={handleScan}
-                    style={{ height: 240, width: 320 }}
-                />
-            </div>
-            </center>
-
-            <TextareaAutosize
-                style={{fontSize:18, width:320, height:100, marginTop:100}}
-                rowsMax={4}
-                defaultValue={qrscan}
-                value={qrscan}
-            />
-
-      </div>
-    );
+class QRscanner extends Component {
+  constructor(props){
+    super(props)
+    this.handleScan = this.handleScan.bind(this)
   }
-  
-  export default QRscanner;
+
+  componentDidMount(){
+    window.scrollTo('40px', '0px');
+  }
+
+  getRoute(baseurl, targeturl){
+    for(var i=0;i<baseurl.length;i++){
+      if(baseurl.charAt(i)!==targeturl.charAt(i)){
+        return {
+          verdict: false,
+          targetRoute: ""
+        }
+      }
+    }
+
+    return {
+      verdict: true,
+      targetRoute: targeturl.substring(baseurl.length)
+    }
+  }
+
+  handleScan(data){
+    if(data!=null){
+      const res = this.getRoute(window.location.origin, data.text);
+
+      if(res.verdict){
+        this.props.history.push(res.targetRoute);
+      }
+      else{
+        window.location.href = data.text;
+      }
+    }
+  }
+
+  handleError(err){
+    console.error(err)
+  }
+
+  render(){
+    return(
+      <>
+        <div className={styles["scan-window"]}>
+          <div className={styles["description-panel"]}>
+            <p className={styles["description-para"]}>Scan a QR-Code</p>
+            <p className={styles["description-para"]}>Allow access to your camera</p>
+          </div>
+          <div className={styles["qrscan-panel"]}>
+            <QrReader 
+              delay={100} 
+              onError={this.handleError} 
+              onScan={this.handleScan}
+              className={styles["scan"]}
+              legacyMode={true}
+              
+            />
+          </div>
+        </div>
+        
+      </>
+    )
+  }
+}
+
+export default QRscanner;
