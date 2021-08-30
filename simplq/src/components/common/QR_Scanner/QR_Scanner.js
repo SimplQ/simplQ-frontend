@@ -1,3 +1,5 @@
+//Component responsible for the /scanQr route
+
 import React, { Component } from 'react';
 import QrReader from 'react-qr-scanner';
 import styles from "./QR_Scanner.module.scss";
@@ -12,6 +14,8 @@ class QRscanner extends Component {
     window.scrollTo('40px', '0px');
   }
 
+  //gets the route from the url in the scan. Returns the route if the target-url 
+  //is in the same domain or redirects to a target url. 
   getRoute(baseurl, targeturl){
     for(var i=0;i<baseurl.length;i++){
       if(baseurl.charAt(i)!==targeturl.charAt(i)){
@@ -60,7 +64,6 @@ class QRscanner extends Component {
               onScan={this.handleScan}
               className={styles["scan"]}
               legacyMode={true}
-              
             />
           </div>
         </div>

@@ -10,7 +10,7 @@ import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import UpdateIcon from '@material-ui/icons/Update';
 
 export default (props) => {
-
+  //Returns the message to be displayed in the history information
   const getMessage = () => {
     var message = '';
     if (props.data.action === 'ADDED') {
@@ -33,6 +33,7 @@ export default (props) => {
     return message;
   };
 
+  //for medium-sized to larger-sized devices, function returns a larger icon
   const getIcon = () => {
     const fontSize = "180%";
     return props.data.action === 'ADDED'
@@ -52,6 +53,8 @@ export default (props) => {
                               : null;
   }
 
+  //for medium-sized to larger-sized devices, function returns a 
+  //comparatively smaller icon
   const getSmallIcon = () => {
     const fontSize = "120%";
     return props.data.action === 'ADDED'
