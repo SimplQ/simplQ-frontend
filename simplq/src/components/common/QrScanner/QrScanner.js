@@ -14,8 +14,9 @@ class QRscanner extends Component {
     window.scrollTo('40px', '0px');
   }
 
-  //gets the route from the url in the scan. Returns the route if the target-url 
-  //is in the same domain or redirects to a target url. 
+// Gets the route from the url in the scan. Returns the route if the target-url 
+// is in the same domain or redirects to a target url. 
+
   getRoute(baseurl, targeturl){
     for(var i=0;i<baseurl.length;i++){
       if(baseurl.charAt(i)!==targeturl.charAt(i)){
