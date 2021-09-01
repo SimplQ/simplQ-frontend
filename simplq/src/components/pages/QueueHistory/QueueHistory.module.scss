@@ -1,0 +1,32 @@
+@import 'components/common.scss';
+
+.queue-history-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  border-bottom: 1px solid;
+
+  .center-content {
+    width: 8.75rem;
+    display: flex;
+    flex-direction: column;
+
+    p {
+      margin-bottom: 0px;
+      margin-top: 0px !important;
+    }
+
+    .name-short {
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  .token-number {
+    font-size: 24px;
+  }
+}
