@@ -1,6 +1,6 @@
-import {createAsyncThunk} from '@reduxjs/toolkit';
-import {useHistory} from 'react-router-dom';
-import {useMakeAuthedRequest} from 'api/auth';
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { useHistory } from 'react-router-dom';
+import { useMakeAuthedRequest } from 'api/auth';
 import * as RequestFactory from 'api/requestFactory';
 
 const typePrefix = 'createQueue/action';
@@ -11,16 +11,14 @@ const typePrefix = 'createQueue/action';
  * @returns — createQueue async action creator
  */
 const useCreateQueue = () => {
-  const makeAuthedRequest = useMakeAuthedRequest ();
-  const history = useHistory ();
+  const makeAuthedRequest = useMakeAuthedRequest();
+  const history = useHistory();
 
-  const createQueue = createAsyncThunk (typePrefix, async ({queueName}) => {
-    const authedRequest = makeAuthedRequest (
-      RequestFactory.createQueue (queueName)
-    );
+  const createQueue = createAsyncThunk(typePrefix, async ({ queueName }) => {
+    const authedRequest = makeAuthedRequest(RequestFactory.createQueue(queueName));
     const response = await authedRequest;
     if (response) {
-      history.push (`/queue/${response.queueId}`);
+      history.push(`/queue/${response.queueId}`);
     }
     return response;
   });
@@ -28,6 +26,6 @@ const useCreateQueue = () => {
   return createQueue;
 };
 
-const createQueue = createAsyncThunk (typePrefix);
+const createQueue = createAsyncThunk(typePrefix);
 
-export {createQueue, useCreateQueue};
+export { createQueue, useCreateQueue };

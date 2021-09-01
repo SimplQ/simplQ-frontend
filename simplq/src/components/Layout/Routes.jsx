@@ -9,7 +9,7 @@ import HomePage from 'components/pages/Home/HomePage';
 import TermsOfService from 'components/pages/TermsOfService';
 import Navbar from 'components/common/Nav/Navbar';
 import { ErrorBoundary } from '../ErrorHandler';
-import QRscanner from 'components/common/QR_Scanner/QR_Scanner';
+import QrScanner from 'components/common/QrScanner/QrScanner';
 
 export default () => {
   return (
@@ -23,7 +23,7 @@ export default () => {
             <Route path="/j/:queueName" exact component={JoinQueueWithDetails} />
             <Route path="/token/:tokenId" exact component={TokenStatusPage} />
             <Route path="/privacy" exact component={TermsOfService} />
-            <Route path="/scanQr" exact component={QRscanner} />
+            <Route path="/scanQr" exact component={QrScanner} />
             <Route path="/pageNotFound/queueName=:queueName" exact component={PageNotFound} />
             <Route component={PageNotFound} />
           </Switch>

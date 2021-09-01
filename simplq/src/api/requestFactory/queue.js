@@ -3,28 +3,24 @@
  *
  * @returns {Object} request - partial axios request without baseURL
  */
-export const getUserQueues = () => ({method: 'get', url: '/queues'});
+ export const getUserQueues = () => ({ method: 'get', url: '/queues' });
 
-/**
- * Create a new queue with given name
- *
- * @returns {Object} request - partial axios request without baseURL
- */
-
-export const createQueue = (queueName) => ({
-  method: 'post',
-  url: '/queue',
-  data: {queueName},
-});
-
-/**
- * Request creator to fetch queue and belonging tokens by id
- *
- * @param {string} queueId
- * @returns {Object} request - partial axios request without baseURL
- */
-export const getQueue = (queueId) => ({method: 'get', url: `/queue/${queueId}`});
-
+ /**
+  * Create a new queue with given name
+  *
+  * @returns {Object} request - partial axios request without baseURL
+  */
+ 
+ export const createQueue = (queueName) => ({ method: 'post', url: '/queue', data: { queueName } });
+ 
+ /**
+  * Request creator to fetch queue and belonging tokens by id
+  *
+  * @param {string} queueId
+  * @returns {Object} request - partial axios request without baseURL
+  */
+ export const getQueue = (queueId) => ({ method: 'get', url: `/queue/${queueId}` });
+ 
 /**
  * Request creator to fetch list of queue-events by queue-id
  *
@@ -42,7 +38,7 @@ export const getQueueHistory = (queueId) => ({
  * @param {string} queueId
  * @returns {Object} request - partial axios request without baseURL
  */
-export const getQueueInfo = (queueId) => ({
+ export const getQueueInfo = (queueId) => ({
   method: 'get',
   url: `/queue/status?queueId=${queueId}`,
 });
@@ -64,10 +60,7 @@ export const getQueueInfoByName = (queueName) => ({
  * @param {string} queueId
  * @returns {Object} request - partial axios request without baseURL
  */
-export const deleteQueue = (queueId) => ({
-  method: 'delete',
-  url: `/queue/${queueId}`,
-});
+export const deleteQueue = (queueId) => ({ method: 'delete', url: `/queue/${queueId}` });
 
 /**
  * Request creator to set the queue status
@@ -79,7 +72,7 @@ export const deleteQueue = (queueId) => ({
 export const setQueueStatus = (queueId, status) => ({
   method: 'post',
   url: `/queue/${queueId}`,
-  data: {status},
+  data: { status },
 });
 
 /**

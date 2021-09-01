@@ -1,7 +1,7 @@
-import {createSlice} from '@reduxjs/toolkit';
-import {getUserQueues, deleteQueue, createQueue} from 'store/asyncActions';
+import { createSlice } from '@reduxjs/toolkit';
+import { getUserQueues, deleteQueue, createQueue } from 'store/asyncActions';
 
-const queuesSlice = createSlice ({
+const queuesSlice = createSlice({
   name: 'queues',
   initialState: [],
   // No reducers for now
@@ -13,15 +13,15 @@ const queuesSlice = createSlice ({
     },
     // remove deleted queue from queues list
     [deleteQueue.fulfilled]: (state, action) => {
-      const {queueId} = action.payload;
-      const index = state.findIndex ((queue) => queue.queueId === queueId);
+      const { queueId } = action.payload;
+      const index = state.findIndex((queue) => queue.queueId === queueId);
       if (index > -1) {
-        state.splice (index, 1);
+        state.splice(index, 1);
       }
     },
     // add newly created queue to queues list
     [createQueue.fulfilled]: (state, action) => {
-      state.push (action.payload);
+      state.push(action.payload);
     },
   },
 });

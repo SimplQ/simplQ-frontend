@@ -1,6 +1,6 @@
 import './scrollingOperation.css';
 
-export const smoothScrollTo = targetElement => {
+export const smoothScrollTo = (targetElement) => {
   // offset to avoid the sticky header on top to block the "Create a Queue at the click of a button" text
   const offset = 45;
   // setting the exact position on the document to scroll to
@@ -20,7 +20,7 @@ export const smoothScrollTo = targetElement => {
   window.scrollTo('40px', offsetPosition);
 };
 
-export const smoothScrollToHomePageTop = history => {
+export const smoothScrollToHomePageTop = (history) => {
   const element = document.getElementById('target_top');
   if (element) {
     smoothScrollTo(element);

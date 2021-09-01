@@ -1,8 +1,8 @@
 /* eslint-disable no-param-reassign */
-import {createSlice} from '@reduxjs/toolkit';
-import {getToken} from 'store/asyncActions';
+import { createSlice } from '@reduxjs/toolkit';
+import { getToken } from 'store/asyncActions';
 
-const tokenSlice = createSlice ({
+const tokenSlice = createSlice({
   name: 'token',
   initialState: {},
   reducers: {},

@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import QrReader from 'react-qr-scanner';
-import styles from "./QR_Scanner.module.scss";
+import styles from "./QrScanner.module.scss";
 
 class QRscanner extends Component {
   constructor(props){
