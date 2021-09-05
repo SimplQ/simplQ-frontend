@@ -1,4 +1,4 @@
-import './scrollingOperation.css';
+import './scrollingOperation.module.scss';
 
 export const smoothScrollTo = (targetElement) => {
   // offset to avoid the sticky header on top to block the "Create a Queue at the click of a button" text
