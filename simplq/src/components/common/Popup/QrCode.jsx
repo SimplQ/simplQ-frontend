@@ -14,7 +14,7 @@ const ComponentToPrint = forwardRef(({ style, url, queueName }, ref) => {
       <h1>
         <u>{getSentenceCaseText(queueName)}</u>
       </h1>
-      <h2>Scan this QR to get your position in the line</h2>
+      <span>Scan this QR to get your position in the line</span>
       <QRCode value={url} />
       <p style={{ textAlign: 'center' }}>
         {'or visit '}
