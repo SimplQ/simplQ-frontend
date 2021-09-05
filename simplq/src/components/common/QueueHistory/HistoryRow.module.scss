@@ -1,0 +1,82 @@
+.history-row {
+    display: block;
+    padding: 0.3rem;
+    border-bottom: 1px solid black;
+    height: 3.75rem;
+}
+
+.history-row-icon {
+    /*background-color: red;*/
+    text-align: center;
+    display: inline;
+    float: left;
+    width: 3rem;
+    height: 3.125rem;
+    padding: 2%;
+    line-height: 3.125rem;
+}
+
+.history-row-info {
+    /*background-color: blue;*/
+    display: inline;
+    float: left;
+    width: 16.5rem;
+    height: 3.125rem;
+    padding-top: 2%;
+    padding-left: 1.25rem;
+}
+
+.history-row-info-topic {
+    font-size: 125%;
+    font-weight: bolder;
+}
+
+.history-row-info-timestamp {
+    font-size: 90%;
+    font-weight: 300;
+}
+
+.history-row-token {
+    text-align: center;
+    /*background-color: green;*/
+    display: inline;
+    float: left;
+    width: 2.8rem;
+    height: 3.125rem;
+    padding: 2.5%;
+    line-height: 1.75rem;
+    font-weight: 900;
+    font-size: 150%;
+}
+
+@media (max-width: 440px) {
+    .history-row {
+        height: 6.75rem;
+        padding: 0.2rem;
+    }
+    
+    .history-row-icon {
+        /*background-color: red;*/
+        width: 2.5rem;
+        height: 6.3rem;
+        line-height: 6rem;
+    }
+    
+    .history-row-info {
+        /*background-color: blue;*/
+        width: 12rem;
+    }
+    
+    .history-row-info-topic {
+        font-size: 100%;
+    }
+    
+    .history-row-info-timestamp {
+        font-size: 70%;
+    }
+    
+    .history-row-token {
+        /*background-color: green;*/
+        padding-left: 1.5rem;
+    }
+}
