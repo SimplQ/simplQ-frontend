@@ -1,3 +1,5 @@
+import './scrollingOperation.module.scss';
+
 export const smoothScrollTo = (targetElement) => {
   // offset to avoid the sticky header on top to block the "Create a Queue at the click of a button" text
   const offset = 45;
@@ -7,10 +9,15 @@ export const smoothScrollTo = (targetElement) => {
   const elementPosition = elementRect - bodyRect;
   const offsetPosition = elementPosition - offset;
   // scroll to the exact position
-  window.scrollTo({
+
+  //console.log ('checking scrollTo', offsetPosition);
+  /*window.scrollTo ({
     top: offsetPosition,
+    left: '40px',
     behavior: 'smooth',
-  });
+  });*/
+  //$ ('html, body').animate ({scrollTop: $ (hash).offset ().top - 100}, 800);
+  window.scrollTo('40px', offsetPosition);
 };
 
 export const smoothScrollToHomePageTop = (history) => {

@@ -6,20 +6,31 @@
 export const getUserQueues = () => ({ method: 'get', url: '/queues' });
 
 /**
- * Create a new queue with given name
- *
- * @returns {Object} request - partial axios request without baseURL
- */
-
+* Create a new queue with given name
+*
+* @returns {Object} request - partial axios request without baseURL
+*/
+ 
 export const createQueue = (queueName) => ({ method: 'post', url: '/queue', data: { queueName } });
-
+ 
 /**
- * Request creator to fetch queue and belonging tokens by id
+* Request creator to fetch queue and belonging tokens by id
+*
+* @param {string} queueId
+* @returns {Object} request - partial axios request without baseURL
+*/
+export const getQueue = (queueId) => ({ method: 'get', url: `/queue/${queueId}` });
+ 
+/**
+ * Request creator to fetch list of queue-events by queue-id
  *
  * @param {string} queueId
  * @returns {Object} request - partial axios request without baseURL
  */
-export const getQueue = (queueId) => ({ method: 'get', url: `/queue/${queueId}` });
+export const getQueueHistory = (queueId) => ({
+  method: 'get',
+  url: `/queue/${queueId}/events`,
+});
 
 /**
  * Request creator to fetch queue info by id

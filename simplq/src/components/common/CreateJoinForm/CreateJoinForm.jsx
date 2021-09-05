@@ -41,6 +41,10 @@ const CreateJoinForm = (props) => {
     }
   };
 
+  const handleScanAnyQR = (e) => {
+    history.push('/scanQr');
+  };
+
   return (
     <div data-aos="zoom-in" className={styles['create-join-form']}>
       <div className={styles['input-box']}>
@@ -61,6 +65,9 @@ const CreateJoinForm = (props) => {
           </div>
           <div>
             <StandardButton onClick={handleJoinClick}>Know Your Position</StandardButton>
+          </div>
+          <div>
+            <StandardButton onClick={handleScanAnyQR}>Scan Any QR</StandardButton>
           </div>
         </LoadingStatus>
       </div>
