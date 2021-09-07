@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectQueueName } from 'store/selectedQueue';
 import Ribbon from 'components/common/Ribbon';
 import Tour from 'components/common/Tour';
-import { useGetSelectedQueue } from 'store/asyncActions';
+import { useGetSelectedQueue, useGetSelectedQueueHistory } from 'store/asyncActions';
 import { selectQueueInfo } from 'store/queueInfo';
 import { setErrorPopupMessage } from 'store/appSlice';
 import { useHistory } from 'react-router';
@@ -41,12 +41,14 @@ const AdminPageView = (props) => {
   const description = queueName && 'Ready to share';
   const dispatch = useDispatch();
   const getSelectedQueue = useGetSelectedQueue();
+  const getSelectedQueueHistory = useGetSelectedQueueHistory();
 
   const [toursteps, setToursteps] = useState(getToursteps(window.innerHeight));
   const { isAuthenticated } = useAuth0();
   const update = useCallback(() => {
     clearTimeout(timeoutId);
     dispatch(getSelectedQueue({ queueId }));
+    dispatch(getSelectedQueueHistory({ queueId }));
     timeoutId = setTimeout(update, TIMEOUT);
     // TODO: Check if this is good solution.
     /* eslint-disable-next-line */

@@ -1,29 +1,36 @@
 .history-row {
-    display: block;
-    padding: 0.3rem;
+    background-image: radial-gradient(circle, #ffffff, #ffffff, 
+                #ffffff, #fdfdfd, #f3f3f3);
+                
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    padding: 0.2rem;
     border-bottom: 1px solid black;
-    height: 3.75rem;
 }
 
 .history-row-icon {
-    /*background-color: red;*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    display: inline;
-    float: left;
     width: 3rem;
-    height: 3.125rem;
     padding: 2%;
-    line-height: 3.125rem;
+    padding-left: 5%;
 }
 
 .history-row-info {
-    /*background-color: blue;*/
-    display: inline;
     float: left;
     width: 16.5rem;
-    height: 3.125rem;
     padding-top: 2%;
     padding-left: 1.25rem;
+    padding-bottom: 2%;
+}
+
+.history-row-info-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
 
 .history-row-info-topic {
@@ -34,37 +41,26 @@
 .history-row-info-timestamp {
     font-size: 90%;
     font-weight: 300;
+    margin-top: 1%;
 }
 
 .history-row-token {
     text-align: center;
-    /*background-color: green;*/
-    display: inline;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     float: left;
-    width: 2.8rem;
-    height: 3.125rem;
     padding: 2.5%;
-    line-height: 1.75rem;
+    margin-left: 5%;
     font-weight: 900;
     font-size: 150%;
 }
 
 @media (max-width: 440px) {
-    .history-row {
-        height: 6.75rem;
-        padding: 0.2rem;
-    }
-    
-    .history-row-icon {
-        /*background-color: red;*/
-        width: 2.5rem;
-        height: 6.3rem;
-        line-height: 6rem;
-    }
     
     .history-row-info {
-        /*background-color: blue;*/
-        width: 12rem;
+        width: 11rem;
     }
     
     .history-row-info-topic {
@@ -76,7 +72,6 @@
     }
     
     .history-row-token {
-        /*background-color: green;*/
-        padding-left: 1.5rem;
+        padding-right: 1rem;
     }
 }

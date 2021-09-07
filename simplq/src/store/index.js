@@ -4,6 +4,7 @@ import queueInfoReducer from 'store/queueInfo';
 import actionStatusReducer from 'store/actionStatus';
 import tokenReducer from 'store/token';
 import selectedQueueReducer from 'store/selectedQueue';
+import selectedQueueHistoryReducer from 'store/selectedQueueHistory';
 import appReducer from './appSlice';
 
 export const rootReducer = combineReducers({
@@ -13,6 +14,7 @@ export const rootReducer = combineReducers({
   token: tokenReducer,
   actionStatus: actionStatusReducer,
   selectedQueue: selectedQueueReducer,
+  selectedQueueHistory: selectedQueueHistoryReducer,
 });
 
 export const store = configureStore({
