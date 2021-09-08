@@ -11,6 +11,8 @@ import {
   Button,
   Grow,
   MenuItem,
+  Divider,
+  Typography,
 } from '@material-ui/core';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import {
@@ -97,7 +99,10 @@ const ShareQueue = ({ queueName, tourTag }) => {
             <Paper>
               <ClickAwayListener onClickAway={handleClose}>
                 <MenuList>
-                  Share
+                  <Typography>
+                    <b>Share</b>
+                  </Typography>
+                  <Divider />
                   <MenuItem>
                     <FacebookShareButton
                       url={link}
@@ -105,15 +110,17 @@ const ShareQueue = ({ queueName, tourTag }) => {
                       className={styles['share-button']}
                     >
                       <FacebookIcon size={24} round className={styles['share-icon']} />
-                      Facebook
+                      <Typography>Facebook</Typography>
                     </FacebookShareButton>
                   </MenuItem>
+                  <Divider />
                   <MenuItem>
                     <TwitterShareButton url={link} title={quote} className={styles['share-button']}>
                       <TwitterIcon size={24} round className={styles['share-icon']} />
-                      Twitter
+                      <Typography>Twitter</Typography>
                     </TwitterShareButton>
                   </MenuItem>
+                  <Divider />
                   <MenuItem>
                     <WhatsappShareButton
                       url={link}
@@ -121,7 +128,7 @@ const ShareQueue = ({ queueName, tourTag }) => {
                       className={styles['share-button']}
                     >
                       <WhatsappIcon size={24} round className={styles['share-icon']} />
-                      Whatsapp
+                      <Typography>Whatsapp</Typography>
                     </WhatsappShareButton>
                   </MenuItem>
                 </MenuList>
