@@ -1,9 +1,9 @@
 import React from 'react';
-import { Dialog } from '@material-ui/core';
+import Modal from '@material-ui/core/Modal';
 import styles from './Modal.module.scss';
 
 export default ({ open, onClose, children }) => (
-  <Dialog PaperProps={{ className: styles['content'] }} open={open} onClose={onClose}>
-    {children}
-  </Dialog>
+  <Modal className={styles['root']} open={open} onClose={onClose}>
+    <div className={styles['content']}>{children}</div>
+  </Modal>
 );
