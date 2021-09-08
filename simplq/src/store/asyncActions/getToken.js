@@ -19,15 +19,13 @@ const useGetToken = () => {
       clearTimeout(timer);
     }
     const authedRequest = makeAuthedRequest(RequestFactory.getToken(tokenId));
-    const response = await authedRequest.then((resp) => {
+    return await authedRequest.then((resp) => {
       if (refresh === true) {
         timer = setTimeout(() => dispatch(getToken({ tokenId, refresh })), REFRESH_INTERVAL);
       }
       return resp;
     });
-    return response;
-  });
-
+  
   return getToken;
 };
 
