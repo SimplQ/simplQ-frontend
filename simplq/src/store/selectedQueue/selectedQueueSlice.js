@@ -48,8 +48,6 @@ export default selectedQueueSlice.reducer;
 
 export const selectQueueName = (state) => state.selectedQueue.queueName;
 
-export const selectRemovedTokens = (state) => state.selectedQueue.removedTokens;
-
 export const selectTokens = (state) => state.selectedQueue.tokens;
 
 export const selectQueueStatus = (state) => state.selectedQueue.status;

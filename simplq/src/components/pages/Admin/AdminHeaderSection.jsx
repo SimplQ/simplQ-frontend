@@ -7,6 +7,7 @@ import Header from 'components/common/Header';
 import StandardButton from 'components/common/Button';
 import QRCode from 'components/common/Popup/QrCode';
 import { useGetSelectedQueue } from 'store/asyncActions';
+import { useGetSelectedQueueHistory } from 'store/asyncActions';
 import ShareQueue from './ShareQueue';
 import styles from './admin.module.scss';
 
@@ -14,9 +15,11 @@ const AdminHeaderSection = ({ description, queueName, queueId }) => {
   const [showQrCodeModal, setShowQrCodeModal] = useState(false);
   const dispatch = useDispatch();
   const getSelectedQueue = useGetSelectedQueue();
+  const getSelectedQueueHistory = useGetSelectedQueueHistory();
 
   const handleRefreshClick = () => {
     dispatch(getSelectedQueue({ queueId }));
+    dispatch(getSelectedQueueHistory({ queueId }));
   };
 
   const generateQrCOde = useCallback(() => {
