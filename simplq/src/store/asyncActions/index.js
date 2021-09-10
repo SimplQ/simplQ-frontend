@@ -11,6 +11,7 @@ export { getQueueInfo, useGetQueueInfo } from './getQueueInfo';
 export { getQueueInfoByName, useGetQueueInfoByName } from './getQueueInfoByName';
 export { joinQueue, useJoinQueue } from './joinQueue';
 export { getSelectedQueue, useGetSelectedQueue } from './getSelectedQueue';
+export { getSelectedQueueHistory, useGetSelectedQueueHistory } from './getSelectedQueueHistory';
 export { createQueue, useCreateQueue } from './createQueue';
 export { setQueueStatus, useSetQueueStatus } from './setQueueStatus';
 export { updateQueueSettings, useUpdateQueueSettings } from './updateQueueSettings';

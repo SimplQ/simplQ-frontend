@@ -3,7 +3,8 @@ import HistoryIcon from '@material-ui/icons/History';
 import SidePanelItem from 'components/common/SidePanel/SidePanelItem';
 import QueueHistory from 'components/common/QueueHistory/QueueHistory';
 import TablePagination from '@material-ui/core/TablePagination';
-import Data from 'data/QueueEvents.json';
+import { useSelector } from 'react-redux';
+import { selectQueueHistoryEvents } from 'store/selectedQueueHistory';
 
 export default (props) => {
   const [page, setPage] = React.useState(0);
@@ -12,6 +13,8 @@ export default (props) => {
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
+
+  const Data = useSelector(selectQueueHistoryEvents).events;
 
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(parseInt(event.target.value, 10));
