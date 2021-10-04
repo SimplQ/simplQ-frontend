@@ -53,6 +53,7 @@ export default ({ queueId }) => {
       <DetailRow title="Available Slots:" value={availableSlots} large valueId="slots-value" />
       <DetailRow title="Last called token number:" value={lastRemovedTokenNumber} />
       <DetailRow title="People currently in queue:" value={numberOfActiveTokens} large />
+      <DetailRow title="Total number of people joined in queue:" value={totalNumberOfTokens} />
       <DetailRow title="Queue creation time:" value={creationTime} />
     </div>
   );
