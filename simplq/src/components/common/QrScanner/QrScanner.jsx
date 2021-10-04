@@ -11,10 +11,10 @@ export default () => {
 
   const handleScan = (data) => {
     if (data != null) {
-      const res = this.getRoute(window.location.origin, data.text);
+      const res = getRoute(window.location.origin, data.text);
 
       if (res.verdict) {
-        this.props.history.push(res.targetRoute);
+        props.history.push(res.targetRoute);
       } else {
         window.location.href = data.text;
       }
