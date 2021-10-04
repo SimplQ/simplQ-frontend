@@ -1,77 +1,75 @@
 .history-row {
-    background-image: radial-gradient(circle, #ffffff, #ffffff, 
-                #ffffff, #fdfdfd, #f3f3f3);
-                
-    display: flex;
-    flex-direction: row;
-    align-items: stretch;
-    padding: 0.2rem;
-    border-bottom: 1px solid black;
+  background-image: radial-gradient(circle, #ffffff, #ffffff, #ffffff, #fdfdfd, #f3f3f3);
+
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  padding: 0.2rem;
+  border-bottom: 1px solid black;
 }
 
 .history-row-icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    width: 3rem;
-    padding: 2%;
-    padding-left: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 3rem;
+  padding: 2%;
+  padding-left: 5%;
 }
 
 .history-row-info {
-    float: left;
-    width: 16.5rem;
-    padding-top: 2%;
-    padding-left: 1.25rem;
-    padding-bottom: 2%;
+  float: left;
+  width: 16.5rem;
+  padding-top: 2%;
+  padding-left: 1.25rem;
+  padding-bottom: 2%;
 }
 
-.history-row-info-content{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
+.history-row-info-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 
 .history-row-info-topic {
-    font-size: 125%;
-    font-weight: bolder;
+  font-size: 125%;
+  font-weight: bolder;
 }
 
 .history-row-info-timestamp {
-    font-size: 90%;
-    font-weight: 300;
-    margin-top: 1%;
+  font-size: 90%;
+  font-weight: 300;
+  margin-top: 1%;
 }
 
 .history-row-token {
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    float: left;
-    padding: 2.5%;
-    margin-left: 5%;
-    font-weight: 900;
-    font-size: 150%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  float: left;
+  padding: 2.5%;
+  margin-left: 5%;
+  font-weight: 900;
+  font-size: 150%;
 }
 
 @media (max-width: 440px) {
-    
-    .history-row-info {
-        width: 11rem;
-    }
-    
-    .history-row-info-topic {
-        font-size: 100%;
-    }
-    
-    .history-row-info-timestamp {
-        font-size: 70%;
-    }
-    
-    .history-row-token {
-        padding-right: 1rem;
-    }
+  .history-row-info {
+    width: 11rem;
+  }
+
+  .history-row-info-topic {
+    font-size: 100%;
+  }
+
+  .history-row-info-timestamp {
+    font-size: 70%;
+  }
+
+  .history-row-token {
+    padding-right: 1rem;
+  }
 }

@@ -59,3 +59,4 @@ node_modules/
 # Configuration will be generated
 simplq/src/config.js
 simplq/.vscode/launch.json
+
