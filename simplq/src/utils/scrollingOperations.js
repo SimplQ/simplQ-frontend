@@ -10,13 +10,13 @@ export const smoothScrollTo = (targetElement) => {
   const offsetPosition = elementPosition - offset;
   // scroll to the exact position
 
-  //console.log ('checking scrollTo', offsetPosition);
-  /*window.scrollTo ({
+  // console.log ('checking scrollTo', offsetPosition);
+  /* window.scrollTo ({
     top: offsetPosition,
     left: '40px',
     behavior: 'smooth',
-  });*/
-  //$ ('html, body').animate ({scrollTop: $ (hash).offset ().top - 100}, 800);
+  }); */
+  // $ ('html, body').animate ({scrollTop: $ (hash).offset ().top - 100}, 800);
   window.scrollTo('40px', offsetPosition);
 };
 

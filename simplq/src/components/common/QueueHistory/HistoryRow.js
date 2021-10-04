@@ -1,5 +1,4 @@
 import React from 'react';
-import styles from './HistoryRow.module.scss';
 import moment from 'moment';
 import AddIcon from '@material-ui/icons/Add';
 import NotificationsIcon from '@material-ui/icons/Notifications';
@@ -8,20 +7,21 @@ import TouchAppIcon from '@material-ui/icons/TouchApp';
 import PauseIcon from '@material-ui/icons/Pause';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import UpdateIcon from '@material-ui/icons/Update';
+import styles from './HistoryRow.module.scss';
 
 export default (props) => {
-  //Returns the message to be displayed in the history information
+  // Returns the message to be displayed in the history information
 
   const getMessage = () => {
-    var message = '';
+    let message = '';
     if (props.data.eventType === 'TOKEN_ADDED') {
-      message = props.data.tokenName.trim () + ' was added';
+      message = `${props.data.tokenName.trim()} was added`;
     } else if (props.data.eventType === 'TOKEN_REMOVED') {
-      message = props.data.tokenName.trim () + ' was removed';
+      message = `${props.data.tokenName.trim()} was removed`;
     } else if (props.data.eventType === 'NOTIFIED') {
-      message = props.data.tokenName.trim () + ' was notified';
+      message = `${props.data.tokenName.trim()} was notified`;
     } else if (props.data.eventType === 'JOINED') {
-      message = props.data.tokenName.trim () + ' joined the queue';
+      message = `${props.data.tokenName.trim()} joined the queue`;
     } else if (props.data.eventType === 'PAUSED') {
       message = 'The queue was paused';
     } else if (props.data.eventType === 'RESUMED') {
@@ -34,69 +34,64 @@ export default (props) => {
     return message;
   };
 
-  //for medium-sized to larger-sized devices, function returns a larger icon
+  // for medium-sized to larger-sized devices, function returns a larger icon
   const getIcon = () => {
-    const fontSize = "180%";
-    return props.data.eventType === 'TOKEN_ADDED'
-      ? <AddIcon  style={{fontSize: fontSize}} />
-      : props.data.eventType === 'TOKEN_REMOVED'
-          ? <DeleteIcon style={{fontSize: fontSize}} />
-          : props.data.eventType === 'NOTIFIED'
-              ? <NotificationsIcon style={{fontSize: fontSize}} />
-              : props.data.eventType === 'JOINED'
-                  ? <TouchAppIcon style={{fontSize: fontSize}} />
-                  : props.data.eventType === 'PAUSED'
-                      ? <PauseIcon style={{fontSize: fontSize}} />
-                      : props.data.eventType === 'RESUMED'
-                          ? <PlayArrowIcon style={{fontSize: fontSize}}/>
-                          : props.data.eventType === 'UPDATED'
-                              ? <UpdateIcon style={{fontSize: fontSize}} />
-                              : null;
-  }
+    const fontSize = '180%';
+    return props.data.eventType === 'TOKEN_ADDED' ? (
+      <AddIcon style={{ fontSize }} />
+    ) : props.data.eventType === 'TOKEN_REMOVED' ? (
+      <DeleteIcon style={{ fontSize }} />
+    ) : props.data.eventType === 'NOTIFIED' ? (
+      <NotificationsIcon style={{ fontSize }} />
+    ) : props.data.eventType === 'JOINED' ? (
+      <TouchAppIcon style={{ fontSize }} />
+    ) : props.data.eventType === 'PAUSED' ? (
+      <PauseIcon style={{ fontSize }} />
+    ) : props.data.eventType === 'RESUMED' ? (
+      <PlayArrowIcon style={{ fontSize }} />
+    ) : props.data.eventType === 'UPDATED' ? (
+      <UpdateIcon style={{ fontSize }} />
+    ) : null;
+  };
 
-  //for medium-sized to larger-sized devices, function returns a 
-  //comparatively smaller icon
+  // for medium-sized to larger-sized devices, function returns a
+  // comparatively smaller icon
   const getSmallIcon = () => {
-    const fontSize = "120%";
-    return props.data.eventType === 'TOKEN_ADDED'
-      ? <AddIcon  style={{fontSize: fontSize}} />
-      : props.data.eventType === 'TOKEN_REMOVED'
-          ? <DeleteIcon style={{fontSize: fontSize}} />
-          : props.data.eventType === 'NOTIFIED'
-              ? <NotificationsIcon style={{fontSize: fontSize}} />
-              : props.data.eventType === 'JOINED'
-                  ? <TouchAppIcon style={{fontSize: fontSize}} />
-                  : props.data.eventType === 'PAUSED'
-                      ? <PauseIcon style={{fontSize: fontSize}} />
-                      : props.data.eventType === 'RESUMED'
-                          ? <PlayArrowIcon style={{fontSize: fontSize}}/>
-                          : props.data.eventType === 'UPDATED'
-                              ? <UpdateIcon style={{fontSize: fontSize}} />
-                              : null;
-  }
+    const fontSize = '120%';
+    return props.data.eventType === 'TOKEN_ADDED' ? (
+      <AddIcon style={{ fontSize }} />
+    ) : props.data.eventType === 'TOKEN_REMOVED' ? (
+      <DeleteIcon style={{ fontSize }} />
+    ) : props.data.eventType === 'NOTIFIED' ? (
+      <NotificationsIcon style={{ fontSize }} />
+    ) : props.data.eventType === 'JOINED' ? (
+      <TouchAppIcon style={{ fontSize }} />
+    ) : props.data.eventType === 'PAUSED' ? (
+      <PauseIcon style={{ fontSize }} />
+    ) : props.data.eventType === 'RESUMED' ? (
+      <PlayArrowIcon style={{ fontSize }} />
+    ) : props.data.eventType === 'UPDATED' ? (
+      <UpdateIcon style={{ fontSize }} />
+    ) : null;
+  };
 
   return (
-    <React.Fragment>
-      <section className={styles["history-row"]}>
-        <div className={styles["history-row-icon"]}>
-          {window.innerWidth>=700?getIcon ():getSmallIcon()}
+    <>
+      <section className={styles['history-row']}>
+        <div className={styles['history-row-icon']}>
+          {window.innerWidth >= 700 ? getIcon() : getSmallIcon()}
         </div>
-        <div className={styles["history-row-info"]} id="history-row-info">
-          <div className={styles["history-row-info-content"]}>
-            <span className={styles["history-row-info-topic"]}>{getMessage ()}</span>
-            
-            <span className={styles["history-row-info-timestamp"]}>
-              {moment (props.data.eventTimestamp).format (
-                'hh:mm a, MMMM DD, YYYY'
-              )}
+        <div className={styles['history-row-info']} id="history-row-info">
+          <div className={styles['history-row-info-content']}>
+            <span className={styles['history-row-info-topic']}>{getMessage()}</span>
+
+            <span className={styles['history-row-info-timestamp']}>
+              {moment(props.data.eventTimestamp).format('hh:mm a, MMMM DD, YYYY')}
             </span>
-            
           </div>
         </div>
-        <div className={styles["history-row-token"]}>
-          {props.data.tokenNumber}
-        </div>
+        <div className={styles['history-row-token']}>{props.data.tokenNumber}</div>
       </section>
-    </React.Fragment>
+    </>
   );
-}
+};
