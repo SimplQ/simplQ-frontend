@@ -46,4 +46,3 @@ export const getTokenByContactNumber = (queueId, contactNumber) => ({
   method: 'get',
   url: `/token?queueId=${queueId}&contactNumber=${encodeURIComponent(contactNumber)}`,
 });
-
