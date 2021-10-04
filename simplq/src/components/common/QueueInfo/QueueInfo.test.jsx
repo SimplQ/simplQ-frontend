@@ -11,7 +11,7 @@ jest.mock('store/asyncActions', () => ({
 }));
 jest.mock('store/selectedQueue', () => ({}));
 jest.mock('store/queueInfo', () => ({
-  selectQueueInfo: { maxQueueCapacity: 57, numberOfActiveTokens: 24 },
+  selectQueueInfo: { maxQueueCapacity: 57, numberOfActiveTokens: 24, lastRemovedTokenNumber: 32 },
 }));
 
 describe('Queue info', () => {
