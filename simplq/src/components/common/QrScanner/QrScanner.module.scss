@@ -1,85 +1,85 @@
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 .scan-window {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 100%;
 }
 
 .description-panel {
-    width: 50%;
-    float: left;
-    margin-top: 8rem;
-    padding-top: 5rem;
-    padding: 2rem;
+  width: 50%;
+  float: left;
+  margin-top: 8rem;
+  padding-top: 5rem;
+  padding: 2rem;
 }
 
-.description-para{
-    text-align: center;
-    font-size: 140%;
-    font-weight: bolder;
+.description-para {
+  text-align: center;
+  font-size: 140%;
+  font-weight: bolder;
 }
 
-.qrscan-panel{
-    float: right;
-    margin-top: 3rem;
+.qrscan-panel {
+  float: right;
+  margin-top: 3rem;
 }
 
-.scan{
-    height: 22rem;
-    width: 22rem;
-    padding: 2rem;
+.scan {
+  height: 22rem;
+  width: 22rem;
+  padding: 2rem;
 }
 
 @media (max-width: 800px) {
-    .scan-window {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-    }
-    
-    .description-panel {
-        width: 100%;
-        margin-top: 5rem;
-        padding-top: 2rem;
-        padding: 0.5rem;
-    }
-    
-    .qrscan-panel{
-        margin-top: 0;
-        text-align: center;
-    }
+  .scan-window {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
 
-    .scan{
-        padding: 2%;
-    }
+  .description-panel {
+    width: 100%;
+    margin-top: 5rem;
+    padding-top: 2rem;
+    padding: 0.5rem;
+  }
+
+  .qrscan-panel {
+    margin-top: 0;
+    text-align: center;
+  }
+
+  .scan {
+    padding: 2%;
+  }
 }
 
 @media (max-width: 500px) {
-    .scan-window {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-    }
-    
-    .description-panel {
-        width: 100%;
-        margin-top: 5rem;
-        padding-top: 2rem;
-        padding: 0.5rem;
-    }
-    
-    .qrscan-panel{
-        text-align: center;
-        margin-top: 0;
-    }
+  .scan-window {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
 
-    .scan{
-        height: 80%;
-        width: 80%;
-        padding: 2%;
-    }
+  .description-panel {
+    width: 100%;
+    margin-top: 5rem;
+    padding-top: 2rem;
+    padding: 0.5rem;
+  }
+
+  .qrscan-panel {
+    text-align: center;
+    margin-top: 0;
+  }
+
+  .scan {
+    height: 80%;
+    width: 80%;
+    padding: 2%;
+  }
 }
