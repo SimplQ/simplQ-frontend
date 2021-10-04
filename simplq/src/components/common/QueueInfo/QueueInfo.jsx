@@ -35,6 +35,7 @@ export default ({ queueId }) => {
     numberOfActiveTokens,
     totalNumberOfTokens,
     maxQueueCapacity,
+    lastRemovedTokenNumber,
   } = useSelector(selectQueueInfo);
 
   const availableSlots = maxQueueCapacity - numberOfActiveTokens;
@@ -50,6 +51,7 @@ export default ({ queueId }) => {
     <div className={styles['detail']}>
       <DetailRow title="Queue status:" value={status} />
       <DetailRow title="Available Slots:" value={availableSlots} large valueId="slots-value" />
+      <DetailRow title="Last token number that was called:" value={lastRemovedTokenNumber} />
       <DetailRow title="People currently in queue:" value={numberOfActiveTokens} large />
       <DetailRow title="Total number of people joined in queue:" value={totalNumberOfTokens} />
       <DetailRow title="Queue creation time:" value={creationTime} />
