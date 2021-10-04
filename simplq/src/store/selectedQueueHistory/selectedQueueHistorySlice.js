@@ -1,9 +1,7 @@
 /* eslint-disable no-param-reassign */
 
 import { createSlice } from '@reduxjs/toolkit';
-import {
-  getSelectedQueueHistory,
-} from 'store/asyncActions';
+import { getSelectedQueueHistory } from 'store/asyncActions';
 
 const selectedQueueHistorySlice = createSlice({
   name: 'selectedQueueHistory',
