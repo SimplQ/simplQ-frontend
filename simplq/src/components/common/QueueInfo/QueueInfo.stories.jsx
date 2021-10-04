@@ -17,6 +17,7 @@ Active.args = {
     queueId: '49b1ffa6-87fd-4a46-b95f-5588711cecca',
     queueName: 'aa',
     status: 'ACTIVE',
+    lastRemovedTokenNumber: 3,
     numberOfActiveTokens: 0,
     totalNumberOfTokens: 0,
     queueCreationTimestamp: '2020-12-15T08:07:55.374+0000',
