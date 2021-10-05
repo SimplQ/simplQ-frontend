@@ -5,6 +5,7 @@ import QueueHistory from 'components/common/QueueHistory/QueueHistory';
 import TablePagination from '@material-ui/core/TablePagination';
 import { useSelector } from 'react-redux';
 import { selectQueueHistoryEvents } from 'store/selectedQueueHistory';
+import styles from './QueueHistoryPanel.module.scss';
 
 export default (props) => {
   const [page, setPage] = React.useState(0);
@@ -34,6 +35,7 @@ export default (props) => {
       />
       <div>
         <TablePagination
+          className={styles['tablePaginationContainer']}
           component="div"
           rowsPerPageOptions={[5, 10, 25, 50, 100]}
           count={Data.length}

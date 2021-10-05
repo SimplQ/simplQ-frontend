@@ -1,0 +1,9 @@
+@import 'components/common.scss';
+
+.tablePaginationContainer {
+  > div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
