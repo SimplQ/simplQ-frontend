@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 import QrReader from 'react-qr-scanner';
 import styles from './QrScanner.module.scss';
 
-export default () => {
+export default ({history}) => {
   useEffect(() => {
     window.scrollTo('40px', '0px');
   });
@@ -14,7 +14,7 @@ export default () => {
       const res = getRoute(window.location.origin, data.text);
 
       if (res.verdict) {
-        props.history.push(res.targetRoute);
+        history.push(res.targetRoute);
       } else {
         window.location.href = data.text;
       }
