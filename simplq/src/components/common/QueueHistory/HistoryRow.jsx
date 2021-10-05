@@ -34,7 +34,7 @@ export default (props) => {
     return message;
   };
 
-    const getIcon = (fontSize = '180%') => {
+  const getIcon = (fontSize = '180%') => {
     let icon;
     if (props.data.eventType === 'TOKEN_ADDED') {
       icon = <AddIcon fontSize={fontSize} />;
