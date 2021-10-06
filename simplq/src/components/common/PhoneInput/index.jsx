@@ -19,11 +19,14 @@ export default (props) => {
           country.countryCode
         );
         setInvalidContact(!isValidNumber);
+        props.setInvalidContact(!isValidNumber);
       } catch (error) {
         setInvalidContact(true);
+        props.setInvalidContact(true);
       }
     } else {
       setInvalidContact(true);
+      props.setInvalidContact(true);
     }
   }
 

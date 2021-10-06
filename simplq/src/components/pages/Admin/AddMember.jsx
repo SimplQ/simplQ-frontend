@@ -10,10 +10,11 @@ export default ({ queueId }) => {
   const joinQueue = useJoinQueue();
   const dispatch = useDispatch();
 
-  const joinQueueHandler = (name, contactNumber) => {
-    dispatch(joinQueue({ name, contactNumber, notifiable: false, queueId, goToStatusPage: false }));
+  const joinQueueHandler = async (name, contactNumber) => {
+    return await dispatch(joinQueue({name, contactNumber, notifiable: false, queueId, goToStatusPage: false}));
     // Notifiable false since the user was added by the admin, so he/she might not have an open instance of the website
   };
+
   return (
     <SidePanelItem
       Icon={AddIcon}
@@ -25,6 +26,7 @@ export default ({ queueId }) => {
       <div className={styles['admin-join-queue-form']}>
         <JoinQueueForm
           buttonText="Add To Queue"
+          queuePage
           queueId={queueId}
           joinQueueHandler={joinQueueHandler}
         />
