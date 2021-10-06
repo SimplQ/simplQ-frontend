@@ -34,52 +34,44 @@ export default (props) => {
     return message;
   };
 
+  const getIcon = (fontSize = '180%') => {
+    let icon;
+    if (props.data.eventType === 'TOKEN_ADDED') {
+      icon = <AddIcon fontSize={fontSize} />;
+    } else if (props.data.eventType === 'TOKEN_REMOVED') {
+      icon = <DeleteIcon fontSize={fontSize} />;
+    } else if (props.data.eventType === 'NOTIFIED') {
+      icon = <NotificationsIcon fontSize={fontSize} />;
+    } else if (props.data.eventType === 'JOINED') {
+      icon = <TouchAppIcon fontSize={fontSize} />;
+    } else if (props.data.eventType === 'PAUSED') {
+      icon = <PauseIcon fontSize={fontSize} />;
+    } else if (props.data.eventType === 'RESUMED') {
+      icon = <PlayArrowIcon fontSize={fontSize} />;
+    } else if (props.data.eventType === 'UPDATED') {
+      icon = <UpdateIcon fontSize={fontSize} />;
+    } else {
+      icon = null;
+    }
+    return icon;
+  };
+
   // for medium-sized to larger-sized devices, function returns a larger icon
-  const getIcon = () => {
-    const fontSize = '180%';
-    return props.data.eventType === 'TOKEN_ADDED' ? (
-      <AddIcon style={{ fontSize }} />
-    ) : props.data.eventType === 'TOKEN_REMOVED' ? (
-      <DeleteIcon style={{ fontSize }} />
-    ) : props.data.eventType === 'NOTIFIED' ? (
-      <NotificationsIcon style={{ fontSize }} />
-    ) : props.data.eventType === 'JOINED' ? (
-      <TouchAppIcon style={{ fontSize }} />
-    ) : props.data.eventType === 'PAUSED' ? (
-      <PauseIcon style={{ fontSize }} />
-    ) : props.data.eventType === 'RESUMED' ? (
-      <PlayArrowIcon style={{ fontSize }} />
-    ) : props.data.eventType === 'UPDATED' ? (
-      <UpdateIcon style={{ fontSize }} />
-    ) : null;
+  const getLargeIcon = () => {
+    return getIcon('180%');
   };
 
   // for medium-sized to larger-sized devices, function returns a
   // comparatively smaller icon
   const getSmallIcon = () => {
-    const fontSize = '120%';
-    return props.data.eventType === 'TOKEN_ADDED' ? (
-      <AddIcon style={{ fontSize }} />
-    ) : props.data.eventType === 'TOKEN_REMOVED' ? (
-      <DeleteIcon style={{ fontSize }} />
-    ) : props.data.eventType === 'NOTIFIED' ? (
-      <NotificationsIcon style={{ fontSize }} />
-    ) : props.data.eventType === 'JOINED' ? (
-      <TouchAppIcon style={{ fontSize }} />
-    ) : props.data.eventType === 'PAUSED' ? (
-      <PauseIcon style={{ fontSize }} />
-    ) : props.data.eventType === 'RESUMED' ? (
-      <PlayArrowIcon style={{ fontSize }} />
-    ) : props.data.eventType === 'UPDATED' ? (
-      <UpdateIcon style={{ fontSize }} />
-    ) : null;
+    return getIcon('120%');
   };
 
   return (
     <>
       <section className={styles['history-row']}>
         <div className={styles['history-row-icon']}>
-          {window.innerWidth >= 700 ? getIcon() : getSmallIcon()}
+          {window.innerWidth >= 700 ? getLargeIcon() : getSmallIcon()}
         </div>
         <div className={styles['history-row-info']} id="history-row-info">
           <div className={styles['history-row-info-content']}>
