@@ -1,5 +1,5 @@
 import React, {useState, useRef, useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import {useSelector} from 'react-redux';
 import {handleEnterPress} from 'utils/eventHandling';
 import InputField from 'components/common/InputField';
 import PhoneInput from 'components/common/PhoneInput';
@@ -13,18 +13,16 @@ import {Stepper} from "@material-ui/core";
 import StepLabel from "@material-ui/core/StepLabel";
 import Typography from "@material-ui/core/Typography";
 import {selectQueueInfo} from "../../../store/queueInfo";
-import {setErrorPopupMessage} from "../../../store/appSlice";
 
 export function JoinQueueForm(props) {
     const [name, setName] = useState('');
     const [invalidName, setInvalidName] = useState(false);
     const [invalidContact, setInvalidContact] = useState(false);
     const [contact, setContact] = useState('');
-    const actionStatus = useSelector((state) => state.actionStatus['joinQueue']);
+    const joinQueueActionStatus = useSelector((state) => state.actionStatus['joinQueue']);
     const prevActionStatus = useRef();
     const [activeStep, setActiveStep] = React.useState(0);
     const queueInfo = useSelector(selectQueueInfo);
-    const dispatch = useDispatch();
 
     const handleNext = async () => {
         if (invalidContact) return
@@ -33,17 +31,14 @@ export function JoinQueueForm(props) {
             return
         }
 
+        // check if user is on queue page (pages/Admin/AddMember.jsx) where each step (contact + name) is necessary
         if (props.queuePage) {
             setActiveStep((prevActiveStep) => prevActiveStep + 1);
             return
         }
 
-        let result = await props.onSubmitGetToken(contact)
+        props.onSubmitGetToken(contact)
         if (queueInfo.selfJoinAllowed) setActiveStep((prevActiveStep) => prevActiveStep + 1);
-        else {
-            let errorMess = "Sorry, token doesn't exist in the queue, please check with the queue operator"
-            if (result.error) setTimeout(() => dispatch(setErrorPopupMessage(errorMess)), 1500)
-        }
     };
 
     const handleBack = () => {
@@ -52,14 +47,14 @@ export function JoinQueueForm(props) {
 
     useEffect(() => {
         // Reset form only after successful action
-        if (prevActionStatus.current === 'pending' && actionStatus === 'fulfilled') {
+        if (prevActionStatus.current === 'pending' && joinQueueActionStatus === 'fulfilled') {
             setContact('');
             setName('');
         }
 
         // Set previous action status for next render
-        prevActionStatus.current = actionStatus;
-    }, [actionStatus]);
+        prevActionStatus.current = joinQueueActionStatus;
+    }, [joinQueueActionStatus]);
 
     function handleNameChange(e) {
         if (name.match('^[A-Za-z0-9 ]*$')) {
@@ -81,8 +76,9 @@ export function JoinQueueForm(props) {
             return;
         }
 
-        let result = props.joinQueueHandler(name, contact);
-        if (result.error === undefined && props.queuePage) setActiveStep(0)
+        props.joinQueueHandler(name, contact);
+        // reset to first step on queue page (pages/Admin/AddMember.jsx)
+        if (props.queuePage) setActiveStep(0)
     };
 
     const checkJoinDisabled = () => {
@@ -101,7 +97,7 @@ export function JoinQueueForm(props) {
                 setInvalidContact={setInvalidContact}
                 contact={contact}
                 onChange={val => setContact(val)}
-                onKeyDown={onSubmit}
+                onKeyDown={handleNext}
             />,
         },
         {
