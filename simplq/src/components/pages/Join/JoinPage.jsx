@@ -40,8 +40,8 @@ export default ({match}) => {
         dispatch(getQueueInfoByName({queueName}));
     };
 
-    const onSubmitGetToken = async (contactNumber) => {
-        return await dispatch(
+    const onSubmitGetToken = (contactNumber) => {
+        dispatch(
             getTokenByContactNumber({queueId, contactNumber, redirectToTokenPageOnSuccess: true})
         )
     };
