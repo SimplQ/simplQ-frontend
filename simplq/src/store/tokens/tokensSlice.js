@@ -20,4 +20,5 @@ const tokensSlice = createSlice({
 
 export default tokensSlice.reducer;
 
-export const selectTokensByQueueName = (queueName) => (state) => state.tokens.filter(token => token.queueName === queueName);
+export const selectTokensByQueueName = (queueName) => (state) =>
+  state.tokens.filter((token) => token.queueName === queueName);
