@@ -5,7 +5,6 @@ import 'react-phone-input-2/lib/material.css';
 import { handleEnterPress } from 'utils/eventHandling';
 
 export default (props) => {
-  const [invalidContact, setInvalidContact] = useState(false);
   function handleContactChange(value, country) {
     // to make sure that the number is parsed as an international number, prepend +.
     const phoneNr = `+${value}`;
@@ -18,12 +17,12 @@ export default (props) => {
           phoneUtil.parse(phoneNr, country.countryCode),
           country.countryCode
         );
-        setInvalidContact(!isValidNumber);
+        props.setInvalidContact(!isValidNumber);
       } catch (error) {
-        setInvalidContact(true);
+        props.setInvalidContact(true);
       }
     } else {
-      setInvalidContact(true);
+      props.setInvalidContact(true);
     }
   }
 
@@ -40,7 +39,7 @@ export default (props) => {
       inputStyle={{
         width: '100%',
       }}
-      isValid={() => (invalidContact || !props.isValid ? 'Phone number is not valid' : true)}
+      isValid={() => (!props.isValid ? 'Phone number is not valid' : true)}
       onChange={handleContactChange}
       onKeyDown={(e) => handleEnterPress(e, props.onKeyDown)}
     />
