@@ -12,5 +12,3 @@ Feel free to fork and improve.Here are a few things to note before you head on:
 -   The assets (icons, images) we're using are available for download. 
 
 -  You can see the frontend live [here](https://simplq.me/).
-
--  Follow the implementation Roadmap for more details: [Roadmap](https://github.com/SimplQ/simplQ-frontend/issues/207)

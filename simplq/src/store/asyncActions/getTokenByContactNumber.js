@@ -1,7 +1,7 @@
-import {createAsyncThunk} from '@reduxjs/toolkit';
-import {useMakeAuthedRequest} from 'api/auth';
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { useMakeAuthedRequest } from 'api/auth';
 import * as RequestFactory from 'api/requestFactory';
-import {useHistory} from 'react-router';
+import { useHistory } from 'react-router';
 
 const typePrefix = 'getTokenByContactNumber/action';
 
@@ -11,26 +11,26 @@ const typePrefix = 'getTokenByContactNumber/action';
  * @returns — getTokenByContactNumber async action creator
  */
 const useGetTokenByContactNumber = () => {
-    const makeAuthedRequest = useMakeAuthedRequest();
-    const history = useHistory();
+  const makeAuthedRequest = useMakeAuthedRequest();
+  const history = useHistory();
 
-    const getTokenByContactNumber = createAsyncThunk(
-        typePrefix,
-        async ({queueId, contactNumber, redirectToTokenPageOnSuccess}) => {
-            const authedRequest = makeAuthedRequest(
-                RequestFactory.getTokenByContactNumber(queueId, contactNumber)
-            );
-            const response = await authedRequest;
-            if (response && redirectToTokenPageOnSuccess && response.tokenId) {
-                history.push(`/token/${response.tokenId}`);
-            }
-            return response;
-        }
-    );
+  const getTokenByContactNumber = createAsyncThunk(
+    typePrefix,
+    async ({ queueId, contactNumber, redirectToTokenPageOnSuccess }) => {
+      const authedRequest = makeAuthedRequest(
+        RequestFactory.getTokenByContactNumber(queueId, contactNumber)
+      );
+      const response = await authedRequest;
+      if (response && redirectToTokenPageOnSuccess && response.tokenId) {
+        history.push(`/token/${response.tokenId}`);
+      }
+      return response;
+    }
+  );
 
-    return getTokenByContactNumber;
+  return getTokenByContactNumber;
 };
 
 const getTokenByContactNumber = createAsyncThunk(typePrefix);
 
-export {getTokenByContactNumber, useGetTokenByContactNumber};
+export { getTokenByContactNumber, useGetTokenByContactNumber };
