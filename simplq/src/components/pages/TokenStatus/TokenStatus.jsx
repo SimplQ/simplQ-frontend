@@ -28,7 +28,10 @@ export default () => {
     /* eslint-disable react/jsx-one-expression-per-line */
     status = (
       <>
-        <p>People waiting in front of you: {token.aheadCount}</p>
+        <p>
+          People waiting in front of you: <b>{token.aheadCount}</b>
+        </p>
+        <br />
         <p>Please wait for your turn. You will be notified here.</p>
         <div className={styles['refresh-button']}>
           <Button onClick={onRefreshClick}>Refresh status</Button>
