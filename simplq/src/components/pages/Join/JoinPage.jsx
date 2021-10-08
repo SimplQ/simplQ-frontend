@@ -1,7 +1,8 @@
 import React, { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useGetQueueInfoByName, useJoinQueue } from 'store/asyncActions';
+import { useGetQueueInfoByName, useJoinQueue, useGetUserTokens } from 'store/asyncActions';
 import { selectQueueInfo } from 'store/queueInfo';
+import { selectTokensByQueueName } from 'store/tokens';
 import HeaderSection from 'components/common/HeaderSection';
 import QueueInfo from 'components/common/QueueInfo';
 import LoadingStatus from 'components/common/Loading';
@@ -14,9 +15,11 @@ export default ({ match }) => {
   const queueName = match.params.queueName;
   const getQueueInfoByName = useCallback(useGetQueueInfoByName(), []);
   const getTokenByContactNumber = useCallback(useGetTokenByContactNumber(), []);
+  const getUserTokens = useCallback(useGetUserTokens(), []);
   const joinQueue = useJoinQueue();
   const dispatch = useDispatch();
   const queueInfo = useSelector(selectQueueInfo);
+  const myTokens = useSelector(selectTokensByQueueName(queueName));
 
   useEffect(() => {
     dispatch(getQueueInfoByName({ queueName }));
@@ -24,8 +27,13 @@ export default ({ match }) => {
 
   const queueId = queueInfo.queueId;
 
+  useEffect(() => {
+    dispatch(getUserTokens({ queueId }));
+  }, [queueId, dispatch, getUserTokens]);
+
+
   const joinQueueHandler = async (name1, contactNumber1) => {
-    return await dispatch(
+    var queue = await dispatch(
       joinQueue({
         name: name1,
         contactNumber: contactNumber1,
@@ -34,6 +42,7 @@ export default ({ match }) => {
         goToStatusPage: true,
       })
     );
+    return queue;
   };
 
   const onRefreshClick = () => {

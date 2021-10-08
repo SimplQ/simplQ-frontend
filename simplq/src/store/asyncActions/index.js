@@ -5,7 +5,8 @@
  * in separate files and can depend on each other.
  */
 
-export { getUserQueues, useGetUserQueues } from './getUserQueues';
+ export { getUserQueues, useGetUserQueues } from './getUserQueues';
+ export { getUserTokens, useGetUserTokens } from './getUserTokens';
 export { deleteQueue, useDeleteQueue } from './deleteQueue';
 export { getQueueInfo, useGetQueueInfo } from './getQueueInfo';
 export { getQueueInfoByName, useGetQueueInfoByName } from './getQueueInfoByName';

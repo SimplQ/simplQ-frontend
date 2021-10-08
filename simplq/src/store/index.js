@@ -1,5 +1,6 @@
 import { combineReducers, configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import queuesReducer from 'store/queues';
+import tokensReducer from 'store/tokens';
 import queueInfoReducer from 'store/queueInfo';
 import actionStatusReducer from 'store/actionStatus';
 import tokenReducer from 'store/token';
@@ -10,6 +11,7 @@ import appReducer from './appSlice';
 export const rootReducer = combineReducers({
   appReducer,
   queues: queuesReducer,
+  tokens: tokensReducer,
   queueInfo: queueInfoReducer,
   token: tokenReducer,
   actionStatus: actionStatusReducer,
