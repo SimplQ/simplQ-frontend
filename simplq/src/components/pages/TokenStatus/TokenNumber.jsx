@@ -11,7 +11,7 @@ export default () => {
     <div className={styles['token-number']}>
       <div className={styles['hanging-threads']} />
       <div className={styles['token-container']}>
-        <span className={styles['token']}>Token No</span>
+        <span className={styles['token']}>Your Token No</span>
       </div>
       <div className={styles['separator']} />
       <div className={styles['count-container']}>
