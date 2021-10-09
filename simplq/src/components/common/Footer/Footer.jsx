@@ -7,7 +7,10 @@ import styles from './Footer.module.scss';
 import ClickableLogo from '../ClickableLogo';
 import StandardButton from '../Button';
 
-const dayOfWeek = () => new Intl.DateTimeFormat('default', { weekday: 'long' }).format(new Date());
+const dayOfWeek = () =>
+  Intl?.DateTimeFormat
+    ? new Intl.DateTimeFormat('default', { weekday: 'long' }).format(new Date())
+    : 'day';
 
 export default () => (
   <div id="target_contact_us" className={styles['footer']}>
