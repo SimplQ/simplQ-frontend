@@ -28,4 +28,11 @@ export {
   updateQueueSettings,
 } from './queue';
 
-export { createToken, getToken, deleteToken, notifyToken, getTokenByContactNumber } from './token';
+export {
+  getUserTokens,
+  createToken,
+  getToken,
+  deleteToken,
+  notifyToken,
+  getTokenByContactNumber,
+} from './token';

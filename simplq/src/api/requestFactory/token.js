@@ -1,4 +1,11 @@
 /**
+ * Get metadata for all tokens created by the current user
+ *
+ * @returns {Object} request - partial axios request without baseURL
+ */
+export const getUserTokens = () => ({ method: 'get', url: '/tokens' });
+
+/**
  * Request creator to create new token
  *
  * @param {string} name

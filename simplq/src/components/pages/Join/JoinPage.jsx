@@ -9,6 +9,7 @@ import Button from 'components/common/Button';
 import { useGetTokenByContactNumber } from 'store/asyncActions/getTokenByContactNumber';
 import JoinQueueForm from './JoinForm';
 import styles from './JoinPage.module.scss';
+import MyTokens from './MyTokens';
 
 export default ({ match }) => {
   const queueName = match.params.queueName;
@@ -25,7 +26,7 @@ export default ({ match }) => {
   const queueId = queueInfo.queueId;
 
   const joinQueueHandler = async (name1, contactNumber1) => {
-    return await dispatch(
+    const queue = await dispatch(
       joinQueue({
         name: name1,
         contactNumber: contactNumber1,
@@ -34,6 +35,7 @@ export default ({ match }) => {
         goToStatusPage: true,
       })
     );
+    return queue;
   };
 
   const onRefreshClick = () => {
@@ -87,6 +89,7 @@ export default ({ match }) => {
       <HeaderSection queueName={queueName} />
       <div className={styles['main-content']}>
         <LoadingStatus dependsOn="getQueueInfoByName">
+          <MyTokens queueInfo={queueInfo} />
           <div className={styles['queue-stats']}>
             <QueueInfo queueInfo={queueInfo} />
           </div>
