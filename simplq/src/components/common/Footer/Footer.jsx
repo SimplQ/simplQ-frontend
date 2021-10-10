@@ -8,7 +8,7 @@ import ClickableLogo from '../ClickableLogo';
 import StandardButton from '../Button';
 
 const dayOfWeek = () =>
-  Intl?.DateTimeFormat
+  typeof Intl === 'object' && typeof Intl.DateTimeFormat === 'function'
     ? new Intl.DateTimeFormat('default', { weekday: 'long' }).format(new Date())
     : 'day';
 
