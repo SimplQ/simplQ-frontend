@@ -5,6 +5,7 @@ import InputField from 'components/common/InputField';
 import PhoneInput from 'components/common/PhoneInput';
 import StandardButton from 'components/common/Button';
 import LoadingStatus from 'components/common/Loading';
+import Checkbox from '../../common/Checkbox/Checkbox';
 import styles from './JoinForm.module.scss';
 import Step from '@material-ui/core/Step';
 import StepContent from '@material-ui/core/StepContent';
@@ -23,7 +24,7 @@ export function JoinQueueForm(props) {
   const prevActionStatus = useRef();
   const [activeStep, setActiveStep] = React.useState(0);
   const queueInfo = useSelector(selectQueueInfo);
-
+  const [saveToLocalStorage, setSaveToLocalStorage] = useState(true);
   const handleNext = async () => {
     if (invalidContact) return;
     if (contact === '') {
@@ -36,7 +37,6 @@ export function JoinQueueForm(props) {
       setActiveStep((prevActiveStep) => prevActiveStep + 1);
       return;
     }
-
     props.onSubmitGetToken(contact);
     if (queueInfo.selfJoinAllowed) setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
@@ -56,6 +56,16 @@ export function JoinQueueForm(props) {
     prevActionStatus.current = joinQueueActionStatus;
   }, [joinQueueActionStatus]);
 
+  useEffect(() => {
+    const localStorageName = localStorage.getItem('name');
+    const localStorageContact = localStorage.getItem('contact');
+    if (localStorageName) {
+      setName(localStorageName);
+    }
+    if (localStorageContact) {
+      setContact(localStorageContact);
+    }
+  }, []);
   function handleNameChange(e) {
     if (name.match('^[A-Za-z0-9 ]*$')) {
       setName(e.target.value);
@@ -75,7 +85,13 @@ export function JoinQueueForm(props) {
       setInvalidContact(true);
       return;
     }
-
+    if (saveToLocalStorage) {
+      localStorage.setItem('contact', contact);
+      localStorage.setItem('name', name);
+    } else {
+      localStorage.removeItem('contact');
+      localStorage.removeItem('name');
+    }
     props.joinQueueHandler(name, contact);
     // reset to first step on queue page (pages/Admin/AddMember.jsx)
     if (props.queuePage) setActiveStep(0);
@@ -117,7 +133,49 @@ export function JoinQueueForm(props) {
       ),
     },
   ];
-
+  const renderBox = (index) => {
+    const backButton =
+      index === 0 ? null : (
+        <StandardButton outlined disabled={index === 0} onClick={handleBack}>
+          Back
+        </StandardButton>
+      );
+    const isSubmitStep =
+      index === steps.length - 1 && (queueInfo.selfJoinAllowed || props.queuePage);
+    const boxContent = isSubmitStep ? (
+      <>
+        <Checkbox
+          name="saveToLocalStorage"
+          label="Save for later use"
+          checked={saveToLocalStorage}
+          onChange={() => {
+            setSaveToLocalStorage(!saveToLocalStorage);
+          }}
+        />
+        <div className={styles.formBoxVerticalButtons}>
+          <LoadingStatus dependsOn="joinQueue">
+            <StandardButton disabled={checkJoinDisabled()} onClick={onSubmit}>
+              {props.buttonText}
+            </StandardButton>
+          </LoadingStatus>
+          <span className={styles.formButtonsSpace} />
+          {backButton}
+        </div>
+      </>
+    ) : (
+      <>
+        <StandardButton disabled={checkNextDisabled()} variant="contained" onClick={handleNext}>
+          Next
+        </StandardButton>
+        <span className={styles.formButtonsSpace} />
+        {backButton}
+      </>
+    );
+    const boxClasses = isSubmitStep
+      ? `${styles.formBox} ${styles.formBoxVertical}`
+      : `${styles.formBox}`;
+    return <Box className={boxClasses}>{boxContent}</Box>;
+  };
   return (
     <Box>
       <Stepper activeStep={activeStep} orientation="vertical">
@@ -130,31 +188,7 @@ export function JoinQueueForm(props) {
             </StepLabel>
             <StepContent className={styles.stepTopSpace}>
               {step.item}
-              <Box className={styles.formBox}>
-                {index === steps.length - 1 && (queueInfo.selfJoinAllowed || props.queuePage) ? (
-                  <LoadingStatus dependsOn="joinQueue">
-                    <StandardButton disabled={checkJoinDisabled()} onClick={onSubmit}>
-                      {props.buttonText}
-                    </StandardButton>
-                  </LoadingStatus>
-                ) : (
-                  <StandardButton
-                    disabled={checkNextDisabled()}
-                    variant="contained"
-                    onClick={handleNext}
-                  >
-                    Next
-                  </StandardButton>
-                )}
-
-                <span className={styles.formButtonsSpace} />
-
-                {index === 0 ? null : (
-                  <StandardButton outlined disabled={index === 0} onClick={handleBack}>
-                    Back
-                  </StandardButton>
-                )}
-              </Box>
+              {renderBox(index)}
             </StepContent>
           </Step>
         ))}

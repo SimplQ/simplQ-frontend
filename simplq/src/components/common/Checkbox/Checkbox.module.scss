@@ -1,0 +1,40 @@
+@import 'components/common.scss';
+
+.checkbox-label-unchecked {
+  margin-left: 0.5rem;
+  opacity: 0.5;
+}
+
+.checkbox-label-checked {
+  margin-left: 0.5rem;
+  color: $primary-color-dark;
+}
+
+.checkbox-label {
+  margin-left: 0.5rem;
+}
+
+.checkbox {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 1.5rem;
+}
+
+.checkbox-input {
+  -webkit-appearance: none;
+  background-color: inherit;
+  border: 0.5px solid #cacece;
+  border-radius: 3px;
+  display: inline-block;
+  margin: 0;
+  padding: 9px;
+  position: relative;
+}
+
+.checkbox-input:checked {
+  background-color: $primary-color-dark;
+}
+
+.checkbox-input:hover {
+  cursor: pointer;
+}
