@@ -6,9 +6,14 @@ import SidePanelItem from 'components/common/SidePanel/SidePanelItem';
 import { useUpdateQueueSettings } from 'store/asyncActions';
 import { useDispatch, useSelector } from 'react-redux';
 import SaveIcon from '@material-ui/icons/Save';
-import { selectMaxQueueCapacity, selectIsSelfJoinAllowed } from 'store/selectedQueue';
+import {
+  selectMaxQueueCapacity,
+  selectIsSelfJoinAllowed,
+  selectIsNotifiableByEmail,
+} from 'store/selectedQueue';
 import Button from 'components/common/Button';
 import InputField from 'components/common/InputField';
+import Checkbox from 'components/common/Checkbox/Checkbox';
 import Modal from '../../common/Modal/Modal';
 import styles from './QueueSettings.module.scss';
 
@@ -18,13 +23,16 @@ export default ({ queueId }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const maxQueueSize = useSelector(selectMaxQueueCapacity);
   const isSelfJoinAllowed = useSelector(selectIsSelfJoinAllowed);
+  const isNotifiableByEmail = useSelector(selectIsNotifiableByEmail);
   const [size, setSize] = React.useState(maxQueueSize);
   const [selfJoin, setSelfJoin] = React.useState(false);
+  const [notifyByEmail, setNotifyByEmail] = React.useState(false);
 
   useEffect(() => {
     setSize(maxQueueSize);
     setSelfJoin(!!isSelfJoinAllowed);
-  }, [maxQueueSize, isSelfJoinAllowed]);
+    setNotifyByEmail(!!isNotifiableByEmail);
+  }, [maxQueueSize, isSelfJoinAllowed, isNotifiableByEmail]);
 
   const handleSizeChange = (e) => {
     const positiveInteger = /^\d+$/i;
@@ -49,11 +57,23 @@ export default ({ queueId }) => {
     [setSelfJoin]
   );
 
+  const handleNotifyByEmailCheckBox = React.useCallback(
+    (userChoiceEvent) => {
+      const userChoice = userChoiceEvent?.target?.checked;
+      setNotifyByEmail(!!userChoice);
+    },
+    [setNotifyByEmail]
+  );
+
   const handleSave = async () => {
     const response = await dispatch(
       updateSettings({
         queueId,
-        settings: { maxQueueCapacity: size, isSelfJoinAllowed: selfJoin },
+        settings: {
+          maxQueueCapacity: size,
+          isSelfJoinAllowed: selfJoin,
+          notifyByEmail,
+        },
       })
     );
     if (!response.error) {
@@ -78,7 +98,19 @@ export default ({ queueId }) => {
             helperText={isInvalidSize() && `Enter a number between 1 and ${MAX_SIZE}`}
             autoFocus
           />
-          <CheckboxComponent selfJoin={selfJoin} handleSelfJoinCheckBox={handleSelfJoinCheckBox} />
+          <Checkbox
+            checked={selfJoin}
+            onChange={handleSelfJoinCheckBox}
+            name="selfJoinCheckBox"
+            label="Self Join"
+          />
+
+          <Checkbox
+            checked={notifyByEmail}
+            onChange={handleNotifyByEmailCheckBox}
+            name="notifyByEmailCheckBox"
+            label="Notify By Email"
+          />
           <div className={styles['action-container']}>
             <Button icon={<SaveIcon />} onClick={handleSave} disabled={isInvalidSize()}>
               Save
@@ -90,30 +122,5 @@ export default ({ queueId }) => {
         </Grid>
       </Modal>
     </>
-  );
-};
-
-const CheckboxComponent = (props) => {
-  const { selfJoin, handleSelfJoinCheckBox } = props;
-  return (
-    /* eslint-disable react/jsx-wrap-multilines */
-    <div className={styles['self-join-checkbox']}>
-      <input
-        className={styles['self-join-input']}
-        type="checkbox"
-        name="selfJoinCheckBox"
-        checked={selfJoin}
-        onChange={handleSelfJoinCheckBox}
-      />
-      <span
-        className={
-          selfJoin
-            ? `${styles['self-join-label']} ${styles['checkbox-label-checked']}`
-            : `${styles['self-join-label']} ${styles['checkbox-label-unchecked']}`
-        }
-      >
-        Self Join
-      </span>
-    </div>
   );
 };

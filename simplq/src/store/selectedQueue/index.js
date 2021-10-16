@@ -8,4 +8,5 @@ export {
   selectQueueStatus,
   selectMaxQueueCapacity,
   selectIsSelfJoinAllowed,
+  selectIsNotifiableByEmail,
 } from './selectedQueueSlice';
