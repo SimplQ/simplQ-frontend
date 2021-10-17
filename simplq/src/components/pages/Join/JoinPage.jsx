@@ -25,13 +25,14 @@ export default ({ match }) => {
 
   const queueId = queueInfo.queueId;
 
-  const joinQueueHandler = async (name1, contactNumber1) => {
+  const joinQueueHandler = async (name1, contactNumber1, emailId1) => {
     const queue = await dispatch(
       joinQueue({
         name: name1,
         contactNumber: contactNumber1,
         notifiable: true,
         queueId,
+        emailId: emailId1,
         goToStatusPage: true,
       })
     );
@@ -73,6 +74,7 @@ export default ({ match }) => {
           joinQueueHandler={joinQueueHandler}
           onSubmitGetToken={onSubmitGetToken}
           buttonText="Join Queue"
+          collectEmail={queueInfo.notifyByEmail}
         />
         <p className={styles['message']}>
           Please make sure the contact number is correct and is available, you might be called on
