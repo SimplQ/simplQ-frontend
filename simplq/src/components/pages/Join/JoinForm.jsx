@@ -1,60 +1,23 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { handleEnterPress } from 'utils/eventHandling';
-import InputField from 'components/common/InputField';
+import React, { useState, useCallback, useEffect } from 'react';
 import PhoneInput from 'components/common/PhoneInput';
 import StandardButton from 'components/common/Button';
-import LoadingStatus from 'components/common/Loading';
-import Checkbox from '../../common/Checkbox/Checkbox';
-import styles from './JoinForm.module.scss';
-import Step from '@material-ui/core/Step';
-import StepContent from '@material-ui/core/StepContent';
-import Box from '@material-ui/core/Box';
-import { Stepper } from '@material-ui/core';
-import StepLabel from '@material-ui/core/StepLabel';
-import Typography from '@material-ui/core/Typography';
-import { selectQueueInfo } from '../../../store/queueInfo';
+import { useGetTokenByContactNumber } from 'store/asyncActions/getTokenByContactNumber';
+import { useDispatch } from 'react-redux';
+import { handleEnterPress } from 'utils/eventHandling';
+import InputField from 'components/common/InputField';
+import Checkbox from 'components/common/Checkbox/Checkbox';
+import { useJoinQueue } from 'store/asyncActions';
 
-export function JoinQueueForm(props) {
+export function JoinQueueForm({ queueId, isAdmin }) {
   const [name, setName] = useState('');
+  const [contact, setContact] = useState('');
   const [invalidName, setInvalidName] = useState(false);
   const [invalidContact, setInvalidContact] = useState(false);
-  const [contact, setContact] = useState('');
-  const joinQueueActionStatus = useSelector((state) => state.actionStatus['joinQueue']);
-  const prevActionStatus = useRef();
-  const [activeStep, setActiveStep] = React.useState(0);
-  const queueInfo = useSelector(selectQueueInfo);
+  const getTokenByContactNumber = useCallback(useGetTokenByContactNumber(), []);
+  const dispatch = useDispatch();
   const [saveToLocalStorage, setSaveToLocalStorage] = useState(true);
-  const handleNext = async () => {
-    if (invalidContact) return;
-    if (contact === '') {
-      setInvalidContact(true);
-      return;
-    }
-
-    // check if user is on queue page (pages/Admin/AddMember.jsx) where each step (contact + name) is necessary
-    if (props.queuePage) {
-      setActiveStep((prevActiveStep) => prevActiveStep + 1);
-      return;
-    }
-    props.onSubmitGetToken(contact);
-    if (queueInfo.selfJoinAllowed) setActiveStep((prevActiveStep) => prevActiveStep + 1);
-  };
-
-  const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  };
-
-  useEffect(() => {
-    // Reset form only after successful action
-    if (prevActionStatus.current === 'pending' && joinQueueActionStatus === 'fulfilled') {
-      setContact('');
-      setName('');
-    }
-
-    // Set previous action status for next render
-    prevActionStatus.current = joinQueueActionStatus;
-  }, [joinQueueActionStatus]);
+  const joinQueue = useJoinQueue();
+  const isTokenFound = undefined;
 
   useEffect(() => {
     const localStorageName = localStorage.getItem('name');
@@ -66,134 +29,87 @@ export function JoinQueueForm(props) {
       setContact(localStorageContact);
     }
   }, []);
-  function handleNameChange(e) {
-    if (name.match('^[A-Za-z0-9 ]*$')) {
-      setName(e.target.value);
-      setInvalidName(false);
-    } else {
-      setInvalidName(true);
-    }
-  }
 
   const onSubmit = () => {
-    if (invalidContact || invalidName) return;
-    if (name === '') {
-      setInvalidName(true);
-      return;
-    }
+    if (invalidContact) return;
+
     if (contact === '') {
       setInvalidContact(true);
       return;
     }
+
     if (saveToLocalStorage) {
       localStorage.setItem('contact', contact);
-      localStorage.setItem('name', name);
     } else {
       localStorage.removeItem('contact');
+    }
+
+    if (!isAdmin && isTokenFound === undefined) {
+      dispatch(getTokenByContactNumber({ queueId, contact, redirectToTokenPageOnSuccess: true }));
+      return;
+    }
+
+    if (invalidName) return;
+
+    if (name === '') {
+      setInvalidName(true);
+      return;
+    }
+
+    if (saveToLocalStorage) {
+      localStorage.setItem('name', name);
+    } else {
       localStorage.removeItem('name');
     }
-    props.joinQueueHandler(name, contact);
-    // reset to first step on queue page (pages/Admin/AddMember.jsx)
-    if (props.queuePage) setActiveStep(0);
+
+    dispatch(
+      joinQueue({
+        name,
+        contactNumber: contact,
+        notifiable: true,
+        queueId,
+        goToStatusPage: !isAdmin,
+      })
+    );
   };
 
-  const checkJoinDisabled = () => {
-    return invalidContact || invalidName || contact === '' || name === '';
-  };
-
-  const checkNextDisabled = () => {
-    return invalidContact || contact === '';
-  };
-
-  let steps = [
-    {
-      label: 'Enter phone number',
-      item: (
+  return (
+    <div>
+      <div>
         <PhoneInput
           isValid={!invalidContact}
           setInvalidContact={setInvalidContact}
           contact={contact}
-          onChange={(val) => setContact(val)}
-          onKeyDown={handleNext}
-        />
-      ),
-    },
-    {
-      label: 'Enter name',
-      item: (
-        <InputField
-          placeholder="Name"
-          value={name}
-          onKeyPress={(e) => handleEnterPress(e, onSubmit)}
-          onChange={handleNameChange}
-          error={invalidName}
-          helperText={invalidName ? 'Enter a valid name' : ''}
+          onChange={setContact}
           autoFocus
         />
-      ),
-    },
-  ];
-  const renderBox = (index) => {
-    const backButton =
-      index === 0 ? null : (
-        <StandardButton outlined disabled={index === 0} onClick={handleBack}>
-          Back
-        </StandardButton>
-      );
-    const isSubmitStep =
-      index === steps.length - 1 && (queueInfo.selfJoinAllowed || props.queuePage);
-    const boxContent = isSubmitStep ? (
-      <>
-        <Checkbox
-          name="saveToLocalStorage"
-          label="Save for later use"
-          checked={saveToLocalStorage}
-          onChange={() => {
-            setSaveToLocalStorage(!saveToLocalStorage);
-          }}
-        />
-        <div className={styles.formBoxVerticalButtons}>
-          <LoadingStatus dependsOn="joinQueue">
-            <StandardButton disabled={checkJoinDisabled()} onClick={onSubmit}>
-              {props.buttonText}
-            </StandardButton>
-          </LoadingStatus>
-          <span className={styles.formButtonsSpace} />
-          {backButton}
+      </div>
+      {isTokenFound === false ? (
+        <div>
+          <InputField
+            placeholder="Name"
+            value={name}
+            onKeyPress={(e) => handleEnterPress(e, onSubmit)}
+            onChange={(e) => setName(e.target.value)}
+            error={invalidName}
+            helperText={invalidName ? 'Enter a valid name' : ''}
+          />
         </div>
-      </>
-    ) : (
-      <>
-        <StandardButton disabled={checkNextDisabled()} variant="contained" onClick={handleNext}>
+      ) : null}
+      <div>
+        <StandardButton disabled={invalidContact} onClick={onSubmit}>
           Next
         </StandardButton>
-        <span className={styles.formButtonsSpace} />
-        {backButton}
-      </>
-    );
-    const boxClasses = isSubmitStep
-      ? `${styles.formBox} ${styles.formBoxVertical}`
-      : `${styles.formBox}`;
-    return <Box className={boxClasses}>{boxContent}</Box>;
-  };
-  return (
-    <Box>
-      <Stepper activeStep={activeStep} orientation="vertical">
-        {steps.map((step, index) => (
-          <Step key={index}>
-            <StepLabel
-              optional={index === 2 ? <Typography variant="caption">Last step</Typography> : null}
-            >
-              {step.label}
-            </StepLabel>
-            <StepContent className={styles.stepTopSpace}>
-              {step.item}
-              {renderBox(index)}
-            </StepContent>
-          </Step>
-        ))}
-      </Stepper>
-    </Box>
+      </div>
+      <Checkbox
+        name="saveToLocalStorage"
+        label="Save for later use"
+        checked={saveToLocalStorage}
+        onChange={() => {
+          setSaveToLocalStorage(!saveToLocalStorage);
+        }}
+      />
+    </div>
   );
 }
 

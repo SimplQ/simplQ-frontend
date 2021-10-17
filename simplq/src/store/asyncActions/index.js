@@ -20,3 +20,4 @@ export { updateQueueSettings, useUpdateQueueSettings } from './updateQueueSettin
 export { getToken, useGetToken } from './getToken';
 export { deleteToken, useDeleteToken } from './deleteToken';
 export { notifyToken, useNotifyToken } from './notifyToken';
+export { getTokenByContactNumber, useGetTokenByContactNumber } from './getTokenByContactNumber';
