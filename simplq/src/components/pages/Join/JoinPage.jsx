@@ -74,7 +74,6 @@ export default ({ match }) => {
           joinQueueHandler={joinQueueHandler}
           onSubmitGetToken={onSubmitGetToken}
           buttonText="Join Queue"
-          collectEmail={queueInfo.notifyByEmail}
         />
         <p className={styles['message']}>
           Please make sure the contact number is correct and is available, you might be called on

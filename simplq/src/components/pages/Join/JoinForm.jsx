@@ -27,7 +27,9 @@ export function JoinQueueForm(props) {
   const [activeStep, setActiveStep] = React.useState(0);
   const queueInfo = useSelector(selectQueueInfo);
   const [saveToLocalStorage, setSaveToLocalStorage] = useState(true);
-  const collectEmail = !!props.collectEmail;
+
+  const { notifyByEmail } = useSelector(selectQueueInfo);
+  const collectEmail = !!notifyByEmail;
 
   const handleNext = async () => {
     if (invalidContact) return;
