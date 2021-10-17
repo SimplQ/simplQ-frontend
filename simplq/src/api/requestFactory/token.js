@@ -14,7 +14,7 @@ export const getUserTokens = () => ({ method: 'get', url: '/tokens' });
  * @param {string} queueId
  * @returns {Object} request - partial axios request without baseURL
  */
-export const createToken = (name, contactNumber, notifiable, queueId) => ({
+export const createToken = (name, contactNumber, notifiable, queueId, emailId) => ({
   method: 'post',
   url: '/token',
   data: {
@@ -22,6 +22,7 @@ export const createToken = (name, contactNumber, notifiable, queueId) => ({
     contactNumber,
     notifiable,
     queueId,
+    emailId,
   },
 });
 
