@@ -21,11 +21,11 @@ export default () => {
           targetRoute: '',
         };
       }
-      return {
-        verdict: true,
-        targetRoute: targeturl.substring(baseurl.length),
-      };
     }
+    return {
+      verdict: true,
+      targetRoute: targeturl.substring(baseurl.length),
+    };
   };
 
   const handleScan = (data) => {
