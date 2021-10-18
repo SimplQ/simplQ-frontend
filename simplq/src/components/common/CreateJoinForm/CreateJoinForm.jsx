@@ -41,7 +41,7 @@ const CreateJoinForm = (props) => {
     }
   };
 
-  const handleScanAnyQR = (e) => {
+  const handleScanAnyQR = () => {
     history.push('/scanQr');
   };
 

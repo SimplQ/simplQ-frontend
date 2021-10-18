@@ -2,6 +2,7 @@
 
 import React, { useEffect } from 'react';
 import QrReader from 'react-qr-scanner';
+import { useHistory } from 'react-router';
 import styles from './QrScanner.module.scss';
 
 export default () => {
@@ -9,12 +10,30 @@ export default () => {
     window.scrollTo('40px', '0px');
   });
 
+  const history = useHistory();
+
+  // eslint-disable-next-line consistent-return
+  const getRoute = (baseurl, targeturl) => {
+    for (let i = 0; i < baseurl.length; i += 1) {
+      if (baseurl.charAt(i) !== targeturl.charAt(i)) {
+        return {
+          verdict: false,
+          targetRoute: '',
+        };
+      }
+      return {
+        verdict: true,
+        targetRoute: targeturl.substring(baseurl.length),
+      };
+    }
+  };
+
   const handleScan = (data) => {
     if (data != null) {
-      const res = this.getRoute(window.location.origin, data.text);
+      const res = getRoute(window.location.origin, data.text);
 
       if (res.verdict) {
-        this.props.history.push(res.targetRoute);
+        history.push(res.targetRoute);
       } else {
         window.location.href = data.text;
       }
