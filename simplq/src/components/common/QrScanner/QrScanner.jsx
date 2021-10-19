@@ -3,6 +3,8 @@
 import React, { useEffect } from 'react';
 import QrReader from 'react-qr-scanner';
 import { useHistory } from 'react-router';
+import { useDispatch } from 'react-redux';
+import { setErrorPopupMessage } from 'store/appSlice';
 import styles from './QrScanner.module.scss';
 
 export default () => {
@@ -11,36 +13,24 @@ export default () => {
   });
 
   const history = useHistory();
-
-  // eslint-disable-next-line consistent-return
-  const getRoute = (baseurl, targeturl) => {
-    for (let i = 0; i < baseurl.length; i += 1) {
-      if (baseurl.charAt(i) !== targeturl.charAt(i)) {
-        return {
-          verdict: false,
-          targetRoute: '',
-        };
-      }
-    }
-    return {
-      verdict: true,
-      targetRoute: targeturl.substring(baseurl.length),
-    };
-  };
+  const dispatch = useDispatch();
 
   const handleScan = (data) => {
     if (data != null) {
-      const res = getRoute(window.location.origin, data.text);
+      const baseurl = window.location.origin;
+      const isValid = data.text.startsWith(baseurl); // QR code is on same origin
 
-      if (res.verdict) {
-        history.push(res.targetRoute);
+      if (isValid) {
+        const route = data.text.substring(baseurl.length);
+        history.push(route);
       } else {
-        window.location.href = data.text;
+        dispatch(setErrorPopupMessage('The QR code contains an invalid URL'));
       }
     }
   };
 
   const handleError = (err) => {
+    dispatch(setErrorPopupMessage('An error occured, more details can be found in the console'));
     console.error(err);
   };
 
@@ -57,6 +47,7 @@ export default () => {
             onError={handleError}
             onScan={handleScan}
             className={styles['scan']}
+            facingMode="rear"
             legacyMode
           />
         </div>
