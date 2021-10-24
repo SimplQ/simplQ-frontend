@@ -16,9 +16,9 @@ const useJoinQueue = () => {
 
   const joinQueue = createAsyncThunk(
     typePrefix,
-    async ({ name, contactNumber, notifiable, queueId, emailId, goToStatusPage }) => {
+    async ({ name, contactNumber, queueId, emailId, goToStatusPage }) => {
       const authedRequest = makeAuthedRequest(
-        RequestFactory.createToken(name, contactNumber, notifiable, queueId, emailId)
+        RequestFactory.createToken(name, contactNumber, queueId, emailId)
       );
       const response = await authedRequest;
       if (goToStatusPage) {
