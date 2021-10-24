@@ -43,9 +43,12 @@ function Token({ token }) {
   };
 
   const NotifyIcon = () => {
-    // TODO: Add some visual (blinking) while notifyToken is pending
-    if (notifiable === false || notifyStatus === 'pending') {
+    if (notifiable === false) {
       return <NotificationsOffIcon fontSize="large" className={styles['token-icon-disabled']} />;
+    }
+    // TODO: Add some visual (blinking) while notifyToken is pending
+    if (notifyStatus === 'pending') {
+      return <NotificationsOffIcon fontSize="large" className={styles['token-icon-pending']} />;
     }
     if (tokenStatus === 'NOTIFIED') {
       return <NotificationsActiveIcon fontSize="large" style={{ color: 'green' }} />;
