@@ -7,6 +7,7 @@ import {
   joinQueue,
   setQueueStatus,
   updateQueueSettings,
+  notifyToken,
 } from 'store/asyncActions';
 
 const selectedQueueSlice = createSlice({
@@ -39,6 +40,17 @@ const selectedQueueSlice = createSlice({
     [updateQueueSettings.fulfilled]: (state, action) => {
       state.maxQueueCapacity = action.payload.maxQueueCapacity;
       state.isSelfJoinAllowed = action.payload.isSelfJoinAllowed;
+      return state;
+    },
+    // notifyToken
+    [notifyToken.fulfilled]: (state, action) => {
+      const tokenId = action.payload.tokenId;
+      const tokenStatus = action.payload.tokenStatus;
+      state.tokens
+        .filter((token) => token.tokenId === tokenId)
+        .forEach((token) => {
+          token.tokenStatus = tokenStatus;
+        });
       return state;
     },
   },
