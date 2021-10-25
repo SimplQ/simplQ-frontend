@@ -1,5 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { handleEnterPress } from 'utils/eventHandling';
 import InputField from 'components/common/InputField';
 import PhoneInput from 'components/common/PhoneInput';
@@ -11,39 +11,63 @@ import Box from '@material-ui/core/Box';
 import { Stepper } from '@material-ui/core';
 import StepLabel from '@material-ui/core/StepLabel';
 import Typography from '@material-ui/core/Typography';
+import { useJoinQueue } from 'store/asyncActions';
+import { useGetTokenByContactNumber } from 'store/asyncActions/getTokenByContactNumber';
 import styles from './JoinForm.module.scss';
 import Checkbox from '../../common/Checkbox/Checkbox';
 import { selectQueueInfo } from '../../../store/queueInfo';
 
-export function JoinQueueForm(props) {
+export function JoinQueueForm({ queueId, isAdminPage, buttonText }) {
   const [name, setName] = useState('');
   const [invalidName, setInvalidName] = useState(false);
-  const [contact, setContact] = useState('');
-  const [invalidContact, setInvalidContact] = useState(false);
-  const [email, setEmail] = useState('');
-  const [invalidEmail, setInvalidEmail] = useState(false);
+  const [contactNumber, setContactNumber] = useState('');
+  const [invalidContactNumber, setInvalidContactNumber] = useState(false);
+  const [emailId, setEmailId] = useState('');
+  const [invalidEmailId, setInvalidEmailId] = useState(false);
   const joinQueueActionStatus = useSelector((state) => state.actionStatus['joinQueue']);
   const prevActionStatus = useRef();
   const [activeStep, setActiveStep] = React.useState(0);
   const queueInfo = useSelector(selectQueueInfo);
   const [saveToLocalStorage, setSaveToLocalStorage] = useState(true);
+  const getTokenByContactNumber = useCallback(useGetTokenByContactNumber(), []);
 
   const { notifyByEmail } = useSelector(selectQueueInfo);
   const collectEmail = !!notifyByEmail;
 
+  const joinQueue = useJoinQueue();
+  const dispatch = useDispatch();
+
+  const joinQueueHandler = () => {
+    dispatch(
+      joinQueue({
+        name,
+        contactNumber,
+        queueId,
+        emailId: collectEmail ? emailId : undefined,
+        goToStatusPage: !isAdminPage,
+      })
+    );
+  };
+
+  const onSubmitGetToken = () => {
+    dispatch(
+      getTokenByContactNumber({ queueId, contactNumber, redirectToTokenPageOnSuccess: true })
+    );
+  };
+
   const handleNext = async () => {
-    if (invalidContact) return;
-    if (contact === '') {
-      setInvalidContact(true);
+    if (invalidContactNumber) return;
+    if (contactNumber === '') {
+      setInvalidContactNumber(true);
       return;
     }
 
-    // check if user is on queue page (pages/Admin/AddMember.jsx) where each step (contact + name) is necessary
-    if (props.queuePage) {
+    // check if user is on admin page (pages/Admin/AddMember.jsx) where each step (contact + name) is necessary
+    if (!isAdminPage) {
       setActiveStep((prevActiveStep) => prevActiveStep + 1);
       return;
     }
-    props.onSubmitGetToken(contact);
+    onSubmitGetToken(contactNumber);
     if (queueInfo.selfJoinAllowed) setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
@@ -54,9 +78,9 @@ export function JoinQueueForm(props) {
   useEffect(() => {
     // Reset form only after successful action
     if (prevActionStatus.current === 'pending' && joinQueueActionStatus === 'fulfilled') {
-      setContact('');
+      setContactNumber('');
       setName('');
-      setEmail('');
+      setEmailId('');
     }
 
     // Set previous action status for next render
@@ -71,10 +95,10 @@ export function JoinQueueForm(props) {
       setName(localStorageName);
     }
     if (localStorageContact) {
-      setContact(localStorageContact);
+      setContactNumber(localStorageContact);
     }
     if (localStorageEmail) {
-      setEmail(localStorageEmail);
+      setEmailId(localStorageEmail);
     }
   }, []);
 
@@ -88,52 +112,52 @@ export function JoinQueueForm(props) {
   }
 
   function handleEmailChange(e) {
-    setEmail(e.target.value);
+    setEmailId(e.target.value);
   }
 
   const onSubmit = () => {
-    if (invalidContact || invalidName) return;
+    if (invalidContactNumber || invalidName) return;
     if (name === '') {
       setInvalidName(true);
       return;
     }
-    if (contact === '') {
-      setInvalidContact(true);
+    if (contactNumber === '') {
+      setInvalidContactNumber(true);
       return;
     }
 
-    if (collectEmail && email === '') {
-      setInvalidEmail(true);
+    if (collectEmail && emailId === '') {
+      setInvalidEmailId(true);
       return;
     }
 
     if (saveToLocalStorage) {
-      localStorage.setItem('contact', contact);
+      localStorage.setItem('contact', contactNumber);
       localStorage.setItem('name', name);
-      localStorage.setItem('email', email);
+      localStorage.setItem('email', emailId);
     } else {
       localStorage.removeItem('contact');
       localStorage.removeItem('name');
       localStorage.removeItem('email');
     }
 
-    props.joinQueueHandler(name, contact, collectEmail ? email : undefined);
+    joinQueueHandler();
     // reset to first step on queue page (pages/Admin/AddMember.jsx)
-    if (props.queuePage) setActiveStep(0);
+    if (isAdminPage) setActiveStep(0);
   };
 
   const checkJoinDisabled = () => {
     return (
-      invalidContact ||
+      invalidContactNumber ||
       invalidName ||
-      contact === '' ||
+      contactNumber === '' ||
       name === '' ||
-      (collectEmail && (email === '' || invalidEmail))
+      (collectEmail && (emailId === '' || invalidEmailId))
     );
   };
 
   const checkNextDisabled = () => {
-    return invalidContact || contact === '';
+    return invalidContactNumber || contactNumber === '';
   };
 
   const steps = [
@@ -143,10 +167,10 @@ export function JoinQueueForm(props) {
       item: (
         <div className={styles.formItem}>
           <PhoneInput
-            isValid={!invalidContact}
-            setInvalidContact={setInvalidContact}
-            contact={contact}
-            onChange={(val) => setContact(val)}
+            isValid={!invalidContactNumber}
+            setInvalidContact={setInvalidContactNumber}
+            contact={contactNumber}
+            onChange={(val) => setContactNumber(val)}
             onKeyDown={handleNext}
           />
         </div>
@@ -172,11 +196,11 @@ export function JoinQueueForm(props) {
             <div className={styles.formItem}>
               <InputField
                 placeholder="Email"
-                value={email}
+                value={emailId}
                 onKeyPress={(e) => handleEnterPress(e, onSubmit)}
                 onChange={handleEmailChange}
-                error={invalidEmail}
-                helperText={invalidEmail ? 'Enter a valid name' : ''}
+                error={invalidEmailId}
+                helperText={invalidEmailId ? 'Enter a valid name' : ''}
               />
             </div>
           ) : null}
@@ -191,8 +215,7 @@ export function JoinQueueForm(props) {
           Back
         </StandardButton>
       );
-    const isSubmitStep =
-      index === steps.length - 1 && (queueInfo.selfJoinAllowed || props.queuePage);
+    const isSubmitStep = index === steps.length - 1 && (queueInfo.selfJoinAllowed || isAdminPage);
     const boxContent = isSubmitStep ? (
       <>
         <Checkbox
@@ -206,7 +229,7 @@ export function JoinQueueForm(props) {
         <div className={styles.formBoxVerticalButtons}>
           <LoadingStatus dependsOn="joinQueue">
             <StandardButton disabled={checkJoinDisabled()} onClick={onSubmit}>
-              {props.buttonText}
+              {buttonText}
             </StandardButton>
           </LoadingStatus>
           <span className={styles.formButtonsSpace} />
