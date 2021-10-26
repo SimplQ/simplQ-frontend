@@ -1,5 +1,5 @@
 import React from 'react';
-import * as Sentry from '@sentry/react';
+import { raiseException } from 'services/alerts';
 import PageNotFound from './pages/PageNotFound';
 
 // eslint-disable-next-line import/prefer-default-export
@@ -19,17 +19,8 @@ export class ErrorBoundary extends React.Component {
   }
 
   componentDidCatch(error, errorInfo) {
-    // You can also log the error to an error reporting service
-    // logErrorToMyService(error, errorInfo);
-    // log error to sentry for alerting
-    let eventId;
-    Sentry.withScope((scope) => {
-      scope.setTag('Caught-at', 'Error Boundary');
-      scope.setExtras(errorInfo);
-      eventId = Sentry.captureException(error);
-    });
-    // eslint-disable-next-line no-console
-    console.log(`Sentry exception captured, event id is ${eventId}`);
+    // log the error to our error reporting service
+    raiseException(error, 'Error Boundary', errorInfo);
   }
 
   render() {

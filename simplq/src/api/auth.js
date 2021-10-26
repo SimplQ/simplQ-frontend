@@ -1,10 +1,10 @@
 import { useAuth0 } from '@auth0/auth0-react';
 import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios';
-import * as Sentry from '@sentry/react';
 
 // config.js is generated at runtime, so disabling eslint warning
 /* eslint-disable  import/no-unresolved, import/extensions */
+import { raiseException } from 'services/alerts';
 import { baseURL } from '../config';
 
 const ANONYMOUS_DEVICE_ID_KEY = 'anonymous-device-id';
@@ -53,14 +53,9 @@ const useMakeAuthedRequest = () => {
         Authorization: await getAuthHeaderValue(auth),
       },
     }).catch((error) => {
-      // log error to sentry for alerting
-      let eventId;
-      Sentry.withScope((scope) => {
-        scope.setTag('Caught-at', 'API request');
-        eventId = Sentry.captureException(error);
-      });
-      // eslint-disable-next-line no-console
-      console.log(`Sentry exception captured, event id is ${eventId}`);
+      // log error to alerting
+      raiseException(error, 'API request');
+
       // In case of request failure, extract error from response body
       if (error.response) {
         // Response has been received from the server

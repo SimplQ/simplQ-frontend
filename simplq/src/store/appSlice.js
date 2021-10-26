@@ -12,6 +12,7 @@ const appSlice = createSlice({
     errorText: '',
     infoText: '',
     notificationPermission: null, // This state value is initialised by the notification service.
+    firebaseNotificationToken: null, // This state value is initialised by the firebase service.
   },
   reducers: {
     setErrorPopupMessage: (state, action) => {
@@ -22,6 +23,9 @@ const appSlice = createSlice({
     },
     setNotificationPermission: (state, action) => {
       state.notificationPermission = action.payload;
+    },
+    setFirebaseNotificationToken: (state, action) => {
+      state.firebaseNotificationToken = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -55,6 +59,7 @@ export const {
   setErrorPopupMessage,
   setInfoPopupMessage,
   setNotificationPermission,
+  setFirebaseNotificationToken,
 } = appSlice.actions;
 
 export default appSlice.reducer;

@@ -3,8 +3,6 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import { Provider } from 'react-redux';
-import * as Sentry from '@sentry/react';
-import { Integrations } from '@sentry/tracing';
 import AOS from 'aos';
 import { Auth0Provider } from '@auth0/auth0-react';
 import { store } from './store';
@@ -12,12 +10,6 @@ import * as serviceWorker from './serviceWorker';
 import Layout from './components/Layout/Layout';
 
 AOS.init();
-
-Sentry.init({
-  dsn: 'https://b95e1a087d284ecca9a50909d2a792e8@o444913.ingest.sentry.io/5420492',
-  integrations: [new Integrations.BrowserTracing()],
-  tracesSampleRate: 1.0,
-});
 
 const theme = createTheme({
   palette: {
