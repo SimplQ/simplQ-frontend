@@ -1,13 +1,9 @@
 import { getToken } from 'firebase/messaging';
 import { initializeApp } from 'firebase/app';
-import {
-  setFirebaseNotificationToken,
-  setNotificationPermission,
-  setErrorPopupMessage,
-} from 'store/appSlice';
+import { setErrorPopupMessage } from 'store/appSlice';
 import { store } from 'store';
 import { raiseException } from 'services/alerts';
-import { useLinkDevice } from 'store/asyncActions/linkDevice';
+import { useLinkDevice } from 'store/asyncActions';
 
 // Public key generated from firebase console
 const vapidKey =
@@ -35,8 +31,6 @@ export function useRegisterNotifications() {
   const registerNotifications = () => {
     getToken({ vapidKey })
       .then((deviceId) => {
-        store.dispatch(setFirebaseNotificationToken(deviceId));
-        store.dispatch(setNotificationPermission(true));
         store.dispatch(linkDevice(deviceId));
       })
       .catch((ex) => {
