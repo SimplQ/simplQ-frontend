@@ -8,12 +8,6 @@ const typePrefix = 'linkDevice/action';
  * A hook to access the linkDevice async action creator.
  *
  * @returns — linkDevice async action creator
- *
- * @example
- *
- * import linkDevice from 'store/tokens'
- *
- * const linkDevice = useLinkDevice()
  */
 const useLinkDevice = () => {
   const makeAuthedRequest = useMakeAuthedRequest();

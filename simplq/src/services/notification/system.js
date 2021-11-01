@@ -68,10 +68,13 @@ export const notify = (messageText) => {
 };
 
 // fix for Notification object not supported on iOS safari
-export const getNotificationStatus = () => {
+const getNotificationStatus = () => {
   try {
     return Notification.permission;
   } catch (error) {
     return 'denied';
   }
 };
+
+// Initilise notifications at start
+store.dispatch(setNotificationPermission(getNotificationStatus()));
