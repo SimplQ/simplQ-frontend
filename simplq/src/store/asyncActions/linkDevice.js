@@ -25,17 +25,6 @@ const useLinkDevice = () => {
   return linkDevice;
 };
 
-/**
- * A shadow function that returns linkDevice async action creator.
- *
- * This should be used just for the action creators that it generates.
-
- * @see store/tokensSlice.js
- *
- * @see https://redux-toolkit.js.org/api/createAsyncThunk#return-value
- *
- * @returns linkDevice() async action creator
- */
 const linkDevice = createAsyncThunk(typePrefix);
 
 export { linkDevice, useLinkDevice };
