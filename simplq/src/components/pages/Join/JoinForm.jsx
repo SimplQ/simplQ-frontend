@@ -48,7 +48,6 @@ export function JoinQueueForm({ queueId, isAdminPage, buttonText }) {
         queueId,
         emailId: collectEmail ? emailId : undefined,
         goToStatusPage: !isAdminPage,
-        notifyDevice,
       })
     );
   };
