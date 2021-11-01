@@ -13,6 +13,7 @@ import StepLabel from '@material-ui/core/StepLabel';
 import Typography from '@material-ui/core/Typography';
 import { useJoinQueue } from 'store/asyncActions';
 import { useGetTokenByContactNumber } from 'store/asyncActions/getTokenByContactNumber';
+import { useRegisterForNotifications } from 'services/notification/firebase';
 import styles from './JoinForm.module.scss';
 import Checkbox from '../../common/Checkbox/Checkbox';
 import { selectQueueInfo } from '../../../store/queueInfo';
@@ -29,7 +30,9 @@ export function JoinQueueForm({ queueId, isAdminPage, buttonText }) {
   const [activeStep, setActiveStep] = React.useState(0);
   const queueInfo = useSelector(selectQueueInfo);
   const [saveToLocalStorage, setSaveToLocalStorage] = useState(true);
+  const [notifyDevice, setNotifyDevice] = useState(true);
   const getTokenByContactNumber = useCallback(useGetTokenByContactNumber(), []);
+  const registerForNotifications = useCallback(useRegisterForNotifications(), []);
 
   const { notifyByEmail } = useSelector(selectQueueInfo);
   const collectEmail = !!notifyByEmail;
@@ -45,6 +48,7 @@ export function JoinQueueForm({ queueId, isAdminPage, buttonText }) {
         queueId,
         emailId: collectEmail ? emailId : undefined,
         goToStatusPage: !isAdminPage,
+        notifyDevice,
       })
     );
   };
@@ -141,6 +145,10 @@ export function JoinQueueForm({ queueId, isAdminPage, buttonText }) {
       localStorage.removeItem('email');
     }
 
+    if (notifyDevice) {
+      registerForNotifications();
+    }
+
     joinQueueHandler();
     // reset to first step on queue page (pages/Admin/AddMember.jsx)
     if (isAdminPage) setActiveStep(0);
@@ -224,6 +232,14 @@ export function JoinQueueForm({ queueId, isAdminPage, buttonText }) {
           checked={saveToLocalStorage}
           onChange={() => {
             setSaveToLocalStorage(!saveToLocalStorage);
+          }}
+        />
+        <Checkbox
+          name="notification"
+          label="Send me notifications on this device"
+          checked={notifyDevice}
+          onChange={() => {
+            setNotifyDevice(!notifyDevice);
           }}
         />
         <div className={styles.formBoxVerticalButtons}>

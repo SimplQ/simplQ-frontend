@@ -1,4 +1,4 @@
-import { getToken } from 'firebase/messaging';
+import { getMessaging, getToken } from 'firebase/messaging';
 import { initializeApp } from 'firebase/app';
 import { setErrorPopupMessage } from 'store/appSlice';
 import { store } from 'store';
@@ -19,31 +19,29 @@ const firebaseConfig = {
   measurementId: 'G-8N2SDV8VF5',
 };
 
-// Initialize Firebase
-initializeApp(firebaseConfig);
-
 /**
  * React hook that lets you register for notifications.
  */
-export function useRegisterNotifications() {
+export function useRegisterForNotifications() {
   const linkDevice = useLinkDevice();
 
-  const registerNotifications = () => {
-    getToken({ vapidKey })
+  const registerForNotifications = () => {
+    // Initialize Firebase
+    const firebaseApp = initializeApp(firebaseConfig);
+    const messaging = getMessaging(firebaseApp);
+
+    getToken(messaging, { vapidKey })
       .then((deviceId) => {
         store.dispatch(linkDevice(deviceId));
       })
       .catch((ex) => {
-        store.dispatch(
-          setErrorPopupMessage(
-            'Your browser has disabled notifications, please enable from Browser Settings'
-          )
-        );
+        store.dispatch(setErrorPopupMessage('An error occurred while setting up notifcations.'));
         raiseException(ex, 'firebase/registerNotifications');
       });
   };
 
-  return registerNotifications;
+  return registerForNotifications;
 }
 
+// TODO
 export function useDeregisterNotifications() {}
