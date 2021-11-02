@@ -19,6 +19,10 @@ const firebaseConfig = {
   measurementId: 'G-8N2SDV8VF5',
 };
 
+// Initialize Firebase
+const firebaseApp = initializeApp(firebaseConfig);
+const messaging = getMessaging(firebaseApp);
+
 /**
  * React hook that lets you register for notifications.
  */
@@ -26,10 +30,6 @@ export function useRegisterForNotifications() {
   const linkDevice = useLinkDevice();
 
   const registerForNotifications = () => {
-    // Initialize Firebase
-    const firebaseApp = initializeApp(firebaseConfig);
-    const messaging = getMessaging(firebaseApp);
-
     getToken(messaging, { vapidKey })
       .then((deviceId) => {
         store.dispatch(linkDevice(deviceId));
