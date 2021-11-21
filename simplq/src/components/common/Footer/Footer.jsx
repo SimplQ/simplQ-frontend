@@ -19,8 +19,9 @@ export default () => (
       <div className={styles['card-body']}>
         <div className={styles['description-content-container']}>
           <b>
-            SimplQ is a completely web based queue management solution that anyone can use to create
-            instant virtual queues.
+            SimplQ is a free queue management system that anyone can use to create
+            instant online queues. Our queue management app is open source and 
+            aims to make crowd maangement easy for businesses and personal use.
             <br />
             <br />
             <a href="/privacy">Privacy Policy</a>
