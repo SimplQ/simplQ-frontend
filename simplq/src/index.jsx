@@ -9,6 +9,7 @@ import AOS from 'aos';
 import { Auth0Provider } from '@auth0/auth0-react';
 import { store } from './store';
 import * as serviceWorker from './serviceWorker';
+import { BrowserRouter as Router } from 'react-router-dom';
 import Layout from './components/Layout/Layout';
 
 AOS.init();
@@ -39,7 +40,9 @@ ReactDOM.render(
   >
     <ThemeProvider theme={theme}>
       <Provider store={store}>
-        <Layout />
+        <Router>
+          <Layout />
+        </Router>
       </Provider>
     </ThemeProvider>
   </Auth0Provider>,

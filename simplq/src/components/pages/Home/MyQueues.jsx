@@ -1,14 +1,14 @@
 import React from 'react';
 import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 import { useDeleteQueue } from 'store/asyncActions';
 import { selectQueues } from 'store/queues';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './Home.module.scss';
 
 export default () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const queues = useSelector(selectQueues);
   const deleteQueue = useDeleteQueue();
@@ -27,7 +27,7 @@ export default () => {
           : 'What would you like to do today? Here are your active queues:'}
       </p>
       {queues.map((queue) => {
-        const handler = () => history.push(`/queue/${queue.queueId}`);
+        const handler = () => navigate(`/queue/${queue.queueId}`);
         return (
           <div
             key={queue.queueId}

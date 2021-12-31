@@ -1,5 +1,6 @@
 import HeaderSection from 'components/common/HeaderSection';
 import React, { useEffect, useCallback } from 'react';
+import { useParams } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useGetToken } from 'store/asyncActions';
@@ -10,7 +11,8 @@ import TokenSidePanel from './TokenSidePanel';
 import TokenNumber from './TokenNumber';
 
 function TokenStatusPage(props) {
-  const tokenId = props.match.params.tokenId;
+  const params = useParams();
+  const tokenId = params.tokenId;
   const dispatch = useDispatch();
   const token = useSelector(selectToken);
   const getToken = useCallback(useGetToken(), []);

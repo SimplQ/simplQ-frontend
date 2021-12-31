@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 import { handleEnterPress } from 'utils/eventHandling';
 import { isQueueNameValid } from 'utils/textOperations';
 import { useCreateQueue } from 'store/asyncActions';
@@ -12,7 +12,7 @@ import StandardButton from '../Button';
 const CreateJoinForm = (props) => {
   const [textFieldValue, setTextFieldValue] = useState(props.defaultTextFieldValue);
   const [invalidMsg, setInvalidMsg] = useState('');
-  const history = useHistory();
+  const navigate = useNavigate();
   const createQueue = useCreateQueue();
   const dispatch = useDispatch();
 
@@ -27,7 +27,7 @@ const CreateJoinForm = (props) => {
   const handleJoinClick = () => {
     if (!textFieldValue) setInvalidMsg('Line name is required');
     else {
-      history.push(`/j/${textFieldValue}`);
+      navigate(`/j/${textFieldValue}`);
     }
   };
 
@@ -42,7 +42,7 @@ const CreateJoinForm = (props) => {
   };
 
   const handleScanAnyQR = () => {
-    history.push('/scanQr');
+    navigate('/scanQr');
   };
 
   return (

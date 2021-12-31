@@ -20,12 +20,12 @@ export const smoothScrollTo = (targetElement) => {
   window.scrollTo('40px', offsetPosition);
 };
 
-export const smoothScrollToHomePageTop = (history) => {
+export const smoothScrollToHomePageTop = (navigate) => {
   const element = document.getElementById('target_top');
   if (element) {
     smoothScrollTo(element);
   } else {
-    history.push('/');
+    navigate('/');
   }
 };
 

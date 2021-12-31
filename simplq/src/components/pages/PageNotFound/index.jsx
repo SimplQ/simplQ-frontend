@@ -1,11 +1,13 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import Button from 'components/common/Button';
 import CreateJoinForm from 'components/common/CreateJoinForm';
 import styles from './pageNotFound.module.scss';
 
 function PageNotFound(props) {
   const MainContent = () => {
-    if (props?.match?.params?.queueName) {
+    const params = useParams();
+    if (params?.queueName) {
       // display CreateJoinForm
       return (
         <div className={styles.main}>
@@ -15,7 +17,7 @@ function PageNotFound(props) {
               A queue with that name doesn&apos;t exist, please enter a valid queue name or create
               one
             </p>
-            <CreateJoinForm defaultTextFieldValue={props.match.params.queueName} />
+            <CreateJoinForm defaultTextFieldValue={params.queueName} />
           </div>
         </div>
       );

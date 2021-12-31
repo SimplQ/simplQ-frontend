@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { useMakeAuthedRequest } from 'api/auth';
 import * as RequestFactory from 'api/requestFactory';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 
 const typePrefix = 'getTokenByContactNumber/action';
 
@@ -12,7 +12,7 @@ const typePrefix = 'getTokenByContactNumber/action';
  */
 const useGetTokenByContactNumber = () => {
   const makeAuthedRequest = useMakeAuthedRequest();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const getTokenByContactNumber = createAsyncThunk(
     typePrefix,
@@ -22,7 +22,7 @@ const useGetTokenByContactNumber = () => {
       );
       const response = await authedRequest;
       if (response && redirectToTokenPageOnSuccess && response.tokenId) {
-        history.push(`/token/${response.tokenId}`);
+        navigate(`/token/${response.tokenId}`);
       }
       return response;
     }

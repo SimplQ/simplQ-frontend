@@ -2,13 +2,13 @@
 
 import React from 'react';
 import { smoothScrollTo, smoothScrollToHomePageTop, onLoadById } from 'utils/scrollingOperations';
-import { useHistory } from 'react-router';
-import { ReactTypeformEmbed } from 'react-typeform-embed';
+import { useNavigate } from 'react-router';
+import { Popup } from 'react-typeform-embed';
 import styles from './Nav.module.scss';
 import LoginButton from '../LoginButton';
 
 const LeftNav = ({ open, toggleClose }) => {
-  const history = useHistory();
+  const navigate = useNavigate();
   let typeformEmbed = null;
 
   const scrollToHowItWorks = () => {
@@ -20,7 +20,7 @@ const LeftNav = ({ open, toggleClose }) => {
       // element is on the current page, just have to scroll to it
       smoothScrollTo(element);
     } else {
-      history.push('/');
+      navigate('/');
       // wait till page loads before getting element
       onLoadById('target_how_it_works', smoothScrollTo);
     }
@@ -36,8 +36,8 @@ const LeftNav = ({ open, toggleClose }) => {
           <a
             role="link"
             tabIndex={0}
-            onKeyDown={() => smoothScrollToHomePageTop(history)}
-            onClick={() => smoothScrollToHomePageTop(history)}
+            onKeyDown={() => smoothScrollToHomePageTop(navigate)}
+            onClick={() => smoothScrollToHomePageTop(navigate)}
           >
             Home
           </a>
@@ -62,7 +62,7 @@ const LeftNav = ({ open, toggleClose }) => {
           <LoginButton />
         </li>
       </ul>
-      <ReactTypeformEmbed
+      <Popup
         popup
         url="https://kss9gyhvcy3.typeform.com/to/kHJHPLEr"
         hideHeaders
