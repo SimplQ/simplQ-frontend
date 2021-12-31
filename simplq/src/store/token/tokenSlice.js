@@ -8,9 +8,7 @@ const tokenSlice = createSlice({
   reducers: {},
   extraReducers: {
     // handle fulfilled request
-    [getToken.fulfilled]: (state, action) => {
-      return action.payload;
-    },
+    [getToken.fulfilled]: (state, action) => action.payload,
   },
 });
 

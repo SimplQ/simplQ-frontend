@@ -23,7 +23,7 @@ const useGetQueueInfoByName = () => {
         const response = await authedRequest;
         return response;
       } catch (error) {
-        history.replace(`/pageNotFound/queueName=${queueName}`);
+        navigate(`/pageNotFound/queueName=${queueName}`, { replace: true });
         return rejectWithValue({ message: `Queue ${queueName} does not exist, try again...` });
       }
     }

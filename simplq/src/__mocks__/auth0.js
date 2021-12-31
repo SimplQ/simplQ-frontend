@@ -29,9 +29,7 @@ const initAuth0 = {
 
 let nextAuth0 = { ...initAuth0 };
 
-export const useAuth0 = () => {
-  return nextAuth0;
-};
+export const useAuth0 = () => nextAuth0;
 
 const auth0Decorator = (Story, { parameters }) => {
   nextAuth0 = { ...initAuth0 };

@@ -11,9 +11,7 @@ const selectedQueueHistorySlice = createSlice({
   reducers: {},
   extraReducers: {
     // handle fulfilled request
-    [getSelectedQueueHistory.fulfilled]: (state, action) => {
-      return action.payload;
-    },
+    [getSelectedQueueHistory.fulfilled]: (state, action) => action.payload,
   },
 });
 

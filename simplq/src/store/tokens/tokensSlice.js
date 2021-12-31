@@ -8,9 +8,7 @@ const tokensSlice = createSlice({
   reducers: {},
   extraReducers: {
     // handle fulfiled request
-    [getUserTokens.fulfilled]: (state, action) => {
-      return action.payload.tokens;
-    },
+    [getUserTokens.fulfilled]: (state, action) => action.payload.tokens,
     // add newly created token to tokens list
     [joinQueue.fulfilled]: (state, action) => {
       state.push(action.payload);

@@ -18,9 +18,9 @@ const typePrefix = 'getUserQueues/action';
 const useGetUserQueues = () => {
   const makeAuthedRequest = useMakeAuthedRequest();
 
-  const getUserQueues = createAsyncThunk(typePrefix, async () => {
-    return makeAuthedRequest(RequestFactory.getUserQueues());
-  });
+  const getUserQueues = createAsyncThunk(typePrefix, async () =>
+    makeAuthedRequest(RequestFactory.getUserQueues())
+  );
 
   return getUserQueues;
 };

@@ -18,9 +18,7 @@ const selectedQueueSlice = createSlice({
   reducers: {},
   extraReducers: {
     // handle fulfilled request
-    [getSelectedQueue.fulfilled]: (state, action) => {
-      return action.payload;
-    },
+    [getSelectedQueue.fulfilled]: (state, action) => action.payload,
     // add newly created token to currently selected queue's token list
     [joinQueue.fulfilled]: (state, action) => {
       state.tokens.push(action.payload);
