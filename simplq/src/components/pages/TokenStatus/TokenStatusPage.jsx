@@ -10,7 +10,7 @@ import TokenStatus from './TokenStatus';
 import TokenSidePanel from './TokenSidePanel';
 import TokenNumber from './TokenNumber';
 
-function TokenStatusPage(props) {
+const TokenStatusPage = () => {
   const params = useParams();
   const tokenId = params.tokenId;
   const dispatch = useDispatch();
@@ -31,6 +31,6 @@ function TokenStatusPage(props) {
       </div>
     </>
   );
-}
+};
 
 export default TokenStatusPage;

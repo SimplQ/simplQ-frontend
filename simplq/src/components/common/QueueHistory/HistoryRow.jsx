@@ -57,33 +57,27 @@ export default (props) => {
   };
 
   // for medium-sized to larger-sized devices, function returns a larger icon
-  const getLargeIcon = () => {
-    return getIcon('180%');
-  };
+  const getLargeIcon = () => getIcon('180%');
 
   // for medium-sized to larger-sized devices, function returns a
   // comparatively smaller icon
-  const getSmallIcon = () => {
-    return getIcon('120%');
-  };
+  const getSmallIcon = () => getIcon('120%');
 
   return (
-    <>
-      <section className={styles['history-row']}>
-        <div className={styles['history-row-icon']}>
-          {window.innerWidth >= 700 ? getLargeIcon() : getSmallIcon()}
-        </div>
-        <div className={styles['history-row-info']} id="history-row-info">
-          <div className={styles['history-row-info-content']}>
-            <span className={styles['history-row-info-topic']}>{getMessage()}</span>
+    <section className={styles['history-row']}>
+      <div className={styles['history-row-icon']}>
+        {window.innerWidth >= 700 ? getLargeIcon() : getSmallIcon()}
+      </div>
+      <div className={styles['history-row-info']} id="history-row-info">
+        <div className={styles['history-row-info-content']}>
+          <span className={styles['history-row-info-topic']}>{getMessage()}</span>
 
-            <span className={styles['history-row-info-timestamp']}>
-              {moment(props.data.eventTimestamp).format('hh:mm a, MMMM DD, YYYY')}
-            </span>
-          </div>
+          <span className={styles['history-row-info-timestamp']}>
+            {moment(props.data.eventTimestamp).format('hh:mm a, MMMM DD, YYYY')}
+          </span>
         </div>
-        <div className={styles['history-row-token']}>{props.data.tokenNumber}</div>
-      </section>
-    </>
+      </div>
+      <div className={styles['history-row-token']}>{props.data.tokenNumber}</div>
+    </section>
   );
 };

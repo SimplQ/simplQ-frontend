@@ -35,14 +35,13 @@ export default () => {
   };
 
   return (
-    <>
-      <div className={styles['scan-window']}>
-        <div className={styles['description-panel']}>
-          <p className={styles['description-para']}>Scan a QR-Code</p>
-          <p className={styles['description-para']}>Allow access to your camera</p>
-        </div>
-        <div className={styles['qrscan-panel']}>
-          {/* <QrReader
+    <div className={styles['scan-window']}>
+      <div className={styles['description-panel']}>
+        <p className={styles['description-para']}>Scan a QR-Code</p>
+        <p className={styles['description-para']}>Allow access to your camera</p>
+      </div>
+      <div className={styles['qrscan-panel']}>
+        {/* <QrReader
             delay={100}
             onError={handleError}
             onScan={handleScan}
@@ -50,8 +49,7 @@ export default () => {
             facingMode="rear"
             legacyMode
           /> */}
-        </div>
       </div>
-    </>
+    </div>
   );
 };

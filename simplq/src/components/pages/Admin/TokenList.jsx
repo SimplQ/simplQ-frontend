@@ -6,17 +6,15 @@ import { QrCode } from 'components/common/Popup/QrCode';
 import Token from './Token';
 import styles from './admin.module.scss';
 
-const EmptyTokenList = ({ queueName }) => {
-  return (
-    <>
-      <p>
-        Your line has been created and is currently empty. Add people to the line and share the
-        below QR code for them to see their status
-      </p>
-      <QrCode tourTag="reactour__printQRCode" queueName={queueName} />
-    </>
-  );
-};
+const EmptyTokenList = ({ queueName }) => (
+  <>
+    <p>
+      Your line has been created and is currently empty. Add people to the line and share the below
+      QR code for them to see their status
+    </p>
+    <QrCode tourTag="reactour__printQRCode" queueName={queueName} />
+  </>
+);
 
 const TokenList = ({ queueName }) => {
   const tokens = useSelector(selectTokens);

@@ -22,7 +22,7 @@ let timeoutId;
 
 const isQueueDeleted = (queueInfo) => queueInfo?.status === 'DELETED';
 
-const AdminPage = (props) => {
+const AdminPage = () => {
   const params = useParams();
   const queueId = params.queueId;
   const queueInfo = useSelector(selectQueueInfo);

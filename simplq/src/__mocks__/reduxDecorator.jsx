@@ -15,13 +15,11 @@ const reduxDecorator = (Story, context) => {
 
   store.dispatch = action('dispatch');
 
-  const Decorator = () => {
-    return (
-      <Provider store={store}>
-        <Story />
-      </Provider>
-    );
-  };
+  const Decorator = () => (
+    <Provider store={store}>
+      <Story />
+    </Provider>
+  );
 
   return <Decorator />;
 };

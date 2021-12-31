@@ -11,7 +11,7 @@ import JoinQueueForm from './JoinForm';
 import styles from './JoinPage.module.scss';
 import MyTokens from './MyTokens';
 
-export default ({ match }) => {
+export default () => {
   const params = useParams();
   const queueName = params.queueName;
   const getQueueInfoByName = useCallback(useGetQueueInfoByName(), []);
