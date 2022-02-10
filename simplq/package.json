@@ -17,7 +17,7 @@
     "components": "^0.1.0",
     "google-libphonenumber": "^3.2.13",
     "moment": "^2.29.1",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-copy-to-clipboard": "^5.0.2",
