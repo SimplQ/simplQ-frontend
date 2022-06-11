@@ -36,3 +36,5 @@ export {
   notifyToken,
   getTokenByContactNumber,
 } from './token';
+
+export { linkDevice, unlinkDevice } from './owner';

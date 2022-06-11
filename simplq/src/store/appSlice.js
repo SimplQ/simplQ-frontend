@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
-import { createQueue, deleteQueue, joinQueue } from 'store/asyncActions';
+import { createQueue, deleteQueue, joinQueue, linkDevice } from 'store/asyncActions';
 
 function isRejectedAction(action) {
   return action.type.endsWith('rejected');
@@ -11,7 +11,9 @@ const appSlice = createSlice({
   initialState: {
     errorText: '',
     infoText: '',
-    notificationPermission: null, // This state value is initialised by the notification service.
+    // This value is initilised at start by services/notification/system.js
+    notificationPermission: null,
+    firebaseNotificationDeviceId: null,
   },
   reducers: {
     setErrorPopupMessage: (state, action) => {
@@ -43,6 +45,10 @@ const appSlice = createSlice({
       })
       .addCase(deleteQueue.fulfilled, (state, action) => {
         state.infoText = `Deleted ${action.payload.queueName}`;
+      })
+      .addCase(linkDevice.fulfilled, (state, action) => {
+        state.notificationPermission = true;
+        state.firebaseNotificationDeviceId = action.payload.deviceId;
       })
       .addMatcher(isRejectedAction, (state, action) => {
         // All failed network calls are handled here

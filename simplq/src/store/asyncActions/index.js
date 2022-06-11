@@ -5,6 +5,8 @@
  * in separate files and can depend on each other.
  */
 
+export { linkDevice, useLinkDevice } from './linkDevice';
+
 export { getUserQueues, useGetUserQueues } from './getUserQueues';
 export { getUserTokens, useGetUserTokens } from './getUserTokens';
 export { deleteQueue, useDeleteQueue } from './deleteQueue';
