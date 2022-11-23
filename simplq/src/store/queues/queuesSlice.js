@@ -8,9 +8,7 @@ const queuesSlice = createSlice({
   reducers: {},
   extraReducers: {
     // handle fulfiled request
-    [getUserQueues.fulfilled]: (state, action) => {
-      return action.payload.queues;
-    },
+    [getUserQueues.fulfilled]: (state, action) => action.payload.queues,
     // remove deleted queue from queues list
     [deleteQueue.fulfilled]: (state, action) => {
       const { queueId } = action.payload;

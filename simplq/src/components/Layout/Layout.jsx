@@ -7,7 +7,7 @@ import Loading from 'components/common/Loading/Loading';
 import Routes from './Routes';
 import styles from './Layout.module.scss';
 
-function Layout() {
+const Layout = () => {
   const { isLoading, isAuthenticated } = useAuth0();
   const dispatch = useDispatch();
   const getUserQueues = useGetUserQueues();
@@ -34,6 +34,6 @@ function Layout() {
       </div>
     </div>
   );
-}
+};
 
 export default Layout;

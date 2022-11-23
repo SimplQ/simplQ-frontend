@@ -51,10 +51,7 @@ const appSlice = createSlice({
   },
 });
 
-export const {
-  setErrorPopupMessage,
-  setInfoPopupMessage,
-  setNotificationPermission,
-} = appSlice.actions;
+export const { setErrorPopupMessage, setInfoPopupMessage, setNotificationPermission } =
+  appSlice.actions;
 
 export default appSlice.reducer;

@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useDeleteToken, useNotifyToken } from 'store/asyncActions';
 import styles from './admin.module.scss';
 
-function Token({ token }) {
+const Token = ({ token }) => {
   const {
     name,
     tokenId,
@@ -115,6 +115,6 @@ function Token({ token }) {
       </div>
     </section>
   );
-}
+};
 
 export default Token;

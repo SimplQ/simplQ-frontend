@@ -18,9 +18,9 @@ const typePrefix = 'getUserTokens/action';
 const useGetUserTokens = () => {
   const makeAuthedRequest = useMakeAuthedRequest();
 
-  const getUserTokens = createAsyncThunk(typePrefix, async () => {
-    return makeAuthedRequest(RequestFactory.getUserTokens());
-  });
+  const getUserTokens = createAsyncThunk(typePrefix, async () =>
+    makeAuthedRequest(RequestFactory.getUserTokens())
+  );
 
   return getUserTokens;
 };

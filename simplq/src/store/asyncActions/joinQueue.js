@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useMakeAuthedRequest } from 'api/auth';
 import * as RequestFactory from 'api/requestFactory';
 
@@ -12,7 +12,7 @@ const typePrefix = 'joinQueue/action';
  */
 const useJoinQueue = () => {
   const makeAuthedRequest = useMakeAuthedRequest();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const joinQueue = createAsyncThunk(
     typePrefix,
@@ -22,7 +22,7 @@ const useJoinQueue = () => {
       );
       const response = await authedRequest;
       if (goToStatusPage) {
-        history.push(`/token/${response.tokenId}`);
+        navigate(`/token/${response.tokenId}`);
       }
       return response;
     }

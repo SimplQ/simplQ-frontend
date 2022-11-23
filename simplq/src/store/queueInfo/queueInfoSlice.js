@@ -7,12 +7,8 @@ const queueInfoSlice = createSlice({
   reducers: {},
   extraReducers: {
     // handle fulfiled request
-    [getQueueInfo.fulfilled]: (state, action) => {
-      return action.payload;
-    },
-    [getQueueInfoByName.fulfilled]: (state, action) => {
-      return action.payload;
-    },
+    [getQueueInfo.fulfilled]: (state, action) => action.payload,
+    [getQueueInfoByName.fulfilled]: (state, action) => action.payload,
     [deleteQueue.fulfilled]: (state, action) => {
       const { queueId } = action.payload;
       if (state.queueId === queueId) {

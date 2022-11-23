@@ -60,3 +60,4 @@ node_modules/
 simplq/src/config.js
 simplq/.vscode/launch.json
 
+.DS_Store

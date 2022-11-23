@@ -1,12 +1,12 @@
 import React, { useCallback, useEffect } from 'react';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectTokensByQueueName } from 'store/tokens';
 import { useGetUserTokens } from 'store/asyncActions';
 import styles from './MyTokens.module.scss';
 
 export default ({ queueInfo }) => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const myTokens = useSelector(selectTokensByQueueName(queueInfo.queueName));
   const getUserTokens = useCallback(useGetUserTokens(), []);
@@ -23,7 +23,7 @@ export default ({ queueInfo }) => {
         <b>{myTokens.length > 0 ? 'Your Tokens' : ''}</b>
       </p>
       {myTokens.map((token, idx) => {
-        const handler = () => history.push(`/token/${token.tokenId}`);
+        const handler = () => navigate(`/token/${token.tokenId}`);
         return (
           <div
             key={token.tokenId}

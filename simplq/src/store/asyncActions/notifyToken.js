@@ -12,9 +12,9 @@ const typePrefix = 'notifyToken/action';
 const useNotifyToken = () => {
   const makeAuthedRequest = useMakeAuthedRequest();
 
-  const notifyToken = createAsyncThunk(typePrefix, async ({ tokenId }) => {
-    return makeAuthedRequest(RequestFactory.notifyToken(tokenId));
-  });
+  const notifyToken = createAsyncThunk(typePrefix, async ({ tokenId }) =>
+    makeAuthedRequest(RequestFactory.notifyToken(tokenId))
+  );
 
   return notifyToken;
 };

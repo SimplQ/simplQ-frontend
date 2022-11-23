@@ -6,8 +6,7 @@ import { useDispatch } from 'react-redux';
 import Header from 'components/common/Header';
 import StandardButton from 'components/common/Button';
 import QRCode from 'components/common/Popup/QrCode';
-import { useGetSelectedQueue } from 'store/asyncActions';
-import { useGetSelectedQueueHistory } from 'store/asyncActions';
+import { useGetSelectedQueue, useGetSelectedQueueHistory } from 'store/asyncActions';
 import ShareQueue from './ShareQueue';
 import styles from './admin.module.scss';
 

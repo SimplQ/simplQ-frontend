@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useMakeAuthedRequest } from 'api/auth';
 import * as RequestFactory from 'api/requestFactory';
 
@@ -12,7 +12,7 @@ const typePrefix = 'getQueueInfoByName/action';
  */
 const useGetQueueInfoByName = () => {
   const makeAuthedRequest = useMakeAuthedRequest();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const getQueueInfoByName = createAsyncThunk(
     typePrefix,
@@ -23,7 +23,7 @@ const useGetQueueInfoByName = () => {
         const response = await authedRequest;
         return response;
       } catch (error) {
-        history.replace(`/pageNotFound/queueName=${queueName}`);
+        navigate(`/pageNotFound/queueName=${queueName}`, { replace: true });
         return rejectWithValue({ message: `Queue ${queueName} does not exist, try again...` });
       }
     }

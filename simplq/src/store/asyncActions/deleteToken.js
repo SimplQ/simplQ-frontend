@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { useMakeAuthedRequest } from 'api/auth';
 import * as RequestFactory from 'api/requestFactory';
 import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 import { setInfoPopupMessage } from 'store/appSlice';
 
 const typePrefix = 'deleteToken/action';
@@ -14,7 +14,7 @@ const typePrefix = 'deleteToken/action';
  */
 const useDeleteToken = () => {
   const makeAuthedRequest = useMakeAuthedRequest();
-  const history = useHistory();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const deleteToken = createAsyncThunk(typePrefix, async (arg) => {
@@ -23,7 +23,7 @@ const useDeleteToken = () => {
     const response = await authedRequest;
     if (arg.goHome) {
       dispatch(setInfoPopupMessage('Successfully left queue'));
-      history.push('/');
+      navigate('/');
     }
     return response;
   });

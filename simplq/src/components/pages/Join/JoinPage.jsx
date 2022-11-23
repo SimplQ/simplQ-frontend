@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import { useGetQueueInfoByName } from 'store/asyncActions';
 import { selectQueueInfo } from 'store/queueInfo';
 import HeaderSection from 'components/common/HeaderSection';
@@ -10,8 +11,9 @@ import JoinQueueForm from './JoinForm';
 import styles from './JoinPage.module.scss';
 import MyTokens from './MyTokens';
 
-export default ({ match }) => {
-  const queueName = match.params.queueName;
+export default () => {
+  const params = useParams();
+  const queueName = params.queueName;
   const getQueueInfoByName = useCallback(useGetQueueInfoByName(), []);
   const dispatch = useDispatch();
   const queueInfo = useSelector(selectQueueInfo);

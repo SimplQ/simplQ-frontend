@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { useMakeAuthedRequest } from 'api/auth';
 import * as RequestFactory from 'api/requestFactory';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 
 const typePrefix = 'setQueueStatus/action';
 
@@ -12,14 +12,14 @@ const typePrefix = 'setQueueStatus/action';
  */
 const useSetQueueStatus = () => {
   const makeAuthedRequest = useMakeAuthedRequest();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const setQueueStatus = createAsyncThunk(typePrefix, async (arg) => {
     const { queueId, status } = arg;
     const authedRequest = makeAuthedRequest(RequestFactory.setQueueStatus(queueId, status));
     const response = await authedRequest;
     if (response) {
-      history.push(`/queue/${response.queueId}`);
+      navigate(`/queue/${response.queueId}`);
     }
     return response;
   });

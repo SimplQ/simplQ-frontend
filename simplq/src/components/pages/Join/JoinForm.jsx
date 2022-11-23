@@ -17,7 +17,7 @@ import styles from './JoinForm.module.scss';
 import Checkbox from '../../common/Checkbox/Checkbox';
 import { selectQueueInfo } from '../../../store/queueInfo';
 
-export function JoinQueueForm({ queueId, isAdminPage, buttonText }) {
+export const JoinQueueForm = ({ queueId, isAdminPage, buttonText }) => {
   const [name, setName] = useState('');
   const [invalidName, setInvalidName] = useState(false);
   const [contactNumber, setContactNumber] = useState('');
@@ -146,19 +146,14 @@ export function JoinQueueForm({ queueId, isAdminPage, buttonText }) {
     if (isAdminPage) setActiveStep(0);
   };
 
-  const checkJoinDisabled = () => {
-    return (
-      invalidContactNumber ||
-      invalidName ||
-      contactNumber === '' ||
-      name === '' ||
-      (collectEmail && (emailId === '' || invalidEmailId))
-    );
-  };
+  const checkJoinDisabled = () =>
+    invalidContactNumber ||
+    invalidName ||
+    contactNumber === '' ||
+    name === '' ||
+    (collectEmail && (emailId === '' || invalidEmailId));
 
-  const checkNextDisabled = () => {
-    return invalidContactNumber || contactNumber === '';
-  };
+  const checkNextDisabled = () => invalidContactNumber || contactNumber === '';
 
   const steps = [
     {
@@ -269,6 +264,6 @@ export function JoinQueueForm({ queueId, isAdminPage, buttonText }) {
       </Stepper>
     </Box>
   );
-}
+};
 
 export default JoinQueueForm;
